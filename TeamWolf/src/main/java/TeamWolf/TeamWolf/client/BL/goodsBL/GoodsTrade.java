@@ -11,6 +11,7 @@ public class GoodsTrade implements GoodTService {
 	GoodsBLAssistant assistant =new GoodsBLAssistant();
 	
 	public int goodsExport(SaleListPO sl){
+		;
 		return 0;
 	}
 	public int goodsExportReturn(SaleRejectListPO srl){
