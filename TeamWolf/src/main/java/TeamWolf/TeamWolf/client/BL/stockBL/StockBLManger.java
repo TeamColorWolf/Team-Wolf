@@ -28,70 +28,7 @@ public class StockBLManger implements StockBLservice{
 		return null;
 	}
 
-	public int addGood(GoodsVO g) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
-	public int delGood(GoodsVO g) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public int updGood(GoodsVO g) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public int finGood(GoodsVO g) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public GoodList shoGood() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public GoodsStockList shoStockList(int beginDate, int endDate) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public GoodsStockList shoStockDaily() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public int presentList(GoodsVO present) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public PresentList checkPL(int number) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public ArrayList<PresentList> shoSimplifiedPL() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public int increaseToMatch(GoodsVO toIncrease) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public int decreaseToMatch(GoodsVO toDecrease) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public int setWaringLine(GoodsVO goodWL) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 	
 	
 }

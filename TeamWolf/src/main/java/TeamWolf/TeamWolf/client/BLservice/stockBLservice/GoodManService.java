@@ -9,30 +9,30 @@ public interface GoodManService {
 	 * @param g
 	 * @return
 	 */
-	public int addGood(GoodsVO g);
+	public int addGoods(GoodsVO g);
 	/**
 	 * ɾ����Ʒ
 	 * @param g
 	 * @return
 	 */
-	public int delGood(GoodsVO g);
+	public int delGoods(GoodsVO g);
 	/**
 	 * ������Ʒ
 	 * @param g
 	 * @return
 	 */
-	public int updGood(GoodsVO g);
+	public int updGoods(GoodsVO g);
 	/**
 	 * ������Ʒ
 	 * @param g
 	 * @return
 	 */
-	public int finGood(GoodsVO g);
+	public int finGoods(GoodsVO g);
 	/**
 	 * ��ʾ������Ʒ
 	 * @return
 	 */
-	public GoodList shoGood();
+	public GoodList shoGoods();
 	/**
 	 * �鿴���
 	 * @param beginDate

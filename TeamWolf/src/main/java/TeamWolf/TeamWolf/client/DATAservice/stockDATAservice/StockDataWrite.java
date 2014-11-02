@@ -7,7 +7,7 @@ public class StockDataWrite {
 	public int addType(TypePO t){
 		return 0;
 	}
-	public int deiType(String number){
+	public int delType(String number){
 		return 0;
 	}
 	/**
