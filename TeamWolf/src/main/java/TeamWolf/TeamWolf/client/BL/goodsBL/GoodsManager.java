@@ -15,8 +15,8 @@ public class GoodsManager implements GoodManService {
 	public int updGoods(GoodsVO g){
 		return 0;
 	}
-	public int finGoods(GoodsVO g){
-		return 0;
+	public GoodsVO finGoods(GoodsVO g){
+		return null;
 	}
 	public GoodList shoGoods(){
 		return null;

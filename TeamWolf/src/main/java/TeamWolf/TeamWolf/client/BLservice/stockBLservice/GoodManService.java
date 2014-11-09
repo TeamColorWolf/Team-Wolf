@@ -27,7 +27,7 @@ public interface GoodManService {
 	 * @param g
 	 * @return
 	 */
-	public int finGoods(GoodsVO g);
+	public GoodsVO finGoods(GoodsVO g);
 	/**
 	 * ��ʾ������Ʒ
 	 * @return

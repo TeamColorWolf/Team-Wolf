@@ -14,13 +14,13 @@ public class GoodsTrade implements GoodTService {
 		;
 		return 0;
 	}
-	public int goodsExportReturn(SaleRejectListPO srl){
+	public int goodsExportReject(SaleRejectListPO srl){
 		return 0;
 	}
 	public int goodsImport(ImportListPO il){
 		return 0;
 	}
-	public int goodsImportReturn(ImportRejectListPO irl){
+	public int goodsImportReject(ImportRejectListPO irl){
 		return 0;
 	}
 	
