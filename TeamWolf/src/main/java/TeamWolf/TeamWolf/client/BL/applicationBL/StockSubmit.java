@@ -1,0 +1,21 @@
+package TeamWolf.TeamWolf.client.BL.applicationBL;
+
+import TeamWolf.TeamWolf.client.vo.DecreaseToMatchVO;
+import TeamWolf.TeamWolf.client.vo.IncreaseToMatchVO;
+import TeamWolf.TeamWolf.client.vo.PresentListVO;
+
+public class StockSubmit extends ApplicationBL{
+	
+	public int submitIncreaseToMatch(IncreaseToMatchVO vo){
+		IncreaseToMatch app = new IncreaseToMatch(vo);//有的表单没有写继承Application，自行补充
+		return app.submit();
+	}
+	
+	public int submitDecreaseToMatch(DecreaseToMatchVO vo){
+		return 0;
+	}
+	
+	public int submitPresentList(PresentListVO vo){
+		return 0;
+	}
+}

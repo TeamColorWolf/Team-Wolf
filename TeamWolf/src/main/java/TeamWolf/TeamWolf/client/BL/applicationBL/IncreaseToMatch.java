@@ -1,24 +1,35 @@
 package TeamWolf.TeamWolf.client.BL.applicationBL;
 
 import TeamWolf.TeamWolf.client.po.IncreaseToMatchPO;
+import TeamWolf.TeamWolf.client.vo.ApplicationVO;
 
-public class IncreaseToMatch implements Application{
+public class IncreaseToMatch extends Application{
 	IncreaseToMatchPO application;
-
+	
+	public IncreaseToMatch(ApplicationVO vo) {
+		super(vo);
+		// TODO Auto-generated constructor stub
+	}
+	
+	@Override
 	public int submit() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
-	
-	public int approval() {
-		// TODO Auto-generated method stub
+	@Override
+	public int approve(){
+		//改变其状态并且进行后续操作
+		condition = 1;
 		return 0;
 	}
-	
-	public int getResult() {
-		// TODO Auto-generated method stub
+	@Override
+	public int reject(){
+		//改变其状态并且进行后续操作
+		condition = -1;
+		return 0;
+	}
+	@Override
+	public int change(ApplicationVO vo){
 		return 0;
 	}
 
-	
 }

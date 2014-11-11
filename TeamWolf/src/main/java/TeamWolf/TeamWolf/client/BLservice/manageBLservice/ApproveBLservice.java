@@ -3,12 +3,10 @@ package TeamWolf.TeamWolf.client.BLservice.manageBLservice;
 import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.BL.applicationBL.Application;
+import TeamWolf.TeamWolf.client.vo.ApplicationVO;
 
 public interface ApproveBLservice {
-	public ArrayList<Application> checkApplication();
+	public ArrayList<ApplicationVO> checkApplication();
 	
-	public ArrayList<Application> approve();
-	
-	public ArrayList<Application> reject();
-	
+	public int approveOver(ArrayList<ApplicationVO> list);
 }
