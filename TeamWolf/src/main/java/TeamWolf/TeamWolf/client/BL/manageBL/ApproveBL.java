@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.BL.applicationBL.ApplicationController;
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;
-
+/**
+ * Author WHJ
+ */
 public class ApproveBL{
 	ApplicationController controller;
 	public ArrayList<ApplicationVO> checkApplication() {

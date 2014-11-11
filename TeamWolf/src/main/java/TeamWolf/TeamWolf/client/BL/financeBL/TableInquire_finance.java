@@ -6,6 +6,7 @@ import TeamWolf.TeamWolf.client.BLservice.tableInquireBLservice.RedBLservice;
 import TeamWolf.TeamWolf.client.BLservice.tableInquireBLservice.TableInquireBLservice;
 import TeamWolf.TeamWolf.client.vo.RunConditionVO;
 import TeamWolf.TeamWolf.client.vo.RunProcessVO;
+import TeamWolf.TeamWolf.client.vo.SaleDetialSelectFactVO;
 import TeamWolf.TeamWolf.client.vo.SaleDetialVO;
 import TeamWolf.TeamWolf.client.vo.TimeVO;
 
@@ -21,7 +22,7 @@ public class TableInquire_finance implements TableInquireBLservice, RedBLservice
 		return 0;
 	}
 
-	public ArrayList<SaleDetialVO> saleDetial(TimeVO time1, TimeVO time2) {
+	public ArrayList<SaleDetialVO> saleDetial(SaleDetialSelectFactVO vo) {
 		// TODO Auto-generated method stub
 		return null;
 	}

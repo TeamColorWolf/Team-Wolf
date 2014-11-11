@@ -13,66 +13,69 @@ import TeamWolf.TeamWolf.client.vo.PresentListVO;
 import TeamWolf.TeamWolf.client.vo.RecieptApplicationVO;
 import TeamWolf.TeamWolf.client.vo.SaleListVO;
 import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
-
+/**
+ * Author WHJ
+ */
 public class ApplicationController {
+	//Manage
 	public ArrayList<ApplicationVO> getUnsetApplicationList(){
-		return null;
-	}
-	
-	public ArrayList<ApplicationVO> getApprovalApplicationList(){
-		return null;
-	}
-	
-	public Application findApplication(String number){
-		return null;
-	}
-	
-	public ArrayList<String> getResult(String workNumber){
-		return null;
+		return new ManageApprove().getUnsetApplicationList();
 	}
 	
 	public int approveOver(ArrayList<ApplicationVO> list){
-		return 0;
+		return new ManageApprove().approveOver(list);
+	}
+	//MutiRole
+	public ArrayList<ApplicationVO> getApprovalApplicationList(){
+		return new ApplicationBL().getApprovalApplicationList();
+	}
+	
+	public ApplicationVO findApplication(String number){
+		return new ApplicationBL().findApplication(number);
+	}
+	
+	public ArrayList<String> getResult(String workNumber){
+		return new ApplicationBL().getResult(workNumber);
 	}
 	
 	//Stock
 	public int submitIncreaseToMatch(IncreaseToMatchVO vo){
-		return 0;
+		return new StockSubmit().submitIncreaseToMatch(vo);
 	}
 	
 	public int submitDecreaseToMatch(DecreaseToMatchVO vo){
-		return 0;
+		return new StockSubmit().submitDecreaseToMatch(vo);
 	}
 	
 	public int submitPresentList(PresentListVO vo){
-		return 0;
+		return new StockSubmit().submitPresentList(vo);
 	}
 	
 	//Sale
 	public int submitImportList(ImportListVO vo){
-		return 0;
+		return new SaleSubmit().submitImportList(vo);
 	}
 	public int submitImportRejectList(ImportRejectListVO vo){
-		return 0;
+		return new SaleSubmit().submitImportRejectList(vo);
 	}
 	public int submitSaleList(SaleListVO vo){
-		return 0;
+		return new SaleSubmit().submitSaleList(vo);
 	}
 	public int submitSaleRejectList(SaleRejectListVO vo){
-		return 0;
+		return new SaleSubmit().submitSaleRejectList(vo);
 	}
 	
 	//Finance
 	public int submitRecieptApplication(RecieptApplicationVO vo){
-		return 0;
+		return new FinanceSubmit().submitRecieptApplication(vo);
 	}
 	
 	public int submitPaymentApplication(PaymentApplicationVO vo){
-		return 0;
+		return new FinanceSubmit().submitPaymentApplication(vo);
 	}
 	
 	public int submitCashApplication(CashApplicationVO vo){
-		return 0;
+		return new FinanceSubmit().submitCashApplication(vo);
 	}
 	
 }

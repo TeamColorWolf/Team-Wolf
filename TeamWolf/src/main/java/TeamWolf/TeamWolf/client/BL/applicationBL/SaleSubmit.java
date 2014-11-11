@@ -4,7 +4,9 @@ import TeamWolf.TeamWolf.client.vo.ImportListVO;
 import TeamWolf.TeamWolf.client.vo.ImportRejectListVO;
 import TeamWolf.TeamWolf.client.vo.SaleListVO;
 import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
-
+/**
+ * Author WHJ
+ */
 public class SaleSubmit extends ApplicationBL{
 	
 	public int submitImportList(ImportListVO vo){

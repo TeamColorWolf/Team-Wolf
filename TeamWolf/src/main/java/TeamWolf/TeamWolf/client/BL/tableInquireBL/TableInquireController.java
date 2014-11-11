@@ -7,7 +7,9 @@ import TeamWolf.TeamWolf.client.vo.RunProcessVO;
 import TeamWolf.TeamWolf.client.vo.SaleDetialSelectFactVO;
 import TeamWolf.TeamWolf.client.vo.SaleDetialVO;
 import TeamWolf.TeamWolf.client.vo.TimeVO;
-
+/**
+ * Author WHJ
+ */
 public class TableInquireController {
 	TableInquireBL bl;
 	

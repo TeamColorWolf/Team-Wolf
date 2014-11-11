@@ -3,6 +3,9 @@ package TeamWolf.TeamWolf.client.BL.applicationBL;
 import TeamWolf.TeamWolf.client.po.ApplicationPO;
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;
 //所有方法需要 @Override 验证确保覆盖了
+/**
+ * Author WHJ
+ */
 public class Application {
 	protected ApplicationType type;
 	protected int condition;//0 表示未审批， 1 表示审批通过， -1表示审批不通过

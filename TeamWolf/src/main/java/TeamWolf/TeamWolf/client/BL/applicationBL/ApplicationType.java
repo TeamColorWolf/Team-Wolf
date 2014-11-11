@@ -1,6 +1,8 @@
 package TeamWolf.TeamWolf.client.BL.applicationBL;
 
-
+/**
+ * Author WHJ
+ */
 public enum ApplicationType {
 	IncreaseToMatch,
 	DecreaseToMatch,

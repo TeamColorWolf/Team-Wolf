@@ -7,7 +7,9 @@ import TeamWolf.TeamWolf.client.DATAservice.userDATAservice.*;
 import TeamWolf.TeamWolf.client.po.LoginUserPO;
 import TeamWolf.TeamWolf.client.po.UserPO;
 import TeamWolf.TeamWolf.client.vo.*;
-
+/**
+ * Author WHJ
+ */
 public class Login implements LoginBLservice, LoginDATAservice{
 
 	public UserVO loginController(LoginUserVO user) {

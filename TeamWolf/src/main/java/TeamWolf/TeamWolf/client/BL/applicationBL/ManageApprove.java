@@ -7,22 +7,17 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.ApproveDATAservice;
-import TeamWolf.TeamWolf.client.po.ApplicationPO;
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;
 /**
  * Author WHJ
  */
-public class ApplicationBL {
-	ArrayList<Application> list;
-	ArrayList<ApplicationPO> poList;
-	ArrayList<ApplicationVO> voList;
-	String URL;
+public class ManageApprove extends ApplicationBL{
 	private ApproveDATAservice approve;
 	
-	public ArrayList<ApplicationVO> getApprovalApplicationList(){
+	public ArrayList<ApplicationVO> getUnsetApplicationList(){
 		try {
 			approve = (ApproveDATAservice)Naming.lookup(URL);
-			poList = approve.getApprovalApplicationList();
+			poList = approve.getUnsetApplicationList();
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -36,12 +31,10 @@ public class ApplicationBL {
 		return voList;
 	}
 	
-	public ApplicationVO findApplication(String number){
+	public int approveOver(ArrayList<ApplicationVO> list){
 		try {
 			approve = (ApproveDATAservice)Naming.lookup(URL);
-			ApplicationPO po = approve.findApplication(number);
-			ApplicationVO vo = null;
-			return vo;
+			return approve.approveOver(poList);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -52,24 +45,6 @@ public class ApplicationBL {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+		return 0;
 	}
-	
-	public ArrayList<String> getResult(String workNumber){
-		try {
-			approve = (ApproveDATAservice)Naming.lookup(URL);
-			return approve.getResult(workNumber);
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NotBoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
 }

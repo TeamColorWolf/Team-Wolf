@@ -4,17 +4,19 @@ import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.BLservice.manageBLservice.ApproveBLservice;
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;
-
+/**
+ * Author WHJ
+ */
 public class ApproveController implements ApproveBLservice {
 
 	public ArrayList<ApplicationVO> checkApplication() {
 		// TODO Auto-generated method stub
-		return null;
+		return new ApproveBL().checkApplication();
 	}
 
 	public int approveOver(ArrayList<ApplicationVO> list) {
 		// TODO Auto-generated method stub
-		return 0;
+		return new ApproveBL().approveOver(list);
 	}
 
 }

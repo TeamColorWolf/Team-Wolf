@@ -11,7 +11,9 @@ import TeamWolf.TeamWolf.client.DATAservice.logDATAservice.UserLogDATAservice;
 import TeamWolf.TeamWolf.client.DATAservice.userDATAservice.AdminDATAservice;
 import TeamWolf.TeamWolf.client.po.UserPO;
 import TeamWolf.TeamWolf.client.vo.UserVO;
-
+/**
+ * Author WHJ
+ */
 public class Admin implements AdminBLservice{
 	public String URL = null;
 	public UserVO nowUser = null;

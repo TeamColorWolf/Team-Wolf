@@ -3,7 +3,9 @@ package TeamWolf.TeamWolf.client.BL.applicationBL;
 import TeamWolf.TeamWolf.client.vo.DecreaseToMatchVO;
 import TeamWolf.TeamWolf.client.vo.IncreaseToMatchVO;
 import TeamWolf.TeamWolf.client.vo.PresentListVO;
-
+/**
+ * Author WHJ
+ */
 public class StockSubmit extends ApplicationBL{
 	
 	public int submitIncreaseToMatch(IncreaseToMatchVO vo){
