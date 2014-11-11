@@ -2,6 +2,7 @@ package TeamWolf.TeamWolf.client.BL.saleBL;
 
 import java.util.ArrayList;
 
+import TeamWolf.TeamWolf.client.BLservice.saleBLservice.SaleBLservice;
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.ImportListVO;
@@ -9,7 +10,7 @@ import TeamWolf.TeamWolf.client.vo.ImportRejectListVO;
 import TeamWolf.TeamWolf.client.vo.SaleListVO;
 import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
 
-public class SaleBL{
+public class SaleBLController implements SaleBLservice{
 
 	public int addCustomer(CustomerVO cvo) {
 		// TODO Auto-generated method stub
@@ -65,5 +66,5 @@ public class SaleBL{
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
+	
 }
