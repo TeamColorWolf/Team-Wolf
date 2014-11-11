@@ -2,7 +2,7 @@ package TeamWolf.TeamWolf.client.BL.goodsBL;
 import TeamWolf.TeamWolf.client.BLservice.stockBLservice.GoodMonService;
 import TeamWolf.TeamWolf.client.vo.*;
 
-public class GoodsMonitor implements GoodMonService{
+public class GoodsMonitor{
 
 	GoodsBLAssistant assistant =new GoodsBLAssistant();
 	

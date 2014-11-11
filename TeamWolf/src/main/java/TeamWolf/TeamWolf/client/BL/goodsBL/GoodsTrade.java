@@ -6,7 +6,7 @@ import TeamWolf.TeamWolf.client.po.SaleListPO;
 import TeamWolf.TeamWolf.client.vo.*;
 import TeamWolf.TeamWolf.client.po.*;
 
-public class GoodsTrade implements GoodTService {
+public class GoodsTrade {
 
 	GoodsBLAssistant assistant =new GoodsBLAssistant();
 	

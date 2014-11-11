@@ -1,9 +1,10 @@
 package TeamWolf.TeamWolf.client.BL.stockBL;
 
+import TeamWolf.TeamWolf.client.BLservice.stockBLservice.StockBLservice;
 import TeamWolf.TeamWolf.client.vo.TypeList;
 import TeamWolf.TeamWolf.client.vo.TypeVO;
 
-public class StockBLController {
+public class StockBLController implements StockBLservice{
 
 	public int addType(TypeVO t) {
 		// TODO Auto-generated method stub

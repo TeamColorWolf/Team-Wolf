@@ -1,7 +1,12 @@
 package TeamWolf.TeamWolf.client.BL.goodsBL;
+import java.util.ArrayList;
+
+import TeamWolf.TeamWolf.client.BLservice.stockBLservice.GoodManService;
+import TeamWolf.TeamWolf.client.BLservice.stockBLservice.GoodMonService;
+import TeamWolf.TeamWolf.client.BLservice.stockBLservice.GoodTService;
 import TeamWolf.TeamWolf.client.vo.*;
 
-public class GoodsBLController {
+public class GoodsBLController implements GoodManService,GoodTService,GoodMonService {
 
 
 	
@@ -55,6 +60,50 @@ public class GoodsBLController {
 	}
 	public int MonitoringWL(GoodsVO g){
 		return 0;
+	}
+	public int increaseToMatch(GoodsVO toIncrease) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	public int decreaseToMatch(GoodsVO toDecrease) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	public int setWaringLine(GoodsVO goodWL) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	public int presentList(GoodsVO present) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	public TeamWolf.TeamWolf.client.vo.PresentList checkPL(int number) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public ArrayList<TeamWolf.TeamWolf.client.vo.PresentList> shoSimplifiedPL() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public int addGoods(GoodsVO g) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	public int delGoods(GoodsVO g) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	public int updGoods(GoodsVO g) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	public GoodsVO finGoods(GoodsVO g) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public GoodList shoGoods() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

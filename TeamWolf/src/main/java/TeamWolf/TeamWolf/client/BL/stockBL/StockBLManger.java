@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import TeamWolf.TeamWolf.client.BLservice.stockBLservice.StockBLservice;
 import TeamWolf.TeamWolf.client.vo.*;
 
-public class StockBLManger implements StockBLservice{
+public class StockBLManger{
 
 	StockBLAssistant assistant;
 
