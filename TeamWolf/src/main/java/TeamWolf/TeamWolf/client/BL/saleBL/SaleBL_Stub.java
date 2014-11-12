@@ -15,69 +15,93 @@ import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
  * @author WKS
  *
  */
-public class SaleBL{
-
+public class SaleBL_Stub {
+	
 	SaleBLAssistant saleAssist;
 	Date presentDate;
 	
-	public SaleBL(){
+	public SaleBL_Stub(){
 		saleAssist = new SaleBLAssistant();
-		presentDate = new Date();
+		presentDate = saleAssist.getDate();
 	}
 	
 	public int addCustomer(CustomerVO cvo) {
-		// TODO Auto-generated method stub
-		return 0;
+		int judge = saleAssist.canAddCustomer(cvo);
+		//判断能否添加客户
+		if(judge == 0){
+			
+		}
+		return judge;
 	}
 
-	public int delCustomer(String name, String num) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int delCustomer(CustomerVO cvo) {
+		int judge = 0;
+		//判断能否删除客户（应收应付不为0，也不可删除）
+		if(saleAssist.canDelCustomer(cvo)){
+			
+		} else {
+			
+		}
+		return judge;
 	}
 
 	public int modCustomer(CustomerVO cvo) {
-		// TODO Auto-generated method stub
-		return 0;
+		int judge = 0;
+		return judge;
 	}
 
 	public ArrayList<CustomerVO> findCustomer(String keyWord, String number) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public int createImport(ImportListVO ivo) {
-		// TODO Auto-generated method stub
+		int judge = saleAssist.canAddImport(ivo);
+		if(judge == 0){
+			
+		}
 		return 0;
 	}
 
-	public int createImportReject(ImportRejectListVO evo) {
-		// TODO Auto-generated method stub
+	public int createImportReject(ImportRejectListVO irvo) {
+		int judge = saleAssist.canAddImportReject(irvo);
+		if(judge == 0){
+			
+		}
 		return 0;
 	}
 
 	public int createSale(SaleListVO svo) {
-		// TODO Auto-generated method stub
+		int judge = saleAssist.canAddSale(svo);
+		if(judge == 0){
+			
+		}
 		return 0;
 	}
 
-	public int createSaleReject(SaleRejectListVO rvo) {
-		// TODO Auto-generated method stub
+	public int createSaleReject(SaleRejectListVO srvo) {
+		int judge = saleAssist.canAddSaleReject(srvo);
+		if(judge == 0){
+			
+		}
 		return 0;
 	}
 
+	//获取仓库编号
 	public ArrayList<String> getStock() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	//显示单据
 	public ArrayList<ApplicationVO> show(String num) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	//提交单据
 	public int submit(ApplicationVO avo) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
+	
 }

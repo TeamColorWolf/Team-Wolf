@@ -8,10 +8,19 @@ import TeamWolf.TeamWolf.client.vo.ImportRejectListVO;
 import TeamWolf.TeamWolf.client.vo.SaleListVO;
 import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
 
+/**
+ * 
+ * @author WKS
+ *
+ */
 public class SaleBLAssistant {
 	
 	public int canAddCustomer (CustomerVO cvo){
 		return 0;
+	}
+	
+	public boolean canDelCustomer (CustomerVO cvo){
+		return true;
 	}
 	
 	public int canAddImport (ImportListVO ivo){

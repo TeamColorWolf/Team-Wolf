@@ -10,6 +10,11 @@ import TeamWolf.TeamWolf.client.vo.ImportRejectListVO;
 import TeamWolf.TeamWolf.client.vo.SaleListVO;
 import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
 
+/**
+ * 
+ * @author WKS
+ *
+ */
 public class SaleBLController implements SaleBLservice{
 
 	public int addCustomer(CustomerVO cvo) {

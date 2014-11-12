@@ -1,6 +1,7 @@
 package TeamWolf.TeamWolf.client.BL.promotionBL;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import TeamWolf.TeamWolf.client.BLservice.manageBLservice.PromotionBLservice;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
@@ -11,6 +12,14 @@ import TeamWolf.TeamWolf.client.vo.PromotionVO;
 import TeamWolf.TeamWolf.client.vo.SpecialGoodsPromotionVO;
 
 public class PromotionBL implements PromotionBLservice{
+	
+	PromotionBLAssistant proAssist;
+	Date presentDate;
+	
+	public PromotionBL(){
+		proAssist = new PromotionBLAssistant();
+		presentDate = new Date();
+	}
 
 	public int createForVIP(CustomerVO cvo) {
 		// TODO Auto-generated method stub
