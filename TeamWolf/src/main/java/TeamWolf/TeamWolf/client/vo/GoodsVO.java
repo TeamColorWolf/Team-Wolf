@@ -18,7 +18,7 @@ public class GoodsVO {
 	
 	private int packSuccess;
 	
-	GoodsVO(String parent, String number, String name, String model, String amount, String imprice, String exprice, String latestImprice, String latestExprice){
+	public GoodsVO(String parent, String number, String name, String model, String amount, String imprice, String exprice, String latestImprice, String latestExprice){
 		
 		this.parent=parent;
 		this.number=number;

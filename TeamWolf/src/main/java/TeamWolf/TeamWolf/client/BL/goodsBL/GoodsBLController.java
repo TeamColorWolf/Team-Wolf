@@ -13,101 +13,84 @@ import TeamWolf.TeamWolf.client.vo.*;
  */
 public class GoodsBLController implements GoodManService,GoodTService,GoodMonService {
 
+	GoodsManager gma;
+	GoodsMonitor gmo;
+	GoodsTrade gt;
 	
-	public int addGood(GoodsVO g){		
-		return 0;
+	public GoodsBLController(){
+		gma=new GoodsManager();
+		gmo=new GoodsMonitor();
+		gt=new GoodsTrade();
 	}
-	public int delGood(GoodsVO g){
-		return 0;
-	}
-	public int updGood(GoodsVO g){
-		return 0;
-	}
-	public int finGood(GoodsVO g){
-		return 0;
-	}
-	public GoodsList shoGood(GoodsVO g){
-		return null;
-	}
+	
+	
 	public GoodsStockList shoStockList(int beginDate, int endDate){
-		return null;
+		return gma.shoStockList(beginDate, endDate);
 	}
 	public GoodsStockList shoStockDaily(){
-		return null;
+		return gma.shoStockDaily();
 	}
-	public int goodsExport(/*���۵�����*/){
-		return 0;
+	public int goodsExport(SaleListVO sl){
+		return gt.goodsExport(sl);
 	}
-	public int goodsExportReturn(/*�����˻�������*/){
-		return 0;
+	public int goodsExportReject(SaleRejectListVO srl){
+		return gt.goodsExportReject(srl);
 	}
-	public int goodsImport(/*���������*/){
-		return 0;
+	public int goodsImport(ImportListVO il){
+		return gt.goodsImport(il);
 	}
-	public int goodsImportReturn(/*����˻�������*/){
-		return 0;
-	}
-	public int PresentList(GoodsVO g){
-		return 0;
+	public int goodsImportReject(ImportRejectListVO irl){
+		return gt.goodsImportReject(irl);
 	}
 	public int handlePresentList(PresentList p){
-		return 0;
-	}
-	public int setGoodWL(GoodsVO g){
-		return 0;
-	}
-	public int increaseGood(GoodsVO g){
-		return 0;
-	}
-	public int decreaseGood(GoodsVO g){
-		return 0;
+		return gt.handlePresentList(p);
 	}
 	public int MonitoringWL(GoodsVO g){
-		return 0;
+		return gmo.MonitoringWL(g);
 	}
 	public int increaseToMatch(GoodsVO toIncrease) {
 		// TODO Auto-generated method stub
-		return 0;
+		return gmo.increaseToMatch(toIncrease);
 	}
 	public int decreaseToMatch(GoodsVO toDecrease) {
 		// TODO Auto-generated method stub
-		return 0;
+		return gmo.decreaseToMatch(toDecrease);
 	}
 	public int setWaringLine(GoodsVO goodWL) {
 		// TODO Auto-generated method stub
-		return 0;
+		return gmo.setWaringLine(goodWL);
 	}
 	public int presentList(GoodsVO present) {
 		// TODO Auto-generated method stub
-		return 0;
+		return gt.presentList(present);
 	}
-	public TeamWolf.TeamWolf.client.vo.PresentList checkPL(int number) {
+	public PresentList checkPL(int number) {
 		// TODO Auto-generated method stub
-		return null;
+		return gt.checkPL(number);
 	}
-	public ArrayList<TeamWolf.TeamWolf.client.vo.PresentList> shoSimplifiedPL() {
+	public ArrayList<PresentList> shoSimplifiedPL() {
 		// TODO Auto-generated method stub
-		return null;
+		return gt.shoSimplifiedPL();
 	}
 	public int addGoods(GoodsVO g) {
 		// TODO Auto-generated method stub
-		return 0;
+		return gma.addGoods(g);
 	}
 	public int delGoods(GoodsVO g) {
 		// TODO Auto-generated method stub
-		return 0;
+		return gma.delGoods(g);
 	}
 	public int updGoods(GoodsVO g) {
 		// TODO Auto-generated method stub
-		return 0;
+		return gma.updGoods(g);
 	}
 	public GoodsVO finGoods(GoodsVO g) {
 		// TODO Auto-generated method stub
-		return null;
+		return gma.finGoods(g);
 	}
 	public GoodsList shoGoods() {
 		// TODO Auto-generated method stub
-		return null;
+		return gma.shoGoods();
 	}
 	
 	

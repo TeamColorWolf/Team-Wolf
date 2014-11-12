@@ -19,7 +19,7 @@ public class GoodsManager_stub {
 			//加入商品
 		}
 		else{
-			//返回错误类型
+			//返回错误：商品已存在于系统中
 		}
 		return 0;
 	}
@@ -28,7 +28,7 @@ public class GoodsManager_stub {
 			//删除商品
 		}
 		else{
-			//返回错误类型
+			//返回错误：商品不存在于系统中
 		}
 		return 0;
 	}
@@ -37,18 +37,22 @@ public class GoodsManager_stub {
 			//更新商品
 		}
 		else{
-			//返回错误类型
+			//返回错误：商品不存在于系统中
 		}
 		return 0;
 	}
 	public GoodsVO finGoods(GoodsVO g){
 		if(assistant.canFin(g)){
 			//查找商品
+			
+			/*....*/
+			GoodsVO gv=new GoodsVO(null, null, null, null, null, null, null, null, null);
+			g=gv;
 		}
 		else{
-			//返回错误类型
+			//返回错误：商品不存在于系统中
 		}
-		return null;
+		return g;
 	}
 	public GoodsList shoGoods(){
 		GoodsList gl=new GoodsList();

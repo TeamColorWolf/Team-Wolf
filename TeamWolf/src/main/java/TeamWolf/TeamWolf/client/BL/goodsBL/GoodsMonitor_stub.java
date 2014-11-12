@@ -28,7 +28,7 @@ public class GoodsMonitor_stub {
 		return 0;
 	}
 	public GoodsAlarm warning(GoodsVO g){
-		GoodsAlarm ga=new GoodsAlarm("警报","警报");
+		GoodsAlarm ga=new GoodsAlarm(g.getName(),"库存数量已低于警戒线！");
 		return ga;
 	}
 	public int increaseToMatch(GoodsVO toIncrease) {

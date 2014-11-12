@@ -15,17 +15,17 @@ public class GoodsTrade {
 
 	GoodsBLAssistant assistant =new GoodsBLAssistant();
 	
-	public int goodsExport(SaleListPO sl){
+	public int goodsExport(SaleListVO sl){
 		;
 		return 0;
 	}
-	public int goodsExportReject(SaleRejectListPO srl){
+	public int goodsExportReject(SaleRejectListVO srl){
 		return 0;
 	}
-	public int goodsImport(ImportListPO il){
+	public int goodsImport(ImportListVO il){
 		return 0;
 	}
-	public int goodsImportReject(ImportRejectListPO irl){
+	public int goodsImportReject(ImportRejectListVO irl){
 		return 0;
 	}
 	
