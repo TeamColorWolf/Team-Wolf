@@ -10,5 +10,4 @@ public class ApplicationBL {
 		return null;
 	}
 	
-	
 }
