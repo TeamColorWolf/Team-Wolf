@@ -8,12 +8,17 @@ import java.util.ArrayList;
  */
 public class GoodsStockList {
 
-	ArrayList<GoodsStockVO> goodSL=new ArrayList<GoodsStockVO>();
+	ArrayList<GoodsStockVO> goodsSL=new ArrayList<GoodsStockVO>();
+	String GStockListInfo;
 	
 	public void addGoodSVO(GoodsStockVO gs){
-		goodSL.add(gs);
+		goodsSL.add(gs);
 	}
 	public String getStockInfo(){
-		return null;
+		GStockListInfo="";
+		for(GoodsStockVO gs: goodsSL){
+			GStockListInfo+=gs.getInfo();
+		}
+		return GStockListInfo;
 	}
 }

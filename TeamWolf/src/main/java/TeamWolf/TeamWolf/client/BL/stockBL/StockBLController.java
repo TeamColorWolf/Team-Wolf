@@ -16,6 +16,7 @@ public class StockBLController implements StockBLservice{
 	StockBLController(){
 		sbm=new StockBLManager();
 	}
+	
 	public int addType(TypeVO t) {
 		// TODO Auto-generated method stub
 		return sbm.addType(t);

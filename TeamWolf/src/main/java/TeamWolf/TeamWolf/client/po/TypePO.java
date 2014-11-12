@@ -15,6 +15,10 @@ public class TypePO {
 	private ArrayList<GoodsVO> leaveNode=new ArrayList<GoodsVO>();
 	
 	
+	public TypePO(){
+		
+	}
+	
 	public TypePO getParent() {
 		return parent;
 	}

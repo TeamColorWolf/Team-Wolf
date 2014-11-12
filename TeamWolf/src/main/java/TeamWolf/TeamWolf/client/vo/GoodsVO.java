@@ -15,7 +15,7 @@ public class GoodsVO {
 	private double exprice;
 	private double latestImprice;
 	private double latestExprice;
-	
+	private String goodsInfo;
 	private int packSuccess;
 	
 	public GoodsVO(String parent, String number, String name, String model, String amount, String imprice, String exprice, String latestImprice, String latestExprice){
@@ -93,7 +93,7 @@ public class GoodsVO {
 	}
 	
 	public String getInfo(){
-		return null;
+		return goodsInfo;
 	}
 	
 	public int isPackSuccess(){

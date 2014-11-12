@@ -1,21 +1,19 @@
 package TeamWolf.TeamWolf.client.DATAservice.stockDATAservice;
 
+import java.rmi.RemoteException;
+
 import TeamWolf.TeamWolf.client.po.*;
 
-public class StockDataWrite {
+public interface StockDataWrite {
 
-	public int addType(TypePO t){
-		return 0;
-	}
-	public int delType(String number){
-		return 0;
-	}
+	public int addType(TypePO t) throws RemoteException;
+	
+	public int delType(String number) throws RemoteException;
+	
 	/**
 	 * �޸�����Ϣ�Ĳ��������ô˷������б���
 	 * @param t
 	 * @return
 	 */
-	public int updType(TypePO t){
-		return 0;
-	}
+	public int updType(TypePO t) throws RemoteException;
 }

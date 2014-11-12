@@ -1,5 +1,6 @@
 package TeamWolf.TeamWolf.client.BL.stockBL;
 
+import TeamWolf.TeamWolf.client.po.TypePO;
 import TeamWolf.TeamWolf.client.vo.*;
 
 /**
@@ -11,6 +12,7 @@ public class StockBLManager{
 
 	StockBLAssistant assistant;
 	
+	
 	StockBLManager(){
 		assistant=new StockBLAssistant();
 	}
@@ -18,6 +20,11 @@ public class StockBLManager{
 	public int addType(TypeVO t) {
 		// TODO Auto-generated method stub
 		if(assistant.canAdd(t)){ //输入合法，能加入系统，进行加入工作
+			
+			TypePO toAdd=new TypePO(); //根据合法的VO生成PO持久化对象
+			
+			/* ...完善PO持久化对象内容...*/
+			
 			
 		}
 		else{ //因输入非法无法加入系统，返回错误类型

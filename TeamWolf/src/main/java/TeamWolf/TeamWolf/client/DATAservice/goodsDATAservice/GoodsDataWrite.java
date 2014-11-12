@@ -1,20 +1,18 @@
 package TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice;
-import TeamWolf.TeamWolf.client.po.*;
-public class GoodsDataWrite {
+import java.rmi.RemoteException;
 
-	public int addGood(GoodPO g){
-		return 0;
-	}
-	public int delGood(String number){
-		return 0;
-	}
+import TeamWolf.TeamWolf.client.po.*;
+public interface GoodsDataWrite {
+
+	public int addGood(GoodPO g) throws RemoteException;
+	
+	public int delGood(String number) throws RemoteException;
+	
 	/**
 	 * �κ��漰���޸���Ʒ��ݵ���Ϊ�����ô˷������б���
 	 * @param g
 	 * @return
 	 */
-	public int updGood(GoodPO g){
-		return 0;
-	}
+	public int updGood(GoodPO g) throws RemoteException;
 	
 }

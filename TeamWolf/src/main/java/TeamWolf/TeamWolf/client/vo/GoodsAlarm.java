@@ -16,6 +16,6 @@ public class GoodsAlarm {
 	}
 	
 	public String getWarningInfo(){
-		return null;
+		return warningGood+warn;
 	}
 }

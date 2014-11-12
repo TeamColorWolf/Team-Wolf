@@ -9,11 +9,16 @@ import java.util.ArrayList;
 public class GoodsList {
 
 	ArrayList<GoodsVO> gList=new ArrayList<GoodsVO>();
+	String GLInfo;
 	
 	public void addGood(GoodsVO g){
 		gList.add(g);
 	}
 	public String getListInfo(){
-		return null;
+		GLInfo="";
+		for(GoodsVO g:gList){
+			GLInfo+=g.getInfo();
+		}
+		return GLInfo;
 	}
 }

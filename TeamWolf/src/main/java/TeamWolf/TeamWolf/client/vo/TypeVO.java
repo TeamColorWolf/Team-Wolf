@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class TypeVO {
 	
 	private String parent;
-    private String child;
+    private ArrayList<String> child;
     private int C;//�жϸ÷�����Ů�Ƿ���Ҷ�ڵ�
     private String number;
 	private String name;
@@ -17,7 +17,16 @@ public class TypeVO {
 	
 	private int packSuccess;
 	
-	TypeVO(String parent, String child, String number, String name){
+	TypeVO(String parent, String number, String name){
+		
+		this.parent=parent;
+		this.child=new ArrayList<String>();
+		this.number=number;
+		this.name=name;
+		
+	}
+	
+    TypeVO(String parent, ArrayList<String> child, String number, String name){
 		
 		this.parent=parent;
 		this.child=child;
@@ -34,11 +43,14 @@ public class TypeVO {
 	public void setParent(String parent) {
 		this.parent = parent;
 	}
-	public String getChild() {
+	public ArrayList<String> getChildList() {
 		return child;
 	}
-	public void setChild(String child) {
-		this.child = child;
+	public void setChild(ArrayList<String> childList) {
+		this.child = childList;
+	}
+	public void addToChild(String child){
+		this.child.add(child);
 	}
 	public int getC() {
 		return C;
@@ -60,7 +72,7 @@ public class TypeVO {
 	}
 	
 	public void addLeave(GoodsVO g){
-		
+		this.leaveNode.add(g);
 	}
 	public ArrayList<GoodsVO> getAllLeave(){		
 		return leaveNode;

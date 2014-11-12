@@ -21,7 +21,7 @@ public class StockBLManager_stub {
         	//添加商品分类		
 		}
 		else{ 
-			//返回错误类型
+			//返回错误：商品已存在于系统中
 		}
 		return 0;
 	}
@@ -32,7 +32,7 @@ public class StockBLManager_stub {
 		  //删除商品分类
 		}
 		else{ 
-		  //返回错误类型
+		  //返回错误：商品不存在于系统中
 		}
 		return 0;
 	}
@@ -43,7 +43,7 @@ public class StockBLManager_stub {
 		  //修改商品分类
 		}
 		else{ 
-		 //返回错误类型
+		 //返回错误：商品不存在于系统中
 		}
 		return 0;
 	}

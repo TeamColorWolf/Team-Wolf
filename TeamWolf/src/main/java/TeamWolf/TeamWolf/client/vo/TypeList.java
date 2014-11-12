@@ -9,12 +9,13 @@ import java.util.ArrayList;
  */
 public class TypeList {
 
-	ArrayList<TypeVO> typeL=new ArrayList<TypeVO>();
+	private ArrayList<TypeVO> typeL=new ArrayList<TypeVO>();
+	private String TypeListInfo;
 	
 	public void addType(TypeVO t){
 		typeL.add(t);
 	}
 	public String getInfo(){
-		return null;
+		return TypeListInfo;
 	}
 }

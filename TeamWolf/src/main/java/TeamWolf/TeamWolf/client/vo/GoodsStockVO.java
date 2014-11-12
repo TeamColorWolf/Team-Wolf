@@ -2,8 +2,9 @@ package TeamWolf.TeamWolf.client.vo;
 /**
  * 
  * @author XYJ
- *
+ * 这是库存查看类型的商品对象
  */
+
 public class GoodsStockVO {
 
 	private GoodsVO good;
@@ -11,6 +12,9 @@ public class GoodsStockVO {
 	private double importTotalPrice;
 	private double exportAmount;
 	private double exportTotalPrice;
+	private double totalPrice;
+	private double averagePrice;
+	private String GStockInfo;
 	
 	GoodsStockVO(){
 		
@@ -57,7 +61,7 @@ public class GoodsStockVO {
 	}
 	
 	public String getInfo(){
-		return null;
+		return GStockInfo;
 	}
 	
 }
