@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.po.*;
 
-public interface AdminDATAservice extends Remote{
+public interface UserDATAservice extends Remote{
 	public int addUser(UserPO user) throws RemoteException;
 	public int removeUser(String user) throws RemoteException;
 	public int update(UserPO user) throws RemoteException;

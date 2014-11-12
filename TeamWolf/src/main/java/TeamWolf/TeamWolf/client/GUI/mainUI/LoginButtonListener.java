@@ -34,7 +34,7 @@ public class LoginButtonListener implements MouseListener, LoginBLservice{
 		
 	}
 
-	public UserVO loginController(LoginUserVO user) {
+	public UserVO login(LoginUserVO user) {
 		// TODO Auto-generated method stub
 		return null;
 	}

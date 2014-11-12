@@ -10,5 +10,5 @@ public interface AdminBLservice {
 	public int addUser(UserVO user);
 	public int removeUser(String user);
 	public int update(UserVO user);
-	public ArrayList<UserVO> checkVO();
+	public ArrayList<UserVO> checkUserVO();
 }

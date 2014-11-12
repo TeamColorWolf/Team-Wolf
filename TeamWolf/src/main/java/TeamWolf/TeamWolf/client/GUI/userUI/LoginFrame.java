@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import TeamWolf.TeamWolf.client.BL.userBL.LoginController;
 import TeamWolf.TeamWolf.client.BLservice.userBLservice.LoginBLservice;
 import TeamWolf.TeamWolf.client.vo.LoginUserVO;
 import TeamWolf.TeamWolf.client.vo.UserVO;
@@ -82,9 +83,10 @@ public class LoginFrame extends JFrame implements LoginBLservice{
 		this.addCancelListener();
 	}
 
-	public UserVO loginController(LoginUserVO user) {
+	public UserVO login(LoginUserVO user) {
 		// TODO Auto-generated method stub
-		return null;
+		LoginBLservice LoginController = new LoginController();
+		return LoginController.login(user);
 	}
 	
 	public void addLoginListener(MouseListener loginListener){

@@ -6,24 +6,28 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import TeamWolf.TeamWolf.client.BLservice.userBLservice.*;
 import TeamWolf.TeamWolf.client.DATAservice.logDATAservice.UserLogDATAservice;
-import TeamWolf.TeamWolf.client.DATAservice.userDATAservice.AdminDATAservice;
+import TeamWolf.TeamWolf.client.DATAservice.userDATAservice.UserDATAservice;
 import TeamWolf.TeamWolf.client.po.UserPO;
 import TeamWolf.TeamWolf.client.vo.UserVO;
 /**
  * Author WHJ
  */
-public class Admin implements AdminBLservice{
+public class Admin {
 	public String URL = null;
 	public UserVO nowUser = null;
+	
+	public Admin(String IP){
+		
+	}
+	
 	public int addUser(UserVO user) {
 		// TODO Auto-generated method stub
 		UserPO userPO = null;
-		AdminDATAservice add;
+		UserDATAservice add;
 		UserLogDATAservice log;
 		try {
-			add = (AdminDATAservice)Naming.lookup(URL);
+			add = (UserDATAservice)Naming.lookup(URL);
 			log = (UserLogDATAservice)Naming.lookup(URL);
 			try {
 				add.addUser(userPO);
@@ -54,7 +58,7 @@ public class Admin implements AdminBLservice{
 		return 0;
 	}
 
-	public ArrayList<UserVO> checkVO() {
+	public ArrayList<UserVO> checkUserVO() {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -5,5 +5,5 @@ import TeamWolf.TeamWolf.client.vo.*;
  * Author WHJ
  */
 public interface LoginBLservice {
-	public UserVO loginController(LoginUserVO user);
+	public UserVO login(LoginUserVO user);
 }
