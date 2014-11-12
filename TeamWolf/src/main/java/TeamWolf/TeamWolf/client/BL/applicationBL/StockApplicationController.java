@@ -3,26 +3,19 @@ package TeamWolf.TeamWolf.client.BL.applicationBL;
 import TeamWolf.TeamWolf.client.vo.DecreaseToMatchVO;
 import TeamWolf.TeamWolf.client.vo.IncreaseToMatchVO;
 import TeamWolf.TeamWolf.client.vo.PresentListVO;
-/**
- * Author WHJ
- */
-public class StockSubmit extends ApplicationBL{
-	
-	public StockSubmit(String IP) {
-		super(IP);
-		// TODO Auto-generated constructor stub
-	}
+
+public class StockApplicationController extends MutiRoleController implements StockApplicationService{
 
 	public int submitIncreaseToMatch(IncreaseToMatchVO vo){
-		IncreaseToMatch app = new IncreaseToMatch(vo);//有的表单没有写继承Application，自行补充
-		return app.submit();
+		return new StockSubmit(IP).submitIncreaseToMatch(vo);
 	}
 	
 	public int submitDecreaseToMatch(DecreaseToMatchVO vo){
-		return 0;
+		return new StockSubmit(IP).submitDecreaseToMatch(vo);
 	}
 	
 	public int submitPresentList(PresentListVO vo){
-		return 0;
+		return new StockSubmit(IP).submitPresentList(vo);
 	}
+
 }

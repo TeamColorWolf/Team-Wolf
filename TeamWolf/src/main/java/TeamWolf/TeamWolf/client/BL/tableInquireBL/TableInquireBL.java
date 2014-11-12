@@ -2,8 +2,7 @@ package TeamWolf.TeamWolf.client.BL.tableInquireBL;
 
 import java.util.ArrayList;
 
-import TeamWolf.TeamWolf.client.BL.applicationBL.Application;
-import TeamWolf.TeamWolf.client.BL.applicationBL.ApplicationController;
+import TeamWolf.TeamWolf.client.BL.applicationBL.MutiRoleController;
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;
 import TeamWolf.TeamWolf.client.vo.RunConditionVO;
 import TeamWolf.TeamWolf.client.vo.RunProcessVO;
@@ -14,7 +13,7 @@ import TeamWolf.TeamWolf.client.vo.TimeVO;
  * Author WHJ
  */
 public class TableInquireBL {
-	ApplicationController data;
+	MutiRoleController data;
 	ArrayList<SaleDetialVO> saleDetial;
 	ArrayList<RunProcessVO> runProcess;
 	RunConditionVO runCondition;

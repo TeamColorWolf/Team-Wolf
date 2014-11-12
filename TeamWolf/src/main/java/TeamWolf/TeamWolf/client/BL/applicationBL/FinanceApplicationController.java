@@ -3,25 +3,18 @@ package TeamWolf.TeamWolf.client.BL.applicationBL;
 import TeamWolf.TeamWolf.client.vo.CashApplicationVO;
 import TeamWolf.TeamWolf.client.vo.PaymentApplicationVO;
 import TeamWolf.TeamWolf.client.vo.RecieptApplicationVO;
-/**
- * Author WHJ
- */
-public class FinanceSubmit extends ApplicationBL{
-	
-	public FinanceSubmit(String IP) {
-		super(IP);
-		// TODO Auto-generated constructor stub
-	}
+
+public class FinanceApplicationController extends MutiRoleController implements FinanceApplicationService{
 	
 	public int submitRecieptApplication(RecieptApplicationVO vo){
-		return 0;
+		return new FinanceSubmit(IP).submitRecieptApplication(vo);
 	}
 	
 	public int submitPaymentApplication(PaymentApplicationVO vo){
-		return 0;
+		return new FinanceSubmit(IP).submitPaymentApplication(vo);
 	}
 	
 	public int submitCashApplication(CashApplicationVO vo){
-		return 0;
+		return new FinanceSubmit(IP).submitCashApplication(vo);
 	}
 }
