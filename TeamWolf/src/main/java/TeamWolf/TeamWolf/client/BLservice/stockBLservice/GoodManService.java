@@ -32,7 +32,7 @@ public interface GoodManService {
 	 * ��ʾ������Ʒ
 	 * @return
 	 */
-	public GoodList shoGoods();
+	public GoodsList shoGoods();
 	/**
 	 * �鿴���
 	 * @param beginDate

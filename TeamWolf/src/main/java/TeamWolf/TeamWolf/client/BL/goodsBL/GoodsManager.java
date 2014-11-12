@@ -2,6 +2,11 @@ package TeamWolf.TeamWolf.client.BL.goodsBL;
 import TeamWolf.TeamWolf.client.BLservice.stockBLservice.GoodManService;
 import TeamWolf.TeamWolf.client.vo.*;
 
+/**
+ * 
+ * @author XYJ
+ *
+ */
 public class GoodsManager {
 
 	GoodsBLAssistant assistant =new GoodsBLAssistant();
@@ -18,7 +23,7 @@ public class GoodsManager {
 	public GoodsVO finGoods(GoodsVO g){
 		return null;
 	}
-	public GoodList shoGoods(){
+	public GoodsList shoGoods(){
 		return null;
 	}
 	public GoodsStockList shoStockList(int beginDate, int endDate){

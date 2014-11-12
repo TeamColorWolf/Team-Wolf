@@ -1,8 +1,12 @@
 package TeamWolf.TeamWolf.client.vo;
-
+/**
+ * 
+ * @author XYJ
+ *
+ */
 public class GoodsVO {
 
-	private TypeVO parent;
+	private String parent;
 	private String number;
 	private String name;
 	private String model;
@@ -14,15 +18,29 @@ public class GoodsVO {
 	
 	private int packSuccess;
 	
-	GoodsVO(){
+	GoodsVO(String parent, String number, String name, String model, String amount, String imprice, String exprice, String latestImprice, String latestExprice){
 		
+		this.parent=parent;
+		this.number=number;
+		this.name=name;
+		this.model=model;
+		
+		try{
+			this.amount=Integer.parseInt(amount);
+			this.imprice=Double.parseDouble(imprice);
+			this.exprice=Double.parseDouble(exprice);
+			this.latestExprice=Double.parseDouble(latestExprice);
+			this.latestImprice=Double.parseDouble(latestImprice);
+			}catch(Exception e){
+				packSuccess=1;
+			}
 	}
 	
 	
-	public TypeVO getParent() {
+	public String getParent() {
 		return parent;
 	}
-	public void setParent(TypeVO parent) {
+	public void setParent(String parent) {
 		this.parent = parent;
 	}
 	public String getNumber() {

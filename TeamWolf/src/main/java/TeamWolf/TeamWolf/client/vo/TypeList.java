@@ -2,6 +2,11 @@ package TeamWolf.TeamWolf.client.vo;
 
 import java.util.ArrayList;
 
+/**
+ * 
+ * @author XYJ
+ *
+ */
 public class TypeList {
 
 	ArrayList<TypeVO> typeL=new ArrayList<TypeVO>();

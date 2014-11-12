@@ -1,5 +1,9 @@
 package TeamWolf.TeamWolf.client.vo;
-
+/**
+ * 
+ * @author XYJ
+ *
+ */
 public class GoodStockVO {
 
 	private GoodsVO good;

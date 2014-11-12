@@ -6,6 +6,11 @@ import TeamWolf.TeamWolf.client.po.SaleListPO;
 import TeamWolf.TeamWolf.client.vo.*;
 import TeamWolf.TeamWolf.client.po.*;
 
+/**
+ * 
+ * @author XYJ
+ *
+ */
 public class GoodsTrade {
 
 	GoodsBLAssistant assistant =new GoodsBLAssistant();

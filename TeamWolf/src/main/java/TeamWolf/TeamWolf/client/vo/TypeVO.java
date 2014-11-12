@@ -1,11 +1,15 @@
 package TeamWolf.TeamWolf.client.vo;
 
 import java.util.ArrayList;
-
+/**
+ * 
+ * @author XYJ
+ *
+ */
 public class TypeVO {
 	
-	private TypeVO parent;
-    private TypeVO child;
+	private String parent;
+    private String child;
     private int C;//�жϸ÷�����Ů�Ƿ���Ҷ�ڵ�
     private String number;
 	private String name;
@@ -13,22 +17,27 @@ public class TypeVO {
 	
 	private int packSuccess;
 	
-	TypeVO(String parent, TypeVO child, String number, String name){
+	TypeVO(String parent, String child, String number, String name){
+		
+		this.parent=parent;
+		this.child=child;
+		this.number=number;
+		this.name=name;
 		
 	}
     
 	
     
-    public TypeVO getParent() {
+    public String getParent() {
 		return parent;
 	}
-	public void setParent(TypeVO parent) {
+	public void setParent(String parent) {
 		this.parent = parent;
 	}
-	public TypeVO getChild() {
+	public String getChild() {
 		return child;
 	}
-	public void setChild(TypeVO child) {
+	public void setChild(String child) {
 		this.child = child;
 	}
 	public int getC() {

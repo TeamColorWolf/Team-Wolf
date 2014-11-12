@@ -6,11 +6,15 @@ import TeamWolf.TeamWolf.client.BLservice.stockBLservice.GoodMonService;
 import TeamWolf.TeamWolf.client.BLservice.stockBLservice.GoodTService;
 import TeamWolf.TeamWolf.client.vo.*;
 
+/**
+ * 
+ * @author XYJ
+ *
+ */
 public class GoodsBLController implements GoodManService,GoodTService,GoodMonService {
 
-
 	
-	public int addGood(GoodsVO g){
+	public int addGood(GoodsVO g){		
 		return 0;
 	}
 	public int delGood(GoodsVO g){
@@ -22,7 +26,7 @@ public class GoodsBLController implements GoodManService,GoodTService,GoodMonSer
 	public int finGood(GoodsVO g){
 		return 0;
 	}
-	public GoodList shoGood(GoodsVO g){
+	public GoodsList shoGood(GoodsVO g){
 		return null;
 	}
 	public GoodsStockList shoStockList(int beginDate, int endDate){
@@ -101,7 +105,7 @@ public class GoodsBLController implements GoodManService,GoodTService,GoodMonSer
 		// TODO Auto-generated method stub
 		return null;
 	}
-	public GoodList shoGoods() {
+	public GoodsList shoGoods() {
 		// TODO Auto-generated method stub
 		return null;
 	}
