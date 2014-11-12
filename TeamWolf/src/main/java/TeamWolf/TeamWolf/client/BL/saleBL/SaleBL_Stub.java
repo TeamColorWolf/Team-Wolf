@@ -1,5 +1,8 @@
 package TeamWolf.TeamWolf.client.BL.saleBL;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -17,11 +20,10 @@ import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
  */
 public class SaleBL_Stub {
 	
-	SaleBLAssistant saleAssist;
-	Date presentDate;
+	private SaleBLAssistant saleAssist = new SaleBLAssistant();
+	private String presentDate;
 	
 	public SaleBL_Stub(){
-		saleAssist = new SaleBLAssistant();
 		presentDate = saleAssist.getDate();
 	}
 	

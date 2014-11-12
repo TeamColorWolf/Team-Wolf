@@ -1,5 +1,6 @@
 package TeamWolf.TeamWolf.client.BL.saleBL;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
@@ -39,8 +40,13 @@ public class SaleBLAssistant {
 		return 0;
 	}
 	
-	public Date getDate (){
-		return null;
+	public String getDate (){
+		String date = "";
+		Date dt = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		
+		date = sdf.format(dt);
+		return date;
 	}
 	
 }

@@ -13,6 +13,6 @@ public interface PromotionDATAservice {
 	
 	public PromotionPO findPromotion (PromotionPO ppo) throws RemoteException;
 	
-	public ArrayList<PromotionPO>show () throws RemoteException;
+	public ArrayList<PromotionPO> show () throws RemoteException;
 	
 }

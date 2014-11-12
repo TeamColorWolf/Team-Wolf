@@ -24,21 +24,26 @@ public class CustomerVO {
 	private String businessMan;
 	
 	
-	public CustomerVO(int num, String kind, int level, String name, String tel, 
-			String address, String zipCode, String email, int topLimit,
-			double receive, double pay, String businessMan) {
-		this.num = num;
+	public CustomerVO(String num, String kind, String level, String name, String tel, 
+			String address, String zipCode, String email, String topLimit,
+			String receive, String pay, String businessMan) {		
 		this.kind = kind;
-		this.level = level;
 		this.name = name;
 		this.tel = tel;
 		this.address = address;
 		this.zipCode = zipCode;
 		this.email = email;
-		this.topLimit = topLimit;
-		this.receive = receive;
-		this.pay = pay;
 		this.businessMan = businessMan;
+		
+		try {
+			this.num = Integer.parseInt(num);
+			this.level =Integer.parseInt(level);
+			this.topLimit = Integer.parseInt(topLimit);
+			this.receive = Double.parseDouble(receive);
+			this.pay = Double.parseDouble(pay);
+		} catch (Exception e) {
+			// TODO: String转换成int/double时出错
+		}
 	}
 
 	
@@ -121,6 +126,18 @@ public class CustomerVO {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public void setReceive(double receive) {
+		this.receive = receive;
+	}
+
+	public void setPay(double pay) {
+		this.pay = pay;
+	}
+
+	public void setBusinessMan(String businessMan) {
+		this.businessMan = businessMan;
 	}
 
 	public void setTopLimit(int topLimit) {

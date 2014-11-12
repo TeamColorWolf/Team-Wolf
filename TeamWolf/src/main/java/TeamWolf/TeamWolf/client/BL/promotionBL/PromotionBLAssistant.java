@@ -6,6 +6,11 @@ import java.util.Date;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
 
+/**
+ * 
+ * @author WKS
+ *
+ */
 public class PromotionBLAssistant {
 	
 	public ArrayList<GoodsVO> getGoodsList (){
