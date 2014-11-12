@@ -24,7 +24,7 @@ public class GoodsManager_stub {
 		return 0;
 	}
 	public int delGoods(GoodsVO g){
-		if(assistant.canDel(g)){
+		if(assistant.canDel(g)==0){
 			//删除商品
 		}
 		else{

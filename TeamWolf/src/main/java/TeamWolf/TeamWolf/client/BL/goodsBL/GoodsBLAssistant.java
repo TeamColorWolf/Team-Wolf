@@ -1,4 +1,8 @@
 package TeamWolf.TeamWolf.client.BL.goodsBL;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+import TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice.GoodsDataRead;
 import TeamWolf.TeamWolf.client.vo.*;
 
 /**
@@ -9,17 +13,26 @@ import TeamWolf.TeamWolf.client.vo.*;
 
 public class GoodsBLAssistant {
 
-	public int getPresentDate(){
-		//返回当前日期
-    	return 0;
-    }
+	GoodsDataRead reader;
+	
+	public GoodsBLAssistant(){
+		//实例化reader
+	}
+	public String getPresentTime(){
+		//获得当前时间
+		Calendar c=Calendar.getInstance();
+		SimpleDateFormat s=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String time=s.format(c.getTime());
+		return time;
+	}
+	
 	public boolean canAdd(GoodsVO g){
 		//判断商品能否被加入系统
 		return true;
 	}
-	public boolean canDel(GoodsVO g){
+	public int canDel(GoodsVO g){
 		//判断商品能否从系统中删除
-		return true;
+		return 0;
 	}
 	public boolean canUpd(GoodsVO g){
 		//判断商品能否在系统中被修改

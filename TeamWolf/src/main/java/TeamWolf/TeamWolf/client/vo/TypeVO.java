@@ -1,6 +1,8 @@
 package TeamWolf.TeamWolf.client.vo;
 
 import java.util.ArrayList;
+
+import TeamWolf.TeamWolf.client.po.TypePO;
 /**
  * 
  * @author XYJ
@@ -17,7 +19,7 @@ public class TypeVO {
 	
 	private int packSuccess;
 	
-	TypeVO(String parent, String number, String name){
+	public TypeVO(String parent, String number, String name){
 		
 		this.parent=parent;
 		this.child=new ArrayList<String>();
@@ -26,7 +28,7 @@ public class TypeVO {
 		
 	}
 	
-    TypeVO(String parent, ArrayList<String> child, String number, String name){
+    public TypeVO(String parent, ArrayList<String> child, String number, String name){
 		
 		this.parent=parent;
 		this.child=child;
@@ -35,6 +37,9 @@ public class TypeVO {
 		
 	}
     
+    public TypeVO(TypePO tp){
+    	
+    }
 	
     
     public String getParent() {

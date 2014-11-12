@@ -2,7 +2,7 @@ package TeamWolf.TeamWolf.client.po;
 
 import TeamWolf.TeamWolf.client.vo.TypeVO;
 
-public class GoodPO {
+public class GoodsPO {
 
 	TypeVO parent;
 	String number;

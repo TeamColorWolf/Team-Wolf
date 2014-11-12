@@ -4,7 +4,7 @@ import java.rmi.RemoteException;
 import TeamWolf.TeamWolf.client.po.*;
 public interface GoodsDataWrite {
 
-	public int addGood(GoodPO g) throws RemoteException;
+	public int addGood(GoodsPO g) throws RemoteException;
 	
 	public int delGood(String number) throws RemoteException;
 	
@@ -13,6 +13,6 @@ public interface GoodsDataWrite {
 	 * @param g
 	 * @return
 	 */
-	public int updGood(GoodPO g) throws RemoteException;
+	public int updGood(GoodsPO g) throws RemoteException;
 	
 }

@@ -6,7 +6,7 @@ import TeamWolf.TeamWolf.client.po.*;
 
 public interface GoodsDataRead {
 
-	public GoodPO finGood(String number) throws RemoteException;
-	public ArrayList<GoodPO> getGoodList() throws RemoteException;
+	public GoodsPO finGood(String number) throws RemoteException;
+	public ArrayList<GoodsPO> getGoodList() throws RemoteException;
 	
 }

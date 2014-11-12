@@ -28,7 +28,7 @@ public class StockBLManager_stub {
 
 	public int delType(TypeVO t) {
 		// TODO Auto-generated method stub
-        if(assistant.canDel(t)){ 
+        if(assistant.canDel(t)==0){ 
 		  //删除商品分类
 		}
 		else{ 
