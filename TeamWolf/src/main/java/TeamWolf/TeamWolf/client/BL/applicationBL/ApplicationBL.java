@@ -55,8 +55,6 @@ public class ApplicationBL {
 		return null;
 	}
 	
-<<<<<<< HEAD
-=======
 	public ArrayList<String> getResult(String workNumber){
 		try {
 			approve = (ApproveDATAservice)Naming.lookup(URL);
@@ -73,6 +71,4 @@ public class ApplicationBL {
 		}
 		return null;
 	}
-	
->>>>>>> origin/master
 }
