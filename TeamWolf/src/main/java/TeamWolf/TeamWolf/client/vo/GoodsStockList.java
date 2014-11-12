@@ -8,9 +8,9 @@ import java.util.ArrayList;
  */
 public class GoodsStockList {
 
-	ArrayList<GoodStockVO> goodSL=new ArrayList<GoodStockVO>();
+	ArrayList<GoodsStockVO> goodSL=new ArrayList<GoodsStockVO>();
 	
-	public void addGoodSVO(GoodStockVO gs){
+	public void addGoodSVO(GoodsStockVO gs){
 		goodSL.add(gs);
 	}
 	public String getStockInfo(){

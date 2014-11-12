@@ -13,27 +13,10 @@ public class GoodsMonitor_stub {
     GoodsBLAssistant assistant =new GoodsBLAssistant();
 	
 	
-	public int setGoodWL(GoodsVO g){
-		if(assistant.isExisted(g)){
+	public int setWaringLine(GoodsVO goodWL) {
+		// TODO Auto-generated method stub
+		if(assistant.isExisted(goodWL)){
 			//为该商品设置警戒线
-		}
-		else{
-			//返回错误类型
-		}
-		return 0;
-	}
-	public int increaseGood(GoodsVO g){
-		if(assistant.isExisted(g)){
-			//商品报溢
-		}
-		else{
-			//返回错误类型
-		}
-		return 0;
-	}
-	public int decreaseGood(GoodsVO g){
-		if(assistant.isExisted(g)){
-			//商品报损
 		}
 		else{
 			//返回错误类型
@@ -50,14 +33,31 @@ public class GoodsMonitor_stub {
 	}
 	public int increaseToMatch(GoodsVO toIncrease) {
 		// TODO Auto-generated method stub
+		if(assistant.isExisted(toIncrease)){
+			//商品报溢
+		}
+		else{
+			//返回错误类型
+		}
 		return 0;
 	}
 	public int decreaseToMatch(GoodsVO toDecrease) {
 		// TODO Auto-generated method stub
+		if(assistant.isExisted(toDecrease)){
+			//商品报损
+		}
+		else{
+			//返回错误类型
+		}
 		return 0;
 	}
-	public int setWaringLine(GoodsVO goodWL) {
-		// TODO Auto-generated method stub
+
+    public int increaseGood(GoodsVO g){
+		
+		return 0;
+	}
+	public int decreaseGood(GoodsVO g){
+		
 		return 0;
 	}
 }

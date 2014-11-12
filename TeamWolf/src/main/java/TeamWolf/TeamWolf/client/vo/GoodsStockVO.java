@@ -4,7 +4,7 @@ package TeamWolf.TeamWolf.client.vo;
  * @author XYJ
  *
  */
-public class GoodStockVO {
+public class GoodsStockVO {
 
 	private GoodsVO good;
 	private double importAmount;
@@ -12,7 +12,7 @@ public class GoodStockVO {
 	private double exportAmount;
 	private double exportTotalPrice;
 	
-	GoodStockVO(){
+	GoodsStockVO(){
 		
 	}
 
