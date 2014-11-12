@@ -1,19 +1,30 @@
 package TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice;
 
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
 import TeamWolf.TeamWolf.client.po.DecreaseToMatchPO;
 import TeamWolf.TeamWolf.client.po.IncreaseToMatchPO;
 import TeamWolf.TeamWolf.client.po.PresentListPO;
-
-public interface StockApplicationDATAservice {
-	public int submitIncreaseToMatch(IncreaseToMatchPO po);
+/**
+ * Author WHJ
+ */
+public interface StockApplicationDATAservice extends Remote {
+	public int submitIncreaseToMatch(IncreaseToMatchPO po) throws RemoteException;
 	
-	public int submitDecreaseToMatch(DecreaseToMatchPO po);
+	public int submitDecreaseToMatch(DecreaseToMatchPO po) throws RemoteException;
 	
-	public int submitPresentList(PresentListPO po);
+	public int submitPresentList(PresentListPO po) throws RemoteException;
 	
-	public int approvalIncreaseToMatch(IncreaseToMatchPO po);
+	public int approvalIncreaseToMatch(IncreaseToMatchPO po) throws RemoteException;
 	
-	public int approvalDecreaseToMatch(DecreaseToMatchPO po);
+	public int approvalDecreaseToMatch(DecreaseToMatchPO po) throws RemoteException;
 	
-	public int approvalPresentList(PresentListPO po);
+	public int approvalPresentList(PresentListPO po) throws RemoteException;
+	
+	public int rejectIncreaseToMatch(IncreaseToMatchPO po) throws RemoteException;
+	
+	public int rejectDecreaseToMatch(DecreaseToMatchPO po) throws RemoteException;
+	
+	public int rejectPresentList(PresentListPO po) throws RemoteException;
 }

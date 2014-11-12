@@ -7,22 +7,21 @@ import TeamWolf.TeamWolf.client.vo.RunProcessVO;
 import TeamWolf.TeamWolf.client.vo.SaleDetialSelectFactVO;
 import TeamWolf.TeamWolf.client.vo.SaleDetialVO;
 import TeamWolf.TeamWolf.client.vo.TimeVO;
-
-public class TableInquire {
+/**
+ * Author WHJ
+ */
+public class TableInquireController {
+	TableInquireBL bl;
+	
 	public ArrayList<SaleDetialVO> saleDetial(SaleDetialSelectFactVO vo) {
-		return null;
+		return bl.saleDetial(vo);
 	}
 
 	public ArrayList<RunProcessVO> runProcess(TimeVO time1, TimeVO time2) {
-		return null;
+		return bl.runProcess(time1, time2);
 	}
 
 	public RunConditionVO runCondition(TimeVO time1, TimeVO time2) {
-		return null;
+		return bl.runCondition(time1, time2);
 	}
-
-	public int rightTime(String time1, String time2) {
-		return 0;
-	}
-	
 }
