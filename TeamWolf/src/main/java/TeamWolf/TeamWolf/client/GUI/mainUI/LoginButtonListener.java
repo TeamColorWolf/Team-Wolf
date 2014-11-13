@@ -6,7 +6,11 @@ import java.awt.event.MouseListener;
 import TeamWolf.TeamWolf.client.BLservice.userBLservice.LoginBLservice;
 import TeamWolf.TeamWolf.client.vo.LoginUserVO;
 import TeamWolf.TeamWolf.client.vo.UserVO;
-
+/**
+ * 
+ * @author WHJ
+ *
+ */
 public class LoginButtonListener implements MouseListener, LoginBLservice{
 	String userName;
 	String password;

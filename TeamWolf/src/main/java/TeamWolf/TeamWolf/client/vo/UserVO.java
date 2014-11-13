@@ -1,5 +1,9 @@
 package TeamWolf.TeamWolf.client.vo;
-
+/**
+ * 
+ * @author WHJ
+ *
+ */
 public class UserVO {
 	public String userName;//用户名
 	public String password;//密码

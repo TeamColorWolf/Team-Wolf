@@ -1,5 +1,9 @@
 package TeamWolf.TeamWolf.client.vo;
-
+/**
+ * 
+ * @author WHJ
+ *
+ */
 public class GiftForPromotionVO {
 	public String GoodsName;
 	public int sendNumber;

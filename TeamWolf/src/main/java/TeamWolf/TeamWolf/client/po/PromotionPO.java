@@ -4,12 +4,20 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.vo.GiftForPromotionVO;
-
+import TeamWolf.TeamWolf.client.vo.PromotionVO;
+/**
+ * 
+ * @author WHJ
+ *
+ */
 public class PromotionPO implements Serializable{
 	public PromotionTypePO type;
-	
-	public PromotionPO(PromotionTypePO t){
+	public TimePO begin;
+	public TimePO end;
+	public PromotionPO(PromotionTypePO t, PromotionVO vo){
 		type = t;
+		begin = new TimePO(vo.begin);
+		end = new TimePO(vo.end);
 	}
 	
 	protected ArrayList<GiftForPromotionPO> setGiftList(ArrayList<GiftForPromotionVO> vo){
