@@ -1,7 +1,13 @@
 package TeamWolf.TeamWolf.client.vo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * 
+ * @author HalaWKS
+ *
+ */
 public class ImportListVO extends ApplicationVO{
 	
 	
@@ -30,8 +36,26 @@ public class ImportListVO extends ApplicationVO{
 	 */
 	double total;
 
-	public ImportListVO() {
+	public ImportListVO(String number, String supplier, String storage, String operator,
+			ArrayList<GoodsVO> goodsList, String remark) {
 		// TODO Auto-generated constructor stub
+		this.number = number;
+		this.supplier = supplier;
+		this.storage = storage;
+		this.operator = operator;
+		this.GoodsList = goodsList;
+		this.remark = remark;
+		this.total = calTotal(goodsList);
+	}
+	
+	/**
+	 * 计算总额
+	 * @param goodsList
+	 * @return
+	 */
+	private double calTotal(ArrayList<GoodsVO> goodsList){
+		//TODO 计算总额的详细设计
+		return 0;
 	}
 	
 	public String getSupplier() {

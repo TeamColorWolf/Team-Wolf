@@ -1,5 +1,6 @@
 package TeamWolf.TeamWolf.client.po;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
@@ -9,12 +10,12 @@ import TeamWolf.TeamWolf.client.vo.GoodsVO;
  * @author HalaWKS
  *
  */
-public class SaleListPO extends ApplicationPO{
+public class SaleListPO extends ApplicationPO implements Serializable{
 	
 	/**
 	 * 客户
 	 */
-	String customer;
+	CustomerPO customer;
 	
 	/**
 	 * 业务员
@@ -56,11 +57,13 @@ public class SaleListPO extends ApplicationPO{
 	 */
 	String remark;
 
-	public String getCustomer() {
+	
+
+	public CustomerPO getCustomer() {
 		return customer;
 	}
 
-	public void setCustomer(String customer) {
+	public void setCustomer(CustomerPO customer) {
 		this.customer = customer;
 	}
 
