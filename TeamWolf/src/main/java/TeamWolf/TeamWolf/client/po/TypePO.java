@@ -1,11 +1,12 @@
 package TeamWolf.TeamWolf.client.po;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
 
 
-public class TypePO {
+ public class TypePO implements Serializable {
 
 	private TypePO parent;
     private TypePO child;

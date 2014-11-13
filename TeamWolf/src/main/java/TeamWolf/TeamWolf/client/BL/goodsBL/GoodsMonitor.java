@@ -1,5 +1,8 @@
 package TeamWolf.TeamWolf.client.BL.goodsBL;
 import TeamWolf.TeamWolf.client.BLservice.stockBLservice.GoodMonService;
+import TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice.GoodsDataRead;
+import TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice.GoodsDataWrite;
+import TeamWolf.TeamWolf.client.po.GoodsPO;
 import TeamWolf.TeamWolf.client.vo.*;
 
 /**
@@ -9,13 +12,15 @@ import TeamWolf.TeamWolf.client.vo.*;
  */
 public class GoodsMonitor{
 
-	GoodsBLAssistant assistant =new GoodsBLAssistant();
-	
+	GoodsBLAssistant assistant;
+	GoodsDataRead reader;
+	GoodsDataWrite writer;
 	
 	public int setWaringLine(GoodsVO goodWL) {
 		// TODO Auto-generated method stub
 		if(assistant.isExisted(goodWL)){
 			//为该商品设置警戒线
+			GoodsPO toSet;
 		}
 		else{
 			//返回错误类型

@@ -1,8 +1,11 @@
 package TeamWolf.TeamWolf.client.po;
 
+import java.io.Serializable;
+
+import TeamWolf.TeamWolf.client.vo.GoodsVO;
 import TeamWolf.TeamWolf.client.vo.TypeVO;
 
-public class GoodsPO {
+public class GoodsPO implements Serializable {
 
 	TypeVO parent;
 	String number;
@@ -13,6 +16,9 @@ public class GoodsPO {
 	double exprice;
 	double latestImprice;
 	double latestExprice;
+	public GoodsPO(GoodsVO g) {
+		// TODO Auto-generated constructor stub
+	}
 	public TypeVO getParent() {
 		return parent;
 	}

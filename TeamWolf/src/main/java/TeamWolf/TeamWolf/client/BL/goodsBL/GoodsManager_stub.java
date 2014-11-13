@@ -1,5 +1,6 @@
 package TeamWolf.TeamWolf.client.BL.goodsBL;
 
+import TeamWolf.TeamWolf.client.po.GoodsPO;
 import TeamWolf.TeamWolf.client.vo.GoodsList;
 import TeamWolf.TeamWolf.client.vo.GoodsStockList;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
@@ -17,6 +18,8 @@ public class GoodsManager_stub {
 	public int addGoods(GoodsVO g){
 		if(assistant.canAdd(g)){
 			//加入商品
+			
+			
 		}
 		else{
 			//返回错误：商品已存在于系统中

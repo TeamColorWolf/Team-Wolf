@@ -27,7 +27,15 @@ public class GoodsManager {
 	public int addGoods(GoodsVO g){
 		
 		if(assistant.canAdd(g)){
-			
+		
+			GoodsPO toAdd=new GoodsPO(g);
+			try {
+				writer.addGood(toAdd);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				//返回通信错误
+			}
 		}
 		else{ //返回错误类型：商品已经存在与系统中
 			
@@ -39,6 +47,13 @@ public class GoodsManager {
 		int result=assistant.canDel(g);
 		if(result==0){
 			
+			try {
+				writer.delGood(g.getNumber());
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				//返回通信错误
+			}
 		}
 		else{ //返回错误类型：商品不存在于系统中或者商品有过交易记录
 			
@@ -51,21 +66,39 @@ public class GoodsManager {
 		
 		if(assistant.canUpd(g)){
 			
+			try {
+				GoodsPO toUpd=reader.finGood(g.getNumber());
+				/*对PO进行修改*/
+				
+				writer.updGood(toUpd);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				//返回通信错误
+			}
+			
 		}
 		else{ //返回错误类型：商品不存在于系统中
 		
 		}
 		return 0;
 	}
-	public GoodsVO finGoods(GoodsVO g){
+	public GoodsVO finGoods(GoodsVO g) {
 		
 		if(assistant.canFin(g)){
 			
+			try {
+				GoodsPO found=reader.finGood(g.getNumber());
+				//对g进行修改
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		else{ //返回错误类型：商品不村子于系统中
+		else{ //返回错误类型：商品不存在于系统中
 			
 		}
-		return null;
+		return g;
 	}
 	public GoodsList shoGoods(){
 		GoodsList gl=new GoodsList();
@@ -80,13 +113,24 @@ public class GoodsManager {
 			e.printStackTrace();
 			//返回通信错误
 		}
-		return null;
+		return gl;
 	}
 	public GoodsStockList shoStockList(int beginDate, int endDate){
-		return null;
+		
+		GoodsStockList gsl=new GoodsStockList();
+		
+		//根据时间查找每个库存商品的交易记录，计算并生成对应的GoodsStockVO
+		//调用销售业务的接口
+		
+		return gsl;
 	}
 	public GoodsStockList shoStockDaily(){
-		return null;
+		
+		GoodsStockList gsl=new GoodsStockList();
+		//查找当天的交易记录，计算并生成对应的GoodsStockVO
+		//调用销售业务的接口
+		
+		return gsl;
 	}
 	
 }
