@@ -1,14 +1,28 @@
 package TeamWolf.TeamWolf.client.vo;
 
 import java.util.ArrayList;
-
+/**
+ * 
+ * @author WHJ
+ *
+ */
 public class PromotionVO {
 	public PromotionTypeVO type;
 	public int error;
-	
-	public PromotionVO(PromotionTypeVO t){
+	public TimeVO begin;
+	public TimeVO end;
+	public PromotionVO(PromotionTypeVO t, TimeVO Begin, TimeVO End){
 		error = 0;
 		type = t;
+		begin = Begin;
+		end = End;
+		if(timeCompare(begin, end) > 0){
+			error = 20001;//结束时间长于开始时间
+		}
+	}
+	
+	private int timeCompare(TimeVO time1, TimeVO time2){
+		return time1.date.compareTo(time2.date);
 	}
 	
 	protected double string_to_double(String d){
