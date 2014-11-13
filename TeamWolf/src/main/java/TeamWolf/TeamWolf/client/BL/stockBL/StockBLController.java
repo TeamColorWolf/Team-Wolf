@@ -1,7 +1,7 @@
 package TeamWolf.TeamWolf.client.BL.stockBL;
 
 import TeamWolf.TeamWolf.client.BLservice.stockBLservice.StockBLservice;
-import TeamWolf.TeamWolf.client.vo.TypeList;
+import TeamWolf.TeamWolf.client.vo.TypeListVO;
 import TeamWolf.TeamWolf.client.vo.TypeVO;
 
 /**
@@ -32,7 +32,7 @@ public class StockBLController implements StockBLservice{
 		return sbm.updType(t);
 	}
 
-	public TypeList shoAllType() {
+	public TypeListVO shoAllType() {
 		// TODO Auto-generated method stub
 		return sbm.shoAllType();
 	}

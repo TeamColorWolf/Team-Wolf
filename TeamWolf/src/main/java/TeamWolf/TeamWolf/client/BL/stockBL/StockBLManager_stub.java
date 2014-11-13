@@ -1,6 +1,6 @@
 package TeamWolf.TeamWolf.client.BL.stockBL;
 
-import TeamWolf.TeamWolf.client.vo.TypeList;
+import TeamWolf.TeamWolf.client.vo.TypeListVO;
 import TeamWolf.TeamWolf.client.vo.TypeVO;
 /**
  * 
@@ -48,9 +48,9 @@ public class StockBLManager_stub {
 		return 0;
 	}
 
-	public TypeList shoAllType() {
+	public TypeListVO shoAllType() {
 		// TODO Auto-generated method stub
-		TypeList t=new TypeList();
+		TypeListVO t=new TypeListVO();
 		return t;
 	}
 

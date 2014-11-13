@@ -1,8 +1,8 @@
 package TeamWolf.TeamWolf.client.BL.goodsBL;
 
 import TeamWolf.TeamWolf.client.po.GoodsPO;
-import TeamWolf.TeamWolf.client.vo.GoodsList;
-import TeamWolf.TeamWolf.client.vo.GoodsStockList;
+import TeamWolf.TeamWolf.client.vo.GoodsListVO;
+import TeamWolf.TeamWolf.client.vo.GoodsStockListVO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
 
 /**
@@ -49,7 +49,7 @@ public class GoodsManager_stub {
 			//查找商品
 			
 			/*....*/
-			GoodsVO gv=new GoodsVO(null, null, null, null, null, null, null, null, null);
+			GoodsVO gv=new GoodsVO(null, null, null, null, null, null, null, null, null, null);
 			g=gv;
 		}
 		else{
@@ -57,16 +57,16 @@ public class GoodsManager_stub {
 		}
 		return g;
 	}
-	public GoodsList shoGoods(){
-		GoodsList gl=new GoodsList();
+	public GoodsListVO shoGoods(){
+		GoodsListVO gl=new GoodsListVO();
 		return gl;
 	}
-	public GoodsStockList shoStockList(int beginDate, int endDate){
-		GoodsStockList gsl=new GoodsStockList();
+	public GoodsStockListVO shoStockList(int beginDate, int endDate){
+		GoodsStockListVO gsl=new GoodsStockListVO();
 		return gsl;
 	}
-	public GoodsStockList shoStockDaily(){
-		GoodsStockList gsl=new GoodsStockList();
+	public GoodsStockListVO shoStockDaily(){
+		GoodsStockListVO gsl=new GoodsStockListVO();
 		return gsl;
 	}
 }

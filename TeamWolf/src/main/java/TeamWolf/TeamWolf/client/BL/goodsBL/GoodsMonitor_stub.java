@@ -1,6 +1,6 @@
 package TeamWolf.TeamWolf.client.BL.goodsBL;
 
-import TeamWolf.TeamWolf.client.vo.GoodsAlarm;
+import TeamWolf.TeamWolf.client.vo.GoodsAlarmVO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
 
 /**
@@ -27,8 +27,8 @@ public class GoodsMonitor_stub {
 		//检查某个商品数量是否低于警戒线
 		return 0;
 	}
-	public GoodsAlarm warning(GoodsVO g){
-		GoodsAlarm ga=new GoodsAlarm(g.getName(),"库存数量已低于警戒线！");
+	public GoodsAlarmVO warning(GoodsVO g){
+		GoodsAlarmVO ga=new GoodsAlarmVO(g.getName(),"库存数量已低于警戒线！");
 		return ga;
 	}
 	public int increaseToMatch(GoodsVO toIncrease) {

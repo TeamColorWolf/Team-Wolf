@@ -16,6 +16,8 @@ public class GoodsPO implements Serializable {
 	double exprice;
 	double latestImprice;
 	double latestExprice;
+	int WarningLine;
+	
 	public GoodsPO(GoodsVO g) {
 		// TODO Auto-generated constructor stub
 	}
@@ -73,6 +75,11 @@ public class GoodsPO implements Serializable {
 	public void setLatestExprice(double latestExprice) {
 		this.latestExprice = latestExprice;
 	}
-	
+	public void setWarningLine(int WL){
+		this.WarningLine=WL;
+	}
+	public boolean checkWL(){
+		return amount<=WarningLine;
+	}
 	
 }

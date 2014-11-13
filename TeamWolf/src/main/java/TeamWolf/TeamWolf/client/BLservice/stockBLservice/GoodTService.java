@@ -11,17 +11,17 @@ public interface GoodTService {
 	 * @param present
 	 * @return
 	 */
-	public int presentList( GoodsVO present);
+	public int presentList(ArrayList<GoodsVO> present, String operator, CustomerVO customer);
     /**
      * �鿴�ض���Ʒ������ϸ��Ϣ
      * @param number
      * @return
      */
-	public PresentList checkPL(int number);
+	public PresentListVO checkPL(int number);
 	/**
 	 * �鿴������Ʒ���Ĵ�����Ϣ
 	 * @return
 	 */
-	public ArrayList<PresentList> shoSimplifiedPL();
+	public ArrayList<PresentListVO> shoSimplifiedPL();
 	
 }

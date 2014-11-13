@@ -2,6 +2,7 @@ package TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.po.DecreaseToMatchPO;
 import TeamWolf.TeamWolf.client.po.IncreaseToMatchPO;
@@ -27,4 +28,12 @@ public interface StockApplicationDATAservice extends Remote {
 	public int rejectDecreaseToMatch(DecreaseToMatchPO po) throws RemoteException;
 	
 	public int rejectPresentList(PresentListPO po) throws RemoteException;
+	
+	public IncreaseToMatchPO finIncreaseToMatch(String number) throws RemoteException;
+	
+	public DecreaseToMatchPO finDecreaseToMatch(String number) throws RemoteException;
+	
+	public PresentListPO finPresentList(String number) throws RemoteException;
+	
+	public ArrayList<PresentListPO> shoPL() throws RemoteException;
 }

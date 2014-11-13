@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * @author XYJ
  *
  */
-public class TypeList {
+public class TypeListVO {
 
 	private ArrayList<TypeVO> typeL=new ArrayList<TypeVO>();
 	private String TypeListInfo;

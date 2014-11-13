@@ -4,13 +4,13 @@ package TeamWolf.TeamWolf.client.vo;
  * @author XYJ
  *
  */
-public class GoodsAlarm {
+public class GoodsAlarmVO {
 
 	String warningGood;
 	String warn;
 	
 	
-	public GoodsAlarm(String WG, String warn){
+	public GoodsAlarmVO(String WG, String warn){
 		this.warningGood=WG;
 		this.warn=warn;
 	}

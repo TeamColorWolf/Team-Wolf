@@ -42,6 +42,9 @@ public class GoodsBLAssistant {
 		//判断能否找到某商品
 		return true;
 	}	
+	public int canSent(GoodsVO present){
+		return 0;
+	}
 	public boolean isExisted(GoodsVO g){
     	return true;
     }

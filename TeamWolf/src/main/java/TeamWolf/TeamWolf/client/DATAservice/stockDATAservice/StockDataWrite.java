@@ -1,10 +1,11 @@
 package TeamWolf.TeamWolf.client.DATAservice.stockDATAservice;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 import TeamWolf.TeamWolf.client.po.*;
 
-public interface StockDataWrite {
+public interface StockDataWrite extends Remote{
 
 	public int addType(TypePO t) throws RemoteException;
 	

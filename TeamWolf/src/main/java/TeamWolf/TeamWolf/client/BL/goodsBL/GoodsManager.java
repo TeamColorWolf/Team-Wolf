@@ -100,8 +100,8 @@ public class GoodsManager {
 		}
 		return g;
 	}
-	public GoodsList shoGoods(){
-		GoodsList gl=new GoodsList();
+	public GoodsListVO shoGoods(){
+		GoodsListVO gl=new GoodsListVO();
 		
 		try {
 			ArrayList<GoodsPO> agl=reader.getGoodList();
@@ -115,18 +115,18 @@ public class GoodsManager {
 		}
 		return gl;
 	}
-	public GoodsStockList shoStockList(int beginDate, int endDate){
+	public GoodsStockListVO shoStockList(int beginDate, int endDate){
 		
-		GoodsStockList gsl=new GoodsStockList();
+		GoodsStockListVO gsl=new GoodsStockListVO();
 		
 		//根据时间查找每个库存商品的交易记录，计算并生成对应的GoodsStockVO
 		//调用销售业务的接口
 		
 		return gsl;
 	}
-	public GoodsStockList shoStockDaily(){
+	public GoodsStockListVO shoStockDaily(){
 		
-		GoodsStockList gsl=new GoodsStockList();
+		GoodsStockListVO gsl=new GoodsStockListVO();
 		//查找当天的交易记录，计算并生成对应的GoodsStockVO
 		//调用销售业务的接口
 		

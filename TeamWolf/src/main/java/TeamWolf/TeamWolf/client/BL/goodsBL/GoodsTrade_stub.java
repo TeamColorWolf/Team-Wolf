@@ -6,8 +6,9 @@ import TeamWolf.TeamWolf.client.po.ImportListPO;
 import TeamWolf.TeamWolf.client.po.ImportRejectListPO;
 import TeamWolf.TeamWolf.client.po.SaleListPO;
 import TeamWolf.TeamWolf.client.po.SaleRejectListPO;
+import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
-import TeamWolf.TeamWolf.client.vo.PresentList;
+import TeamWolf.TeamWolf.client.vo.PresentListVO;
 
 /**
  * 
@@ -43,29 +44,29 @@ public class GoodsTrade_stub {
 		return 0;
 	}
 	
-	public int presentList(GoodsVO present){
+	public int presentList(ArrayList<GoodsVO> present, String operator, CustomerVO customer){
 		//分析赠送单
 		
 		//调用applicationBL，提交申请
 		return 0;
 	}
 	
-	public int handlePresentList(PresentList p){
+	public int handlePresentList(PresentListVO p){
 		//分析赠送单
 		//判断能否执行
 		//执行
 		return 0;
 	}
 		
-	public PresentList checkPL(int number) {
+	public PresentListVO checkPL(int number) {
 		// TODO Auto-generated method stub
-		PresentList pl=new PresentList();
+		PresentListVO pl=new PresentListVO();
 		return pl;
 	}
 	
-	public ArrayList<PresentList> shoSimplifiedPL() {
+	public ArrayList<PresentListVO> shoSimplifiedPL() {
 		// TODO Auto-generated method stub
-		ArrayList<PresentList> apl=new ArrayList<PresentList>();
+		ArrayList<PresentListVO> apl=new ArrayList<PresentListVO>();
 		return apl;
 	}
 }

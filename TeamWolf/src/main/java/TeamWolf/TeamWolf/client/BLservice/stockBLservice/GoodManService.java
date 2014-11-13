@@ -32,18 +32,18 @@ public interface GoodManService {
 	 * ��ʾ������Ʒ
 	 * @return
 	 */
-	public GoodsList shoGoods();
+	public GoodsListVO shoGoods();
 	/**
 	 * �鿴���
 	 * @param beginDate
 	 * @param endDate
 	 * @return
 	 */
-	public GoodsStockList shoStockList( int beginDate, int endDate);
+	public GoodsStockListVO shoStockList( int beginDate, int endDate);
 	/**
 	 * ����̵�
 	 * @return
 	 */
-	public GoodsStockList shoStockDaily();
+	public GoodsStockListVO shoStockDaily();
 	
 }

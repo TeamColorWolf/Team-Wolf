@@ -11,6 +11,7 @@ public class GoodsVO {
 	private String name;
 	private String model;
 	private int amount;
+	private int WarningLine;
 	private double imprice;
 	private double exprice;
 	private double latestImprice;
@@ -18,7 +19,8 @@ public class GoodsVO {
 	private String goodsInfo;
 	private int packSuccess;
 	
-	public GoodsVO(String parent, String number, String name, String model, String amount, String imprice, String exprice, String latestImprice, String latestExprice){
+	//添加商品
+	public GoodsVO(String parent, String number, String name, String model, String amount, String imprice, String exprice, String latestImprice, String latestExprice, String WL){
 		
 		this.parent=parent;
 		this.number=number;
@@ -26,6 +28,7 @@ public class GoodsVO {
 		this.model=model;
 		
 		try{
+			this.WarningLine=Integer.parseInt(WL);
 			this.amount=Integer.parseInt(amount);
 			this.imprice=Double.parseDouble(imprice);
 			this.exprice=Double.parseDouble(exprice);
@@ -36,7 +39,9 @@ public class GoodsVO {
 			}
 	}
 	
-	
+	public int gerWarningLine(){
+		return WarningLine;
+	}
 	public String getParent() {
 		return parent;
 	}

@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * @author XYJ
  *
  */
-public class GoodsStockList {
+public class GoodsStockListVO {
 
 	ArrayList<GoodsStockVO> goodsSL=new ArrayList<GoodsStockVO>();
 	String GStockListInfo;

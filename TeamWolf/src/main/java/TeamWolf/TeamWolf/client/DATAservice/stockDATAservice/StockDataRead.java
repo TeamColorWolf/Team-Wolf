@@ -1,9 +1,10 @@
 package TeamWolf.TeamWolf.client.DATAservice.stockDATAservice;
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.po.*;
-public interface StockDataRead {
+public interface StockDataRead extends Remote {
 
 	public TypePO finType(String number) throws RemoteException;
 	

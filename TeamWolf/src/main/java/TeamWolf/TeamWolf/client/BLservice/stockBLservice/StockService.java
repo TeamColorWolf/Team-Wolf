@@ -25,7 +25,7 @@ public interface StockService {
 	 * ��ʾ���з���
 	 * @return
 	 */
-	public TypeList shoAllType();
+	public TypeListVO shoAllType();
 
 	
 }

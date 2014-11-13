@@ -89,10 +89,10 @@ public class StockBLManager{
 		return 0; //操作成功
 	}
 
-	public TypeList shoAllType() {
+	public TypeListVO shoAllType() {
 		// TODO Auto-generated method stub
 		
-		TypeList tl=new TypeList();
+		TypeListVO tl=new TypeListVO();
 		try {
 			ArrayList<TypePO> atl=reader.shoTypeList();
 			for(TypePO t:atl){

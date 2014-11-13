@@ -24,10 +24,10 @@ public class GoodsBLController implements GoodManService,GoodTService,GoodMonSer
 	}
 	
 	
-	public GoodsStockList shoStockList(int beginDate, int endDate){
+	public GoodsStockListVO shoStockList(int beginDate, int endDate){
 		return gma.shoStockList(beginDate, endDate);
 	}
-	public GoodsStockList shoStockDaily(){
+	public GoodsStockListVO shoStockDaily(){
 		return gma.shoStockDaily();
 	}
 	public int goodsExport(SaleListVO sl){
@@ -42,7 +42,7 @@ public class GoodsBLController implements GoodManService,GoodTService,GoodMonSer
 	public int goodsImportReject(ImportRejectListVO irl){
 		return gt.goodsImportReject(irl);
 	}
-	public int handlePresentList(PresentList p){
+	public int handlePresentList(PresentListVO p){
 		return gt.handlePresentList(p);
 	}
 	public int MonitoringWL(GoodsVO g){
@@ -60,15 +60,15 @@ public class GoodsBLController implements GoodManService,GoodTService,GoodMonSer
 		// TODO Auto-generated method stub
 		return gmo.setWaringLine(goodWL);
 	}
-	public int presentList(GoodsVO present) {
+	public int presentList(ArrayList<GoodsVO> present, String operator, CustomerVO customer) {
 		// TODO Auto-generated method stub
-		return gt.presentList(present);
+		return gt.presentList(present, operator, customer);
 	}
-	public PresentList checkPL(int number) {
+	public PresentListVO checkPL(int number) {
 		// TODO Auto-generated method stub
 		return gt.checkPL(number);
 	}
-	public ArrayList<PresentList> shoSimplifiedPL() {
+	public ArrayList<PresentListVO> shoSimplifiedPL() {
 		// TODO Auto-generated method stub
 		return gt.shoSimplifiedPL();
 	}
@@ -88,7 +88,7 @@ public class GoodsBLController implements GoodManService,GoodTService,GoodMonSer
 		// TODO Auto-generated method stub
 		return gma.finGoods(g);
 	}
-	public GoodsList shoGoods() {
+	public GoodsListVO shoGoods() {
 		// TODO Auto-generated method stub
 		return gma.shoGoods();
 	}
