@@ -5,6 +5,11 @@ import java.io.Serializable;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
 import TeamWolf.TeamWolf.client.vo.TypeVO;
 
+/**
+ * 
+ * @author XYJ
+ *
+ */
 public class GoodsPO implements Serializable {
 
 	TypeVO parent;

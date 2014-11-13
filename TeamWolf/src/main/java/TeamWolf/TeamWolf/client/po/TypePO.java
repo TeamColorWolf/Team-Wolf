@@ -5,7 +5,12 @@ import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
 
-
+ /**
+  * 
+  * @author XYJ
+  *
+  */
+ 
  public class TypePO implements Serializable {
 
 	private TypePO parent;

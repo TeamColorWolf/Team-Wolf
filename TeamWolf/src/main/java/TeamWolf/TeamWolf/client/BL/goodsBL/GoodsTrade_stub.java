@@ -8,7 +8,11 @@ import TeamWolf.TeamWolf.client.po.SaleListPO;
 import TeamWolf.TeamWolf.client.po.SaleRejectListPO;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
+import TeamWolf.TeamWolf.client.vo.ImportListVO;
+import TeamWolf.TeamWolf.client.vo.ImportRejectListVO;
 import TeamWolf.TeamWolf.client.vo.PresentListVO;
+import TeamWolf.TeamWolf.client.vo.SaleListVO;
+import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
 
 /**
  * 
@@ -19,25 +23,25 @@ public class GoodsTrade_stub {
 
     GoodsBLAssistant assistant =new GoodsBLAssistant();
 	
-	public int goodsExport(SaleListPO sl){
+	public int goodsExport(SaleListVO sl){
 		//分析销售单
 		
 		//处理销售
 		return 0;
 	}
-	public int goodsExportReject(SaleRejectListPO srl){
+	public int goodsExportReject(SaleRejectListVO srl){
 		//分析销售退货单
 		
 		//处理销售退货
 		return 0;
 	}
-	public int goodsImport(ImportListPO il){
+	public int goodsImport(ImportListVO il){
 		//分析进货单
 		
 		//处理进货
 		return 0;
 	}
-	public int goodsImportReject(ImportRejectListPO irl){
+	public int goodsImportReject(ImportRejectListVO irl){
 		//分析进货退货单
 		
 		//处理进货退货
