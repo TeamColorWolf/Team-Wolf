@@ -15,7 +15,7 @@ import TeamWolf.TeamWolf.client.BLservice.userBLservice.LoginBLservice;
 import TeamWolf.TeamWolf.client.vo.LoginUserVO;
 import TeamWolf.TeamWolf.client.vo.UserVO;
 
-public class LoginFrame extends JFrame implements LoginBLservice{
+public class LoginFrame extends JFrame{
 	
 	public JButton login;
 	public JTextField id;
@@ -96,9 +96,9 @@ public class LoginFrame extends JFrame implements LoginBLservice{
 		this.addCancelListener();
 	}
 
-	public UserVO login(LoginUserVO user) {
+	public UserVO login(LoginUserVO user, String IP) {
 		// TODO Auto-generated method stub
-		LoginBLservice LoginController = new LoginController();
+		LoginBLservice LoginController = new LoginController(IP);
 		return LoginController.login(user);
 	}
 	
