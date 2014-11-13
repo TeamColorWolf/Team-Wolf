@@ -3,6 +3,8 @@ package TeamWolf.TeamWolf.client.GUI.mainUI;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import TeamWolf.TeamWolf.client.BL.userBL.LoginController;
+import TeamWolf.TeamWolf.client.BL.userBL.LoginController_stub;
 import TeamWolf.TeamWolf.client.BLservice.userBLservice.LoginBLservice;
 import TeamWolf.TeamWolf.client.vo.LoginUserVO;
 import TeamWolf.TeamWolf.client.vo.UserVO;
@@ -12,6 +14,7 @@ import TeamWolf.TeamWolf.client.vo.UserVO;
  *
  */
 public class LoginButtonListener implements MouseListener, LoginBLservice{
+	public UserVO user;
 	String userName;
 	String password;
 	String IP;
@@ -21,6 +24,9 @@ public class LoginButtonListener implements MouseListener, LoginBLservice{
 		password = Main.login.password.getText();
 		IP = Main.login.serverIP.getText();
 		System.out.println(userName+"\n"+password+"\n"+IP);
+		LoginUserVO loginUser = new LoginUserVO(userName, password);
+		LoginController c = new LoginController_stub(IP);
+		user = c.login(loginUser);
 	}
 
 	public void mouseEntered(MouseEvent arg0) {

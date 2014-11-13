@@ -29,5 +29,8 @@ public class UserVO {
 		else if(Power.equals("总经理")){
 			power = 5;
 		}
+		else if(Power.equals("系统管理员")){
+			power = 6;
+		}
 	}
 }

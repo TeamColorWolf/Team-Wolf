@@ -16,6 +16,8 @@ import TeamWolf.TeamWolf.client.vo.UserVO;
 public class Admin {
 	public String URL = null;
 	public UserVO nowUser = null;
+	UserDATAservice adm;
+	UserLogDATAservice log;
 	
 	public Admin(String IP){
 		
@@ -23,18 +25,10 @@ public class Admin {
 	
 	public int addUser(UserVO user) {
 		// TODO Auto-generated method stub
-		UserPO userPO = null;
-		UserDATAservice add;
-		UserLogDATAservice log;
+		UserPO po = new UserPO(user);
 		try {
-			add = (UserDATAservice)Naming.lookup(URL);
+			adm = (UserDATAservice)Naming.lookup(URL);
 			log = (UserLogDATAservice)Naming.lookup(URL);
-			try {
-				add.addUser(userPO);
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		} catch (MalformedURLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -45,7 +39,14 @@ public class Admin {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		return 0;
+		try {
+			log.addUserLog(po);
+			return adm.addUser(po);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 30001;
 	}
 
 	public int removeUser(String user) {
@@ -63,7 +64,7 @@ public class Admin {
 		return null;
 	}
 	
-	private String creatWorkNumber(){
+	public String creatWorkNumber(String power){
 		return null;
 	}
 
