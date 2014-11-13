@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.BLservice.manageBLservice.PromotionBLservice;
 import TeamWolf.TeamWolf.client.vo.ForPricePromotionVO;
-import TeamWolf.TeamWolf.client.vo.ForVIPpromotionVO;
+import TeamWolf.TeamWolf.client.vo.ForVIPPromotionVO;
 import TeamWolf.TeamWolf.client.vo.PromotionVO;
 import TeamWolf.TeamWolf.client.vo.SpecialGoodsPromotionVO;
 
 public class PromotionBLController implements PromotionBLservice{
 
-	public void setForVIP(ForVIPpromotionVO vo) {
+	public void setForVIP(ForVIPPromotionVO vo) {
 		// TODO Auto-generated method stub
 		
 	}

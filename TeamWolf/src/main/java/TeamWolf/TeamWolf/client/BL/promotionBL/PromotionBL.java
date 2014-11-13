@@ -6,7 +6,7 @@ import java.util.Date;
 import TeamWolf.TeamWolf.client.BLservice.manageBLservice.PromotionBLservice;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.ForPricePromotionVO;
-import TeamWolf.TeamWolf.client.vo.ForVIPpromotionVO;
+import TeamWolf.TeamWolf.client.vo.ForVIPPromotionVO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
 import TeamWolf.TeamWolf.client.vo.PromotionVO;
 import TeamWolf.TeamWolf.client.vo.SpecialGoodsPromotionVO;
@@ -61,7 +61,7 @@ public class PromotionBL implements PromotionBLservice{
 		return 0;
 	}
 
-	public void setForVIP(ForVIPpromotionVO vo) {
+	public void setForVIP(ForVIPPromotionVO vo) {
 		// TODO Auto-generated method stub
 		
 	}

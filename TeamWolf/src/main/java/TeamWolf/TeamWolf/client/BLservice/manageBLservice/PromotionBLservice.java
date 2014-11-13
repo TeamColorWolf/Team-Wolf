@@ -3,12 +3,12 @@ package TeamWolf.TeamWolf.client.BLservice.manageBLservice;
 import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.vo.ForPricePromotionVO;
-import TeamWolf.TeamWolf.client.vo.ForVIPpromotionVO;
+import TeamWolf.TeamWolf.client.vo.ForVIPPromotionVO;
 import TeamWolf.TeamWolf.client.vo.PromotionVO;
 import TeamWolf.TeamWolf.client.vo.SpecialGoodsPromotionVO;
 
 public interface PromotionBLservice {
-	public void setForVIP(ForVIPpromotionVO vo);
+	public void setForVIP(ForVIPPromotionVO vo);
 	
 	public void setForSpecialGoods(SpecialGoodsPromotionVO vo);
 	

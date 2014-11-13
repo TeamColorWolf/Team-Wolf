@@ -20,25 +20,30 @@ public class LoginFrame extends JFrame implements LoginBLservice{
 	public JButton login;
 	public JTextField id;
 	public JPasswordField password;
+	public JTextField serverIP;
 	
 	private JLabel IDLabel;
 	private JLabel PasswordLabel;
+	private JLabel ServerIP;
 	
 	private JButton cancel;
 	
 	private JPanel loginPanel;
 	
 	final private int label_1_y = 50;
-	final private int label_2_y = 120;
-	final private int button_3_y = 220;
+	final private int label_2_y = 100;
+	final private int label_3_y = 150;
+	final private int button_4_y = 220;
 	
 	public LoginFrame(){
 		super("用户登录");
 		
 		id = new JTextField();
 		password = new JPasswordField();
+		serverIP = new JTextField();
 		IDLabel = new JLabel("用户名");
 		PasswordLabel = new JLabel("密码");
+		ServerIP = new JLabel("服务器IP");
 		login = new JButton("登录");
 		cancel = new JButton("取消");
 		loginPanel = new JPanel();
@@ -59,12 +64,20 @@ public class LoginFrame extends JFrame implements LoginBLservice{
 		password.setLocation(100, label_2_y);
 		loginPanel.add(password);
 		
+		ServerIP.setSize(50, 25);
+		ServerIP.setLocation(50, label_3_y);
+		loginPanel.add(ServerIP);
+		
+		serverIP.setSize(150, 25);
+		serverIP.setLocation(100, label_3_y);
+		loginPanel.add(serverIP);
+		
 		login.setSize(80, 30);
-		login.setLocation(55, button_3_y);
+		login.setLocation(55, button_4_y);
 		loginPanel.add(login);
 		
 		cancel.setSize(80, 30);
-		cancel.setLocation(165, button_3_y);
+		cancel.setLocation(165, button_4_y);
 		loginPanel.add(cancel);
 		
 		loginPanel.setSize(300, 300);
@@ -90,7 +103,7 @@ public class LoginFrame extends JFrame implements LoginBLservice{
 	}
 	
 	public void addLoginListener(MouseListener loginListener){
-		
+		login.addMouseListener(loginListener);
 	}
 	
 	private void addCancelListener(){
