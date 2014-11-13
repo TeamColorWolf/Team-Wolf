@@ -1,5 +1,6 @@
 package TeamWolf.TeamWolf.client.BL.applicationBL;
 
+import TeamWolf.TeamWolf.client.po.ApplicationPO;
 import TeamWolf.TeamWolf.client.po.IncreaseToMatchPO;
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;
 import TeamWolf.TeamWolf.client.vo.IncreaseToMatchVO;
@@ -10,6 +11,18 @@ public class IncreaseToMatch extends Application{
 	public IncreaseToMatch(IncreaseToMatchVO vo) {
 		super(vo);
 		// TODO Auto-generated constructor stub
+	}
+	
+	@Override
+	public ApplicationVO getApplicationVO() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ApplicationPO getApplicationPO() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	@Override
