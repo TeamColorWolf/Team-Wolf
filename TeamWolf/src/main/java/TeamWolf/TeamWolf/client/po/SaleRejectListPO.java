@@ -7,7 +7,7 @@ import TeamWolf.TeamWolf.client.vo.GoodsVO;
 
 /**
  * 销售退货单
- * @author lenovo
+ * @author HalaWKS
  *
  */
 public class SaleRejectListPO extends ApplicationPO{
@@ -15,7 +15,7 @@ public class SaleRejectListPO extends ApplicationPO{
 	/**
 	 * 客户
 	 */
-	String customer;
+	CustomerPO customer;
 	
 	/**
 	 * 业务员
@@ -57,11 +57,13 @@ public class SaleRejectListPO extends ApplicationPO{
 	 */
 	String remark;
 
-	public String getCustomer() {
+	
+
+	public CustomerPO getCustomer() {
 		return customer;
 	}
 
-	public void setCustomer(String customer) {
+	public void setCustomer(CustomerPO customer) {
 		this.customer = customer;
 	}
 
