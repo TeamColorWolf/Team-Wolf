@@ -16,9 +16,10 @@ public class GoodsManager_stub {
 	GoodsBLAssistant assistant =new GoodsBLAssistant();
 	
 	public int addGoods(GoodsVO g){
+		
 		if(assistant.canAdd(g)){
 			//加入商品
-			
+			System.out.println("添加商品！");
 			
 		}
 		else{
@@ -29,6 +30,8 @@ public class GoodsManager_stub {
 	public int delGoods(GoodsVO g){
 		if(assistant.canDel(g)==0){
 			//删除商品
+			System.out.println("删除商品！");
+			
 		}
 		else{
 			//返回错误：商品不存在于系统中
@@ -38,6 +41,7 @@ public class GoodsManager_stub {
 	public int updGoods(GoodsVO g){
 		if(assistant.canUpd(g)){
 			//更新商品
+			System.out.println("更新商品！");
 		}
 		else{
 			//返回错误：商品不存在于系统中
@@ -51,6 +55,7 @@ public class GoodsManager_stub {
 			/*....*/
 			GoodsVO gv=new GoodsVO(null, null, null, null, null, null, null, null, null, null);
 			g=gv;
+			System.out.println("商品是：");
 		}
 		else{
 			//返回错误：商品不存在于系统中
@@ -59,14 +64,17 @@ public class GoodsManager_stub {
 	}
 	public GoodsListVO shoGoods(){
 		GoodsListVO gl=new GoodsListVO();
+		System.out.println("商品列表：");
 		return gl;
 	}
 	public GoodsStockListVO shoStockList(int beginDate, int endDate){
 		GoodsStockListVO gsl=new GoodsStockListVO();
+		System.out.println("库存信息");
 		return gsl;
 	}
 	public GoodsStockListVO shoStockDaily(){
 		GoodsStockListVO gsl=new GoodsStockListVO();
+		System.out.println("库存快照！");
 		return gsl;
 	}
 }

@@ -17,6 +17,7 @@ public class GoodsMonitor_stub {
 		// TODO Auto-generated method stub
 		if(assistant.isExisted(goodWL)){
 			//为该商品设置警戒线
+			System.out.println("商品警戒线是：");
 		}
 		else{
 			//返回错误类型
@@ -29,12 +30,14 @@ public class GoodsMonitor_stub {
 	}
 	public GoodsAlarmVO warning(GoodsVO g){
 		GoodsAlarmVO ga=new GoodsAlarmVO(g.getName(),"库存数量已低于警戒线！");
+		System.out.println(ga.getWarningInfo());
 		return ga;
 	}
 	public int increaseToMatch(GoodsVO toIncrease) {
 		// TODO Auto-generated method stub
 		if(assistant.isExisted(toIncrease)){
 			//商品报溢
+			System.out.println("商品报溢！");
 		}
 		else{
 			//返回错误类型
@@ -45,6 +48,7 @@ public class GoodsMonitor_stub {
 		// TODO Auto-generated method stub
 		if(assistant.isExisted(toDecrease)){
 			//商品报损
+			System.out.println("商品报损！");
 		}
 		else{
 			//返回错误类型
