@@ -13,7 +13,7 @@ public class LoginController implements LoginBLservice{
 	
 	public UserVO login(LoginUserVO user) {
 		// TODO Auto-generated method stub
-		return new Login(IP).login(user);
+		return login.login(user);
 	}
 
 }

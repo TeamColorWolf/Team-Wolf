@@ -14,7 +14,7 @@ public class LoginController_stub extends LoginController{
 	@Override
 	public UserVO login(LoginUserVO user) {
 		// TODO Auto-generated method stub
-		return new Login(IP).login(user);
+		return login.login(user);
 	}
 
 }

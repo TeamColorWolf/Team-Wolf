@@ -15,9 +15,10 @@ import TeamWolf.TeamWolf.client.vo.UserVO;
  */
 public class LoginButtonListener implements MouseListener, LoginBLservice{
 	public UserVO user;
-	String userName;
-	String password;
-	String IP;
+	public String userName;
+	public String password;
+	public String IP;
+	
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		userName = Main.login.id.getText();
@@ -25,8 +26,10 @@ public class LoginButtonListener implements MouseListener, LoginBLservice{
 		IP = Main.login.serverIP.getText();
 		System.out.println(userName+"\n"+password+"\n"+IP);
 		LoginUserVO loginUser = new LoginUserVO(userName, password);
-		LoginController c = new LoginController_stub(IP);
+		LoginController c = new LoginController_stub(IP);//TODO 实现Login后删除_stub
 		user = c.login(loginUser);
+		RoleSelecter.roleSelect(user, IP);
+		Main.login.dispose();
 	}
 
 	public void mouseEntered(MouseEvent arg0) {
