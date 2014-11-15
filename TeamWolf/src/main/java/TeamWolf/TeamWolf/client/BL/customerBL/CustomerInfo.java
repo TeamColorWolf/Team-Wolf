@@ -1,18 +1,85 @@
 package TeamWolf.TeamWolf.client.BL.customerBL;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+
+import TeamWolf.TeamWolf.client.DATAservice.customerDATAservice.CustomerDATAservice;
 import TeamWolf.TeamWolf.client.po.CustomerPO;
 import TeamWolf.TeamWolf.client.po.FinancePO;
 import TeamWolf.TeamWolf.client.po.SaleListPO;
+import TeamWolf.TeamWolf.client.vo.CashApplicationVO;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
+import TeamWolf.TeamWolf.client.vo.ImportListVO;
+import TeamWolf.TeamWolf.client.vo.ImportRejectListVO;
+import TeamWolf.TeamWolf.client.vo.PaymentApplicationVO;
+import TeamWolf.TeamWolf.client.vo.RecieptApplicationVO;
+import TeamWolf.TeamWolf.client.vo.SaleListVO;
+import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
 
 public class CustomerInfo implements CustomerInfoBLservice{
 
-	public int FinanceInfo(FinancePO po,CustomerVO vo) {
+	public String URL = null;
+	public CustomerVO customer =null;
+	
+	
+	CustomerDATAservice cds;
+	ArrayList<CustomerVO> voList;
+	ArrayList<CustomerPO> poList;
+	
+	public CustomerInfo(CustomerVO vo){
+		
+	}
+	
+	public int ImportListInfoMod(ImportListVO vo, CustomerVO cvo) {
+		// TODO 自动生成的方法存根
+		CustomerVO newvo = new CustomerVO("","","","","", "", "","","","","","");
+		CustomerPO po = new CustomerPO(cvo);
+		CustomerPO newpo = new CustomerPO(newvo);
+		try {
+			cds = (CustomerDATAservice)Naming.lookup(URL);
+		} catch (MalformedURLException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
+	public int ImportRejectListMod(ImportRejectListVO vo, CustomerVO cvo) {
 		// TODO 自动生成的方法存根
 		return 0;
 	}
 
-	public int SaleInfo(SaleListPO po) {
+	public int SaleListMod(SaleListVO vo, CustomerVO cvo) {
+		// TODO 自动生成的方法存根
+		return 0;
+	}
+
+	public int SaleRejectListMod(SaleRejectListVO vo, CustomerVO cvo) {
+		// TODO 自动生成的方法存根
+		return 0;
+	}
+
+	public int RecieptListMod(RecieptApplicationVO vo, CustomerVO cvo) {
+		// TODO 自动生成的方法存根
+		return 0;
+	}
+
+	public int PaymentListMod(PaymentApplicationVO vo, CustomerVO cvo) {
+		// TODO 自动生成的方法存根
+		return 0;
+	}
+
+	public int CashListMod(CashApplicationVO vo, CustomerVO cvo) {
 		// TODO 自动生成的方法存根
 		return 0;
 	}
@@ -22,9 +89,6 @@ public class CustomerInfo implements CustomerInfoBLservice{
 		return null;
 	}
 
-	public int FinanceInfo(FinancePO po) {
-		// TODO 自动生成的方法存根
-		return 0;
-	}
+
 
 }
