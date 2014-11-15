@@ -15,7 +15,7 @@ public class TimeVO {
 	public TimeVO(String Year, String Month, String Day){
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 		try {
-			date = sdf.parse(Year+","+Month+"/"+Day);
+			date = sdf.parse(Year+"/"+Month+"/"+Day);//Before change the first "," is Wrong? GaodAN
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

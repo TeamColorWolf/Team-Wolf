@@ -11,5 +11,6 @@ public class financeContoller_helper {
 	public static final int VIEWDIRECT = 31;
 	public static final int VIEWPEROD = 32;
 	public static final int VIEWDATE = 33;
+	public static final int INI =41;
 	
 }
