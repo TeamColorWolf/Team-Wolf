@@ -11,10 +11,10 @@ import TeamWolf.TeamWolf.client.vo.UserVO;
  */
 public class ForAllUserController implements ForAllUserService{
 	String IP;
-	ForAllUser fau;
+	Admin fau;
 	
 	public ForAllUserController(String IP){
-		fau = new Mock_ForAllUser(IP);
+		fau = new Mock_Admin(IP);
 	}
 	
 	public ArrayList<String> getWorkNumberList() {

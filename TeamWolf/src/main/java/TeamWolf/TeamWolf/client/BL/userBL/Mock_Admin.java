@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import TeamWolf.TeamWolf.client.vo.UserType;
 import TeamWolf.TeamWolf.client.vo.UserVO;
 
-public class Mock_ForAllUser extends ForAllUser{
+public class Mock_Admin extends Admin{
 	
-	public Mock_ForAllUser(String IP) {
+	public Mock_Admin(String IP) {
 		super(IP);
 		// TODO Auto-generated constructor stub
 		voList = new ArrayList<UserVO>();

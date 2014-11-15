@@ -21,6 +21,10 @@ public class Admin {
 	UserDATAservice adm;
 	UserLogDATAservice log;
 	
+	ArrayList<UserPO> poList;
+	ArrayList<UserVO> voList;
+	ArrayList<String> strList;
+	
 	public Admin(String IP){
 		
 	}
@@ -68,6 +72,40 @@ public class Admin {
 	
 	public String creatWorkNumber(String power){
 		return null;
+	}
+	
+	public ArrayList<String> getWorkNumberList() {
+		try {
+			adm = (UserDATAservice) Naming.lookup(URL);
+			return adm.getUserList();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return strList;
+	}
+	
+	public ArrayList<UserVO> getAllUserList(){
+		try {
+			adm = (UserDATAservice) Naming.lookup(URL);
+			poList = adm.checkPO();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return voList;
 	}
 
 }
