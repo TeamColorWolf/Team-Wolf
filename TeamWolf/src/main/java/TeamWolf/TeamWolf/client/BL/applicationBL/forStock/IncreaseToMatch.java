@@ -7,6 +7,7 @@ import TeamWolf.TeamWolf.client.vo.ApplicationVO;
 import TeamWolf.TeamWolf.client.vo.IncreaseToMatchVO;
 
 public class IncreaseToMatch extends Application{
+	
 	IncreaseToMatchPO application;
 	
 	public IncreaseToMatch(IncreaseToMatchVO vo) {

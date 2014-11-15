@@ -2,11 +2,14 @@ package TeamWolf.TeamWolf.client.BL.applicationBL.forStock;
 
 import TeamWolf.TeamWolf.client.BL.applicationBL.Application;
 import TeamWolf.TeamWolf.client.po.ApplicationPO;
+import TeamWolf.TeamWolf.client.po.IncreaseToMatchPO;
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;
 import TeamWolf.TeamWolf.client.vo.DecreaseToMatchVO;
 
 public class DecreaseToMatch extends Application{
 
+	IncreaseToMatchPO application;
+	
 	public DecreaseToMatch(DecreaseToMatchVO vo) {
 		super(vo);
 		// TODO Auto-generated constructor stub
