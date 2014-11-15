@@ -6,4 +6,5 @@ public interface CustomerOprBLservice {
 	public int Customerupdate(CustomerVO vo,CustomerVO newvo);
 	public int Customeradd(CustomerVO vo);
 	public int Customerdel(CustomerVO vo);
+	public CustomerVO findCustomer(String name);
 }

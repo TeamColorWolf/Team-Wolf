@@ -1,5 +1,6 @@
 package TeamWolf.TeamWolf.client.DATAservice.saleDATAservice;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 import TeamWolf.TeamWolf.client.po.ImportListPO;
@@ -7,7 +8,7 @@ import TeamWolf.TeamWolf.client.po.ImportRejectListPO;
 import TeamWolf.TeamWolf.client.po.SaleListPO;
 import TeamWolf.TeamWolf.client.po.SaleRejectListPO;
 
-public interface SaleDATAservice {
+public interface SaleDATAservice extends Remote{
 
 	public void addImport (ImportListPO ipo) throws RemoteException;
 	
