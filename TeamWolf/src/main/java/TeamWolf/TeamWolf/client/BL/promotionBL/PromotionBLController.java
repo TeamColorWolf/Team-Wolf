@@ -7,22 +7,26 @@ import TeamWolf.TeamWolf.client.vo.ForPricePromotionVO;
 import TeamWolf.TeamWolf.client.vo.ForVIPPromotionVO;
 import TeamWolf.TeamWolf.client.vo.PromotionVO;
 import TeamWolf.TeamWolf.client.vo.SpecialGoodsPromotionVO;
-
+/**
+ * 
+ * @author WHJ
+ *
+ */
 public class PromotionBLController implements PromotionBLservice{
 
-	public void setForVIP(ForVIPPromotionVO vo) {
+	public int setForVIP(ForVIPPromotionVO vo) {
 		// TODO Auto-generated method stub
-		
+		return 0;
 	}
 
-	public void setForSpecialGoods(SpecialGoodsPromotionVO vo) {
+	public int setForSpecialGoods(SpecialGoodsPromotionVO vo) {
 		// TODO Auto-generated method stub
-		
+		return 0;
 	}
 
-	public void setForPrice(ForPricePromotionVO vo) {
+	public int setForPrice(ForPricePromotionVO vo) {
 		// TODO Auto-generated method stub
-		
+		return 0;
 	}
 
 	public PromotionVO getPromotion(String describe) {
@@ -34,8 +38,13 @@ public class PromotionBLController implements PromotionBLservice{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	public int update(PromotionVO vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
-	public ArrayList<String> check() {
+	public ArrayList<PromotionVO> check() {
 		// TODO Auto-generated method stub
 		return null;
 	}

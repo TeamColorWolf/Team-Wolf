@@ -3,7 +3,11 @@ package TeamWolf.TeamWolf.client.BL.userBL;
 import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.vo.UserVO;
-
+/**
+ * 
+ * @author WHJ
+ *
+ */
 public class AdminController_stub extends AdminController{
 	String IP;
 	Admin administrator;

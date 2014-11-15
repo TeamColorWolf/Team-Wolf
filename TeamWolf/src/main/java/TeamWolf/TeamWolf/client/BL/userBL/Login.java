@@ -4,7 +4,9 @@ import TeamWolf.TeamWolf.client.DATAservice.userDATAservice.LoginDATAservice;
 import TeamWolf.TeamWolf.client.po.LoginUserPO;
 import TeamWolf.TeamWolf.client.vo.*;
 /**
- * Author WHJ
+ * 
+ * @author WHJ
+ *
  */
 public class Login {
 	LoginUserPO userPO;

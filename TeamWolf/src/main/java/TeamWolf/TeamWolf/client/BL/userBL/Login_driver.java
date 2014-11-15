@@ -2,7 +2,11 @@ package TeamWolf.TeamWolf.client.BL.userBL;
 
 import TeamWolf.TeamWolf.client.vo.LoginUserVO;
 import TeamWolf.TeamWolf.client.vo.UserVO;
-
+/**
+ * 
+ * @author WHJ
+ *
+ */
 public class Login_driver {
 	LoginController controller;
 	UserVO getBack;

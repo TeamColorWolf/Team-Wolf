@@ -11,7 +11,9 @@ import TeamWolf.TeamWolf.client.DATAservice.userDATAservice.UserDATAservice;
 import TeamWolf.TeamWolf.client.po.UserPO;
 import TeamWolf.TeamWolf.client.vo.UserVO;
 /**
- * Author WHJ
+ * 
+ * @author WHJ
+ *
  */
 public class Admin {
 	public String URL = null;

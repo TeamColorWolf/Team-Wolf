@@ -12,10 +12,11 @@ import java.util.Date;
 public class TimeVO {
 	public int error;
 	public Date date;
+	public static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 	public TimeVO(String Year, String Month, String Day){
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		
 		try {
-			date = sdf.parse(Year+","+Month+"/"+Day);
+			date = sdf.parse(Year+"/"+Month+"/"+Day);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

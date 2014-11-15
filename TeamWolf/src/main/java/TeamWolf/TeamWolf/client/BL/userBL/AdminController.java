@@ -4,7 +4,11 @@ import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.BLservice.userBLservice.AdminBLservice;
 import TeamWolf.TeamWolf.client.vo.UserVO;
-
+/**
+ * 
+ * @author WHJ
+ *
+ */
 public class AdminController implements AdminBLservice{
 	String IP;
 	Admin administrator;
