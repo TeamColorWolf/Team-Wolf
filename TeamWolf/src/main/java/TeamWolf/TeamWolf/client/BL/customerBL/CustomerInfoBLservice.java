@@ -1,7 +1,7 @@
 package TeamWolf.TeamWolf.client.BL.customerBL;
 
 import TeamWolf.TeamWolf.client.po.CustomerPO;
-import TeamWolf.TeamWolf.client.po.FinancePO;
+import TeamWolf.TeamWolf.client.po.financePO;
 import TeamWolf.TeamWolf.client.po.SaleListPO;
 import TeamWolf.TeamWolf.client.vo.CashApplicationVO;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;

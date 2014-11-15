@@ -8,10 +8,16 @@ public class financeVO {
     	
     }
     
-    public financeVO(String name,double account){
-    	this.name = name;
-    	this.account = account;
-    }
+    public financeVO(String name){
+        this.name = name;
+        this.account =0d;
+     }
+     
+     public financeVO(String name , double account){
+     	  this.name = name;
+          this.account =account;
+     }
+    
     
 	public String getName() {
 		return name;
