@@ -2,7 +2,7 @@ package TeamWolf.TeamWolf.client.BL.tableInquireBL;
 
 import java.util.ArrayList;
 
-import TeamWolf.TeamWolf.client.BL.applicationBL.MutiRoleController;
+import TeamWolf.TeamWolf.client.BL.applicationBL.mutiRole.MutiRoleController;
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;
 import TeamWolf.TeamWolf.client.vo.RunConditionVO;
 import TeamWolf.TeamWolf.client.vo.RunProcessVO;

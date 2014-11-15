@@ -1,5 +1,5 @@
 package TeamWolf.TeamWolf.client.vo;
 
-public class CashApplicationVO {
+public class CashApplicationVO extends ApplicationVO{
 
 }

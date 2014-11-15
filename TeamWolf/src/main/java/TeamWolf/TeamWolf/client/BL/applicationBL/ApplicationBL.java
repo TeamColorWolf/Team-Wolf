@@ -9,11 +9,11 @@ import TeamWolf.TeamWolf.client.vo.ApplicationVO;
  * Author WHJ
  */
 public class ApplicationBL {
-	ArrayList<Application> list;
-	ArrayList<ApplicationPO> poList;
-	ArrayList<ApplicationVO> voList;
-	String URL;
-	ApproveDATAservice approve;
+	protected ArrayList<Application> list;
+	protected ArrayList<ApplicationPO> poList;
+	protected ArrayList<ApplicationVO> voList;
+	protected String URL;
+	protected ApproveDATAservice approve;
 	
 	public ApplicationBL(String IP){
 		

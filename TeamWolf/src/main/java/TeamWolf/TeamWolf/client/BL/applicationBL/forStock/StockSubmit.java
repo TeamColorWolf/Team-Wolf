@@ -1,5 +1,6 @@
-package TeamWolf.TeamWolf.client.BL.applicationBL;
+package TeamWolf.TeamWolf.client.BL.applicationBL.forStock;
 
+import TeamWolf.TeamWolf.client.BL.applicationBL.ApplicationBL;
 import TeamWolf.TeamWolf.client.vo.DecreaseToMatchVO;
 import TeamWolf.TeamWolf.client.vo.IncreaseToMatchVO;
 import TeamWolf.TeamWolf.client.vo.PresentListVO;
