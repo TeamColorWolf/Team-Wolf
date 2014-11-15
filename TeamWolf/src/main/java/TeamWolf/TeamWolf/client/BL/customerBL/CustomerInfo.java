@@ -29,7 +29,7 @@ public class CustomerInfo implements CustomerInfoBLservice{
 	ArrayList<CustomerVO> voList;
 	ArrayList<CustomerPO> poList;
 	
-	public CustomerInfo(CustomerVO vo){
+	public CustomerInfo(String IP){
 		
 	}
 	
@@ -51,8 +51,14 @@ public class CustomerInfo implements CustomerInfoBLservice{
 			e.printStackTrace();
 		}
 		
-		return 0;
-	}
+		try {
+			return cds.modCustomer(po,newpo);
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return 90001;
+				}
 
 	public int ImportRejectListMod(ImportRejectListVO vo, CustomerVO cvo) {
 		// TODO 自动生成的方法存根

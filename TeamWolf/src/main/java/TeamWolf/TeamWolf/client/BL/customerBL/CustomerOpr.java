@@ -20,7 +20,7 @@ public class CustomerOpr implements CustomerOprBLservice{
 	ArrayList<CustomerVO> voList;
 	ArrayList<CustomerPO> poList;
 
-	public CustomerOpr(CustomerVO vo){
+	public CustomerOpr(String IP){
 		
 	}
 	

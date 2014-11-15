@@ -15,10 +15,11 @@ import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
 public class CustomerController {
      CustomerOpr co;
      CustomerInfo ci;
+     String IP="";
      
      public CustomerController(CustomerVO vo){
-    	 co = new CustomerOpr(vo);
-    	 ci = new CustomerInfo(vo);
+    	 co = new CustomerOpr(IP);
+    	 ci = new CustomerInfo(IP);
      }
      
      public int addCustomer(CustomerVO vo){
