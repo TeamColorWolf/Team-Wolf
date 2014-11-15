@@ -1,8 +1,9 @@
 package TeamWolf.TeamWolf.client.BL.customerBL;
 
-import TeamWolf.TeamWolf.client.po.CustomerPO;
+import TeamWolf.TeamWolf.client.vo.CustomerVO;
 
 public interface CustomerOprBLservice {
-	public int Customerupdate(CustomerPO po,CustomerPO newpo);
-	public int Customeradd(CustomerPO po);
+	public int Customerupdate(CustomerVO vo,CustomerVO newvo);
+	public int Customeradd(CustomerVO vo);
+	public int Customerdel(CustomerVO vo);
 }
