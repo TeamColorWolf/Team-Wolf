@@ -10,7 +10,8 @@ public class Mock_CustomerInfo extends CustomerInfo{
 	
 	public Mock_CustomerInfo(String ID){
 		super(ID);
-		listvo = new ImportListVO("","","","",null,"REMARK");
+        vo = new CustomerVO("","","","","","", "","","","","","");
+		listvo = new ImportListVO("",vo,"","",null,"REMARK");
 		ImportListInfoMod(listvo);
 	}
 	
