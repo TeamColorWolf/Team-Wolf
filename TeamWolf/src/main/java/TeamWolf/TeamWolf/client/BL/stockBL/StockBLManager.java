@@ -29,7 +29,7 @@ public class StockBLManager{
 		// TODO Auto-generated method stub
 		if(assistant.canAdd(t)){ //输入合法，能加入系统，进行加入工作
 			
-			TypePO toAdd=new TypePO(); //根据合法的VO生成PO持久化对象
+			TypePO toAdd=new TypePO(t); //根据合法的VO生成PO持久化对象
 			
 			/* ...完善PO持久化对象内容...*/
 			

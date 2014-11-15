@@ -8,7 +8,7 @@ import TeamWolf.TeamWolf.client.vo.GoodsVO;
  * @author XYJ
  *
  */
-public class GoodsMonitor_stub {
+public class MockGoodsMonitor {
 
     GoodsBLAssistant assistant =new GoodsBLAssistant();
 	

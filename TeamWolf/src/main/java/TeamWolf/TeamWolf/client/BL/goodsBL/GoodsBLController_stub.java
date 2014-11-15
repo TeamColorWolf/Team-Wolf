@@ -14,14 +14,14 @@ import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
 
 public class GoodsBLController_stub {
 
-	GoodsManager_stub gma;
-	GoodsMonitor_stub gmo;
-	GoodsTrade_stub gt;
+	MockGoodsManager gma;
+	MockGoodsMonitor gmo;
+	MockGoodsTrade gt;
 	
 	public GoodsBLController_stub(){
-		gma=new GoodsManager_stub();
-		gmo=new GoodsMonitor_stub();
-		gt=new GoodsTrade_stub();
+		gma=new MockGoodsManager();
+		gmo=new MockGoodsMonitor();
+		gt=new MockGoodsTrade();
 	}
 	
 	

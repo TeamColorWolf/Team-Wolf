@@ -19,7 +19,7 @@ import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
  * @author XYJ
  *
  */
-public class GoodsTrade_stub {
+public class MockGoodsTrade {
 
     GoodsBLAssistant assistant =new GoodsBLAssistant();
 	

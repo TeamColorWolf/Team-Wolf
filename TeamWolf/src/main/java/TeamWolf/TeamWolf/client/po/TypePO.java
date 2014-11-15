@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
+import TeamWolf.TeamWolf.client.vo.TypeVO;
 
  /**
   * 
@@ -25,6 +26,10 @@ import TeamWolf.TeamWolf.client.vo.GoodsVO;
 		
 	}
 	
+	public TypePO(TypeVO t) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public TypePO getParent() {
 		return parent;
 	}
