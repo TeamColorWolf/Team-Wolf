@@ -26,7 +26,7 @@ public class LoginButtonListener implements MouseListener, LoginBLservice{
 		IP = Main.login.serverIP.getText();
 		System.out.println(userName+"\n"+password+"\n"+IP);
 		LoginUserVO loginUser = new LoginUserVO(userName, password);
-		LoginController c = new LoginController_stub(IP);//TODO 实现Login后删除_stub
+		LoginController c = new LoginController(IP);//TODO 实现Login后删除_stub
 		user = c.login(loginUser);
 		RoleSelecter.roleSelect(user, IP);
 		Main.login.dispose();

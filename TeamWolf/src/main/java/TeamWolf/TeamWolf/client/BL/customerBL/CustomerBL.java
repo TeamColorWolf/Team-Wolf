@@ -1,137 +1,142 @@
 package TeamWolf.TeamWolf.client.BL.customerBL;
-
-public class CustomerBL implements CustomerBLservice{
-	private String number;
-	private String type;
-	private String level;
+	
+//根据可松哥的VO 修改了CUstomerBL（其实基本上是复制的..）
+public class CustomerBL{
+	
+	private int num;
+	private String kind;
+	private int level;
+	private String name;
 	private String tel;
 	private String address;
-	private String postnumber;
+	private String zipCode;
 	private String email;
-	private double shouldpay;
-	private double shouldcollect;
-	private double couldcollect;
-	private String defaultuser;
-
-	public String getNumber() {
-		// TODO 自动生成的方法存根
-		return number;
+	private double topLimit;
+	private double receive;
+	private double pay;
+	private String businessMan;
+	
+	
+	public CustomerBL(String num, String kind, String level, String name, String tel, 
+			String address, String zipCode, String email, String topLimit,
+			String receive, String pay, String businessMan) {		
+		this.kind = kind;
+		this.name = name;
+		this.tel = tel;
+		this.address = address;
+		this.zipCode = zipCode;
+		this.email = email;
+		this.businessMan = businessMan;
+		
+		try {
+			this.num = Integer.parseInt(num);
+			this.level =Integer.parseInt(level);
+			this.topLimit = Integer.parseInt(topLimit);
+			this.receive = Double.parseDouble(receive);
+			this.pay = Double.parseDouble(pay);
+		} catch (Exception e) {
+			// TODO: String转换成int/double时出错
+		}
 	}
 
-	public String getType() {
-		// TODO 自动生成的方法存根
-		return type;
+	
+	
+	public int getNum() {
+		return num;
 	}
 
-	public String getLevel() {
-		// TODO 自动生成的方法存根
+	public String getKind() {
+		return kind;
+	}
+
+	public int getLevel() {
 		return level;
 	}
 
+	public String getName() {
+		return name;
+	}
+
 	public String getTel() {
-		// TODO 自动生成的方法存根
 		return tel;
 	}
 
 	public String getAddress() {
-		// TODO 自动生成的方法存根
 		return address;
 	}
 
-	public String getPostnumber() {
-		// TODO 自动生成的方法存根
-		return postnumber;
+	public String getZipCode() {
+		return zipCode;
 	}
 
 	public String getEmail() {
-		// TODO 自动生成的方法存根
 		return email;
 	}
 
-	public double getShouldpay() {
-		// TODO 自动生成的方法存根
-		return shouldpay;
+	public double getTopLimit() {
+		return topLimit;
+	}
+	
+	public double getReceive() {
+		return receive;
+	}
+	
+	public double getPay() {
+		return pay;
 	}
 
-	public double getCouldCollect() {
-		// TODO 自动生成的方法存根
-		return couldcollect;
+	public String getBusinessMan() {
+		return businessMan;
 	}
 
-	public double getShouldCollect() {
-		// TODO 自动生成的方法存根
-		return shouldcollect;
+	public void setTopLimit(double topLimit) {
+		this.topLimit = topLimit;
 	}
 
-	public String getDefaultUser() {
-		// TODO 自动生成的方法存根
-		return defaultuser;
+	public void setKind(String kind) {
+		this.kind = kind;
 	}
 
-	public int setNumber(String number) {
-		// TODO 自动生成的方法存根
-		this.number = number;
-		return 0;
-	}
-
-	public int setType(String type) {
-		// TODO 自动生成的方法存根
-		this.type = type;
-		return 0;
-	}
-
-	public int setLevel(String level) {
-		// TODO 自动生成的方法存根
+	public void setLevel(int level) {
 		this.level = level;
-		return 0;
 	}
 
-	public int setTel(String tel) {
-		// TODO 自动生成的方法存根
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setTel(String tel) {
 		this.tel = tel;
-		return 0;
 	}
-
-	public int setAddress(String address) {
-		// TODO 自动生成的方法存根
+	
+	public void setAddress(String address) {
 		this.address = address;
-		return 0;
 	}
 
-	public int setPostnumber(String postnumber) {
-		// TODO 自动生成的方法存根
-		this.postnumber = postnumber;
-		return 0;
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
 	}
 
-	public int setEmail(String email) {
-		// TODO 自动生成的方法存根
+	public void setEmail(String email) {
 		this.email = email;
-		return 0;
 	}
 
-	public int setShouldpay(double shouldpayUPANDDOWN) {
-		// TODO 自动生成的方法存根
-		this.shouldpay += shouldpayUPANDDOWN;
-		return 0;
+	public void setReceive(double receive) {
+		this.receive = receive;
 	}
 
-	public int setCouldCollect(double couldcollect) {
-		// TODO 自动生成的方法存根
-		this.couldcollect = couldcollect;
-		return 0;
+	public void setPay(double pay) {
+		this.pay = pay;
 	}
 
-	public int setShouldCollect(double shouldcollectUPANDDOWN) {
-		// TODO 自动生成的方法存根
-		this.shouldcollect += shouldcollectUPANDDOWN;
-		return 0;
+	public void setBusinessMan(String businessMan) {
+		this.businessMan = businessMan;
 	}
 
-	public int setDefaultUser(String defaultUser) {
-		// TODO 自动生成的方法存根
-		this.defaultuser = defaultUser;
-		return 0;
+	public void setTopLimit(int topLimit) {
+		this.topLimit = topLimit;
 	}
-
+	
 }
+
+

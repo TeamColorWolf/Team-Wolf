@@ -9,8 +9,8 @@ import TeamWolf.TeamWolf.client.vo.SpecialGoodsPromotionVO;
  *
  */
 public class SpecialGoodsPromotionPO extends PromotionPO{
-	ArrayList<GiftForPromotionPO> list;
-	double totalPrice;
+	public ArrayList<GiftForPromotionPO> list;
+	public double totalPrice;
 	
 	public SpecialGoodsPromotionPO(SpecialGoodsPromotionVO vo){
 		super(PromotionTypePO.specialGoods, vo);

@@ -1,6 +1,7 @@
 package TeamWolf.TeamWolf.client.po;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import TeamWolf.TeamWolf.client.vo.TimeVO;
@@ -10,7 +11,8 @@ import TeamWolf.TeamWolf.client.vo.TimeVO;
  *
  */
 public class TimePO implements Serializable{
-	Date date;
+	public Date date;
+	public static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 	public TimePO(TimeVO vo){
 		date = vo.date;
 	}
