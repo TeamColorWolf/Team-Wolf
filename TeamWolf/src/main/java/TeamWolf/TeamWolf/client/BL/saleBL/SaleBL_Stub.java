@@ -31,7 +31,7 @@ public class SaleBL_Stub {
 		int judge = saleAssist.canAddCustomer(cvo);
 		//判断能否添加客户
 		if(judge == 0){
-			
+			System.out.println("Add customer successfully");
 		}
 		return judge;
 	}
@@ -40,7 +40,7 @@ public class SaleBL_Stub {
 		int judge = 0;
 		//判断能否删除客户（应收应付不为0，也不可删除）
 		if(saleAssist.canDelCustomer(cvo)){
-			
+			System.out.println("Delete customer successfully");
 		} else {
 			
 		}
@@ -49,17 +49,19 @@ public class SaleBL_Stub {
 
 	public int modCustomer(CustomerVO cvo) {
 		int judge = 0;
+		System.out.println("Modify customer successfully");
 		return judge;
 	}
 
-	public ArrayList<CustomerVO> findCustomer(String keyWord, String number) {
+	public ArrayList<CustomerVO> findCustomer(String keyWord, int number) {
+		System.out.println("show the list");
 		return null;
 	}
 
 	public int createImport(ImportListVO ivo) {
 		int judge = saleAssist.canAddImport(ivo);
 		if(judge == 0){
-			
+			System.out.println("create import list successfully");
 		}
 		return 0;
 	}
@@ -67,7 +69,7 @@ public class SaleBL_Stub {
 	public int createImportReject(ImportRejectListVO irvo) {
 		int judge = saleAssist.canAddImportReject(irvo);
 		if(judge == 0){
-			
+			System.out.println("create import reject list successfully");
 		}
 		return 0;
 	}
@@ -75,7 +77,7 @@ public class SaleBL_Stub {
 	public int createSale(SaleListVO svo) {
 		int judge = saleAssist.canAddSale(svo);
 		if(judge == 0){
-			
+			System.out.println("create sale list successfully");
 		}
 		return 0;
 	}
@@ -83,26 +85,26 @@ public class SaleBL_Stub {
 	public int createSaleReject(SaleRejectListVO srvo) {
 		int judge = saleAssist.canAddSaleReject(srvo);
 		if(judge == 0){
-			
+			System.out.println("create sale reject list successfully");
 		}
 		return 0;
 	}
 
 	//获取仓库编号
 	public ArrayList<String> getStock() {
-		// TODO Auto-generated method stub
+		System.out.println("the number of stock is 1");
 		return null;
 	}
 
 	//显示单据
 	public ArrayList<ApplicationVO> show(String num) {
-		// TODO Auto-generated method stub
+		System.out.println("show the application list");
 		return null;
 	}
 
 	//提交单据
 	public int submit(ApplicationVO avo) {
-		// TODO Auto-generated method stub
+		System.out.println("submit " + avo.number + " list successfully");
 		return 0;
 	}
 	

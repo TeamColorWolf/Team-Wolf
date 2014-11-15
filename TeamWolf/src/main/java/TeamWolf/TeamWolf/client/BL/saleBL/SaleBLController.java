@@ -19,8 +19,9 @@ public class SaleBLController implements SaleBLservice{
 
 	SaleBL sale;
 	
-	public SaleBLController() {
-		sale = new SaleBL();
+	
+	public SaleBLController(String IP) {
+		sale = new SaleBL(IP);
 	}
 	
 	public int addCustomer(CustomerVO cvo) {
@@ -35,7 +36,7 @@ public class SaleBLController implements SaleBLservice{
 		return sale.modCustomer(cvo);
 	}
 
-	public ArrayList<CustomerVO> findCustomer(String keyWord, String number) {
+	public ArrayList<CustomerVO> findCustomer(String keyWord, int number) {
 		return sale.findCustomer(keyWord, number);
 	}
 
@@ -66,5 +67,6 @@ public class SaleBLController implements SaleBLservice{
 	public int submit(ApplicationVO avo) {
 		return sale.submit(avo);
 	}
+
 	
 }
