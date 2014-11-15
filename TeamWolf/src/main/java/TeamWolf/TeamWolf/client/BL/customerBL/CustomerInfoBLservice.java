@@ -13,12 +13,12 @@ import TeamWolf.TeamWolf.client.vo.SaleListVO;
 import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
 
 public interface CustomerInfoBLservice {
-	public int ImportListInfoMod(ImportListVO vo,CustomerVO cvo);
-	public int ImportRejectListMod(ImportRejectListVO vo,CustomerVO cvo);
-	public int SaleListMod(SaleListVO vo,CustomerVO cvo);
-	public int SaleRejectListMod(SaleRejectListVO vo,CustomerVO cvo);
-	public int RecieptListMod(RecieptApplicationVO vo,CustomerVO cvo);
-	public int PaymentListMod(PaymentApplicationVO vo,CustomerVO cvo);
-	public int CashListMod(CashApplicationVO vo,CustomerVO cvo);
+	public int ImportListInfoMod(ImportListVO vo);
+	public int ImportRejectListMod(ImportRejectListVO vo);
+	public int SaleListMod(SaleListVO vo);
+	public int SaleRejectListMod(SaleRejectListVO vo);
+	public int RecieptListMod(RecieptApplicationVO vo);
+	public int PaymentListMod(PaymentApplicationVO vo);
+	public int CashListMod(CashApplicationVO vo);
 	public CustomerPO getInfo();
 }

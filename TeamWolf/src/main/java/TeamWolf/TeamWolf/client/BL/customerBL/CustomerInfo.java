@@ -26,17 +26,15 @@ public class CustomerInfo implements CustomerInfoBLservice{
 	
 	
 	CustomerDATAservice cds;
-	ArrayList<CustomerVO> voList;
-	ArrayList<CustomerPO> poList;
 	
 	public CustomerInfo(String IP){
 		
 	}
 	
-	public int ImportListInfoMod(ImportListVO vo, CustomerVO cvo) {
+	public int ImportListInfoMod(ImportListVO vo) {
 		// TODO 自动生成的方法存根
 		CustomerVO newvo = new CustomerVO("","","","","", "", "","","","","","");
-		CustomerPO po = new CustomerPO(cvo);
+		CustomerPO po = null;//zheliyaogai
 		CustomerPO newpo = new CustomerPO(newvo);
 		try {
 			cds = (CustomerDATAservice)Naming.lookup(URL);
@@ -60,32 +58,32 @@ public class CustomerInfo implements CustomerInfoBLservice{
 		return 90001;
 				}
 
-	public int ImportRejectListMod(ImportRejectListVO vo, CustomerVO cvo) {
+	public int ImportRejectListMod(ImportRejectListVO vo) {
 		// TODO 自动生成的方法存根
 		return 0;
 	}
 
-	public int SaleListMod(SaleListVO vo, CustomerVO cvo) {
+	public int SaleListMod(SaleListVO vo) {
 		// TODO 自动生成的方法存根
 		return 0;
 	}
 
-	public int SaleRejectListMod(SaleRejectListVO vo, CustomerVO cvo) {
+	public int SaleRejectListMod(SaleRejectListVO vo) {
 		// TODO 自动生成的方法存根
 		return 0;
 	}
 
-	public int RecieptListMod(RecieptApplicationVO vo, CustomerVO cvo) {
+	public int RecieptListMod(RecieptApplicationVO vo) {
 		// TODO 自动生成的方法存根
 		return 0;
 	}
 
-	public int PaymentListMod(PaymentApplicationVO vo, CustomerVO cvo) {
+	public int PaymentListMod(PaymentApplicationVO vo) {
 		// TODO 自动生成的方法存根
 		return 0;
 	}
 
-	public int CashListMod(CashApplicationVO vo, CustomerVO cvo) {
+	public int CashListMod(CashApplicationVO vo) {
 		// TODO 自动生成的方法存根
 		return 0;
 	}

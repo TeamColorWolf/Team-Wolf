@@ -1,7 +1,5 @@
 package TeamWolf.TeamWolf.client.BL.customerBL;
 
-import java.util.ArrayList;
-
 import TeamWolf.TeamWolf.client.po.CustomerPO;
 import TeamWolf.TeamWolf.client.vo.CashApplicationVO;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
@@ -12,50 +10,59 @@ import TeamWolf.TeamWolf.client.vo.RecieptApplicationVO;
 import TeamWolf.TeamWolf.client.vo.SaleListVO;
 import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
 
-public class CustomerController {
-     CustomerOpr co;
-     CustomerInfo ci;
-     String IP="";
-     
-     public CustomerController(String IP){
-    	 co = new CustomerOpr(IP);
-    	 ci = new CustomerInfo(IP);
-     }
-     
-     public int addCustomer(CustomerVO vo){
-    	 return co.Customeradd(vo);
-     }
-     
-     public int removeCustomer(CustomerVO vo){
-    	 return co.Customerdel(vo);
-     }
-     public int update(CustomerVO vo,CustomerVO newvo){
-    	 return co.Customerupdate(vo, newvo);
-     }
-     public ArrayList<CustomerVO> checkCustomerVO(){
-    	 return co.checkCustomerVO();
-     }
-     
+public class CustomerInfo_stub extends CustomerInfo{
+	public CustomerInfo_stub(String IP){
+		super(IP);
+	}
+	
     public int ImportListInfoMod(ImportListVO vo) {
-		return ci.ImportListInfoMod(vo);
+    	if(vo.getRemark().equals("REMARKTEST")){
+    		return 0;
+    	}else{
+    		return -1;
+    	}
 	}
  	public int ImportRejectListMod(ImportRejectListVO vo) {
-		return ci.ImportRejectListMod(vo);
+ 		if(vo.getRemark().equals("REMARKTEST")){
+    		return 0;
+    	}else{
+    		return -1;
+    	}
 	}
  	public int SaleListMod(SaleListVO vo) {
-		return ci.SaleListMod(vo);
+ 		if(vo.getRemark().equals("REMARKTEST")){
+    		return 0;
+    	}else{
+    		return -1;
+    	}
 	}
  	public int SaleRejectListMod(SaleRejectListVO vo) {
-		return ci.SaleRejectListMod(vo);
+ 		if(vo.getRemark().equals("REMARKTEST")){
+    		return 0;
+    	}else{
+    		return -1;
+    	}
 	}
  	public int RecieptListMod(RecieptApplicationVO vo) {
-		return ci.RecieptListMod(vo);
+ 		if(vo.getNumber().equals("NUMBERTEST")){
+    		return 0;
+    	}else{
+    		return -1;
+    	}
 	}
  	public int PaymentListMod(PaymentApplicationVO vo) {
-		return ci.PaymentListMod(vo);
+ 		if(vo.getNumber().equals("NUMBERTEST")){
+    		return 0;
+    	}else{
+    		return -1;
+    	}
 	}
  	public int CashListMod(CashApplicationVO vo) {
-		return ci.CashListMod(vo);
+ 		if(vo.getNumber().equals("NUMBERTEST")){
+    		return 0;
+    	}else{
+    		return -1;
+    	}
 	}
  	public CustomerPO getInfo() {
 		return null;
