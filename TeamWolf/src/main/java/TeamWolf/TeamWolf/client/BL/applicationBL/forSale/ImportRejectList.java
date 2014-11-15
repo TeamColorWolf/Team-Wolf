@@ -7,8 +7,8 @@ import TeamWolf.TeamWolf.client.vo.ImportRejectListVO;
 
 public class ImportRejectList extends Application{
 
-	public ImportRejectList(ImportRejectListVO vo) {
-		super(vo);
+	public ImportRejectList(ImportRejectListVO vo, String URL) {
+		super(vo, URL);
 		// TODO Auto-generated constructor stub
 	}
 

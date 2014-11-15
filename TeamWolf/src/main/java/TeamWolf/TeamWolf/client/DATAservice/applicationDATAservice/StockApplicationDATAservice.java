@@ -4,11 +4,14 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import TeamWolf.TeamWolf.client.po.ApplicationPO;
 import TeamWolf.TeamWolf.client.po.DecreaseToMatchPO;
 import TeamWolf.TeamWolf.client.po.IncreaseToMatchPO;
 import TeamWolf.TeamWolf.client.po.PresentListPO;
 /**
- * Author WHJ
+ * 
+ * @author WHJ
+ *
  */
 public interface StockApplicationDATAservice extends Remote {
 	public int submitIncreaseToMatch(IncreaseToMatchPO po) throws RemoteException;
@@ -29,11 +32,13 @@ public interface StockApplicationDATAservice extends Remote {
 	
 	public int rejectPresentList(PresentListPO po) throws RemoteException;
 	
-	public IncreaseToMatchPO finIncreaseToMatch(String number) throws RemoteException;
+	public int changeIncreaseToMatch(IncreaseToMatchPO po) throws RemoteException;
 	
-	public DecreaseToMatchPO finDecreaseToMatch(String number) throws RemoteException;
+	public int changeDecreaseToMatch(DecreaseToMatchPO po) throws RemoteException;
 	
-	public PresentListPO finPresentList(String number) throws RemoteException;
+	public int changePresentList(PresentListPO po) throws RemoteException;
+	
+	public ApplicationPO findApplication(String number) throws RemoteException;
 	
 	public ArrayList<PresentListPO> shoPL() throws RemoteException;
 }

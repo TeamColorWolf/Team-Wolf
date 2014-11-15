@@ -7,8 +7,8 @@ import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
 
 public class SaleRejectList extends Application {
 
-	public SaleRejectList(SaleRejectListVO vo) {
-		super(vo);
+	public SaleRejectList(SaleRejectListVO vo, String URL) {
+		super(vo, URL);
 		// TODO Auto-generated constructor stub
 	}
 
