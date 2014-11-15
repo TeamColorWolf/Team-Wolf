@@ -1,7 +1,11 @@
 package TeamWolf.TeamWolf.client.BL.financeBL;
 
 import TeamWolf.TeamWolf.client.vo.financeVO;
-
+/**
+ * 
+ * @author GYQQQQ
+ *
+ */
 public class financeController {
 	
 	private static final int ACCOUNTADD = 11;

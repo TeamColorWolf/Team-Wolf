@@ -1,6 +1,7 @@
 package TeamWolf.TeamWolf.client.BL.financeBL;
 
 import TeamWolf.TeamWolf.client.BLservice.financeBLservice.AccountBlservice;
+import TeamWolf.TeamWolf.client.vo.financeVO;
 
 public class Account implements AccountBlservice{
 
@@ -19,9 +20,9 @@ public class Account implements AccountBlservice{
 		return 0;
 	}
 
-	public int find(String name) {
+	public financeVO find(String name) {
 		// TODO 自动生成的方法存根
-		return 0;
+		return null;
 	}
 
 }
