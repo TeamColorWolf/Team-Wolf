@@ -3,6 +3,16 @@ package TeamWolf.TeamWolf.client.vo;
 public class financeVO {
 	private String name;
     private double account;
+    
+    public financeVO(){
+    	
+    }
+    
+    public financeVO(String name,double account){
+    	this.name = name;
+    	this.account = account;
+    }
+    
 	public String getName() {
 		return name;
 	}

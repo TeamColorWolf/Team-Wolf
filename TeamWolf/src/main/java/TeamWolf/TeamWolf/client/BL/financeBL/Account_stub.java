@@ -23,7 +23,7 @@ public class Account_stub {
     	return 0;
     }
     
-    public int del(financeVO f){
+    public int delete(financeVO f){
     	if(fbas.canDel(f)==0){
     		System.out.println("Success del Gaodan");
     	}else{
@@ -31,7 +31,7 @@ public class Account_stub {
     	}
     	return 0;
     }
-    public int upd(financeVO f){
+    public int update(financeVO f){
     	if(fbas.canUpd(f)){
     		System.out.println("Success upd GD");
     	}else{
@@ -39,7 +39,7 @@ public class Account_stub {
     	}
     	return 0;
     } 
-    public financeVO find(){
+    public financeVO find(int operationType){
     	financeVO f = new financeVO();
     	System.out.println("GEt GAodan");
     	return f;
