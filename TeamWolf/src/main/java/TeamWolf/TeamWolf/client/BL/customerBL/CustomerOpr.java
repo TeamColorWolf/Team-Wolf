@@ -15,22 +15,41 @@ public class CustomerOpr implements CustomerOprBLservice{
 	public String URL = null;
 	public CustomerVO customer =null;
 	
-	public CustomerOpr(String IP){
-		
-	}
 	
 	CustomerDATAservice cds;
 	ArrayList<CustomerVO> voList;
 	ArrayList<CustomerPO> poList;
 
+	public CustomerOpr(CustomerVO vo){
+		
+	}
+	
 	public int Customerupdate(CustomerVO vo, CustomerVO newvo) {
 		// TODO 自动生成的方法存根
 		return 0;
 	}
 
 	public int Customeradd(CustomerVO vo) {
-		
-		return 0;
+		CustomerPO po = new CustomerPO(vo);
+	    try {
+			cds = (CustomerDATAservice)Naming.lookup(URL);
+		} catch (MalformedURLException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		try {
+			return cds.addCustomer(po);
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		};
+		return 12138;
 	}
 
 	public int Customerdel(CustomerVO vo) {
@@ -53,6 +72,11 @@ public class CustomerOpr implements CustomerOprBLservice{
 			e.printStackTrace();
 		}
 		return voList;
+	}
+
+	public ArrayList<CustomerVO> checkCustomerVO() {
+		// TODO 自动生成的方法存根
+		return null;
 	}
 
 }

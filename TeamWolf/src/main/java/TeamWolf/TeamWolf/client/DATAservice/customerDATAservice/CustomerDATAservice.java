@@ -7,9 +7,9 @@ import TeamWolf.TeamWolf.client.po.CustomerPO;
 
 public interface CustomerDATAservice {
 
-	public void addCustomer (CustomerPO cpo) throws RemoteException;
+	public int addCustomer (CustomerPO cpo) throws RemoteException;
 	
-	public void delCustomer (CustomerPO cpo) throws RemoteException;
+	public int delCustomer (CustomerPO cpo) throws RemoteException;
 	
 	public ArrayList<CustomerPO> checkPO()throws RemoteException;
 	
