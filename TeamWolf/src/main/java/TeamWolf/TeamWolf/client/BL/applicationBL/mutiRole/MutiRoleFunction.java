@@ -1,4 +1,4 @@
-package TeamWolf.TeamWolf.client.BL.applicationBL;
+package TeamWolf.TeamWolf.client.BL.applicationBL.mutiRole;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -6,6 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import TeamWolf.TeamWolf.client.BL.applicationBL.ApplicationBL;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.ApproveDATAservice;
 import TeamWolf.TeamWolf.client.po.ApplicationPO;
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;

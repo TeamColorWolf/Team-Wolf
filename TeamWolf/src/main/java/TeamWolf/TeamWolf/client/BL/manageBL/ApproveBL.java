@@ -2,7 +2,7 @@ package TeamWolf.TeamWolf.client.BL.manageBL;
 
 import java.util.ArrayList;
 
-import TeamWolf.TeamWolf.client.BL.applicationBL.ManageApproveController;
+import TeamWolf.TeamWolf.client.BL.applicationBL.forManage.ManageApproveController;
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;
 /**
  * Author WHJ

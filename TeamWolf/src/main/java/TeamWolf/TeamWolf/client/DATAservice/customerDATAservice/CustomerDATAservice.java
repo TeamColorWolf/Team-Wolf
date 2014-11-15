@@ -1,11 +1,12 @@
 package TeamWolf.TeamWolf.client.DATAservice.customerDATAservice;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.po.CustomerPO;
 
-public interface CustomerDATAservice {
+public interface CustomerDATAservice extends Remote{
 
 	public int addCustomer (CustomerPO cpo) throws RemoteException;
 	

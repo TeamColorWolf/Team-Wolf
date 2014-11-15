@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * @author XYJ
  *
  */
-public class PresentListVO {
+public class PresentListVO extends ApplicationVO{
     
 	
 	CustomerVO customer;

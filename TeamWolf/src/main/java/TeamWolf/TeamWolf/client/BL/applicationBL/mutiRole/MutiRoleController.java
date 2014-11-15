@@ -1,7 +1,8 @@
-package TeamWolf.TeamWolf.client.BL.applicationBL;
+package TeamWolf.TeamWolf.client.BL.applicationBL.mutiRole;
 
 import java.util.ArrayList;
 
+import TeamWolf.TeamWolf.client.BL.applicationBL.MutiRoleService;
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;
 
 public class MutiRoleController implements MutiRoleService{

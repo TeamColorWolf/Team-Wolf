@@ -1,5 +1,7 @@
-package TeamWolf.TeamWolf.client.BL.applicationBL;
+package TeamWolf.TeamWolf.client.BL.applicationBL.forStock;
 
+import TeamWolf.TeamWolf.client.BL.applicationBL.StockApplicationService;
+import TeamWolf.TeamWolf.client.BL.applicationBL.mutiRole.MutiRoleController;
 import TeamWolf.TeamWolf.client.vo.DecreaseToMatchVO;
 import TeamWolf.TeamWolf.client.vo.IncreaseToMatchVO;
 import TeamWolf.TeamWolf.client.vo.PresentListVO;

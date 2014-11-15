@@ -1,5 +1,6 @@
 package TeamWolf.TeamWolf.client.DATAservice.promotionDATAservice;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -9,7 +10,7 @@ import TeamWolf.TeamWolf.client.po.PromotionPO;
  * @author WHJ
  *
  */
-public interface PromotionDATAservice {
+public interface PromotionDATAservice extends Remote{
 
 	public void addPromotion (PromotionPO po) throws RemoteException;
 	

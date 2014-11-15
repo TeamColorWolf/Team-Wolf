@@ -57,7 +57,12 @@ public class CustomerOpr implements CustomerOprBLservice{
 		return 0;
 	}
 	
-	public ArrayList<CustomerVO> getAlluserList(){
+	public CustomerVO findCustomer(String name){
+		// TODO 自动生成的方法存根
+		return null;
+	}
+	
+	public ArrayList<CustomerVO> getAllCustomerList(){
 		try {
 			cds = (CustomerDATAservice)Naming.lookup(URL);
 			poList = cds.checkPO();

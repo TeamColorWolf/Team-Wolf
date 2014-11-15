@@ -1,18 +1,17 @@
-package TeamWolf.TeamWolf.client.BL.applicationBL;
+package TeamWolf.TeamWolf.client.BL.applicationBL.forFinance;
 
+import TeamWolf.TeamWolf.client.BL.applicationBL.Application;
 import TeamWolf.TeamWolf.client.po.ApplicationPO;
-import TeamWolf.TeamWolf.client.po.IncreaseToMatchPO;
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;
-import TeamWolf.TeamWolf.client.vo.IncreaseToMatchVO;
+import TeamWolf.TeamWolf.client.vo.CashApplicationVO;
 
-public class IncreaseToMatch extends Application{
-	IncreaseToMatchPO application;
-	
-	public IncreaseToMatch(IncreaseToMatchVO vo) {
+public class CashApplication extends Application {
+
+	public CashApplication(CashApplicationVO vo) {
 		super(vo);
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	@Override
 	public ApplicationVO getApplicationVO() {
 		// TODO Auto-generated method stub
@@ -24,25 +23,28 @@ public class IncreaseToMatch extends Application{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	@Override
 	public int submit() {
+		// TODO Auto-generated method stub
 		return 0;
 	}
+
 	@Override
-	public int approve(){
-		//改变其状态并且进行后续操作
-		condition = 1;
+	public int approve() {
+		// TODO Auto-generated method stub
 		return 0;
 	}
+
 	@Override
-	public int reject(){
-		//改变其状态并且进行后续操作
-		condition = -1;
+	public int reject() {
+		// TODO Auto-generated method stub
 		return 0;
 	}
+
 	@Override
-	public int change(ApplicationVO vo){
+	public int change(ApplicationVO vo) {
+		// TODO Auto-generated method stub
 		return 0;
 	}
 
