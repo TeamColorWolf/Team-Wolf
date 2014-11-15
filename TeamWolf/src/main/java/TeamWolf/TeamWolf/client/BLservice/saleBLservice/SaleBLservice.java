@@ -56,7 +56,7 @@ public interface SaleBLservice {
 	 * @param evo
 	 * @return
 	 */
-	public int createImportReject (ImportRejectListVO evo);
+	public int createImportReject (ImportRejectListVO irvo);
 	
 	/**
 	 * �������۵�
@@ -70,7 +70,7 @@ public interface SaleBLservice {
 	 * @param rvo
 	 * @return
 	 */
-	public int createSaleReject (SaleRejectListVO rvo);
+	public int createSaleReject (SaleRejectListVO srvo);
 	
 	/**
 	 * ��ȡ�ֿ���

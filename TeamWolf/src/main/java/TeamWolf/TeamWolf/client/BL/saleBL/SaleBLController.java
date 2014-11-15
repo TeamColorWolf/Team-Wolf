@@ -17,59 +17,54 @@ import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
  */
 public class SaleBLController implements SaleBLservice{
 
+	SaleBL sale;
+	
+	public SaleBLController() {
+		sale = new SaleBL();
+	}
+	
 	public int addCustomer(CustomerVO cvo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sale.addCustomer(cvo);
 	}
 
 	public int delCustomer(String name, String num) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sale.delCustomer(name, num);
 	}
 
 	public int modCustomer(CustomerVO cvo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sale.modCustomer(cvo);
 	}
 
 	public ArrayList<CustomerVO> findCustomer(String keyWord, String number) {
-		// TODO Auto-generated method stub
-		return null;
+		return sale.findCustomer(keyWord, number);
 	}
 
 	public int createImport(ImportListVO ivo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sale.createImport(ivo);
 	}
 
-	public int createImportReject(ImportRejectListVO evo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int createImportReject(ImportRejectListVO irvo) {
+		return sale.createImportReject(irvo);
 	}
 
 	public int createSale(SaleListVO svo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sale.createSale(svo);
 	}
 
-	public int createSaleReject(SaleRejectListVO rvo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int createSaleReject(SaleRejectListVO srvo) {
+		return sale.createSaleReject(srvo);
 	}
 
 	public ArrayList<String> getStock() {
-		// TODO Auto-generated method stub
-		return null;
+		return sale.getStock();
 	}
 
 	public ArrayList<ApplicationVO> show(String num) {
-		// TODO Auto-generated method stub
-		return null;
+		return sale.show(num);
 	}
 
 	public int submit(ApplicationVO avo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sale.submit(avo);
 	}
 	
 }

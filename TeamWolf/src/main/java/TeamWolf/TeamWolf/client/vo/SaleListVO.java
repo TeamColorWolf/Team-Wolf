@@ -60,10 +60,10 @@ public class SaleListVO extends ApplicationVO{
 	 */
 	String remark;
 
-	public SaleListVO(String number, String customer, String salesman, String operator,
+	public SaleListVO(String number, CustomerVO customer, String salesman, String operator,
 			String storage, ArrayList<GoodsVO> goodsList, String discount, String coupon) {
 		this.number = number;
-		this.customer = findCustomer(customer);
+		this.customer = customer;
 		this.salesman = salesman;
 		this.operator = operator;
 		this.storage = storage;
@@ -79,15 +79,6 @@ public class SaleListVO extends ApplicationVO{
 		}
 	}
 
-	/**
-	 * 找到客户
-	 * @param name
-	 * @return 客户VO
-	 */
-	private CustomerVO findCustomer(String name){
-		//TODO: 找到客户
-		return customer;
-	}
 	
 	/**
 	 * 计算折让前总额

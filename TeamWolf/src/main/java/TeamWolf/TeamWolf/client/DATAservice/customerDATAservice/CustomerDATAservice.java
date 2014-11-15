@@ -12,6 +12,6 @@ public interface CustomerDATAservice {
 	
 	public CustomerPO modCustomer (CustomerPO cpo)  throws RemoteException;
 	
-	public CustomerPO findCustomer (CustomerPO cpo) throws RemoteException;
+	public CustomerPO findCustomer (String name, String number) throws RemoteException;
 	
 }

@@ -1,18 +1,26 @@
 package TeamWolf.TeamWolf.client.BL.customerBL;
 
-public class CustomerBL implements CustomerBLservice{
-/*	private String number;
-	private String type;
-	private String level;
-	private String tel;
-	private String address;
-	private String postnumber;
-	private String email;
-	private double shouldpay;
-	private double shouldcollect;
-	private double couldcollect;
-	private String defaultuser;*/
+import java.rmi.RemoteException;
 
+import TeamWolf.TeamWolf.client.DATAservice.customerDATAservice.CustomerDATAservice;
+import TeamWolf.TeamWolf.client.po.CustomerPO;
+import TeamWolf.TeamWolf.client.vo.CustomerVO;
+
+public class CustomerBL implements CustomerBLservice, CustomerDATAservice{
+	
+//	private String number;
+//	private String type;
+//	private String level;
+//	private String tel;
+//	private String address;
+//	private String postnumber;
+//	private String email;
+//	private double shouldpay;
+//	private double shouldcollect;
+//	private double couldcollect;
+//	private String defaultuser;
+
+	
 	public String getNumber() {
 		// TODO 自动生成的方法存根
 		return null;
@@ -121,6 +129,33 @@ public class CustomerBL implements CustomerBLservice{
 	public int setDefaultUser(String defaultUser) {
 		// TODO 自动生成的方法存根
 		return 0;
+	}
+
+	public void addCustomer(CustomerPO cpo) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void delCustomer(CustomerPO cpo) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public CustomerPO modCustomer(CustomerPO cpo) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/**
+	 * 找到客户PO
+	 * @param name
+	 * @param number
+	 * @return
+	 * @throws RemoteException
+	 */
+	public CustomerPO findCustomer(String name, String number) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

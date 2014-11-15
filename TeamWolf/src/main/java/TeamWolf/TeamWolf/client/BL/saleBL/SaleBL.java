@@ -17,12 +17,12 @@ import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
  */
 public class SaleBL{
 
-	SaleBLAssistant saleAssist;
-	Date presentDate;
+	private SaleBLAssistant saleAssist;
+	private String presentDate;
 	
 	public SaleBL(){
 		saleAssist = new SaleBLAssistant();
-		presentDate = new Date();
+		presentDate = saleAssist.getDate();
 	}
 	
 	public int addCustomer(CustomerVO cvo) {
@@ -50,7 +50,7 @@ public class SaleBL{
 		return 0;
 	}
 
-	public int createImportReject(ImportRejectListVO evo) {
+	public int createImportReject(ImportRejectListVO irvo) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -60,7 +60,7 @@ public class SaleBL{
 		return 0;
 	}
 
-	public int createSaleReject(SaleRejectListVO rvo) {
+	public int createSaleReject(SaleRejectListVO srvo) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
