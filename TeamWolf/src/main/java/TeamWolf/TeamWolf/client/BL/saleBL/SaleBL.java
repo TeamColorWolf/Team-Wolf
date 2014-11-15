@@ -1,8 +1,9 @@
 package TeamWolf.TeamWolf.client.BL.saleBL;
 
 import java.util.ArrayList;
-import java.util.Date;
 
+import TeamWolf.TeamWolf.client.BL.customerBL.CustomerController;
+import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOpr;
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.ImportListVO;
@@ -19,12 +20,14 @@ public class SaleBL{
 
 	private SaleBLAssistant saleAssist;
 	private String presentDate;
+	private CustomerController cusCtrl;
 	
-	public SaleBL(){
+	public SaleBL(String IP){
 		saleAssist = new SaleBLAssistant();
 		presentDate = saleAssist.getDate();
+		cusCtrl = new CustomerController(IP);
 	}
-	
+		
 	public int addCustomer(CustomerVO cvo) {
 		// TODO Auto-generated method stub
 		return 0;
@@ -40,7 +43,7 @@ public class SaleBL{
 		return 0;
 	}
 
-	public ArrayList<CustomerVO> findCustomer(String keyWord, String number) {
+	public ArrayList<CustomerVO> findCustomer(String keyWord, int number) {
 		// TODO Auto-generated method stub
 		return null;
 	}

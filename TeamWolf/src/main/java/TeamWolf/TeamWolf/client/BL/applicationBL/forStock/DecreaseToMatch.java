@@ -10,8 +10,8 @@ public class DecreaseToMatch extends Application{
 
 	IncreaseToMatchPO application;
 	
-	public DecreaseToMatch(DecreaseToMatchVO vo) {
-		super(vo);
+	public DecreaseToMatch(DecreaseToMatchVO vo, String URL) {
+		super(vo, URL);
 		// TODO Auto-generated constructor stub
 	}
 

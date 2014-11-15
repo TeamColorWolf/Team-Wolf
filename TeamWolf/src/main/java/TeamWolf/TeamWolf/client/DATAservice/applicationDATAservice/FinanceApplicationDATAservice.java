@@ -26,4 +26,10 @@ public interface FinanceApplicationDATAservice {
 	public int rejectPaymentApplication(PaymentApplicationPO po) throws RemoteException;
 	
 	public int rejectCashApplication(CashApplicationPO po) throws RemoteException;
+	
+	public int changeRecieptApplication(RecieptApplicationPO po) throws RemoteException;
+	
+	public int changePaymentApplication(PaymentApplicationPO po) throws RemoteException;
+	
+	public int changeCashApplication(CashApplicationPO po) throws RemoteException;
 }

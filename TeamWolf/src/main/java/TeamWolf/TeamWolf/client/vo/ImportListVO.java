@@ -14,7 +14,7 @@ public class ImportListVO extends ApplicationVO{
 	/**
 	 * 供应商
 	 */
-	String supplier;
+	CustomerVO customer;
 	
 	/**
 	 * 仓库
@@ -36,11 +36,11 @@ public class ImportListVO extends ApplicationVO{
 	 */
 	double total;
 
-	public ImportListVO(String number, String supplier, String storage, String operator,
+	public ImportListVO(String number, CustomerVO customer, String storage, String operator,
 			ArrayList<GoodsVO> goodsList, String remark) {
 		// TODO Auto-generated constructor stub
 		this.number = number;
-		this.supplier = supplier;
+		this.customer = customer;
 		this.storage = storage;
 		this.operator = operator;
 		this.GoodsList = goodsList;
@@ -58,12 +58,13 @@ public class ImportListVO extends ApplicationVO{
 		return 0;
 	}
 	
-	public String getSupplier() {
-		return supplier;
+
+	public CustomerVO getCustomer() {
+		return customer;
 	}
 
-	public void setSupplier(String supplier) {
-		this.supplier = supplier;
+	public void setCustomer(CustomerVO customer) {
+		this.customer = customer;
 	}
 
 	public String getStorage() {

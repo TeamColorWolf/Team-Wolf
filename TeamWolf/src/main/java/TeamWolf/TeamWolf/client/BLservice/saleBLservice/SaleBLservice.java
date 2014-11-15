@@ -42,7 +42,7 @@ public interface SaleBLservice {
 	 * @param number
 	 * @return
 	 */
-	public ArrayList<CustomerVO> findCustomer (String keyWord, String number);
+	public ArrayList<CustomerVO> findCustomer (String keyWord, int number);
 	
 	/**
 	 * ���������

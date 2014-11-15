@@ -61,7 +61,7 @@ public class SaleListVO extends ApplicationVO{
 	String remark;
 
 	public SaleListVO(String number, CustomerVO customer, String salesman, String operator,
-			String storage, ArrayList<GoodsVO> goodsList, String discount, String coupon) {
+			String storage, ArrayList<GoodsVO> goodsList, String discount, String coupon, String remark) {
 		this.number = number;
 		this.customer = customer;
 		this.salesman = salesman;
@@ -70,6 +70,7 @@ public class SaleListVO extends ApplicationVO{
 		this.GoodsList = goodsList;
 		this.total = calTotal(goodsList);
 		this.totalAfterDiscount = calTotalAfterDiscount(total);
+		this.remark = remark;
 		
 		try {
 			this.discount = Double.parseDouble(discount);

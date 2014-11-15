@@ -15,7 +15,7 @@ public class StockSubmit extends ApplicationBL{
 	}
 
 	public int submitIncreaseToMatch(IncreaseToMatchVO vo){
-		IncreaseToMatch app = new IncreaseToMatch(vo);//有的表单没有写继承Application，自行补充
+		IncreaseToMatch app = new IncreaseToMatch(vo, URL);//有的表单没有写继承Application，自行补充
 		return app.submit();
 	}
 	

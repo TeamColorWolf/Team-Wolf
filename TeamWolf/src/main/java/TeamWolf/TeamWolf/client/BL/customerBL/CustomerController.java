@@ -15,7 +15,6 @@ import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
 public class CustomerController {
      CustomerOpr co;
      CustomerInfo ci;
-     String IP="";
      
      public CustomerController(String IP){
     	 co = new CustomerOpr(IP);

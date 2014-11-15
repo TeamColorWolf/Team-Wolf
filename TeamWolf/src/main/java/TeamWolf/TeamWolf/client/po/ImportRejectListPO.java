@@ -15,7 +15,7 @@ public class ImportRejectListPO extends ApplicationPO{
 	/**
 	 * 供应商
 	 */
-	String supplier;
+	CustomerPO customer;
 	
 	/**
 	 * 仓库
@@ -38,12 +38,15 @@ public class ImportRejectListPO extends ApplicationPO{
 	double total;
 
 	
-	public String getSupplier() {
-		return supplier;
+
+	
+
+	public CustomerPO getCustomer() {
+		return customer;
 	}
 
-	public void setSupplier(String supplier) {
-		this.supplier = supplier;
+	public void setCustomer(CustomerPO customer) {
+		this.customer = customer;
 	}
 
 	public String getStorage() {

@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import TeamWolf.TeamWolf.client.BL.applicationBL.Application;
 import TeamWolf.TeamWolf.client.po.ApplicationPO;
 /**
- * Author WHJ
+ * 
+ * @author WHJ
+ *
  */
 public interface ApproveDATAservice extends Remote {
 	public ArrayList<ApplicationPO> getUnsetApplicationList() throws RemoteException;
