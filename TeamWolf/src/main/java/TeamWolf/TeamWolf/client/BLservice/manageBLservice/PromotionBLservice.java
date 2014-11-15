@@ -8,15 +8,17 @@ import TeamWolf.TeamWolf.client.vo.PromotionVO;
 import TeamWolf.TeamWolf.client.vo.SpecialGoodsPromotionVO;
 
 public interface PromotionBLservice {
-	public void setForVIP(ForVIPPromotionVO vo);
+	public int setForVIP(ForVIPPromotionVO vo);
 	
-	public void setForSpecialGoods(SpecialGoodsPromotionVO vo);
+	public int setForSpecialGoods(SpecialGoodsPromotionVO vo);
 	
-	public void setForPrice(ForPricePromotionVO vo);
+	public int setForPrice(ForPricePromotionVO vo);
 	
 	public PromotionVO getPromotion(String describe);
 	
 	public int delet(PromotionVO vo);//删除当前查看的Promotion
 	
-	public ArrayList<String> check();//列表返回促销策略声明
+	public int update(PromotionVO vo);//修改当前的Promotion
+	
+	public ArrayList<PromotionVO> check();//列表返回促销策略声明
 }

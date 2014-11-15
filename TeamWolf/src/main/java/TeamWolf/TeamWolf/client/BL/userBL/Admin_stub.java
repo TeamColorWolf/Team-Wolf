@@ -2,8 +2,13 @@ package TeamWolf.TeamWolf.client.BL.userBL;
 
 import java.util.ArrayList;
 
+import TeamWolf.TeamWolf.client.vo.UserType;
 import TeamWolf.TeamWolf.client.vo.UserVO;
-
+/**
+ * 
+ * @author WHJ
+ *
+ */
 public class Admin_stub extends Admin{
 
 	public Admin_stub(String IP) {
@@ -46,10 +51,10 @@ public class Admin_stub extends Admin{
 	@Override
 	public ArrayList<UserVO> checkUserVO() {
 		// TODO Auto-generated method stub
-		UserVO WHJ = new UserVO("WHJ", "131250194", "manage_01", "总经理");
-		UserVO WKS = new UserVO("WKS", "131250196", "sale_01", "销售经理");
-		UserVO XYJ = new UserVO("XYJ", "131250197", "stock_01", "库存管理员");
-		UserVO GYQ = new UserVO("GYQ", "131250135", "finance_01", "财务人员");
+		UserVO WHJ = new UserVO("WHJ", "131250194", "manage_01", UserType.总经理);
+		UserVO WKS = new UserVO("WKS", "131250196", "sale_01", UserType.销售经理);
+		UserVO XYJ = new UserVO("XYJ", "131250197", "stock_01", UserType.库存管理员);
+		UserVO GYQ = new UserVO("GYQ", "131250135", "finance_01", UserType.财务人员);
 		ArrayList<UserVO> list = new ArrayList<UserVO>();
 		list.add(GYQ);
 		list.add(XYJ);

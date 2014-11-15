@@ -2,7 +2,11 @@ package TeamWolf.TeamWolf.client.BL.userBL;
 
 import TeamWolf.TeamWolf.client.vo.LoginUserVO;
 import TeamWolf.TeamWolf.client.vo.UserVO;
-
+/**
+ * 
+ * @author WHJ
+ *
+ */
 public class LoginController_stub extends LoginController{
 
 	public LoginController_stub(String IP) {
