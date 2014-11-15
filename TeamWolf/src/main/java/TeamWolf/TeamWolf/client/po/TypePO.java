@@ -57,6 +57,10 @@ import TeamWolf.TeamWolf.client.vo.TypeVO;
 	public String getName() {
 		return name;
 	}
+	//更新分类信息
+	public int updType(TypeVO t){
+		return 0;
+	}
 	public void setName(String name) {
 		this.name = name;
 	}
