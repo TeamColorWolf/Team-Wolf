@@ -4,13 +4,15 @@ import java.rmi.RemoteException;
 
 import TeamWolf.TeamWolf.client.DATAservice.financeDATAservice.financeDATAservice;
 import TeamWolf.TeamWolf.client.po.financePO;
+import TeamWolf.TeamWolf.client.vo.financeVO;
 
 public class financeBLAssistant {
 	financeDATAservice fds;
 	
-    public boolean canAdd(financePO f){	
+    public boolean canAdd(financeVO f){	
     	try {
-    		if(fds.find(f.getName())==null)
+    		financePO po =new financePO(f);
+    		if(fds.find(po)==null)
 				return false;
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
@@ -18,10 +20,10 @@ public class financeBLAssistant {
 		}
     	return true;
     }
-    public int canDel(financePO f){
+    public int canDel(financeVO f){
     	return 0;
     			}
-    public boolean canUpd(financePO f){
+    public boolean canUpd(financeVO f){
     		return true;
     }
 }

@@ -25,8 +25,7 @@ public class Account implements AccountBlservice{
 		
 	}
 	
-	public int add(String name) {
-		financePO po = new financePO(name);
+	public int add(financeVO vo) {
 		try {
 			fds = (financeDATAservice)Naming.lookup(URL);
 		} catch (MalformedURLException e) {
@@ -40,8 +39,12 @@ public class Account implements AccountBlservice{
 			e.printStackTrace();
 		}
 		try {
-			if(fba.canAdd(po))
+			if(fba.canAdd(vo)){
+		    financePO po =new financePO(vo);
 			return fds.add(po);
+			}else{
+				return 00521;
+			}
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -49,17 +52,17 @@ public class Account implements AccountBlservice{
 		return 99911;
 	}
 
-	public int delete(String name) {
+	public int delete(financeVO vo) {
 		// TODO 自动生成的方法存根
 		return 0;
 	}
 
-	public int update(String previousname, String newname) {
+	public int update(financeVO vo,financeVO newvo) {
 		// TODO 自动生成的方法存根
 		return 0;
 	}
 
-	public financeVO find(String name) {
+	public financeVO find(financeVO vo) {
 		// TODO 自动生成的方法存根
 		return null;
 	}

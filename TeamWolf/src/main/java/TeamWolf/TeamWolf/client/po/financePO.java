@@ -1,5 +1,7 @@
 package TeamWolf.TeamWolf.client.po;
 
+import TeamWolf.TeamWolf.client.vo.financeVO;
+
 public class financePO {
 	private String name;
     private double account;
@@ -12,6 +14,11 @@ public class financePO {
     public financePO(String name , double account){
     	  this.name = name;
           this.account =account;
+    }
+    
+    public financePO(financeVO vo){
+    	this.name = vo.getName();
+    	this.account = vo.getAccount();
     }
     
 	public String getName() {
