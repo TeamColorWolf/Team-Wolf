@@ -1,14 +1,17 @@
 package TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 import TeamWolf.TeamWolf.client.po.CashApplicationPO;
 import TeamWolf.TeamWolf.client.po.PaymentApplicationPO;
 import TeamWolf.TeamWolf.client.po.RecieptApplicationPO;
 /**
- * Author WHJ
+ * 
+ * @author WHJ
+ *
  */
-public interface FinanceApplicationDATAservice {
+public interface FinanceApplicationDATAservice extends Remote {
 	public int submitRecieptApplication(RecieptApplicationPO po) throws RemoteException;
 	
 	public int submitPaymentApplication(PaymentApplicationPO po) throws RemoteException;

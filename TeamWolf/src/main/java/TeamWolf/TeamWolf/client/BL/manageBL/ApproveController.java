@@ -25,4 +25,14 @@ public class ApproveController implements ApproveBLservice {
 		return app.approveOver(list);
 	}
 
+	public ApplicationVO findApplication(String number) {
+		// TODO Auto-generated method stub
+		return app.findApplication(number);
+	}
+
+	public int change(ApplicationVO vo) {
+		// TODO Auto-generated method stub
+		return app.change(vo);
+	}
+
 }

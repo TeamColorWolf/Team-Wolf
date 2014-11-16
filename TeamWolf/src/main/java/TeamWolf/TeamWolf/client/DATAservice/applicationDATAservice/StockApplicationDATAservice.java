@@ -38,7 +38,5 @@ public interface StockApplicationDATAservice extends Remote {
 	
 	public int changePresentList(PresentListPO po) throws RemoteException;
 	
-	public ApplicationPO findApplication(String number) throws RemoteException;
-	
 	public ArrayList<PresentListPO> shoPL() throws RemoteException;
 }

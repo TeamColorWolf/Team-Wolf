@@ -5,7 +5,11 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.po.*;
-
+/**
+ * 
+ * @author WHJ
+ *
+ */
 public interface UserDATAservice extends Remote{
 	public int addUser(UserPO user) throws RemoteException;
 	public int removeUser(String user) throws RemoteException;

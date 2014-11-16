@@ -8,7 +8,9 @@ import TeamWolf.TeamWolf.client.po.SaleRejectListPO;
 import TeamWolf.TeamWolf.client.po.ImportListPO;
 import TeamWolf.TeamWolf.client.po.ImportRejectListPO;
 /**
- * Author WHJ
+ * 
+ * @author WHJ
+ *
  */
 public interface SaleApplicationDATAservice extends Remote {
 	public int submitImportList(ImportListPO po) throws RemoteException;
