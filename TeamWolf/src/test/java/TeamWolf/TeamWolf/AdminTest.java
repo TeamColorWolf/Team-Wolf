@@ -44,8 +44,8 @@ public class AdminTest {
 		assertEquals(30002, ad.removeUser("***"));
 		System.out.println("remove fail");
 		//System.out.println(ad.removeUser("anyone"));
-		assertEquals(0, ad.removeUser("anyone"));
-		System.out.println("remove anyone");
+		assertEquals(0, ad.removeUser("WHJ"));
+		System.out.println("remove WHJ");
 	}
 
 }
