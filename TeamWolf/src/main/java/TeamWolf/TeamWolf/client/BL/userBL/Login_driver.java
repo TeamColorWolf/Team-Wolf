@@ -9,14 +9,17 @@ import TeamWolf.TeamWolf.client.vo.UserVO;
  */
 public class Login_driver {
 	LoginController controller;
-	UserVO getBack;
-	public Login_driver(String IP){
-		controller = new LoginController_stub(IP);
-		LoginUserVO user = new LoginUserVO("WHJ", "131250194");
+	public UserVO getBack;
+	public Login_driver(String IP, LoginUserVO user){
+		controller = new LoginController(IP);
 		getBack = controller.login(user);
+		print(getBack);
 	}
 	
-	public static void main(String[] args){
-		Login_driver l = new Login_driver("");
+	private void print(UserVO vo){
+		System.out.println(vo.userName);
+		System.out.println(vo.password);
+		System.out.println(vo.workID);
+		System.out.println(vo.power);
 	}
 }

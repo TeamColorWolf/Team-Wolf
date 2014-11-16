@@ -14,7 +14,7 @@ public class AdminController implements AdminBLservice{
 	Admin administrator;
 	
 	public AdminController(String IP){
-		administrator = new Admin(IP);
+		administrator = new Mock_Admin(IP);
 	}
 	
 	public int addUser(UserVO user) {
