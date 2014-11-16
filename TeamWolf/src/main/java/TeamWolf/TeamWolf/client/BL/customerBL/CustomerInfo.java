@@ -88,11 +88,6 @@ public class CustomerInfo implements CustomerInfoBLservice{
 		return 0;
 	}
 
-	public CustomerPO getInfo() {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
 
 
 }

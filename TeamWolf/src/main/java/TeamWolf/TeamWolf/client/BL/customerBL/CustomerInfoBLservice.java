@@ -20,5 +20,4 @@ public interface CustomerInfoBLservice {
 	public int RecieptListMod(RecieptApplicationVO vo);
 	public int PaymentListMod(PaymentApplicationVO vo);
 	public int CashListMod(CashApplicationVO vo);
-	public CustomerPO getInfo();
 }

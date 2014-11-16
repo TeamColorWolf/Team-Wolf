@@ -56,7 +56,4 @@ public class CustomerController {
  	public int CashListMod(CashApplicationVO vo) {
 		return ci.CashListMod(vo);
 	}
- 	public CustomerPO getInfo() {
-		return null;
-	}
 }
