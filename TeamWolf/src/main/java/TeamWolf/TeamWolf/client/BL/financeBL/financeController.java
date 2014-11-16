@@ -16,16 +16,18 @@ public class financeController {
 	  Initial is ;
 	  Table t;
 	  String IP;
+	  Mock_finance mf;
 	  public financeController(String IP) {
 	    	 as = new Account(IP);
 	    	 is = new Initial(IP);
 	    	 es = new Eventview(IP);
 	    	 t = new Table(IP);
+	    	 mf = new Mock_finance(IP);
 		}
 	
      public int Accountmanage(int operationType,financeVO f,financeVO newf){
     	 if(operationType == financeContoller_helper.ACCOUNTADD){
-    		 return as.add(f);
+    		 return mf.AddAccount(f);
     	 }else if(operationType ==financeContoller_helper.ACCOUNTDEL){
     		 return as.delete(f);
     	 }else if(operationType==financeContoller_helper.ACCOUNTUPD){

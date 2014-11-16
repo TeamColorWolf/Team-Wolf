@@ -15,14 +15,17 @@ import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
 public class CustomerController {
      CustomerOpr co;
      CustomerInfo ci;
+     Mock_CustomerOpr mc;
      
      public CustomerController(String IP){
     	 co = new CustomerOpr(IP);
     	 ci = new CustomerInfo(IP);
+    	 mc = new Mock_CustomerOpr(IP);
      }
      
      public int addCustomer(CustomerVO vo){
-    	 return co.Customeradd(vo);
+    	// return co.Customeradd(vo);
+    	 return mc.AddCustomer(vo);
      }
      
      public int removeCustomer(CustomerVO vo){

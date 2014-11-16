@@ -13,7 +13,7 @@ import TeamWolf.TeamWolf.client.vo.SaleListVO;
 import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
 
 public class Customer_driver {
-    CustomerController_stub controller;
+    CustomerController controller;
     ArrayList<CustomerVO> list = new ArrayList<CustomerVO>();
 	 CustomerVO GD = new CustomerVO("", "", "", "GD", "", "", "", "", "", "", "", "");
 	 CustomerVO GD2 = new CustomerVO("", "", "", "GAODAN", "", "", "", "", "", "", "", "");
@@ -21,7 +21,7 @@ public class Customer_driver {
 	 CustomerVO GD4 = new CustomerVO("", "", "", "WAM", "", "", "", "", "", "", "", "");
 	 
 	 public Customer_driver(String IP){
-		 controller = new CustomerController_stub(IP);
+		 controller = new CustomerController(IP);
 		 this.addCustomer(GD);
 		 this.removeCustomer(GD3);
 		 this.update(GD, GD2);

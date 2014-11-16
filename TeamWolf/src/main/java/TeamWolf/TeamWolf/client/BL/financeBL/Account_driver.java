@@ -3,9 +3,15 @@ package TeamWolf.TeamWolf.client.BL.financeBL;
 import TeamWolf.TeamWolf.client.vo.financeVO;
 
 public class Account_driver {
+	 String IP;
      financeController_stub fcs = new financeController_stub();
+     financeController fc = new financeController(IP);
+     
+     public Account_driver(String iP) {
+		// TODO 自动生成的构造函数存根
+	}
 
-     public void driver(){
+	public void driver(){
     	 
     	 financeVO f= new financeVO("高蛋",0);
     	 
@@ -18,9 +24,14 @@ public class Account_driver {
          fcs.Eventview(33);
          fcs.Initial(41);   	 
      }
+	
+	public int add(financeVO vo){
+		return fc.Accountmanage(11, vo,vo);
+	}
      
      public static void main(String args[]){
-    	 Account_driver ad = new Account_driver();
+    	 String IP="";
+    	 Account_driver ad = new Account_driver(IP);
     	 ad.driver();
      }
 }
