@@ -19,7 +19,7 @@ import TeamWolf.TeamWolf.client.vo.TypeVO;
     private int C;//�жϸ÷�����Ů�Ƿ���Ҷ�ڵ�
     private String number;
 	private String name;
-	private ArrayList<GoodsVO> leaveNode=new ArrayList<GoodsVO>();
+	private ArrayList<GoodsPO> leaveNode=new ArrayList<GoodsPO>();
 	
 	
 	public TypePO(){
@@ -57,17 +57,14 @@ import TeamWolf.TeamWolf.client.vo.TypeVO;
 	public String getName() {
 		return name;
 	}
-	//更新分类信息
-	public int updType(TypeVO t){
-		return 0;
-	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	public ArrayList<GoodsVO> getLeaveNode() {
+	public ArrayList<GoodsPO> getLeaveNode() {
 		return leaveNode;
 	}
-	public void setLeaveNode(ArrayList<GoodsVO> leaveNode) {
+	public void setLeaveNode(ArrayList<GoodsPO> leaveNode) {
 		this.leaveNode = leaveNode;
 	} 
 	

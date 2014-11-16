@@ -12,7 +12,7 @@ import TeamWolf.TeamWolf.client.vo.TypeVO;
  */
 public class GoodsPO implements Serializable {
 
-	TypeVO parent;
+	TypePO parent;
 	String number;
 	String name;
 	String model;
@@ -26,10 +26,10 @@ public class GoodsPO implements Serializable {
 	public GoodsPO(GoodsVO g) {
 		// TODO Auto-generated constructor stub
 	}
-	public TypeVO getParent() {
+	public TypePO getParent() {
 		return parent;
 	}
-	public void setParent(TypeVO parent) {
+	public void setParent(TypePO parent) {
 		this.parent = parent;
 	}
 	public String getNumber() {

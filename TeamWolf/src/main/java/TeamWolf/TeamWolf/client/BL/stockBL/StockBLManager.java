@@ -91,7 +91,7 @@ public class StockBLManager{
 			try {
 				TypePO toUpd = reader.finType(t.getNumber());				
 				/*...完善修改PO...*/
-				toUpd.updType(t);
+				
 				writer.updType(toUpd);
 			} catch (RemoteException e1) {
 				// TODO Auto-generated catch block
