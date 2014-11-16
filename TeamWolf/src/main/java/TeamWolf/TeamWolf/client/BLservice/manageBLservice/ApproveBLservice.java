@@ -9,4 +9,8 @@ public interface ApproveBLservice {
 	public ArrayList<ApplicationVO> checkApplication();
 	
 	public int approveOver(ArrayList<ApplicationVO> list);
+	
+	public ApplicationVO findApplication(String number);
+	
+	public int change(ApplicationVO vo);
 }

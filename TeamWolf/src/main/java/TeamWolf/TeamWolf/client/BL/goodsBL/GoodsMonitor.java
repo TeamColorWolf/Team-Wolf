@@ -17,11 +17,12 @@ import TeamWolf.TeamWolf.client.vo.*;
  */
 public class GoodsMonitor{
 
+	String URL1,URL2;
 	GoodsBLAssistant assistant;
 	GoodsDataRead reader;
 	GoodsDataWrite writer;
 	
-	public GoodsMonitor(String URL1, String URL2){
+	public GoodsMonitor(String IP){
 		assistant=new GoodsBLAssistant(URL1);
 		try {
 			reader=(GoodsDataRead)Naming.lookup(URL1);

@@ -7,16 +7,22 @@ import TeamWolf.TeamWolf.client.vo.PaymentApplicationVO;
 import TeamWolf.TeamWolf.client.vo.RecieptApplicationVO;
 
 public class FinanceApplicationController extends MutiRoleController implements FinanceApplicationService{
+	FinanceSubmit submit;
+	
+	public FinanceApplicationController(String IP) {
+		super(IP);
+		// TODO Auto-generated constructor stub
+	}
 	
 	public int submitRecieptApplication(RecieptApplicationVO vo){
-		return new FinanceSubmit(IP).submitRecieptApplication(vo);
+		return submit.submitRecieptApplication(vo);
 	}
 	
 	public int submitPaymentApplication(PaymentApplicationVO vo){
-		return new FinanceSubmit(IP).submitPaymentApplication(vo);
+		return submit.submitPaymentApplication(vo);
 	}
 	
 	public int submitCashApplication(CashApplicationVO vo){
-		return new FinanceSubmit(IP).submitCashApplication(vo);
+		return submit.submitCashApplication(vo);
 	}
 }

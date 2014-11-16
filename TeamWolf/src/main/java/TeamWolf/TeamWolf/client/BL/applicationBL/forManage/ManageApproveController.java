@@ -8,15 +8,17 @@ import TeamWolf.TeamWolf.client.vo.ApplicationVO;
 
 public class ManageApproveController extends MutiRoleController implements ManageApproveService{
 	
+	ManageApprove app;
+	
 	public ManageApproveController(String IP){
-		
+		super(IP);
 	}
 	
 	public ArrayList<ApplicationVO> getUnsetApplicationList(){
-		return new ManageApprove(IP).getUnsetApplicationList();
+		return app.getUnsetApplicationList();
 	}
 	
 	public int approveOver(ArrayList<ApplicationVO> list){
-		return new ManageApprove(IP).approveOver(list);
+		return app.approveOver(list);
 	}
 }

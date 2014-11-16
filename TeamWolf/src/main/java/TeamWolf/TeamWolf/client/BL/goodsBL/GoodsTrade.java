@@ -6,6 +6,8 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.BLservice.stockBLservice.GoodTService;
+import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.ApproveDATAservice;
+import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.StockApplicationDATAservice;
 import TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice.GoodsDataRead;
 import TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice.GoodsDataWrite;
 import TeamWolf.TeamWolf.client.po.SaleListPO;
@@ -19,17 +21,22 @@ import TeamWolf.TeamWolf.client.po.*;
  */
 public class GoodsTrade {
 
+	String URL1,URL2,URL3,URL4;
 	GoodsBLAssistant assistant;
 	GoodsMonitor gmo;
 	GoodsDataRead reader;
 	GoodsDataWrite writer;
+	ApproveDATAservice appRead;
+	StockApplicationDATAservice appSub;
 	
-	public GoodsTrade(String URL1, String URL2){
+	public GoodsTrade(String IP){
 		assistant=new GoodsBLAssistant(URL1);
-		gmo=new GoodsMonitor(URL1, URL2);
+		gmo=new GoodsMonitor(IP);
 		try {
 			reader=(GoodsDataRead)Naming.lookup(URL1);
 			writer=(GoodsDataWrite)Naming.lookup(URL2);
+			appRead=(ApproveDATAservice)Naming.lookup(URL3);
+			appSub=(StockApplicationDATAservice)Naming.lookup(URL4);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -110,6 +117,7 @@ public class GoodsTrade {
 		
 	public PresentListVO checkPL(int number) {
 		// TODO Auto-generated method stub
+		
 		return null;
 	}
 	

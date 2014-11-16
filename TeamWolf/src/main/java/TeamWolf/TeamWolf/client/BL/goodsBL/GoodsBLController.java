@@ -20,15 +20,16 @@ public class GoodsBLController implements GoodManService,GoodTService,GoodMonSer
 	GoodsTrade gt;
 	
 	public GoodsBLController(String IP){
-		gma=new GoodsManager(URL1, URL2);
-		gmo=new GoodsMonitor(URL1, URL2);
-		gt=new GoodsTrade(URL1, URL2);
+		this.IP=IP;
+		gma=new GoodsManager(IP);
+		gmo=new GoodsMonitor(IP);
+		gt=new GoodsTrade(IP);
 	}
 	
 	public GoodsBLController(){
-		gma=new GoodsManager(URL1, URL2);
-		gmo=new GoodsMonitor(URL1, URL2);
-		gt=new GoodsTrade(URL1, URL2);
+		gma=new GoodsManager(IP);
+		gmo=new GoodsMonitor(IP);
+		gt=new GoodsTrade(IP);
 	}
 	
 	

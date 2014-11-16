@@ -16,8 +16,7 @@ import TeamWolf.TeamWolf.client.vo.UserVO;
  *
  */
 public class Admin {
-	public String URL = null;
-	public UserVO nowUser = null;
+	public String URL;
 	UserDATAservice adm;
 	UserLogDATAservice log;
 	

@@ -8,17 +8,23 @@ import TeamWolf.TeamWolf.client.vo.SaleListVO;
 import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
 
 public class SaleApplicationController  extends MutiRoleController implements SaleApplicationService{
+	SaleSubmit submit;
+	
+	public SaleApplicationController(String IP) {
+		super(IP);
+		// TODO Auto-generated constructor stub
+	}
 	
 	public int submitImportList(ImportListVO vo){
-		return new SaleSubmit(IP).submitImportList(vo);
+		return submit.submitImportList(vo);
 	}
 	public int submitImportRejectList(ImportRejectListVO vo){
-		return new SaleSubmit(IP).submitImportRejectList(vo);
+		return submit.submitImportRejectList(vo);
 	}
 	public int submitSaleList(SaleListVO vo){
-		return new SaleSubmit(IP).submitSaleList(vo);
+		return submit.submitSaleList(vo);
 	}
 	public int submitSaleRejectList(SaleRejectListVO vo){
-		return new SaleSubmit(IP).submitSaleRejectList(vo);
+		return submit.submitSaleRejectList(vo);
 	}
 }

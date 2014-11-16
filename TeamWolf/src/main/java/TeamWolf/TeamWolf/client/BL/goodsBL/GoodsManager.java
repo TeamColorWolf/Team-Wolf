@@ -18,12 +18,12 @@ import TeamWolf.TeamWolf.client.vo.*;
  */
 public class GoodsManager {
 
-	
+	String URL1,URL2,URL3;
 	GoodsBLAssistant assistant;
 	GoodsDataRead reader;
 	GoodsDataWrite writer;
 	
-	public GoodsManager(String URL1, String URL2){
+	public GoodsManager(String IP){
 		assistant=new GoodsBLAssistant(URL1);
 		try {
 			reader=(GoodsDataRead)Naming.lookup(URL1);
