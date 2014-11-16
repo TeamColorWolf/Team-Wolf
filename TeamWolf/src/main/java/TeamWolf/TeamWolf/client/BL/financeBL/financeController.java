@@ -1,5 +1,8 @@
 package TeamWolf.TeamWolf.client.BL.financeBL;
 
+import TeamWolf.TeamWolf.client.vo.CashApplicationVO;
+import TeamWolf.TeamWolf.client.vo.PaymentApplicationVO;
+import TeamWolf.TeamWolf.client.vo.RecieptApplicationVO;
 import TeamWolf.TeamWolf.client.vo.TimeVO;
 import TeamWolf.TeamWolf.client.vo.financeVO;
 /**
@@ -11,11 +14,13 @@ public class financeController {
 	  Account as;
 	  Eventview es;
 	  Initial is ;
+	  Table t;
 	  String IP;
 	  public financeController(String IP) {
 	    	 as = new Account(IP);
 	    	 is = new Initial(IP);
 	    	 es = new Eventview(IP);
+	    	 t = new Table(IP);
 		}
 	
      public int Accountmanage(int operationType,financeVO f,financeVO newf){
@@ -28,7 +33,14 @@ public class financeController {
     	 }
 		return 0;
      }
-     public int Tablemanage(int operationType, Table t){
+     public int Tablemanage(int operationType, Table t,PaymentApplicationVO pvo,RecieptApplicationVO rvo,CashApplicationVO cvo){
+    	 if(operationType == financeContoller_helper.TABLECASH){
+    		 return t.CreateCash(cvo);
+    	 }else if(operationType ==financeContoller_helper.TABLEPAYMENT){
+    		 return t.CreatePayment(pvo);
+    	 }else if(operationType==financeContoller_helper.TABLERECEIPT){
+    		 return t.CreateReceipt(rvo);
+    	 }
  		return 0;
       }
      public int Eventview(int operationType,TimeVO vo1,TimeVO vo2){
