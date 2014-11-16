@@ -20,8 +20,7 @@ public class GoodsBL_driver {
     	gc.setWaringLine(g);
     	gc.decreaseToMatch(g);
     	gc.increaseToMatch(g);
-    	
-    	
+        	
     }
     
     public static void main(String[] args){

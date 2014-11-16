@@ -1,4 +1,4 @@
-package TeamWolf.TeamWolf.test;
+package TeamWolf.TeamWolf;
 
 import static org.junit.Assert.*;
 
