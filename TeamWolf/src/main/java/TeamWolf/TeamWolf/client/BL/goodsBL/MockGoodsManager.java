@@ -13,7 +13,7 @@ import TeamWolf.TeamWolf.client.vo.GoodsVO;
 public class MockGoodsManager {
 
 
-	GoodsBLAssistant assistant =new GoodsBLAssistant();
+	GoodsBLAssistant assistant ;
 	
 	public int addGoods(GoodsVO g){
 		

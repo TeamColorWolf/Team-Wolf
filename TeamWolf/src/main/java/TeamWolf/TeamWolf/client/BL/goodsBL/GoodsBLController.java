@@ -12,15 +12,23 @@ import TeamWolf.TeamWolf.client.vo.*;
  *
  */
 public class GoodsBLController implements GoodManService,GoodTService,GoodMonService {
-
+    
+	static String IP;
+	String URL1,URL2; //1 reader ; 2 writer
 	GoodsManager gma;
 	GoodsMonitor gmo;
 	GoodsTrade gt;
 	
+	public GoodsBLController(String IP){
+		gma=new GoodsManager(URL1, URL2);
+		gmo=new GoodsMonitor(URL1, URL2);
+		gt=new GoodsTrade(URL1, URL2);
+	}
+	
 	public GoodsBLController(){
-		gma=new GoodsManager();
-		gmo=new GoodsMonitor();
-		gt=new GoodsTrade();
+		gma=new GoodsManager(URL1, URL2);
+		gmo=new GoodsMonitor(URL1, URL2);
+		gt=new GoodsTrade(URL1, URL2);
 	}
 	
 	

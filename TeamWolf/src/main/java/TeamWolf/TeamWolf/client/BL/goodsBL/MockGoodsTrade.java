@@ -21,7 +21,7 @@ import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
  */
 public class MockGoodsTrade {
 
-    GoodsBLAssistant assistant =new GoodsBLAssistant();
+    GoodsBLAssistant assistant ;
 	
 	public int goodsExport(SaleListVO sl){
 		//分析销售单

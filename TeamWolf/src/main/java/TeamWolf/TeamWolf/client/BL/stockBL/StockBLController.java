@@ -11,10 +11,11 @@ import TeamWolf.TeamWolf.client.vo.TypeVO;
  */
 public class StockBLController implements StockBLservice{
 
+	
 	StockBLManager sbm;
 	
-	StockBLController(){
-		sbm=new StockBLManager();
+    public	StockBLController(String IP){
+		sbm=new StockBLManager(IP);
 	}
 	
 	public int addType(TypeVO t) {

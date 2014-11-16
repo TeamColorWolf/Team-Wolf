@@ -1,5 +1,8 @@
 package TeamWolf.TeamWolf.client.BL.stockBL;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -15,13 +18,26 @@ import TeamWolf.TeamWolf.client.vo.*;
  */
 public class StockBLManager{
 
+	String URL1,URL2;
 	StockBLAssistant assistant;
 	StockDataWrite writer;
 	StockDataRead reader;
 	
-	StockBLManager(){
-		assistant=new StockBLAssistant();
-		// 实例化writer和reader
+	public StockBLManager(String IP){
+		assistant=new StockBLAssistant(URL1);
+		try {
+			writer=(StockDataWrite)Naming.lookup(URL2);
+			reader=(StockDataRead)Naming.lookup(URL1);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 

@@ -1,4 +1,8 @@
 package TeamWolf.TeamWolf.client.BL.goodsBL;
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -15,8 +19,20 @@ public class GoodsBLAssistant {
 
 	GoodsDataRead reader;
 	
-	public GoodsBLAssistant(){
-		//实例化reader
+	public GoodsBLAssistant(String URL) {
+		// TODO Auto-generated constructor stub
+		try {
+			reader=(GoodsDataRead)Naming.lookup(URL);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	public String getPresentTime(){
 		//获得当前时间

@@ -1,4 +1,7 @@
 package TeamWolf.TeamWolf.client.BL.goodsBL;
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -15,13 +18,27 @@ import TeamWolf.TeamWolf.client.vo.*;
  */
 public class GoodsManager {
 
+	
 	GoodsBLAssistant assistant;
 	GoodsDataRead reader;
 	GoodsDataWrite writer;
 	
-	public GoodsManager(){
-		assistant=new GoodsBLAssistant();
-		//实例化reader和writer
+	public GoodsManager(String URL1, String URL2){
+		assistant=new GoodsBLAssistant(URL1);
+		try {
+			reader=(GoodsDataRead)Naming.lookup(URL1);
+			writer=(GoodsDataWrite)Naming.lookup(URL2);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public int addGoods(GoodsVO g){

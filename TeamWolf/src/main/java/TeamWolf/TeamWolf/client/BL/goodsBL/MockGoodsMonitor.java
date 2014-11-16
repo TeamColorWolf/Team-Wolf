@@ -10,7 +10,7 @@ import TeamWolf.TeamWolf.client.vo.GoodsVO;
  */
 public class MockGoodsMonitor {
 
-    GoodsBLAssistant assistant =new GoodsBLAssistant();
+    GoodsBLAssistant assistant ;
 	
 	
 	public int setWaringLine(GoodsVO goodWL) {

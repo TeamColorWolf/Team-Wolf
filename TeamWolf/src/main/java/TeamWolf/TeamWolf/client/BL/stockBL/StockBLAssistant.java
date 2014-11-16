@@ -1,5 +1,9 @@
 package TeamWolf.TeamWolf.client.BL.stockBL;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -10,8 +14,19 @@ public class StockBLAssistant {
 	
 	StockDataRead reader;
 	
-	StockBLAssistant(){
-		//实例化reader
+	public StockBLAssistant(String URL){
+		try {
+			reader=(StockDataRead)Naming.lookup(URL);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public String getPresentTime(){
