@@ -10,7 +10,7 @@ public class StockBLAssistant_stub {
 
     StockDataRead reader;
 	
-	StockBLAssistant_stub(){
+	StockBLAssistant_stub(String IP){
 		//实例化reader
 	}
 
@@ -23,21 +23,21 @@ public class StockBLAssistant_stub {
 	}
 	public boolean canAdd(TypeVO t){
 		//检查此商品分类是否能加入系统的逻辑判断
-		if(t.getName().equals("飞利浦电灯"))
+		if(t.getName().equals("照明灯类"))
 		    return true;
 		else
 			return false;
 	}
 	public int canDel(TypeVO t){
 		//检查是否能将此分类从系统中删除的逻辑判断
-		if(t.getName().equals("飞利浦电灯"))
+		if(t.getName().equals("照明灯类"))
 		    return 0;
 		else
 			return 1;
 	}
 	public boolean canUpd(TypeVO t){
 		//检查是否能修改系统中此商品分类的逻辑判断
-		if(t.getName().equals("飞利浦电灯"))
+		if(t.getName().equals("照明灯类"))
 		    return true;
 		else
 			return false;

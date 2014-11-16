@@ -10,9 +10,13 @@ import TeamWolf.TeamWolf.client.vo.GoodsVO;
  */
 public class MockGoodsMonitor {
 
-    GoodsBLAssistant assistant ;
+    GoodsBLAssistant_stub assistant ;
 	
 	
+	public MockGoodsMonitor(String iP) {
+		// TODO Auto-generated constructor stub
+		assistant=new GoodsBLAssistant_stub(iP);
+	}
 	public int setWaringLine(GoodsVO goodWL) {
 		// TODO Auto-generated method stub
 		if(assistant.isExisted(goodWL)){
@@ -21,6 +25,8 @@ public class MockGoodsMonitor {
 		}
 		else{
 			//返回错误类型
+			System.out.println("失败了T T");
+			return 1112;
 		}
 		return 0;
 	}
@@ -41,6 +47,8 @@ public class MockGoodsMonitor {
 		}
 		else{
 			//返回错误类型
+			System.out.println("失败了T T");
+			return 1112;
 		}
 		return 0;
 	}
@@ -52,6 +60,8 @@ public class MockGoodsMonitor {
 		}
 		else{
 			//返回错误类型
+			System.out.println("失败了T T");
+			return 1112;
 		}
 		return 0;
 	}

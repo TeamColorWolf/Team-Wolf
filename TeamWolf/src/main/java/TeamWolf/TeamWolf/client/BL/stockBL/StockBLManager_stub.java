@@ -11,8 +11,8 @@ public class StockBLManager_stub {
 	
     StockBLAssistant_stub assistant;
 	
-	StockBLManager_stub(){
-		assistant=new StockBLAssistant_stub();
+	StockBLManager_stub(String IP){
+		assistant=new StockBLAssistant_stub(IP);
 	}
 	
 	public int addType(TypeVO t) {
@@ -22,6 +22,8 @@ public class StockBLManager_stub {
 		}
 		else{ 
 			//返回错误：商品已存在于系统中
+			System.out.println("失败了T T");
+			return 1111;
 		}
 		return 0;
 	}
@@ -33,6 +35,8 @@ public class StockBLManager_stub {
 		}
 		else{ 
 		  //返回错误：商品不存在于系统中
+			System.out.println("失败了T T");
+			return 1111;
 		}
 		return 0;
 	}
@@ -44,6 +48,8 @@ public class StockBLManager_stub {
 		}
 		else{ 
 		 //返回错误：商品不存在于系统中
+			System.out.println("失败了T T");
+			return 1111;
 		}
 		return 0;
 	}

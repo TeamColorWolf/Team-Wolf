@@ -10,9 +10,11 @@ public class GoodsBLAssistant_stub {
 
 GoodsDataRead reader;
 	
-	public GoodsBLAssistant_stub(){
-		//实例化reader
+
+	public GoodsBLAssistant_stub(String iP) {
+		// TODO Auto-generated constructor stub
 	}
+	
 	public String getPresentTime(){
 		//获得当前时间
 		Calendar c=Calendar.getInstance();
@@ -23,25 +25,40 @@ GoodsDataRead reader;
 	
 	public boolean canAdd(GoodsVO g){
 		//判断商品能否被加入系统
-		return true;
+		if(g.getName().equals("飞利浦日光灯"))
+		   return true;
+		else 
+		   return false;
 	}
 	public int canDel(GoodsVO g){
 		//判断商品能否从系统中删除
-		return 0;
+		if(g.getName().equals("飞利浦日光灯"))
+		   return 0;
+		else 
+		   return 1;
 	}
 	public boolean canUpd(GoodsVO g){
 		//判断商品能否在系统中被修改
-		return true;
+		    if(g.getName().equals("飞利浦日光灯"))
+			   return true;
+			else 
+			   return false;
 	}
 	public boolean canFin(GoodsVO g){
 		//判断能否找到某商品
-		return true;
+		if(g.getName().equals("飞利浦日光灯"))
+			   return true;
+	    else 
+			   return false;
 	}	
 	public int canSent(GoodsVO present){
 		return 0;
 	}
 	public boolean isExisted(GoodsVO g){
-    	return true;
+		if(g.getName().equals("飞利浦日光灯"))
+			   return true;
+		else 
+			   return false;
     }
 	public boolean beenTraded(GoodsVO g){
 		return true;

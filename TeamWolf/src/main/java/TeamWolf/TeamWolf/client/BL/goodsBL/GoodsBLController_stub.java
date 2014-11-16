@@ -18,13 +18,17 @@ public class GoodsBLController_stub {
 	MockGoodsMonitor gmo;
 	MockGoodsTrade gt;
 	
-	public GoodsBLController_stub(){
-		gma=new MockGoodsManager();
-		gmo=new MockGoodsMonitor();
-		gt=new MockGoodsTrade();
+
+	
+	
+	public GoodsBLController_stub(String IP) {
+		// TODO Auto-generated constructor stub
+		gma=new MockGoodsManager(IP);
+		gmo=new MockGoodsMonitor(IP);
+		gt=new MockGoodsTrade(IP);
 	}
-	
-	
+
+
 	public GoodsStockListVO shoStockList(int beginDate, int endDate){
 		return gma.shoStockList(beginDate, endDate);
 	}

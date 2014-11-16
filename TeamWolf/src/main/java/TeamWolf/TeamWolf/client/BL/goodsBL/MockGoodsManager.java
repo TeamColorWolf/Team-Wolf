@@ -13,8 +13,12 @@ import TeamWolf.TeamWolf.client.vo.GoodsVO;
 public class MockGoodsManager {
 
 
-	GoodsBLAssistant assistant;
+	GoodsBLAssistant_stub assistant;
 	
+	public MockGoodsManager(String iP) {
+		// TODO Auto-generated constructor stub
+		assistant=new GoodsBLAssistant_stub(iP);
+	}
 	public int addGoods(GoodsVO g){
 		
 		if(assistant.canAdd(g)){
@@ -24,6 +28,8 @@ public class MockGoodsManager {
 		}
 		else{
 			//返回错误：商品已存在于系统中
+			System.out.println("失败了T T");
+			return 1112;
 		}
 		return 0;
 	}
@@ -35,6 +41,8 @@ public class MockGoodsManager {
 		}
 		else{
 			//返回错误：商品不存在于系统中
+			System.out.println("失败了T T");
+			return 1112;
 		}
 		return 0;
 	}
@@ -45,6 +53,8 @@ public class MockGoodsManager {
 		}
 		else{
 			//返回错误：商品不存在于系统中
+			System.out.println("失败了T T");
+			return 1112;
 		}
 		return 0;
 	}
@@ -59,6 +69,8 @@ public class MockGoodsManager {
 		}
 		else{
 			//返回错误：商品不存在于系统中
+			System.out.println("失败了T T");
+			return null;
 		}
 		return g;
 	}

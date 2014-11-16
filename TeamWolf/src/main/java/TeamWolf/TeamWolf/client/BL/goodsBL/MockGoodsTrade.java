@@ -21,8 +21,12 @@ import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
  */
 public class MockGoodsTrade {
 
-    GoodsBLAssistant assistant ;
+    GoodsBLAssistant_stub assistant ;
 	
+	public MockGoodsTrade(String iP) {
+		// TODO Auto-generated constructor stub
+		assistant=new GoodsBLAssistant_stub(iP);
+	}
 	public int goodsExport(SaleListVO sl){
 		//分析销售单
 		System.out.println("处理销售！");

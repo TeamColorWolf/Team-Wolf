@@ -6,9 +6,10 @@ import TeamWolf.TeamWolf.client.vo.TypeVO;
 public class StockBLController_stub {
 
     StockBLManager_stub sbm;
+    
 	
-	StockBLController_stub(){
-		sbm=new StockBLManager_stub();
+	StockBLController_stub(String IP){
+		sbm=new StockBLManager_stub(IP);
 	}
 	
 	public int addType(TypeVO t) {
