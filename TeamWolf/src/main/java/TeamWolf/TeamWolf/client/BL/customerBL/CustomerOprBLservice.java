@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 
 public interface CustomerOprBLservice {
-	public int Customerupdate(CustomerVO vo,CustomerVO newvo);
+	public int Customerupdate(CustomerVO vo);
 	public int Customeradd(CustomerVO vo);
-	public int Customerdel(CustomerVO vo);
-	public ArrayList<CustomerVO> checkCustomerVO();
+	public int Customerdel(String name, String number);
+	public ArrayList<CustomerVO> checkCustomerVO(String keyWord, int number);
 	public CustomerVO findCustomer(String name);
 }

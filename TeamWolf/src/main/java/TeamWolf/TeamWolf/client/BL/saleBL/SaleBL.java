@@ -29,41 +29,42 @@ public class SaleBL{
 	}
 		
 	public int addCustomer(CustomerVO cvo) {
-		// TODO Auto-generated method stub
-		return 0;
+		int judge = saleAssist.canAddCustomer(cvo);
+		return cusCtrl.addCustomer(cvo);
 	}
 
-	public int delCustomer(String name, String num) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int delCustomer(String number, String name) {	
+		return cusCtrl.removeCustomer(number, name);
 	}
 
 	public int modCustomer(CustomerVO cvo) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return cusCtrl.update(cvo);
 	}
 
-	public ArrayList<CustomerVO> findCustomer(String keyWord, int number) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<CustomerVO> findCustomer(String keyWord, int number) {		
+		return cusCtrl.checkCustomerVO(keyWord, number);
 	}
 
 	public int createImport(ImportListVO ivo) {
-		// TODO Auto-generated method stub
+		int judge = saleAssist.canAddImport(ivo);
 		return 0;
 	}
 
 	public int createImportReject(ImportRejectListVO irvo) {
+		int judge = saleAssist.canAddImportReject(irvo);
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	public int createSale(SaleListVO svo) {
+		int judge = saleAssist.canAddSale(svo);
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	public int createSaleReject(SaleRejectListVO srvo) {
+		int judge = saleAssist.canAddSaleReject(srvo);
 		// TODO Auto-generated method stub
 		return 0;
 	}

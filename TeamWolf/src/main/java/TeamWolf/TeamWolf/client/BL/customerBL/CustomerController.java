@@ -28,14 +28,14 @@ public class CustomerController {
     	 return mc.AddCustomer(vo);
      }
      
-     public int removeCustomer(CustomerVO vo){
-    	 return co.Customerdel(vo);
+     public int removeCustomer(String number, String name){
+    	 return co.Customerdel(number, name);
      }
-     public int update(CustomerVO vo,CustomerVO newvo){
-    	 return co.Customerupdate(vo, newvo);
+     public int update(CustomerVO vo){
+    	 return co.Customerupdate(vo);
      }
-     public ArrayList<CustomerVO> checkCustomerVO(){
-    	 return co.checkCustomerVO();
+     public ArrayList<CustomerVO> checkCustomerVO(String keyWord, int number){
+    	 return co.checkCustomerVO(keyWord, number);
      }
      
     public int ImportListInfoMod(ImportListVO vo) {

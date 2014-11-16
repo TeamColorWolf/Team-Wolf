@@ -24,7 +24,7 @@ public class CustomerOpr implements CustomerOprBLservice{
 		
 	}
 	
-	public int Customerupdate(CustomerVO vo, CustomerVO newvo) {
+	public int Customerupdate(CustomerVO vo) {
 		// TODO 自动生成的方法存根
 		return 0;
 	}
@@ -52,7 +52,7 @@ public class CustomerOpr implements CustomerOprBLservice{
 		return 12138;
 	}
 
-	public int Customerdel(CustomerVO vo) {
+	public int Customerdel(String number, String name) {
 		// TODO 自动生成的方法存根
 		return 0;
 	}
@@ -79,7 +79,7 @@ public class CustomerOpr implements CustomerOprBLservice{
 		return voList;
 	}
 
-	public ArrayList<CustomerVO> checkCustomerVO() {
+	public ArrayList<CustomerVO> checkCustomerVO(String keyWord, int number) {
 		// TODO 自动生成的方法存根
 		return null;
 	}
