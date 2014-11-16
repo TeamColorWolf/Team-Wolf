@@ -8,8 +8,8 @@ import java.util.ArrayList;
  */
 public class GoodsListVO {
 
-	ArrayList<GoodsVO> gList=new ArrayList<GoodsVO>();
-	String GLInfo;
+	public ArrayList<GoodsVO> gList=new ArrayList<GoodsVO>();
+	public String GLInfo;
 	
 	public void addGood(GoodsVO g){
 		gList.add(g);

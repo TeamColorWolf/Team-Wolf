@@ -11,6 +11,7 @@ public class PromotionVO {
 	public int error;
 	public TimeVO begin;
 	public TimeVO end;
+	public String number;
 	public PromotionVO(PromotionTypeVO t, TimeVO Begin, TimeVO End){
 		error = 0;
 		type = t;
@@ -53,11 +54,12 @@ public class PromotionVO {
 	
 	protected ArrayList<GiftForPromotionVO> setGiftList(ArrayList<String> gNameList, ArrayList<String> sendNum){
 		ArrayList<GiftForPromotionVO> list = new ArrayList<GiftForPromotionVO>();
-		for(int i = 0; i < gNameList.size(); i++){
-			int send = string_to_int(sendNum.get(i));
-			GiftForPromotionVO vo = new GiftForPromotionVO(gNameList.get(i), send);
-			list.add(vo);
-		}
+		if(gNameList != null)
+			for(int i = 0; i < gNameList.size(); i++){
+				int send = string_to_int(sendNum.get(i));
+				GiftForPromotionVO vo = new GiftForPromotionVO(gNameList.get(i), send);
+				list.add(vo);
+			}
 		return list;
 	}
 	

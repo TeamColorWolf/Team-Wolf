@@ -12,7 +12,7 @@ public class PromotionForSaleController implements PromotionForSaleService{
 	PromotionBL bl;
 	
 	public PromotionForSaleController(String IP){
-		bl = new PromotionBL(IP);
+		bl = new PromotionBL_stub(IP);
 	}
 	
 	public SaleListVO adaptPromotionForSaleList(SaleListVO vo) {

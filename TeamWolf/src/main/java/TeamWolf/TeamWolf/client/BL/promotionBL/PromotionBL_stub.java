@@ -1,56 +1,53 @@
 package TeamWolf.TeamWolf.client.BL.promotionBL;
 
-import java.net.MalformedURLException;
-import java.rmi.Naming;
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Date;
 
-import TeamWolf.TeamWolf.client.BLservice.manageBLservice.PromotionBLservice;
-import TeamWolf.TeamWolf.client.DATAservice.promotionDATAservice.PromotionDATAservice;
-import TeamWolf.TeamWolf.client.po.PromotionPO;
-import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.ForPricePromotionVO;
 import TeamWolf.TeamWolf.client.vo.ForVIPPromotionVO;
-import TeamWolf.TeamWolf.client.vo.GoodsVO;
 import TeamWolf.TeamWolf.client.vo.ImportListVO;
 import TeamWolf.TeamWolf.client.vo.PromotionVO;
 import TeamWolf.TeamWolf.client.vo.SaleListVO;
 import TeamWolf.TeamWolf.client.vo.SpecialGoodsPromotionVO;
-/**
- * 
- * @author WHJ
- *
- */
-public class PromotionBL{
-	PromotionDATAservice data;
-	PromotionBLAssistant proAssist;
-	Date presentDate;
-	ArrayList<PromotionPO> poList;
-	ArrayList<PromotionVO> voList;
-	String URL;
-	
-	public PromotionBL(String IP){
+import TeamWolf.TeamWolf.client.vo.TimeVO;
+import TeamWolf.TeamWolf.client.po.*;
+
+public class PromotionBL_stub extends PromotionBL{
+
+	public PromotionBL_stub(String IP) {
+		super(IP);
+		// TODO Auto-generated constructor stub
+		poList = new ArrayList<PromotionPO>();
+		voList = new ArrayList<PromotionVO>();
+		TimeVO time = new TimeVO("2000", "01", "01");
+		ForVIPPromotionVO vo = new ForVIPPromotionVO(null, null, "1000", "500", "3", time, time);
+		ForVIPPromotionPO po = new ForVIPPromotionPO(vo);
 		
+		poList.add(po);
+		voList.add(vo);
 	}
 	
 	public int setForVIP(ForVIPPromotionVO vo) {
 		// TODO Auto-generated method stub
+		voList.add(vo);
+		poList.add(new ForVIPPromotionPO(vo));
 		return 0;
 	}
 
 	public int setForSpecialGoods(SpecialGoodsPromotionVO vo) {
 		// TODO Auto-generated method stub
+		voList.add(vo);
+		poList.add(new SpecialGoodsPromotionPO(vo));
 		return 0;
 	}
 
 	public int setForPrice(ForPricePromotionVO vo) {
 		// TODO Auto-generated method stub
+		voList.add(vo);
+		poList.add(new ForPricePromotionPO(vo));
 		return 0;
 	}
 
-	public PromotionVO getPromotion(String describe) {
+	public PromotionVO getPromotion(String number) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -72,12 +69,12 @@ public class PromotionBL{
 
 	public SaleListVO adaptPromotionForSaleList(SaleListVO vo) {
 		// TODO Auto-generated method stub
-		return null;
+		return vo;
 	}
 
 	public ImportListVO adaptPromotionForImportList(ImportListVO vo) {
 		// TODO Auto-generated method stub
-		return null;
+		return vo;
 	}
 
 }

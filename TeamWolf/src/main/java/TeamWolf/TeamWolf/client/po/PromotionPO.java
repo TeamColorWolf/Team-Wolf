@@ -14,10 +14,12 @@ public class PromotionPO implements Serializable{
 	public PromotionTypePO type;
 	public TimePO begin;
 	public TimePO end;
+	public String number;
 	public PromotionPO(PromotionTypePO t, PromotionVO vo){
 		type = t;
 		begin = new TimePO(vo.begin);
 		end = new TimePO(vo.end);
+		number = vo.number;
 	}
 	
 	protected ArrayList<GiftForPromotionPO> setGiftList(ArrayList<GiftForPromotionVO> vo){

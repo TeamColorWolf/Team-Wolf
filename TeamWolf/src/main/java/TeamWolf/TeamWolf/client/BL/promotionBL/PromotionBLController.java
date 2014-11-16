@@ -14,39 +14,44 @@ import TeamWolf.TeamWolf.client.vo.SpecialGoodsPromotionVO;
  */
 public class PromotionBLController implements PromotionBLservice{
 
+	PromotionBL bl;
+	public PromotionBLController(String IP){
+		bl = new PromotionBL_stub(IP);
+	}
+	
 	public int setForVIP(ForVIPPromotionVO vo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return bl.setForVIP(vo);
 	}
 
 	public int setForSpecialGoods(SpecialGoodsPromotionVO vo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return bl.setForSpecialGoods(vo);
 	}
 
 	public int setForPrice(ForPricePromotionVO vo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return bl.setForPrice(vo);
 	}
 
 	public PromotionVO getPromotion(String describe) {
 		// TODO Auto-generated method stub
-		return null;
+		return bl.getPromotion(describe);
 	}
 
 	public int delet(PromotionVO vo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return bl.delet(vo);
 	}
 	
 	public int update(PromotionVO vo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return bl.update(vo);
 	}
 
 	public ArrayList<PromotionVO> check() {
 		// TODO Auto-generated method stub
-		return null;
+		return bl.check();
 	}
 
 }

@@ -9,14 +9,20 @@ import TeamWolf.TeamWolf.client.vo.ApplicationVO;
  */
 public class ApproveController implements ApproveBLservice {
 
+	ApproveBL app;
+	
+	public ApproveController(String IP){
+		app = new ApproveBL(IP);
+	}
+	
 	public ArrayList<ApplicationVO> checkApplication() {
 		// TODO Auto-generated method stub
-		return new ApproveBL().checkApplication();
+		return app.checkApplication();
 	}
 
 	public int approveOver(ArrayList<ApplicationVO> list) {
 		// TODO Auto-generated method stub
-		return new ApproveBL().approveOver(list);
+		return app.approveOver(list);
 	}
 
 }

@@ -15,6 +15,7 @@ import TeamWolf.TeamWolf.client.vo.TimeVO;
  *
  */
 public class TableInquireBL {
+	//查表需求最后实现
 	MutiRoleController data;
 	ArrayList<SaleDetialVO> saleDetial;
 	ArrayList<RunProcessVO> runProcess;
