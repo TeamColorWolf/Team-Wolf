@@ -24,7 +24,7 @@ public class ImportListPO extends ApplicationPO{
 	/**
 	 * 入库商品列表
 	 */
-	ArrayList<GoodsVO> GoodsList;
+	ArrayList<GoodsPO> GoodsList;
 	
 	/**
 	 * 单据备注
@@ -55,11 +55,11 @@ public class ImportListPO extends ApplicationPO{
 		this.storage = storage;
 	}
 
-	public ArrayList<GoodsVO> getGoodsList() {
+	public ArrayList<GoodsPO> getGoodsList() {
 		return GoodsList;
 	}
 
-	public void setGoodsList(ArrayList<GoodsVO> goodsList) {
+	public void setGoodsList(ArrayList<GoodsPO> goodsList) {
 		GoodsList = goodsList;
 	}
 

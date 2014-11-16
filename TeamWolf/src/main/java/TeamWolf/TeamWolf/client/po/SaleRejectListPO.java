@@ -30,7 +30,7 @@ public class SaleRejectListPO extends ApplicationPO{
 	/**
 	 * 退货商品清单
 	 */
-	ArrayList<GoodsVO> GoodsList; 
+	ArrayList<GoodsPO> GoodsList; 
 	
 	/**
 	 * 折让前总额
@@ -83,11 +83,11 @@ public class SaleRejectListPO extends ApplicationPO{
 		this.storage = storage;
 	}
 
-	public ArrayList<GoodsVO> getGoodsList() {
+	public ArrayList<GoodsPO> getGoodsList() {
 		return GoodsList;
 	}
 
-	public void setGoodsList(ArrayList<GoodsVO> goodsList) {
+	public void setGoodsList(ArrayList<GoodsPO> goodsList) {
 		GoodsList = goodsList;
 	}
 

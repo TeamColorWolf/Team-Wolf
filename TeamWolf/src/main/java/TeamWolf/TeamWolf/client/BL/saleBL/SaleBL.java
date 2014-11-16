@@ -33,13 +33,14 @@ public class SaleBL{
 		return cusCtrl.addCustomer(cvo);
 	}
 
-	public int delCustomer(String number, String name) {	
-		return cusCtrl.removeCustomer(number, name);
+	public int delCustomer(String number, String name) {
+		CustomerVO cvo = new CustomerVO(number, "", "", name, "", "", "", "", "", "", "", "");
+		return cusCtrl.removeCustomer(cvo);
 	}
 
 	public int modCustomer(CustomerVO cvo) {
-		
-		return cusCtrl.update(cvo);
+		CustomerVO newCVO = new CustomerVO("", "", "", "", "", "", "", "", "", "", "", "");
+		return cusCtrl.update(cvo, newCVO);
 	}
 
 	public ArrayList<CustomerVO> findCustomer(String keyWord, int number) {		

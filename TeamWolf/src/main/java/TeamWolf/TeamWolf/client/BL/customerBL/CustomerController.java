@@ -28,11 +28,11 @@ public class CustomerController {
     	 return mc.AddCustomer(vo);
      }
      
-     public int removeCustomer(String number, String name){
-    	 return co.Customerdel(number, name);
+     public int removeCustomer(CustomerVO cvo){
+    	 return co.Customerdel(cvo);
      }
-     public int update(CustomerVO vo){
-    	 return co.Customerupdate(vo);
+     public int update(CustomerVO vo, CustomerVO newVO){
+    	 return co.Customerupdate(vo, newVO);
      }
      public ArrayList<CustomerVO> checkCustomerVO(String keyWord, int number){
     	 return co.checkCustomerVO(keyWord, number);

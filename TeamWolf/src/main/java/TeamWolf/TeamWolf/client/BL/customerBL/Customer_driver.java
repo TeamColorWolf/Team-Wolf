@@ -25,21 +25,21 @@ public class Customer_driver {
 		 this.addCustomer(GD);
 		 this.removeCustomer(GD3);
 		 this.update(GD, GD2);
-		 list = this.checkCustomerVO();
+		 list = this.checkCustomerVO(GD.getName(), GD.getNum());
 	 }
 	 
      public int addCustomer(CustomerVO vo){
     	 return controller.addCustomer(vo);
      }
      
-     public int removeCustomer(CustomerVO vo){
-    	 return controller.removeCustomer(vo);
+     public int removeCustomer(CustomerVO cvo){
+    	 return controller.removeCustomer(cvo);
      }
      public int update(CustomerVO vo,CustomerVO newvo){
     	 return controller.update(vo, newvo);
      }
-     public ArrayList<CustomerVO> checkCustomerVO(){
-    	 return controller.checkCustomerVO();
+     public ArrayList<CustomerVO> checkCustomerVO(String keyWord, int number){
+    	 return controller.checkCustomerVO(keyWord, number);
      }
      
     public int ImportListInfoMod(ImportListVO vo) {
