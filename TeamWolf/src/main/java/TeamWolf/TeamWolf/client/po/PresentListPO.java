@@ -39,7 +39,5 @@ public class PresentListPO extends ApplicationPO implements Serializable{
 		this.customer = customer;
 	}
    
-	private String turnToInfo(GoodsVO g){
-		return "赠品："+g.getNumber()+" "+g.getName()+" "+g.getModel()+" 数量："+g.getAmount();
-	}
+	
 }
