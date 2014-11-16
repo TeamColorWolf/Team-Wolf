@@ -12,7 +12,7 @@ import TeamWolf.TeamWolf.client.vo.TypeVO;
 
 public class StockBLAssistant {
 	
-	StockDataRead reader;
+    StockDataRead reader;
 	
 	public StockBLAssistant(String URL){
 		try {
