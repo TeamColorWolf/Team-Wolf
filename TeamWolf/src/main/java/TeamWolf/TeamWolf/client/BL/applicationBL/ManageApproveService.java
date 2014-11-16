@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;
 
-public interface ManageApproveService {
+public interface ManageApproveService extends MutiRoleService{
 	public ArrayList<ApplicationVO> getUnsetApplicationList();
 	public int approveOver(ArrayList<ApplicationVO> list);
 }
