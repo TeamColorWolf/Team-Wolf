@@ -25,7 +25,7 @@ public class Admin {
 	ArrayList<String> strList;
 	
 	public Admin(String IP){
-		
+		URL = "rmi://" + IP + "/userDATAservice";
 	}
 	
 	public int addUser(UserVO user) {
@@ -33,7 +33,7 @@ public class Admin {
 		UserPO po = new UserPO(user);
 		try {
 			adm = (UserDATAservice)Naming.lookup(URL);
-			log = (UserLogDATAservice)Naming.lookup(URL);
+			adm.addUser(po);
 		} catch (MalformedURLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -43,13 +43,6 @@ public class Admin {
 		} catch (NotBoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}
-		try {
-			log.addUserLog(po);
-			return adm.addUser(po);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		return 30001;
 	}

@@ -1,5 +1,8 @@
 package TeamWolf.TeamWolf.client.BL.userBL;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.vo.UserType;
@@ -34,8 +37,12 @@ public class Admin_driver {
 		return controller.checkUserVO();
 	}
 	
-	public static void main(String[] args){
-		Admin_driver a = new Admin_driver("1");
+	public static void main(String[] args) throws IOException{
+		System.out.print("server IP : ");
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		Admin_driver a = new Admin_driver(br.readLine());
+		UserVO admin = new UserVO("admin", "admin", "admin_01", UserType.系统管理员);
+		a.addUser(admin);
 	}
 	
 }

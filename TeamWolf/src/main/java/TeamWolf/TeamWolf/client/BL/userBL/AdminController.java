@@ -10,11 +10,10 @@ import TeamWolf.TeamWolf.client.vo.UserVO;
  *
  */
 public class AdminController implements AdminBLservice{
-	String IP;
 	Admin administrator;
 	
 	public AdminController(String IP){
-		administrator = new Mock_Admin(IP);
+		administrator = new Admin(IP);
 	}
 	
 	public int addUser(UserVO user) {
