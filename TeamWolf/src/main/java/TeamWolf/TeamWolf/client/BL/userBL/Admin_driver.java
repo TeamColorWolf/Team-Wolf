@@ -41,8 +41,18 @@ public class Admin_driver {
 		System.out.print("server IP : ");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		Admin_driver a = new Admin_driver(br.readLine());
+		ArrayList<UserVO> list;
 		UserVO admin = new UserVO("admin", "admin", "admin_01", UserType.系统管理员);
-		a.addUser(admin);
+		UserVO WHJ = new UserVO("WHJ", "131250194", "manage_01", UserType.总经理);
+		UserVO WKS = new UserVO("WKS", "131250196", "sale_01", UserType.销售经理);
+		UserVO XYJ = new UserVO("XYJ", "131250197", "stock_01", UserType.库存管理员);
+		UserVO GYQ = new UserVO("GYQ", "131250135", "finance_01", UserType.财务人员);
+//		System.out.println(a.addUser(admin));
+//		System.out.println(a.addUser(WHJ));
+//		System.out.println(a.addUser(WKS));
+//		System.out.println(a.addUser(XYJ));
+//		System.out.println(a.addUser(GYQ));
+		System.out.println(a.removeUser("GYQ"));
 	}
 	
 }

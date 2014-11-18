@@ -33,7 +33,7 @@ public class Admin {
 		UserPO po = new UserPO(user);
 		try {
 			adm = (UserDATAservice)Naming.lookup(URL);
-			adm.addUser(po);
+			return adm.addUser(po);
 		} catch (MalformedURLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -49,7 +49,20 @@ public class Admin {
 
 	public int removeUser(String user) {
 		// TODO Auto-generated method stub
-		return 0;
+		try {
+			adm = (UserDATAservice)Naming.lookup(URL);
+			return adm.removeUser(user);
+		} catch (MalformedURLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (NotBoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		return 30002;
 	}
 
 	public int update(UserVO user) {

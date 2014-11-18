@@ -10,6 +10,7 @@ import java.rmi.server.UnicastRemoteObject;
 import TeamWolf.TeamWolf.client.DATAservice.userDATAservice.LoginDATAservice;
 import TeamWolf.TeamWolf.client.po.LoginUserPO;
 import TeamWolf.TeamWolf.client.po.UserPO;
+import TeamWolf.TeamWolf.server.FileName;
 
 public class LoginDATA extends UnicastRemoteObject implements LoginDATAservice{
 
@@ -21,7 +22,7 @@ public class LoginDATA extends UnicastRemoteObject implements LoginDATAservice{
 	public UserPO loginController(LoginUserPO user) throws RemoteException {
 		// TODO Auto-generated method stub
 		try {
-			FileInputStream userFile = new FileInputStream("user.tw");
+			FileInputStream userFile = new FileInputStream(FileName.userFile);
 			ObjectInputStream ois = new ObjectInputStream(userFile);
 			UserPO po;
 			while((po = (UserPO)ois.readObject())!=null){
