@@ -15,19 +15,29 @@ import TeamWolf.TeamWolf.client.vo.TypeVO;
  public class TypePO implements Serializable {
 
 	private TypePO parent;
-    private TypePO child;
-    private int C;//�жϸ÷�����Ů�Ƿ���Ҷ�ڵ�
+    private ArrayList<TypePO> child;
+    private int C;// 0为没有子女，1为有子分类， 2为有商品
     private String number;
 	private String name;
-	private ArrayList<GoodsPO> leaveNode=new ArrayList<GoodsPO>();
+	private ArrayList<GoodsPO> leaveNode;
 	
 	
-	public TypePO(){
-		
+	public TypePO(TypePO parent, String number, String name){
+		child=new ArrayList<TypePO>();
+		leaveNode=new ArrayList<GoodsPO>();
+		this.parent=parent;
+		this.number=number;
+		this.name=name;
 	}
 	
 	public TypePO(TypeVO t) {
 		// TODO Auto-generated constructor stub
+		child=new ArrayList<TypePO>();
+		leaveNode=new ArrayList<GoodsPO>();
+	    number=t.getNumber();
+	    name=t.getName();
+	    C=t.getC();
+		
 	}
 
 	public TypePO getParent() {
@@ -36,11 +46,8 @@ import TeamWolf.TeamWolf.client.vo.TypeVO;
 	public void setParent(TypePO parent) {
 		this.parent = parent;
 	}
-	public TypePO getChild() {
+	public ArrayList<TypePO> getChild() {
 		return child;
-	}
-	public void setChild(TypePO child) {
-		this.child = child;
 	}
 	public int getC() {
 		return C;
@@ -64,8 +71,58 @@ import TeamWolf.TeamWolf.client.vo.TypeVO;
 	public ArrayList<GoodsPO> getLeaveNode() {
 		return leaveNode;
 	}
-	public void setLeaveNode(ArrayList<GoodsPO> leaveNode) {
-		this.leaveNode = leaveNode;
-	} 
-	
+	public boolean addChildType(TypePO t){
+		if(C!=2){
+		     child.add(t);
+		     C=1;
+		     return true;
+		}
+		else
+			return false;
+	}
+	public boolean addLeaveNode(GoodsPO g){
+		if(C!=1){
+		    leaveNode.add(g);
+		    C=2;
+		    return true;
+		}
+		else
+			return false;
+	}
+	public boolean delChildType(String name){
+		if(C==1){
+			TypePO toDel=null;
+			for(TypePO t:child){
+				if(t.getName().equals(name)){
+					toDel=t;
+				}
+			}
+			if(toDel!=null){
+				child.remove(toDel);
+				return true;
+			}
+			else
+				return false;
+		}
+		else
+			return false;
+	}
+	public boolean delLeaveNode(String name){
+		if(C==2){
+			GoodsPO toDel=null;
+			for(GoodsPO g:leaveNode){
+			    if(g.getName().equals(name)){
+			    	toDel=g;
+			    }
+			}
+			if(toDel!=null){
+				leaveNode.remove(toDel);
+				return true;
+			}
+			else 
+				return false;
+		}
+		else 
+			return false;
+	}
 }

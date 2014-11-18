@@ -9,7 +9,7 @@ public interface StockDataWrite extends Remote{
 
 	public int addType(TypePO t) throws RemoteException;
 	
-	public int delType(String number) throws RemoteException;
+	public int delType(String name) throws RemoteException;
 	
 	/**
 	 * �޸�����Ϣ�Ĳ��������ô˷������б���

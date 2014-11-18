@@ -1,4 +1,4 @@
-package TeamWolf.TeamWolf.server.userDATA;
+ package TeamWolf.TeamWolf.server.userDATA;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
