@@ -12,7 +12,7 @@ public class LoginController implements LoginBLservice{
 	String IP;
 	Login login;
 	public LoginController(String IP){
-		login = new Mock_Login(IP);
+		login = new Login(IP);
 	}
 	
 	public UserVO login(LoginUserVO user) {
