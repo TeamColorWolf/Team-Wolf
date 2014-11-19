@@ -15,85 +15,113 @@ import java.util.ArrayList;
 import TeamWolf.TeamWolf.client.DATAservice.stockDATAservice.StockDataRead;
 import TeamWolf.TeamWolf.client.DATAservice.stockDATAservice.StockDataWrite;
 import TeamWolf.TeamWolf.client.po.TypePO;
+import TeamWolf.TeamWolf.server.FileName;
+import TeamWolf.TeamWolf.server.FileOpr;
 
+/**
+ * 
+ * @author XYJ
+ *
+ */
 public class StockData extends UnicastRemoteObject implements StockDataWrite,StockDataRead {
 
-	ObjectOutputStream OWriter;
-	ObjectInputStream OReader;
+	ArrayList<TypePO> stockList;
 	String path="库存商品//";
 	
 	protected StockData() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
+		this.initial();
+		if(stockList==null)
+			stockList=new ArrayList<TypePO>();
 	}
 
 	public int addType(TypePO t) throws RemoteException {
 		// TODO Auto-generated method stub
+		stockList.add(t);
 		try {
-			OWriter=new ObjectOutputStream(new FileOutputStream(path+t.getName()+".tw"));
-			OWriter.writeObject(t);
-			OWriter.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			//返回读写错误
-			e.printStackTrace();
+			FileOpr.writeFile(FileName.stockFile, stockList);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			//返回读写错误
+			//返回文件读写错误
 		}
 		return 0;
 	}
 
 	public int delType(String name) throws RemoteException {
 		// TODO Auto-generated method stub
-		File toDel=new File("库存商品//"+name+".tw");
-		toDel.delete();
+		TypePO toDel=null;
+		for(TypePO t:stockList){
+			if(t.getName().equals(name)){
+				toDel=t;
+				break;
+			}
+		}
+		if(toDel!=null){
+		   stockList.remove(toDel);
+		   try {
+			FileOpr.writeFile(FileName.stockFile, stockList);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			//返回文件读写错误
+		}
+		}
 		return 0;
 	}
 
 	public int updType(TypePO t) throws RemoteException {
 		// TODO Auto-generated method stub
+		TypePO toUpd=null;
+		for(TypePO tt:stockList){
+			if(tt.getName().equals(t.getName())){
+				toUpd=t;
+				break;
+			}
+		}
 		try {
-			OWriter=new ObjectOutputStream(new FileOutputStream(path+t.getName()+".tw"));
-			OWriter.writeObject(t);
-			OWriter.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			//返回读写错误
-			e.printStackTrace();
+			FileOpr.writeFile(FileName.stockFile, stockList);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			//返回读写错误
 		}
 		return 0;
 	}
 	
-	public static void main(String[] args){
-		
-		TypePO t=new TypePO(null, "1101", "goods");
-		try {
-			StockData sw=new StockData();
-			sw.addType(t);
-			t.setNumber("2222");
-			t.setName("goods");
-			sw.updType(t);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        
-	}
-
 	public TypePO finType(String name) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		TypePO aimType=null;
+		for(TypePO t:stockList){
+			if(t.getName().equals(name)){
+				aimType=t;
+				break;
+			}
+		}
+		return aimType;
 	}
 
 	public ArrayList<TypePO> shoTypeList() throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		return stockList;
+	}
+
+	public void initial(){
+		try {
+			stockList=(ArrayList<TypePO>)FileOpr.readFile(FileName.stockFile);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void main(String[] args){
+		
+		
+        
 	}
 
 }
