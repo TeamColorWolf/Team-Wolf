@@ -38,7 +38,7 @@ public class SaleBL_Driver{
 				"北京", "100000", "xjp@software.nju.edu.cn", "999999", "0", "0", "WKS");
 		ArrayList<GoodsVO> goodsList = new ArrayList<GoodsVO>();
 		ImportListVO ivo = new ImportListVO("Import", cvo, "1", "WKS", goodsList, "nothing");
-		sd.createImport(ivo);
+		System.out.println(sd.createImport(ivo));
 
 	}
 	

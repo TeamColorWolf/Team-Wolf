@@ -20,20 +20,25 @@ public class SaleDATA extends UnicastRemoteObject implements SaleDATAservice{
 
 	private FileName fileName = new FileName();
 	private FileOpr fo = new FileOpr();
-	private ArrayList<ApplicationPO> appList = null;
+	private ArrayList<ImportListPO> appList = null;
 	
 	public SaleDATA() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
+		getAppList(fileName.importListFile);
+		if(appList == null){
+			appList = new ArrayList<ImportListPO>();
+		}
 	}
 
 	/**
 	 * 从文件读取单据列表
 	 * @param fName 文件名
 	 */
+	@SuppressWarnings("unchecked")
 	private void getAppList(String fName){
 		try {
-			appList = (ArrayList<ApplicationPO>) fo.readFile(fName);
+			appList = (ArrayList<ImportListPO>) fo.readFile(fName);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -49,7 +54,7 @@ public class SaleDATA extends UnicastRemoteObject implements SaleDATAservice{
 	public int addImport(ImportListPO ipo) throws RemoteException {
 		//TODO
 		int judge = 0;
-		getAppList(fileName.importListFile);
+//		getAppList(fileName.importListFile);
 		appList.add(ipo);
 		try {
 			fo.writeFile(fileName.importListFile, appList);

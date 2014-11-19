@@ -28,6 +28,7 @@ public class SaleBL{
 	private SaleBLAssistant saleAssist;
 	private String presentDate;
 	private CustomerController cusCtrl;
+	private SaleBLController saleCtrtl;
 	private SaleDATAservice sdservice;
 	private String URL;
 	
@@ -35,7 +36,7 @@ public class SaleBL{
 		saleAssist = new SaleBLAssistant();
 		presentDate = saleAssist.getDate();
 		cusCtrl = new CustomerController(IP);
-		URL = "rmi://" + IP + "/userDATAservice";
+		URL = "rmi://" + IP + "/saleDATAservice";
 	}
 		
 	public int addCustomer(CustomerVO cvo) {
@@ -73,7 +74,7 @@ public class SaleBL{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		return 0;
+		return 999999;
 	}
 
 	public int createImportReject(ImportRejectListVO irvo) {
