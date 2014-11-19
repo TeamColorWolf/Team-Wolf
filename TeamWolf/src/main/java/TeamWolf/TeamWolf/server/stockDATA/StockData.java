@@ -10,17 +10,19 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
+import TeamWolf.TeamWolf.client.DATAservice.stockDATAservice.StockDataRead;
 import TeamWolf.TeamWolf.client.DATAservice.stockDATAservice.StockDataWrite;
 import TeamWolf.TeamWolf.client.po.TypePO;
 
-public class StockWrite extends UnicastRemoteObject implements StockDataWrite {
+public class StockData extends UnicastRemoteObject implements StockDataWrite,StockDataRead {
 
 	ObjectOutputStream OWriter;
 	ObjectInputStream OReader;
 	String path="库存商品//";
 	
-	protected StockWrite() throws RemoteException {
+	protected StockData() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -72,7 +74,7 @@ public class StockWrite extends UnicastRemoteObject implements StockDataWrite {
 		
 		TypePO t=new TypePO(null, "1101", "goods");
 		try {
-			StockWrite sw=new StockWrite();
+			StockData sw=new StockData();
 			sw.addType(t);
 			t.setNumber("2222");
 			t.setName("goods");
@@ -82,6 +84,16 @@ public class StockWrite extends UnicastRemoteObject implements StockDataWrite {
 			e.printStackTrace();
 		}
         
+	}
+
+	public TypePO finType(String name) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ArrayList<TypePO> shoTypeList() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
