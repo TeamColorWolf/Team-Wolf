@@ -6,4 +6,6 @@ public class FileName {
 	public static String importRejectListFile = "销售类单据//importReject.tw";
 	public static String saleListFile = "销售类单据//sale.tw";
 	public static String saleRejectListFile = "销售类单据//saleReject.tw";
+	public static String stockFile="库存商品//stock.tw";
+	public static String goodsFile="库存商品//goods.tw";
 }

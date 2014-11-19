@@ -26,6 +26,7 @@ public class UserDATA extends UnicastRemoteObject implements UserDATAservice{
 		list.add(user);
 		try {
 			FileOpr.writeFile(FileName.userFile, list);
+			System.out.println("add " + user.userName + " password:" + user.password);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -41,6 +42,8 @@ public class UserDATA extends UnicastRemoteObject implements UserDATAservice{
 				list.remove(i);
 				try {
 					FileOpr.writeFile(FileName.userFile, list);
+					System.out.println("remove " + user);
+					return 0;
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -53,6 +56,22 @@ public class UserDATA extends UnicastRemoteObject implements UserDATAservice{
 
 	public int update(UserPO user) throws RemoteException {
 		// TODO Auto-generated method stub
+		for(int i = 0; i < list.size(); i++){
+			if(list.get(i).userName.equals(user.userName)){
+				list.get(i).password = user.password;
+				list.get(i).workID = user.workID;
+				list.get(i).power = user.power;
+				try {
+					FileOpr.writeFile(FileName.userFile, list);
+					System.out.println("update " + user.userName + " password:" + user.password + " workID:" + user.workID + "power" + user.power);
+					return 0;
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					return 30003;
+				}
+			}
+		}
 		return 0;
 	}
 
@@ -63,12 +82,21 @@ public class UserDATA extends UnicastRemoteObject implements UserDATAservice{
 
 	public UserPO find(String user) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		for(int i = 0; i < list.size(); i++){
+			if(list.get(i).equals(user)){
+				return list.get(i);
+			}
+		}
+		return new UserPO(false);
 	}
 
 	public ArrayList<String> getUserList() throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<String> workIDlist = new ArrayList<String>();
+		for(int i = 0; i < list.size(); i++){
+			workIDlist.add(list.get(i).workID);
+		}
+		return workIDlist;
 	}
 	
 	@SuppressWarnings("unchecked")

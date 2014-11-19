@@ -99,6 +99,8 @@ import TeamWolf.TeamWolf.client.vo.TypeVO;
 			}
 			if(toDel!=null){
 				child.remove(toDel);
+				if(child.isEmpty())
+					C=0;
 				return true;
 			}
 			else
@@ -117,6 +119,8 @@ import TeamWolf.TeamWolf.client.vo.TypeVO;
 			}
 			if(toDel!=null){
 				leaveNode.remove(toDel);
+				if(leaveNode.isEmpty())  //检查是否已经空了
+					C=0;
 				return true;
 			}
 			else 

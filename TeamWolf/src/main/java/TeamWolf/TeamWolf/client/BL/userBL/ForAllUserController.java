@@ -14,7 +14,7 @@ public class ForAllUserController implements ForAllUserService{
 	Admin fau;
 	
 	public ForAllUserController(String IP){
-		fau = new Mock_Admin(IP);
+		fau = new Admin(IP);
 	}
 	
 	public ArrayList<String> getWorkNumberList() {
