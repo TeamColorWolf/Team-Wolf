@@ -29,7 +29,7 @@ public class Login_driver {
 	
 	public static void main(String[] args) throws IOException{
 		System.out.print("server IP : ");
-		LoginUserVO user = new LoginUserVO("admin", "admin");
+		LoginUserVO user = new LoginUserVO("WHJ", "131250194");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		new Login_driver(br.readLine(), user);
 	}

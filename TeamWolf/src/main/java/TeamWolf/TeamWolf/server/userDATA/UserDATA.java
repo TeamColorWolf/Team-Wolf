@@ -1,11 +1,6 @@
 package TeamWolf.TeamWolf.server.userDATA;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -13,6 +8,7 @@ import java.util.ArrayList;
 import TeamWolf.TeamWolf.client.DATAservice.userDATAservice.UserDATAservice;
 import TeamWolf.TeamWolf.client.po.UserPO;
 import TeamWolf.TeamWolf.server.FileName;
+import TeamWolf.TeamWolf.server.FileOpr;
 
 public class UserDATA extends UnicastRemoteObject implements UserDATAservice{
 	static ArrayList<UserPO> list = null;
@@ -27,49 +23,32 @@ public class UserDATA extends UnicastRemoteObject implements UserDATAservice{
 
 	public int addUser(UserPO user) throws RemoteException {
 		// TODO Auto-generated method stub
-		int error = -1;
 		list.add(user);
 		try {
-			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FileName.userFile, true));
-			oos.writeObject(user);
-			oos.close();
-			System.out.println("add " + user.userName);
-			error = 0;
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			error = 30001;
+			FileOpr.writeFile(FileName.userFile, list);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			error = 30001;
+			e.printStackTrace();
+			return 30001;
 		}
-		return error;
+		return 0;
 	}
 
 	public int removeUser(String user) throws RemoteException {
 		// TODO Auto-generated method stub
-		int error = -1;
-		ArrayList<UserPO> list = this.checkPO();
 		for(int i = 0; i < list.size(); i++){
 			if(list.get(i).userName.equals(user)){
 				list.remove(i);
 				try {
-					ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FileName.userFile));
-					for(int j = 0; j < list.size(); j++){
-						oos.writeObject(list.get(j));
-					}
-					oos.close();
-					System.out.println("remove " + user);
-					error = 0;
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					error = 30002;
+					FileOpr.writeFile(FileName.userFile, list);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
-					error = 30002;
+					e.printStackTrace();
+					return 30002;
 				}
 			}
 		}
-		return error;
+		return 0;
 	}
 
 	public int update(UserPO user) throws RemoteException {
@@ -92,24 +71,16 @@ public class UserDATA extends UnicastRemoteObject implements UserDATAservice{
 		return null;
 	}
 	
+	@SuppressWarnings("unchecked")
 	private void getList(){
 		try {
-			list = new ArrayList<UserPO>();
-			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FileName.userFile));
-			UserPO po;
-			while((po = (UserPO)ois.readObject())!=null){
-				list.add(po);
-			}
-			ois.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			
+			list = (ArrayList<UserPO>) FileOpr.readFile(FileName.userFile);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
