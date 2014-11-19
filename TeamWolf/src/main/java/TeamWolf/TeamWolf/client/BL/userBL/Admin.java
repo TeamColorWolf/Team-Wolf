@@ -26,10 +26,18 @@ public class Admin {
 	
 	public Admin(String IP){
 		URL = "rmi://" + IP + "/userDATAservice";
+		this.getpoList();
 	}
 	
 	public int addUser(UserVO user) {
 		// TODO Auto-generated method stub
+		if(poList == null)
+			return 30000;//网络连接故障
+		for(int i = 0; i < poList.size(); i++){
+			if(poList.get(i).userName.equals(user.userName)){
+				return 30001;//该客户名已存在
+			}
+		}
 		UserPO po = new UserPO(user);
 		try {
 			adm = (UserDATAservice)Naming.lookup(URL);
@@ -44,7 +52,7 @@ public class Admin {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		return 30001;
+		return 30000;
 	}
 
 	public int removeUser(String user) {
@@ -72,7 +80,7 @@ public class Admin {
 
 	public ArrayList<UserVO> checkUserVO() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.getAllUserList();
 	}
 	
 	public String creatWorkNumber(String power){
@@ -80,23 +88,49 @@ public class Admin {
 	}
 	
 	public ArrayList<String> getWorkNumberList() {
-		try {
-			adm = (UserDATAservice) Naming.lookup(URL);
-			return adm.getUserList();
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NotBoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(strList == null){
+			try {
+				adm = (UserDATAservice) Naming.lookup(URL);
+				strList = adm.getUserList();
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NotBoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return strList;
 	}
 	
 	public ArrayList<UserVO> getAllUserList(){
+		if(voList == null){
+			try {
+				adm = (UserDATAservice) Naming.lookup(URL);
+				poList = adm.checkPO();
+				voList = new ArrayList<UserVO>();
+				for(int i = 0; i < poList.size(); i++){
+					UserVO vo = new UserVO(poList.get(i));
+					voList.add(vo);
+				}
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NotBoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return voList;
+	}
+	
+	private void getpoList(){
 		try {
 			adm = (UserDATAservice) Naming.lookup(URL);
 			poList = adm.checkPO();
@@ -110,7 +144,6 @@ public class Admin {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return voList;
 	}
 
 }
