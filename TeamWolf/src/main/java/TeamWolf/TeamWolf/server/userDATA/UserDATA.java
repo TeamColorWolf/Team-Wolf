@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.DATAservice.userDATAservice.UserDATAservice;
 import TeamWolf.TeamWolf.client.po.UserPO;
+import TeamWolf.TeamWolf.server.FileName;
 
 public class UserDATA extends UnicastRemoteObject implements UserDATAservice{
 	static ArrayList<UserPO> list = null;
