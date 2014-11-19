@@ -106,7 +106,7 @@ public class StockData extends UnicastRemoteObject implements StockDataWrite,Sto
 		return stockList;
 	}
 
-	public void initial(){
+	private void initial(){
 		try {
 			stockList=(ArrayList<TypePO>)FileOpr.readFile(FileName.stockFile);
 		} catch (ClassNotFoundException e) {

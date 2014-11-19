@@ -23,9 +23,23 @@ public class GoodsPO implements Serializable {
 	double latestExprice;
 	int WarningLine;
 	
+	
 	public GoodsPO(GoodsVO g) {
 		// TODO Auto-generated constructor stub
 	}
+	public GoodsPO(TypePO parent, String number, String name, String model, int amount, double imprice, double exprice, double latestImprice, double latestExprice){
+		
+		this.parent=parent;
+		this.number=number;
+		this.name=name;
+		this.model=model;
+		this.amount=amount;
+		this.imprice=imprice;
+		this.exprice=exprice;
+		this.latestImprice=latestImprice;
+		this.latestExprice=latestExprice;
+	}
+	
 	public TypePO getParent() {
 		return parent;
 	}
