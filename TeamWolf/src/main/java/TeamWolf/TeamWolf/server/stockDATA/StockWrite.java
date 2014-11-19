@@ -27,7 +27,7 @@ public class StockWrite extends UnicastRemoteObject implements StockDataWrite {
 	public int addType(TypePO t) throws RemoteException {
 		// TODO Auto-generated method stub
 		try {
-			OWriter=new ObjectOutputStream(new FileOutputStream(path+t.getName()+".tw"));
+			OWriter=new ObjectOutputStream(new FileOutputStream(path+t.getNumber()+".tw"));
 			OWriter.writeObject(t);
 			OWriter.close();
 		} catch (FileNotFoundException e) {
