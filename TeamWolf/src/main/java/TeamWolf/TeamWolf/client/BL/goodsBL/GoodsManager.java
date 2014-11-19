@@ -6,8 +6,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.BLservice.stockBLservice.GoodManService;
-import TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice.GoodsDataRead;
-import TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice.GoodsDataWrite;
+import TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice.GoodsDataService;
 import TeamWolf.TeamWolf.client.po.GoodsPO;
 import TeamWolf.TeamWolf.client.vo.*;
 
@@ -20,14 +19,13 @@ public class GoodsManager {
 
 	String URL1,URL2,URL3;
 	GoodsBLAssistant assistant;
-	GoodsDataRead reader;
-	GoodsDataWrite writer;
+	GoodsDataService dataService;
 	
 	public GoodsManager(String IP){
 		assistant=new GoodsBLAssistant(URL1);
 		try {
-			reader=(GoodsDataRead)Naming.lookup(URL1);
-			writer=(GoodsDataWrite)Naming.lookup(URL2);
+			
+			dataService=(GoodsDataService)Naming.lookup(URL2);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -47,7 +45,7 @@ public class GoodsManager {
 		
 			GoodsPO toAdd=new GoodsPO(g);
 			try {
-				writer.addGood(toAdd);
+				dataService.addGood(toAdd);
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -65,7 +63,7 @@ public class GoodsManager {
 		if(result==0){
 			
 			try {
-				writer.delGood(g.getNumber());
+				dataService.delGood(g.getNumber());
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -84,10 +82,10 @@ public class GoodsManager {
 		if(assistant.canUpd(g)){
 			
 			try {
-				GoodsPO toUpd=reader.finGood(g.getNumber());
+				GoodsPO toUpd=dataService.finGood(g.getNumber());
 				/*对PO进行修改*/
 				
-				writer.updGood(toUpd);
+				dataService.updGood(toUpd);
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -105,7 +103,7 @@ public class GoodsManager {
 		if(assistant.canFin(g)){
 			
 			try {
-				GoodsPO found=reader.finGood(g.getNumber());
+				GoodsPO found=dataService.finGood(g.getNumber());
 				//对g进行修改
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
@@ -121,7 +119,7 @@ public class GoodsManager {
 		GoodsListVO gl=new GoodsListVO();
 		
 		try {
-			ArrayList<GoodsPO> agl=reader.getGoodList();
+			ArrayList<GoodsPO> agl=dataService.getGoodList();
 			for(GoodsPO g:agl){
 				//逐个加入 gl中
 			}

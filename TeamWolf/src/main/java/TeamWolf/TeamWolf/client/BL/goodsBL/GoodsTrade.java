@@ -8,8 +8,7 @@ import java.util.ArrayList;
 import TeamWolf.TeamWolf.client.BLservice.stockBLservice.GoodTService;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.ApproveDATAservice;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.StockApplicationDATAservice;
-import TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice.GoodsDataRead;
-import TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice.GoodsDataWrite;
+import TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice.GoodsDataService;
 import TeamWolf.TeamWolf.client.po.SaleListPO;
 import TeamWolf.TeamWolf.client.vo.*;
 import TeamWolf.TeamWolf.client.po.*;
@@ -24,8 +23,7 @@ public class GoodsTrade {
 	String URL1,URL2,URL3,URL4;
 	GoodsBLAssistant assistant;
 	GoodsMonitor gmo;
-	GoodsDataRead reader;
-	GoodsDataWrite writer;
+	GoodsDataService dataService;
 	ApproveDATAservice appRead;
 	StockApplicationDATAservice appSub;
 	
@@ -33,8 +31,7 @@ public class GoodsTrade {
 		assistant=new GoodsBLAssistant(URL1);
 		gmo=new GoodsMonitor(IP);
 		try {
-			reader=(GoodsDataRead)Naming.lookup(URL1);
-			writer=(GoodsDataWrite)Naming.lookup(URL2);
+			dataService=(GoodsDataService)Naming.lookup(URL2);
 			appRead=(ApproveDATAservice)Naming.lookup(URL3);
 			appSub=(StockApplicationDATAservice)Naming.lookup(URL4);
 		} catch (MalformedURLException e) {

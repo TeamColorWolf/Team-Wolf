@@ -1,9 +1,10 @@
 package TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.po.*;
-public interface GoodsDataWrite extends Remote {
+public interface GoodsDataService extends Remote {
 
 	public int addGood(GoodsPO g) throws RemoteException;
 	
@@ -16,5 +17,7 @@ public interface GoodsDataWrite extends Remote {
 	 */
 	public int updGood(GoodsPO g) throws RemoteException;
 	
+	public GoodsPO finGood(String number) throws RemoteException;
+	public ArrayList<GoodsPO> getGoodList() throws RemoteException;
 	
 }

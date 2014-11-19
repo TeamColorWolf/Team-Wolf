@@ -11,9 +11,7 @@ import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
-
-import TeamWolf.TeamWolf.client.DATAservice.stockDATAservice.StockDataRead;
-import TeamWolf.TeamWolf.client.DATAservice.stockDATAservice.StockDataWrite;
+import TeamWolf.TeamWolf.client.DATAservice.stockDATAservice.StockDataService;
 import TeamWolf.TeamWolf.client.po.TypePO;
 import TeamWolf.TeamWolf.server.FileName;
 import TeamWolf.TeamWolf.server.FileOpr;
@@ -23,12 +21,12 @@ import TeamWolf.TeamWolf.server.FileOpr;
  * @author XYJ
  *
  */
-public class StockData extends UnicastRemoteObject implements StockDataWrite,StockDataRead {
+public class StockData extends UnicastRemoteObject implements StockDataService {
 
 	ArrayList<TypePO> stockList;
 	String path="库存商品//";
 	
-	protected StockData() throws RemoteException {
+	public StockData() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 		this.initial();

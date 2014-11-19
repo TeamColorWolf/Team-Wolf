@@ -2,13 +2,12 @@ package TeamWolf.TeamWolf.client.BL.stockBL;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
-import TeamWolf.TeamWolf.client.DATAservice.stockDATAservice.StockDataRead;
+import TeamWolf.TeamWolf.client.DATAservice.stockDATAservice.StockDataService;
 import TeamWolf.TeamWolf.client.vo.TypeVO;
 
 public class StockBLAssistant_stub {
 
-    StockDataRead reader;
+    StockDataService reader;
 	
 	StockBLAssistant_stub(String IP){
 		//实例化reader

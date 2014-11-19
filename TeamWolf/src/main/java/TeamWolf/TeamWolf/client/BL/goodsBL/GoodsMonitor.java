@@ -5,8 +5,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import TeamWolf.TeamWolf.client.BLservice.stockBLservice.GoodMonService;
-import TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice.GoodsDataRead;
-import TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice.GoodsDataWrite;
+import TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice.GoodsDataService;
 import TeamWolf.TeamWolf.client.po.GoodsPO;
 import TeamWolf.TeamWolf.client.vo.*;
 
@@ -19,14 +18,13 @@ public class GoodsMonitor{
 
 	String URL1,URL2;
 	GoodsBLAssistant assistant;
-	GoodsDataRead reader;
-	GoodsDataWrite writer;
+	GoodsDataService dataService;
 	
 	public GoodsMonitor(String IP){
 		assistant=new GoodsBLAssistant(URL1);
 		try {
-			reader=(GoodsDataRead)Naming.lookup(URL1);
-			writer=(GoodsDataWrite)Naming.lookup(URL2);
+			
+			dataService=(GoodsDataService)Naming.lookup(URL2);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -45,9 +43,9 @@ public class GoodsMonitor{
 			//为该商品设置警戒线
 			GoodsPO toSet;
 			try {
-				toSet = reader.finGood(goodsWL.getNumber());
+				toSet = dataService.finGood(goodsWL.getNumber());
 				toSet.setWarningLine(goodsWL.gerWarningLine());
-				writer.updGood(toSet);
+				dataService.updGood(toSet);
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -65,7 +63,7 @@ public class GoodsMonitor{
 	public int MonitoringWL(GoodsVO g){
 		//检查某个商品数量是否低于警戒线
 		try {
-			if(reader.finGood(g.getNumber()).checkWL()){
+			if(dataService.finGood(g.getNumber()).checkWL()){
 				//库存数量低于警戒线
 				/*...进行警报处理...*/
 				
@@ -113,10 +111,10 @@ public class GoodsMonitor{
     public int increaseGoods(GoodsVO g){
 		
     	try {
-			GoodsPO toIncrease=reader.finGood(g.getNumber());
+			GoodsPO toIncrease=dataService.finGood(g.getNumber());
 			int amount=toIncrease.getAmount()+g.getAmount();
 			toIncrease.setAmount(amount);
-			writer.updGood(toIncrease);
+			dataService.updGood(toIncrease);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -127,10 +125,10 @@ public class GoodsMonitor{
 	public int decreaseGoods(GoodsVO g){
 		
 		try {
-			GoodsPO toDecrease=reader.finGood(g.getNumber());
+			GoodsPO toDecrease=dataService.finGood(g.getNumber());
 			int amount=toDecrease.getAmount()-g.getAmount();
 			toDecrease.setAmount(amount);
-			writer.updGood(toDecrease);
+			dataService.updGood(toDecrease);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

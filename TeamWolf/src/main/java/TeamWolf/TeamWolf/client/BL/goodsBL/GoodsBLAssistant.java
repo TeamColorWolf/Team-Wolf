@@ -5,8 +5,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
-import TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice.GoodsDataRead;
+import TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice.GoodsDataService;
 import TeamWolf.TeamWolf.client.vo.*;
 
 /**
@@ -17,12 +16,12 @@ import TeamWolf.TeamWolf.client.vo.*;
 
 public class GoodsBLAssistant {
 
-	GoodsDataRead reader;
+	GoodsDataService reader;
 	
 	public GoodsBLAssistant(String URL) {
 		// TODO Auto-generated constructor stub
 		try {
-			reader=(GoodsDataRead)Naming.lookup(URL);
+			reader=(GoodsDataService)Naming.lookup(URL);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

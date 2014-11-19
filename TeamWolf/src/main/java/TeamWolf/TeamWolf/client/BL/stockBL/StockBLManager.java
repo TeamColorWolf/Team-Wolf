@@ -5,9 +5,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-
-import TeamWolf.TeamWolf.client.DATAservice.stockDATAservice.StockDataRead;
-import TeamWolf.TeamWolf.client.DATAservice.stockDATAservice.StockDataWrite;
+import TeamWolf.TeamWolf.client.DATAservice.stockDATAservice.StockDataService;
 import TeamWolf.TeamWolf.client.po.TypePO;
 import TeamWolf.TeamWolf.client.vo.*;
 
@@ -20,14 +18,12 @@ public class StockBLManager{
 
 	String URL1,URL2;
 	StockBLAssistant assistant;
-	StockDataWrite writer;
-	StockDataRead reader;
+	StockDataService dataService;
 	
 	public StockBLManager(String IP){
 		assistant=new StockBLAssistant(URL1);
 		try {
-			writer=(StockDataWrite)Naming.lookup(URL2);
-			reader=(StockDataRead)Naming.lookup(URL1);
+			dataService=(StockDataService)Naming.lookup(URL2);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -49,11 +45,11 @@ public class StockBLManager{
 			
 			/* ...完善PO持久化对象内容...*/
 			try {
-				   TypePO parent=reader.finType(t.getParent());
+				   TypePO parent=dataService.finType(t.getParent());
 				   toAdd.setParent(parent);
 				   if(parent.addChildType(toAdd)){
-				          writer.updType(parent);  //若被添加分类有父母分类则还需修改其父母分类的属性
-				          writer.addType(toAdd);
+					   dataService.updType(parent);  //若被添加分类有父母分类则还需修改其父母分类的属性
+					   dataService.addType(toAdd);
 				   }
 				   else{
 					  //返回不可在有商品的分类下添加子分类
@@ -78,17 +74,17 @@ public class StockBLManager{
         if(result==0){ //输入合法，进行删除工作
         	
         	try {
-				TypePO toDel=reader.finType(t.getName());
+				TypePO toDel=dataService.finType(t.getName());
 				if(toDel.getC()!=0){
 					//返回其下有子女，不可删除
 				}
 				else{ //执行删除操作，需要对父母类进行修改
 					if(t.getParent()!=null){
-					     TypePO parent=reader.finType(t.getParent());
+					     TypePO parent=dataService.finType(t.getParent());
 					     parent.delChildType(t.getName());
-					     writer.updType(parent); //更新其父母类
+					     dataService.updType(parent); //更新其父母类
 					}
-					writer.delType(t.getName());
+					dataService.delType(t.getName());
 				}
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
@@ -109,10 +105,10 @@ public class StockBLManager{
 			
 			
 			try {
-				 TypePO toUpd = reader.finType(t.getNumber());				
+				 TypePO toUpd = dataService.finType(t.getNumber());				
 				 /*...完善修改PO...*/
 				 
-				 writer.updType(toUpd);
+				 dataService.updType(toUpd);
 			} catch (RemoteException e1) {
 				// TODO Auto-generated catch block
 				//返回通信错误
@@ -132,7 +128,7 @@ public class StockBLManager{
 		
 		TypeListVO tl=new TypeListVO();
 		try {
-			ArrayList<TypePO> atl=reader.shoTypeList();
+			ArrayList<TypePO> atl=dataService.shoTypeList();
 			for(TypePO t:atl){
 				tl.addType(new TypeVO(t));
 			}

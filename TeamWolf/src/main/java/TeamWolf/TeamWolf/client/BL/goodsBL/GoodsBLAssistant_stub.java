@@ -3,12 +3,13 @@ package TeamWolf.TeamWolf.client.BL.goodsBL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice.GoodsDataRead;
+
+import TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice.GoodsDataService;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
 
 public class GoodsBLAssistant_stub {
 
-GoodsDataRead reader;
+ GoodsDataService reader;
 	
 
 	public GoodsBLAssistant_stub(String iP) {

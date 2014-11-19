@@ -6,17 +6,16 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
-import TeamWolf.TeamWolf.client.DATAservice.stockDATAservice.StockDataRead;
+import TeamWolf.TeamWolf.client.DATAservice.stockDATAservice.StockDataService;
 import TeamWolf.TeamWolf.client.vo.TypeVO;
 
 public class StockBLAssistant {
 	
-    StockDataRead reader;
+    StockDataService reader;
 	
 	public StockBLAssistant(String URL){
 		try {
-			reader=(StockDataRead)Naming.lookup(URL);
+			reader=(StockDataService)Naming.lookup(URL);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

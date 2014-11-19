@@ -4,18 +4,16 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
-
-import TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice.GoodsDataRead;
-import TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice.GoodsDataWrite;
+import TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice.GoodsDataService;
 import TeamWolf.TeamWolf.client.po.GoodsPO;
 import TeamWolf.TeamWolf.server.FileName;
 import TeamWolf.TeamWolf.server.FileOpr;
 
-public class GoodsData extends UnicastRemoteObject implements GoodsDataWrite,GoodsDataRead {
+public class GoodsData extends UnicastRemoteObject implements GoodsDataService {
 
 	ArrayList<GoodsPO> goodsList;
 	
-	protected GoodsData() throws RemoteException {
+	public GoodsData() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 		this.initial();
