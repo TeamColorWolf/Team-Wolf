@@ -10,6 +10,8 @@ import TeamWolf.TeamWolf.client.po.GoodsPO;
 
 public class GoodsData extends UnicastRemoteObject implements GoodsDataWrite,GoodsDataRead {
 
+	ArrayList<GoodsPO> goodsList;
+	
 	protected GoodsData() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
