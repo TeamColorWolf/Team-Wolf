@@ -1,8 +1,10 @@
 package TeamWolf.TeamWolf.client.po;
 
+import java.io.Serializable;
+
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 
-public class CustomerPO {
+public class CustomerPO implements Serializable{
 	
 	/**
 	 * 编号

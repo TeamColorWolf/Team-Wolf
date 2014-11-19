@@ -2,6 +2,7 @@ package TeamWolf.TeamWolf.client.po;
 
 import java.util.ArrayList;
 
+import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
 
 /**
@@ -38,7 +39,29 @@ public class ImportRejectListPO extends ApplicationPO{
 	double total;
 
 	
-
+	public ImportRejectListPO(String number, CustomerPO customer, String storage, String operator,
+			ArrayList<GoodsPO> goodsList, String remark) {
+		// TODO Auto-generated constructor stub
+		this.number = number;
+		this.customer = customer;
+		this.storage = storage;
+		this.operator = operator;
+		this.GoodsList = goodsList;
+		this.remark = remark;
+		this.total = calTotal(goodsList);
+	}
+	
+	
+	/**
+	 * 计算总额
+	 * @param goodsList
+	 * @return
+	 */
+	private double calTotal(ArrayList<GoodsPO> goodsList){
+		//TODO 计算总额的详细设计
+		return 0;
+	}
+	
 	
 
 	public CustomerPO getCustomer() {

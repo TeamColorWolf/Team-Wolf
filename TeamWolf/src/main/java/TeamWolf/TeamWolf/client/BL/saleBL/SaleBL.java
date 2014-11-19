@@ -3,13 +3,13 @@ package TeamWolf.TeamWolf.client.BL.saleBL;
 import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerController;
-import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOpr;
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.ImportListVO;
 import TeamWolf.TeamWolf.client.vo.ImportRejectListVO;
 import TeamWolf.TeamWolf.client.vo.SaleListVO;
 import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
+import TeamWolf.TeamWolf.server.saleDATA.SaleDATA;
 
 /**
  * 
@@ -21,11 +21,14 @@ public class SaleBL{
 	private SaleBLAssistant saleAssist;
 	private String presentDate;
 	private CustomerController cusCtrl;
+	private SaleDATA sd;
+	private String URL;
 	
 	public SaleBL(String IP){
 		saleAssist = new SaleBLAssistant();
 		presentDate = saleAssist.getDate();
 		cusCtrl = new CustomerController(IP);
+		URL = "rmi://" + IP + "/userDATAservice";
 	}
 		
 	public int addCustomer(CustomerVO cvo) {

@@ -1,6 +1,5 @@
 package TeamWolf.TeamWolf.server.userDATA;
 
-import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;

@@ -41,46 +41,46 @@ public class SaleBLTest {
 	
 	@Test
 	public void testAddCustomer() {
-		assertEquals(7, saleDiv.addCustomer(cvo));
+		assertEquals(0, saleDiv.addCustomer(cvo));
 	}
 
 	@Test
 	public void testDelCustomer() {
-		assertEquals(7, saleDiv.delCustomer("0001", "习近平", cvo));
+		assertEquals(0, saleDiv.delCustomer("0001", "习近平", cvo));
 	}
 
 	@Test
 	public void testModCustomer() {
-		assertEquals(7, saleDiv.modCustomer(cvo));
+		assertEquals(0, saleDiv.modCustomer(cvo));
 	}
 
 	@Test
 	public void testCreateImport() {
-		assertEquals(7, saleDiv.createImport(ivo));
+		assertEquals(0, saleDiv.createImport(ivo));
 	}
 
 	@Test
 	public void testCreateImportReject() {
-		assertEquals(7, saleDiv.createImportReject(irvo));
+		assertEquals(0, saleDiv.createImportReject(irvo));
 	}
 
 	@Test
 	public void testCreateSale() {
-		assertEquals(7, saleDiv.createSale(svo));
+		assertEquals(0, saleDiv.createSale(svo));
 	}
 
 	@Test
 	public void testCreateSaleReject() {
-		assertEquals(7, saleDiv.createSaleReject(srvo));
+		assertEquals(0, saleDiv.createSaleReject(srvo));
 	}
 
 
 	@Test
 	public void testSubmit() {
-		assertEquals(7, saleDiv.submit(ivo));
-		assertEquals(7, saleDiv.submit(irvo));
-		assertEquals(7, saleDiv.submit(svo));
-		assertEquals(7, saleDiv.submit(srvo));
+		assertEquals(0, saleDiv.submit(ivo));
+		assertEquals(0, saleDiv.submit(irvo));
+		assertEquals(0, saleDiv.submit(svo));
+		assertEquals(0, saleDiv.submit(srvo));
 	}
 
 }
