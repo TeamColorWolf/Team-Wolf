@@ -1,6 +1,5 @@
 package TeamWolf.TeamWolf.server.userDATA;
 
-import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -13,7 +12,6 @@ import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.DATAservice.userDATAservice.UserDATAservice;
 import TeamWolf.TeamWolf.client.po.UserPO;
-import TeamWolf.TeamWolf.server.FileName;
 
 public class UserDATA extends UnicastRemoteObject implements UserDATAservice{
 	static ArrayList<UserPO> list = null;

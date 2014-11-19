@@ -2,6 +2,7 @@ package TeamWolf.TeamWolf.client.po;
 
 import java.util.ArrayList;
 
+import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
 
 
@@ -21,6 +22,7 @@ public class SaleRejectListPO extends ApplicationPO{
 	 * 业务员
 	 */
 	String salesman;
+
 	
 	/**
 	 * 仓库
@@ -58,6 +60,45 @@ public class SaleRejectListPO extends ApplicationPO{
 	String remark;
 
 	
+	public SaleRejectListPO(String number, CustomerPO customer, String salesman, String operator,
+			String storage, ArrayList<GoodsPO> goodsList, String discount, String coupon, String remark) {
+		this.number = number;
+		this.customer = customer;
+		this.salesman = salesman;
+		this.operator = operator;
+		this.storage = storage;
+		this.GoodsList = goodsList;
+		this.total = calTotal(goodsList);
+		this.totalAfterDiscount = calTotalAfterDiscount(total);
+		this.remark = remark;
+		
+		try {
+			this.discount = Double.parseDouble(discount);
+			this.coupon = Double.parseDouble(coupon);
+		} catch (Exception e) {
+			// TODO: 数据类型转换异常
+		}
+	}
+	
+	/**
+	 * 计算折让前总额
+	 * @param goodsList
+	 * @return
+	 */
+	private double calTotal(ArrayList<GoodsPO> goodsList){
+		//TODO: 计算折让前总额的方法
+		return 0;
+	}
+	
+	/**
+	 * 计算折让后总额
+	 * @param total
+	 * @return
+	 */
+	private double calTotalAfterDiscount(double total){
+		//TODO 计算折让后总额的方法
+		return 0;
+	}
 
 	public CustomerPO getCustomer() {
 		return customer;
@@ -75,6 +116,7 @@ public class SaleRejectListPO extends ApplicationPO{
 		this.salesman = salesman;
 	}
 
+	
 	public String getStorage() {
 		return storage;
 	}
