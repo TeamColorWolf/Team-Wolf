@@ -1,8 +1,15 @@
 package TeamWolf.TeamWolf.client.BL.saleBL;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerController;
+import TeamWolf.TeamWolf.client.DATAservice.saleDATAservice.SaleDATAservice;
+import TeamWolf.TeamWolf.client.DATAservice.userDATAservice.UserDATAservice;
+import TeamWolf.TeamWolf.client.po.ImportListPO;
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.ImportListVO;
@@ -21,7 +28,7 @@ public class SaleBL{
 	private SaleBLAssistant saleAssist;
 	private String presentDate;
 	private CustomerController cusCtrl;
-	private SaleDATA sd;
+	private SaleDATAservice sdservice;
 	private String URL;
 	
 	public SaleBL(String IP){
@@ -52,6 +59,20 @@ public class SaleBL{
 
 	public int createImport(ImportListVO ivo) {
 		int judge = saleAssist.canAddImport(ivo);
+		ImportListPO ipo = new ImportListPO(ivo);
+		try {
+			sdservice = (SaleDATAservice) Naming.lookup(URL);
+			return sdservice.addImport(ipo);
+		} catch (MalformedURLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (NotBoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		return 0;
 	}
 

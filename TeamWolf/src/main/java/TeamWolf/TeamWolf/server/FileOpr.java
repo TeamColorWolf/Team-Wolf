@@ -8,10 +8,10 @@ import java.io.ObjectOutputStream;
 
 public class FileOpr {
 	
-	static FileInputStream ifile;
-	static FileOutputStream ofile;
-	static ObjectInputStream ois;
-	static ObjectOutputStream oos;
+	private static FileInputStream ifile;
+	private static FileOutputStream ofile;
+	private static ObjectInputStream ois;
+	private static ObjectOutputStream oos;
 	
 	public static Object readFile(String fileName) throws IOException, ClassNotFoundException{
 		ifile = new FileInputStream(fileName);

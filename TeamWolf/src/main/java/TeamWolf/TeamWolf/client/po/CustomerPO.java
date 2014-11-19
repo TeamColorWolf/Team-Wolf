@@ -98,19 +98,19 @@ public class CustomerPO implements Serializable{
 		this.businessMan = businessMan;
 	}
 	
-	public CustomerPO(CustomerVO vo){
-		this.num = vo.getNum();
-		this.kind = vo.getKind();
-		this.level = vo.getLevel();
-		this.name = vo.getName();
-		this.tel = vo.getTel();
-		this.address = vo.getAddress();
-		this.zipCode = vo.getZipCode();
-		this.email = vo.getEmail();
-		this.topLimit = vo.getTopLimit();
-		this.receive = vo.getReceive();
-		this.pay = vo.getPay();
-		this.businessMan = vo.getBusinessMan();
+	public CustomerPO(CustomerVO cvo){
+		this.num = cvo.getNum();
+		this.kind = cvo.getKind();
+		this.level = cvo.getLevel();
+		this.name = cvo.getName();
+		this.tel = cvo.getTel();
+		this.address = cvo.getAddress();
+		this.zipCode = cvo.getZipCode();
+		this.email = cvo.getEmail();
+		this.topLimit = cvo.getTopLimit();
+		this.receive = cvo.getReceive();
+		this.pay = cvo.getPay();
+		this.businessMan = cvo.getBusinessMan();
 	}
 
 	

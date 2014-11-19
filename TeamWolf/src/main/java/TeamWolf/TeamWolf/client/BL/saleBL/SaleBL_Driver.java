@@ -29,12 +29,16 @@ public class SaleBL_Driver{
 //		SaleBL_Driver sbd = new SaleBL_Driver(ip);
 //		sbd.driver();
 
-		System.out.print("server IP : ");
+		System.out.print("Please input server IP : ");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		SaleBL_Driver sd = new SaleBL_Driver(br.readLine());
-		CustomerVO cvo = new CustomerVO("0001", "进货商", "5", "煤球王", "19999999999",
-				"阿根廷", "100000", "meiqiu@software.nju.edu.cn", "999999", "0", "0", "WKS");
-		sd.addCustomer(cvo);
+
+		// TODO:Test
+		CustomerVO cvo = new CustomerVO("0001", "进货商", "5", "习近平", "19999999999",
+				"北京", "100000", "xjp@software.nju.edu.cn", "999999", "0", "0", "WKS");
+		ArrayList<GoodsVO> goodsList = new ArrayList<GoodsVO>();
+		ImportListVO ivo = new ImportListVO("Import", cvo, "1", "WKS", goodsList, "nothing");
+		sd.createImport(ivo);
 
 	}
 	

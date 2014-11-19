@@ -10,12 +10,12 @@ import TeamWolf.TeamWolf.client.po.SaleRejectListPO;
 
 public interface SaleDATAservice extends Remote{
 
-	public void addImport (ImportListPO ipo) throws RemoteException;
+	public int addImport (ImportListPO ipo) throws RemoteException;
 	
-	public void addImportReject (ImportRejectListPO irpo) throws RemoteException;
+	public int addImportReject (ImportRejectListPO irpo) throws RemoteException;
 	
-	public void addSale (SaleListPO spo) throws RemoteException;
+	public int addSale (SaleListPO spo) throws RemoteException;
 	
-	public void addSaleReject (SaleRejectListPO srpo) throws RemoteException;
+	public int addSaleReject (SaleRejectListPO srpo) throws RemoteException;
 	
 }

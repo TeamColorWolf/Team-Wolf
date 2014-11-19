@@ -2,8 +2,8 @@ package TeamWolf.TeamWolf.client.po;
 
 import java.util.ArrayList;
 
-import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
+import TeamWolf.TeamWolf.client.vo.ImportListVO;
 
 /**
  * 
@@ -25,7 +25,7 @@ public class ImportListPO extends ApplicationPO{
 	/**
 	 * 入库商品列表
 	 */
-	ArrayList<GoodsPO> GoodsList;
+	ArrayList<GoodsPO> goodsList = new ArrayList<GoodsPO>();
 	
 	/**
 	 * 单据备注
@@ -38,28 +38,23 @@ public class ImportListPO extends ApplicationPO{
 	double total;
 
 	
-	public ImportListPO(String number, CustomerPO customer, String storage, String operator,
-			ArrayList<GoodsPO> goodsList, String remark) {
+	public ImportListPO(ImportListVO ivo) {
 		// TODO Auto-generated constructor stub
-		this.number = number;
-		this.customer = customer;
-		this.storage = storage;
-		this.operator = operator;
-		this.GoodsList = goodsList;
-		this.remark = remark;
-		this.total = calTotal(goodsList);
+		this.number = ivo.number;
+		this.customer = new CustomerPO(ivo.getCustomer());
+		this.storage = ivo.getStorage();
+		this.operator = ivo.operator;
+		this.remark = ivo.getRemark();
+		this.total = ivo.getTotal();
+		toGoodsPO(ivo.getGoodsList());
 	}
 	
-	/**
-	 * 计算总额
-	 * @param goodsList
-	 * @return
-	 */
-	private double calTotal(ArrayList<GoodsPO> goodsList){
-		//TODO 计算总额的详细设计
-		return 0;
+	private void toGoodsPO(ArrayList<GoodsVO> gvo) {
+		for (int i = 0; i < gvo.size(); i++) {
+			GoodsPO gpo = new GoodsPO(gvo.get(i));
+			goodsList.add(gpo);
+		}
 	}
-	
 
 	public CustomerPO getCustomer() {
 		return customer;
@@ -78,11 +73,7 @@ public class ImportListPO extends ApplicationPO{
 	}
 
 	public ArrayList<GoodsPO> getGoodsList() {
-		return GoodsList;
-	}
-
-	public void setGoodsList(ArrayList<GoodsPO> goodsList) {
-		GoodsList = goodsList;
+		return goodsList;
 	}
 
 	public String getRemark() {
