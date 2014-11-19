@@ -120,7 +120,18 @@ public class StockData extends UnicastRemoteObject implements StockDataWrite,Sto
 	
 	public static void main(String[] args){
 		
-		
+	  /*	try {
+			StockData sd=new StockData();
+			TypePO add=new TypePO(null, "1112", "虚拟商品");
+			sd.addType(add);
+			TypePO fin1=sd.finType("实物商品");
+			System.out.println(fin1.getNumber()+" "+fin1.getName());
+			TypePO fin2=sd.finType("虚拟商品");
+			System.out.println(fin2.getNumber()+" "+fin2.getName());
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
         
 	}
 
