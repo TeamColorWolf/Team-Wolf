@@ -1,6 +1,8 @@
 package TeamWolf.TeamWolf.client.vo;
 
 import java.util.ArrayList;
+
+import TeamWolf.TeamWolf.client.po.ForPricePromotionPO;
 /**
  * 
  * @author WHJ
@@ -18,5 +20,10 @@ public class ForPricePromotionVO extends PromotionVO{
 		list = setGiftList(gNameList, sendNum);
 	}
 	
-	
+	public ForPricePromotionVO(ForPricePromotionPO po){
+		super(po.type, po.begin, po.end);
+		cashCoupon = po.cashCoupon;
+		workCondition = po.workCondition;
+		list = setGiftList(po.list);
+	}
 }

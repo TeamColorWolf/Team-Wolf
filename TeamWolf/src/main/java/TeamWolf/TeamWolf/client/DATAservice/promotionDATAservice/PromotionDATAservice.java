@@ -12,11 +12,11 @@ import TeamWolf.TeamWolf.client.po.PromotionPO;
  */
 public interface PromotionDATAservice extends Remote{
 
-	public void addPromotion (PromotionPO po) throws RemoteException;
+	public int addPromotion (PromotionPO po) throws RemoteException;
 	
-	public void delPromotion (PromotionPO po) throws RemoteException;
+	public int delPromotion (PromotionPO po) throws RemoteException;
 	
-	public PromotionPO findPromotion (PromotionPO po) throws RemoteException;
+	public PromotionPO findPromotion (String number) throws RemoteException;
 	
 	public ArrayList<PromotionPO> show () throws RemoteException;
 	

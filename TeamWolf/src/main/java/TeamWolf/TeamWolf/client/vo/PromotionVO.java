@@ -1,6 +1,10 @@
 package TeamWolf.TeamWolf.client.vo;
 
 import java.util.ArrayList;
+
+import TeamWolf.TeamWolf.client.po.GiftForPromotionPO;
+import TeamWolf.TeamWolf.client.po.PromotionTypePO;
+import TeamWolf.TeamWolf.client.po.TimePO;
 /**
  * 
  * @author WHJ
@@ -20,6 +24,20 @@ public class PromotionVO {
 		if(timeCompare(begin, end) > 0){
 			error = 20001;//结束时间长于开始时间
 		}
+	}
+	
+	public PromotionVO(PromotionTypePO t, TimePO Begin, TimePO End){
+		if(t == PromotionTypePO.forPrice){
+			type = PromotionTypeVO.forPrice;
+		}
+		else if(t == PromotionTypePO.forVIP){
+			type = PromotionTypeVO.forVIP;
+		}
+		else if(t == PromotionTypePO.specialGoods){
+			type = PromotionTypeVO.specialGoods;
+		}
+		begin = new TimeVO(Begin);
+		end = new TimeVO(End);
 	}
 	
 	private int timeCompare(TimeVO time1, TimeVO time2){
@@ -60,6 +78,17 @@ public class PromotionVO {
 				GiftForPromotionVO vo = new GiftForPromotionVO(gNameList.get(i), send);
 				list.add(vo);
 			}
+		return list;
+	}
+	
+	protected ArrayList<GiftForPromotionVO> setGiftList(ArrayList<GiftForPromotionPO> pList){
+		ArrayList<GiftForPromotionVO> list = new ArrayList<GiftForPromotionVO>();
+		if(pList != null){
+			for(int i = 0; i < pList.size(); i++){
+				GiftForPromotionVO vo = new GiftForPromotionVO(pList.get(i).GoodsName, pList.get(i).sendNumber);
+				list.add(vo);
+			}
+		}
 		return list;
 	}
 	

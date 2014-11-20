@@ -7,11 +7,13 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 
 import TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice.GoodsDataService;
+import TeamWolf.TeamWolf.client.DATAservice.promotionDATAservice.PromotionDATAservice;
 import TeamWolf.TeamWolf.client.DATAservice.saleDATAservice.SaleDATAservice;
 import TeamWolf.TeamWolf.client.DATAservice.stockDATAservice.StockDataService;
 import TeamWolf.TeamWolf.client.DATAservice.userDATAservice.LoginDATAservice;
 import TeamWolf.TeamWolf.client.DATAservice.userDATAservice.UserDATAservice;
 import TeamWolf.TeamWolf.server.goodsDATA.GoodsData;
+import TeamWolf.TeamWolf.server.promotionDATA.PromotionDATA;
 import TeamWolf.TeamWolf.server.saleDATA.SaleDATA;
 import TeamWolf.TeamWolf.server.stockDATA.StockData;
 import TeamWolf.TeamWolf.server.userDATA.LoginDATA;
@@ -24,6 +26,7 @@ public class DATAfactory {
 	SaleDATAservice sale;
 	StockDataService stock;
 	GoodsDataService goods;
+	PromotionDATAservice promotion;
 	
 	public DATAfactory(){
 		try {
@@ -32,6 +35,7 @@ public class DATAfactory {
 			sale = new SaleDATA();
 			stock=new StockData();
 			goods=new GoodsData();
+			promotion = new PromotionDATA();
 		} catch (RemoteException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -42,6 +46,7 @@ public class DATAfactory {
 			Naming.rebind("saleDATAservice", sale);
 			Naming.rebind("stockDATAservice", stock);
 			Naming.rebind("goodsDATAservice", goods);
+			Naming.rebind("promotionDATAservice", promotion);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

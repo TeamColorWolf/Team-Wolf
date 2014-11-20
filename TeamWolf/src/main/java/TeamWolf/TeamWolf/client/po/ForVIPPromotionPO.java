@@ -10,10 +10,10 @@ import TeamWolf.TeamWolf.client.vo.ForVIPPromotionVO;
  *
  */
 public class ForVIPPromotionPO extends PromotionPO implements Serializable{
-	int VIPrank;
-	ArrayList<GiftForPromotionPO> list;
-	double discount;
-	double cashCoupon;
+	public int VIPrank;
+	public ArrayList<GiftForPromotionPO> list;
+	public double discount;
+	public double cashCoupon;
 	
 	public ForVIPPromotionPO(ForVIPPromotionVO vo){
 		super(PromotionTypePO.forVIP, vo);

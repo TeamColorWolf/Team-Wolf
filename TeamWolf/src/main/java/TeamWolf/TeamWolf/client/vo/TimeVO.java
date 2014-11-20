@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import TeamWolf.TeamWolf.client.po.TimePO;
+
 /**
  * 
  * @author WHJ
@@ -22,6 +24,12 @@ public class TimeVO {
 			e.printStackTrace();
 			error = 20000;
 		}
+	}
+	
+	public TimeVO(TimePO po){
+		date = po.date;
+		sdf.format(date);
+		error = 0;
 	}
 	
 	public int timeCompare(TimeVO t){

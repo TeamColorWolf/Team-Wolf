@@ -9,9 +9,9 @@ import TeamWolf.TeamWolf.client.vo.ForPricePromotionVO;
  *
  */
 public class ForPricePromotionPO extends PromotionPO{
-	double workCondition;
-	ArrayList<GiftForPromotionPO> list;
-	double cashCoupon;
+	public double workCondition;
+	public ArrayList<GiftForPromotionPO> list;
+	public double cashCoupon;
 	
 	public ForPricePromotionPO(ForPricePromotionVO vo){
 		super(PromotionTypePO.forPrice, vo);

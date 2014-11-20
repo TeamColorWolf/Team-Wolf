@@ -16,7 +16,7 @@ public class PromotionBLController implements PromotionBLservice{
 
 	PromotionBL bl;
 	public PromotionBLController(String IP){
-		bl = new PromotionBL_stub(IP);
+		bl = new PromotionBL(IP);
 	}
 	
 	public int setForVIP(ForVIPPromotionVO vo) {
