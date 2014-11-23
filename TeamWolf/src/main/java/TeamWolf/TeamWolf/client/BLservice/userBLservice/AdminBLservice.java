@@ -14,4 +14,5 @@ public interface AdminBLservice {
 	public int update(UserVO user);
 	public ArrayList<UserVO> checkUserVO();
 	public UserVO findUser(String user);
+	public String creatWorkID(UserType type);
 }
