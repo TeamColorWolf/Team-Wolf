@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.DATAservice.promotionDATAservice.PromotionDATAservice;
 import TeamWolf.TeamWolf.client.po.PromotionPO;
 import TeamWolf.TeamWolf.server.FileName;
@@ -33,13 +34,13 @@ public class PromotionDATA extends UnicastRemoteObject implements PromotionDATAs
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return 30000;
+		return ErrorTW.webError;
 	}
 
-	public int delPromotion(PromotionPO po) throws RemoteException {
+	public int delPromotion(String number) throws RemoteException {
 		// TODO Auto-generated method stub
 		for(int i = 0; i < list.size(); i++){
-			if(po.number.equals(list.get(i).number)){
+			if(number.equals(list.get(i).number)){
 				list.remove(i);
 				try {
 					FileOpr.writeFile(FileName.promotionFile, list);
@@ -48,12 +49,29 @@ public class PromotionDATA extends UnicastRemoteObject implements PromotionDATAs
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				return 30000;
+				return ErrorTW.webError;
 			}
 		}
-		return 40002;//未找到
+		return ErrorTW.notFound;//未找到
 	}
-
+	
+	public int updPromotion(PromotionPO po) throws RemoteException {
+		// TODO Auto-generated method stub
+		for(int i = 0; i < list.size(); i++){
+			if(list.get(i).number.equals(po.number)){
+				list.get(i).begin = po.begin;
+				list.get(i).end = po.end;
+				try {
+					FileOpr.writeFile(FileName.promotionFile, list);
+					return 0;
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return ErrorTW.notFound;
+	}
 	public PromotionPO findPromotion(String number) throws RemoteException {
 		// TODO Auto-generated method stub
 		for(int i = 0; i < list.size(); i++){

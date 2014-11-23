@@ -21,6 +21,7 @@ public class AdminFrame extends JFrame{
 	JTabbedPane tab;
 	
 	AddUserPanel addUser;
+	CheckUserPanel checkUser;
 	
 	public static final int width = 960;
 	public static final int height = 540;
@@ -35,8 +36,10 @@ public class AdminFrame extends JFrame{
 		
 		tab = new JTabbedPane(JTabbedPane.TOP);
 		addUser = new AddUserPanel();
+		checkUser = new CheckUserPanel();
 		
 		tab.add(addUser, "添加新用户");
+		tab.add(checkUser, "查看用户");
 		
 		panel.add(tab);
 		tab.setSize(width, height);
@@ -59,7 +62,7 @@ public class AdminFrame extends JFrame{
 	
 	public static void main(String[] args){
 		UserVO user = new UserVO("WHJ", "*****", "admin_01", UserType.系统管理员);
-		AdminFrame f = new AdminFrame(user, "172");
+		AdminFrame f = new AdminFrame(user, "127.0.0.1");
 	}
 	
 }

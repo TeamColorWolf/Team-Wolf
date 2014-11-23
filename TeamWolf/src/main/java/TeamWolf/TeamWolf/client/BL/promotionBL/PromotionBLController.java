@@ -19,29 +19,18 @@ public class PromotionBLController implements PromotionBLservice{
 		bl = new PromotionBL(IP);
 	}
 	
-	public int setForVIP(ForVIPPromotionVO vo) {
-		// TODO Auto-generated method stub
-		return bl.setForVIP(vo);
+	public int addPromotion(PromotionVO vo){
+		return bl.addPromotion(vo);
 	}
 
-	public int setForSpecialGoods(SpecialGoodsPromotionVO vo) {
+	public PromotionVO getPromotion(String number) {
 		// TODO Auto-generated method stub
-		return bl.setForSpecialGoods(vo);
+		return bl.getPromotion(number);
 	}
 
-	public int setForPrice(ForPricePromotionVO vo) {
+	public int delet(String number) {
 		// TODO Auto-generated method stub
-		return bl.setForPrice(vo);
-	}
-
-	public PromotionVO getPromotion(String describe) {
-		// TODO Auto-generated method stub
-		return bl.getPromotion(describe);
-	}
-
-	public int delet(PromotionVO vo) {
-		// TODO Auto-generated method stub
-		return bl.delet(vo);
+		return bl.delet(number);
 	}
 	
 	public int update(PromotionVO vo) {

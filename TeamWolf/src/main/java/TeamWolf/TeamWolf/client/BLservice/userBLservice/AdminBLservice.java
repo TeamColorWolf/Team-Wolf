@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.vo.*;
 /**
- * Author WHJ
+ * 
+ * @author WHJ
+ *
  */
 public interface AdminBLservice {
 	public int addUser(UserVO user);

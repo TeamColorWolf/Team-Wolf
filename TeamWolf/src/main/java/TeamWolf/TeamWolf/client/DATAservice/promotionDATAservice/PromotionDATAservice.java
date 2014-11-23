@@ -14,7 +14,9 @@ public interface PromotionDATAservice extends Remote{
 
 	public int addPromotion (PromotionPO po) throws RemoteException;
 	
-	public int delPromotion (PromotionPO po) throws RemoteException;
+	public int delPromotion (String number) throws RemoteException;
+	
+	public int updPromotion (PromotionPO po) throws RemoteException;
 	
 	public PromotionPO findPromotion (String number) throws RemoteException;
 	

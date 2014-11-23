@@ -26,7 +26,7 @@ public class Promotion_driver {
 		fVvo.number = "FV_1";
 		ForPricePromotionVO fPvo = new ForPricePromotionVO(gift, send, "1000", "100000", time, time);
 		SpecialGoodsPromotionVO spvo = new SpecialGoodsPromotionVO(gift, send, "0", time, time);
-		System.out.println(bc.setForVIP(fVvo));
+		System.out.println(bc.addPromotion(fVvo));
 		ForVIPPromotionVO fff = (ForVIPPromotionVO)bc.getPromotion(fVvo.number);
 		System.out.println(fff.number + " " + fff.discount + " " + fff.cashCoupon + " " + fff.begin.date + " " + fff.end.date);
 		
