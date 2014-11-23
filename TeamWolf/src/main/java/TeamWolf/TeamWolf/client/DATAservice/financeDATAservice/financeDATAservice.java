@@ -10,7 +10,6 @@ import TeamWolf.TeamWolf.client.vo.financeVO;
 
 public interface financeDATAservice extends Remote{
 	public financePO find(financePO po)throws RemoteException;
-	public int insert(ArrayList<financePO> po)throws RemoteException;
 	public int add(financePO po)throws RemoteException;
 	public int delete(financePO po)throws RemoteException;
 	public int update(financePO po,financePO newpo)throws RemoteException;
