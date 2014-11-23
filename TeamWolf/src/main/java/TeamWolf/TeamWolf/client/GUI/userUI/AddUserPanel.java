@@ -26,7 +26,7 @@ import TeamWolf.TeamWolf.client.vo.UserVO;
  *
  */
 public class AddUserPanel extends JPanel{
-	AdminBLservice service = new AdminController(AdminFrame.IP);
+	AdminBLservice service = AdminFrame.service;
 	
 	public JTextField userID;
 	public JPasswordField UserPas;

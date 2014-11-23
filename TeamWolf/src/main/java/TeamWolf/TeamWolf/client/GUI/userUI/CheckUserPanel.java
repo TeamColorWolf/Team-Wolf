@@ -20,7 +20,7 @@ import TeamWolf.TeamWolf.client.vo.UserType;
 import TeamWolf.TeamWolf.client.vo.UserVO;
 
 public class CheckUserPanel extends JPanel{
-	AdminBLservice service = new AdminController(AdminFrame.IP);
+	AdminBLservice service = AdminFrame.service;
 	
 	static String[] columnName = {"用户名", "工作编号", "用户类型"};
 	DefaultTableModel tableModel = new DefaultTableModel();

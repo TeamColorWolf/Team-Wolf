@@ -11,7 +11,7 @@ import TeamWolf.TeamWolf.client.vo.UserVO;
  *
  */
 public class AdminController implements AdminBLservice{
-	static Admin administrator;
+	static Admin administrator = null;
 	
 	public AdminController(String IP){
 		if(administrator == null)

@@ -4,6 +4,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+import TeamWolf.TeamWolf.client.BL.userBL.AdminController;
+import TeamWolf.TeamWolf.client.BLservice.userBLservice.AdminBLservice;
 import TeamWolf.TeamWolf.client.vo.UserType;
 import TeamWolf.TeamWolf.client.vo.UserVO;
 /**
@@ -12,7 +14,7 @@ import TeamWolf.TeamWolf.client.vo.UserVO;
  *
  */
 public class AdminFrame extends JFrame{
-	
+	public static AdminBLservice service;
 	public static UserVO user;
 	public static String IP;
 	
@@ -20,8 +22,8 @@ public class AdminFrame extends JFrame{
 	
 	JTabbedPane tab;
 	
-	public AddUserPanel addUser = new AddUserPanel();
-	public CheckUserPanel checkUser = new CheckUserPanel();
+	public AddUserPanel addUser;
+	public CheckUserPanel checkUser;
 	
 	public static final int width = 960;
 	public static final int height = 540;
@@ -31,8 +33,11 @@ public class AdminFrame extends JFrame{
 		super("操作员编号：" + user.workID + "         服务器IP：" + IP);
 		this.user = user;
 		this.IP = IP;
+		service = new AdminController(IP);
 		tab = new JTabbedPane(JTabbedPane.TOP);
 		
+		addUser = new AddUserPanel();
+		checkUser = new CheckUserPanel();
 		tab.add(addUser, "添加新用户");
 		tab.add(checkUser, "查看用户");
 		
