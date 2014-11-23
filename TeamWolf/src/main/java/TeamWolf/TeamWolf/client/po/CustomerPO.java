@@ -9,7 +9,7 @@ public class CustomerPO implements Serializable{
 	/**
 	 * 编号
 	 */
-	private int num;
+	private String num;
 	
 	/**
 	 * 客户种类（进货商、销售商）
@@ -81,7 +81,7 @@ public class CustomerPO implements Serializable{
 	 * @param pay 应付
 	 * @param businessMan 默认业务员
 	 */
-	public CustomerPO(int num, String kind, int level, String name, String tel, 
+	public CustomerPO(String num, String kind, int level, String name, String tel, 
 			String address, String zipCode, String email, int topLimit,
 			double receive, double pay, String businessMan) {
 		this.num = num;
@@ -115,7 +115,7 @@ public class CustomerPO implements Serializable{
 
 	
 	
-	public int getNum() {
+	public String getNum() {
 		return num;
 	}
 

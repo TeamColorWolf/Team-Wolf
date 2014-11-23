@@ -34,8 +34,8 @@ public class CustomerController {
      public int update(CustomerVO vo, CustomerVO newVO){
     	 return co.Customerupdate(vo, newVO);
      }
-     public ArrayList<CustomerVO> checkCustomerVO(String keyWord, int number){
-    	 return co.checkCustomerVO(keyWord, number);
+     public ArrayList<CustomerVO> checkCustomerVO(String keyWord, String num){
+    	 return co.checkCustomerVO(keyWord, num);
      }
      
     public int ImportListInfoMod(ImportListVO vo) {

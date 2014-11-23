@@ -68,6 +68,8 @@ public class ImportRejectListVO extends ApplicationVO{
 	public void setCustomer(CustomerVO customer) {
 		this.customer = customer;
 	}
+	
+	
 
 
 	public String getStorage() {

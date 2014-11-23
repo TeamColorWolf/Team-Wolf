@@ -38,8 +38,8 @@ public class Customer_driver {
      public int update(CustomerVO vo,CustomerVO newvo){
     	 return controller.update(vo, newvo);
      }
-     public ArrayList<CustomerVO> checkCustomerVO(String keyWord, int number){
-    	 return controller.checkCustomerVO(keyWord, number);
+     public ArrayList<CustomerVO> checkCustomerVO(String keyWord, String num){
+    	 return controller.checkCustomerVO(keyWord, num);
      }
      
     public int ImportListInfoMod(ImportListVO vo) {

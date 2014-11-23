@@ -53,7 +53,7 @@ public class SaleBL_Stub {
 		return judge;
 	}
 
-	public ArrayList<CustomerVO> findCustomer(String keyWord, int number) {
+	public ArrayList<CustomerVO> findCustomer(String keyWord, String string) {
 		System.out.println("show the list");
 		return null;
 	}

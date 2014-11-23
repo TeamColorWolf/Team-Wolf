@@ -8,6 +8,6 @@ public interface CustomerOprBLservice {
 	public int Customerupdate(CustomerVO vo,CustomerVO newVO);
 	public int Customeradd(CustomerVO vo);
 	public int Customerdel(CustomerVO cvo);
-	public ArrayList<CustomerVO> checkCustomerVO(String keyWord, int number);
+	public ArrayList<CustomerVO> checkCustomerVO(String keyWord, String number);
 	public CustomerVO findCustomer(String name);
 }

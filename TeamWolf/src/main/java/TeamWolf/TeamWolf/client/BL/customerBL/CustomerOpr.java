@@ -79,7 +79,7 @@ public class CustomerOpr implements CustomerOprBLservice{
 		return voList;
 	}
 
-	public ArrayList<CustomerVO> checkCustomerVO(String keyWord, int number) {
+	public ArrayList<CustomerVO> checkCustomerVO(String keyWord, String num) {
 		// TODO 自动生成的方法存根
 		return null;
 	}

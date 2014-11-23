@@ -54,12 +54,21 @@ public class SaleBL{
 		return cusCtrl.update(cvo, newCVO);
 	}
 
-	public ArrayList<CustomerVO> findCustomer(String keyWord, int number) {		
+	public ArrayList<CustomerVO> findCustomer(String keyWord, String number) {		
 		return cusCtrl.checkCustomerVO(keyWord, number);
 	}
 
+	
+	 /**
+	  * 创建进货单
+	  * @param ivo
+	  * @return
+	  */
 	public int createImport(ImportListVO ivo) {
 		int judge = saleAssist.canAddImport(ivo);
+		if(judge != 0){
+			return judge;
+		}
 		ImportListPO ipo = new ImportListPO(ivo);
 		try {
 			sdservice = (SaleDATAservice) Naming.lookup(URL);

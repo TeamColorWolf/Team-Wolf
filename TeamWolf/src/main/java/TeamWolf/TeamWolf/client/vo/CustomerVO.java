@@ -10,7 +10,7 @@ package TeamWolf.TeamWolf.client.vo;
  */
 public class CustomerVO {
 	
-	private int num;
+	private String num;
 	private String kind;
 	private int level;
 	private String name;
@@ -26,7 +26,8 @@ public class CustomerVO {
 	
 	public CustomerVO(String num, String kind, String level, String name, String tel, 
 			String address, String zipCode, String email, String topLimit,
-			String receive, String pay, String businessMan) {		
+			String receive, String pay, String businessMan) {	
+		this.num = num;
 		this.kind = kind;
 		this.name = name;
 		this.tel = tel;
@@ -36,7 +37,6 @@ public class CustomerVO {
 		this.businessMan = businessMan;
 		
 		try {
-			this.num = Integer.parseInt(num);
 			this.level =Integer.parseInt(level);
 			this.topLimit = Integer.parseInt(topLimit);
 			this.receive = Double.parseDouble(receive);
@@ -48,7 +48,7 @@ public class CustomerVO {
 
 	
 	
-	public int getNum() {
+	public String getNum() {
 		return num;
 	}
 

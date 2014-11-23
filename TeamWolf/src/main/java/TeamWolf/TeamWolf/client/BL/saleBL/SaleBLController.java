@@ -36,7 +36,7 @@ public class SaleBLController implements SaleBLservice{
 		return sale.modCustomer(cvo);
 	}
 
-	public ArrayList<CustomerVO> findCustomer(String keyWord, int number) {
+	public ArrayList<CustomerVO> findCustomer(String keyWord, String number) {
 		return sale.findCustomer(keyWord, number);
 	}
 
