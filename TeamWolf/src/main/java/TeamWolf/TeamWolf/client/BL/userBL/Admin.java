@@ -6,6 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.DATAservice.logDATAservice.UserLogDATAservice;
 import TeamWolf.TeamWolf.client.DATAservice.userDATAservice.UserDATAservice;
 import TeamWolf.TeamWolf.client.po.UserPO;
@@ -33,7 +34,7 @@ public class Admin {
 	public int addUser(UserVO user) {
 		// TODO Auto-generated method stub
 		if(poList == null)
-			return 30000;//网络连接故障
+			return ErrorTW.webError;//网络连接故障
 		for(int i = 0; i < poList.size(); i++){
 			if(poList.get(i).userName.equals(user.userName)){
 				return 30001;//该客户名已存在
@@ -42,7 +43,11 @@ public class Admin {
 		UserPO po = new UserPO(user);
 		try {
 			adm = (UserDATAservice)Naming.lookup(URL);
-			return adm.addUser(po);
+			int success = adm.addUser(po);
+			if(success == 0){
+				poList.add(po);
+				voList.add(new UserVO(po));
+			}
 		} catch (MalformedURLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -53,19 +58,24 @@ public class Admin {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		return 30000;
+		return ErrorTW.webError;
 	}
 
 	public int removeUser(String user) {
 		// TODO Auto-generated method stub
 		if(poList == null){
-			return 30000;
+			return ErrorTW.webError;
 		}
 		for(int i = 0; i < poList.size(); i++){
 			if(poList.get(i).userName.equals(user)){
 				try {
 					adm = (UserDATAservice)Naming.lookup(URL);
-					return adm.removeUser(user);
+					int success = adm.removeUser(user);
+					if(success == 0){
+						getpoList();
+						voList = null;
+						voList = this.getAllUserList();
+					}
 				} catch (MalformedURLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -76,10 +86,10 @@ public class Admin {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				return 30000;
+				return ErrorTW.webError;
 			}
 		}
-		return 30002;//该客户名不存在
+		return ErrorTW.notFound;//该客户名不存在
 	}
 
 	public int update(UserVO user) {
@@ -91,7 +101,13 @@ public class Admin {
 			if(poList.get(i).userName.equals(user.userName)){
 				try {
 					adm = (UserDATAservice)Naming.lookup(URL);
-					return adm.update(new UserPO(user));
+					int success = adm.update(new UserPO(user));
+					if(success == 0){
+						this.getpoList();
+						voList = null;
+						voList = this.getAllUserList();
+					}
+					return success;
 				} catch (MalformedURLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -102,10 +118,10 @@ public class Admin {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				return 30000;
+				return ErrorTW.webError;
 			}
 		}
-		return 30002;//该客户名不存在
+		return ErrorTW.notFound;//该客户名不存在
 	}
 
 	public ArrayList<UserVO> checkUserVO() {
@@ -114,15 +130,17 @@ public class Admin {
 	}
 	
 	public String creatWorkNumber(UserType type){
-		int num = 1;
 		String power = new String();
+		int max = 0;
 		if(poList != null){
 			for(int i = 0; i < poList.size(); i++){
 				if(poList.get(i).power == type){
-					num++;
+					int t = Integer.parseInt(poList.get(i).workID.split("_")[1]);
+					if(t > max) max = t;
 				}
 			}
 		}
+		max++;
 		if(type == UserType.库存管理员){
 			power = "stock";
 		}
@@ -135,10 +153,13 @@ public class Admin {
 		else if(type == UserType.财务人员){
 			power = "finance";
 		}
-		else if(type == UserType.销售人员 || type == UserType.销售经理){
+		else if(type == UserType.销售人员){
 			power = "sale";
 		}
-		return power + "_" + num;
+		else if(type == UserType.销售经理){
+			power = "saleManager";
+		}
+		return power + "_" + max;
 	}
 	
 	public UserVO findUser(String user){

@@ -1,6 +1,8 @@
 package TeamWolf.TeamWolf.client.GUI.userUI;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -13,13 +15,18 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
+import TeamWolf.TeamWolf.client.BL.userBL.AdminController;
+import TeamWolf.TeamWolf.client.BLservice.userBLservice.AdminBLservice;
+import TeamWolf.TeamWolf.client.GUI.mainUI.RoleSelecter;
 import TeamWolf.TeamWolf.client.vo.UserType;
+import TeamWolf.TeamWolf.client.vo.UserVO;
 /**
  * 
  * @author WHJ
  *
  */
 public class AddUserPanel extends JPanel{
+	AdminBLservice service = new AdminController(AdminFrame.IP);
 	
 	public JTextField userID;
 	public JPasswordField UserPas;
@@ -109,10 +116,9 @@ public class AddUserPanel extends JPanel{
 		this.setSize(AdminFrame.width, AdminFrame.height-AdminFrame.sho);
 		this.setVisible(true);
 		this.setLocation(0, AdminFrame.sho);
-	}
-	
-	public void addUserMouseListener(MouseListener addUserListener){
-		add.addMouseListener(addUserListener);
+		
+		add.addMouseListener(new AddUserListener());
+		power.addActionListener(new PowerListener());
 	}
 	
 	private void cancelMouseListener(){
@@ -138,5 +144,44 @@ public class AddUserPanel extends JPanel{
 				// TODO Auto-generated method stub
 			}
 		});
+	}
+	
+	class AddUserListener implements MouseListener{
+
+		public void mouseClicked(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			String name = userID.getText();
+			String password = UserPas.getText();
+			String ensure = ensurePas.getText();
+			if(password.equals(ensure)){
+				String work = workID.getText();
+				UserType POWER = (UserType)power.getSelectedItem();
+				UserVO vo = new UserVO(name, password, work, POWER);
+				int success = service.addUser(vo);
+				if(success == 0){
+					AdminFrame adf = (AdminFrame)RoleSelecter.frame;
+					adf.checkUser.flashPanel();
+					System.out.println("add successfully");
+				}
+			}
+		}
+
+		public void mouseEntered(MouseEvent arg0) {}
+		public void mouseExited(MouseEvent arg0) {}
+		public void mousePressed(MouseEvent arg0) {}
+		public void mouseReleased(MouseEvent arg0) {}
+		
+	}
+	
+	class PowerListener implements ActionListener{
+
+		public void actionPerformed(ActionEvent arg0) {
+			// TODO Auto-generated method stub
+			UserType POWER = (UserType)power.getSelectedItem();
+			String work = service.creatWorkID(POWER);
+			workID.setText(work);
+			workID.updateUI();
+		}
+		
 	}
 }

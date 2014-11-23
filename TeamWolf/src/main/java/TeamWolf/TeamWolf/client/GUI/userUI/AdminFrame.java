@@ -16,12 +16,12 @@ public class AdminFrame extends JFrame{
 	public static UserVO user;
 	public static String IP;
 	
-	JPanel panel;
+	JPanel panel = new JPanel();
 	
 	JTabbedPane tab;
 	
-	AddUserPanel addUser;
-	CheckUserPanel checkUser;
+	public AddUserPanel addUser = new AddUserPanel();
+	public CheckUserPanel checkUser = new CheckUserPanel();
 	
 	public static final int width = 960;
 	public static final int height = 540;
@@ -31,12 +31,7 @@ public class AdminFrame extends JFrame{
 		super("操作员编号：" + user.workID + "         服务器IP：" + IP);
 		this.user = user;
 		this.IP = IP;
-		
-		panel = new JPanel();
-		
 		tab = new JTabbedPane(JTabbedPane.TOP);
-		addUser = new AddUserPanel();
-		checkUser = new CheckUserPanel();
 		
 		tab.add(addUser, "添加新用户");
 		tab.add(checkUser, "查看用户");
@@ -61,7 +56,7 @@ public class AdminFrame extends JFrame{
 	}
 	
 	public static void main(String[] args){
-		UserVO user = new UserVO("WHJ", "*****", "admin_01", UserType.系统管理员);
+		UserVO user = new UserVO("WHJ", "*****", "admin_1", UserType.系统管理员);
 		AdminFrame f = new AdminFrame(user, "127.0.0.1");
 	}
 	

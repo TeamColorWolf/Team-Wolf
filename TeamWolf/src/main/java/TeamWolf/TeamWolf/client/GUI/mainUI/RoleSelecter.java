@@ -11,7 +11,7 @@ import TeamWolf.TeamWolf.client.vo.UserVO;
  *
  */
 public class RoleSelecter {
-	static JFrame frame;
+	public static JFrame frame;
 	public static int roleSelect(UserVO user, String IP){
 		if(user.power == UserType.库存管理员){
 			//打开库存管理员界面

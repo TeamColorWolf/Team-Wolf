@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 import TeamWolf.TeamWolf.client.BL.userBL.AdminController;
 import TeamWolf.TeamWolf.client.BLservice.userBLservice.AdminBLservice;
+import TeamWolf.TeamWolf.client.GUI.mainUI.RoleSelecter;
 import TeamWolf.TeamWolf.client.vo.UserType;
 import TeamWolf.TeamWolf.client.vo.UserVO;
 
@@ -28,7 +29,7 @@ public class CheckUserPanel extends JPanel{
 	JTable userTable;
 	JScrollPane scroll;
 	JButton update = new JButton("确认修改");
-	JButton delet = new JButton("确认删除");
+	JButton delete = new JButton("确认删除");
 	JButton cancel = new JButton("取消");
 	JButton check = new JButton("查找");
 	
@@ -64,7 +65,7 @@ public class CheckUserPanel extends JPanel{
 		scroll.setSize(400, 400);
 		
 		update.setSize(LW, BH);
-		delet.setSize(LW, BH);
+		delete.setSize(LW, BH);
 		cancel.setSize(LW, BH);
 		check.setSize(LW, BH);
 		
@@ -95,7 +96,7 @@ public class CheckUserPanel extends JPanel{
 		power.setLocation(left+LW, up+3*dis);
 		
 		update.setLocation(left, up+4*dis);
-		delet.setLocation(left+140, up+4*dis);
+		delete.setLocation(left+140, up+4*dis);
 		cancel.setLocation(left+280, up+4*dis);
 		
 		this.add(name);
@@ -108,7 +109,7 @@ public class CheckUserPanel extends JPanel{
 		this.add(power);
 		this.add(Power);
 		this.add(update);
-		this.add(delet);
+		this.add(delete);
 		this.add(cancel);
 		
 		this.add(scroll);
@@ -118,7 +119,11 @@ public class CheckUserPanel extends JPanel{
 		this.setVisible(true);
 		this.setLocation(0, AdminFrame.sho);
 		
+		workID.setEditable(false);
+		
 		check.addMouseListener(new CheckListener());
+		update.addMouseListener(new UpdateListener());
+		delete.addMouseListener(new DeleteListener());
 	}
 	
 	private void getContent(){
@@ -139,6 +144,12 @@ public class CheckUserPanel extends JPanel{
 		}
 	}
 	
+	public void flashPanel(){
+		this.getContent();
+		tableModel.setDataVector(content, columnName);
+		userTable.updateUI();
+	}
+	
 	class CheckListener implements MouseListener{
 
 		public void mouseClicked(MouseEvent arg0) {
@@ -155,6 +166,54 @@ public class CheckUserPanel extends JPanel{
 				workID.setText(vo.workID);
 				password.setText(vo.password);
 				SetComboBoxUser.setDefault(power, vo.power);
+			}
+		}
+		public void mouseEntered(MouseEvent arg0) {}
+		public void mouseExited(MouseEvent arg0) {}
+		public void mousePressed(MouseEvent arg0) {}
+		public void mouseReleased(MouseEvent arg0) {}
+	}
+	
+	class UpdateListener implements MouseListener{
+		public void mouseClicked(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			int success = -1;
+			String name = userName.getText();
+			String pass = password.getText();
+			String work = workID.getText();
+			UserType Power = (UserType)power.getSelectedItem();
+			if(name != null && pass != null && work != null){
+				UserVO vo = new UserVO(name, pass, work, Power);
+				success = service.update(vo);
+			}
+			if(success == 0){
+				System.out.println("update successfully.");
+				flashPanel();
+			}
+			else if(success == -1){
+				System.out.println("no enough information.");
+			}
+		}
+		public void mouseEntered(MouseEvent arg0) {}
+		public void mouseExited(MouseEvent arg0) {}
+		public void mousePressed(MouseEvent arg0) {}
+		public void mouseReleased(MouseEvent arg0) {}
+	}
+	
+	class DeleteListener implements MouseListener{
+		public void mouseClicked(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			int success = -1;
+			String name = userName.getText();
+			if(name != null){
+				success = service.removeUser(name);
+			}
+			if(success == 0){
+				System.out.println("delete successfully.");
+				flashPanel();
+			}
+			else if(success == -1){
+				System.out.println("no enough information.");
 			}
 		}
 		public void mouseEntered(MouseEvent arg0) {}
