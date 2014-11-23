@@ -35,5 +35,10 @@ public class AdminController implements AdminBLservice{
 		// TODO Auto-generated method stub
 		return administrator.checkUserVO();
 	}
+
+	public UserVO findUser(String user) {
+		// TODO Auto-generated method stub
+		return administrator.findUser(user);
+	}
 	
 }

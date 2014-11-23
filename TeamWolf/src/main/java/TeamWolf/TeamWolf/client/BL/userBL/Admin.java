@@ -141,6 +141,18 @@ public class Admin {
 		return power + "_" + num;
 	}
 	
+	public UserVO findUser(String user){
+		if(voList == null){
+			voList = this.getAllUserList();
+		}
+		for(int i = 0; i < voList.size(); i++){
+			if(voList.get(i).userName.equals(user)){
+				return voList.get(i);
+			}
+		}
+		return new UserVO(false);
+	}
+	
 	public ArrayList<String> getWorkNumberList() {
 		if(strList == null){
 			try {

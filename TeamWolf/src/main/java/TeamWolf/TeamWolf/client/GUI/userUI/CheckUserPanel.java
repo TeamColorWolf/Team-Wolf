@@ -1,5 +1,7 @@
 package TeamWolf.TeamWolf.client.GUI.userUI;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -70,12 +72,7 @@ public class CheckUserPanel extends JPanel{
 		password.setSize(TW, LH);
 		workID.setSize(TW, LH);
 		power.setSize(TW, LH);
-		power.addItem(UserType.库存管理员);
-		power.addItem(UserType.总经理);
-		power.addItem(UserType.系统管理员);
-		power.addItem(UserType.财务人员);
-		power.addItem(UserType.销售人员);
-		power.addItem(UserType.销售经理);
+		SetComboBoxUser.set(power);
 		
 		name.setSize(LW, LH);
 		pass.setSize(LW, LH);
@@ -120,6 +117,8 @@ public class CheckUserPanel extends JPanel{
 		this.setSize(AdminFrame.width, AdminFrame.height-AdminFrame.sho);
 		this.setVisible(true);
 		this.setLocation(0, AdminFrame.sho);
+		
+		check.addMouseListener(new CheckListener());
 	}
 	
 	private void getContent(){
@@ -138,5 +137,29 @@ public class CheckUserPanel extends JPanel{
 				content[i][2] = list.get(i).power;
 			}
 		}
+	}
+	
+	class CheckListener implements MouseListener{
+
+		public void mouseClicked(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			String name = userName.getText();
+			UserVO vo = service.findUser(name);
+			if(vo.error != 0){
+				userName.setText(null);
+				workID.setText(null);
+				password.setText(null);
+			}
+			else{
+				userName.setText(vo.userName);
+				workID.setText(vo.workID);
+				password.setText(vo.password);
+				SetComboBoxUser.setDefault(power, vo.power);
+			}
+		}
+		public void mouseEntered(MouseEvent arg0) {}
+		public void mouseExited(MouseEvent arg0) {}
+		public void mousePressed(MouseEvent arg0) {}
+		public void mouseReleased(MouseEvent arg0) {}
 	}
 }

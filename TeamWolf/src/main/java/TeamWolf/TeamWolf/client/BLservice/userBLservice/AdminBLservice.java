@@ -13,4 +13,5 @@ public interface AdminBLservice {
 	public int removeUser(String user);
 	public int update(UserVO user);
 	public ArrayList<UserVO> checkUserVO();
+	public UserVO findUser(String user);
 }

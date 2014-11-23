@@ -50,12 +50,7 @@ public class AddUserPanel extends JPanel{
 		UserPas = new JPasswordField();
 		ensurePas = new JPasswordField();
 		power = new JComboBox<UserType>();
-		power.addItem(UserType.库存管理员);
-		power.addItem(UserType.销售人员);
-		power.addItem(UserType.销售经理);
-		power.addItem(UserType.财务人员);
-		power.addItem(UserType.总经理);
-		power.addItem(UserType.系统管理员);
+		SetComboBoxUser.set(power);
 		workID = new JLabel();
 		workID.setBackground(Color.white);
 		workID.setForeground(Color.BLUE);
