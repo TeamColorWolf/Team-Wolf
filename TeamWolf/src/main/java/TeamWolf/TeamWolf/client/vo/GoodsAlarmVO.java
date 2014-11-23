@@ -1,4 +1,7 @@
 package TeamWolf.TeamWolf.client.vo;
+
+import TeamWolf.TeamWolf.client.po.GoodsAlarmPO;
+
 /**
  * 
  * @author XYJ
@@ -6,16 +9,15 @@ package TeamWolf.TeamWolf.client.vo;
  */
 public class GoodsAlarmVO {
 
-	String warningGood;
-	String warn;
+	
+	String Info;
 	
 	
-	public GoodsAlarmVO(String WG, String warn){
-		this.warningGood=WG;
-		this.warn=warn;
+	public GoodsAlarmVO(GoodsAlarmPO ga){
+		this.Info=ga.getWarningInfo();
 	}
 	
 	public String getWarningInfo(){
-		return warningGood+warn;
+		return Info;
 	}
 }

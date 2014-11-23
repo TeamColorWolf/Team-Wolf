@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+
 import TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice.GoodsDataService;
+import TeamWolf.TeamWolf.client.po.GoodsAlarmPO;
 import TeamWolf.TeamWolf.client.po.GoodsPO;
 import TeamWolf.TeamWolf.server.FileName;
 import TeamWolf.TeamWolf.server.FileOpr;
@@ -12,6 +14,8 @@ import TeamWolf.TeamWolf.server.FileOpr;
 public class GoodsData extends UnicastRemoteObject implements GoodsDataService {
 
 	ArrayList<GoodsPO> goodsList;
+	ArrayList<GoodsAlarmPO> alarmList;
+	
 	
 	public GoodsData() throws RemoteException {
 		super();
@@ -19,6 +23,9 @@ public class GoodsData extends UnicastRemoteObject implements GoodsDataService {
 		this.initial();
 		if(goodsList==null){
 			goodsList=new ArrayList<GoodsPO>();
+		}
+		if(alarmList==null){
+			alarmList=new ArrayList<GoodsAlarmPO>();
 		}
 	}
 
@@ -94,6 +101,7 @@ public class GoodsData extends UnicastRemoteObject implements GoodsDataService {
 	private void initial(){
 		try {
 			goodsList=(ArrayList<GoodsPO>)FileOpr.readFile(FileName.goodsFile);
+			alarmList=(ArrayList<GoodsAlarmPO>)FileOpr.readFile(FileName.alarmFile);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

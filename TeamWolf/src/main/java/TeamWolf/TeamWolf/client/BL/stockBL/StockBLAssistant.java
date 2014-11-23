@@ -35,27 +35,37 @@ public class StockBLAssistant {
 		String time=s.format(c.getTime());
 		return time;
 	}
-	public boolean canAdd(TypeVO t){
+	public boolean canAdd(TypeVO t) throws RemoteException{
 		//检查此商品分类是否能加入系统的逻辑判断
-		return true;
+		if(isExisted(t))
+		     return false;
+		else
+			 return true;
 	}
-	public int canDel(TypeVO t){
+	public boolean canDel(TypeVO t) throws RemoteException{
 		//检查是否能将此分类从系统中删除的逻辑判断
-		return 0;
+		if(isExisted(t))
+			return true;
+		else
+			return false;
 	}
-	public boolean canUpd(TypeVO t){
+	public boolean canUpd(TypeVO t) throws RemoteException{
 		//检查是否能修改系统中此商品分类的逻辑判断
-		return true;
+		if(isExisted(t))
+			return true;
+		else
+			return false;
 	}
 	
 	
 	//逻辑判断中需要用到的私有方法
-	private boolean isExisted(TypeVO t){
-		return false;
+	private boolean isExisted(TypeVO t) throws RemoteException{	
+		if(reader.finType(t.getNumber())==null)
+		    return false;
+		else
+			return true;
 	}
-	private boolean haveChild(TypeVO t){
-		return false;
-	}
+
 	
 	/*public static void main(String[] args){
 		StockBLAssistant s=new StockBLAssistant();

@@ -47,11 +47,11 @@ public class StockData extends UnicastRemoteObject implements StockDataService {
 		return 0;
 	}
 
-	public int delType(String name) throws RemoteException {
+	public int delType(String number) throws RemoteException {
 		// TODO Auto-generated method stub
 		TypePO toDel=null;
 		for(TypePO t:stockList){
-			if(t.getName().equals(name)){
+			if(t.getNumber().equals(number)){
 				toDel=t;
 				break;
 			}
@@ -73,7 +73,7 @@ public class StockData extends UnicastRemoteObject implements StockDataService {
 		// TODO Auto-generated method stub
 		TypePO toUpd=null;
 		for(TypePO tt:stockList){
-			if(tt.getName().equals(t.getName())){
+			if(tt.getNumber().equals(t.getNumber())){
 				toUpd=t;
 				break;
 			}
@@ -87,11 +87,11 @@ public class StockData extends UnicastRemoteObject implements StockDataService {
 		return 0;
 	}
 	
-	public TypePO finType(String name) throws RemoteException {
+	public TypePO finType(String number) throws RemoteException {
 		// TODO Auto-generated method stub
 		TypePO aimType=null;
 		for(TypePO t:stockList){
-			if(t.getName().equals(name)){
+			if(t.getNumber().equals(number)){
 				aimType=t;
 				break;
 			}

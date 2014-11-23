@@ -100,5 +100,9 @@ public class GoodsPO implements Serializable {
 	public boolean checkWL(){
 		return amount<=WarningLine;
 	}
+	public int getWL() {
+		// TODO Auto-generated method stub
+		return this.WarningLine;
+	}
 	
 }

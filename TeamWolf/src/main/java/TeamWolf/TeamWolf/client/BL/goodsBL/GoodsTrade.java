@@ -20,7 +20,7 @@ import TeamWolf.TeamWolf.client.po.*;
  */
 public class GoodsTrade {
 
-	String URL1,URL2,URL3,URL4;
+	String URL1,URL2,URL3;
 	GoodsBLAssistant assistant;
 	GoodsMonitor gmo;
 	GoodsDataService dataService;
@@ -31,9 +31,9 @@ public class GoodsTrade {
 		assistant=new GoodsBLAssistant(URL1);
 		gmo=new GoodsMonitor(IP);
 		try {
-			dataService=(GoodsDataService)Naming.lookup(URL2);
-			appRead=(ApproveDATAservice)Naming.lookup(URL3);
-			appSub=(StockApplicationDATAservice)Naming.lookup(URL4);
+			dataService=(GoodsDataService)Naming.lookup(URL1);
+			appRead=(ApproveDATAservice)Naming.lookup(URL2);
+			appSub=(StockApplicationDATAservice)Naming.lookup(URL3);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -51,8 +51,21 @@ public class GoodsTrade {
 		ArrayList<GoodsVO> goodsSL=sl.getGoodsList();
 		
 		//逐个修改库存数量，最近售价
-		
-		
+		try{
+		for(GoodsVO g: goodsSL){
+			GoodsPO toSale=dataService.finGood(g.getNumber());
+			if(toSale.getAmount()>=g.getAmount()){
+			    toSale.setAmount(toSale.getAmount()-g.getAmount());
+			    toSale.setLatestExprice(g.getExprice());
+			}
+			else{
+				//返回错误类型:库存不足
+			}
+		}
+		}catch(RemoteException e){
+			e.printStackTrace();
+			//返回通信错误
+		}
 		return 0;
 	}
 	public int goodsExportReject(SaleRejectListVO srl){
@@ -85,11 +98,16 @@ public class GoodsTrade {
 		
 		int r=0;
 		for(GoodsVO g:presentList){
+			try{
 			if((r=assistant.canSent(g))==0){
 				
 			}
 			else{ //返回具体错误类型：该商品无法赠送
 				return r; 
+			}
+			}catch(RemoteException e){
+				e.printStackTrace();
+				//返回通信错误
 			}
 		}
 		

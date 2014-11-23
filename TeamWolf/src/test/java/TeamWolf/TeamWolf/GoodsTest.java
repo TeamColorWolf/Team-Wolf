@@ -12,8 +12,8 @@ import TeamWolf.TeamWolf.client.vo.GoodsVO;
 public class GoodsTest {
 
 	static GoodsBL_driver gd;
-	GoodsVO g1=new GoodsVO(null, null, "我是假货", null, null, null, null, null, null, null);
-	GoodsVO g2=new GoodsVO(null, null, "飞利浦日光灯", null, null, null, null, null, null, null);
+	GoodsVO g1=new GoodsVO(null, null, null, "我是假货", null, null, null, null, null, null, null);
+	GoodsVO g2=new GoodsVO(null, null, null, "飞利浦日光灯", null, null, null, null, null, null, null);
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {

@@ -7,7 +7,9 @@ import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.BLservice.stockBLservice.GoodManService;
 import TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice.GoodsDataService;
+import TeamWolf.TeamWolf.client.DATAservice.stockDATAservice.StockDataService;
 import TeamWolf.TeamWolf.client.po.GoodsPO;
+import TeamWolf.TeamWolf.client.po.TypePO;
 import TeamWolf.TeamWolf.client.vo.*;
 
 /**
@@ -17,15 +19,17 @@ import TeamWolf.TeamWolf.client.vo.*;
  */
 public class GoodsManager {
 
-	String URL1,URL2,URL3;
+	String URL1, URL2;
 	GoodsBLAssistant assistant;
-	GoodsDataService dataService;
+	GoodsDataService GdataService;
+	StockDataService SdataService;
 	
 	public GoodsManager(String IP){
 		assistant=new GoodsBLAssistant(URL1);
 		try {
 			
-			dataService=(GoodsDataService)Naming.lookup(URL2);
+			GdataService=(GoodsDataService)Naming.lookup(URL1);
+			SdataService=(StockDataService)Naming.lookup(URL2);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -41,87 +45,122 @@ public class GoodsManager {
 	
 	public int addGoods(GoodsVO g){
 		
+		try {
 		if(assistant.canAdd(g)){
 		
 			GoodsPO toAdd=new GoodsPO(g);
-			try {
-				dataService.addGood(toAdd);
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				//返回通信错误
+			TypePO parent=SdataService.finType(g.getNumber());
+			if(parent.getC()==1){
+				//返回错误类型：父分类下有子分类，不可添加商品
 			}
+			else{
+				parent.addLeaveNode(toAdd);
+				SdataService.updType(parent);
+				GdataService.addGood(toAdd);
+			}			
 		}
 		else{ //返回错误类型：商品已经存在与系统中
 			
+		}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			//返回通信错误
 		}
 		return 0;
 	}
 	public int delGoods(GoodsVO g){
 		
+		try {
 		int result=assistant.canDel(g);
 		if(result==0){
-			
-			try {
-				dataService.delGood(g.getNumber());
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				//返回通信错误
-			}
+				
+			    TypePO parent=SdataService.finType(g.getParentNum());
+			    if(parent.delLeaveNode(g.getNumber())){
+			    	GdataService.delGood(g.getNumber());
+			    	SdataService.updType(parent);
+			    }else{
+			    	//错误类型:删除的商品与父分类不匹配
+			    }
+						
 		}
 		else{ //返回错误类型：商品不存在于系统中或者商品有过交易记录
 			
 			return result; 
+		}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			//返回通信错误
 		}
 		
 		return 0;
 	}
 	public int updGoods(GoodsVO g){
 		
+		try {
 		if(assistant.canUpd(g)){
 			
-			try {
-				GoodsPO toUpd=dataService.finGood(g.getNumber());
+				GoodsPO toUpd=GdataService.finGood(g.getNumber());
 				/*对PO进行修改*/
+				if(g.getName()!=null)
+					toUpd.setName(g.getName());
+				if(g.getModel()!=null)
+					toUpd.setModel(g.getModel());
+				if(g.getLatestExprice()!=0)
+					toUpd.setLatestExprice(g.getLatestExprice());
+				if(g.getLatestImprice()!=0)
+					toUpd.setLatestImprice(g.getLatestImprice());
 				
-				dataService.updGood(toUpd);
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				//返回通信错误
-			}
+				GdataService.updGood(toUpd);			
 			
 		}
 		else{ //返回错误类型：商品不存在于系统中
 		
+		}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			//返回通信错误
 		}
 		return 0;
 	}
 	public GoodsVO finGoods(GoodsVO g) {
 		
-		if(assistant.canFin(g)){
-			
-			try {
-				GoodsPO found=dataService.finGood(g.getNumber());
-				//对g进行修改
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+		try {
+
+		GoodsPO found=GdataService.finGood(g.getNumber());
+		//对g进行修改			
+        if(found!=null){
+        	g.setAmount(found.getAmount());
+        	g.setExprice(found.getExprice());
+        	g.setImprice(found.getImprice());
+        	g.setLatestExprice(found.getLatestExprice());
+        	g.setLatestImprice(found.getLatestImprice());
+        	g.setModel(found.getModel());
+        	g.setParent(found.getParent().getName());
+        	g.setParentNum(found.getParent().getNumber());
+        }
 		else{ //返回错误类型：商品不存在于系统中
+			
+		}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			//返回通信错误
 			
 		}
 		return g;
 	}
 	public GoodsListVO shoGoods(){
-		GoodsListVO gl=new GoodsListVO();
 		
+		GoodsListVO gl=new GoodsListVO();
 		try {
-			ArrayList<GoodsPO> agl=dataService.getGoodList();
+			ArrayList<GoodsPO> agl=GdataService.getGoodList();
 			for(GoodsPO g:agl){
 				//逐个加入 gl中
+				GoodsVO gg=new GoodsVO(g);
+				gl.addGood(gg);
 			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -135,7 +174,7 @@ public class GoodsManager {
 		GoodsStockListVO gsl=new GoodsStockListVO();
 		
 		//根据时间查找每个库存商品的交易记录，计算并生成对应的GoodsStockVO
-		//调用销售业务的接口
+		//需要知道交易单据存储位置
 		
 		return gsl;
 	}
@@ -143,7 +182,7 @@ public class GoodsManager {
 		
 		GoodsStockListVO gsl=new GoodsStockListVO();
 		//查找当天的交易记录，计算并生成对应的GoodsStockVO
-		//调用销售业务的接口
+		//需要知道交易单据存储位置
 		
 		return gsl;
 	}

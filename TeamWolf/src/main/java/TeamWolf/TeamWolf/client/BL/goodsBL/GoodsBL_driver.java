@@ -16,7 +16,7 @@ public class GoodsBL_driver {
     public void driver(){
     	
     	
-    	GoodsVO g=new GoodsVO(null, null, "飞利浦日光灯", null, null, null, null, null, null, null);
+    	GoodsVO g=new GoodsVO(null, null, null, "飞利浦日光灯", null, null, null, null, null, null, null);
     	gc.addGoods(g);
     	gc.finGoods(g);
     	gc.updGoods(g);

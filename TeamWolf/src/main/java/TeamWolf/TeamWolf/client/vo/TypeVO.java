@@ -11,6 +11,7 @@ import TeamWolf.TeamWolf.client.po.TypePO;
 public class TypeVO {
 	
 	private String parent;
+	private String parentNumber;
     private ArrayList<String> child;
     private int C;//�жϸ÷�����Ů�Ƿ���Ҷ�ڵ�
     private String number;
@@ -19,8 +20,9 @@ public class TypeVO {
 	
 	private int packSuccess;
 	
-	public TypeVO(String parent, String number, String name){
+	public TypeVO(String parentNum, String parent, String number, String name){
 		
+		this.parentNumber=parentNum;
 		this.parent=parent;
 		this.child=new ArrayList<String>();
 		this.number=number;
@@ -28,8 +30,9 @@ public class TypeVO {
 		
 	}
 	
-    public TypeVO(String parent, ArrayList<String> child, String number, String name){
+    public TypeVO(String parentNum, String parent, ArrayList<String> child, String number, String name){
 		
+    	this.parentNumber=parentNum;
 		this.parent=parent;
 		this.child=child;
 		this.number=number;
@@ -42,6 +45,12 @@ public class TypeVO {
     }
 	
     
+    public void serParentNum(String parentNum){
+    	parentNumber=parentNum;
+    }
+    public String getParentNum(){
+    	return parentNumber;
+    }
     public String getParent() {
 		return parent;
 	}

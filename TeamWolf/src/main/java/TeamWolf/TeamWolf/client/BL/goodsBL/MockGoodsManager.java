@@ -63,7 +63,7 @@ public class MockGoodsManager {
 			//查找商品
 			
 			/*....*/
-			GoodsVO gv=new GoodsVO(null, null, null, null, null, null, null, null, null, null);
+			GoodsVO gv=new GoodsVO(null, null, null, null, null, null, null, null, null, null, null);
 			g=gv;
 			System.out.println("商品是：");
 		}

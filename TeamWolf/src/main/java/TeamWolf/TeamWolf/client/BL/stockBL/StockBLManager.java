@@ -16,14 +16,14 @@ import TeamWolf.TeamWolf.client.vo.*;
  */
 public class StockBLManager{
 
-	String URL1,URL2;
+	String URL;
 	StockBLAssistant assistant;
 	StockDataService dataService;
 	
 	public StockBLManager(String IP){
-		assistant=new StockBLAssistant(URL1);
+		assistant=new StockBLAssistant(URL);
 		try {
-			dataService=(StockDataService)Naming.lookup(URL2);
+			dataService=(StockDataService)Naming.lookup(URL);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -39,13 +39,15 @@ public class StockBLManager{
 
 	public int addType(TypeVO t) {
 		// TODO Auto-generated method stub
+		try {
 		if(assistant.canAdd(t)){ //输入合法，能加入系统，进行加入工作
 			
 			TypePO toAdd=new TypePO(t); //根据合法的VO生成PO持久化对象
 			
 			/* ...完善PO持久化对象内容...*/
-			try {
-				   TypePO parent=dataService.finType(t.getParent());
+			
+				   //对象通过唯一编号来寻找
+				   TypePO parent=dataService.finType(t.getParentNum());
 				   toAdd.setParent(parent);
 				   if(parent.addChildType(toAdd)){
 					   dataService.updType(parent);  //若被添加分类有父母分类则还需修改其父母分类的属性
@@ -53,70 +55,74 @@ public class StockBLManager{
 				   }
 				   else{
 					  //返回不可在有商品的分类下添加子分类
-				   }
-			} catch (RemoteException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-				//返回通信错误
-			}						
-			
+				   }											
 		}
 		else{ //因输入非法无法加入系统，返回部分逻辑错误类型:商品已存在于系统中
 			
 		}
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			//返回通信错误
+		}	
 		return 0;
 	}
 
 	public int delType(TypeVO t) {
 		// TODO Auto-generated method stub
-		int  result=assistant.canDel(t);
-		
-        if(result==0){ //输入合法，进行删除工作
+		try {
+        if(assistant.canDel(t)){ //输入合法，进行删除工作
         	
-        	try {
-				TypePO toDel=dataService.finType(t.getName());
+        	
+				TypePO toDel=dataService.finType(t.getNumber());
 				if(toDel.getC()!=0){
 					//返回其下有子女，不可删除
 				}
 				else{ //执行删除操作，需要对父母类进行修改
 					if(t.getParent()!=null){
-					     TypePO parent=dataService.finType(t.getParent());
-					     parent.delChildType(t.getName());
+					     TypePO parent=dataService.finType(t.getParentNum());
+					     parent.delChildType(t.getNumber());
 					     dataService.updType(parent); //更新其父母类
 					}
-					dataService.delType(t.getName());
+					dataService.delType(t.getNumber());
 				}
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				//返回通信错误
-			}
+			
             
         }else{ //因输入非法无法进行删除操作，返回部分逻辑错误类型：商品不存在于系统中，或者商品底下有子类
-        	return result;
+        	
         }
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			//返回通信错误
+		}
 		
         return 0; //操作成功
 	}
     
+	//修改分类只支持改名
 	public int updType(TypeVO t) {
 		// TODO Auto-generated method stub
+		try {
 		if(assistant.canUpd(t)){ //输入合法，进行修改工作
 			
 			
-			try {
+			
 				 TypePO toUpd = dataService.finType(t.getNumber());				
 				 /*...完善修改PO...*/
+				 if(t.getName()!=null)
+					 toUpd.setName(t.getName());
+				 else
+					 //返回错误类型：信息填写不完整
 				 
-				 dataService.updType(toUpd);
-			} catch (RemoteException e1) {
-				// TODO Auto-generated catch block
-				//返回通信错误
-				e1.printStackTrace();
-			}						
-            
+				 dataService.updType(toUpd);									            
 		}else{ //因输入非法无法进行修改，返回错误类型：商品不存于系统中
 			
+		}
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			//返回通信错误
+			e1.printStackTrace();
 		}
 		
 		return 0; //操作成功

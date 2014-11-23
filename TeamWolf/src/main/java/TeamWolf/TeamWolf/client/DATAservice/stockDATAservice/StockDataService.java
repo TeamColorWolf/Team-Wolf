@@ -10,7 +10,7 @@ public interface StockDataService extends Remote{
 
 	public int addType(TypePO t) throws RemoteException;
 	
-	public int delType(String name) throws RemoteException;
+	public int delType(String number) throws RemoteException;
 	
 	/**
 	 * �޸�����Ϣ�Ĳ��������ô˷������б���
@@ -19,7 +19,7 @@ public interface StockDataService extends Remote{
 	 */
 	public int updType(TypePO t) throws RemoteException;
 	
-	public TypePO finType(String name) throws RemoteException;
+	public TypePO finType(String number) throws RemoteException;
 	
 	public ArrayList<TypePO> shoTypeList() throws RemoteException;
 }

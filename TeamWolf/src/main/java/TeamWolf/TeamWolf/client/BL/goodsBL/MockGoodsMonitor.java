@@ -1,6 +1,6 @@
 package TeamWolf.TeamWolf.client.BL.goodsBL;
 
-import TeamWolf.TeamWolf.client.vo.GoodsAlarmVO;
+import TeamWolf.TeamWolf.client.po.GoodsAlarmPO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
 
 /**
@@ -34,8 +34,8 @@ public class MockGoodsMonitor {
 		//检查某个商品数量是否低于警戒线
 		return 0;
 	}
-	public GoodsAlarmVO warning(GoodsVO g){
-		GoodsAlarmVO ga=new GoodsAlarmVO(g.getName(),"库存数量已低于警戒线！");
+	public GoodsAlarmPO warning(GoodsVO g){
+		GoodsAlarmPO ga=new GoodsAlarmPO("20141111", g.getNumber()+"-"+g.getName()+"-"+g.getModel(), "库存数量已低于警戒线！");
 		System.out.println(ga.getWarningInfo());
 		return ga;
 	}

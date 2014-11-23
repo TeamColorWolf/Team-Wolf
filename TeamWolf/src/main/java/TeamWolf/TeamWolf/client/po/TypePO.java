@@ -89,11 +89,11 @@ import TeamWolf.TeamWolf.client.vo.TypeVO;
 		else
 			return false;
 	}
-	public boolean delChildType(String name){
+	public boolean delChildType(String number){
 		if(C==1){
 			TypePO toDel=null;
 			for(TypePO t:child){
-				if(t.getName().equals(name)){
+				if(t.getNumber().equals(number)){
 					toDel=t;
 				}
 			}
@@ -109,11 +109,11 @@ import TeamWolf.TeamWolf.client.vo.TypeVO;
 		else
 			return false;
 	}
-	public boolean delLeaveNode(String name){
+	public boolean delLeaveNode(String number){
 		if(C==2){
 			GoodsPO toDel=null;
 			for(GoodsPO g:leaveNode){
-			    if(g.getName().equals(name)){
+			    if(g.getNumber().equals(number)){
 			    	toDel=g;
 			    }
 			}

@@ -1,4 +1,7 @@
 package TeamWolf.TeamWolf.client.vo;
+
+import TeamWolf.TeamWolf.client.po.GoodsPO;
+
 /**
  * 
  * @author XYJ
@@ -7,6 +10,7 @@ package TeamWolf.TeamWolf.client.vo;
 public class GoodsVO {
 
 	private String parent;
+	private String parentNumber;
 	private String number;
 	private String name;
 	private String model;
@@ -20,8 +24,9 @@ public class GoodsVO {
 	private int packSuccess;
 	
 	//添加商品
-	public GoodsVO(String parent, String number, String name, String model, String amount, String imprice, String exprice, String latestImprice, String latestExprice, String WL){
+	public GoodsVO(String parentNum, String parent, String number, String name, String model, String amount, String imprice, String exprice, String latestImprice, String latestExprice, String WL){
 		
+		this.parentNumber=parentNum;
 		this.parent=parent;
 		this.number=number;
 		this.name=name;
@@ -39,6 +44,27 @@ public class GoodsVO {
 			}
 	}
 	
+	public GoodsVO(GoodsPO g) {
+		// TODO Auto-generated constructor stub
+		parentNumber=g.getParent().getNumber();
+		parent=g.getParent().getName();
+		number=g.getNumber();
+		name=g.getName();
+		model=g.getModel();
+		amount=g.getAmount();
+		imprice=g.getImprice();
+		exprice=g.getExprice();
+		latestImprice=g.getLatestImprice();
+		latestExprice=g.getLatestExprice();
+		WarningLine=g.getWL();
+	}
+
+	public void setParentNum(String parentNum){
+		parentNumber=parentNum;
+	}
+	public String getParentNum(){
+		return parentNumber;
+	}
 	public int gerWarningLine(){
 		return WarningLine;
 	}

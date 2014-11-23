@@ -8,5 +8,6 @@ public class FileName {
 	public static String saleRejectListFile = "销售类单据//saleReject.tw";
 	public static String stockFile="库存商品//stock.tw";
 	public static String goodsFile="库存商品//goods.tw";
+	public static String alarmFile="库存商品//alarm.tw";
 	public static String promotionFile = "促销策略//promotion.tw";
 }
