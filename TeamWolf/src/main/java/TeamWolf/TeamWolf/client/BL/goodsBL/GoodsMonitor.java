@@ -66,6 +66,10 @@ public class GoodsMonitor{
 			if(dataService.finGood(g.getNumber()).checkWL()){
 				//库存数量低于警戒线
 				/*...进行警报处理...*/
+				if(warning(g)==0)
+					; //报警成功
+				else 
+					; //报警出现通信错误，需要手动确认商品库存
 				//返回警报类型
 			}else{
 				//库存正常
@@ -78,9 +82,15 @@ public class GoodsMonitor{
 		return 0;
 	}
 	
-	public GoodsAlarmPO warning(GoodsVO g){
+	public int warning(GoodsVO g){
 		GoodsAlarmPO ga=new GoodsAlarmPO(assistant.getPresentTime(), g.getNumber()+"-"+g.getName()+"-"+g.getModel(),"库存数量已低于警戒线！");
-		return ga;
+		try {
+			dataService.addGoodsAlarm(ga);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
 	}
 	public int increaseToMatch(GoodsVO toIncrease) {
 		// TODO Auto-generated method stub

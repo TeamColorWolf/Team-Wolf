@@ -92,6 +92,23 @@ public class GoodsData extends UnicastRemoteObject implements GoodsDataService {
 		}
 		return aimGoods;
 	}
+	
+	public int addGoodsAlarm(GoodsAlarmPO ga){
+		
+		alarmList.add(ga);
+		try {
+			FileOpr.writeFile(FileName.alarmFile, alarmList);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			//错误类型:文件读写错误
+		}
+		return 0;
+	}
+	
+	public ArrayList<GoodsAlarmPO> getAlarmList(){
+		return alarmList;
+	}
 
 	public ArrayList<GoodsPO> getGoodList() throws RemoteException {
 		// TODO Auto-generated method stub

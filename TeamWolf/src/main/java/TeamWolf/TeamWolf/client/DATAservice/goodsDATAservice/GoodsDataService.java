@@ -18,6 +18,10 @@ public interface GoodsDataService extends Remote {
 	public int updGood(GoodsPO g) throws RemoteException;
 	
 	public GoodsPO finGood(String number) throws RemoteException;
+	
 	public ArrayList<GoodsPO> getGoodList() throws RemoteException;
 	
+	public int addGoodsAlarm(GoodsAlarmPO ga) throws RemoteException;
+	
+	public ArrayList<GoodsAlarmPO> getAlarmList() throws RemoteException;
 }

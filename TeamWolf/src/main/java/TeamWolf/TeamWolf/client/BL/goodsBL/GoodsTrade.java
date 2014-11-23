@@ -57,6 +57,7 @@ public class GoodsTrade {
 			if(toSale.getAmount()>=g.getAmount()){
 			    toSale.setAmount(toSale.getAmount()-g.getAmount());
 			    toSale.setLatestExprice(g.getExprice());
+			    dataService.updGood(toSale);
 			}
 			else{
 				//返回错误类型:库存不足
@@ -73,6 +74,16 @@ public class GoodsTrade {
 		ArrayList<GoodsVO> goodsSRL=srl.getGoodsList();
 		
 		//逐个修改库存数量
+		try{
+		for(GoodsVO g: goodsSRL){
+			GoodsPO toEReject=dataService.finGood(g.getNumber());
+			toEReject.setAmount(toEReject.getAmount()+g.getAmount());
+			dataService.updGood(toEReject);
+		}			
+		}catch(RemoteException e){
+			e.printStackTrace();
+			//返回通信错误
+		}
 		
 		return 0;
 	}
@@ -81,7 +92,17 @@ public class GoodsTrade {
 		ArrayList<GoodsVO> goodsIL=il.getGoodsList();
 		
 		//逐个修改库存数量，最近进价
-		
+		try{
+		for(GoodsVO g: goodsIL){
+			GoodsPO toImport=dataService.finGood(g.getNumber());
+			toImport.setAmount(toImport.getAmount()+g.getAmount());
+			toImport.setLatestImprice(g.getImprice());
+			dataService.updGood(toImport);
+		}
+		}catch(RemoteException e){
+			e.printStackTrace();
+			//返回通信错误
+		}
 		return 0;
 	}
 	public int goodsImportReject(ImportRejectListVO irl){
@@ -89,6 +110,21 @@ public class GoodsTrade {
 		ArrayList<GoodsVO> goodsIRL=irl.getGoodsList();
 		
 		//逐个修改库存数量
+		try{
+		for(GoodsVO g: goodsIRL){
+		    GoodsPO toIReject=dataService.finGood(g.getNumber());
+		    if(toIReject.getAmount()>=g.getAmount()){
+		    	toIReject.setAmount(toIReject.getAmount()-g.getAmount());
+		    	dataService.updGood(toIReject);
+		    }
+		    else{
+		    	//错误类型：库存已不足，无法退货
+		    }
+		}			
+		}catch(RemoteException e){
+			e.printStackTrace();
+			//返回通信错误
+		}
 		
 		
 		return 0;
