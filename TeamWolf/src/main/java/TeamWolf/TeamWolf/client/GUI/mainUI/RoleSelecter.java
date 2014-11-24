@@ -2,6 +2,7 @@ package TeamWolf.TeamWolf.client.GUI.mainUI;
 
 import javax.swing.JFrame;
 
+import TeamWolf.TeamWolf.client.GUI.manageUI.ManageFrame;
 import TeamWolf.TeamWolf.client.GUI.userUI.AdminFrame;
 import TeamWolf.TeamWolf.client.vo.UserType;
 import TeamWolf.TeamWolf.client.vo.UserVO;
@@ -24,6 +25,7 @@ public class RoleSelecter {
 		}
 		else if(user.power == UserType.总经理){
 			//打开总经理界面
+			frame = new ManageFrame(user, IP);
 		}
 		else if(user.power == UserType.系统管理员){
 			//打开系统管理员界面

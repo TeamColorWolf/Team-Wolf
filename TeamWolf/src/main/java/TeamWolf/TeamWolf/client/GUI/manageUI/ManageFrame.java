@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+import TeamWolf.TeamWolf.client.vo.UserType;
 import TeamWolf.TeamWolf.client.vo.UserVO;
 
 public class ManageFrame extends JFrame{
@@ -14,6 +15,8 @@ public class ManageFrame extends JFrame{
 	
 	JTabbedPane tab;
 	
+	PromotionPanel promotion;
+	
 	public static final int width = 960;
 	public static final int height = 540;
 	public static final int sho = 10;
@@ -23,6 +26,12 @@ public class ManageFrame extends JFrame{
 		this.user = user;
 		this.IP = IP;
 		tab = new JTabbedPane(JTabbedPane.TOP);
+		tab.setSize(width, height);
+		promotion = new PromotionPanel();
+		
+		tab.add(promotion, "促销策略");
+		
+		panel.add(tab);
 		
 		this.setContentPane(panel);
 		
@@ -36,7 +45,8 @@ public class ManageFrame extends JFrame{
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		UserVO user = new UserVO("WHJ", "131250194", "manage_1", UserType.总经理);
+		new ManageFrame(user, "127.0.0.1");
 	}
 
 }
