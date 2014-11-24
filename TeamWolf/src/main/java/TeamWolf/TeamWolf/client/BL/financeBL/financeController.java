@@ -27,7 +27,7 @@ public class financeController {
 	
      public int Accountmanage(int operationType,financeVO f,financeVO newf){
     	 if(operationType == financeContoller_helper.ACCOUNTADD){
-    		 return mf.AddAccount(f);
+    		 return as.add(f);
     	 }else if(operationType ==financeContoller_helper.ACCOUNTDEL){
     		 return as.delete(f);
     	 }else if(operationType==financeContoller_helper.ACCOUNTUPD){
