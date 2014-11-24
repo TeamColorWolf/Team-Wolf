@@ -146,5 +146,21 @@ public class StockBLManager{
 		return tl;
 	}
 	
-	
+	public ArrayList<TypeVO> getLeaveType(){
+		
+		ArrayList<TypeVO> leaveTypeL=new ArrayList<TypeVO>();
+		try {
+			ArrayList<TypePO> atl=dataService.shoTypeList();
+			for(TypePO t:atl){
+			     if(t.getC()==2){
+			    	 leaveTypeL.add(new TypeVO(t));
+			     }
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return leaveTypeL;
+	}
 }

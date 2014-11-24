@@ -147,8 +147,13 @@ public class GoodsMonitor{
 		try {
 			GoodsPO toDecrease=dataService.finGood(g.getNumber());
 			int amount=toDecrease.getAmount()-g.getAmount();
-			toDecrease.setAmount(amount);
-			dataService.updGood(toDecrease);		
+			if(amount>=0){
+			   toDecrease.setAmount(amount);
+			   dataService.updGood(toDecrease);	
+			}
+			else{
+				//返回库存不足
+			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -5,6 +5,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import TeamWolf.TeamWolf.client.BL.applicationBL.forStock.StockApplicationController;
 import TeamWolf.TeamWolf.client.BLservice.stockBLservice.GoodTService;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.ApproveDATAservice;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.StockApplicationDATAservice;
@@ -25,7 +26,7 @@ public class GoodsTrade {
 	GoodsMonitor gmo;
 	GoodsDataService dataService;
 	ApproveDATAservice appRead;
-	StockApplicationDATAservice appSub;
+	StockApplicationController appSub;
 	
 	public GoodsTrade(String IP){
 		assistant=new GoodsBLAssistant(URL1);
@@ -33,7 +34,6 @@ public class GoodsTrade {
 		try {
 			dataService=(GoodsDataService)Naming.lookup(URL1);
 			appRead=(ApproveDATAservice)Naming.lookup(URL2);
-			appSub=(StockApplicationDATAservice)Naming.lookup(URL3);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -133,12 +133,15 @@ public class GoodsTrade {
 	public int presentList(ArrayList<GoodsVO> presentList, String operator, CustomerVO customer){
 		
 		int r=0;
+		PresentListVO pl=new PresentListVO();
+		pl.setOperator(operator);
+		pl.setCustomer(customer);
 		for(GoodsVO g:presentList){
 			try{
 			if((r=assistant.canSent(g))==0){
-				
+				pl.addPresent(g);
 			}
-			else{ //返回具体错误类型：该商品无法赠送
+			else{ //返回具体错误类型：该商品无法赠送（不存在或者库存不足）
 				return r; 
 			}
 			}catch(RemoteException e){
@@ -146,9 +149,9 @@ public class GoodsTrade {
 				//返回通信错误
 			}
 		}
-		
+			    
 		//检查完毕后生成赠送单，提交审批，调用ApplicationBL接口
- 		
+ 		appSub.submitPresentList(pl);
 		//操作成功为返回0
 		return 0;
 	}

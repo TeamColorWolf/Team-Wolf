@@ -13,9 +13,11 @@ public class StockBLController implements StockBLservice{
 
 	
 	StockBLManager sbm;
+	ExternalServiceController esc;
 	
     public	StockBLController(String IP){
 		sbm=new StockBLManager(IP);
+		esc=new ExternalServiceController(IP);
 	}
 	
 	public int addType(TypeVO t) {
