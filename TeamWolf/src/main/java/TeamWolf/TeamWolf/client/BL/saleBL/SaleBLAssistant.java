@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import TeamWolf.TeamWolf.client.DATAservice.saleDATAservice.SaleDATAservice;
+import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.SaleApplicationDATAservice;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
 import TeamWolf.TeamWolf.client.vo.ImportListVO;
@@ -18,7 +18,7 @@ import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
  *
  */
 public class SaleBLAssistant {
-	SaleDATAservice sds;
+	SaleApplicationDATAservice sads;
 	
 	public int canAddCustomer (CustomerVO cvo){
 		return 0;

@@ -1,24 +1,67 @@
 package TeamWolf.TeamWolf.server.applicationDATA;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.SaleApplicationDATAservice;
+import TeamWolf.TeamWolf.client.po.ApplicationPO;
 import TeamWolf.TeamWolf.client.po.ImportListPO;
 import TeamWolf.TeamWolf.client.po.ImportRejectListPO;
 import TeamWolf.TeamWolf.client.po.SaleListPO;
 import TeamWolf.TeamWolf.client.po.SaleRejectListPO;
+import TeamWolf.TeamWolf.server.FileName;
+import TeamWolf.TeamWolf.server.FileOpr;
 
 public class SaleApplicationDATA extends UnicastRemoteObject implements SaleApplicationDATAservice{
 
-	protected SaleApplicationDATA() throws RemoteException {
+	private FileName fileName;
+	private FileOpr fo;
+	private ArrayList<ImportListPO> importList = null;
+	private ArrayList<ImportRejectListPO> importRejectList = null;
+	ArrayList<SaleListPO> saleList = null;
+	ArrayList<SaleRejectListPO> saleRejectList = null;
+	
+	public SaleApplicationDATA() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
+		getAppList();
+
 	}
 
-	public int submitImportList(ImportListPO po) throws RemoteException {
-		// TODO Auto-generated method stub
-		return 0;
+	/**
+	 * 从文件读取单据列表
+	 * @param fName 文件名
+	 */
+	@SuppressWarnings("unchecked")
+	private void getAppList(){
+		try {
+			importList = (ArrayList<ImportListPO>) fo.readFile(FileName.importListFile);
+			importRejectList = (ArrayList<ImportRejectListPO>) fo.readFile(FileName.importRejectListFile);
+			saleList = (ArrayList<SaleListPO>) fo.readFile(FileName.saleListFile);
+			saleRejectList = (ArrayList<SaleRejectListPO>) fo.readFile(FileName.saleRejectListFile);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public int submitImportList(ImportListPO ipo) throws RemoteException {
+		//TODO
+		int judge = 0;
+		importList.add(ipo);
+		try {
+			fo.writeFile(fileName.importListFile, importList);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			judge = 999999;
+		}
+		return judge;
 	}
 
 	public int submitImportRejectList(ImportRejectListPO po)

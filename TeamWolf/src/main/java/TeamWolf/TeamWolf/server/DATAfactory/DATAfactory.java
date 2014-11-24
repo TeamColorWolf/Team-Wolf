@@ -6,15 +6,15 @@ import java.net.UnknownHostException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 
+import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.SaleApplicationDATAservice;
 import TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice.GoodsDataService;
 import TeamWolf.TeamWolf.client.DATAservice.promotionDATAservice.PromotionDATAservice;
-import TeamWolf.TeamWolf.client.DATAservice.saleDATAservice.SaleDATAservice;
 import TeamWolf.TeamWolf.client.DATAservice.stockDATAservice.StockDataService;
 import TeamWolf.TeamWolf.client.DATAservice.userDATAservice.LoginDATAservice;
 import TeamWolf.TeamWolf.client.DATAservice.userDATAservice.UserDATAservice;
+import TeamWolf.TeamWolf.server.applicationDATA.SaleApplicationDATA;
 import TeamWolf.TeamWolf.server.goodsDATA.GoodsData;
 import TeamWolf.TeamWolf.server.promotionDATA.PromotionDATA;
-import TeamWolf.TeamWolf.server.saleDATA.SaleDATA;
 import TeamWolf.TeamWolf.server.stockDATA.StockData;
 import TeamWolf.TeamWolf.server.userDATA.LoginDATA;
 import TeamWolf.TeamWolf.server.userDATA.UserDATA;
@@ -23,7 +23,7 @@ import TeamWolf.TeamWolf.server.userDATA.UserDATA;
 public class DATAfactory {
 	UserDATAservice user;
 	LoginDATAservice login;
-	SaleDATAservice sale;
+	SaleApplicationDATAservice saleApp;
 	StockDataService stock;
 	GoodsDataService goods;
 	PromotionDATAservice promotion;
@@ -32,7 +32,7 @@ public class DATAfactory {
 		try {
 			login = new LoginDATA();
 			user = new UserDATA();
-			sale = new SaleDATA();
+			saleApp = new SaleApplicationDATA();
 			stock=new StockData();
 			goods=new GoodsData();
 			promotion = new PromotionDATA();
@@ -43,7 +43,7 @@ public class DATAfactory {
 		try {
 			Naming.rebind("loginDATAservice", login);
 			Naming.rebind("userDATAservice", user);
-			Naming.rebind("saleDATAservice", sale);
+			Naming.rebind("saleDATAservice", saleApp);
 			Naming.rebind("stockDATAservice", stock);
 			Naming.rebind("goodsDATAservice", goods);
 			Naming.rebind("promotionDATAservice", promotion);

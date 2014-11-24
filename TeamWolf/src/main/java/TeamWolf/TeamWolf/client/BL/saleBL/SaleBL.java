@@ -7,8 +7,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerController;
-import TeamWolf.TeamWolf.client.DATAservice.saleDATAservice.SaleDATAservice;
-import TeamWolf.TeamWolf.client.DATAservice.userDATAservice.UserDATAservice;
+import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.SaleApplicationDATAservice;
 import TeamWolf.TeamWolf.client.po.ImportListPO;
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
@@ -16,7 +15,6 @@ import TeamWolf.TeamWolf.client.vo.ImportListVO;
 import TeamWolf.TeamWolf.client.vo.ImportRejectListVO;
 import TeamWolf.TeamWolf.client.vo.SaleListVO;
 import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
-import TeamWolf.TeamWolf.server.saleDATA.SaleDATA;
 
 /**
  * 
@@ -29,7 +27,7 @@ public class SaleBL{
 	private String presentDate;
 	private CustomerController cusCtrl;
 	private SaleBLController saleCtrtl;
-	private SaleDATAservice sdservice;
+	private SaleApplicationDATAservice saleAppServ;
 	private String URL;
 	
 	public SaleBL(String IP){
@@ -65,14 +63,16 @@ public class SaleBL{
 	  * @return
 	  */
 	public int createImport(ImportListVO ivo) {
-		int judge = saleAssist.canAddImport(ivo);
+		//TODO:
+		int judge = 0;
+//		int judge = saleAssist.canAddImport(ivo);
 		if(judge != 0){
 			return judge;
 		}
 		ImportListPO ipo = new ImportListPO(ivo);
 		try {
-			sdservice = (SaleDATAservice) Naming.lookup(URL);
-			return sdservice.addImport(ipo);
+			saleAppServ = (SaleApplicationDATAservice) Naming.lookup(URL);
+			return saleAppServ.submitImportList(ipo);
 		} catch (MalformedURLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
