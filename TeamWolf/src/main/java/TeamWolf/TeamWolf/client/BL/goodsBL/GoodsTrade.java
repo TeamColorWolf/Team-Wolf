@@ -26,7 +26,7 @@ public class GoodsTrade {
 	GoodsMonitor gmo;
 	GoodsDataService dataService;
 	ApproveDATAservice appRead;
-	StockApplicationController appSub;
+	StockApplicationController appController;
 	
 	public GoodsTrade(String IP){
 		assistant=new GoodsBLAssistant(URL1);
@@ -151,7 +151,7 @@ public class GoodsTrade {
 		}
 			    
 		//检查完毕后生成赠送单，提交审批，调用ApplicationBL接口
- 		appSub.submitPresentList(pl);
+ 		appController.submitPresentList(pl);
 		//操作成功为返回0
 		return 0;
 	}

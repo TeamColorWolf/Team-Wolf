@@ -4,6 +4,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+import TeamWolf.TeamWolf.client.BL.applicationBL.forStock.StockApplicationController;
 import TeamWolf.TeamWolf.client.BLservice.stockBLservice.GoodMonService;
 import TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice.GoodsDataService;
 import TeamWolf.TeamWolf.client.po.GoodsAlarmPO;
@@ -17,14 +18,15 @@ import TeamWolf.TeamWolf.client.vo.*;
  */
 public class GoodsMonitor{
 
-	String URL1,URL2;
+	String URL1;
 	GoodsBLAssistant assistant;
 	GoodsDataService dataService;
+	StockApplicationController appController;
 	
 	public GoodsMonitor(String IP){
 		assistant=new GoodsBLAssistant(URL1);
-		try {
-			
+		appController=new StockApplicationController(IP);
+		try {			
 			dataService=(GoodsDataService)Naming.lookup(URL1);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -95,10 +97,11 @@ public class GoodsMonitor{
 	public int increaseToMatch(GoodsVO toIncrease) {
 		// TODO Auto-generated method stub
 		try{
-		if(assistant.isExisted(toIncrease)){
-			//商品报溢
-			increaseGoods(toIncrease);
+		if(assistant.isExisted(toIncrease)&&increaseGoods(toIncrease)==0){
+			//商品报溢			
 			//调用ApplicationBL接口生成报溢单
+			    IncreaseToMatchVO itm=new IncreaseToMatchVO(toIncrease);
+			    appController.submitIncreaseToMatch(itm);		
 		}
 		else{
 			//返回错误类型
@@ -114,9 +117,15 @@ public class GoodsMonitor{
 		try{
 		if(assistant.isExisted(toDecrease)){
 			//商品报损
-			decreaseGoods(toDecrease);
+			int result=decreaseGoods(toDecrease);
 			//调用ApplicationBL接口生成报损单
-			
+			if(result==0){
+			     DecreaseToMatchVO dtm=new DecreaseToMatchVO(toDecrease);
+			     appController.submitDecreaseToMatch(dtm);
+			}
+			else{
+				return result;  //减少数量不成功（通信错误或库存不足）
+			}
 		}
 		else{
 			//返回错误类型

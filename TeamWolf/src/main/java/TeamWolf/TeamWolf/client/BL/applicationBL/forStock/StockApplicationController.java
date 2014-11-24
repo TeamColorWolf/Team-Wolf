@@ -7,6 +7,7 @@ import TeamWolf.TeamWolf.client.vo.IncreaseToMatchVO;
 import TeamWolf.TeamWolf.client.vo.PresentListVO;
 
 public class StockApplicationController extends MutiRoleController implements StockApplicationService{
+	
 	StockSubmit submit;
 	
 	public StockApplicationController(String IP) {
