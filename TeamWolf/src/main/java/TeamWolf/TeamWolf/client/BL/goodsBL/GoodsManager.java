@@ -167,6 +167,7 @@ public class GoodsManager {
 			e.printStackTrace();
 			//返回通信错误
 		}
+       
 		return gl;
 	}
 	public GoodsStockListVO shoStockList(int beginDate, int endDate){

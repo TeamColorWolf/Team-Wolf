@@ -2,6 +2,7 @@ package TeamWolf.TeamWolf.client.vo;
 
 import java.util.ArrayList;
 
+import TeamWolf.TeamWolf.client.po.GoodsPO;
 import TeamWolf.TeamWolf.client.po.TypePO;
 /**
  * 
@@ -42,6 +43,26 @@ public class TypeVO {
     
     public TypeVO(TypePO tp){
     	
+    	this.C=tp.getC();
+    	this.name=tp.getName();
+    	this.number=tp.getNumber();
+    	this.parent=tp.getParent().getName();
+    	this.parentNumber=tp.getParent().getNumber();
+        this.child=new ArrayList<String>();
+        this.leaveNode=new ArrayList<GoodsVO>();
+    	
+    	if(this.C==1){
+    		ArrayList<TypePO> childL=tp.getChild();
+    		for(TypePO t:childL){
+    			child.add(t.getNumber());
+    		}
+    	}
+    	else if(this.C==2){
+    		ArrayList<GoodsPO> goodsL=tp.getLeaveNode();
+    		for(GoodsPO g: goodsL){
+    			leaveNode.add(new GoodsVO(g));
+    		}
+    	}
     }
 	
     
@@ -73,10 +94,10 @@ public class TypeVO {
 		C = c;
 	}
 	public String getNumber() {
-			return number;
+		return number;
     }
 	public void setNumber(String number) {
-			this.number = number;
+		this.number = number;
 	}
 	public String getName() {
 		return name;
