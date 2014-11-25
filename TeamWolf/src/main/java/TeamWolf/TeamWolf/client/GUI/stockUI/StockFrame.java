@@ -23,7 +23,7 @@ public class StockFrame extends JFrame {
 	
 	public StockFrame(String IP, UserVO user){
 		
-		//super("操作员编号：" + user.workID + "         服务器IP：" + IP);
+		super("操作员编号：" + user.workID + "         服务器IP：" + IP);
 		this.user=user;
 		this.IP=IP;
 		mainPane=new MainPane(user, IP);
