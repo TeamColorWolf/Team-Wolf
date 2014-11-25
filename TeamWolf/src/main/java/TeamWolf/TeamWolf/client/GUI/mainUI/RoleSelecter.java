@@ -2,6 +2,7 @@ package TeamWolf.TeamWolf.client.GUI.mainUI;
 
 import javax.swing.JFrame;
 
+import TeamWolf.TeamWolf.client.GUI.financeUI.FinanceFrame;
 import TeamWolf.TeamWolf.client.GUI.manageUI.ManageFrame;
 import TeamWolf.TeamWolf.client.GUI.userUI.AdminFrame;
 import TeamWolf.TeamWolf.client.vo.UserType;
@@ -22,6 +23,7 @@ public class RoleSelecter {
 		}
 		else if(user.power == UserType.财务人员){
 			//打开财务人员界面
+			frame = new FinanceFrame(user,IP);
 		}
 		else if(user.power == UserType.总经理){
 			//打开总经理界面
