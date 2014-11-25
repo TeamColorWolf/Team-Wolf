@@ -1,5 +1,7 @@
 package TeamWolf.TeamWolf.client.BLservice.financeBLservice;
 
+import java.util.ArrayList;
+
 import TeamWolf.TeamWolf.client.po.financePO;
 import TeamWolf.TeamWolf.client.vo.financeVO;
 
@@ -8,5 +10,6 @@ public interface AccountBlservice {
     public int delete(financeVO vo);
     public int update(financeVO vo,financeVO newvo);
     public financeVO find(financeVO vo);
+    public ArrayList<financeVO> checkVO();
  
 }

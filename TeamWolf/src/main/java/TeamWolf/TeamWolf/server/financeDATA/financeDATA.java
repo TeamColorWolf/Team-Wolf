@@ -6,13 +6,14 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.DATAservice.financeDATAservice.financeDATAservice;
+import TeamWolf.TeamWolf.client.po.UserPO;
 import TeamWolf.TeamWolf.client.po.financePO;
 import TeamWolf.TeamWolf.server.FileName;
 import TeamWolf.TeamWolf.server.FileOpr;
 
 public class financeDATA extends UnicastRemoteObject implements financeDATAservice{
 	
-	ArrayList<financePO> AccountList;
+	static ArrayList<financePO> AccountList;
 	
 
 	protected financeDATA() throws RemoteException {
@@ -91,6 +92,23 @@ public class financeDATA extends UnicastRemoteObject implements financeDATAservi
 			e.printStackTrace();
 		}
 	}
+
+	public ArrayList<financePO> checklist() throws RemoteException {
+		// TODO 自动生成的方法存根
+		return AccountList;
+	}
+	
+	/*private void getList(){
+		try {
+			AccountList = (ArrayList<financePO>) FileOpr.readFile(FileName.accountFile);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}*/
 	
 	/*public static void main(String[]args){
 		try {

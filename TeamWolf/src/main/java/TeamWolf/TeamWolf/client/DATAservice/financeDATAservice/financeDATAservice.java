@@ -13,5 +13,5 @@ public interface financeDATAservice extends Remote{
 	public int add(financePO po)throws RemoteException;
 	public int delete(financePO po)throws RemoteException;
 	public int update(financePO po,financePO newpo)throws RemoteException;
-	
+	public ArrayList<financePO>checklist()throws RemoteException;
 }

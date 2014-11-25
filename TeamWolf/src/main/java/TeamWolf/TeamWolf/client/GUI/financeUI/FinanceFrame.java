@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+import TeamWolf.TeamWolf.client.BLservice.financeBLservice.AccountBlservice;
 import TeamWolf.TeamWolf.client.GUI.manageUI.ManageFrame;
 import TeamWolf.TeamWolf.client.GUI.manageUI.PromotionPanel;
 import TeamWolf.TeamWolf.client.vo.UserType;
@@ -13,6 +14,7 @@ import TeamWolf.TeamWolf.client.vo.financeVO;
 
 public class FinanceFrame extends JFrame{
 
+	public static AccountBlservice service;
 	public static UserVO user;
 	public static String IP;
 	
@@ -28,6 +30,7 @@ public class FinanceFrame extends JFrame{
 	
 	public static final int width = 960;
 	public static final int height = 540;
+	public static final int sho = 10;
 	
 	public FinanceFrame(UserVO user, String IP){
 		super("操作员编号：" + user.workID + "         服务器IP：" + IP);

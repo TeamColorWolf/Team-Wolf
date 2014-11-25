@@ -20,6 +20,9 @@ public class Account implements AccountBlservice{
 	public String URL = null;
 	financeDATAservice fds;
 	financeBLAssistant fba;
+	ArrayList<financeVO> volist;
+	ArrayList<financePO> polist;
+	
 	
 	public Account(String IP){
 		
@@ -65,6 +68,30 @@ public class Account implements AccountBlservice{
 	public financeVO find(financeVO vo) {
 		// TODO 自动生成的方法存根
 		return null;
+	}
+
+	public ArrayList<financeVO> checkVO() {
+		if(volist == null){
+			try {
+				fds = (financeDATAservice) Naming.lookup(URL);
+				polist = fds.checklist();
+				volist = new ArrayList<financeVO>();
+				for(int i = 0; i < polist.size(); i++){
+					financeVO vo = new financeVO(polist.get(i));
+					volist.add(vo);
+				}
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NotBoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return volist;
 	}
 
 }
