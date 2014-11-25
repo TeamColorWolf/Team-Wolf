@@ -22,6 +22,9 @@ public class FinanceFrame extends JFrame{
 	
 	AccountPanel accountpanel;
 	ApplicationPanel apppanel;
+	EventPanel evepanel;
+	INIPanel inipanel;
+	EventViewPanel evpanel;
 	
 	public static final int width = 960;
 	public static final int height = 540;
@@ -35,9 +38,15 @@ public class FinanceFrame extends JFrame{
 		
 		accountpanel = new AccountPanel();
 		apppanel = new ApplicationPanel();
+		evepanel = new EventPanel();
+		inipanel = new INIPanel();
+		evpanel = new EventViewPanel();
 		
 		tab.add(accountpanel,"账户管理");
 		tab.add(apppanel,"单据制定");
+		tab.add(evepanel,"表单查看");
+		tab.add(inipanel,"期初建账");
+		tab.add(evpanel,"操作日志");
 		
 		panel.add(tab);
 		
