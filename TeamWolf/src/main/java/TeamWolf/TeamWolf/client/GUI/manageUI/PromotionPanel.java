@@ -21,7 +21,7 @@ public class PromotionPanel extends JPanel{
 		tab.setVisible(true);
 		this.add(tab);
 		
-		service = new PromotionBLController(ManageFrame.IP);
+//		service = new PromotionBLController(ManageFrame.IP);
 		
 		forVIP = new ForVIPPromotionPanel();
 		tab.add(forVIP, "针对客户等级");

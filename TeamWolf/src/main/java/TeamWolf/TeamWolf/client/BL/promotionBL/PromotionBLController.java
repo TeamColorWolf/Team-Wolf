@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import TeamWolf.TeamWolf.client.BLservice.manageBLservice.PromotionBLservice;
 import TeamWolf.TeamWolf.client.vo.ForPricePromotionVO;
 import TeamWolf.TeamWolf.client.vo.ForVIPPromotionVO;
+import TeamWolf.TeamWolf.client.vo.GoodsVO;
 import TeamWolf.TeamWolf.client.vo.PromotionVO;
 import TeamWolf.TeamWolf.client.vo.SpecialGoodsPromotionVO;
+import TeamWolf.TeamWolf.client.vo.TypeVO;
 /**
  * 
  * @author WHJ
@@ -41,6 +43,11 @@ public class PromotionBLController implements PromotionBLservice{
 	public ArrayList<PromotionVO> check() {
 		// TODO Auto-generated method stub
 		return bl.check();
+	}
+
+	public ArrayList<TypeVO> typeList() {
+		// TODO Auto-generated method stub
+		return bl.getLeaveType();
 	}
 
 }

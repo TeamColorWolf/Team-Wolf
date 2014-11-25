@@ -24,6 +24,7 @@ import TeamWolf.TeamWolf.client.vo.PromotionTypeVO;
 import TeamWolf.TeamWolf.client.vo.PromotionVO;
 import TeamWolf.TeamWolf.client.vo.SaleListVO;
 import TeamWolf.TeamWolf.client.vo.SpecialGoodsPromotionVO;
+import TeamWolf.TeamWolf.client.vo.TypeVO;
 /**
  * 
  * @author WHJ
@@ -40,6 +41,7 @@ public class PromotionBL{
 	public PromotionBL(String IP){
 		URL = "rmi://" + IP + "/promotionDATAservice";
 		this.initial();
+		proAssist = new PromotionBLAssistant(IP);
 	}
 	
 	public int addPromotion(PromotionVO vo){
@@ -196,6 +198,10 @@ public class PromotionBL{
 	public ArrayList<PromotionVO> check() {
 		// TODO Auto-generated method stub
 		return voList;
+	}
+	
+	public ArrayList<TypeVO> getLeaveType(){
+		return proAssist.getTypeList();
 	}
 
 	public SaleListVO adaptPromotionForSaleList(SaleListVO vo) {

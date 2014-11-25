@@ -9,6 +9,8 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import TeamWolf.TeamWolf.client.vo.TimeVO;
+
 public class TimeSetPanel extends JPanel{
 	
 	public JComboBox<Integer> by;
@@ -22,6 +24,14 @@ public class TimeSetPanel extends JPanel{
 	private JLabel begin = new JLabel("开始时间");
 	private JLabel end = new JLabel("结束时间");
 	
+	private JLabel byear = new JLabel(" 年");
+	private JLabel bmonth = new JLabel(" 月");
+	private JLabel bday = new JLabel(" 日");
+	
+	private JLabel eyear = new JLabel(" 年");
+	private JLabel emonth = new JLabel(" 月");
+	private JLabel eday = new JLabel(" 日");
+	
 	final static Calendar c = Calendar.getInstance();
 	
 	static int year = 0;
@@ -32,7 +42,7 @@ public class TimeSetPanel extends JPanel{
 	final static int BW = 80;
 	
 	final static int width = ManageFrame.width;
-	final static int height = ManageFrame.height-2*ManageFrame.sho;
+	final static int height = 100;
 	
 	final static int up = 30;
 	final static int gap = 20;
@@ -82,6 +92,27 @@ public class TimeSetPanel extends JPanel{
 		em.setLocation(right+BW+gap, up);
 		ed.setLocation(right+2*BW+2*gap, up);
 		
+		byear.setSize(gap, BH);
+		bmonth.setSize(gap, BH);
+		bday.setSize(gap, BH);
+		eyear.setSize(gap, BH);
+		emonth.setSize(gap, BH);
+		eday.setSize(gap, BH);
+		
+		byear.setLocation(left-gap, up);
+		bmonth.setLocation(left+BW, up);
+		bday.setLocation(left+2*BW+gap, up);
+		eyear.setLocation(right-gap, up);
+		emonth.setLocation(right+BW, up);
+		eday.setLocation(right+2*BW+gap, up);
+		
+		this.add(byear);
+		this.add(bmonth);
+		this.add(bday);
+		this.add(eyear);
+		this.add(emonth);
+		this.add(eday);
+		
 		this.add(begin);
 		this.add(end);
 		
@@ -123,6 +154,20 @@ public class TimeSetPanel extends JPanel{
 		this.setSize(width, height);
 		this.setVisible(true);
 		this.setOpaque(false);
+	}
+	
+	public TimeVO getBeginVO(){
+		int year = (Integer)by.getSelectedItem();
+		int month = (Integer)bm.getSelectedItem();
+		int day = (Integer)bd.getSelectedItem();
+		return new TimeVO(year+"", month+"", day+"");
+	}
+	
+	public TimeVO getEndVO(){
+		int year = (Integer)ey.getSelectedItem();
+		int month = (Integer)em.getSelectedItem();
+		int day = (Integer)ed.getSelectedItem();
+		return new TimeVO(year+"", month+"", day+"");
 	}
 	
 	private int setDate(int year, int month){

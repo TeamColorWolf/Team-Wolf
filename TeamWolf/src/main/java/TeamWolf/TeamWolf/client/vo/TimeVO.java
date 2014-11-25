@@ -28,7 +28,6 @@ public class TimeVO {
 	
 	public TimeVO(TimePO po){
 		date = po.date;
-		sdf.format(date);
 		error = 0;
 	}
 	
