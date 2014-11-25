@@ -27,7 +27,18 @@ public class SaleApplicationDATA extends UnicastRemoteObject implements SaleAppl
 		super();
 		// TODO Auto-generated constructor stub
 		getAppList();
-
+		if(importList == null){
+			importList = new ArrayList<ImportListPO>();
+		}
+		if(importRejectList == null){
+			importRejectList = new ArrayList<ImportRejectListPO>();
+		}
+		 if(saleList == null){
+			 saleList = new ArrayList<SaleListPO>();
+		 }
+		 if(saleRejectList == null){
+			 saleRejectList = new ArrayList<SaleRejectListPO>();
+		 }
 	}
 
 	/**
