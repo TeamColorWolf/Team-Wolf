@@ -1,6 +1,8 @@
 package TeamWolf.TeamWolf.client.GUI.stockUI;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.text.SimpleDateFormat;
@@ -12,18 +14,23 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.RowSorter;
 import javax.swing.border.EtchedBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
-public class StockShowPane extends JPanel implements ItemListener {
+public class StockShowPane extends JPanel implements ItemListener, ActionListener {
 
 	int beginYear, endYear, beginMonth, endMonth, beginDay, endDay; 
 	String[] years=null;
 	String[] months=new String[12];
+	String[] tableTitle={"商品编号", "商品名称", "商品型号", "商品库存数量", "商品进价", "商品售价", "商品最近进价", "商品最近售价", "商品进货量", "平均进货价", "进货总价", "商品出货量", "平均出货价", "出货总价"};
+	Object[][] stockInfoList={{"12102", "hi", "lala", "df", "sd", "sa", "er", "oo", "wqe", "rr", "iop", "asd", "pp", "132"}};
 	String todayDate;
 	int year;
 	JComboBox beginY;
@@ -33,7 +40,7 @@ public class StockShowPane extends JPanel implements ItemListener {
 	JComboBox endM;
 	JComboBox endD;
 	JLabel to;
-	JTextArea StockShoArea;
+	JTable StockShoArea;
 	JScrollPane SSAContainer;
 	JButton checkStock;
 	JButton daliyStock;
@@ -72,14 +79,17 @@ public class StockShowPane extends JPanel implements ItemListener {
 	
 	public void initialStockShoArea(){
 		
-		StockShoArea=new JTextArea();
+		StockShoArea=new JTable(stockInfoList, tableTitle);
 		StockShoArea.setVisible(true);
-		StockShoArea.setEditable(false);
-		StockShoArea.setBounds(0, 0, 800, 300);
-		StockShoArea.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
+		StockShoArea.setBounds(0, 0, 1400, 300);
+		for(int i=0;i<14;i++){
+			StockShoArea.getColumnModel().getColumn(i).setPreferredWidth(100);
+		}
+		StockShoArea.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		//StockShoArea.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
 		SSAContainer=new JScrollPane(StockShoArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		SSAContainer.setVisible(true);
-		SSAContainer.setBounds(75, 50, 800, 300);
+		SSAContainer.setBounds(20, 50, 915, 300);
 		
 	}
 	
@@ -113,10 +123,12 @@ public class StockShowPane extends JPanel implements ItemListener {
 		daliyStock=new JButton("库存快照");
 		daliyStock.setBounds(200, 430, 120, 25);
 		daliyStock.setVisible(true);
+		daliyStock.addActionListener(this);
 		daliyStock.setToolTipText(todayDate);
 		checkStock=new JButton("查看库存");
 		checkStock.setBounds(600, 430, 120, 25);
 		checkStock.setVisible(true);
+		checkStock.addActionListener(this);
 	}
 
 	public void itemStateChanged(ItemEvent e) {
@@ -195,6 +207,25 @@ public class StockShowPane extends JPanel implements ItemListener {
 			}
 		}
 		
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(((JButton)e.getSource()).equals(daliyStock)){
+			
+			/*stockInfoList=null;
+			stockInfoList=new Object[1][14];
+			for(int i=0;i<1;i++){
+				for(int j=0;j<14;j++){
+					stockInfoList[i][j]=""+j;
+				}
+			}*/
+		   this.remove(SSAContainer);
+		   this.repaint();
+		   this.initialStockShoArea();
+		   this.add(SSAContainer);
+		   this.repaint();
+		}
 	}
 	
 	
