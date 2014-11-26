@@ -14,6 +14,7 @@ public class PromotionPanel extends JPanel{
 	
 	ForVIPPromotionPanel forVIP;
 	ForPricePromotionPanel forPrice;
+	SpecialGoodsPackagePromotionPanel specialGoods;
 	
 	public PromotionPanel(){
 		super();
@@ -26,9 +27,11 @@ public class PromotionPanel extends JPanel{
 		
 		forVIP = new ForVIPPromotionPanel();
 		forPrice = new ForPricePromotionPanel();
+		specialGoods = new SpecialGoodsPackagePromotionPanel();
 		
 		tab.add(forVIP, "针对客户等级");
 		tab.add(forPrice, "针对总价");
+		tab.add(specialGoods, "特价包");
 		
 		this.setLayout(null);
 		this.setSize(ManageFrame.width, ManageFrame.height-ManageFrame.sho);
