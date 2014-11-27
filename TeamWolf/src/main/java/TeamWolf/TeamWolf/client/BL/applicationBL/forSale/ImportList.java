@@ -7,8 +7,8 @@ import TeamWolf.TeamWolf.client.vo.ImportListVO;
 
 public class ImportList extends Application{
 
-	public ImportList(ImportListVO vo, String URL) {
-		super(vo, URL);
+	public ImportList(ImportListVO vo, String IP) {
+		super(vo, IP);
 		// TODO Auto-generated constructor stub
 	}
 

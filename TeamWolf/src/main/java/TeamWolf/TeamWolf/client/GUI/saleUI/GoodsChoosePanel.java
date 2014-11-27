@@ -18,6 +18,7 @@ import TeamWolf.TeamWolf.client.BL.stockBL.ExternalServiceController;
 import TeamWolf.TeamWolf.client.GUI.manageUI.ManageFrame;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
 import TeamWolf.TeamWolf.client.vo.TypeVO;
+import TeamWolf.TeamWolf.client.vo.UserVO;
 
 /**
  * 
@@ -73,7 +74,7 @@ public class GoodsChoosePanel extends JPanel{
 	private final static int left = 120;
 	
 	public GoodsChoosePanel(String IP) {
-		stockLogic = new ExternalServiceController(IP);
+//		stockLogic = new ExternalServiceController(IP);
 		
 		goodsVOList = new ArrayList<GoodsVO>();
 		panel = new JPanel();
