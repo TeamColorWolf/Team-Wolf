@@ -54,6 +54,21 @@ public class StockManagePane extends JPanel implements TreeModelListener {
 	JButton addType;
 	JButton delType;
 	JButton updType;
+	JLabel addGP;
+	JLabel addGN;
+	JLabel addGM;
+	JLabel addGIP;
+	JLabel addGEP;
+	JTextField addGPTF;
+	JTextField addGNTF;
+	JTextField addGMTF;
+	JTextField addGIPTF;
+	JTextField addGEPTF;
+	JButton addGoods;
+	JButton delGoods;
+	JButton updGoods;
+	JButton finGoods;
+	JButton refreshGoods;
 	
 	
 	public StockManagePane(){
@@ -71,36 +86,18 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     public void initialTree(){
 		
 		DefaultMutableTreeNode root=new DefaultMutableTreeNode("商品");
-		DefaultMutableTreeNode leave=new DefaultMutableTreeNode("实物商品");
+		DefaultMutableTreeNode leave=new DefaultMutableTreeNode("分类1");
 		root.add(leave);
-		leave=new DefaultMutableTreeNode("实物商品");
+		leave=new DefaultMutableTreeNode("分类2");
 		leave.setAllowsChildren(true);
 		root.add(leave);
-		leave=new DefaultMutableTreeNode("实物商品");
+		leave=new DefaultMutableTreeNode("分类3");
 		leave.setAllowsChildren(true);
 		root.add(leave);
-		leave=new DefaultMutableTreeNode("实物商品");
+		leave=new DefaultMutableTreeNode("分类4");
 		leave.setAllowsChildren(true);
 		root.add(leave);
-		leave=new DefaultMutableTreeNode("实物商品");
-		leave.setAllowsChildren(true);
-		root.add(leave);
-		leave=new DefaultMutableTreeNode("实物商品");
-		leave.setAllowsChildren(true);
-		root.add(leave);
-		leave=new DefaultMutableTreeNode("实物商品");
-		leave.setAllowsChildren(true);
-		root.add(leave);
-		leave=new DefaultMutableTreeNode("实物商品");
-		leave.setAllowsChildren(true);
-		root.add(leave);
-		leave=new DefaultMutableTreeNode("实物商品");
-		leave.setAllowsChildren(true);
-		root.add(leave);
-		leave=new DefaultMutableTreeNode("实物商品");
-		leave.setAllowsChildren(true);
-		root.add(leave);
-		leave=new DefaultMutableTreeNode("实物商品");
+		leave=new DefaultMutableTreeNode("分类5");
 		leave.setAllowsChildren(true);
 		root.add(leave);
 		stockStruct=new JTree(root);
@@ -156,7 +153,7 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     	
     	updType=new JButton("更新分类");
     	updType.setVisible(true);
-    	updType.setBounds(260, 300, 100, 28);
+    	updType.setBounds(260, 340, 100, 28);
     	updType.addActionListener(new ActionListener(){
     		
     		public void actionPerformed(ActionEvent Event){
@@ -182,6 +179,9 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     		}
     	});
     	
+    	addGoods=new JButton("更新分类");
+    	addGoods.setVisible(true);
+    	addGoods.setBounds(260, 340, 100, 28);
     	
     }
     
@@ -216,7 +216,7 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     	updNNL.setVisible(true);
     	updNNL.setFont(new Font("黑体", Font.BOLD, 14));
     	updNNL.setBounds(120, 150, 80, 30);
-    	updTIL=new JLabel("父类信息");
+    	updTIL=new JLabel("分类信息");
     	updTIL.setFont(new Font("黑体", Font.BOLD, 14));
     	updTIL.setVisible(true);
     	updTIL.setBounds(120, 80, 80, 30);
@@ -266,9 +266,14 @@ public class StockManagePane extends JPanel implements TreeModelListener {
         typeOpr.setEnabledAt(2, true);
         goodsOpr=new JTabbedPane();   
         addGoodsP=new JPanel();
+        addGoodsP.setLayout(null);
+        addGoodsP.add(addGoods);
         delGoodsP=new JPanel();
+        delGoodsP.setLayout(null);
         updGoodsP=new JPanel();
+        updGoodsP.setLayout(null);
         shoGoodsP=new JPanel();
+        shoGoodsP.setLayout(null);
         goodsOpr.addTab("增加商品", addGoodsP);
         goodsOpr.addTab("删除商品", delGoodsP);
         goodsOpr.addTab("修改商品", updGoodsP);
@@ -314,6 +319,16 @@ public class StockManagePane extends JPanel implements TreeModelListener {
 				 TreePath treepath=tree.getPathForRow(rowLocation);
 				 TreeNode treenode=(TreeNode)treepath.getLastPathComponent();
 				 String nodeName=treenode.toString();
+				 
+				 if(nodeName.substring(0, 2).equals("分类")){
+					 
+					 addTParent.setText(treenode.getParent().toString());
+					 delTInfo.setText(nodeName);
+					 updTInfo.setText(nodeName);
+				 }
+				 else if(nodeName.substring(0, 2).equals("商品")){
+					 
+				 }
 			}catch(NullPointerException ne){
 				
 			}
