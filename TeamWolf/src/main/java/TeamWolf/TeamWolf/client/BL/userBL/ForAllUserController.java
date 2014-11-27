@@ -24,7 +24,7 @@ public class ForAllUserController implements ForAllUserService{
 
 	public ArrayList<UserVO> getAllUserList() {
 		// TODO Auto-generated method stub
-		return null;
+		return fau.getAllUserList();
 	}
 	
 }

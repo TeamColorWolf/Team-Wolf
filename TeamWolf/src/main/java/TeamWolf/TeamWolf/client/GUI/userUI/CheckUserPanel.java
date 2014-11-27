@@ -1,5 +1,7 @@
 package TeamWolf.TeamWolf.client.GUI.userUI;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -42,6 +44,9 @@ public class CheckUserPanel extends JPanel{
 	private JLabel pass = new JLabel("密码");
 	private JLabel workNum = new JLabel("工作编号");
 	private JLabel Power = new JLabel("用户类型");
+	
+	private String work;
+	private UserType type;
 	
 	private final int LW = 100;
 	private final int LH = 25;
@@ -124,6 +129,7 @@ public class CheckUserPanel extends JPanel{
 		check.addMouseListener(new CheckListener());
 		update.addMouseListener(new UpdateListener());
 		delete.addMouseListener(new DeleteListener());
+		power.addActionListener(new PowerListener());
 	}
 	
 	private void getContent(){
@@ -166,6 +172,8 @@ public class CheckUserPanel extends JPanel{
 				workID.setText(vo.workID);
 				password.setText(vo.password);
 				SetComboBoxUser.setDefault(power, vo.power);
+				work = vo.workID;
+				type = vo.power;
 			}
 		}
 		public void mouseEntered(MouseEvent arg0) {}
@@ -220,5 +228,21 @@ public class CheckUserPanel extends JPanel{
 		public void mouseExited(MouseEvent arg0) {}
 		public void mousePressed(MouseEvent arg0) {}
 		public void mouseReleased(MouseEvent arg0) {}
+	}
+	
+	class PowerListener implements ActionListener{
+
+		public void actionPerformed(ActionEvent arg0) {
+			// TODO Auto-generated method stub
+			if(type == (UserType)power.getSelectedItem()){
+				workID.setText(work);
+			}
+			else{
+				String choice = service.creatWorkID((UserType)power.getSelectedItem());
+				workID.setText(choice);
+			}
+			flashPanel();
+		}
+		
 	}
 }
