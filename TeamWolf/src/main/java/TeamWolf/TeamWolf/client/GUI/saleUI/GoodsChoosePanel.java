@@ -1,4 +1,4 @@
-package TeamWolf.TeamWolf.client.GUI.SaleUI;
+package TeamWolf.TeamWolf.client.GUI.saleUI;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -13,6 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
+import TeamWolf.TeamWolf.client.BL.stockBL.ExternalService;
+import TeamWolf.TeamWolf.client.BL.stockBL.ExternalServiceController;
 import TeamWolf.TeamWolf.client.GUI.manageUI.ManageFrame;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
 import TeamWolf.TeamWolf.client.vo.TypeVO;
@@ -24,7 +26,8 @@ import TeamWolf.TeamWolf.client.vo.TypeVO;
  */
 public class GoodsChoosePanel extends JPanel{
 	
-
+	ExternalService stockLogic;
+	
 	int giftNum = 0;
 	
 	JScrollPane scroll;
@@ -42,7 +45,8 @@ public class GoodsChoosePanel extends JPanel{
 	
 	ArrayList<JButton> deleteList;
 	
-	ArrayList<TypeVO> typeList;
+	static ArrayList<TypeVO> typeList;
+	static ArrayList<GoodsVO> goodsVOList;
 	
 	JButton add = new JButton("增加");
 	JButton delete = new JButton("移除");
@@ -68,7 +72,10 @@ public class GoodsChoosePanel extends JPanel{
 	private final static int Lgap = 50;
 	private final static int left = 120;
 	
-	public GoodsChoosePanel() {
+	public GoodsChoosePanel(String IP) {
+		stockLogic = new ExternalServiceController(IP);
+		
+		goodsVOList = new ArrayList<GoodsVO>();
 		panel = new JPanel();
 //		typeList = service.typeList();
 		if(typeList == null){
@@ -149,17 +156,17 @@ public class GoodsChoosePanel extends JPanel{
 		remarkList.add(remark);
 		labelList.add(dl);
 		
-		panelD = new Dimension(ManageFrame.width-20, 260);
+		panelD = new Dimension(ManageFrame.width-20, 350);
 		
 		panel.setLayout(null);
 		panel.setPreferredSize(panelD);
 		scroll = new JScrollPane(panel);
-		scroll.setSize(1300, 260);
+		scroll.setSize(1300, 350);
 		
 		this.add(scroll);
 		
 		this.setLayout(null);
-		this.setSize(1300, 260);
+		this.setSize(1300, 350);
 		this.setLocation(-10, 120);
 		this.setVisible(true);
 		
@@ -341,6 +348,26 @@ public class GoodsChoosePanel extends JPanel{
 		}
 		return 0;
 	}
+
+	/**
+	 * 获取商品类型列表
+	 * @return
+	 */
+	public static ArrayList<TypeVO> getAllType(){
+		
+		return typeList;
+	}
+	
+	/**
+	 * 获取当前商品类型下的列表
+	 * @return
+	 */
+	public static ArrayList<GoodsVO> getGoodsList(){
+		
+		
+		
+		return goodsVOList;
+	}
 	
 	/**
 	 * 商品种类选择
@@ -376,6 +403,8 @@ public class GoodsChoosePanel extends JPanel{
 			setNext();
 			
 			panel.updateUI();
+			
+			
 		}
 		
 	}

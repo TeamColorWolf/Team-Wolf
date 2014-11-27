@@ -1,6 +1,5 @@
-package TeamWolf.TeamWolf.client.GUI.SaleUI;
+package TeamWolf.TeamWolf.client.GUI.saleUI;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,6 +10,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+
+import TeamWolf.TeamWolf.client.vo.UserType;
+import TeamWolf.TeamWolf.client.vo.UserVO;
 
 
 /**
@@ -36,8 +38,11 @@ public class FunctionChoose extends JFrame{
 	 */
 	private static final int w = 500;
 	
+	private String ip = "";
 	
-	public FunctionChoose(String name, String num, String ip) {
+	public FunctionChoose(UserVO userVO, String ip) {
+		this.ip = ip;
+		
 		//设置布局管理器为“null”
 		this.setLayout(null);
 		//设置标题
@@ -47,10 +52,10 @@ public class FunctionChoose extends JFrame{
 		//居中
 		FramUtil.setFrameCenter(this);
 		//添加各种面板
-		this.add(this.messagePanel(name, num));
+		this.add(this.messagePanel(userVO.userName, userVO.workID, userVO.power));
 		this.add(this.funChoosePanel());
 		this.add(this.assistPanel(ip));
-		this.add(this.buttonPanel());
+		this.add(this.buttonPanel(userVO));
 		//设置不能变大小
 		this.setResizable(false);
 		//关闭方式
@@ -65,29 +70,34 @@ public class FunctionChoose extends JFrame{
 	 * @param number
 	 * @return
 	 */
-	private JPanel messagePanel(String name, String number){
+	private JPanel messagePanel(String name, String number, UserType kind){
 		//创建标签面板
 		JPanel jp = new JPanel();
 		jp.setLayout(null);
 //		jp.setBackground(Color.BLUE);
 		JLabel userName = new JLabel("姓名:" + name);
 		JLabel userNum = new JLabel("编号:" + number);
-		Font message_FONT= new Font("楷体", Font.BOLD, 24);
+		JLabel userPower = new JLabel("权限：" + kind);
+		Font message_FONT= new Font("楷体", Font.BOLD, 20);
 		
 		//设置面板大小
 		jp.setSize(w / 2, h * 2 / 3);
 		//设置标签大小
-		userName.setSize(jp.getWidth(), jp.getHeight() / 3);
+		userName.setSize(jp.getWidth(), jp.getHeight() / 5);
 		userNum.setSize(userName.getSize());
+		userPower.setSize(userName.getSize());
 		//设置标签位置
 		userName.setLocation(jp.getWidth() / 4, jp.getHeight() / 6);
-		userNum.setLocation(userName.getX(), jp.getHeight() / 2);
+		userNum.setLocation(userName.getX(), jp.getHeight() / 2 - 30);
+		userPower.setLocation(userName.getX(), jp.getHeight() * 2 / 3);
 		//设置标签字体
 		userName.setFont(message_FONT);
 		userNum.setFont(message_FONT);
+		userPower.setFont(message_FONT);
 		
 		jp.add(userName);
 		jp.add(userNum);
+		jp.add(userPower);
 		
 		return jp;
 	}
@@ -155,13 +165,11 @@ public class FunctionChoose extends JFrame{
 		btnCustomerAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				a = 1;
-				System.out.println(a);
 			}
 		});
 		btnCreateList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				a = 2;
-				System.out.println(a);
 			}
 		});
 		
@@ -175,7 +183,7 @@ public class FunctionChoose extends JFrame{
 	 * 按钮面板
 	 * @return
 	 */
-	private JPanel buttonPanel(){
+	private JPanel buttonPanel(final UserVO user){
 		//创建标签面板
 		JPanel jp = new JPanel();
 		jp.setLayout(null);
@@ -198,7 +206,7 @@ public class FunctionChoose extends JFrame{
 		
 		buttonConfirm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				confirmButtonEvent();
+				confirmButtonEvent(user);
 			}
 		});
 		buttonExit.addActionListener(new ActionListener() {
@@ -216,13 +224,13 @@ public class FunctionChoose extends JFrame{
 	/**
 	 * 点击确定按钮事件
 	 */
-	private void confirmButtonEvent(){
+	private void confirmButtonEvent(UserVO user){
 		switch (a) {
 		case 1:
 			new CustomerAdminFrame();
 			break;
 		case 2:
-			new CreateListFrame();
+			new CreateListFrame(user, ip);
 			break;
 		default:
 			break;
