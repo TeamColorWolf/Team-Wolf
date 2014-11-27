@@ -86,7 +86,7 @@ public class MainPane extends JPanel {
 	    StyleConstants.setFontSize(bSet, 14);  
 	    
 		AnnouceArea.setVisible(true);
-		AnnouceArea.setEditable(true);
+		AnnouceArea.setEditable(false);
 		AnnouceArea.setBounds(0, 0, 800, 300);
 		AnnouceArea.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
 		

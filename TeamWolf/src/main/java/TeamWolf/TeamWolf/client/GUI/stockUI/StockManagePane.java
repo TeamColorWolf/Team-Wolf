@@ -1,18 +1,23 @@
 package TeamWolf.TeamWolf.client.GUI.stockUI;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTree;
 import javax.swing.event.TreeModelEvent;
@@ -65,8 +70,23 @@ public class StockManagePane extends JPanel implements TreeModelListener {
 	JTextField addGIPTF;
 	JTextField addGEPTF;
 	JButton addGoods;
+	JLabel delGN;
+	JTextField delGNTF;
 	JButton delGoods;
+	JLabel updGN;
+	JLabel updGIP;
+	JLabel updGEP;
+	JTextField updGNTF;
+	JTextField updGIPTF;
+	JTextField updGEPTF;
 	JButton updGoods;
+	
+	JScrollPane SGContainer;
+	JPanel SOP;
+	JTextArea shoPane;
+	JTextField numberTF;
+	JTextField nameTF;
+	JTextField modelTF;
 	JButton finGoods;
 	JButton refreshGoods;
 	
@@ -113,7 +133,7 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     	
     	addType=new JButton("增加分类");
     	addType.setVisible(true);
-    	addType.setBounds(260, 300, 100, 28);
+    	addType.setBounds(260, 340, 100, 28);
     	addType.addActionListener(new ActionListener(){
     		
     		public void actionPerformed(ActionEvent Event){
@@ -125,13 +145,14 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     			parentNode=(DefaultMutableTreeNode)(parentPath.getLastPathComponent());
     			treeModel.insertNodeInto(newNode, parentNode, parentNode.getChildCount());
     			stockStruct.scrollPathToVisible(new TreePath(newNode.getPath()));
+    			addTName.setText("");
     			}
     		}
     	});
     	
     	delType=new JButton("删除分类");
     	delType.setVisible(true);
-    	delType.setBounds(260, 300, 100, 28);
+    	delType.setBounds(260, 340, 100, 28);
     	delType.addActionListener(new ActionListener(){
     		
     		public void actionPerformed(ActionEvent Event){
@@ -148,6 +169,8 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     				     }
     				}
     			}
+    			
+    			delTInfo.setText("");
     		}
     	});
     	
@@ -161,27 +184,27 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     			TreePath treePath=stockStruct.getSelectionPath();
     			if(treePath!=null){
     				DefaultMutableTreeNode selectionNode=(DefaultMutableTreeNode)treePath.getLastPathComponent();
-    				int l=0;
-    				DefaultMutableTreeNode parent=(DefaultMutableTreeNode)selectionNode.getParent();
-    				if(parent!=null){
-    				        
-    					    for(;l<parent.getChildCount();l++){
-    					    	if(parent.getChildAt(l).equals(selectionNode))
-    					    		break;
-    					    }
-    						treeModel.removeNodeFromParent(selectionNode);
-                               				     
-    				}
-    				
-    				selectionNode=new DefaultMutableTreeNode("更新");
-                    treeModel.insertNodeInto(selectionNode, parent, l);
+    				selectionNode.setUserObject(updTNewName.getText());
+    				treeModel.reload();
+    				stockStruct.scrollPathToVisible(new TreePath(selectionNode.getPath()));
     			}
+    			
+    			updTInfo.setText("");
+    			updTNewName.setText("");
     		}
     	});
     	
-    	addGoods=new JButton("更新分类");
+    	addGoods=new JButton("增加商品");
     	addGoods.setVisible(true);
     	addGoods.setBounds(260, 340, 100, 28);
+    	
+    	delGoods=new JButton("删除商品");
+    	delGoods.setVisible(true);
+    	delGoods.setBounds(260, 340, 100, 28);
+    	
+    	updGoods=new JButton("修改商品");
+    	updGoods.setVisible(true);
+    	updGoods.setBounds(260, 340, 100, 28);
     	
     }
     
@@ -228,6 +251,105 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     	updTNewName.setVisible(true);
     	updTNewName.setBounds(210, 150, 250, 30);
     	
+    	addGP=new JLabel("商品父类");
+    	addGP.setVisible(true);
+    	addGP.setFont(new Font("黑体", Font.BOLD, 14));
+    	addGP.setBounds(120, 30, 80, 30);
+    	addGN=new JLabel("商品名称");
+    	addGN.setVisible(true);
+    	addGN.setFont(new Font("黑体", Font.BOLD, 14));
+    	addGN.setBounds(120, 80, 80, 30);
+    	addGM=new JLabel("商品型号");
+    	addGM.setVisible(true);
+    	addGM.setFont(new Font("黑体", Font.BOLD, 14));
+    	addGM.setBounds(120, 130, 80, 30);
+    	addGIP=new JLabel("商品进价");
+    	addGIP.setVisible(true);
+    	addGIP.setFont(new Font("黑体", Font.BOLD, 14));
+    	addGIP.setBounds(120, 180, 80, 30);
+    	addGEP=new JLabel("商品售价");
+    	addGEP.setVisible(true);
+    	addGEP.setFont(new Font("黑体", Font.BOLD, 14));
+    	addGEP.setBounds(120, 230, 80, 30);
+    	
+    	addGPTF=new JTextField();
+    	addGPTF.setVisible(true);
+    	addGPTF.setBounds(210, 30, 250, 30);
+    	addGPTF.setEditable(false);
+    	addGNTF=new JTextField();
+    	addGNTF.setVisible(true);
+    	addGNTF.setBounds(210, 80, 250, 30);
+    	addGMTF=new JTextField();
+    	addGMTF.setVisible(true);
+    	addGMTF.setBounds(210, 130, 250, 30);
+    	addGIPTF=new JTextField();
+    	addGIPTF.setVisible(true);
+    	addGIPTF.setBounds(210, 180, 250, 30);
+    	addGEPTF=new JTextField();
+    	addGEPTF.setVisible(true);
+    	addGEPTF.setBounds(210, 230, 250, 30);
+    	
+    	delGN=new JLabel("商品信息");
+    	delGN.setVisible(true);
+    	delGN.setFont(new Font("黑体", Font.BOLD, 14));
+    	delGN.setBounds(120, 80, 80, 30);
+    	
+    	delGNTF=new JTextField();
+    	delGNTF.setVisible(true);
+    	delGNTF.setBounds(210, 80, 250, 30);
+    	delGNTF.setEditable(false);
+    	
+    	updGN=new JLabel("商品信息");
+    	updGN.setVisible(true);
+    	updGN.setFont(new Font("黑体", Font.BOLD, 14));
+    	updGN.setBounds(120, 80, 80, 30);
+    	
+    	updGIP=new JLabel("新进货价");
+    	updGIP.setVisible(true);
+    	updGIP.setFont(new Font("黑体", Font.BOLD, 14));
+    	updGIP.setBounds(120, 130, 80, 30);
+    	
+    	updGEP=new JLabel("新销售价");
+    	updGEP.setVisible(true);
+    	updGEP.setFont(new Font("黑体", Font.BOLD, 14));
+    	updGEP.setBounds(120, 180, 80, 30);
+    	
+    	updGNTF=new JTextField();
+    	updGNTF.setVisible(true);
+    	updGNTF.setBounds(210, 80, 250, 30);
+    	updGNTF.setEditable(false);    	
+    	updGIPTF=new JTextField();
+    	updGIPTF.setVisible(true);
+    	updGIPTF.setBounds(210, 130, 250, 30);    	    
+    	updGEPTF=new JTextField();
+    	updGEPTF.setVisible(true);
+    	updGEPTF.setBounds(210, 180, 250, 30);    	
+    	
+    	shoPane=new JTextArea();
+    	SGContainer=new JScrollPane(shoPane);
+    	SOP=new JPanel();
+    	SOP.setLayout(new GridLayout());
+    	JLabel numberL=new JLabel("编号");
+    	numberTF=new JTextField();
+    	//numberTF.setBounds(5, 5, 40, 25);
+    	JLabel nameL=new JLabel("名称");
+    	nameTF=new JTextField();
+    	//nameTF.setBounds(50, 5, 40, 25);
+    	JLabel modelL=new JLabel("型号");
+    	modelTF=new JTextField();
+    	//nameTF.setBounds(95, 5, 40, 25);
+    	finGoods=new JButton("查找");
+    	//finGoods.setBounds(140, 5, 40, 25);
+    	refreshGoods=new JButton("所有");
+    	//refreshGoods.setBounds(185, 5, 40, 25);    	
+    	SOP.add(numberTF);
+    	SOP.add(numberL);    	
+    	SOP.add(nameTF);
+    	SOP.add(nameL);
+    	SOP.add(modelTF);
+    	SOP.add(modelL);
+    	SOP.add(finGoods);
+    	SOP.add(refreshGoods);
     }
     
     public void initialOprArea(){
@@ -268,12 +390,34 @@ public class StockManagePane extends JPanel implements TreeModelListener {
         addGoodsP=new JPanel();
         addGoodsP.setLayout(null);
         addGoodsP.add(addGoods);
+        addGoodsP.add(addGP);
+        addGoodsP.add(addGN);
+        addGoodsP.add(addGM);
+        addGoodsP.add(addGEP);
+        addGoodsP.add(addGIP);
+        addGoodsP.add(addGPTF);
+        addGoodsP.add(addGNTF);
+        addGoodsP.add(addGMTF);
+        addGoodsP.add(addGIPTF);
+        addGoodsP.add(addGEPTF);
         delGoodsP=new JPanel();
         delGoodsP.setLayout(null);
+        delGoodsP.add(delGN);
+        delGoodsP.add(delGoods);
+        delGoodsP.add(delGNTF);
         updGoodsP=new JPanel();
         updGoodsP.setLayout(null);
+        updGoodsP.add(updGoods);
+        updGoodsP.add(updGN);
+        updGoodsP.add(updGIP);
+        updGoodsP.add(updGEP);
+        updGoodsP.add(updGIPTF);
+        updGoodsP.add(updGEPTF);
+        updGoodsP.add(updGNTF);
         shoGoodsP=new JPanel();
-        shoGoodsP.setLayout(null);
+        shoGoodsP.setLayout(new BorderLayout());
+        shoGoodsP.add(SGContainer, BorderLayout.CENTER);
+        shoGoodsP.add(SOP, BorderLayout.SOUTH);
         goodsOpr.addTab("增加商品", addGoodsP);
         goodsOpr.addTab("删除商品", delGoodsP);
         goodsOpr.addTab("修改商品", updGoodsP);
@@ -322,12 +466,15 @@ public class StockManagePane extends JPanel implements TreeModelListener {
 				 
 				 if(nodeName.substring(0, 2).equals("分类")){
 					 
-					 addTParent.setText(treenode.getParent().toString());
+					 addTParent.setText(nodeName);
 					 delTInfo.setText(nodeName);
 					 updTInfo.setText(nodeName);
+					 addGPTF.setText(nodeName);
 				 }
 				 else if(nodeName.substring(0, 2).equals("商品")){
 					 
+					 delGNTF.setText(nodeName);
+					 updGNTF.setText(nodeName);
 				 }
 			}catch(NullPointerException ne){
 				
