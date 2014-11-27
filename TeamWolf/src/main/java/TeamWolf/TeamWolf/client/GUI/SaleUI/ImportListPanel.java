@@ -1,4 +1,4 @@
-package TeamWolf.TeamWolf.client.GUI.SaleUI;
+package TeamWolf.TeamWolf.client.GUI.saleUI;
 
 import java.awt.Color;
 
