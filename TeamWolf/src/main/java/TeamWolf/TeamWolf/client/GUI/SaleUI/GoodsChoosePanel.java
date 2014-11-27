@@ -37,6 +37,8 @@ public class GoodsChoosePanel extends JPanel{
 	ArrayList<JTextField> numList;
 	ArrayList<JLabel> labelList;
 	ArrayList<JTextField> goodsPriceList;
+	ArrayList<JTextField> totalPriceList;
+	ArrayList<JTextField> remarkList;
 	
 	ArrayList<JButton> deleteList;
 	
@@ -50,12 +52,14 @@ public class GoodsChoosePanel extends JPanel{
 	JTextField dn = new JTextField();
 	JLabel dl = new JLabel("商品 1");
 	JTextField dp = new JTextField();
+	JTextField total = new JTextField("总额");
+	JTextField remark = new JTextField("备注");
 	
 	private JLabel goodsTypeLabel = new JLabel("商品分类");
 	private JLabel goodsLabel = new JLabel("商品");
 	private JLabel goodsNum = new JLabel("商品数量");
 	private JLabel goodsPrice = new JLabel("商品单价");
-	private JLabel goodsTotal = new JLabel("总价");
+	private JLabel goodsTotal = new JLabel("总额");
 	private JLabel goodsRemark = new JLabel("备注");
 	
 	private final static int LH = 25;
@@ -75,6 +79,8 @@ public class GoodsChoosePanel extends JPanel{
 		numList = new ArrayList<JTextField>();
 		labelList = new ArrayList<JLabel>();
 		goodsPriceList = new ArrayList<JTextField>();
+		totalPriceList = new ArrayList<JTextField>();
+		remarkList = new ArrayList<JTextField>();
 		
 		goodsTypeLabel.setSize(LW, LH);
 		goodsLabel.setSize(LW, LH);
@@ -101,12 +107,16 @@ public class GoodsChoosePanel extends JPanel{
 		dg.setEnabled(false);
 		dn.setEnabled(false);
 		dp.setEnabled(false);
+		total.setEnabled(false);
+		remark.setEnabled(false);
 		
 		dt.setSize(LW, LH);
 		dg.setSize(LW, LH);
 		dn.setSize(LW, LH);
 		dl.setSize(Lgap, LH);
 		dp.setSize(LW, LH);
+		total.setSize(LW, LH);
+		remark.setSize(LW, LH);
 		add.setSize(LW / 2, LH);
 		delete.setSize(LW / 2, LH);
 		
@@ -115,6 +125,8 @@ public class GoodsChoosePanel extends JPanel{
 		dn.setLocation(left+2*LW+2*Lgap, Hgap);
 		dl.setLocation(left-Lgap, Hgap);
 		dp.setLocation(dn.getX() + dn.getWidth() + Lgap, Hgap);
+		total.setLocation(dp.getX() + dp.getWidth() + Lgap, Hgap);
+		remark.setLocation(total.getX() + total.getWidth() + Lgap, Hgap);
 		add.setLocation(left+6*LW+6*Lgap, Hgap);
 		
 		dt.setBackground(Color.white);
@@ -125,12 +137,16 @@ public class GoodsChoosePanel extends JPanel{
 		panel.add(dn);
 		panel.add(dl);
 		panel.add(dp);
+		panel.add(total);
+		panel.add(remark);
 		panel.add(add);
 		
 		goodsTypeList.add(dt);
 		goodsList.add(dg);
 		numList.add(dn);
 		goodsPriceList.add(dp);
+		totalPriceList.add(total);
+		remarkList.add(remark);
 		labelList.add(dl);
 		
 		panelD = new Dimension(ManageFrame.width-20, 260);
@@ -167,28 +183,38 @@ public class GoodsChoosePanel extends JPanel{
 		numList.remove(giftNum);
 		labelList.remove(giftNum);
 		goodsPriceList.remove(giftNum);
+		totalPriceList.remove(giftNum);
+		remarkList.remove(giftNum);
 		
 		panel.remove(dt);
 		panel.remove(dg);
 		panel.remove(dn);
 		panel.remove(dl);
 		panel.remove(dp);
+		panel.remove(total);
+		panel.remove(remark);
 		
 		dt = goodsTypeList.get(giftNum-1);
 		dg = goodsList.get(giftNum-1);
 		dn = numList.get(giftNum-1);
 		dl = labelList.get(giftNum-1);
 		dp = goodsPriceList.get(giftNum - 1);
+		total = totalPriceList.get(giftNum - 1);
+		remark = remarkList.get(giftNum - 1);
 		
 		dt.removeAllItems();
 		dg.removeAllItems();
 		dn.setText(null);
 		dp.setText(null);
+		total.setText("总额");
+		remark.setText("备注");
 		
 		dt.setEnabled(false);
 		dg.setEnabled(false);
 		dn.setEnabled(false);
 		dp.setEnabled(false);
+		total.setEnabled(false);
+		remark.setEnabled(false);
 		
 		delete.setLocation(left+6*LW+6*Lgap, (giftNum-1)*Hgap);
 		
@@ -205,6 +231,8 @@ public class GoodsChoosePanel extends JPanel{
 		dg = new JComboBox<String>();
 		dn = new JTextField();
 		dp = new JTextField();
+		total = new JTextField("总额");
+		remark = new JTextField("备注");
 		dl = new JLabel("商品 "+(giftNum+1));
 		
 		dt.setBackground(Color.white);
@@ -214,17 +242,23 @@ public class GoodsChoosePanel extends JPanel{
 		dg.setEnabled(false);
 		dp.setEnabled(false);
 		dn.setEnabled(false);
+		total.setEnabled(false);
+		remark.setEnabled(false);
 		
 		dt.setSize(LW, LH);
 		dg.setSize(LW, LH);
 		dn.setSize(LW, LH);
 		dp.setSize(LW, LH);
+		total.setSize(LW, LH);
+		remark.setSize(LW, LH);
 		dl.setSize(Lgap, LH);
 		
 		dt.setLocation(left, (giftNum+1)*Hgap);
 		dg.setLocation(left+LW+Lgap, (giftNum+1)*Hgap);
 		dn.setLocation(left+2*LW+2*Lgap, (giftNum+1)*Hgap);
 		dp.setLocation(left+3*LW+3*Lgap, (giftNum+1)*Hgap);
+		total.setLocation(left+4*LW+4*Lgap, (giftNum+1)*Hgap);
+		remark.setLocation(left+5*LW+5*Lgap, (giftNum+1)*Hgap);
 		dl.setLocation(left-Lgap, (giftNum+1)*Hgap);
 		add.setLocation(left+6*LW+6*Lgap, (giftNum+1)*Hgap);
 		
@@ -235,12 +269,16 @@ public class GoodsChoosePanel extends JPanel{
 		numList.add(dn);
 		goodsPriceList.add(dp);
 		labelList.add(dl);
+		totalPriceList.add(total);
+		remarkList.add(remark);
 		
 		panel.add(dt);
 		panel.add(dg);
 		panel.add(dn);
 		panel.add(dp);
 		panel.add(dl);
+		panel.add(total);
+		panel.add(remark);
 		panel.add(delete);
 		
 		if((giftNum+2)*Hgap>panelD.height){
@@ -332,6 +370,8 @@ public class GoodsChoosePanel extends JPanel{
 			dg.setEnabled(true);
 			dn.setEnabled(true);
 			dp.setEnabled(true);
+			total.setEnabled(true);
+			remark.setEnabled(true);
 			
 			setNext();
 			

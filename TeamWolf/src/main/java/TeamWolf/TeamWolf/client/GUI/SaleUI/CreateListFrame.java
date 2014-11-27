@@ -1,6 +1,7 @@
 package TeamWolf.TeamWolf.client.GUI.SaleUI;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 
@@ -57,5 +58,6 @@ public class CreateListFrame extends JFrame{
 		
 		return jtp;
 	}
+
 	
 }
