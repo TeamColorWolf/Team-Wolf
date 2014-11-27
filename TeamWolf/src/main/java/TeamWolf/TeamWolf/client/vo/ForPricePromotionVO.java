@@ -21,7 +21,7 @@ public class ForPricePromotionVO extends PromotionVO{
 	}
 	
 	public ForPricePromotionVO(ForPricePromotionPO po){
-		super(po.type, po.begin, po.end);
+		super(po.type, po.begin, po.end, po.number);
 		cashCoupon = po.cashCoupon;
 		workCondition = po.workCondition;
 		list = setGiftList(po.list);
