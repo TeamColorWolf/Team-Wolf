@@ -16,6 +16,7 @@ public class ManageFrame extends JFrame{
 	JTabbedPane tab;
 	
 	PromotionPanel promotion;
+	ApprovePanel approve;
 	
 	public static final int width = 960;
 	public static final int height = 540;
@@ -27,8 +28,11 @@ public class ManageFrame extends JFrame{
 		this.IP = IP;
 		tab = new JTabbedPane(JTabbedPane.TOP);
 		tab.setSize(width, height);
+		
+		approve = new ApprovePanel();
 		promotion = new PromotionPanel();
 		
+		tab.add(approve, "审批单据");
 		tab.add(promotion, "促销策略");
 		
 		panel.add(tab);

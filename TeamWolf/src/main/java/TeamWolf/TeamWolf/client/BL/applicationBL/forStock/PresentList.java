@@ -7,8 +7,8 @@ import TeamWolf.TeamWolf.client.vo.PresentListVO;
 
 public class PresentList extends Application{
 
-	public PresentList(PresentListVO vo, String URL) {
-		super(vo, URL);
+	public PresentList(PresentListVO vo, String IP) {
+		super(vo, IP);
 		// TODO Auto-generated constructor stub
 	}
 

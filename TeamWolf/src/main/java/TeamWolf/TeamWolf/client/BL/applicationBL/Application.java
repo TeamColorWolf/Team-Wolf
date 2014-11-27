@@ -23,7 +23,7 @@ public abstract class Application {
 	protected StockApplicationDATAservice stock;
 	protected SaleApplicationDATAservice sale;
 	
-	public Application(ApplicationVO vo, String URL){
+	public Application(ApplicationVO vo, String IP){
 		
 	}
 	

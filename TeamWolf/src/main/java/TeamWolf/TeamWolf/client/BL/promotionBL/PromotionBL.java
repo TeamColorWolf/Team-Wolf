@@ -41,7 +41,7 @@ public class PromotionBL{
 	public PromotionBL(String IP){
 		URL = "rmi://" + IP + "/promotionDATAservice";
 		this.initial();
-//TODO		proAssist = new PromotionBLAssistant(IP);
+		proAssist = new PromotionBLAssistant(IP);
 	}
 	
 	public int addPromotion(PromotionVO vo){
@@ -199,6 +199,10 @@ public class PromotionBL{
 	public ArrayList<PromotionVO> check() {
 		// TODO Auto-generated method stub
 		return voList;
+	}
+	
+	public int creatPresentList(PromotionPO po, CustomerVO customer){
+		return proAssist.creatPresentList(po, customer);
 	}
 	
 	public ArrayList<TypeVO> getLeaveType(){

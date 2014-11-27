@@ -87,7 +87,7 @@ public class PromotionVO {
 		ArrayList<GiftForPromotionVO> list = new ArrayList<GiftForPromotionVO>();
 		if(pList != null){
 			for(int i = 0; i < pList.size(); i++){
-				GiftForPromotionVO vo = new GiftForPromotionVO(pList.get(i).GoodsName, pList.get(i).sendNumber);
+				GiftForPromotionVO vo = new GiftForPromotionVO(pList.get(i).GoodsNum, pList.get(i).sendNumber);
 				list.add(vo);
 			}
 		}
