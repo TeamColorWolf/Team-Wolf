@@ -41,10 +41,11 @@ public class PromotionBL{
 	public PromotionBL(String IP){
 		URL = "rmi://" + IP + "/promotionDATAservice";
 		this.initial();
-		proAssist = new PromotionBLAssistant(IP);
+//TODO		proAssist = new PromotionBLAssistant(IP);
 	}
 	
 	public int addPromotion(PromotionVO vo){
+		vo.number = this.creatPromotionNumber(vo);
 		try {
 			data = (PromotionDATAservice)Naming.lookup(URL);
 			PromotionPO po = this.getPOfromVO(vo);
@@ -212,6 +213,21 @@ public class PromotionBL{
 	public ImportListVO adaptPromotionForImportList(ImportListVO vo) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	private String creatPromotionNumber(PromotionVO vo){
+		int max = 0;
+		for(int i = 0; i < voList.size(); i++){
+			if(voList.get(i).type == vo.type){
+				String[] array = voList.get(i).number.split("_");
+				int temp = Integer.parseInt(array[1]);
+				if(temp > max){
+					max = temp;
+				}
+			}
+		}
+		max++;
+		return vo.type+"_"+max;
 	}
 	
 	private PromotionVO getVOfromPO(PromotionPO po){

@@ -19,7 +19,7 @@ public class SpecialGoodsPromotionVO extends PromotionVO{
 	}
 	
 	public SpecialGoodsPromotionVO(SpecialGoodsPromotionPO po){
-		super(po.type, po.begin, po.end);
+		super(po.type, po.begin, po.end, po.number);
 		totalPrice = po.totalPrice;
 		list = setGiftList(po.list);
 	}

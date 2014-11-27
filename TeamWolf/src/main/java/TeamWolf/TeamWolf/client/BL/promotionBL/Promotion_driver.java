@@ -22,20 +22,18 @@ public class Promotion_driver {
 		ArrayList<String> gift = new ArrayList<String>();
 		ArrayList<String> send = new ArrayList<String>();
 		TimeVO time = new TimeVO("2000", "01", "01");
-		ForVIPPromotionVO fVvo = new ForVIPPromotionVO(gift, send, "1000", "500", "1", time, time);
-		fVvo.number = "FV_1";
+//		ForVIPPromotionVO fVvo = new ForVIPPromotionVO(gift, send, "1000", "500", 1, time, time);
 		ForPricePromotionVO fPvo = new ForPricePromotionVO(gift, send, "1000", "100000", time, time);
-		SpecialGoodsPromotionVO spvo = new SpecialGoodsPromotionVO(gift, send, "0", time, time);
-		System.out.println(bc.addPromotion(fVvo));
-		ForVIPPromotionVO fff = (ForVIPPromotionVO)bc.getPromotion(fVvo.number);
-		System.out.println(fff.number + " " + fff.discount + " " + fff.cashCoupon + " " + fff.begin.date + " " + fff.end.date);
-		
+//		SpecialGoodsPromotionVO spvo = new SpecialGoodsPromotionVO(gift, send, "0", time, time);
+		System.out.println(bc.addPromotion(fPvo));
+		System.out.println(fPvo.number);
+		ForPricePromotionVO fff = (ForPricePromotionVO)bc.getPromotion(fPvo.number);
+		System.out.println(fff.number + " " + fff.workCondition + " " + fff.cashCoupon + " " + fff.begin.date + " " + fff.end.date + " " + fff.type);
 	}
 	
 	public static void main(String[] args) throws IOException{
 		System.out.print("servier IP : ");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		Promotion_driver pd = new Promotion_driver(br.readLine());
-		
 	}
 }

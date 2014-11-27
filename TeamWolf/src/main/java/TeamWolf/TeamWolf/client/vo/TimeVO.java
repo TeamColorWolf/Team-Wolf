@@ -31,6 +31,10 @@ public class TimeVO {
 		error = 0;
 	}
 	
+	public String toString(){
+		return sdf.format(date);
+	}
+	
 	public int timeCompare(TimeVO t){
 		return date.compareTo(t.date);
 	}

@@ -2,6 +2,7 @@ package TeamWolf.TeamWolf.client.vo;
 
 import java.util.ArrayList;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.po.GiftForPromotionPO;
 import TeamWolf.TeamWolf.client.po.PromotionTypePO;
 import TeamWolf.TeamWolf.client.po.TimePO;
@@ -22,11 +23,11 @@ public class PromotionVO {
 		begin = Begin;
 		end = End;
 		if(timeCompare(begin, end) > 0){
-			error = 20001;//结束时间长于开始时间
+			error = ErrorTW.timeError;//结束时间长于开始时间
 		}
 	}
 	
-	public PromotionVO(PromotionTypePO t, TimePO Begin, TimePO End){
+	public PromotionVO(PromotionTypePO t, TimePO Begin, TimePO End, String number){
 		if(t == PromotionTypePO.forPrice){
 			type = PromotionTypeVO.forPrice;
 		}
@@ -38,6 +39,7 @@ public class PromotionVO {
 		}
 		begin = new TimeVO(Begin);
 		end = new TimeVO(End);
+		this.number = number;
 	}
 	
 	private int timeCompare(TimeVO time1, TimeVO time2){
@@ -49,10 +51,10 @@ public class PromotionVO {
 		try{
 			t = Double.parseDouble(d);
 			if(t < 0){
-				error = 10010;//必须输入正数
+				error = ErrorTW.shoulbBePositive;//必须输入正数
 			}
 		}catch(Exception e){
-			error = 10000;//必须输入数字
+			error = ErrorTW.shouldBeInteger;//必须输入数字
 		}
 		return t;
 	}
@@ -62,10 +64,10 @@ public class PromotionVO {
 		try{
 			t = Integer.parseInt(i);
 			if(t < 0){
-				error = 10010;//必须输入正数
+				error = ErrorTW.shoulbBePositive;//必须输入正数
 			}
 		}catch(Exception e){
-			error = 10001;//必须输入整数
+			error = ErrorTW.shouldBeInteger;//必须输入整数
 		}
 		return t;
 	}

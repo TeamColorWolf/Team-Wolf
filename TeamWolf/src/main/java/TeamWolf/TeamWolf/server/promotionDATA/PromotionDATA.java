@@ -84,7 +84,7 @@ public class PromotionDATA extends UnicastRemoteObject implements PromotionDATAs
 
 	public ArrayList<PromotionPO> show() throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		return list;
 	}
 	
 	@SuppressWarnings("unchecked")
