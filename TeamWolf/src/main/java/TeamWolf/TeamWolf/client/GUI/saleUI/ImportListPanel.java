@@ -47,7 +47,7 @@ public class ImportListPanel extends JPanel{
 	/**
 	 * 面板高度
 	 */
-	private static final int h = 650;	
+	private static final int h = 550;	
 	
 	/**
 	 * 组件宽度(不包括按钮)
@@ -211,7 +211,7 @@ public class ImportListPanel extends JPanel{
 		CustomerVO customer = null;
 		String storage = (String) storageBox.getSelectedItem();
 		String operator = this.operator;
-		ArrayList<GoodsVO> goodsList = GoodsChoosePanel.getGoodsList();
+		ArrayList<GoodsVO> goodsList = GoodsChoosePanel.goodsVOList;
 		String remark = remarkArea.getText();
 		
 		ImportListVO importVO = new ImportListVO(number, customer, storage, operator, goodsList, remark);

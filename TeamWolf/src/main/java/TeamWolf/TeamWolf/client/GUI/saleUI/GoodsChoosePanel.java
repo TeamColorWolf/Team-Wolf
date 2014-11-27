@@ -27,7 +27,7 @@ import TeamWolf.TeamWolf.client.vo.UserVO;
  */
 public class GoodsChoosePanel extends JPanel{
 	
-	ExternalService stockLogic;
+	static ExternalService stockLogic;
 	
 	int giftNum = 0;
 	
@@ -47,7 +47,7 @@ public class GoodsChoosePanel extends JPanel{
 	ArrayList<JButton> deleteList;
 	
 	static ArrayList<TypeVO> typeList;
-	static ArrayList<GoodsVO> goodsVOList;
+	static ArrayList<GoodsVO> goodsVOList = new ArrayList<GoodsVO>();
 	
 	JButton add = new JButton("增加");
 	JButton delete = new JButton("移除");
@@ -76,9 +76,9 @@ public class GoodsChoosePanel extends JPanel{
 	public GoodsChoosePanel(String IP) {
 //		stockLogic = new ExternalServiceController(IP);
 		
-		goodsVOList = new ArrayList<GoodsVO>();
+		
 		panel = new JPanel();
-//		typeList = service.typeList();
+//		typeList = stockLogic.getLeaveType();
 		if(typeList == null){
 			typeList = new ArrayList<TypeVO>();
 		}
@@ -157,17 +157,17 @@ public class GoodsChoosePanel extends JPanel{
 		remarkList.add(remark);
 		labelList.add(dl);
 		
-		panelD = new Dimension(ManageFrame.width-20, 350);
+		panelD = new Dimension(ManageFrame.width-20, 300);
 		
 		panel.setLayout(null);
 		panel.setPreferredSize(panelD);
 		scroll = new JScrollPane(panel);
-		scroll.setSize(1300, 350);
+		scroll.setSize(1300, 300);
 		
 		this.add(scroll);
 		
 		this.setLayout(null);
-		this.setSize(1300, 350);
+		this.setSize(1300, 300);
 		this.setLocation(-10, 120);
 		this.setVisible(true);
 		
@@ -349,26 +349,7 @@ public class GoodsChoosePanel extends JPanel{
 		}
 		return 0;
 	}
-
-	/**
-	 * 获取商品类型列表
-	 * @return
-	 */
-	public static ArrayList<TypeVO> getAllType(){
-		
-		return typeList;
-	}
 	
-	/**
-	 * 获取当前商品类型下的列表
-	 * @return
-	 */
-	public static ArrayList<GoodsVO> getGoodsList(){
-		
-		
-		
-		return goodsVOList;
-	}
 	
 	/**
 	 * 商品种类选择
@@ -429,4 +410,5 @@ public class GoodsChoosePanel extends JPanel{
 			}
 		}
 	}
+	
 }
