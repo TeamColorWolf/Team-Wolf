@@ -30,7 +30,7 @@ public class StockShowPane extends JPanel implements ItemListener, ActionListene
 	String[] years=null;
 	String[] months=new String[12];
 	String[] tableTitle={"商品编号", "商品名称", "商品型号", "商品库存数量", "商品进价", "商品售价", "商品最近进价", "商品最近售价", "商品进货量", "平均进货价", "进货总价", "商品出货量", "平均出货价", "出货总价"};
-	Object[][] stockInfoList={{"12102", "hi", "lala", "df", "sd", "sa", "er", "oo", "wqe", "rr", "iop", "asd", "pp", "132"}};
+	Object[][] stockInfoList={{"12102", "样板", "测试", "测试", "测试", "测试", "测试", "测试", "测试", "测试", "测试", "测试", "测试", "测试"}};
 	String todayDate;
 	int year;
 	JComboBox beginY;
