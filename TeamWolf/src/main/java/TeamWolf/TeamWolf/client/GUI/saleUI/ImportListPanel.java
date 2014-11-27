@@ -38,7 +38,8 @@ public class ImportListPanel extends JPanel{
 	JComboBox<String> storageBox = new JComboBox<String>(storage);	
 	JTextArea remarkArea = new JTextArea();
 	JScrollPane scrollPane = new JScrollPane(remarkArea);
-
+	GoodsChoosePanel goodschoose;
+	
 	/**
 	 * 面板宽度
 	 */
@@ -47,7 +48,7 @@ public class ImportListPanel extends JPanel{
 	/**
 	 * 面板高度
 	 */
-	private static final int h = 550;	
+	private static final int h = 600;	
 	
 	/**
 	 * 组件宽度(不包括按钮)
@@ -75,14 +76,14 @@ public class ImportListPanel extends JPanel{
 	public ImportListPanel(UserVO user, String IP) {
 		this.operator = user.workID; 
 		saleLogic = new SaleBLController(IP);
-
+		goodschoose = new GoodsChoosePanel(IP);
 		//设置布局方式
 		this.setLayout(null);
 		//设置大小
 		this.setSize(w, h);
 		//添加组件
 		this.add(this.attributePanel());
-		this.add(this.addGoodsPanel(IP));
+		this.add(goodschoose);
 		this.add(this.subBtnPanel());
 	}
 	
@@ -135,29 +136,25 @@ public class ImportListPanel extends JPanel{
 		JTextField totalField = new JTextField();
 		JButton submitBtn = new JButton("提交");
 		JButton clearBtn = new JButton("清空");
-		JButton returnBtn = new JButton("返回");
 		
 		//panel设置
 		jp.setLayout(null);
-		jp.setLocation(-10, 470);
-		jp.setSize(w, 140);
+		jp.setLocation(-10, 400);
+		jp.setSize(w, 200);
 //		jp.setBackground(Color.CYAN);
 		
 		//组件设置
 		totalField.setSize(conpW, conpH);
 		submitBtn.setSize(btnW, btnH);
 		clearBtn.setSize(submitBtn.getSize());
-		returnBtn.setSize(submitBtn.getSize());
 		
 		totalField.setLocation(Xgap, Ygap);
 		submitBtn.setLocation(totalField.getX() + totalField.getWidth() + Xgap, Ygap);
 		clearBtn.setLocation(submitBtn.getX() + submitBtn.getWidth() + Xgap, Ygap);
-		returnBtn.setLocation(clearBtn.getX() + clearBtn.getWidth() + Xgap, Ygap);
 		
 		totalField.setBorder(BorderFactory.createTitledBorder("全部总额"));
 		submitBtn.setFont(ChooseBtn_FONT);
 		clearBtn.setFont(ChooseBtn_FONT);
-		returnBtn.setFont(ChooseBtn_FONT);
 		
 		//组件添加监听
 		submitBtn.addActionListener(new ActionListener() {
@@ -170,29 +167,15 @@ public class ImportListPanel extends JPanel{
 				clearBtnEvent();
 			}
 		});
-		returnBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				returnBtnEvent();
-			}
-		});
 		
 		//添加组件
 		jp.add(totalField);
 		jp.add(submitBtn);
 		jp.add(clearBtn);
-		jp.add(returnBtn);
-		
 		
 		return jp;
 	}
-	
-	/**
-	 * 添加商品面板
-	 * @return
-	 */
-	private JPanel addGoodsPanel(String ip){
-		return new GoodsChoosePanel(ip);
-	}
+
 	
 	/**
 	 * 在CustomerBox里添加选择列表
@@ -223,11 +206,8 @@ public class ImportListPanel extends JPanel{
 	 * 清空按钮事件
 	 */
 	private void clearBtnEvent(){
-		this.repaint();
+		goodschoose.removeAllGoods();
 	}
 	
-	private void returnBtnEvent(){
-		
-	}
 }
 
