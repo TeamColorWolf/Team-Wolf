@@ -128,21 +128,12 @@ public class GoodsData extends UnicastRemoteObject implements GoodsDataService {
 		}
 	}
 	
-	/*public static void main(String[] args){
+	public static void main(String[] args){
 		 try {
-			GoodsData gd=new GoodsData();
-			GoodsPO g=new GoodsPO(null, "00002", "电灯", "GZ", 8, 0, 0, 0, 0);
-			gd.addGood(g);
-			GoodsPO fin=gd.finGood("00002");
-			System.out.println(fin.getNumber()+" "+g.getName()+" "+fin.getModel());
-			gd.delGood("00002");
-			GoodsPO fin2=gd.finGood("00002");
-			if(fin2==null){
-				System.out.println("已删除");
-			}
+			   GoodsData gd=new GoodsData();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}*/
+	}
 }
