@@ -14,7 +14,6 @@ import TeamWolf.TeamWolf.client.vo.*;
 public class GoodsBLController implements GoodManService,GoodTService,GoodMonService {
     
 	static String IP;
-	String URL1,URL2; //1 reader ; 2 writer
 	GoodsManager gma;
 	GoodsMonitor gmo;
 	GoodsTrade gt;

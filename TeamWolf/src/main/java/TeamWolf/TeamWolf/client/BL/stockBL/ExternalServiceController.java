@@ -29,4 +29,9 @@ public class ExternalServiceController implements ExternalService{
 		return gm.finGoods(tofin);
 	}
 
+	public int addSpecialPackage() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

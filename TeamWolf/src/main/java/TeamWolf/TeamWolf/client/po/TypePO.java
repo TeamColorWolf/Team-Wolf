@@ -10,6 +10,7 @@ import TeamWolf.TeamWolf.client.vo.TypeVO;
   * 
   * @author XYJ
   *
+  * 注：特价包是一种特殊的分类，其底下必有商品，其上没有父类，编号是特殊编号（正常分类编号为四位，特价包为五位）
   */
  
  public class TypePO implements Serializable {

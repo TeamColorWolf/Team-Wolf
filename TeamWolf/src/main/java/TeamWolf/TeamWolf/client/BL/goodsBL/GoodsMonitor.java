@@ -24,6 +24,9 @@ public class GoodsMonitor{
 	StockApplicationController appController;
 	
 	public GoodsMonitor(String IP){
+		
+		URL1="rmi://"+IP+"/goodsDATAservice";
+		
 		assistant=new GoodsBLAssistant(URL1);
 		appController=new StockApplicationController(IP);
 		try {			

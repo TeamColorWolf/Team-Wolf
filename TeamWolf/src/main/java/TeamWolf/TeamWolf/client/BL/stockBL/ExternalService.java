@@ -11,4 +11,7 @@ public interface ExternalService {
 	
 	public GoodsVO finGoods(String number);
 	
+	public int addSpecialPackage ();
+	
+	
 }

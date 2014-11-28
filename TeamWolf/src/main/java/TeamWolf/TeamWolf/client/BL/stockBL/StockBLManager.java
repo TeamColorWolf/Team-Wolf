@@ -21,6 +21,8 @@ public class StockBLManager{
 	StockDataService dataService;
 	
 	public StockBLManager(String IP){
+		
+		URL="rmi://"+IP+"/stockDATAservice";
 		assistant=new StockBLAssistant(URL);
 		try {
 			dataService=(StockDataService)Naming.lookup(URL);

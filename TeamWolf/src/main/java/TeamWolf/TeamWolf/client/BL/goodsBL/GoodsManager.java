@@ -25,6 +25,10 @@ public class GoodsManager {
 	StockDataService SdataService;
 	
 	public GoodsManager(String IP){
+		
+		URL1="rmi://"+IP+"/goodsDATAservice";
+		URL2="rmi://"+IP+"/stockDATAservice";
+		
 		assistant=new GoodsBLAssistant(URL1);
 		try {
 			
