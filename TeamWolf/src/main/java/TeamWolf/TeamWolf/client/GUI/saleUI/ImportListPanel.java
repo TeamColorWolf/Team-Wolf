@@ -14,6 +14,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOpr;
+import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOprBLservice;
 import TeamWolf.TeamWolf.client.BL.saleBL.SaleBLController;
 import TeamWolf.TeamWolf.client.BLservice.saleBLservice.SaleBLservice;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
@@ -29,9 +31,12 @@ import TeamWolf.TeamWolf.client.vo.UserVO;
 public class ImportListPanel extends JPanel{
 	
 	SaleBLservice saleLogic;
+	CustomerOprBLservice custServ;
+	ArrayList<CustomerVO> custList;
 	
 	String[] storage = {"仓库1", "仓库2", "仓库3"};
 	String operator = "";
+	
 	
 	//组件们
 	JComboBox<String> customerBox = new JComboBox<String>();
@@ -76,7 +81,12 @@ public class ImportListPanel extends JPanel{
 	public ImportListPanel(UserVO user, String IP) {
 		this.operator = user.workID; 
 		saleLogic = new SaleBLController(IP);
+//		custServ = new CustomerOpr(IP);
 		goodschoose = new GoodsChoosePanel(IP);
+//		custList = custServ.getAllCustomerList();
+//		if(custList == null){
+//			custList = new ArrayList<CustomerVO>();
+//		}
 		//设置布局方式
 		this.setLayout(null);
 		//设置大小
@@ -93,9 +103,7 @@ public class ImportListPanel extends JPanel{
 	 */
 	private JPanel attributePanel(){
 		JPanel jp = new JPanel();
-//		jp.setBackground(Color.CYAN);
 
-		
 		//panel设置
 		jp.setLayout(null);
 		jp.setSize(w, 100);
@@ -115,6 +123,7 @@ public class ImportListPanel extends JPanel{
 		scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		scrollPane.setBorder(BorderFactory.createTitledBorder("备注填写"));
 		
+		setCustomerBox();
 		customerBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -185,10 +194,14 @@ public class ImportListPanel extends JPanel{
 	/**
 	 * 在CustomerBox里添加选择列表
 	 */
-	private String[] setCustomerBox(){
-		String[] customerVOList = null;
-		
-		return customerVOList;
+	private void setCustomerBox(){
+		custList = TestMain.getCustVOListTEST();
+		for (int i = 0, k = 0; i < custList.size(); i++) {
+			if(custList.get(i).getKind().equals("进货商")){
+				customerBox.addItem(custList.get(i).getName());
+			}
+		}
+
 	}
 	
 	/**
