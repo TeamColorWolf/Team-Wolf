@@ -130,6 +130,7 @@ public class CheckUserPanel extends JPanel{
 		update.addMouseListener(new UpdateListener());
 		delete.addMouseListener(new DeleteListener());
 		power.addActionListener(new PowerListener());
+		userTable.addMouseListener(new TableListener(userTable));
 	}
 	
 	private void getContent(){
@@ -244,5 +245,38 @@ public class CheckUserPanel extends JPanel{
 			flashPanel();
 		}
 		
+	}
+	
+	class TableListener implements MouseListener{
+		JTable t;
+		public TableListener(JTable table){
+			t = table;
+		}
+		public void mouseClicked(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			int row = t.getSelectedRow();
+			String name = (String)t.getValueAt(row, 0);
+			if(name != null){
+				userName.setText(name);
+				UserVO vo = service.findUser(name);
+				if(vo.error != 0){
+					userName.setText(null);
+					workID.setText(null);
+					password.setText(null);
+				}
+				else{
+					userName.setText(vo.userName);
+					workID.setText(vo.workID);
+					password.setText(vo.password);
+					SetComboBoxUser.setDefault(power, vo.power);
+					work = vo.workID;
+					type = vo.power;
+				}
+			}
+		}
+		public void mouseEntered(MouseEvent arg0) {}
+		public void mouseExited(MouseEvent arg0) {}
+		public void mousePressed(MouseEvent arg0) {}
+		public void mouseReleased(MouseEvent arg0) {}
 	}
 }

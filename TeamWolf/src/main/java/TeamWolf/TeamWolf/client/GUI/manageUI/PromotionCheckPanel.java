@@ -2,6 +2,8 @@ package TeamWolf.TeamWolf.client.GUI.manageUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -22,7 +24,7 @@ import TeamWolf.TeamWolf.client.vo.SpecialGoodsPromotionVO;
 public class PromotionCheckPanel extends JPanel{
 	PromotionBLservice service = PromotionPanel.service;
 	
-	static String[] columnName = {"单据编号","单据编号","触发条件", "折让金额", "代金券", "开始时间", "结束时间"};
+	static String[] columnName = {"策略种类","策略编号","触发条件", "折让金额", "代金券", "开始时间", "结束时间"};
 	DefaultTableModel tableModel = new DefaultTableModel();
 	Object[][] content;
 	
@@ -72,6 +74,7 @@ public class PromotionCheckPanel extends JPanel{
 		this.setLocation(0, ManageFrame.sho);
 		
 		delete.addActionListener(new DeleteListener());
+		table.addMouseListener(new TableListener(table));
 	}
 	
 	public void flashPanel(){
@@ -125,6 +128,28 @@ public class PromotionCheckPanel extends JPanel{
 				}
 			}
 		}
+		
+	}
+	
+	class TableListener implements MouseListener{
+		JTable t;
+		public TableListener(JTable table){
+			t = table;
+		}
+
+		public void mouseClicked(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			int row = t.getSelectedRow();
+			String num = (String)t.getValueAt(row, 1);
+			if(num != null){
+				number.setText(num);
+			}
+		}
+
+		public void mouseEntered(MouseEvent arg0) {}
+		public void mouseExited(MouseEvent arg0) {}
+		public void mousePressed(MouseEvent arg0) {}
+		public void mouseReleased(MouseEvent arg0) {}
 		
 	}
 }
