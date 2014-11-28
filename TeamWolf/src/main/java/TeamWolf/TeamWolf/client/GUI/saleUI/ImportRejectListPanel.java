@@ -1,8 +1,20 @@
 package TeamWolf.TeamWolf.client.GUI.saleUI;
 
-import javax.swing.JPanel;
-import javax.swing.JTable;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.DefaultCellEditor;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+
+import TeamWolf.TeamWolf.client.BL.saleBL.SaleBLController;
+import TeamWolf.TeamWolf.client.BLservice.saleBLservice.SaleBLservice;
 import TeamWolf.TeamWolf.client.vo.UserVO;
 
 /**
@@ -11,7 +23,13 @@ import TeamWolf.TeamWolf.client.vo.UserVO;
  *
  */
 public class ImportRejectListPanel extends JPanel{
-
+	
+	SaleBLservice saleLogic;
+	
+	private DefaultTableModel tModel;
+	private JTable importList;
+	private JScrollPane scroll;
+	
 	
 	/**
 	 * 面板宽度
@@ -43,22 +61,107 @@ public class ImportRejectListPanel extends JPanel{
 	 * 组件间距
 	 */
 	private static final int Xgap = 100;
-	
 	private static final int Ygap = 30;
 	
+	/**
+	 * 字体
+	 */
+	Font ChooseBtn_FONT = new Font("黑体", Font.BOLD, 16);
+	
 	public ImportRejectListPanel(UserVO user, String IP) {
+		saleLogic = new SaleBLController(IP);
+		
 		//设置布局方式
 		this.setLayout(null);
 		//设置大小
 		this.setSize(w, h);
+		//添加组件
+		this.add(this.createImportList());
+		this.add(this.submitBtn());
+		this.add(this.showBtn());
+		
 	}
 	
-	private JTable importList(){
-		JTable importlist = new JTable();
+	/**
+	 * 表格显示进货单
+	 * @return
+	 */
+	private JScrollPane createImportList(){
+		tModel = new DefaultTableModel(new Object[][] {}, new String[] {"选择", 
+				"编号", "进货商", "进货商品显示", "商品数量", "总额合计", "备注"});
+		importList = new JTable(tModel);
+		scroll = new JScrollPane(importList);
 		
+		//表格设置
+		TableColumn tc0 = importList.getColumnModel().getColumn(0);
+		tc0.setCellEditor(importList.getDefaultEditor(Boolean.class));
+		tc0.setCellRenderer(importList.getDefaultRenderer(Boolean.class));
 		
+		JComboBox<String> combo = new JComboBox<String>();
 		
-		return importlist;
+		TableColumn tc3 = importList.getColumnModel().getColumn(3);
+		tc3.setCellEditor(new DefaultCellEditor(combo));
+		
+		//scroll设置
+		scroll.setSize(w, 400);
+		scroll.setLocation(0, 0);
+		
+		return scroll;
+	}
+
+	
+	/**
+	 * 提交按钮
+	 * @return
+	 */
+	private JButton submitBtn(){
+		JButton submit = new JButton("提交");
+		
+		//button设置
+		submit.setSize(btnW, btnH);
+		submit.setLocation(btnW + 2 * Xgap, scroll.getHeight() - Ygap);
+		submit.setFont(ChooseBtn_FONT);
+		
+		submit.addActionListener(new ActionListener() {			
+			public void actionPerformed(ActionEvent e) {	
+				subBtnAction();
+			}
+		});
+		
+		return submit;
 	}
 	
+	/**
+	 * 显示按钮
+	 * @return
+	 */
+	private JButton showBtn(){
+		JButton show = new JButton("显示");
+		
+		show.setSize(btnW, btnH);
+		show.setLocation(Xgap, scroll.getHeight() - Ygap);
+		show.setFont(ChooseBtn_FONT);
+		
+		show.addActionListener(new ActionListener() {		
+			public void actionPerformed(ActionEvent e) {	
+				showBtnAction();
+			}
+		});
+		
+		return show;
+	}
+	
+	/**
+	 * 显示按钮事件
+	 */
+	private void showBtnAction(){
+		//TODO
+	}
+	
+	/**
+	 * 提交按钮事件
+	 */
+	private void subBtnAction(){
+		//TODO
+	}
 }

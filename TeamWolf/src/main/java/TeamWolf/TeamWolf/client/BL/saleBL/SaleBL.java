@@ -118,5 +118,10 @@ public class SaleBL{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	public ArrayList<ApplicationVO> show() {
+		
+		return null;
+	}
 
 }

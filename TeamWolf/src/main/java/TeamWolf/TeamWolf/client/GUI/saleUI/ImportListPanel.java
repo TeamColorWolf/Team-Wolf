@@ -115,6 +115,11 @@ public class ImportListPanel extends JPanel{
 		scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		scrollPane.setBorder(BorderFactory.createTitledBorder("备注填写"));
 		
+		customerBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
 		jp.add(customerBox);
 		jp.add(storageBox);
 		jp.add(scrollPane);
@@ -159,7 +164,7 @@ public class ImportListPanel extends JPanel{
 		//组件添加监听
 		submitBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				//TODO
 			}
 		});
 		clearBtn.addActionListener(new ActionListener() {
