@@ -68,9 +68,5 @@ public class SaleBLController implements SaleBLservice{
 		return sale.submit(avo);
 	}
 
-	public ArrayList<ApplicationVO> show() {
-		return sale.show();
-	}
-
 	
 }

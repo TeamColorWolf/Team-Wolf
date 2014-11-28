@@ -91,10 +91,5 @@ public interface SaleBLservice {
 	 * @return
 	 */
 	public int submit (ApplicationVO avo);
-	
-	/**
-	 * 显示所有单据
-	 * @return
-	 */
-	public ArrayList<ApplicationVO> show();
+
 }

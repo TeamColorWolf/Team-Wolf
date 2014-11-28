@@ -73,7 +73,7 @@ public class ImportRejectListPanel extends JPanel{
 	
 	public ImportRejectListPanel(UserVO user, String IP) {
 		saleLogic = new SaleBLController(IP);
-		
+
 		//设置布局方式
 		this.setLayout(null);
 		//设置大小
