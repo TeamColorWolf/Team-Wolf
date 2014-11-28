@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -28,10 +29,19 @@ import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
+import TeamWolf.TeamWolf.client.BL.goodsBL.GoodsBLController;
+import TeamWolf.TeamWolf.client.BL.stockBL.StockBLController;
+import TeamWolf.TeamWolf.client.vo.TypeListVO;
+import TeamWolf.TeamWolf.client.vo.TypeVO;
+
 public class StockManagePane extends JPanel implements TreeModelListener {
 
-    static String CurrentTypeNum;
-	
+    static int CurrentTypeNum;
+    String IP;
+    StockBLController sbcontroller;
+	GoodsBLController gbcontroller;
+    
+	DefaultMutableTreeNode root=new DefaultMutableTreeNode("商品");
 	JTree stockStruct;
     DefaultTreeModel treeModel;
 	JScrollPane SSContainer;
@@ -107,11 +117,15 @@ public class StockManagePane extends JPanel implements TreeModelListener {
 	JTextField modelTF;
 	JButton finGoods;
 	JButton refreshGoods;
-	
-	
-	public StockManagePane(){
 		
-		initialTree();
+	
+    public StockManagePane(String iP) {
+		// TODO Auto-generated constructor stub
+    	this.IP=iP;
+    	sbcontroller=new StockBLController(iP);
+    	gbcontroller=new GoodsBLController(iP);
+    
+    	initialTree();
 		initialButton();
 		initialTextField();
 		initialOprArea();		
@@ -120,24 +134,11 @@ public class StockManagePane extends JPanel implements TreeModelListener {
 		this.add(SSContainer);
 		this.add(oprArea);
 	}
-	
-    public void initialTree(){
+
+	public void initialTree(){
 		
-		DefaultMutableTreeNode root=new DefaultMutableTreeNode("商品");
-		DefaultMutableTreeNode leave=new DefaultMutableTreeNode("分类1");
-		root.add(leave);
-		leave=new DefaultMutableTreeNode("分类2");
-		leave.setAllowsChildren(true);
-		root.add(leave);
-		leave=new DefaultMutableTreeNode("分类3");
-		leave.setAllowsChildren(true);
-		root.add(leave);
-		leave=new DefaultMutableTreeNode("分类4");
-		leave.setAllowsChildren(true);
-		root.add(leave);
-		leave=new DefaultMutableTreeNode("分类5");
-		leave.setAllowsChildren(true);
-		root.add(leave);
+		
+		initialRoot();
 		stockStruct=new JTree(root);
 		treeModel=(DefaultTreeModel) stockStruct.getModel();
 		stockStruct.setEditable(false);
@@ -147,7 +148,37 @@ public class StockManagePane extends JPanel implements TreeModelListener {
 		SSContainer.setBounds(25, 25, 300, 445);
 	}
     
-    public void initialButton(){
+    private void initialRoot() {
+		// TODO Auto-generated method stub
+    	TypeListVO typelist=sbcontroller.shoAllType();
+    	ArrayList<TypeVO> tl=typelist.typeL;
+    	ArrayList<DefaultMutableTreeNode> tnl=new ArrayList<DefaultMutableTreeNode>();
+    	for(TypeVO t:tl){
+    		int tNum=Integer.parseInt(t.getNumber());
+    		if(tNum>CurrentTypeNum)
+    			CurrentTypeNum=tNum;
+    		
+    		if(t.getParentNum()==null){
+    			DefaultMutableTreeNode tn=new DefaultMutableTreeNode("T "+t.getNumber()+" "+t.getName());
+    			root.add(tn);
+    			tnl.add(tn);
+    		}
+    		else{
+    			DefaultMutableTreeNode tn=new DefaultMutableTreeNode("T "+t.getNumber()+" "+t.getName());
+    			for(DefaultMutableTreeNode ptn:tnl){
+    				if(ptn.toString().equals("T "+t.getParentNum()+" "+t.getParent())){
+    					ptn.add(tn);
+    				}
+    			}
+    			tnl.add(tn);
+    		}
+    	}
+    	
+    	//System.out.println(CurrentTypeNum);
+		
+	}
+
+	public void initialButton(){
     	
     	addType=new JButton("增加分类");
     	addType.setVisible(true);
@@ -184,11 +215,10 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     					
     				     if(selectionNode.isLeaf()){    					    
     						treeModel.removeNodeFromParent(selectionNode);
+    						delTInfo.setText("");
     				     }
     				}
-    			}
-    			
-    			delTInfo.setText("");
+    			}   			    			
     		}
     	});
     	
@@ -205,36 +235,42 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     				selectionNode.setUserObject(updTNewName.getText());
     				treeModel.reload();
     				stockStruct.scrollPathToVisible(new TreePath(selectionNode.getPath()));
+    				updTInfo.setText("");
+        			updTNewName.setText("");
     			}
     			
-    			updTInfo.setText("");
-    			updTNewName.setText("");
     		}
     	});
     	
     	addGoods=new JButton("增加商品");
     	addGoods.setVisible(true);
     	addGoods.setBounds(260, 340, 100, 28);
+    	addGoods.addActionListener(null);
     	
     	delGoods=new JButton("删除商品");
     	delGoods.setVisible(true);
     	delGoods.setBounds(260, 340, 100, 28);
+    	delGoods.addActionListener(null);
     	
     	updGoods=new JButton("修改商品");
     	updGoods.setVisible(true);
     	updGoods.setBounds(260, 340, 100, 28);
+    	updGoods.addActionListener(null);
     	
         toITM=new JButton("报溢");
         toITM.setVisible(true);
         toITM.setBounds(260, 340, 100, 28);
+        toITM.addActionListener(null);
     	
         toDTM=new JButton("报损");
         toDTM.setVisible(true);
         toDTM.setBounds(260, 340, 100, 28);
-    	
+    	toDTM.addActionListener(null);
+        
     	toSetWL=new JButton("确定");
     	toSetWL.setVisible(true);
     	toSetWL.setBounds(260, 340, 100, 28);
+    	toSetWL.addActionListener(null);
     	
     }
     
@@ -567,14 +603,14 @@ public class StockManagePane extends JPanel implements TreeModelListener {
 				 TreeNode treenode=(TreeNode)treepath.getLastPathComponent();
 				 String nodeName=treenode.toString();
 				 
-				 if(nodeName.substring(0, 2).equals("分类")){
+				 if(nodeName.substring(0, 1).equals("T")){
 					 
 					 addTParent.setText(nodeName);
 					 delTInfo.setText(nodeName);
 					 updTInfo.setText(nodeName);
 					 addGPTF.setText(nodeName);
 				 }
-				 else if(nodeName.substring(0, 2).equals("商品")){
+				 else if(nodeName.substring(0, 2).equals("G")){
 					 
 					 delGNTF.setText(nodeName);
 					 updGNTF.setText(nodeName);

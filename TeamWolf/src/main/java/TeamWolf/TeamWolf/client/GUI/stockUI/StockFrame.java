@@ -17,9 +17,9 @@ public class StockFrame extends JFrame {
 	private final int weight=960;
 	private JTabbedPane back=new JTabbedPane(JTabbedPane.TOP , JTabbedPane.SCROLL_TAB_LAYOUT);
 	private JPanel mainPane;
-	private JPanel stockMPane=new StockManagePane();
-	private JPanel stockSPane=new StockShowPane();
-	private JPanel appPane=new AppPane();
+	private JPanel stockMPane;
+	private JPanel stockSPane;
+	private JPanel appPane;
 	
 	public StockFrame(String IP, UserVO user){
 		
@@ -27,6 +27,9 @@ public class StockFrame extends JFrame {
 		this.user=user;
 		this.IP=IP;
 		mainPane=new MainPane(user, IP);
+		stockMPane=new StockManagePane(IP);
+		stockSPane=new StockShowPane(IP);
+		appPane=new AppPane(IP);
 		initial();
 	}
 	
@@ -59,7 +62,7 @@ public class StockFrame extends JFrame {
         UIManager.put("ComboBox.font", font);
         UIManager.put("TabbedPane.font", font);
         UserVO user=new UserVO("HELLO", null, "12345", null);
-        String IP="127.0.0.1";
+        String IP="192.168.1.102";
 		new StockFrame(IP, user);
 	}
 }

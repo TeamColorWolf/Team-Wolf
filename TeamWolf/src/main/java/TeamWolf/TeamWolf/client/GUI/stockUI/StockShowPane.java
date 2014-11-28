@@ -44,9 +44,9 @@ public class StockShowPane extends JPanel implements ItemListener, ActionListene
 	JScrollPane SSAContainer;
 	JButton checkStock;
 	JButton daliyStock;
-	
-	public StockShowPane(){
 		
+	public StockShowPane(String iP) {
+		// TODO Auto-generated constructor stub
 		Calendar c=Calendar.getInstance();
 		year=c.get(Calendar.YEAR);
 		SimpleDateFormat s=new SimpleDateFormat("yyyy-MM-dd");
@@ -76,7 +76,7 @@ public class StockShowPane extends JPanel implements ItemListener, ActionListene
 		this.add(endM);
 		this.add(endD);
 	}
-	
+
 	public void initialStockShoArea(){
 		
 		StockShoArea=new JTable(stockInfoList, tableTitle);

@@ -36,7 +36,7 @@ public class GoodsTrade {
 		gmo=new GoodsMonitor(IP);
 		try {
 			dataService=(GoodsDataService)Naming.lookup(URL1);
-			appRead=(ApproveDATAservice)Naming.lookup(URL2);
+			//appRead=(ApproveDATAservice)Naming.lookup(URL2);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

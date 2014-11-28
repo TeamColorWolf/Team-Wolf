@@ -62,8 +62,8 @@ public class AppPane extends JPanel  {
 		back.setEnabledAt(2, true);
 	}
 	
-	public AppPane(){
-		
+	public AppPane(String iP) {
+		// TODO Auto-generated constructor stub
 		initialWOprArea();
 	    initialPane(); 	
 		this.setLayout(new BorderLayout());

@@ -74,6 +74,7 @@ import TeamWolf.TeamWolf.client.vo.TypeVO;
 	}
 	public boolean addChildType(TypePO t){
 		if(C!=2){
+			 t.parent=this;
 		     child.add(t);
 		     C=1;
 		     return true;
@@ -83,6 +84,7 @@ import TeamWolf.TeamWolf.client.vo.TypeVO;
 	}
 	public boolean addLeaveNode(GoodsPO g){
 		if(C!=1){
+			g.parent=this;
 		    leaveNode.add(g);
 		    C=2;
 		    return true;

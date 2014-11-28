@@ -35,11 +35,7 @@ public class ExternalServiceController implements ExternalService{
 		return 0;
 	}
     
-	public static void main(String[] args){
-		ExternalServiceController g=new ExternalServiceController("172.26.212.98");
-		ArrayList<TypeVO> tl=g.getLeaveType();
-		for(TypeVO t:tl){
-			System.out.println(t.getName());
-		}
-	}
+	/*public static void main(String[] args){
+		
+	}*/
 }
