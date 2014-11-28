@@ -54,8 +54,11 @@ public class ImportListVO extends ApplicationVO{
 	 * @return
 	 */
 	private double calTotal(ArrayList<GoodsVO> goodsList){
-		//TODO 计算总额的详细设计
-		return 0;
+		double totalPrice = 0.0;
+		for (int i = 0; i < goodsList.size(); i++) {
+			totalPrice = totalPrice + goodsList.get(i).getImprice() * goodsList.get(i).getAmount();
+		}
+		return totalPrice;
 	}
 	
 

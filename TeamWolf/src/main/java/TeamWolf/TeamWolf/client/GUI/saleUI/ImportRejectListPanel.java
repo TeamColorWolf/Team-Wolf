@@ -3,11 +3,11 @@ package TeamWolf.TeamWolf.client.GUI.saleUI;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
-import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -16,6 +16,7 @@ import javax.swing.table.TableColumn;
 
 import TeamWolf.TeamWolf.client.BL.saleBL.SaleBLController;
 import TeamWolf.TeamWolf.client.BLservice.saleBLservice.SaleBLservice;
+import TeamWolf.TeamWolf.client.vo.GoodsVO;
 import TeamWolf.TeamWolf.client.vo.ImportListVO;
 import TeamWolf.TeamWolf.client.vo.UserVO;
 
@@ -29,10 +30,18 @@ public class ImportRejectListPanel extends JPanel{
 	SaleBLservice saleLogic;
 	
 	ArrayList<ImportListVO> importList;
+	ArrayList<GoodsVO> goodsList;
 	
-	private DefaultTableModel tModel;
+	private DefaultTableModel tModel_import;
+	private DefaultTableModel tModel_goods;
 	private JTable importListTable;
-	private JScrollPane scroll;
+	private JTable goodsInfoTable;
+	private JScrollPane scroll_import;
+	private JScrollPane scroll_goods;
+	
+	private String[] goodsInfo = {"商品名称", "商品数量", "商品单价", "单项商品总价"};
+	private Object[][] object;
+//	private JComboBox<String> combo;
 	
 	/**
 	 * 面板宽度
@@ -43,16 +52,6 @@ public class ImportRejectListPanel extends JPanel{
 	 * 面板高度
 	 */
 	private static final int h = 600;	
-	
-	/**
-	 * 组件宽度(不包括按钮)
-	 */
-	private static final int conpW = 200;
-	
-	/**
-	 * 组件高度(不包括按钮)
-	 */
-	private static final int conpH = 60;
 	
 	/**
 	 * 按钮宽、高
@@ -80,9 +79,24 @@ public class ImportRejectListPanel extends JPanel{
 		this.setSize(w, h);
 		//添加组件
 		this.add(this.createImportList());
+		this.add(this.creategoodsInfo());
 		this.add(this.submitBtn());
 		this.add(this.showBtn());
 		
+	}
+	
+	private JScrollPane creategoodsInfo(){
+		tModel_goods = new DefaultTableModel(object, goodsInfo);
+		goodsInfoTable = new JTable(tModel_goods);
+		scroll_goods = new JScrollPane(goodsInfoTable);
+		
+		//表格设置
+		importListTable.setRowHeight(30);
+		scroll_goods.setSize(w / 2 - 10, 400);
+		scroll_goods.setLocation(w / 2, 0);
+		
+		
+		return scroll_goods;
 	}
 	
 	/**
@@ -90,28 +104,56 @@ public class ImportRejectListPanel extends JPanel{
 	 * @return
 	 */
 	private JScrollPane createImportList(){
-		tModel = new DefaultTableModel(new Object[][] {}, new String[] {"选择", 
-				"编号", "进货商", "进货商品显示", "商品数量", "总额合计", "备注"});
-		importListTable = new JTable(tModel);
-		scroll = new JScrollPane(importListTable);
+		tModel_import = new DefaultTableModel(new Object[][] {}, new String[] {"选择", 
+				"编号", "进货商", "总额合计", "备注"});
+		importListTable = new JTable(tModel_import);
+		scroll_import = new JScrollPane(importListTable);
 		
 		//表格设置
+		importListTable.setRowHeight(30);
 		TableColumn tc0 = importListTable.getColumnModel().getColumn(0);
 		tc0.setCellEditor(importListTable.getDefaultEditor(Boolean.class));
 		tc0.setCellRenderer(importListTable.getDefaultRenderer(Boolean.class));
-		
-		JComboBox<String> combo = new JComboBox<String>();
-		
-		TableColumn tc3 = importListTable.getColumnModel().getColumn(3);
-		tc3.setCellEditor(new DefaultCellEditor(combo));
+	
+		importListTable.addMouseListener(new MouseListener() {
+			public void mouseReleased(MouseEvent e) {}
+			public void mousePressed(MouseEvent e) {}
+			public void mouseExited(MouseEvent e) {}
+			public void mouseEntered(MouseEvent e) {}
+			public void mouseClicked(MouseEvent e) {
+				int row = importListTable.getSelectedRow();
+				clearGoodsInfoTable();
+				showGoodsInfo(row);
+			}
+		});
 		
 		//scroll设置
-		scroll.setSize(w - 10, 400);
-		scroll.setLocation(0, 0);
+		scroll_import.setSize(w / 2 - 10, 400);
+		scroll_import.setLocation(0, 0);
 		
-		return scroll;
+		return scroll_import;
 	}
 
+	/**
+	 * 在右边table里显示商品信息
+	 */
+	private void showGoodsInfo(int index){
+		goodsList = importList.get(index).getGoodsList();
+		tModel_goods = (DefaultTableModel) goodsInfoTable.getModel();
+		object = new Object[goodsList.size()][4];
+		for (int i = 0; i < goodsList.size(); i++) {
+			GoodsVO gvo = goodsList.get(i);
+
+			object[i][0] = gvo.getName();
+			object[i][1] = gvo.getAmount();
+			object[i][2] = gvo.getImprice();
+			object[i][3] = gvo.getAmount() * gvo.getImprice();
+		
+			
+		}
+		tModel_goods.setDataVector(object, goodsInfo);
+		goodsInfoTable.updateUI();
+	}
 	
 	/**
 	 * 提交按钮
@@ -122,7 +164,7 @@ public class ImportRejectListPanel extends JPanel{
 		
 		//button设置
 		submit.setSize(btnW, btnH);
-		submit.setLocation(btnW + 2 * Xgap, scroll.getHeight() + 40);
+		submit.setLocation(btnW + 2 * Xgap, scroll_import.getHeight() + 40);
 		submit.setFont(ChooseBtn_FONT);
 		
 		submit.addActionListener(new ActionListener() {			
@@ -142,7 +184,7 @@ public class ImportRejectListPanel extends JPanel{
 		JButton show = new JButton("显示");
 		
 		show.setSize(btnW, btnH);
-		show.setLocation(Xgap, scroll.getHeight() + 40);
+		show.setLocation(Xgap, scroll_import.getHeight() + 40);
 		show.setFont(ChooseBtn_FONT);
 		
 		show.addActionListener(new ActionListener() {		
@@ -159,6 +201,24 @@ public class ImportRejectListPanel extends JPanel{
 	 */
 	private void showBtnAction(){
 		//TODO
+		importList = TestMain.getImportListTEST();
+		tModel_import = (DefaultTableModel) importListTable.getModel();
+		
+		for (int i = 0; i < importList.size(); i++) {
+			ImportListVO ivo = importList.get(i);
+
+			Object[] data = new Object[5];
+			data[0] = new Boolean(false);
+			data[1] = ivo.number;
+			data[2] = ivo.getCustomer().getName();
+			data[3] = ivo.getTotal();
+			data[4] = ivo.getRemark();
+			
+			tModel_import.addRow(data);
+			importListTable.setModel(tModel_import);
+		}
+		
+
 	}
 	
 	/**
@@ -166,5 +226,15 @@ public class ImportRejectListPanel extends JPanel{
 	 */
 	private void subBtnAction(){
 		//TODO
+	}
+	
+	/**
+	 * 清空表格方法
+	 * @param row table行数
+	 */
+	private void clearGoodsInfoTable(){
+		object = null;
+		tModel_goods.setDataVector(object, goodsInfo);
+		goodsInfoTable.updateUI();
 	}
 }

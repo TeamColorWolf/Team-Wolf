@@ -33,20 +33,42 @@ public class TestMain {
 	public static ArrayList<ImportListVO> getImportListTEST(){
 		ArrayList<ImportListVO> importList = new ArrayList<ImportListVO>();
 		CustomerVO cvo1 = new CustomerVO("0001", "进货商", "1", "WHJ", "", "", "", "", "", "", "", "");
-		ImportListVO imp1 = new ImportListVO("0001", cvo1, "", "", getGoodsListTEST(), "呵呵呵");
-		ImportListVO imp2 = new ImportListVO("0002", cvo1, "", "", getGoodsListTEST(), "草草草");
-		ImportListVO imp3 = new ImportListVO("0003", cvo1, "", "", getGoodsListTEST(), "呃呃呃");
+		ImportListVO imp1 = new ImportListVO("0001", cvo1, "", "", getGoodsListTEST1(), "呵呵呵");
+		ImportListVO imp2 = new ImportListVO("0002", cvo1, "", "", getGoodsListTEST2(), "草草草");
+		ImportListVO imp3 = new ImportListVO("0003", cvo1, "", "", getGoodsListTEST3(), "呃呃呃");
 		importList.add(imp1);
 		importList.add(imp2);
 		importList.add(imp3);
 		return importList;
 	}
 	
-	public static ArrayList<GoodsVO> getGoodsListTEST(){
+	public static ArrayList<GoodsVO> getGoodsListTEST1(){
 		ArrayList<GoodsVO> goodsList = new ArrayList<GoodsVO>();
-		GoodsVO gvo1 = new GoodsVO("", "", "0001", "充气娃娃", "", "10", "10", "10", "10", "10", "10");
-		GoodsVO gvo2 = new GoodsVO("", "", "0002", "光剑", "", "10", "10", "10", "10", "10", "10");
-		GoodsVO gvo3 = new GoodsVO("", "", "0003", "吞卡手电", "", "10", "10", "10", "10", "10", "10");
+		GoodsVO gvo1 = new GoodsVO("", "", "0001", "充气娃娃", "", "1", "10", "10", "10", "10", "10");
+		GoodsVO gvo2 = new GoodsVO("", "", "0002", "光剑", "", "2", "10", "10", "10", "10", "10");
+		GoodsVO gvo3 = new GoodsVO("", "", "0003", "吞卡手电", "", "3", "10", "10", "10", "10", "10");
+		goodsList.add(gvo1);
+		goodsList.add(gvo2);
+		goodsList.add(gvo3);
+		return goodsList;
+	}
+	
+	public static ArrayList<GoodsVO> getGoodsListTEST2(){
+		ArrayList<GoodsVO> goodsList = new ArrayList<GoodsVO>();
+		GoodsVO gvo1 = new GoodsVO("", "", "0001", "比基尼全套", "", "11", "10", "10", "10", "10", "10");
+		GoodsVO gvo2 = new GoodsVO("", "", "0002", "蕾丝内裤", "", "22", "10", "10", "10", "10", "10");
+		GoodsVO gvo3 = new GoodsVO("", "", "0003", "丝袜", "", "33", "10", "10", "10", "10", "10");
+		goodsList.add(gvo1);
+		goodsList.add(gvo2);
+		goodsList.add(gvo3);
+		return goodsList;
+	}
+	
+	public static ArrayList<GoodsVO> getGoodsListTEST3(){
+		ArrayList<GoodsVO> goodsList = new ArrayList<GoodsVO>();
+		GoodsVO gvo1 = new GoodsVO("", "", "0001", "黄瓜", "", "111", "10", "10", "10", "10", "10");
+		GoodsVO gvo2 = new GoodsVO("", "", "0002", "茄子", "", "222", "10", "10", "10", "10", "10");
+		GoodsVO gvo3 = new GoodsVO("", "", "0003", "西红柿", "", "333", "10", "10", "10", "10", "10");
 		goodsList.add(gvo1);
 		goodsList.add(gvo2);
 		goodsList.add(gvo3);
