@@ -3,6 +3,7 @@ package TeamWolf.TeamWolf.client.BL.stockBL;
 import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
+import TeamWolf.TeamWolf.client.vo.SpecialGoodsPromotionVO;
 import TeamWolf.TeamWolf.client.vo.TypeVO;
 
 public interface ExternalService {
@@ -11,7 +12,7 @@ public interface ExternalService {
 	
 	public GoodsVO finGoods(String number);
 	
-	public int addSpecialPackage ();
+	public int addSpecialPackage (SpecialGoodsPromotionVO sp);
 	
 	
 }

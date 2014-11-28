@@ -15,7 +15,7 @@ public class TypeVO {
 	
 	private String parent;
 	private String parentNumber;
-    private ArrayList<String> child;
+    private ArrayList<String> child=new ArrayList<String>();
     private int C;//�жϸ÷�����Ů�Ƿ���Ҷ�ڵ�
     private String number;
 	private String name;
@@ -48,12 +48,15 @@ public class TypeVO {
     	this.C=tp.getC();
     	this.name=tp.getName();
     	this.number=tp.getNumber();
-    	this.parent=tp.getParent().getName();
-    	this.parentNumber=tp.getParent().getNumber();
+    	if(tp.getParent()!=null){
+    	    this.parent=tp.getParent().getName();
+    	    this.parentNumber=tp.getParent().getNumber();
+    	}
         this.child=new ArrayList<String>();
         this.leaveNode=new ArrayList<GoodsVO>();
     	
     	if(this.C==1){
+    		
     		ArrayList<TypePO> childL=tp.getChild();
     		for(TypePO t:childL){
     			child.add(t.getNumber());

@@ -120,7 +120,7 @@ public class StockData extends UnicastRemoteObject implements StockDataService {
 	
 	public static void main(String[] args){
 		
-	  /*	try {
+	  	try {
 			StockData sd=new StockData();
 			/*TypePO add=new TypePO(null, "1114", "虚拟商品");
 			GoodsPO addGoods=new GoodsPO(null, "111201", "Happy", "HH", 3, 9.0, 12.4, 8.99, 12.333);
@@ -135,21 +135,24 @@ public class StockData extends UnicastRemoteObject implements StockDataService {
 			ArrayList<GoodsPO> list=fin3.getLeaveNode();
 			for(GoodsPO g: list){
 				System.out.println(g.getNumber()+"-"+g.getName());
-			}
+			}*/
 			ArrayList<TypePO> l=sd.stockList;
 			for(TypePO t:l){
 				System.out.println(t.getNumber()+" "+t.getName());
+				if(t.getC()==2){
 				ArrayList<GoodsPO> list=t.getLeaveNode();
 				for(GoodsPO g: list){
 					System.out.println(g.getNumber()+"-"+g.getName());
+				}
 				}
 			}
 			
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
-        
+		}
+		
+		
 	}
 
 }

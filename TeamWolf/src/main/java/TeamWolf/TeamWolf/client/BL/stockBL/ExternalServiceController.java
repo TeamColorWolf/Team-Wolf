@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.BL.goodsBL.GoodsManager;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
+import TeamWolf.TeamWolf.client.vo.SpecialGoodsPromotionVO;
 import TeamWolf.TeamWolf.client.vo.TypeVO;
 
 public class ExternalServiceController implements ExternalService{
@@ -29,7 +30,7 @@ public class ExternalServiceController implements ExternalService{
 		return gm.finGoods(tofin);
 	}
 
-	public int addSpecialPackage() {
+	public int addSpecialPackage(SpecialGoodsPromotionVO sp) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
