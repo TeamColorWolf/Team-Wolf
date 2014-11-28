@@ -57,7 +57,7 @@ public class GiftSetPanel extends JPanel{
 	
 	public GiftSetPanel(){
 		panel = new JPanel();
-//		typeList = service.typeList();
+		typeList = service.typeList();
 		if(typeList == null){
 			typeList = new ArrayList<TypeVO>();
 		}
@@ -128,6 +128,25 @@ public class GiftSetPanel extends JPanel{
 		delete.setForeground(Color.red);
 	}
 	
+	protected ArrayList<String> getGoodsNumList(){
+		ArrayList<String> numList = new ArrayList<String>();
+		for(int i = 0; i < giftNum; i++){
+			String num = getGoodsNum((String)goodsTypeList.get(i).getSelectedItem(), (String)goodsList.get(i).getSelectedItem());
+			if(num != null){
+				numList.add(num);
+			}
+		}
+		return numList;
+	}
+	
+	protected ArrayList<String> getTheNumber(){
+		ArrayList<String> list = new ArrayList<String>();
+		for(int i = 0; i < giftNum; i++){
+			list.add(numList.get(i).getText());
+		}
+		return list;
+	}
+	
 	protected void removeAllGoods(){
 		while(giftNum != 0){
 			this.removeLast();
@@ -138,6 +157,7 @@ public class GiftSetPanel extends JPanel{
 	}
 	
 	private void setNext(){
+		
 		dt = new JComboBox<String>();
 		dg = new JComboBox<String>();
 		dn = new JTextField();
@@ -223,9 +243,14 @@ public class GiftSetPanel extends JPanel{
 	private void setGoodsBox(JComboBox<String> goods, JComboBox<String> type){
 		int index = type.getSelectedIndex();
 		goods.removeAllItems();
-		ArrayList<GoodsVO> list = typeList.get(index).getAllLeave();
-		for(int i = 0; i < list.size(); i++){
-			goods.addItem(list.get(i).getName());
+		ArrayList<GoodsVO> list = null;
+		if(index >= 0){
+			list = typeList.get(index).getAllLeave();
+		}
+		if(list != null){
+			for(int i = 0; i < list.size(); i++){
+				goods.addItem(list.get(i).getName());
+			}
 		}
 	}
 	
@@ -261,6 +286,8 @@ public class GiftSetPanel extends JPanel{
 
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
+			setTypeBox(dt);
+			dt.addActionListener(new TypeBoxListener(giftNum));
 			giftNum++;
 			
 			dt.setEnabled(true);
@@ -279,9 +306,7 @@ public class GiftSetPanel extends JPanel{
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			if(giftNum > 0){
-				
 				removeLast();
-				
 				giftNum--;
 				if(giftNum == 0){
 					panel.remove(delete);

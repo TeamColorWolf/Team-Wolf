@@ -12,6 +12,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import TeamWolf.TeamWolf.client.BLservice.manageBLservice.PromotionBLservice;
+import TeamWolf.TeamWolf.client.GUI.mainUI.RoleSelecter;
+import TeamWolf.TeamWolf.client.GUI.manageUI.SpecialGoodsPackagePromotionPanel.EnsureListener;
+import TeamWolf.TeamWolf.client.vo.ForVIPPromotionVO;
 
 public class ForVIPPromotionPanel extends JPanel{
 	
@@ -98,6 +101,7 @@ public class ForVIPPromotionPanel extends JPanel{
 		this.setLocation(0, ManageFrame.sho);
 		
 		cancel.addActionListener(new CancelListener());
+		ensure.addActionListener(new EnsureListener());
 	}
 	
 	private void initialVIP(){
@@ -113,6 +117,26 @@ public class ForVIPPromotionPanel extends JPanel{
 			cashcoupon.setText("0.00");
 			discount.setText("0.00");
 			giftset.removeAllGoods();
+		}
+		
+	}
+	
+	class EnsureListener implements ActionListener{
+
+		public void actionPerformed(ActionEvent arg0) {
+			// TODO Auto-generated method stub
+			ForVIPPromotionVO promotion = new ForVIPPromotionVO(giftset.getGoodsNumList(), giftset.getTheNumber(), discount.getText(), cashcoupon.getText(), (Integer)vip.getSelectedItem(), timeset.getBeginVO(), timeset.getEndVO());
+			if(promotion.error == 0){
+				int success = service.addPromotion(promotion);
+				if(success == 0){
+					ManageFrame mf = (ManageFrame)RoleSelecter.frame;
+					mf.promotion.check.flashPanel();
+					System.out.println("add forVIPpromotion successfully!");
+				}
+			}
+			else{
+				System.out.println("input error!");
+			}
 		}
 		
 	}
