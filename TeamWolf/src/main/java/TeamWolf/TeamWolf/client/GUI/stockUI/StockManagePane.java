@@ -46,6 +46,9 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     JPanel delGoodsP;
     JPanel updGoodsP;
     JPanel shoGoodsP;
+    JPanel ITMP;
+    JPanel DTMP;
+    JPanel setWLP;
     JLabel addTPL;
     JLabel addTNL;
     JTextField addTParent;
@@ -80,6 +83,21 @@ public class StockManagePane extends JPanel implements TreeModelListener {
 	JTextField updGIPTF;
 	JTextField updGEPTF;
 	JButton updGoods;
+	JLabel ITMGIL;
+	JLabel ITMAmount;
+	JTextField ITMGITF;
+	JTextField ITMAmountTF;
+	JButton toITM;
+	JLabel DTMGIL;
+	JLabel DTMAmount;
+	JTextField DTMGITF;
+	JTextField DTMGAmountTF;
+	JButton toDTM;
+	JLabel setWLGI;
+	JLabel setWLGWL;
+	JTextField setWLGITF;
+	JTextField setWLGWLTF;
+	JButton toSetWL;
 	
 	JScrollPane SGContainer;
 	JPanel SOP;
@@ -205,6 +223,18 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     	updGoods=new JButton("修改商品");
     	updGoods.setVisible(true);
     	updGoods.setBounds(260, 340, 100, 28);
+    	
+        toITM=new JButton("报溢");
+        toITM.setVisible(true);
+        toITM.setBounds(260, 340, 100, 28);
+    	
+        toDTM=new JButton("报损");
+        toDTM.setVisible(true);
+        toDTM.setBounds(260, 340, 100, 28);
+    	
+    	toSetWL=new JButton("确定");
+    	toSetWL.setVisible(true);
+    	toSetWL.setBounds(260, 340, 100, 28);
     	
     }
     
@@ -350,6 +380,55 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     	SOP.add(modelL);
     	SOP.add(finGoods);
     	SOP.add(refreshGoods);
+    	
+    	ITMGIL=new JLabel("商品信息");
+    	ITMGIL.setVisible(true);
+    	ITMGIL.setFont(new Font("黑体", Font.BOLD, 14));
+    	ITMGIL.setBounds(120, 80, 80, 30);    	
+    	ITMAmount=new JLabel("报溢数量");
+    	ITMAmount.setVisible(true);
+    	ITMAmount.setFont(new Font("黑体", Font.BOLD, 14));
+    	ITMAmount.setBounds(120, 130, 80, 30);
+      	ITMGITF=new JTextField();
+      	ITMGITF.setVisible(true);
+      	ITMGITF.setBounds(210, 80, 250, 30);
+      	ITMGITF.setEditable(false);    	
+    	ITMAmountTF=new JTextField();
+    	ITMAmountTF.setVisible(true);
+    	ITMAmountTF.setBounds(210, 130, 250, 30);
+    	
+    	DTMGIL=new JLabel("商品信息");
+    	DTMGIL.setVisible(true);
+    	DTMGIL.setFont(new Font("黑体", Font.BOLD, 14));
+    	DTMGIL.setBounds(120, 80, 80, 30);    	
+    	DTMAmount=new JLabel("报损数量");
+    	DTMAmount.setVisible(true);
+    	DTMAmount.setFont(new Font("黑体", Font.BOLD, 14));
+    	DTMAmount.setBounds(120, 130, 80, 30);
+      	DTMGITF=new JTextField();
+      	DTMGITF.setVisible(true);
+      	DTMGITF.setBounds(210, 80, 250, 30);
+      	DTMGITF.setEditable(false);    	
+    	DTMGAmountTF=new JTextField();
+    	DTMGAmountTF.setVisible(true);
+    	DTMGAmountTF.setBounds(210, 130, 250, 30);
+    	
+    	setWLGI=new JLabel("商品信息");
+    	setWLGI.setVisible(true);
+    	setWLGI.setFont(new Font("黑体", Font.BOLD, 14));
+    	setWLGI.setBounds(120, 80, 80, 30);    	
+    	setWLGWL=new JLabel("警戒数值");
+    	setWLGWL.setVisible(true);
+    	setWLGWL.setFont(new Font("黑体", Font.BOLD, 14));
+    	setWLGWL.setBounds(120, 130, 80, 30);
+      	setWLGITF=new JTextField();
+      	setWLGITF.setVisible(true);
+      	setWLGITF.setBounds(210, 80, 250, 30);
+      	setWLGITF.setEditable(false);    	
+    	setWLGWLTF=new JTextField();
+    	setWLGWLTF.setVisible(true);
+    	setWLGWLTF.setBounds(210, 130, 250, 30);
+     
     }
     
     public void initialOprArea(){
@@ -418,10 +497,34 @@ public class StockManagePane extends JPanel implements TreeModelListener {
         shoGoodsP.setLayout(new BorderLayout());
         shoGoodsP.add(SGContainer, BorderLayout.CENTER);
         shoGoodsP.add(SOP, BorderLayout.SOUTH);
+        ITMP=new JPanel();
+        ITMP.setLayout(null);
+        ITMP.add(ITMGIL);
+        ITMP.add(ITMAmountTF);
+        ITMP.add(ITMGITF);
+        ITMP.add(ITMAmount);
+        ITMP.add(toITM);
+        DTMP=new JPanel();
+        DTMP.setLayout(null);
+        DTMP.add(DTMGIL);
+        DTMP.add(DTMGITF);
+        DTMP.add(DTMAmount);
+        DTMP.add(toDTM);
+        DTMP.add(DTMGAmountTF);
+        setWLP=new JPanel();
+        setWLP.setLayout(null);
+        setWLP.add(setWLGI);
+        setWLP.add(setWLGITF);
+        setWLP.add(setWLGWL);
+        setWLP.add(setWLGWLTF);
+        setWLP.add(toSetWL);
         goodsOpr.addTab("增加商品", addGoodsP);
         goodsOpr.addTab("删除商品", delGoodsP);
         goodsOpr.addTab("修改商品", updGoodsP);
         goodsOpr.addTab("显示商品", shoGoodsP);
+        goodsOpr.addTab("商品报溢", ITMP);
+        goodsOpr.addTab("商品报损", DTMP);
+        goodsOpr.addTab("设警戒值", setWLP);
         goodsOpr.setEnabledAt(0, true);
         goodsOpr.setEnabledAt(1, true);
         goodsOpr.setEnabledAt(2, true);
@@ -475,6 +578,9 @@ public class StockManagePane extends JPanel implements TreeModelListener {
 					 
 					 delGNTF.setText(nodeName);
 					 updGNTF.setText(nodeName);
+					 ITMGITF.setText(nodeName);
+					 DTMGITF.setText(nodeName);
+					 setWLGITF.setText(nodeName);
 				 }
 			}catch(NullPointerException ne){
 				
