@@ -11,4 +11,5 @@ public class FileName {
 	public static String alarmFile="库存商品//alarm.tw";
 	public static String promotionFile = "促销策略//promotion.tw";
 	public static String accountFile = "账户信息//account.tw";
+	public static String customerFile = "用户信息//customer.tw";
 }
