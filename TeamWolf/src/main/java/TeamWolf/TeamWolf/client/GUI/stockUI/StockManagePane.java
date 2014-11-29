@@ -291,16 +291,30 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     			if(treePath!=null){
     				DefaultMutableTreeNode selectionNode=(DefaultMutableTreeNode)treePath.getLastPathComponent();
     				DefaultMutableTreeNode parent=(DefaultMutableTreeNode)selectionNode.getParent();
+    				String[] typeInfo=selectionNode.toString().split(" ");
     				if(parent!=null){
-    				    TypeVO toUpd=null;
+    				    int result=0;
+    					TypeVO toUpd=null;
     					if(parent.toString().equals("商品")){
-    				    	
+    				    	toUpd=new TypeVO(null, null, typeInfo[1], updTNewName.getText());
     				    }
-    					selectionNode.setUserObject(updTNewName.getText());
-    				    treeModel.reload();
-    				    stockStruct.scrollPathToVisible(new TreePath(selectionNode.getPath()));
-    				    updTInfo.setText("");
-        			    updTNewName.setText("");
+    					else{
+    						String[] parentInfo=parent.toString().split(" ");
+    						toUpd=new TypeVO(parentInfo[1], parentInfo[2], typeInfo[1], updTNewName.getText());
+    					}
+    					if(toUpd.getParentNum().equals("0000")){
+    						result=1000;
+    					}
+    					else{
+    						result=sbcontroller.updType(toUpd);
+    					}
+    					if(result==0){
+    					    selectionNode.setUserObject("T "+typeInfo[1]+" "+updTNewName.getText());
+    				        treeModel.reload();
+    				        stockStruct.scrollPathToVisible(new TreePath(selectionNode.getPath()));
+    				        updTInfo.setText("");
+        			        updTNewName.setText("");
+    					}
     				}
     			}
     			
