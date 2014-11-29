@@ -1,4 +1,6 @@
 package TeamWolf.TeamWolf.client.vo;
+
+import TeamWolf.TeamWolf.client.po.CustomerPO;
 	
 
 /**
@@ -48,6 +50,23 @@ public class CustomerVO {
 
 	
 	
+	public CustomerVO(CustomerPO po) {
+		this.num = po.getNum();
+		this.kind = po.getKind();
+		this.name = po.getName();
+		this.tel = po.getTel();
+		this.address = po.getAddress();
+		this.zipCode = po.getZipCode();
+		this.email = po.getEmail();
+		this.businessMan = po.getBusinessMan();
+		this.level =po.getLevel();
+		this.topLimit = po.getTopLimit();
+		this.receive = po.getReceive();
+		this.pay = po.getPay();
+	}
+
+
+
 	public String getNum() {
 		return num;
 	}

@@ -53,12 +53,48 @@ public class CustomerOpr implements CustomerOprBLservice{
 	}
 
 	public int Customerdel(CustomerVO cvo) {
-		// TODO 自动生成的方法存根
-		return 0;
+		CustomerPO po = new CustomerPO(cvo);
+		try {
+			cds = (CustomerDATAservice)Naming.lookup(URL);
+		} catch (MalformedURLException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		try {
+			return cds.delCustomer(po);
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return 12138;
 	}
 	
-	public CustomerVO findCustomer(String name){
+	public CustomerVO findCustomer(String name,String number){
+        try {
+			cds = (CustomerDATAservice)Naming.lookup(URL);
+		} catch (MalformedURLException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
 		// TODO 自动生成的方法存根
+		try {
+			return new CustomerVO(cds.findCustomer(name,number));
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
 		return null;
 	}
 	

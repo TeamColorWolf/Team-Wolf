@@ -28,7 +28,7 @@ public class CustomerDATA implements CustomerDATAservice{
 		return 0;
 	}
 
-	public CustomerPO findCustomer(String name, int number)
+	public CustomerPO findCustomer(String name, String number)
 			throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
