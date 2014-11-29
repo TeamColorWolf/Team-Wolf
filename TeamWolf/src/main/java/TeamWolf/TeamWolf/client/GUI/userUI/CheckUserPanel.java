@@ -242,7 +242,6 @@ public class CheckUserPanel extends JPanel{
 				String choice = service.creatWorkID((UserType)power.getSelectedItem());
 				workID.setText(choice);
 			}
-			flashPanel();
 		}
 		
 	}

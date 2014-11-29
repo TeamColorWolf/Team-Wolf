@@ -24,7 +24,7 @@ public class AccountPanel extends JPanel{
 		aop = new AccountOprPanel();
 		
 		tab.add("添加新的账户",anp);
-		tab.add("制定现金费用单",aop);
+		tab.add("对现在的账户进行修改",aop);
 		
 		this.add(tab);
 		

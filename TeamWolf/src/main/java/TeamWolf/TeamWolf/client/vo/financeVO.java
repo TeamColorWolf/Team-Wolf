@@ -9,17 +9,17 @@ public class financeVO {
 	public boolean iserror;
     
     public financeVO(){
-    	error=0;
+    	this.error=0;
     }
 	public financeVO(boolean isError){
-		error = 1;
+		this.error = 1;
 	}
     
     
     public financeVO(String name){
         this.name = name;
         this.account =0d;
-     	error=0;
+     	this.error=0;
      }
      
      public financeVO(String name , double account){
@@ -31,7 +31,7 @@ public class financeVO {
      public financeVO(financePO po){
     	 this.name = po.getName();
     	 this.account = po.getAccount();
-    	 	error=0;
+    	 this.	error=0;
      }
     
     

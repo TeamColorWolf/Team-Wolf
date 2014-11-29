@@ -53,8 +53,6 @@ public class AccountnewPanel extends JPanel{
 		this.add(ID);
 		this.add(userID);
 		
-		this.add(workID);
-		
 		add = new JButton("添加");
 		cancel = new JButton("取消");
 		add.setSize(LW, 30);
@@ -80,7 +78,6 @@ public class AccountnewPanel extends JPanel{
 			public void mouseClicked(MouseEvent arg0) {
 				// TODO Auto-generated method stub
 				userID.setText(null);
-				workID.setText(null);
 			}
 			public void mouseEntered(MouseEvent arg0) {
 				// TODO Auto-generated method stub
@@ -106,7 +103,8 @@ public class AccountnewPanel extends JPanel{
 				int success = service.add(vo);
 				if(success == 0){
 					FinanceFrame adf = (FinanceFrame)RoleSelecter.frame;
-					//adf.accountpanel.aop.flashPanel();
+					adf.accountpanel.aop.flashPanel();
+					userID.setText("");
 				}
 		}
 

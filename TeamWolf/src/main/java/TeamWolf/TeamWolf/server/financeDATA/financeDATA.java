@@ -84,7 +84,6 @@ public class financeDATA extends UnicastRemoteObject implements financeDATAservi
 	private void initial(){
 		try {
 			AccountList=(ArrayList<financePO>)FileOpr.readFile(FileName.accountFile);
-			System.out.println(AccountList);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

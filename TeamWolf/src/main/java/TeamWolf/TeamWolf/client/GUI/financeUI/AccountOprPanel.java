@@ -54,6 +54,7 @@ public class AccountOprPanel extends JPanel{
 	public AccountOprPanel(){
 		super();
 		this.getContent();
+		tableModel.setDataVector(content, columnName);
 		accountTable = new JTable(tableModel);
 		accountTable.setSize(400, 400);
 		accountTable.setLocation(0, 0);
@@ -114,8 +115,6 @@ public class AccountOprPanel extends JPanel{
 	
 	private void getContent(){
 		ArrayList<financeVO> list = service.checkVO();
-		//ArrayList<financeVO> list = null;
-		System.out.println(list);
 		if(list == null){
 			content = new Object[15][3];
 		}
@@ -133,6 +132,7 @@ public class AccountOprPanel extends JPanel{
 	
 	public void flashPanel(){
 		this.getContent();
+		tableModel.setDataVector(content, columnName);
 		accountTable.updateUI();
 	}
 	
@@ -151,6 +151,7 @@ public class AccountOprPanel extends JPanel{
 				AccountName.setText(vo.getName());
 				AccountMoney.setText(""+vo.getAccount());
 			}
+			flashPanel();
 		}
 		public void mouseEntered(MouseEvent arg0) {}
 		public void mouseExited(MouseEvent arg0) {}
@@ -174,6 +175,7 @@ public class AccountOprPanel extends JPanel{
 			else if(success == -1){
 				System.out.println("no enough information.");
 			}
+			flashPanel();
 		}
 		public void mouseEntered(MouseEvent arg0) {}
 		public void mouseExited(MouseEvent arg0) {}
@@ -197,6 +199,7 @@ public class AccountOprPanel extends JPanel{
 			else if(success == -1){
 				System.out.println("no enough information.");
 			}
+			flashPanel();
 		}
 		public void mouseEntered(MouseEvent arg0) {}
 		public void mouseExited(MouseEvent arg0) {}
@@ -234,6 +237,7 @@ public class AccountOprPanel extends JPanel{
 					AccountMoney.setText(""+vo.getAccount());
 				}
 			}
+			flashPanel();
 		}
 		public void mouseEntered(MouseEvent arg0) {}
 		public void mouseExited(MouseEvent arg0) {}
