@@ -55,9 +55,9 @@ public class GoodsBLAssistant {
 		if((isExisted(g)==true)&&(beenTraded(g)==false))
 			return 0;
 		else if(isExisted(g)==false)
-			return 1; //商品不存在
+			return 2004; //商品不存在
 		else if(beenTraded(g)==true)
-			return 2; //商品有过交易记录
+			return 2005; //商品有过交易记录
 		return 0;
 	}
 	public boolean canUpd(GoodsVO g) throws RemoteException{
@@ -90,7 +90,7 @@ public class GoodsBLAssistant {
 	public boolean beenTraded(GoodsVO g){
 		//需要知道交易单据存储在哪
 		
-		return true;
+		return false;
 	}
     
 }

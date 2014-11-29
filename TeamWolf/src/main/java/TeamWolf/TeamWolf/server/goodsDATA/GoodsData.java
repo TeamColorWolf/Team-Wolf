@@ -142,15 +142,12 @@ public class GoodsData extends UnicastRemoteObject implements GoodsDataService {
 	}
 	
 	public static void main(String[] args){
-		 try {
-			   GoodsData gd=new GoodsData();
-			   TypePO grandParent=new TypePO(null, "0001", "实物商品");
-			   TypePO parent=new TypePO(grandParent, "0002", "日用品");
-			   GoodsPO goods=new GoodsPO(parent, "00020001", "好东西", "G000", 0, 23, 33, 0, 0);
-			   gd.addGood(goods);
+		 /*try {
+			  		   
+			   
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 	}
 }

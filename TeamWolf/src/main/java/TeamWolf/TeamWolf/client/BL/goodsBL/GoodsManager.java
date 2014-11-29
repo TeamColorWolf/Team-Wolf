@@ -53,9 +53,9 @@ public class GoodsManager {
 		if(assistant.canAdd(g)){
 		
 			GoodsPO toAdd=new GoodsPO(g);
-			TypePO parent=SdataService.finType(g.getNumber());
+			TypePO parent=SdataService.finType(g.getParentNum());
 			if(parent.getC()==1){
-				//返回错误类型：父分类下有子分类，不可添加商品
+				return 2001;//返回错误类型：父分类下有子分类，不可添加商品
 			}
 			else{
 				parent.addLeaveNode(toAdd);
@@ -63,7 +63,7 @@ public class GoodsManager {
 				GdataService.addGood(toAdd);
 			}			
 		}
-		else{ //返回错误类型：商品已经存在与系统中
+		else{   return 2002;//返回错误类型：商品已经存在与系统中
 			
 		}
 		} catch (RemoteException e) {
@@ -84,11 +84,11 @@ public class GoodsManager {
 			    	GdataService.delGood(g.getNumber());
 			    	SdataService.updType(parent);
 			    }else{
-			    	//错误类型:删除的商品与父分类不匹配
+			    	 return 2003;//错误类型:删除的商品与父分类不匹配
 			    }
 						
 		}
-		else{ //返回错误类型：商品不存在于系统中或者商品有过交易记录
+		else{   //返回错误类型：商品不存在于系统中或者商品有过交易记录
 			
 			return result; 
 		}
@@ -119,7 +119,7 @@ public class GoodsManager {
 				GdataService.updGood(toUpd);			
 			
 		}
-		else{ //返回错误类型：商品不存在于系统中
+		else{  return 2004;//返回错误类型：商品不存在于系统中
 		
 		}
 		} catch (RemoteException e) {
@@ -147,7 +147,7 @@ public class GoodsManager {
         	g.setParent(found.getParent().getName());
         	g.setParentNum(found.getParent().getNumber());
         }
-		else{ //返回错误类型：商品不存在于系统中
+		else{ return null;//返回错误类型：商品不存在于系统中
 			
 		}
 		} catch (RemoteException e) {

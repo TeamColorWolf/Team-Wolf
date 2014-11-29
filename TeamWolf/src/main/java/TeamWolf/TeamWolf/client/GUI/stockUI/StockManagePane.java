@@ -208,6 +208,7 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     				addTypeNum="0"+addTypeNum;
     			}
     			String addTypeName=addTName.getText();
+    			String pI=addTParent.getText();
     			DefaultMutableTreeNode parentNode=null;
     			DefaultMutableTreeNode newNode=new DefaultMutableTreeNode("T "+addTypeNum+" "+addTypeName);
     			newNode.setAllowsChildren(true);
@@ -220,7 +221,7 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     				    result=sbcontroller.addType(new TypeVO(null, null, addTypeNum, addTypeName));	
     				}
     				else{
-    				    String[] pInfo=parentNode.toString().split(" ");
+    				    String[] pInfo=pI.split(" ");
     				    if(pInfo[1].equals("0000")){
     				    	result=1000;  //错误类型:特价包不能由库存管理人员由编辑
     				    }
@@ -249,7 +250,8 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     			
     			TreePath treePath=stockStruct.getSelectionPath();
     			if(treePath!=null){
-    				DefaultMutableTreeNode selectionNode=(DefaultMutableTreeNode)treePath.getLastPathComponent();   				
+    			  DefaultMutableTreeNode selectionNode=(DefaultMutableTreeNode)treePath.getLastPathComponent();   				
+    			  if(selectionNode.toString().substring(0, 1).equals("T")){
     				TreeNode parent=(TreeNode)selectionNode.getParent();
     				if(parent!=null){
     				    int result=0;
@@ -276,6 +278,7 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     				     }
     					}
     				}
+    			  }
     			}   			    			
     		}
     	});
@@ -324,17 +327,130 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     	addGoods=new JButton("增加商品");
     	addGoods.setVisible(true);
     	addGoods.setBounds(260, 340, 100, 28);
-    	addGoods.addActionListener(null);
+    	addGoods.addActionListener(new ActionListener(){
+    		
+    		public void actionPerformed(ActionEvent Event){
+    			
+    			String addGoodsName=addGNTF.getText();
+    			String addGoodsModel=addGMTF.getText();
+    			String addGoodsIP=addGIPTF.getText();
+    			String addGoodsEP=addGEPTF.getText();
+    			
+    			DefaultMutableTreeNode parentNode=null;
+    			
+    			TreePath parentPath=stockStruct.getSelectionPath();
+    			if(parentPath!=null){		
+    			    
+    				parentNode=(DefaultMutableTreeNode)(parentPath.getLastPathComponent());
+    				if(!parentNode.toString().equals("商品")){
+    				int GoodsNum=0;
+    				int NOC=parentNode.getChildCount();
+    				for(int i=0;i<NOC;i++){
+    					String[] cInfo=((TreeNode)parentNode.getChildAt(i)).toString().split(" ");
+    					int num=Integer.parseInt(cInfo[1].substring(4));
+    			        //System.out.println(cInfo[1].substring(4));
+    					if(num>GoodsNum)
+    						GoodsNum=num;
+    				}
+    				String GNum=""+(GoodsNum+1);
+    				while(GNum.length()<4){
+    					GNum="0"+GNum;
+    				}
+    				int result=0;
+    				String[] parentInfo=addGPTF.getText().split(" ");
+    				if(parentInfo[1].equals("0000")){
+    					result=1000;
+    				}
+    				else{
+    					GoodsVO toadd=new GoodsVO(parentInfo[1], parentInfo[2], parentInfo[1]+GNum, addGoodsName, addGoodsModel, "0", addGoodsIP, addGoodsEP, "0", "0", "0");
+    					if(toadd.isPackSuccess()==0){
+    					      result=gbcontroller.addGoods(toadd);
+    					}
+    					else
+    						  result=10001;
+    				}
+    				if(result==0){
+    					DefaultMutableTreeNode newNode=new DefaultMutableTreeNode("G "+parentInfo[1]+GNum+" "+addGoodsName+" "+addGoodsModel);
+    	    			newNode.setAllowsChildren(false);
+    	    			treeModel.insertNodeInto(newNode, parentNode, parentNode.getChildCount());
+      			        stockStruct.scrollPathToVisible(new TreePath(newNode.getPath()));
+      			        addGNTF.setText("");
+      			        addGMTF.setText("");
+      			        addGIPTF.setText("");
+      			        addGEPTF.setText("");
+    				}
+    				else{
+    					//弹窗
+    				}
+    				}
+    			}
+    		}
+    	});
     	
     	delGoods=new JButton("删除商品");
     	delGoods.setVisible(true);
     	delGoods.setBounds(260, 340, 100, 28);
-    	delGoods.addActionListener(null);
+    	delGoods.addActionListener(new ActionListener(){
+    		
+    		public void actionPerformed(ActionEvent Event){
+    			
+    			TreePath treePath=stockStruct.getSelectionPath();
+    			if(treePath!=null){
+    			  DefaultMutableTreeNode selectionNode=(DefaultMutableTreeNode)treePath.getLastPathComponent();
+    			  if(selectionNode.toString().substring(0, 1).equals("G")){ 
+    				TreeNode parent=(TreeNode)selectionNode.getParent();
+    				if(parent!=null){
+    				    int result=0;
+    					GoodsVO todel=null;
+    				    String[] GoodsInfo=selectionNode.toString().split(" ");
+    				    String[] pInfo=parent.toString().split(" ");
+    				   
+    				    todel=new GoodsVO(pInfo[1], pInfo[2], GoodsInfo[1], GoodsInfo[2], GoodsInfo[3], null, null, null, null, null, null);
+    					    					
+    					if(todel.getParentNum().equals("0000")){
+    						result=1000;   ///错误类型:特价包不能由库存管理人员由编辑
+    					}
+    					else{
+    						result=gbcontroller.delGoods(todel);
+    					}
+    					if(result==0){
+    				     if(selectionNode.isLeaf()){    					    
+    						treeModel.removeNodeFromParent(selectionNode);
+    						delGNTF.setText("");
+    				     }
+    					}
+    					else
+    						System.out.println(result);
+    				}
+    			  }
+    			}   		
+    		}
+    	});
+    	
+    	
     	
     	updGoods=new JButton("修改商品");
     	updGoods.setVisible(true);
     	updGoods.setBounds(260, 340, 100, 28);
-    	updGoods.addActionListener(null);
+    	updGoods.addActionListener(new ActionListener(){
+    		
+			public void actionPerformed(ActionEvent Event) {
+				// TODO Auto-generated method stub
+				String Info=updGNTF.getText();
+				String[] uInfo=Info.split(" ");
+				int result=0;
+				GoodsVO toUpd=new GoodsVO(null, null, uInfo[1], uInfo[2], uInfo[3], null, updGIPTF.getText(), updGEPTF.getText(), null, null, null);
+				
+				result=gbcontroller.updGoods(toUpd);
+				
+				if(result==0){
+					//弹窗：成功
+				}
+				else{
+					//弹窗：失败
+				}
+			}
+    	});
     	
         toITM=new JButton("报溢");
         toITM.setVisible(true);
