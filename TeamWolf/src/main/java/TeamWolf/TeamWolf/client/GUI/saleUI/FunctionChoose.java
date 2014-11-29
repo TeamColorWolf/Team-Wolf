@@ -227,7 +227,7 @@ public class FunctionChoose extends JFrame{
 	private void confirmButtonEvent(UserVO user){
 		switch (a) {
 		case 1:
-			new CustomerAdminFrame();
+			new CustomerAdminFrame(user, ip);
 			break;
 		case 2:
 			new CreateListFrame(user, ip);
