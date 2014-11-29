@@ -69,6 +69,10 @@ public class PromotionBLAssistant {
 		return presentList.submit();
 	}
 	
+	public GoodsVO findGoods(String number){
+		return stockService.finGoods(number);
+	}
+	
 	public Date getDate (){
 		return date;
 	}

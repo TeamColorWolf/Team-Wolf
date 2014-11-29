@@ -21,4 +21,6 @@ public interface PromotionBLservice {
 	public ArrayList<PromotionVO> check();//列表返回促销策略声明
 	
 	public ArrayList<TypeVO> typeList();
+	
+	public GoodsVO findGoods(String number);
 }

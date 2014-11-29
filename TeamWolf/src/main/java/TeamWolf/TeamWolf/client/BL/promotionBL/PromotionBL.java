@@ -208,6 +208,10 @@ public class PromotionBL{
 	public ArrayList<TypeVO> getLeaveType(){
 		return proAssist.getTypeList();
 	}
+	
+	public GoodsVO findGoods(String number){
+		return proAssist.findGoods(number);
+	}
 
 	public SaleListVO adaptPromotionForSaleList(SaleListVO vo) {
 		// TODO Auto-generated method stub

@@ -24,6 +24,8 @@ import TeamWolf.TeamWolf.client.vo.SpecialGoodsPromotionVO;
 public class PromotionCheckPanel extends JPanel{
 	PromotionBLservice service = PromotionPanel.service;
 	
+	static GiftListFrame gift;
+	
 	static String[] columnName = {"策略种类","策略编号","触发条件", "折让金额", "代金券", "开始时间", "结束时间"};
 	DefaultTableModel tableModel = new DefaultTableModel();
 	Object[][] content;
@@ -143,6 +145,11 @@ public class PromotionCheckPanel extends JPanel{
 			String num = (String)t.getValueAt(row, 1);
 			if(num != null){
 				number.setText(num);
+				if(gift != null){
+					gift.dispose();
+				}
+				gift = new GiftListFrame(num);
+				gift.setLocationRelativeTo(null);
 			}
 		}
 

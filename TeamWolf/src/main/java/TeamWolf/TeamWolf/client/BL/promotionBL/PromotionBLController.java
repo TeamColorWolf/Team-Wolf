@@ -50,4 +50,8 @@ public class PromotionBLController implements PromotionBLservice{
 		return bl.getLeaveType();
 	}
 
+	public GoodsVO findGoods(String number) {
+		// TODO Auto-generated method stub
+		return bl.findGoods(number);
+	}
 }
