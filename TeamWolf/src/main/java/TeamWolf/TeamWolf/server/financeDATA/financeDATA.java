@@ -16,7 +16,7 @@ public class financeDATA extends UnicastRemoteObject implements financeDATAservi
 	static ArrayList<financePO> AccountList;
 	
 
-	protected financeDATA() throws RemoteException {
+	public financeDATA() throws RemoteException {
 		super();
 		this.initial();
 		if(AccountList.equals(null)){
