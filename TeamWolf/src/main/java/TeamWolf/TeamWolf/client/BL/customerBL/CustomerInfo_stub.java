@@ -44,21 +44,21 @@ public class CustomerInfo_stub extends CustomerInfo{
     	}
 	}
  	public int RecieptListMod(RecieptApplicationVO vo) {
- 		if(vo.getNumber().equals("NUMBERTEST")){
+ 		if(vo.getAddup().equals("NUMBERTEST")){
     		return 0;
     	}else{
     		return -1;
     	}
 	}
  	public int PaymentListMod(PaymentApplicationVO vo) {
- 		if(vo.getNumber().equals("NUMBERTEST")){
+ 		if(vo.getAccountList().equals("NUMBERTEST")){
     		return 0;
     	}else{
     		return -1;
     	}
 	}
  	public int CashListMod(CashApplicationVO vo) {
- 		if(vo.getNumber().equals("NUMBERTEST")){
+ 		if(vo.getAddup().equals("NUMBERTEST")){
     		return 0;
     	}else{
     		return -1;
