@@ -69,7 +69,6 @@ public class SaleListVO extends ApplicationVO{
 		this.storage = storage;
 		this.GoodsList = goodsList;
 		this.total = calTotal(goodsList);
-		this.totalAfterDiscount = calTotalAfterDiscount(total);
 		this.remark = remark;
 		
 		try {
@@ -78,6 +77,7 @@ public class SaleListVO extends ApplicationVO{
 		} catch (Exception e) {
 			// TODO: 数据类型转换异常
 		}
+		this.totalAfterDiscount = calTotalAfterDiscount(total, this.discount);
 	}
 
 	
@@ -87,8 +87,11 @@ public class SaleListVO extends ApplicationVO{
 	 * @return
 	 */
 	private double calTotal(ArrayList<GoodsVO> goodsList){
-		//TODO: 计算折让前总额的方法
-		return 0;
+		double totalPrice = 0.0;
+		for (int i = 0; i < goodsList.size(); i++) {
+			totalPrice = totalPrice + goodsList.get(i).getExprice() * goodsList.get(i).getAmount();
+		}
+		return totalPrice;
 	}
 	
 	/**
@@ -96,9 +99,9 @@ public class SaleListVO extends ApplicationVO{
 	 * @param total
 	 * @return
 	 */
-	private double calTotalAfterDiscount(double total){
-		//TODO 计算折让后总额的方法
-		return 0;
+	private double calTotalAfterDiscount(double total, double discount){
+		double totalAfter = total - discount;
+		return totalAfter;
 	}
 	
 	public CustomerVO getCustomer() {

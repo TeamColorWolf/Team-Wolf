@@ -40,9 +40,11 @@ public class ImportRejectListPanel extends JPanel{
 	private JScrollPane scroll_goods;
 	
 	private String[] goodsInfo = {"商品名称", "商品数量", "商品单价", "单项商品总价"};
-	private Object[][] object;
-//	private JComboBox<String> combo;
+	private Object[][] object_goodsList;
 	
+	private String[] importInfo = {"选择", "编号", "进货商", "总额合计", "备注"};
+	private Object[][] object_importList;
+
 	/**
 	 * 面板宽度
 	 */
@@ -79,14 +81,18 @@ public class ImportRejectListPanel extends JPanel{
 		this.setSize(w, h);
 		//添加组件
 		this.add(this.createImportList());
-		this.add(this.creategoodsInfo());
+		this.add(this.createGoodsInfo());
 		this.add(this.submitBtn());
 		this.add(this.showBtn());
 		
 	}
 	
-	private JScrollPane creategoodsInfo(){
-		tModel_goods = new DefaultTableModel(object, goodsInfo);
+	/**
+	 * 商品信息显示面板
+	 * @return
+	 */
+	private JScrollPane createGoodsInfo(){
+		tModel_goods = new DefaultTableModel(object_goodsList, goodsInfo);
 		goodsInfoTable = new JTable(tModel_goods);
 		scroll_goods = new JScrollPane(goodsInfoTable);
 		
@@ -104,8 +110,7 @@ public class ImportRejectListPanel extends JPanel{
 	 * @return
 	 */
 	private JScrollPane createImportList(){
-		tModel_import = new DefaultTableModel(new Object[][] {}, new String[] {"选择", 
-				"编号", "进货商", "总额合计", "备注"});
+		tModel_import = new DefaultTableModel(object_importList, importInfo);
 		importListTable = new JTable(tModel_import);
 		scroll_import = new JScrollPane(importListTable);
 		
@@ -140,18 +145,18 @@ public class ImportRejectListPanel extends JPanel{
 	private void showGoodsInfo(int index){
 		goodsList = importList.get(index).getGoodsList();
 		tModel_goods = (DefaultTableModel) goodsInfoTable.getModel();
-		object = new Object[goodsList.size()][4];
+		object_goodsList = new Object[goodsList.size()][4];
 		for (int i = 0; i < goodsList.size(); i++) {
 			GoodsVO gvo = goodsList.get(i);
 
-			object[i][0] = gvo.getName();
-			object[i][1] = gvo.getAmount();
-			object[i][2] = gvo.getImprice();
-			object[i][3] = gvo.getAmount() * gvo.getImprice();
+			object_goodsList[i][0] = gvo.getName();
+			object_goodsList[i][1] = gvo.getAmount();
+			object_goodsList[i][2] = gvo.getImprice();
+			object_goodsList[i][3] = gvo.getAmount() * gvo.getImprice();
 		
 			
 		}
-		tModel_goods.setDataVector(object, goodsInfo);
+		tModel_goods.setDataVector(object_goodsList, goodsInfo);
 		goodsInfoTable.updateUI();
 	}
 	
@@ -200,7 +205,7 @@ public class ImportRejectListPanel extends JPanel{
 	 * 显示按钮事件
 	 */
 	private void showBtnAction(){
-		//TODO
+		clearImportInfoTable();
 		importList = TestMain.getImportListTEST();
 		tModel_import = (DefaultTableModel) importListTable.getModel();
 		
@@ -228,13 +233,18 @@ public class ImportRejectListPanel extends JPanel{
 		//TODO
 	}
 	
+	private void clearImportInfoTable(){
+		object_importList = null;
+		tModel_import.setDataVector(object_importList, importInfo);
+		importListTable.updateUI();
+	}
+	
 	/**
 	 * 清空表格方法
-	 * @param row table行数
 	 */
 	private void clearGoodsInfoTable(){
-		object = null;
-		tModel_goods.setDataVector(object, goodsInfo);
+		object_goodsList = null;
+		tModel_goods.setDataVector(object_goodsList, goodsInfo);
 		goodsInfoTable.updateUI();
 	}
 }

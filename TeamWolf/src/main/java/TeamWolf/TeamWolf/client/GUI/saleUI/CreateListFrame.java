@@ -69,7 +69,7 @@ public class CreateListFrame extends JFrame{
 		jtp.addTab("进货单", new ImportListPanel(user, ip));
 		jtp.addTab("进货退货单", new ImportRejectListPanel(user, ip));
 		jtp.addTab("销售单", new SaleListPanel(user, ip));
-		jtp.addTab("销售退货单", new SaleRejectListPanel());
+		jtp.addTab("销售退货单", new SaleRejectListPanel(user, ip));
 		jtp.setSize(w, 535);
 		jtp.setLocation(0, 0);
 		

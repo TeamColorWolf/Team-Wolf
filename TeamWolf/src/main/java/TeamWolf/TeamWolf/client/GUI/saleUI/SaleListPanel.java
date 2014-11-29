@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -15,6 +16,8 @@ import javax.swing.JTextField;
 
 import TeamWolf.TeamWolf.client.BL.saleBL.SaleBLController;
 import TeamWolf.TeamWolf.client.BLservice.saleBLservice.SaleBLservice;
+import TeamWolf.TeamWolf.client.vo.CustomerVO;
+import TeamWolf.TeamWolf.client.vo.UserType;
 import TeamWolf.TeamWolf.client.vo.UserVO;
 
 /**
@@ -25,6 +28,10 @@ import TeamWolf.TeamWolf.client.vo.UserVO;
 public class SaleListPanel extends JPanel{
 
 	SaleBLservice saleLogic;
+	
+	ArrayList<CustomerVO> custList;
+	
+	UserType power;
 	
 	//组件们
 	JComboBox<String> customerBox = new JComboBox<String>();
@@ -68,7 +75,8 @@ public class SaleListPanel extends JPanel{
 	public SaleListPanel(UserVO user, String ip) {
 		saleLogic = new SaleBLController(ip);
 		goodschoose = new GoodsChoosePanel(ip);
-		
+		power = user.power;
+
 		//设置布局方式
 		this.setLayout(null);
 		//设置大小
@@ -76,11 +84,12 @@ public class SaleListPanel extends JPanel{
 		//添加组件
 		this.add(goodschoose);
 		this.add(this.subBtnPanel());
+		this.add(this.attributePanel());
 		
 	}
 	
 	/**
-	 * 需要填写的属性(供应商，业务员，备注)
+	 * 需要填写的属性(销售商，业务员，备注)
 	 * @return
 	 */
 	private JPanel attributePanel(){
@@ -98,15 +107,20 @@ public class SaleListPanel extends JPanel{
 		businessManArea.setSize(customerBox.getSize());
 		customerBox.setLocation(Xgap, Ygap);
 		businessManArea.setLocation(customerBox.getX() + customerBox.getWidth() + Xgap, Ygap);
-		customerBox.setBorder(BorderFactory.createTitledBorder("进货商选择"));
-		businessManArea.setBorder(BorderFactory.createTitledBorder("仓库选择"));
+		customerBox.setBorder(BorderFactory.createTitledBorder("销售商选择"));
+		businessManArea.setBorder(BorderFactory.createTitledBorder("业务员"));
 		customerBox.setEnabled(true);
-		businessManArea.setEnabled(true);
+		businessManArea.setEnabled(false);
 		scrollPane.setSize(conpW * 2, conpH * 3 / 2);
 		scrollPane.setLocation(businessManArea.getX() + businessManArea.getWidth() + Xgap, Ygap / 4);
 		scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		scrollPane.setBorder(BorderFactory.createTitledBorder("备注填写"));
 		
+		setCustomerBox();
+		customerBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		
 		jp.add(customerBox);
 		jp.add(businessManArea);
@@ -117,7 +131,7 @@ public class SaleListPanel extends JPanel{
 	}
 	
 	/**
-	 * 提交按钮面板
+	 * 提交按钮面板(折让金额、折让前总额、折让后总额、提交、清空)
 	 * @return
 	 */
 	private JPanel subBtnPanel(){
@@ -126,6 +140,8 @@ public class SaleListPanel extends JPanel{
 		Font ChooseBtn_FONT = new Font("黑体", Font.BOLD, 16);
 		
 		//组件们
+		JTextField discountField = new JTextField();
+		JTextField preTotalField = new JTextField();
 		JTextField totalField = new JTextField();
 		JButton submitBtn = new JButton("提交");
 		JButton clearBtn = new JButton("清空");
@@ -137,15 +153,21 @@ public class SaleListPanel extends JPanel{
 //		jp.setBackground(Color.CYAN);
 		
 		//组件设置
+		discountField.setSize(conpW, conpH);
+		preTotalField.setSize(conpW, conpH);
 		totalField.setSize(conpW, conpH);
 		submitBtn.setSize(btnW, btnH);
 		clearBtn.setSize(submitBtn.getSize());
 		
-		totalField.setLocation(Xgap, Ygap);
-		submitBtn.setLocation(totalField.getX() + totalField.getWidth() + Xgap, Ygap);
-		clearBtn.setLocation(submitBtn.getX() + submitBtn.getWidth() + Xgap, Ygap);
+		discountField.setLocation(Xgap / 2, Ygap);
+		preTotalField.setLocation(discountField.getX() + discountField.getWidth() + Xgap / 2, Ygap);
+		totalField.setLocation(preTotalField.getX() + preTotalField.getWidth() + Xgap / 2, Ygap);
+		submitBtn.setLocation(totalField.getX() + totalField.getWidth() + Xgap / 2, Ygap);
+		clearBtn.setLocation(submitBtn.getX() + submitBtn.getWidth() + Xgap / 2, Ygap);
 		
-		totalField.setBorder(BorderFactory.createTitledBorder("全部总额"));
+		discountField.setBorder(BorderFactory.createTitledBorder("折让金额"));
+		preTotalField.setBorder(BorderFactory.createTitledBorder("折让前总额"));
+		totalField.setBorder(BorderFactory.createTitledBorder("最终总额"));
 		submitBtn.setFont(ChooseBtn_FONT);
 		clearBtn.setFont(ChooseBtn_FONT);
 		
@@ -162,11 +184,25 @@ public class SaleListPanel extends JPanel{
 		});
 		
 		//添加组件
+		jp.add(discountField);
+		jp.add(preTotalField);
 		jp.add(totalField);
 		jp.add(submitBtn);
 		jp.add(clearBtn);
 		
 		return jp;
+	}
+	
+	/**
+	 * 在CustomerBox里添加选择列表
+	 */
+	private void setCustomerBox(){
+		custList = TestMain.getCustVOListTEST();
+		for (int i = 0, k = 0; i < custList.size(); i++) {
+			if(custList.get(i).getKind().equals("销售商")){
+				customerBox.addItem(custList.get(i).getName());
+			}
+		}
 	}
 	
 }
