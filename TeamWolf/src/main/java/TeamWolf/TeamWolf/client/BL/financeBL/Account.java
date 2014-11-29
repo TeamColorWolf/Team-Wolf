@@ -27,6 +27,7 @@ public class Account implements AccountBlservice{
 	
 	public Account(String IP){
 		URL = "rmi://" + IP + "/financeDATAservice";
+		fba = new financeBLAssistant(IP);
 		this.getpoList();
 	}
 	
@@ -143,7 +144,6 @@ public class Account implements AccountBlservice{
 	}
 
 	public ArrayList<financeVO> checkVO() {
-		System.out.println("FTW");
 		if(volist == null){
 			try {
 				fds = (financeDATAservice) Naming.lookup(URL);

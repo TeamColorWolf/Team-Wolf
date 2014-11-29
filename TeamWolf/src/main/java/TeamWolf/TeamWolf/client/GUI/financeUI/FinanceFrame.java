@@ -35,8 +35,10 @@ public class FinanceFrame extends JFrame{
 	
 	public FinanceFrame(UserVO user, String IP){
 		super("操作员编号：" + user.workID + "         服务器IP：" + IP);
+		
 		this.user = user;
 		this.IP = IP;
+		service = new financeController(IP);
 		tab = new JTabbedPane(JTabbedPane.TOP);
 		tab.setSize(width, height);
 		
@@ -45,8 +47,6 @@ public class FinanceFrame extends JFrame{
 		evepanel = new EventPanel();
 		inipanel = new INIPanel();
 		evpanel = new EventViewPanel();
-		
-		service = new financeController(IP);
 		
 		tab.add(accountpanel,"账户管理");
 		tab.add(apppanel,"单据制定");

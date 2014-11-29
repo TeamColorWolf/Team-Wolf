@@ -25,9 +25,10 @@ public class AccountOprPanel extends JPanel{
 	AccountBlservice service = FinanceFrame.service;
 	
 	static String[] columnName = {"账户名", "账户余额"};
+	DefaultTableModel tableModel = new DefaultTableModel();
 	Object[][] content;
 	
-	JTable userTable;
+	JTable accountTable;
 	JScrollPane scroll;
 	JButton update = new JButton("确认修改");
 	JButton delete = new JButton("确认删除");
@@ -53,11 +54,12 @@ public class AccountOprPanel extends JPanel{
 	public AccountOprPanel(){
 		super();
 		this.getContent();
-		userTable.setSize(400, 400);
-		userTable.setLocation(0, 0);
-		userTable.setVisible(true);
-		userTable.setRowHeight(LH);
-		scroll = new JScrollPane(userTable);
+		accountTable = new JTable(tableModel);
+		accountTable.setSize(400, 400);
+		accountTable.setLocation(0, 0);
+		accountTable.setVisible(true);
+		accountTable.setRowHeight(LH);
+		scroll = new JScrollPane(accountTable);
 		scroll.setSize(400, 400);
 		
 		update.setSize(LW, BH);
@@ -107,12 +109,13 @@ public class AccountOprPanel extends JPanel{
 		check.addMouseListener(new CheckListener());
 		update.addMouseListener(new UpdateListener());
 		delete.addMouseListener(new DeleteListener());
-		userTable.addMouseListener(new TableListener(userTable));
+		accountTable.addMouseListener(new TableListener(accountTable));
 	}
 	
 	private void getContent(){
 		ArrayList<financeVO> list = service.checkVO();
 		//ArrayList<financeVO> list = null;
+		System.out.println(list);
 		if(list == null){
 			content = new Object[15][3];
 		}
@@ -130,7 +133,7 @@ public class AccountOprPanel extends JPanel{
 	
 	public void flashPanel(){
 		this.getContent();
-		userTable.updateUI();
+		accountTable.updateUI();
 	}
 	
 	class CheckListener implements MouseListener{

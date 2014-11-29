@@ -83,7 +83,8 @@ public class financeDATA extends UnicastRemoteObject implements financeDATAservi
 	
 	private void initial(){
 		try {
-			AccountList=(ArrayList<financePO>)FileOpr.readFile(FileName.goodsFile);
+			AccountList=(ArrayList<financePO>)FileOpr.readFile(FileName.accountFile);
+			System.out.println(AccountList);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -98,7 +99,7 @@ public class financeDATA extends UnicastRemoteObject implements financeDATAservi
 		return AccountList;
 	}
 	
-	/*public void getAllList(){
+/*	public void getAllList(){
 		try {
 			AccountList = (ArrayList<financePO>) FileOpr.readFile(FileName.accountFile);
 		} catch (ClassNotFoundException e) {
@@ -117,6 +118,10 @@ public class financeDATA extends UnicastRemoteObject implements financeDATAservi
 			fd.add(f1);
 			financePO f22 = new financePO("FTW",1);
 			fd.add(f22);
+			financePO f33 =new financePO("GAN",1);
+			fd.add(f33);
+			financePO f44 = new financePO("GOGO",1);
+			fd.add(f44);
 			financePO f2 = fd.find(f1);
 			System.out.println(f1.getName());
 			System.out.println(f2.getName());
