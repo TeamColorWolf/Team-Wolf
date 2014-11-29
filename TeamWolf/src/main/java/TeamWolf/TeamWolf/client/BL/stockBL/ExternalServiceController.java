@@ -35,7 +35,10 @@ public class ExternalServiceController implements ExternalService{
 		return 0;
 	}
     
-	/*public static void main(String[] args){
-		
-	}*/
+	public static void main(String[] args){
+		ExternalServiceController esc=new ExternalServiceController("192.168.1.102");
+		GoodsVO fin=esc.finGoods("00020001");
+		System.out.println(fin.getNumber()+fin.getName()+fin.getModel()+fin.getExprice()+fin.getImprice());
+	}
+	
 }

@@ -31,6 +31,8 @@ import javax.swing.tree.TreePath;
 
 import TeamWolf.TeamWolf.client.BL.goodsBL.GoodsBLController;
 import TeamWolf.TeamWolf.client.BL.stockBL.StockBLController;
+import TeamWolf.TeamWolf.client.vo.GoodsListVO;
+import TeamWolf.TeamWolf.client.vo.GoodsVO;
 import TeamWolf.TeamWolf.client.vo.TypeListVO;
 import TeamWolf.TeamWolf.client.vo.TypeVO;
 
@@ -152,6 +154,8 @@ public class StockManagePane extends JPanel implements TreeModelListener {
 		// TODO Auto-generated method stub
     	TypeListVO typelist=sbcontroller.shoAllType();
     	ArrayList<TypeVO> tl=typelist.typeL;
+    	GoodsListVO goodsList=gbcontroller.shoGoods();
+    	ArrayList<GoodsVO> gl=goodsList.gList;
     	ArrayList<DefaultMutableTreeNode> tnl=new ArrayList<DefaultMutableTreeNode>();
     	for(TypeVO t:tl){
     		int tNum=Integer.parseInt(t.getNumber());
@@ -172,6 +176,17 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     			}
     			tnl.add(tn);
     		}
+    	}
+    	
+    	for(GoodsVO g:gl){
+    		
+    		DefaultMutableTreeNode tn=new DefaultMutableTreeNode("G "+g.getNumber()+" "+g.getName());
+    		for(DefaultMutableTreeNode ptn:tnl){
+				if(ptn.toString().equals("T "+g.getParentNum()+" "+g.getParent())){
+					ptn.add(tn);
+				}
+			}
+			tnl.add(tn);
     	}
     	
     	//System.out.println(CurrentTypeNum);
@@ -610,7 +625,7 @@ public class StockManagePane extends JPanel implements TreeModelListener {
 					 updTInfo.setText(nodeName);
 					 addGPTF.setText(nodeName);
 				 }
-				 else if(nodeName.substring(0, 2).equals("G")){
+				 else if(nodeName.substring(0, 1).equals("G")){
 					 
 					 delGNTF.setText(nodeName);
 					 updGNTF.setText(nodeName);

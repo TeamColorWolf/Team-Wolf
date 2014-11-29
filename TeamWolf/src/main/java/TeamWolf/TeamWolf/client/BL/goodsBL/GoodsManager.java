@@ -136,6 +136,8 @@ public class GoodsManager {
 		GoodsPO found=GdataService.finGood(g.getNumber());
 		//对g进行修改			
         if(found!=null){
+            g.setName(found.getName());
+            g.setModel(found.getModel());
         	g.setAmount(found.getAmount());
         	g.setExprice(found.getExprice());
         	g.setImprice(found.getImprice());
