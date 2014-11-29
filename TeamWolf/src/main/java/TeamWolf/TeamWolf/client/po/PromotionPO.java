@@ -24,7 +24,7 @@ public class PromotionPO implements Serializable{
 	
 	protected ArrayList<GiftForPromotionPO> setGiftList(ArrayList<GiftForPromotionVO> vo){
 		ArrayList<GiftForPromotionPO> list = new ArrayList<GiftForPromotionPO>();
-		for(int i = 0; i < list.size(); i++){
+		for(int i = 0; i < vo.size(); i++){
 			GiftForPromotionPO po = new GiftForPromotionPO(vo.get(i).GoodsName, vo.get(i).sendNumber);
 			list.add(po);
 		}

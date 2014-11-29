@@ -67,11 +67,23 @@ public class GoodsData extends UnicastRemoteObject implements GoodsDataService {
 
 	public int updGood(GoodsPO g) throws RemoteException {
 		// TODO Auto-generated method stub
+		int toUpd=0;
+		boolean finded=false;
 		for(GoodsPO gg: goodsList){
 			if(gg.getNumber().equals(g.getNumber())){
-                  gg=g;
+                  toUpd=goodsList.indexOf(gg);
+                  finded=true;
                   break;
 			}
+		}
+		
+		if(finded==true){
+			
+			goodsList.remove(toUpd);
+			goodsList.add(toUpd, g);
+		}
+		else{
+			//错误类型：要更新的商品不存在
 		}
 		try {
 			FileOpr.writeFile(FileName.goodsFile, goodsList);
@@ -132,7 +144,10 @@ public class GoodsData extends UnicastRemoteObject implements GoodsDataService {
 	public static void main(String[] args){
 		 try {
 			   GoodsData gd=new GoodsData();
-			   TypePO parent=new TypePO(null, "0001", "");
+			   TypePO grandParent=new TypePO(null, "0001", "实物商品");
+			   TypePO parent=new TypePO(grandParent, "0002", "日用品");
+			   GoodsPO goods=new GoodsPO(parent, "00020001", "好东西", "G000", 0, 23, 33, 0, 0);
+			   gd.addGood(goods);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

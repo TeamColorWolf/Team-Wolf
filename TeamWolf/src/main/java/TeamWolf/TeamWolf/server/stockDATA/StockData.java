@@ -73,12 +73,21 @@ public class StockData extends UnicastRemoteObject implements StockDataService {
 
 	public int updType(TypePO t) throws RemoteException {
 		// TODO Auto-generated method stub
-		TypePO toUpd=null;
+		int toUpd=0;
+		boolean finded=false;
 		for(TypePO tt:stockList){
 			if(tt.getNumber().equals(t.getNumber())){
-				toUpd=t;
+				toUpd=stockList.indexOf(tt);
+				finded=true;
 				break;
 			}
+		}
+		if(finded==true){
+		   stockList.remove(toUpd);
+		   stockList.add(toUpd, t);  
+		}
+		else{
+			//错误类型：要更新的类不存在
 		}
 		try {
 			FileOpr.writeFile(FileName.stockFile, stockList);
@@ -122,10 +131,12 @@ public class StockData extends UnicastRemoteObject implements StockDataService {
 			  		
 		try {
 			StockData sd=new StockData();
-			TypePO addGoods=sd.finType("0002");
+			/*TypePO addGoods=sd.finType("0002");
 			GoodsPO goods=new GoodsPO(addGoods, "00020001", "好东西", "G000", 0, 23, 33, 0, 0);
 			addGoods.addLeaveNode(goods);
-			sd.updType(addGoods);
+			sd.updType(addGoods);*/
+			
+			ArrayList<TypePO> tl=new ArrayList<TypePO>();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
