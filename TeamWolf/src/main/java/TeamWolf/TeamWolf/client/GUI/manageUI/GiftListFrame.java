@@ -93,7 +93,6 @@ public class GiftListFrame extends JFrame{
 			else{
 				content = new Object[15][4];
 			}
-			System.out.println(giftList.size());
 			for(int i = 0; i < giftList.size(); i++){
 				content[i][0] = giftList.get(i).GoodsName;//实际为商品编号，懒得改了
 				content[i][2] = giftList.get(i).sendNumber;
