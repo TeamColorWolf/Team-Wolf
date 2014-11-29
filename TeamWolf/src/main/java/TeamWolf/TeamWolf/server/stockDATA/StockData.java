@@ -122,7 +122,10 @@ public class StockData extends UnicastRemoteObject implements StockDataService {
 			  		
 		try {
 			StockData sd=new StockData();
-			
+			TypePO addGoods=sd.finType("0002");
+			GoodsPO goods=new GoodsPO(addGoods, "00020001", "好东西", "G000", 0, 23, 33, 0, 0);
+			addGoods.addLeaveNode(goods);
+			sd.updType(addGoods);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

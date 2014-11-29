@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice.GoodsDataService;
 import TeamWolf.TeamWolf.client.po.GoodsAlarmPO;
 import TeamWolf.TeamWolf.client.po.GoodsPO;
+import TeamWolf.TeamWolf.client.po.TypePO;
 import TeamWolf.TeamWolf.server.FileName;
 import TeamWolf.TeamWolf.server.FileOpr;
 
@@ -131,6 +132,7 @@ public class GoodsData extends UnicastRemoteObject implements GoodsDataService {
 	public static void main(String[] args){
 		 try {
 			   GoodsData gd=new GoodsData();
+			   TypePO parent=new TypePO(null, "0001", "");
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
