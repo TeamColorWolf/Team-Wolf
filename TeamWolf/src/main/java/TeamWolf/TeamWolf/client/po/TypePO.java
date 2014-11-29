@@ -132,4 +132,23 @@ import TeamWolf.TeamWolf.client.vo.TypeVO;
 		else 
 			return false;
 	}
+
+	public void updChildType(TypeVO t) {
+		// TODO Auto-generated method stub
+		int toUpd=0;
+		boolean finded=false;
+		TypePO UPD=null;
+		for(TypePO tt: child){
+			if(tt.getNumber().equals(t.getNumber())){
+				UPD=tt;
+				UPD.setName(t.getName());
+				toUpd=child.indexOf(tt);
+				finded=true;
+			}
+		}
+		if(finded==true){
+			child.remove(toUpd);
+			child.add(toUpd, UPD);
+		}
+	}
 }

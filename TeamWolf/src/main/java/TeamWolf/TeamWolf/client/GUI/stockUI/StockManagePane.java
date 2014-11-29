@@ -180,7 +180,7 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     	
     	for(GoodsVO g:gl){
     		
-    		DefaultMutableTreeNode tn=new DefaultMutableTreeNode("G "+g.getNumber()+" "+g.getName());
+    		DefaultMutableTreeNode tn=new DefaultMutableTreeNode("G "+g.getNumber()+" "+g.getName()+" "+g.getModel());
     		for(DefaultMutableTreeNode ptn:tnl){
 				if(ptn.toString().equals("T "+g.getParentNum()+" "+g.getParent())){
 					ptn.add(tn);
@@ -201,15 +201,41 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     	addType.addActionListener(new ActionListener(){
     		
     		public void actionPerformed(ActionEvent Event){
+    			
+    			int newTN=CurrentTypeNum+1;
+    			String addTypeNum=""+newTN;
+    			while(addTypeNum.length()<4){
+    				addTypeNum="0"+addTypeNum;
+    			}
+    			String addTypeName=addTName.getText();
     			DefaultMutableTreeNode parentNode=null;
-    			DefaultMutableTreeNode newNode=new DefaultMutableTreeNode(addTName.getText());
+    			DefaultMutableTreeNode newNode=new DefaultMutableTreeNode("T "+addTypeNum+" "+addTypeName);
     			newNode.setAllowsChildren(true);
     			TreePath parentPath=stockStruct.getSelectionPath();
-    			if(parentPath!=null){
-    			parentNode=(DefaultMutableTreeNode)(parentPath.getLastPathComponent());
-    			treeModel.insertNodeInto(newNode, parentNode, parentNode.getChildCount());
-    			stockStruct.scrollPathToVisible(new TreePath(newNode.getPath()));
-    			addTName.setText("");
+    			if(parentPath!=null){		
+    			    
+    				parentNode=(DefaultMutableTreeNode)(parentPath.getLastPathComponent());
+    				int result=0;
+    				if(parentNode.toString().equals("商品")){
+    				    result=sbcontroller.addType(new TypeVO(null, null, addTypeNum, addTypeName));	
+    				}
+    				else{
+    				    String[] pInfo=parentNode.toString().split(" ");
+    				    if(pInfo[1].equals("0000")){
+    				    	result=1000;  //错误类型:特价包不能由库存管理人员由编辑
+    				    }
+    				    else
+    				        result=sbcontroller.addType(new TypeVO(pInfo[1], pInfo[2], addTypeNum, addTypeName));
+    				}
+    				if(result==0){
+    			      treeModel.insertNodeInto(newNode, parentNode, parentNode.getChildCount());
+    			      stockStruct.scrollPathToVisible(new TreePath(newNode.getPath()));
+    			      addTName.setText("");
+    			      CurrentTypeNum++;
+    				}
+    				else{
+    					System.out.println(result); //弹窗报错:根据result数值
+    				}
     			}
     		}
     	});
@@ -223,15 +249,32 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     			
     			TreePath treePath=stockStruct.getSelectionPath();
     			if(treePath!=null){
-    				DefaultMutableTreeNode selectionNode=(DefaultMutableTreeNode)treePath.getLastPathComponent();
-    				
+    				DefaultMutableTreeNode selectionNode=(DefaultMutableTreeNode)treePath.getLastPathComponent();   				
     				TreeNode parent=(TreeNode)selectionNode.getParent();
     				if(parent!=null){
+    				    int result=0;
+    					TypeVO todel=null;
+    				    String[] typeInfo=selectionNode.toString().split(" ");
+    					if(parent.toString().equals("商品")){
+    				        todel=new TypeVO(null, null, typeInfo[1], typeInfo[2]);
+    				    }
+    					else{
+    						String[] parentInfo=parent.toString().split(" ");
+    						todel=new TypeVO(parentInfo[1], parentInfo[2], typeInfo[1], typeInfo[2]);
+    					}
     					
+    					if(todel.getParentNum()!=null&&todel.getParentNum().equals("0000")){
+    						result=1000;   ///错误类型:特价包不能由库存管理人员由编辑
+    					}
+    					else{
+    						result=sbcontroller.delType(todel);
+    					}
+    					if(result==0){
     				     if(selectionNode.isLeaf()){    					    
     						treeModel.removeNodeFromParent(selectionNode);
     						delTInfo.setText("");
     				     }
+    					}
     				}
     			}   			    			
     		}
@@ -247,11 +290,18 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     			TreePath treePath=stockStruct.getSelectionPath();
     			if(treePath!=null){
     				DefaultMutableTreeNode selectionNode=(DefaultMutableTreeNode)treePath.getLastPathComponent();
-    				selectionNode.setUserObject(updTNewName.getText());
-    				treeModel.reload();
-    				stockStruct.scrollPathToVisible(new TreePath(selectionNode.getPath()));
-    				updTInfo.setText("");
-        			updTNewName.setText("");
+    				DefaultMutableTreeNode parent=(DefaultMutableTreeNode)selectionNode.getParent();
+    				if(parent!=null){
+    				    TypeVO toUpd=null;
+    					if(parent.toString().equals("商品")){
+    				    	
+    				    }
+    					selectionNode.setUserObject(updTNewName.getText());
+    				    treeModel.reload();
+    				    stockStruct.scrollPathToVisible(new TreePath(selectionNode.getPath()));
+    				    updTInfo.setText("");
+        			    updTNewName.setText("");
+    				}
     			}
     			
     		}
@@ -618,7 +668,7 @@ public class StockManagePane extends JPanel implements TreeModelListener {
 				 TreeNode treenode=(TreeNode)treepath.getLastPathComponent();
 				 String nodeName=treenode.toString();
 				 
-				 if(nodeName.substring(0, 1).equals("T")){
+				 if(nodeName.substring(0, 1).equals("T")||nodeName.substring(0, 2).equals("商品")){
 					 
 					 addTParent.setText(nodeName);
 					 delTInfo.setText(nodeName);

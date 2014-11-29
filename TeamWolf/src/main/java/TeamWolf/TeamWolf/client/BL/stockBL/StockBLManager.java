@@ -49,18 +49,21 @@ public class StockBLManager{
 			/* ...完善PO持久化对象内容...*/
 			
 				   //对象通过唯一编号来寻找
+			if(t.getParentNum()!=null){   //若被添加分类有父母分类则还需修改其父母分类的属性
 				   TypePO parent=dataService.finType(t.getParentNum());
 				   toAdd.setParent(parent);
 				   if(parent.addChildType(toAdd)){
-					   dataService.updType(parent);  //若被添加分类有父母分类则还需修改其父母分类的属性
-					   dataService.addType(toAdd);
+					   dataService.updType(parent);  
 				   }
 				   else{
-					  //返回不可在有商品的分类下添加子分类
-				   }											
-		}
-		else{ //因输入非法无法加入系统，返回部分逻辑错误类型:商品已存在于系统中
+					  return 1001;//返回不可在有商品的分类下添加子分类
+				   }					
+			}
 			
+		    dataService.addType(toAdd);
+		}
+		else{ 
+			return 1002;  //返回部分逻辑错误类型:商品已存在于系统中
 		}
 		} catch (RemoteException e1) {
 			// TODO Auto-generated catch block
@@ -78,7 +81,7 @@ public class StockBLManager{
         	
 				TypePO toDel=dataService.finType(t.getNumber());
 				if(toDel.getC()!=0){
-					//返回其下有子女，不可删除
+					return 1003; //返回其下有子女，不可删除
 				}
 				else{ //执行删除操作，需要对父母类进行修改
 					if(t.getParent()!=null){
@@ -90,8 +93,8 @@ public class StockBLManager{
 				}
 			
             
-        }else{ //因输入非法无法进行删除操作，返回部分逻辑错误类型：商品不存在于系统中，或者商品底下有子类
-        	
+        }else{ 
+        	 return 1004; // 错误类型：商品不存在于系统中        	
         }
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -106,16 +109,21 @@ public class StockBLManager{
 	public int updType(TypeVO t) {
 		// TODO Auto-generated method stub
 		try {
-		if(assistant.canUpd(t)){ //输入合法，进行修改工作
-			
-			
-			
+		   
+			if(assistant.canUpd(t)){ //输入合法，进行修改工作
+								
 				 TypePO toUpd = dataService.finType(t.getNumber());				
 				 /*...完善修改PO...*/
-				 if(t.getName()!=null)
+				 if(t.getName()!=null){
 					 toUpd.setName(t.getName());
+					 if(t.getParentNum()!=null){
+						 TypePO parent=dataService.finType(t.getParentNum());    //如果有父类，修改父类里该子类的信息
+						 parent.updChildType(t);
+						 dataService.updType(parent);
+					 }
+				 }
 				 else
-					 //返回错误类型：信息填写不完整
+					 return 1005;//返回错误类型：信息填写不完整
 				 
 				 dataService.updType(toUpd);									            
 		}else{ //因输入非法无法进行修改，返回错误类型：商品不存于系统中
