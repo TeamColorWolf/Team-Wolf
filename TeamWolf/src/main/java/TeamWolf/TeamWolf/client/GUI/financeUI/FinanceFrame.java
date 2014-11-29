@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+import TeamWolf.TeamWolf.client.BL.financeBL.financeController;
 import TeamWolf.TeamWolf.client.BLservice.financeBLservice.AccountBlservice;
 import TeamWolf.TeamWolf.client.GUI.manageUI.ManageFrame;
 import TeamWolf.TeamWolf.client.GUI.manageUI.PromotionPanel;
@@ -44,6 +45,8 @@ public class FinanceFrame extends JFrame{
 		evepanel = new EventPanel();
 		inipanel = new INIPanel();
 		evpanel = new EventViewPanel();
+		
+		service = new financeController(IP);
 		
 		tab.add(accountpanel,"账户管理");
 		tab.add(apppanel,"单据制定");

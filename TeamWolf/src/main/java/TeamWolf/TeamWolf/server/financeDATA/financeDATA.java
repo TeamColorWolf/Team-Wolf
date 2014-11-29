@@ -110,11 +110,13 @@ public class financeDATA extends UnicastRemoteObject implements financeDATAservi
 		}
 	}*/
 	
-	/*public static void main(String[]args){
+	public static void main(String[]args){
 		try {
 			financeDATA fd = new financeDATA();
 			financePO f1 = new financePO("DAB",1);
 			fd.add(f1);
+			financePO f22 = new financePO("FTW",1);
+			fd.add(f22);
 			financePO f2 = fd.find(f1);
 			System.out.println(f1.getName());
 			System.out.println(f2.getName());
@@ -128,6 +130,6 @@ public class financeDATA extends UnicastRemoteObject implements financeDATAservi
 			e.printStackTrace();
 		}
 		
-	}*/
+	}
 
 }

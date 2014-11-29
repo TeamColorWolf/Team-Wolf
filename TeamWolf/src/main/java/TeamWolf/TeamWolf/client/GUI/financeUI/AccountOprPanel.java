@@ -36,7 +36,6 @@ public class AccountOprPanel extends JPanel{
 	
 	JTextField AccountName = new JTextField();
 	JTextField AccountMoney = new JTextField();
-	JComboBox<UserType> power = new JComboBox<UserType>();
 	
 	private JLabel name = new JLabel("账户名");
 	private JLabel pass = new JLabel("余额");
@@ -68,8 +67,6 @@ public class AccountOprPanel extends JPanel{
 		
 		AccountName.setSize(TW, LH);
 		AccountMoney.setSize(TW, LH);
-		power.setSize(TW, LH);
-		SetComboBoxUser.set(power);
 		
 		name.setSize(LW, LH);
 		pass.setSize(LW, LH);
@@ -84,7 +81,6 @@ public class AccountOprPanel extends JPanel{
 		pass.setLocation(left, up+2*dis);
 		AccountMoney.setLocation(left+LW, up+2*dis);
 		
-		power.setLocation(left+LW, up+3*dis);
 		
 		update.setLocation(left, up+4*dis);
 		delete.setLocation(left+140, up+4*dis);
@@ -95,7 +91,6 @@ public class AccountOprPanel extends JPanel{
 		this.add(check);
 		this.add(pass);
 		this.add(AccountMoney);
-		this.add(power);
 		this.add(update);
 		this.add(delete);
 		this.add(cancel);
@@ -112,7 +107,6 @@ public class AccountOprPanel extends JPanel{
 		check.addMouseListener(new CheckListener());
 		update.addMouseListener(new UpdateListener());
 		delete.addMouseListener(new DeleteListener());
-		power.addActionListener(new PowerListener());
 		userTable.addMouseListener(new TableListener(userTable));
 	}
 	
@@ -166,7 +160,6 @@ public class AccountOprPanel extends JPanel{
 			// TODO Auto-generated method stub
 			int success = -1;
 			String name =AccountName.getText();
-			UserType Power = (UserType)power.getSelectedItem();
 			if(name != null){
 				financeVO vo = new financeVO(name);
 				success = service.update(vo,vo);

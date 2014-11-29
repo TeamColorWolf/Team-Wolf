@@ -18,7 +18,7 @@ import TeamWolf.TeamWolf.client.vo.financeVO;
 
 public class Account implements AccountBlservice{
 
-	public String URL = null;
+	public String URL;
 	financeDATAservice fds;
 	financeBLAssistant fba;
 	ArrayList<financeVO> volist;
@@ -143,6 +143,7 @@ public class Account implements AccountBlservice{
 	}
 
 	public ArrayList<financeVO> checkVO() {
+		System.out.println("FTW");
 		if(volist == null){
 			try {
 				fds = (financeDATAservice) Naming.lookup(URL);

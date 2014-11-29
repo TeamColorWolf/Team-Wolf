@@ -1,5 +1,8 @@
 package TeamWolf.TeamWolf.client.BL.financeBL;
 
+import java.util.ArrayList;
+
+import TeamWolf.TeamWolf.client.BLservice.financeBLservice.AccountBlservice;
 import TeamWolf.TeamWolf.client.vo.CashApplicationVO;
 import TeamWolf.TeamWolf.client.vo.PaymentApplicationVO;
 import TeamWolf.TeamWolf.client.vo.RecieptApplicationVO;
@@ -10,7 +13,7 @@ import TeamWolf.TeamWolf.client.vo.financeVO;
  * @author GYQQQQ
  *
  */
-public class financeController {
+public class financeController implements AccountBlservice {
 	  Account as;
 	  Eventview es;
 	  Initial is ;
@@ -64,8 +67,24 @@ public class financeController {
  		return 0;
       }
       
-     public financeVO upd(){
-    	 financeVO f =new financeVO();
-    	 return f;
-     }     
+
+	public int add(financeVO vo) {
+		return as.add(vo);
+	}
+
+	public int delete(financeVO vo) {
+		 return as.delete(vo);
+	}
+
+	public int update(financeVO vo, financeVO newvo) {
+  		 return as.update(vo,newvo);
+	}
+
+	public financeVO find(financeVO vo) {
+		return as.find(vo);
+	}
+
+	public ArrayList<financeVO> checkVO() {
+		return as.checkVO();
+	}     
 }
