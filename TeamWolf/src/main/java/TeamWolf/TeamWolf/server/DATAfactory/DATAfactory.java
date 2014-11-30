@@ -51,7 +51,7 @@ public class DATAfactory {
 			finance = new financeDATA();
 			login = new LoginDATA();
 			user = new UserDATA();
-			//saleApp = new SaleApplicationDATA();
+			saleApp = new SaleApplicationDATA();
 			stock=new StockData();
 			goods=new GoodsData();
 			promotion = new PromotionDATA();
@@ -64,7 +64,7 @@ public class DATAfactory {
 			Naming.rebind("CustomerDATAservice", customer);
 			Naming.rebind("loginDATAservice", login);
 			Naming.rebind("userDATAservice", user);
-			//Naming.rebind("saleDATAservice", saleApp);
+			Naming.rebind("saleDATAservice", saleApp);
 			Naming.rebind("stockDATAservice", stock);
 			Naming.rebind("goodsDATAservice", goods);
 			Naming.rebind("promotionDATAservice", promotion);
