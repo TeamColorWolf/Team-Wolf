@@ -28,7 +28,7 @@ public class CustomerInfo implements CustomerInfoBLservice{
 	CustomerDATAservice cds;
 	
 	public CustomerInfo(String IP){
-		
+		URL = "rmi://" + IP + "/customerDATAservice";
 	}
 	
 	public int ImportListInfoMod(ImportListVO vo) {

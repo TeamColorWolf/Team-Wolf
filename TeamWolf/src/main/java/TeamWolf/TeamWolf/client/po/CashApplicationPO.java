@@ -11,10 +11,10 @@ public class CashApplicationPO extends ApplicationPO{
     private CustomerPO customer;
     private ArrayList<String> nameList;
    
-    private ArrayList<financeVO> accountList;
+    private ArrayList<financePO> accountList;
     private ArrayList<String> moneyList;
     
-	public CashApplicationPO(ArrayList<financeVO> accountList,ArrayList<String> moneyList,ArrayList<String> nameList,
+	public CashApplicationPO(ArrayList<financePO> accountList,ArrayList<String> moneyList,ArrayList<String> nameList,
         		String number,String operator,String note,CustomerPO customer) {
 			this.note = note;
 			this.customer = customer;
@@ -34,8 +34,14 @@ public class CashApplicationPO extends ApplicationPO{
 		   this.addup=vo.getAddup();
 		   this.customer=new CustomerPO(vo.getCustomer());
 		   this.nameList=vo.getNameList();
-		   this.setAccountList(vo.getAccountList());
+		   this.setAccountListPO(vo.getAccountList());
 		   this.moneyList=vo.getMoneyList();
+	}
+	private void setAccountListPO(ArrayList<financeVO> accountList2) {
+		for(int i=0;i<accountList2.size();i++){
+			this.accountList.set(i,new financePO(accountList2.get(i)));
+		}
+		
 	}
 	public String calcuAdd(ArrayList<String> moneyList){
 		double AllAdd=0d;
@@ -75,10 +81,10 @@ public class CashApplicationPO extends ApplicationPO{
 	public void setNameList(ArrayList<String> nameList) {
 		this.nameList = nameList;
 	}
-	public ArrayList<financeVO> getAccountList() {
+	public ArrayList<financePO> getAccountList() {
 		return accountList;
 	}
-	public void setAccountList(ArrayList<financeVO> accountList) {
+	public void setAccountList(ArrayList<financePO> accountList) {
 		this.accountList = accountList;
 	}
 }
