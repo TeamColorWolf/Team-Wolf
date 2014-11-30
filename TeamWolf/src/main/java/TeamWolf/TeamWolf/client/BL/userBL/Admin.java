@@ -48,6 +48,7 @@ public class Admin {
 				poList.add(po);
 				voList.add(new UserVO(po));
 			}
+			return success;
 		} catch (MalformedURLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -76,6 +77,7 @@ public class Admin {
 						voList = null;
 						voList = this.getAllUserList();
 					}
+					return success;
 				} catch (MalformedURLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
