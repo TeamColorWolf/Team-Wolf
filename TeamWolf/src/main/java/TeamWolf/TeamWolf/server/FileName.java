@@ -14,4 +14,7 @@ public class FileName {
 	public static String promotionFile = "促销策略//promotion.tw";
 	public static String accountFile = "账户信息//account.tw";
 	public static String customerFile = "客户信息//customer.tw";
+	public static String recieptFile = "账户类单据//reciept.tw";
+	public static String cashFile = "账户类单据//cash.tw";
+	public static String paymentFile = "账户类单据//payment.tw";
 }
