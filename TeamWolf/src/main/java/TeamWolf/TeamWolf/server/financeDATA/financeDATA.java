@@ -70,8 +70,8 @@ public class financeDATA extends UnicastRemoteObject implements financeDATAservi
 	public int update(financePO po, financePO newpo) throws RemoteException {
 		for(financePO intr : AccountList){
 			if(intr.getName().equals(po.getName())){
-				intr = newpo;
-			}
+				intr.setName(newpo.getName());
+				}
 		}
 		try {
 			FileOpr.writeFile(FileName.accountFile, AccountList);
@@ -129,7 +129,16 @@ public class financeDATA extends UnicastRemoteObject implements financeDATAservi
 			financePO f3 = fd.find(f1);
 			if(f3==null){
 				System.out.println("del");				
-			}	
+			}
+			financePO f4 = new financePO("G");
+			fd.update(f22, f4);
+			System.out.println(f22.getName());
+			financePO f24 = new financePO("FTW",1);
+			financePO f34 = fd.find(f24);
+			if(f34==null){
+				System.out.println("del");				
+			}
+		
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();

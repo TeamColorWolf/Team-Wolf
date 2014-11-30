@@ -74,7 +74,7 @@ public class financeBLAssistant {
     	financePO po = new financePO(f);
     	financePO newpo = new financePO(newf);
     	try {
-			if(fds.find(po)==null&&fds.find(newpo)==null){
+			if(fds.find(newpo)==null){
 				return true;
 			}
 		} catch (RemoteException e) {

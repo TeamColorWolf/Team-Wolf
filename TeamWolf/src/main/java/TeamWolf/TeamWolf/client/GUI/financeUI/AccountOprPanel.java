@@ -28,6 +28,7 @@ public class AccountOprPanel extends JPanel{
 	DefaultTableModel tableModel = new DefaultTableModel();
 	Object[][] content;
 	
+	String UpdateString = "";
 	JTable accountTable;
 	JScrollPane scroll;
 	JButton update = new JButton("确认修改");
@@ -164,10 +165,14 @@ public class AccountOprPanel extends JPanel{
 		public void mouseClicked(MouseEvent arg0) {
 			// TODO Auto-generated method stub
 			int success = -1;
+			String oldname = UpdateString;
 			String name =AccountName.getText();
+			System.out.println(name);
+			System.out.println(oldname);
+			financeVO oldvo = new financeVO(oldname);
 			if(name != null){
 				financeVO vo = new financeVO(name);
-				success = service.update(vo,vo);
+				success = service.update(oldvo,vo);
 			}
 			if(success == 0){
 				System.out.println("update successfully.");
@@ -217,6 +222,7 @@ public class AccountOprPanel extends JPanel{
 			// TODO Auto-generated method stub
 			int row = t.getSelectedRow();
 			String name = (String)t.getValueAt(row, 0);
+			UpdateString = name;
 			if(name != null){
 				AccountName.setText(name);
 				financeVO  fin= new financeVO(name);
