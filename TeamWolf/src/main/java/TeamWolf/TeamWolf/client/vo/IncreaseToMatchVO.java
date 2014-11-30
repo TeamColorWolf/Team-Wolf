@@ -5,7 +5,7 @@ public class IncreaseToMatchVO extends ApplicationVO {
 	 GoodsVO toIncrease;
 		
      public IncreaseToMatchVO(GoodsVO toIncrease){
-   	  this.toIncrease=toIncrease; 
+   	      this.toIncrease=toIncrease; 
      }
      
      public String getInfo(){

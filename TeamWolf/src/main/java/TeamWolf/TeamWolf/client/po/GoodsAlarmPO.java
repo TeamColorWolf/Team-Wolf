@@ -1,6 +1,8 @@
 package TeamWolf.TeamWolf.client.po;
 
-public class GoodsAlarmPO {
+import java.io.Serializable;
+
+public class GoodsAlarmPO implements Serializable {
 
 	String Date;
 	String warningGood;

@@ -9,6 +9,8 @@ public class FileName {
 	public static String stockFile="库存商品//stock.tw";
 	public static String goodsFile="库存商品//goods.tw";
 	public static String alarmFile="库存商品//alarm.tw";
+	public static String increaseToMatchFile="库存商品//ITM.tw";
+	public static String decreaseToMatchFile="库存商品//DTM.tw";
 	public static String promotionFile = "促销策略//promotion.tw";
 	public static String accountFile = "账户信息//account.tw";
 	public static String customerFile = "客户信息//customer.tw";

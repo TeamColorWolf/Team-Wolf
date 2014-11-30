@@ -466,17 +466,71 @@ public class StockManagePane extends JPanel implements TreeModelListener {
         toITM=new JButton("报溢");
         toITM.setVisible(true);
         toITM.setBounds(260, 340, 100, 28);
-        toITM.addActionListener(null);
+        toITM.addActionListener(new ActionListener(){
+        	
+        	public void actionPerformed(ActionEvent e){
+        		
+        		String[] gInfo=ITMGITF.getText().split(" ");
+        		String amount=ITMAmountTF.getText();
+        		int result;
+        		GoodsVO toIncrease=new GoodsVO(null, null, gInfo[1], gInfo[2], gInfo[3], amount, null, null, null, null, null);
+        		
+        		result=gbcontroller.increaseToMatch(toIncrease);
+        		
+        		if(result==0){
+        		     ITMAmountTF.setText("");
+        		}
+        		else{
+        			//弹窗报错
+        		}
+        	}
+        });
     	
         toDTM=new JButton("报损");
         toDTM.setVisible(true);
         toDTM.setBounds(260, 340, 100, 28);
-    	toDTM.addActionListener(null);
+    	toDTM.addActionListener(new ActionListener(){
+    		
+    		public void actionPerformed(ActionEvent e){
+    			
+    			String[] gInfo=DTMGITF.getText().split(" ");
+        		String amount=DTMGAmountTF.getText();
+        		int result;
+        		GoodsVO toDecrease=new GoodsVO(null, null, gInfo[1], gInfo[2], gInfo[3], amount, null, null, null, null, null);
+        		
+        		result=gbcontroller.decreaseToMatch(toDecrease);
+        		
+        		if(result==0){
+        		     DTMGAmountTF.setText("");
+        		}
+        		else{
+        			//弹窗报错
+        		}
+    		}
+    	});
         
     	toSetWL=new JButton("确定");
     	toSetWL.setVisible(true);
     	toSetWL.setBounds(260, 340, 100, 28);
-    	toSetWL.addActionListener(null);
+    	toSetWL.addActionListener(new ActionListener(){
+    		
+    		public void actionPerformed(ActionEvent e){
+    			
+    			String[] gInfo=setWLGITF.getText().split(" ");
+        		String warningLine=setWLGWLTF.getText();
+        		int result;
+        		GoodsVO toSetWL=new GoodsVO(null, null, gInfo[1], gInfo[2], gInfo[3], null, null, null, null, null, warningLine);
+        		
+        		result=gbcontroller.setWaringLine(toSetWL);
+        		
+        		if(result==0){
+        		     setWLGWLTF.setText("");
+        		}
+        		else{
+        			//弹窗报错
+        		}
+    		}
+    	});
     	
     }
     

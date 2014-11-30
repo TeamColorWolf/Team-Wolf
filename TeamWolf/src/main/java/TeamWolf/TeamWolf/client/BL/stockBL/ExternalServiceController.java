@@ -3,7 +3,9 @@ package TeamWolf.TeamWolf.client.BL.stockBL;
 import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.BL.goodsBL.GoodsManager;
+import TeamWolf.TeamWolf.client.vo.DecreaseToMatchVO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
+import TeamWolf.TeamWolf.client.vo.IncreaseToMatchVO;
 import TeamWolf.TeamWolf.client.vo.SpecialGoodsPromotionVO;
 import TeamWolf.TeamWolf.client.vo.TypeVO;
 
@@ -35,10 +37,14 @@ public class ExternalServiceController implements ExternalService{
 		return 0;
 	}
     
-	public static void main(String[] args){
-		ExternalServiceController esc=new ExternalServiceController("192.168.1.102");
-		GoodsVO fin=esc.finGoods("00020001");
-		System.out.println(fin.getNumber()+fin.getName()+fin.getModel()+fin.getExprice()+fin.getImprice());
+	public ArrayList<IncreaseToMatchVO> getITM() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ArrayList<DecreaseToMatchVO> getDTM() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

@@ -7,8 +7,10 @@ import java.rmi.RemoteException;
 import TeamWolf.TeamWolf.client.BL.applicationBL.forStock.StockApplicationController;
 import TeamWolf.TeamWolf.client.BLservice.stockBLservice.GoodMonService;
 import TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice.GoodsDataService;
+import TeamWolf.TeamWolf.client.DATAservice.stockDATAservice.StockDataService;
 import TeamWolf.TeamWolf.client.po.GoodsAlarmPO;
 import TeamWolf.TeamWolf.client.po.GoodsPO;
+import TeamWolf.TeamWolf.client.po.TypePO;
 import TeamWolf.TeamWolf.client.vo.*;
 
 /**
@@ -18,19 +20,22 @@ import TeamWolf.TeamWolf.client.vo.*;
  */
 public class GoodsMonitor{
 
-	String URL1;
+	String URL1,URL2;
 	GoodsBLAssistant assistant;
 	GoodsDataService dataService;
+	StockDataService SdataService;
 	StockApplicationController appController;
 	
 	public GoodsMonitor(String IP){
 		
 		URL1="rmi://"+IP+"/goodsDATAservice";
+		URL2="rmi://"+IP+"/stockDATAservice";
 		
 		assistant=new GoodsBLAssistant(URL1);
 		appController=new StockApplicationController(IP);
 		try {			
 			dataService=(GoodsDataService)Naming.lookup(URL1);
+			SdataService=(StockDataService)Naming.lookup(URL2);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -48,10 +53,13 @@ public class GoodsMonitor{
 		try {
 		if(assistant.isExisted(goodsWL)){
 			//为该商品设置警戒线
-			GoodsPO toSet;
-				toSet = dataService.finGood(goodsWL.getNumber());
-				toSet.setWarningLine(goodsWL.gerWarningLine());
-				dataService.updGood(toSet);		
+			GoodsPO toSet = dataService.finGood(goodsWL.getNumber());
+		    TypePO parent=SdataService.finType(toSet.getParent().getNumber());
+			toSet.setWarningLine(goodsWL.gerWarningLine());
+		    
+			parent.updLeaveNode(toSet);
+			SdataService.updType(parent);
+		    dataService.updGood(toSet);		
 		}
 		else{
 			//返回错误类型
@@ -104,7 +112,7 @@ public class GoodsMonitor{
 			//商品报溢			
 			//调用ApplicationBL接口生成报溢单
 			    IncreaseToMatchVO itm=new IncreaseToMatchVO(toIncrease);
-			    appController.submitIncreaseToMatch(itm);		
+			    //appController.submitIncreaseToMatch(itm);		
 		}
 		else{
 			//返回错误类型
@@ -124,7 +132,7 @@ public class GoodsMonitor{
 			//调用ApplicationBL接口生成报损单
 			if(result==0){
 			     DecreaseToMatchVO dtm=new DecreaseToMatchVO(toDecrease);
-			     appController.submitDecreaseToMatch(dtm);
+			     //appController.submitDecreaseToMatch(dtm);
 			}
 			else{
 				return result;  //减少数量不成功（通信错误或库存不足）
@@ -143,9 +151,15 @@ public class GoodsMonitor{
     public int increaseGoods(GoodsVO g){
 		
     	try {
+    		System.out.println(g.getNumber());
 			GoodsPO toIncrease=dataService.finGood(g.getNumber());
+			String parentNum=toIncrease.getParent().getNumber();
+			//System.out.println(parentNum);
+			TypePO parent=SdataService.finType(parentNum);
 			int amount=toIncrease.getAmount()+g.getAmount();
 			toIncrease.setAmount(amount);
+			parent.updLeaveNode(toIncrease);
+			SdataService.updType(parent);
 			dataService.updGood(toIncrease);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -158,9 +172,12 @@ public class GoodsMonitor{
 		
 		try {
 			GoodsPO toDecrease=dataService.finGood(g.getNumber());
+			TypePO parent=SdataService.finType(toDecrease.getParent().getNumber());
 			int amount=toDecrease.getAmount()-g.getAmount();
 			if(amount>=0){
 			   toDecrease.setAmount(amount);
+			   parent.updLeaveNode(toDecrease);
+			   SdataService.updType(parent);
 			   dataService.updGood(toDecrease);	
 			}
 			else{
@@ -171,7 +188,9 @@ public class GoodsMonitor{
 			e.printStackTrace();
 			//返回通信错误
 		}
-		return this.MonitoringWL(g); //调用减少商品库存的方法即调用监测方法
+		this.MonitoringWL(g); 
+		
+		return 0;   //调用减少商品库存的方法即调用监测方法
 	}
 	
 }
