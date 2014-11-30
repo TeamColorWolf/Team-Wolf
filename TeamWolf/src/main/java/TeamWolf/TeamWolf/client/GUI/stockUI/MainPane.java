@@ -2,6 +2,10 @@ package TeamWolf.TeamWolf.client.GUI.stockUI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -18,6 +22,8 @@ import TeamWolf.TeamWolf.client.vo.UserVO;
 
 public class MainPane extends JPanel {
 
+	static String Infomation="";
+	
 	UserVO user;
 	String IP;
 	JTextPane InfoArea=new JTextPane();
@@ -46,6 +52,12 @@ public class MainPane extends JPanel {
 		refresh.setBounds(420, 435, 120, 30);
 		refresh.setEnabled(true);
 		refresh.setVisible(true);
+		refresh.addActionListener(new ActionListener(){
+			
+			public void actionPerformed(ActionEvent event){
+				AnnouceArea.setText(Infomation);
+			}
+		});
 	}
 	
 	public void initialInfoArea(){
@@ -98,4 +110,13 @@ public class MainPane extends JPanel {
 		APContainer.setBounds(75, 120, 800, 300);
 		APContainer.setVisible(true);
 	}
+	
+    public static String getPresentTime(){
+		//获得当前时间
+		Calendar c=Calendar.getInstance();		
+		SimpleDateFormat s=new SimpleDateFormat("MM-dd HH:mm:ss");
+		String time=s.format(c.getTime());
+		return time;
+	}
+    
 }

@@ -104,4 +104,8 @@ public class GoodsBLController implements GoodManService,GoodTService,GoodMonSer
 		
 		return gma.dimFinGoods(g);
 	}
+	public ArrayList<GoodsAlarmVO> getGoodsAlarm(){
+		
+		return gmo.getAlarmList();
+	}
 }

@@ -3,6 +3,7 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.BL.applicationBL.forStock.StockApplicationController;
 import TeamWolf.TeamWolf.client.BLservice.stockBLservice.GoodMonService;
@@ -191,6 +192,24 @@ public class GoodsMonitor{
 		this.MonitoringWL(g); 
 		
 		return 0;   //调用减少商品库存的方法即调用监测方法
+	}
+	
+	public ArrayList<GoodsAlarmVO> getAlarmList(){
+		
+		ArrayList<GoodsAlarmVO> gal=new ArrayList<GoodsAlarmVO>();
+		try {
+			ArrayList<GoodsAlarmPO> gaa=dataService.getAlarmList();
+			for(GoodsAlarmPO ga: gaa){
+				gal.add(new GoodsAlarmVO(ga));
+				System.out.println(ga.getWarningInfo());
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return gal;
 	}
 	
 }

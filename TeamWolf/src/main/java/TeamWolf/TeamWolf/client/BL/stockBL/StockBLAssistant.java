@@ -32,6 +32,7 @@ public class StockBLAssistant {
 		//获得当前时间
 		Calendar c=Calendar.getInstance();
 		SimpleDateFormat s=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		//SimpleDateFormat s=new SimpleDateFormat("MM-dd HH:mm:ss");
 		String time=s.format(c.getTime());
 		return time;
 	}
@@ -67,8 +68,8 @@ public class StockBLAssistant {
 	}
 
 	
-	/*public static void main(String[] args){
-		StockBLAssistant s=new StockBLAssistant();
-		System.out.println(s.getPresentTime());
-	}*/
+	public static void main(String[] args){
+		//StockBLAssistant s=new StockBLAssistant("rmi://127.0.0.1/stockDATAservice");
+		//System.out.println(s.getPresentTime());
+	}
 }

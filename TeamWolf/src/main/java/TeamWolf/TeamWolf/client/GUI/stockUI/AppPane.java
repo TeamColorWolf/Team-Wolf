@@ -3,6 +3,9 @@ package TeamWolf.TeamWolf.client.GUI.stockUI;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -12,8 +15,13 @@ import javax.swing.JTextArea;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 
-public class AppPane extends JPanel  {
+import TeamWolf.TeamWolf.client.BL.goodsBL.GoodsBLController;
+import TeamWolf.TeamWolf.client.vo.GoodsAlarmVO;
 
+public class AppPane extends JPanel  {
+	
+	GoodsBLController gbcontroller;
+	
 	JTabbedPane back;
 	JPanel ITMP;
 	JPanel DTMP;
@@ -33,10 +41,30 @@ public class AppPane extends JPanel  {
 		WArea=new JTextArea();
 		WArea.setEditable(false);
 		WArea.setFont(new Font("幼圆", Font.BOLD, 16));
+		String alarmInfo="";
+		ArrayList<GoodsAlarmVO> gal=gbcontroller.getGoodsAlarm();
+		for(GoodsAlarmVO ga: gal){
+			alarmInfo=alarmInfo+ga.getWarningInfo()+"\n";
+		}
+		
+		WArea.setText(alarmInfo);
 	    WAContainer=new JScrollPane(WArea);
 		WOprArea=new JPanel();
 		WOprArea.setLayout(new FlowLayout());
 		refresh=new JButton("刷新");
+		refresh.addActionListener(new ActionListener(){
+			
+			public void actionPerformed(ActionEvent e){
+				
+				String alarmInfo="";
+				ArrayList<GoodsAlarmVO> gal=gbcontroller.getGoodsAlarm();
+				for(GoodsAlarmVO ga: gal){
+					alarmInfo=alarmInfo+ga.getWarningInfo()+"\n";
+				}
+				
+				WArea.setText(alarmInfo);
+			}
+		});
 		WOprArea.add(refresh);
 	}
 
@@ -64,8 +92,9 @@ public class AppPane extends JPanel  {
 	
 	public AppPane(String iP) {
 		// TODO Auto-generated constructor stub
+		gbcontroller=new GoodsBLController(iP);
 		initialWOprArea();
-	    initialPane(); 	
+		initialPane(); 		   
 		this.setLayout(new BorderLayout());
 		this.add(back, BorderLayout.CENTER);
 		this.setVisible(true);
