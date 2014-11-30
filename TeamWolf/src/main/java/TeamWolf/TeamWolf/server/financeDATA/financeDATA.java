@@ -58,12 +58,13 @@ public class financeDATA extends UnicastRemoteObject implements financeDATAservi
 			AccountList.remove(del);
 			try {
 				FileOpr.writeFile(FileName.accountFile, AccountList);
+				return 0;
 			} catch (IOException e) {
 				// TODO 自动生成的 catch 块
 				e.printStackTrace();
 			}
 		}
-		return 0;
+		return 12424;
 	}
 
 	public int update(financePO po, financePO newpo) throws RemoteException {

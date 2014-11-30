@@ -114,15 +114,4 @@ public class AccountnewPanel extends JPanel{
 		public void mouseReleased(MouseEvent arg0) {}
 		
 	}
-	
-	class PowerListener implements ActionListener{
-
-		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
-			//String work = service.creatWorkID(POWER);
-			//workID.setText(work);
-			//workID.updateUI();
-		}
-		
-	}
 }

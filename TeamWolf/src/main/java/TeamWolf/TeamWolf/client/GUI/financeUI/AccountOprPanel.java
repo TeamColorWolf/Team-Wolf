@@ -134,6 +134,7 @@ public class AccountOprPanel extends JPanel{
 		this.getContent();
 		tableModel.setDataVector(content, columnName);
 		accountTable.updateUI();
+		this.updateUI();
 	}
 	
 	class CheckListener implements MouseListener{
@@ -199,7 +200,6 @@ public class AccountOprPanel extends JPanel{
 			else if(success == -1){
 				System.out.println("no enough information.");
 			}
-			flashPanel();
 		}
 		public void mouseEntered(MouseEvent arg0) {}
 		public void mouseExited(MouseEvent arg0) {}
@@ -207,13 +207,6 @@ public class AccountOprPanel extends JPanel{
 		public void mouseReleased(MouseEvent arg0) {}
 	}
 	
-	class PowerListener implements ActionListener{
-
-		public void actionPerformed(ActionEvent arg0) {
-			flashPanel();
-		}
-		
-	}
 	
 	class TableListener implements MouseListener{
 		JTable t;
@@ -234,7 +227,6 @@ public class AccountOprPanel extends JPanel{
 				}
 				else{
 					AccountName.setText(vo.getName());
-					AccountMoney.setText(""+vo.getAccount());
 				}
 			}
 			flashPanel();
