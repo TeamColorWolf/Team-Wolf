@@ -1,11 +1,12 @@
 package TeamWolf.TeamWolf.client.po;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.vo.RecieptApplicationVO;
 import TeamWolf.TeamWolf.client.vo.financeVO;
 
-public class RecieptApplicationPO extends ApplicationPO{
+public class RecieptApplicationPO extends ApplicationPO implements Serializable{
 	    private String note;
 	    private String addup;
 	    private CustomerPO customer;

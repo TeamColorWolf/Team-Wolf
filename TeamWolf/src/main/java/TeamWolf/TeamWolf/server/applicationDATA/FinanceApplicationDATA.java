@@ -1,36 +1,91 @@
 package TeamWolf.TeamWolf.server.applicationDATA;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.FinanceApplicationDATAservice;
 import TeamWolf.TeamWolf.client.po.CashApplicationPO;
 import TeamWolf.TeamWolf.client.po.PaymentApplicationPO;
 import TeamWolf.TeamWolf.client.po.RecieptApplicationPO;
+import TeamWolf.TeamWolf.server.FileName;
+import TeamWolf.TeamWolf.server.FileOpr;
 
 public class FinanceApplicationDATA extends UnicastRemoteObject implements FinanceApplicationDATAservice{
 
+	private ArrayList<RecieptApplicationPO> recieptlist;
+	private ArrayList<PaymentApplicationPO> paymentlist;
+	private ArrayList<CashApplicationPO> cashlist;
 	protected FinanceApplicationDATA() throws RemoteException {
 		super();
+		init();
+		if(recieptlist==null){
+			recieptlist = new ArrayList<RecieptApplicationPO>();
+		}
+		if(paymentlist== null){
+			paymentlist = new ArrayList<PaymentApplicationPO>();
+		}
+		if(cashlist==null){
+			cashlist = new ArrayList<CashApplicationPO>();
+		}
+		
 		// TODO Auto-generated constructor stub
+	}
+	private void init() {
+		try {
+			recieptlist =(ArrayList<RecieptApplicationPO>)FileOpr.readFile(FileName.recieptFile);
+			paymentlist =(ArrayList<PaymentApplicationPO>)FileOpr.readFile(FileName.paymentFile);
+			cashlist=(ArrayList<CashApplicationPO>)FileOpr.readFile(FileName.cashFile);
+		} catch (ClassNotFoundException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		
 	}
 
 	public int submitRecieptApplication(RecieptApplicationPO po)
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return 0;
+		int success=0;
+		recieptlist.add(po);
+		try {
+			FileOpr.writeFile(FileName.recieptFile,recieptlist);
+		} catch (IOException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			success=-1;
+		}
+		return success;
 	}
 
 	public int submitPaymentApplication(PaymentApplicationPO po)
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return 0;
+		int success=0;
+		paymentlist.add(po);
+		try {
+			FileOpr.writeFile(FileName.paymentFile, paymentlist);
+		} catch (IOException e) {
+			// TODO 自动生成的 catch 块
+			success=-1;
+			e.printStackTrace();
+		}
+		return success;
 	}
 
 	public int submitCashApplication(CashApplicationPO po)
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return 0;
+		int success=0;
+		cashlist.add(po);
+		try {
+			FileOpr.writeFile(FileName.cashFile, cashlist);
+		} catch (IOException e) {
+			success=-1;
+			e.printStackTrace();
+		}
+		return success;
 	}
 
 	public int approvalRecieptApplication(RecieptApplicationPO po)
@@ -85,6 +140,30 @@ public class FinanceApplicationDATA extends UnicastRemoteObject implements Finan
 			throws RemoteException {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	public ArrayList<RecieptApplicationPO> getRecieptlist() {
+		return recieptlist;
+	}
+
+	public void setRecieptlist(ArrayList<RecieptApplicationPO> recieptlist) {
+		recieptlist = recieptlist;
+	}
+
+	public ArrayList<PaymentApplicationPO> getPaymentlist() {
+		return paymentlist;
+	}
+
+	public void setPaymentlist(ArrayList<PaymentApplicationPO> paymentlist) {
+		paymentlist = paymentlist;
+	}
+
+	public ArrayList<CashApplicationPO> getCashlist() {
+		return cashlist;
+	}
+
+	public void setCashlist(ArrayList<CashApplicationPO> cashlist) {
+		cashlist = cashlist;
 	}
 
 }
