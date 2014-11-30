@@ -158,19 +158,19 @@ public class SaleApplicationDATA extends UnicastRemoteObject implements SaleAppl
 		return 0;
 	}
 
-	public ArrayList<ImportListPO> getImportList() {
+	public ArrayList<ImportListPO> getImportList() throws RemoteException {
 		return importList;
 	}
 
-	public ArrayList<ImportRejectListPO> getImportRejectList() {
+	public ArrayList<ImportRejectListPO> getImportRejectList() throws RemoteException {
 		return importRejectList;
 	}
 
-	public ArrayList<SaleListPO> getSaleList() {
+	public ArrayList<SaleListPO> getSaleList() throws RemoteException {
 		return saleList;
 	}
 
-	public ArrayList<SaleRejectListPO> getSaleRejectList() {
+	public ArrayList<SaleRejectListPO> getSaleRejectList() throws RemoteException {
 		return saleRejectList;
 	}
 
