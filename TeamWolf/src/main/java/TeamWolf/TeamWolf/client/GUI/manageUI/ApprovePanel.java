@@ -8,12 +8,12 @@ import TeamWolf.TeamWolf.client.BL.applicationBL.forManage.ManageApproveControll
 public class ApprovePanel extends JPanel{
 	static ManageApproveService service = new ManageApproveController(ManageFrame.IP);
 	
-	SaleApprovePanel approve;
+	ApplicationPanel approve;
 	
 	public ApprovePanel(){
 		super();
 		
-		approve = new SaleApprovePanel();
+		approve = new ApplicationPanel();
 		
 		this.add(approve);
 		
