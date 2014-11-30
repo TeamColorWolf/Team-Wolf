@@ -10,21 +10,23 @@ import TeamWolf.TeamWolf.client.vo.PaymentApplicationVO;
 
 public class PaymentApplication extends Application {
 
+	PaymentApplicationVO vo;
+	
 	public PaymentApplication(PaymentApplicationVO vo, String URL) {
 		super(vo, URL);
+		this.vo = vo;
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public PaymentApplicationVO getApplicationVO() {
-		// TODO Auto-generated method stub
-		return null;
+		return vo ;
 	}
 
 	@Override
 	public PaymentApplicationPO getApplicationPO() {
 		// TODO Auto-generated method stub
-		return null;
+		return new PaymentApplicationPO(vo);
 	}
 
 	@Override

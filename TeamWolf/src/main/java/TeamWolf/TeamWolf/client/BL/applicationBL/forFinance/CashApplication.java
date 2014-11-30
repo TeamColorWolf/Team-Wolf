@@ -11,21 +11,24 @@ import TeamWolf.TeamWolf.client.vo.CashApplicationVO;
 
 public class CashApplication extends Application {
 	
+	CashApplicationVO vo;
+	
 	public CashApplication(CashApplicationVO vo, String URL) {
 		super(vo, URL);
+		this.vo = vo;
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public CashApplicationVO getApplicationVO() {
 		// TODO Auto-generated method stub
-		return null;
+		return vo;
 	}
 
 	@Override
 	public CashApplicationPO getApplicationPO() {
 		// TODO Auto-generated method stub
-		return null;
+		return new CashApplicationPO(vo);
 	}
 
 	@Override

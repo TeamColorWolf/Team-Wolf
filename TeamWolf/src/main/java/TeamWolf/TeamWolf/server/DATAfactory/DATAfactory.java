@@ -5,6 +5,8 @@ import java.net.MalformedURLException;
 import java.net.UnknownHostException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.SaleApplicationDATAservice;
@@ -37,6 +39,13 @@ public class DATAfactory {
 	CustomerDATAservice customer;
 	
 	public DATAfactory(){
+		try {
+			Registry registry = LocateRegistry.createRegistry(1099);
+		} catch (RemoteException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		
 		try {
 			customer = new CustomerDATA();
 			finance = new financeDATA();

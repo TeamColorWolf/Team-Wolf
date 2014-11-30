@@ -2,6 +2,9 @@ package TeamWolf.TeamWolf.client.po;
 
 import java.util.ArrayList;
 
+import TeamWolf.TeamWolf.client.vo.RecieptApplicationVO;
+import TeamWolf.TeamWolf.client.vo.financeVO;
+
 public class RecieptApplicationPO extends ApplicationPO{
 	    private String note;
 	    private String addup;
@@ -14,7 +17,7 @@ public class RecieptApplicationPO extends ApplicationPO{
 				this.note = note;
 				this.customer = customer;
 				
-				this.accountList = accountList;
+				this.setAccountList(accountList);
 				this.moneyList = moneyList;
 				
 				this.number = number;
@@ -23,6 +26,20 @@ public class RecieptApplicationPO extends ApplicationPO{
 				this.setAddup(calcuAdd(moneyList));
 				
 			}
+		public RecieptApplicationPO(RecieptApplicationVO vo) {
+			this.note = vo.getNote();
+			this.addup = vo.getAddup();
+			this.customer = new CustomerPO(vo.getCustomer());
+			this.moneyList = vo.getMoneyList();
+			this.setAccountListPO(vo.getAccountList());
+			
+		}
+		private void setAccountListPO(ArrayList<financeVO> accountList2) {
+			for(int i=0;i<accountList2.size();i++){
+				this.accountList.set(i,new financePO(accountList2.get(i)));
+			}
+			
+		}
 		public String calcuAdd(ArrayList<String> moneyList){
 			double AllAdd=0d;
 			for(String S: moneyList){
@@ -36,12 +53,6 @@ public class RecieptApplicationPO extends ApplicationPO{
 		}
 		public void setNote(String note) {
 			this.note = note;
-		}
-		public ArrayList<financePO> getAccountList() {
-			return accountList;
-		}
-		public void setAccountList(ArrayList<financePO> accountList) {
-			this.accountList = accountList;
 		}
 		public ArrayList<String> getMoneyList() {
 			return moneyList;
@@ -60,5 +71,11 @@ public class RecieptApplicationPO extends ApplicationPO{
 		}
 		public void setCustomer(CustomerPO customer) {
 			this.customer = customer;
-		}	
+		}
+		public ArrayList<financePO> getAccountList() {
+			return accountList;
+		}
+		public void setAccountList(ArrayList<financePO> accountList) {
+			this.accountList = accountList;
+		}
 }

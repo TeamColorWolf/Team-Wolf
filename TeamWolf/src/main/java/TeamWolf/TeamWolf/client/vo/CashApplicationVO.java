@@ -8,7 +8,7 @@ public class CashApplicationVO extends ApplicationVO{
     private CustomerVO customer;
     private ArrayList<String> nameList;
     private ArrayList<financeVO> accountList;
-    private ArrayList<String> moneyList;
+    private ArrayList<String> moneyList; 
     
 	public CashApplicationVO(ArrayList<financeVO> accountList,ArrayList<String> moneyList,ArrayList<String> nameList,
         		String number,String operator,String note,CustomerVO customer) {

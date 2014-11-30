@@ -10,21 +10,23 @@ import TeamWolf.TeamWolf.client.vo.RecieptApplicationVO;
 
 public class RecieptApplication extends Application {
 
+	RecieptApplicationVO vo;
+	
 	public RecieptApplication(RecieptApplicationVO vo, String URL) {
 		super(vo, URL);
+		this.vo = vo;
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public RecieptApplicationVO getApplicationVO() {
-		// TODO Auto-generated method stub
-		return null;
+		return vo;
 	}
 
 	@Override
 	public RecieptApplicationPO getApplicationPO() {
 		// TODO Auto-generated method stub
-		return null;
+		return new RecieptApplicationPO(vo);
 	}
 
 	@Override

@@ -46,12 +46,12 @@ public interface SaleApplicationDATAservice extends Remote {
 	
 	public int changeExportRejectList(SaleRejectListPO po) throws RemoteException;
 	
-	public ArrayList<ImportListPO> getImportList();
+	public ArrayList<ImportListPO> getImportList() throws RemoteException;
 
-	public ArrayList<ImportRejectListPO> getImportRejectList();
+	public ArrayList<ImportRejectListPO> getImportRejectList() throws RemoteException;
 
-	public ArrayList<SaleListPO> getSaleList();
+	public ArrayList<SaleListPO> getSaleList() throws RemoteException;
 
-	public ArrayList<SaleRejectListPO> getSaleRejectList();
+	public ArrayList<SaleRejectListPO> getSaleRejectList() throws RemoteException;
 
 }

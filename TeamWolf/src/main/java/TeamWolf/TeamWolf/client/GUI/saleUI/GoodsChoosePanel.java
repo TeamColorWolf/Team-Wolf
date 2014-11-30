@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import TeamWolf.TeamWolf.client.BL.stockBL.ExternalService;
 import TeamWolf.TeamWolf.client.BL.stockBL.ExternalServiceController;
 import TeamWolf.TeamWolf.client.GUI.manageUI.ManageFrame;
+import TeamWolf.TeamWolf.client.vo.GoodsListVO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
 import TeamWolf.TeamWolf.client.vo.TypeVO;
 import TeamWolf.TeamWolf.client.vo.UserVO;
@@ -75,7 +76,6 @@ public class GoodsChoosePanel extends JPanel{
 	
 	public GoodsChoosePanel(String IP) {
 //		stockLogic = new ExternalServiceController(IP);
-//		goodsList = TestMain.
 		
 		panel = new JPanel();
 //		typeList = stockLogic.getLeaveType();
