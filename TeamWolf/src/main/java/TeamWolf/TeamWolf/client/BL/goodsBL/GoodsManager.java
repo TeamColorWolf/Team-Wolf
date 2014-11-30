@@ -106,16 +106,24 @@ public class GoodsManager {
 		if(assistant.canUpd(g)){
 			
 				GoodsPO toUpd=GdataService.finGood(g.getNumber());
+				TypePO parent=SdataService.finType(g.getParentNum());
 				/*对PO进行修改*/
 				if(g.getName()!=null)
 					toUpd.setName(g.getName());
 				if(g.getModel()!=null)
 					toUpd.setModel(g.getModel());
-				if(g.getLatestExprice()!=0)
-					toUpd.setLatestExprice(g.getLatestExprice());
-				if(g.getLatestImprice()!=0)
-					toUpd.setLatestImprice(g.getLatestImprice());
+				if(g.getExprice()!=0){
+					toUpd.setExprice(g.getExprice());
+					//System.out.println(g.getExprice());
+				}
+				if(g.getImprice()!=0){
+					toUpd.setImprice(g.getImprice());
+					//System.out.println(g.getImprice());
+				}
 				
+				//System.out.println(toUpd.getName()+" "+toUpd.getImprice()+" "+toUpd.getExprice());
+				parent.updLeaveNode(toUpd);
+				SdataService.updType(parent);
 				GdataService.updGood(toUpd);			
 			
 		}
@@ -157,6 +165,24 @@ public class GoodsManager {
 			
 		}
 		return g;
+	}
+	
+	public ArrayList<GoodsVO> dimFinGoods(GoodsVO g){
+	   
+		ArrayList<GoodsVO> result=new ArrayList<GoodsVO>();
+		try {
+			ArrayList<GoodsPO> agl=GdataService.getGoodList();
+			for(GoodsPO gg: agl){
+				
+				if((g.getName()!=null&&gg.getName().equals(g.getName()))||(g.getModel()!=null&&gg.getModel().equals(g.getModel()))){
+					result.add(new GoodsVO(gg));
+				}
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}			
+		return result;
 	}
 	public GoodsListVO shoGoods(){
 		

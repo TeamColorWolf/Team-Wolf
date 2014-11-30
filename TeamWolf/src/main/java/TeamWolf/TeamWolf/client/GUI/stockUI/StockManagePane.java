@@ -439,15 +439,26 @@ public class StockManagePane extends JPanel implements TreeModelListener {
 				String Info=updGNTF.getText();
 				String[] uInfo=Info.split(" ");
 				int result=0;
-				GoodsVO toUpd=new GoodsVO(null, null, uInfo[1], uInfo[2], uInfo[3], null, updGIPTF.getText(), updGEPTF.getText(), null, null, null);
 				
-				result=gbcontroller.updGoods(toUpd);
+				//System.out.println(updGIPTF.getText()+updGEPTF.getText());
+				TreeNode select=(TreeNode)stockStruct.getSelectionPath().getLastPathComponent();
+				TreeNode parent=select.getParent();
+				String[] PInfo=parent.toString().split(" ");
+				GoodsVO toUpd=new GoodsVO(PInfo[1], PInfo[2], uInfo[1], uInfo[2], uInfo[3], null, updGIPTF.getText(), updGEPTF.getText(), null, null, null);
+				
+				//System.out.println(PInfo[1]+" "+PInfo[2]);
+				
+				if(toUpd.isPackSuccess()==0)
+				    result=gbcontroller.updGoods(toUpd);
+				else
+					result=10001;
 				
 				if(result==0){
-					//弹窗：成功
+					updGIPTF.setText("");
+					updGEPTF.setText("");          //弹窗：成功
 				}
 				else{
-					//弹窗：失败
+					System.out.println(result);   //弹窗：失败
 				}
 			}
     	});
@@ -601,8 +612,58 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     	//nameTF.setBounds(95, 5, 40, 25);
     	finGoods=new JButton("查找");
     	//finGoods.setBounds(140, 5, 40, 25);
+    	finGoods.addActionListener(new ActionListener(){
+    		
+    		public void actionPerformed(ActionEvent Event){
+    			
+    			String number=numberTF.getText();
+    			String name=nameTF.getText();
+    			String model=modelTF.getText();
+    			String result="";
+    			
+    			if(number.equals("")){
+    				GoodsVO tofin=new GoodsVO(null, null, null, name, model, null, null, null, null, null, null);
+    				ArrayList<GoodsVO> finded=gbcontroller.dimFinGoods(tofin);
+    				if(finded!=null){
+    				  for(GoodsVO g: finded){
+    				 	  result=result+g.getInfo()+"\n";
+    				  }
+    				}
+    				else{
+    					//弹窗：找不到
+    				}
+    			}
+    			else{
+    				GoodsVO tofin=new GoodsVO(null, null, number, null, null, null, null, null, null, null, null);
+    				GoodsVO finded=gbcontroller.finGoods(tofin);
+    				result=finded.getInfo()+"\n";
+    			}
+    			
+    			numberTF.setText("");
+    			nameTF.setText("");
+    			modelTF.setText("");
+    			shoPane.setText(result);
+    		}
+    	});
     	refreshGoods=new JButton("所有");
-    	//refreshGoods.setBounds(185, 5, 40, 25);    	
+    	//refreshGoods.setBounds(185, 5, 40, 25);
+    	refreshGoods.addActionListener(new ActionListener(){
+    		
+    		public void actionPerformed(ActionEvent Event){
+    			
+    			String result="";
+    			
+    			GoodsListVO gl=gbcontroller.shoGoods();
+    			ArrayList<GoodsVO> agl=gl.gList;
+    			
+    			for(GoodsVO g: agl){
+    				
+    				result=result+g.getInfo()+"\n";
+    			}
+    			
+    			shoPane.setText(result);
+    		}
+    	});
     	SOP.add(numberTF);
     	SOP.add(numberL);    	
     	SOP.add(nameTF);

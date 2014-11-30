@@ -100,6 +100,8 @@ public class GoodsBLController implements GoodManService,GoodTService,GoodMonSer
 		// TODO Auto-generated method stub
 		return gma.shoGoods();
 	}
-	
-	
+	public ArrayList<GoodsVO> dimFinGoods(GoodsVO g){
+		
+		return gma.dimFinGoods(g);
+	}
 }

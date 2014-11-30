@@ -33,12 +33,18 @@ public class GoodsVO {
 		this.model=model;
 		
 		try{
-			this.WarningLine=Integer.parseInt(WL);
-			this.amount=Integer.parseInt(amount);
-			this.imprice=Double.parseDouble(imprice);
-			this.exprice=Double.parseDouble(exprice);
-			this.latestExprice=Double.parseDouble(latestExprice);
-			this.latestImprice=Double.parseDouble(latestImprice);
+             if(WL!=null)		
+			    this.WarningLine=Integer.parseInt(WL);
+             if(amount!=null)
+			    this.amount=Integer.parseInt(amount);
+             if(imprice!=null)
+			    this.imprice=Double.parseDouble(imprice);
+             if(exprice!=null)
+			    this.exprice=Double.parseDouble(exprice);
+             if(latestExprice!=null)
+			    this.latestExprice=Double.parseDouble(latestExprice);
+             if(latestImprice!=null)
+			    this.latestImprice=Double.parseDouble(latestImprice);
 			}catch(Exception e){
 				packSuccess=1;
 			}
@@ -124,6 +130,9 @@ public class GoodsVO {
 	}
 	
 	public String getInfo(){
+		
+		goodsInfo=number+"; "+name+"; "+model+"; "+amount+"; "+imprice+"; "+exprice+"; "+latestImprice+"; "+latestExprice;
+		
 		return goodsInfo;
 	}
 	

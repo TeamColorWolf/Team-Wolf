@@ -144,11 +144,29 @@ import TeamWolf.TeamWolf.client.vo.TypeVO;
 				UPD.setName(t.getName());
 				toUpd=child.indexOf(tt);
 				finded=true;
+				break;
 			}
 		}
 		if(finded==true){
 			child.remove(toUpd);
 			child.add(toUpd, UPD);
+		}
+	}
+	
+	public void updLeaveNode(GoodsPO g){
+		
+		int toUpd=0;
+		boolean finded=false;		
+		for(GoodsPO gg: leaveNode){			
+			if(gg.getNumber().equals(g.getNumber())){				
+				toUpd=leaveNode.indexOf(gg);
+				finded=true;
+				break;
+			}
+		}
+		if(finded==true){
+			leaveNode.remove(toUpd);
+			leaveNode.add(toUpd, g);
 		}
 	}
 }

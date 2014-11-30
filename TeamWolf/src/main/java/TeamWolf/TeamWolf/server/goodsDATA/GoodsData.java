@@ -142,12 +142,18 @@ public class GoodsData extends UnicastRemoteObject implements GoodsDataService {
 	}
 	
 	public static void main(String[] args){
-		 /*try {
-			  		   
+		 try {
+		     
+			 GoodsData gd=new GoodsData();
+			 ArrayList<GoodsPO> gl=gd.goodsList;
+			 for(GoodsPO g: gl){
+				 
+				 System.out.println(g.getNumber()+" "+g.getName()+" "+g.getModel()+" "+g.getImprice()+" "+g.getExprice());
+			 }
 			   
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
 	}
 }
