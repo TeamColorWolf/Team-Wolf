@@ -126,11 +126,11 @@ public class SaleBL{
 	
 	public ArrayList<ImportListVO> getImportList() {
 		ArrayList<ImportListVO> importList = new ArrayList<ImportListVO>();
-		ArrayList<ImportListPO> importListPO = saleAppServ.getImportList();
-		for (int i = 0; i < importListPO.size(); i++) {
-			ImportListVO ivo = new ImportListVO(importListPO.get(i));
-			importList.add(ivo);
-		}
+//		ArrayList<ImportListPO> importListPO = saleAppServ.getImportList();
+//		for (int i = 0; i < importListPO.size(); i++) {
+//			ImportListVO ivo = new ImportListVO(importListPO.get(i));
+//			importList.add(ivo);
+//		}
 		return importList;
 	}
 

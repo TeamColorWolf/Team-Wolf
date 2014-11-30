@@ -47,7 +47,7 @@ public class GoodsChoosePanel extends JPanel{
 	ArrayList<JButton> deleteList;
 	
 	static ArrayList<TypeVO> typeList;
-	static ArrayList<GoodsVO> goodsVOList = new ArrayList<GoodsVO>();
+	static ArrayList<GoodsVO> goodsVOList;
 	
 	JButton add = new JButton("增加");
 	JButton delete = new JButton("移除");
@@ -75,7 +75,7 @@ public class GoodsChoosePanel extends JPanel{
 	
 	public GoodsChoosePanel(String IP) {
 //		stockLogic = new ExternalServiceController(IP);
-		
+//		goodsList = TestMain.
 		
 		panel = new JPanel();
 //		typeList = stockLogic.getLeaveType();

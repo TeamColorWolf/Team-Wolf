@@ -17,7 +17,7 @@ public class TestMain {
 		String IP = "127.0.0.1";
 		FunctionChoose fc = new FunctionChoose(user, IP);
 	}
-
+	
 	public static ArrayList<CustomerVO> getCustVOListTEST(){
 		ArrayList<CustomerVO> custList = new ArrayList<CustomerVO>();
 		CustomerVO cvo1 = new CustomerVO("0001", "进货商", "1", "WHJ", "", "", "", "", "", "", "", "");
@@ -96,6 +96,14 @@ public class TestMain {
 		goodsList.add(gvo1);
 		goodsList.add(gvo2);
 		goodsList.add(gvo3);
+		return goodsList;
+	}
+	
+	public static ArrayList<GoodsVO> getGoodsListTESTmax(){
+		ArrayList<GoodsVO> goodsList = new ArrayList<GoodsVO>();
+		
+		
+		
 		return goodsList;
 	}
 }

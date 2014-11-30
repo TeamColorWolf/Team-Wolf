@@ -177,7 +177,7 @@ public class ImportListPanel extends JPanel{
 		//组件添加监听
 		submitBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO
+				getImportList();
 			}
 		});
 		clearBtn.addActionListener(new ActionListener() {
@@ -199,7 +199,7 @@ public class ImportListPanel extends JPanel{
 	 * 在CustomerBox里添加选择列表
 	 */
 	private void setCustomerBox(){
-		custList = custServ.getAllCustomerList();
+		custList = TestMain.getCustVOListTEST();
 		for (int i = 0, k = 0; i < custList.size(); i++) {
 			if(custList.get(i).getKind().equals("进货商")){
 				customerBox.addItem(custList.get(i).getName());
@@ -220,7 +220,7 @@ public class ImportListPanel extends JPanel{
 		String remark = remarkArea.getText();
 		
 		ImportListVO importVO = new ImportListVO(number, customer, storage, operator, goodsList, remark);
-		
+		importVO.condition = 0;
 		return importVO;
 	}
 	
