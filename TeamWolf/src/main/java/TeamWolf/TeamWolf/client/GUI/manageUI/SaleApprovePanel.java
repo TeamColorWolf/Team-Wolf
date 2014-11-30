@@ -1,5 +1,6 @@
 package TeamWolf.TeamWolf.client.GUI.manageUI;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 import javax.swing.DefaultCellEditor;
@@ -27,7 +28,7 @@ public class SaleApprovePanel extends JPanel{
 	JComboBox<String> choice = new JComboBox<String>();
 	
 	private final static int width = ManageFrame.width/2;
-	private final static int height = ManageFrame.height-ManageFrame.sho;
+	private final static int height = ManageFrame.height-60;
 	private final static int rowH = 25;
 	private final static int tableW = 450;
 	
@@ -35,6 +36,7 @@ public class SaleApprovePanel extends JPanel{
 		choice.addItem("通过");
 		choice.addItem("驳回");
 		choice.addItem("搁置");
+		choice.setBackground(Color.white);
 		this.getContent();
 		tableModel.setDataVector(content, column);
 		table = new JTable(tableModel);
@@ -56,8 +58,8 @@ public class SaleApprovePanel extends JPanel{
 	
 	private void getContent(){
 //		list = service.getUnsetApplicationList();//TODO 
-		if(list == null || list.size() < 20){
-			content = new Object[20][4];
+		if(list == null || list.size() < 18){
+			content = new Object[18][4];
 		}
 		else{
 			content = new Object[list.size()][4];
