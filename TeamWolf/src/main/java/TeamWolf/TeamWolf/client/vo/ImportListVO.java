@@ -1,7 +1,9 @@
 package TeamWolf.TeamWolf.client.vo;
 
-import java.io.Serializable;
 import java.util.ArrayList;
+
+import TeamWolf.TeamWolf.client.po.GoodsPO;
+import TeamWolf.TeamWolf.client.po.ImportListPO;
 
 /**
  * 
@@ -48,6 +50,16 @@ public class ImportListVO extends ApplicationVO{
 		this.total = calTotal(goodsList);
 	}
 	
+	public ImportListVO(ImportListPO ipo){
+		this.number = ipo.number;
+		this.customer = new CustomerVO(ipo.getCustomer());
+		this.storage = ipo.getStorage();
+		this.operator = ipo.operator;
+		this.GoodsList = tranToGoodsListVO(ipo.getGoodsList());
+		this.remark = ipo.getRemark();
+		this.total = ipo.getTotal();
+	}
+	
 	/**
 	 * 计算总额
 	 * @param goodsList
@@ -61,6 +73,14 @@ public class ImportListVO extends ApplicationVO{
 		return totalPrice;
 	}
 	
+	private ArrayList<GoodsVO> tranToGoodsListVO(ArrayList<GoodsPO> goodsListPO){
+		ArrayList<GoodsVO> goodsList = new ArrayList<GoodsVO>();
+		for (int i = 0; i < goodsListPO.size(); i++) {
+			GoodsVO gvo = new GoodsVO(goodsListPO.get(i));
+			goodsList.add(gvo);
+		}
+		return goodsList;
+	}
 
 	public CustomerVO getCustomer() {
 		return customer;

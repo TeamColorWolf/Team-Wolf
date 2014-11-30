@@ -14,7 +14,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOpr;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOprBLservice;
 import TeamWolf.TeamWolf.client.BL.saleBL.SaleBLController;
 import TeamWolf.TeamWolf.client.BLservice.saleBLservice.SaleBLservice;
@@ -33,6 +32,7 @@ public class ImportListPanel extends JPanel{
 	SaleBLservice saleLogic;
 	CustomerOprBLservice custServ;
 	ArrayList<CustomerVO> custList;
+	ArrayList<ImportListVO> importList;
 	
 	String[] storage = {"仓库1", "仓库2", "仓库3"};
 	String operator = "";
@@ -84,6 +84,10 @@ public class ImportListPanel extends JPanel{
 //		custServ = new CustomerOpr(IP);
 		goodschoose = new GoodsChoosePanel(IP);
 //		custList = custServ.getAllCustomerList();
+		importList = saleLogic.getImportList();
+		if(importList == null){
+			importList = new ArrayList<ImportListVO>();
+		}
 //		if(custList == null){
 //			custList = new ArrayList<CustomerVO>();
 //		}
@@ -195,7 +199,7 @@ public class ImportListPanel extends JPanel{
 	 * 在CustomerBox里添加选择列表
 	 */
 	private void setCustomerBox(){
-		custList = TestMain.getCustVOListTEST();
+		custList = custServ.getAllCustomerList();
 		for (int i = 0, k = 0; i < custList.size(); i++) {
 			if(custList.get(i).getKind().equals("进货商")){
 				customerBox.addItem(custList.get(i).getName());
@@ -208,7 +212,7 @@ public class ImportListPanel extends JPanel{
 	 * 提交按钮事件
 	 */
 	private ImportListVO getImportList(){
-		String number = null;
+		String number = importListNum();
 		CustomerVO customer = null;
 		String storage = (String) storageBox.getSelectedItem();
 		String operator = this.operator;
@@ -227,5 +231,12 @@ public class ImportListPanel extends JPanel{
 		goodschoose.removeAllGoods();
 	}
 	
+	private String importListNum(){
+		String num = "JHD-";
+		String date = saleLogic.getPresentDate();
+		String number = String.format("%05d", importList.size());
+		num = num + date + number;
+		return num;
+	}
 }
 

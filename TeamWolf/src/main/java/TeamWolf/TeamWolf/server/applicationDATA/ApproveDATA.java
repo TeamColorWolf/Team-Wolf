@@ -14,14 +14,12 @@ public class ApproveDATA extends UnicastRemoteObject implements ApproveDATAservi
 		// TODO Auto-generated constructor stub
 	}
 
-	public ArrayList<ApplicationPO> getUnsetApplicationList()
-			throws RemoteException {
+	public ArrayList<ApplicationPO> getUnsetApplicationList() throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public ArrayList<ApplicationPO> getApprovalApplicationList()
-			throws RemoteException {
+	public ArrayList<ApplicationPO> getApprovalApplicationList() throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -31,14 +29,12 @@ public class ApproveDATA extends UnicastRemoteObject implements ApproveDATAservi
 		return null;
 	}
 
-	public ArrayList<String> getResult(String workNumber)
-			throws RemoteException {
+	public ArrayList<String> getResult(String workNumber) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public int approveOver(ArrayList<ApplicationPO> list)
-			throws RemoteException {
+	public int approveOver(ArrayList<ApplicationPO> list) throws RemoteException {
 		// TODO Auto-generated method stub
 		return 0;
 	}

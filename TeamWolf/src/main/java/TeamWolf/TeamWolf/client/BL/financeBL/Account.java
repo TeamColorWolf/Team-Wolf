@@ -75,19 +75,24 @@ public class Account implements AccountBlservice{
 			e.printStackTrace();
 		}
 		if(fba.canDel(vo)){
+			int success = -1;
 			financePO po = new financePO(vo);
-			volist.remove(vo);
-			polist.remove(po);
 			try {
-				return fds.delete(po);
-			} catch (RemoteException e) {
+				success = fds.delete(po);
+			} catch (RemoteException e1) {
 				// TODO 自动生成的 catch 块
-				e.printStackTrace();
+				e1.printStackTrace();
 			}
+			if(success==0){
+			   getpoList();
+			   volist=null;
+			   volist = this.checkVO();
+			   return success;
+			   }
 		}else{
 			return ErrorTW.notFound;
 		}
-		return 0;
+		return 30001;
 	}
 
 	public int update(financeVO vo,financeVO newvo) {
@@ -106,16 +111,20 @@ public class Account implements AccountBlservice{
 		if(fba.canUpd(vo, newvo)){
 			financePO po = new financePO(vo);
 			financePO newpo = new financePO(newvo);
-			volist.remove(vo);
-			polist.remove(po);
-			volist.add(newvo);
-			polist.add(newpo);
 			try {
-				return fds.update(po, newpo);
-			} catch (RemoteException e) {
+				int success = fds.update(po, newpo);
+				if(success==0){
+					this.getpoList();
+					volist = null;
+					volist = this.checkVO();
+				}
+				return success;
+			} catch (RemoteException e1) {
 				// TODO 自动生成的 catch 块
-				e.printStackTrace();
+				e1.printStackTrace();
 			}
+			
+			return 30001;
 		}
 		return 0;
 	}
@@ -168,7 +177,18 @@ public class Account implements AccountBlservice{
 	}
 
 	private void getpoList() {
-		// TODO 自动生成的方法存根
-		
+			try {
+				fds = (financeDATAservice) Naming.lookup(URL);
+				polist = fds.checklist();
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NotBoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 }

@@ -20,8 +20,8 @@ public class SaleApplicationDATA extends UnicastRemoteObject implements SaleAppl
 	private FileOpr fo;
 	private ArrayList<ImportListPO> importList = null;
 	private ArrayList<ImportRejectListPO> importRejectList = null;
-	ArrayList<SaleListPO> saleList = null;
-	ArrayList<SaleRejectListPO> saleRejectList = null;
+	private ArrayList<SaleListPO> saleList = null;
+	private ArrayList<SaleRejectListPO> saleRejectList = null;
 	
 	public SaleApplicationDATA() throws RemoteException {
 		super();
@@ -158,4 +158,22 @@ public class SaleApplicationDATA extends UnicastRemoteObject implements SaleAppl
 		return 0;
 	}
 
+	public ArrayList<ImportListPO> getImportList() {
+		return importList;
+	}
+
+	public ArrayList<ImportRejectListPO> getImportRejectList() {
+		return importRejectList;
+	}
+
+	public ArrayList<SaleListPO> getSaleList() {
+		return saleList;
+	}
+
+	public ArrayList<SaleRejectListPO> getSaleRejectList() {
+		return saleRejectList;
+	}
+
+	
+	
 }

@@ -118,5 +118,25 @@ public class SaleBL{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	public String getPresentDate() {
+		String date = saleAssist.getDate();
+		return date;
+	}
+	
+	public ArrayList<ImportListVO> getImportList() {
+		ArrayList<ImportListVO> importList = new ArrayList<ImportListVO>();
+		ArrayList<ImportListPO> importListPO = saleAppServ.getImportList();
+		for (int i = 0; i < importListPO.size(); i++) {
+			ImportListVO ivo = new ImportListVO(importListPO.get(i));
+			importList.add(ivo);
+		}
+		return importList;
+	}
+
+	public ArrayList<SaleListVO> getSaleList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
