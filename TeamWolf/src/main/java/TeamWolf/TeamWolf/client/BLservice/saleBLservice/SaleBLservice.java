@@ -91,5 +91,15 @@ public interface SaleBLservice {
 	 * @return
 	 */
 	public int submit (ApplicationVO avo);
+	
+	/**
+	 * 获取当前日期
+	 * @return
+	 */
+	public String getPresentDate();
+
+	public ArrayList<ImportListVO> getImportList();
+	
+	public ArrayList<SaleListVO> getSaleList();
 
 }

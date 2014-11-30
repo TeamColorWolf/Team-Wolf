@@ -2,6 +2,7 @@ package TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.po.SaleListPO;
 import TeamWolf.TeamWolf.client.po.SaleRejectListPO;
@@ -44,4 +45,13 @@ public interface SaleApplicationDATAservice extends Remote {
 	public int changeExportList(SaleListPO po) throws RemoteException;
 	
 	public int changeExportRejectList(SaleRejectListPO po) throws RemoteException;
+	
+	public ArrayList<ImportListPO> getImportList();
+
+	public ArrayList<ImportRejectListPO> getImportRejectList();
+
+	public ArrayList<SaleListPO> getSaleList();
+
+	public ArrayList<SaleRejectListPO> getSaleRejectList();
+
 }

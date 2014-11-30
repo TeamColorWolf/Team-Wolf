@@ -68,5 +68,17 @@ public class SaleBLController implements SaleBLservice{
 		return sale.submit(avo);
 	}
 
+	public String getPresentDate() {
+		return sale.getPresentDate();
+	}
+
+	public ArrayList<ImportListVO> getImportList() {
+		return sale.getImportList();
+	}
+
+	public ArrayList<SaleListVO> getSaleList() {
+		return sale.getSaleList();
+	}
+
 	
 }
