@@ -75,6 +75,10 @@ public class ImportRejectListPanel extends JPanel{
 	public ImportRejectListPanel(UserVO user, String IP) {
 		saleLogic = new SaleBLController(IP);
 
+		importList = saleLogic.getImportList();
+		if(importList == null){
+			importList = new ArrayList<ImportListVO>();
+		}
 		//设置布局方式
 		this.setLayout(null);
 		//设置大小
@@ -206,7 +210,7 @@ public class ImportRejectListPanel extends JPanel{
 	 */
 	private void showBtnAction(){
 		clearImportInfoTable();
-		importList = TestMain.getImportListTEST();
+//		importList = TestMain.getImportListTEST();
 		tModel_import = (DefaultTableModel) importListTable.getModel();
 		
 		for (int i = 0; i < importList.size(); i++) {

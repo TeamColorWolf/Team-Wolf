@@ -37,13 +37,13 @@ public class GoodsChoosePanel extends JPanel{
 	
 	Dimension panelD;
 	
-	ArrayList<JComboBox<String>> goodsTypeList;
-	ArrayList<JComboBox<String>> goodsList;
-	ArrayList<JTextField> numList;
-	ArrayList<JLabel> labelList;
-	ArrayList<JTextField> goodsPriceList;
-	ArrayList<JTextField> totalPriceList;
-	ArrayList<JTextField> remarkList;
+	ArrayList<JComboBox<String>> goodsTypeListBox;
+	ArrayList<JComboBox<String>> goodsListBox;
+	ArrayList<JTextField> numListField;
+	ArrayList<JLabel> labelListField;
+	ArrayList<JTextField> goodsPriceListField;
+	ArrayList<JTextField> totalPriceListField;
+	ArrayList<JTextField> remarkListField;
 	
 	ArrayList<JButton> deleteList;
 	
@@ -75,20 +75,21 @@ public class GoodsChoosePanel extends JPanel{
 	private final static int left = 120;
 	
 	public GoodsChoosePanel(String IP) {
-//		stockLogic = new ExternalServiceController(IP);
+		stockLogic = new ExternalServiceController(IP);
 		
 		panel = new JPanel();
-//		typeList = stockLogic.getLeaveType();
+		typeList = stockLogic.getLeaveType();
+		
 		if(typeList == null){
 			typeList = new ArrayList<TypeVO>();
 		}
-		goodsTypeList = new ArrayList<JComboBox<String>>();
-		goodsList = new ArrayList<JComboBox<String>>();
-		numList = new ArrayList<JTextField>();
-		labelList = new ArrayList<JLabel>();
-		goodsPriceList = new ArrayList<JTextField>();
-		totalPriceList = new ArrayList<JTextField>();
-		remarkList = new ArrayList<JTextField>();
+		goodsTypeListBox = new ArrayList<JComboBox<String>>();
+		goodsListBox = new ArrayList<JComboBox<String>>();
+		numListField = new ArrayList<JTextField>();
+		labelListField = new ArrayList<JLabel>();
+		goodsPriceListField = new ArrayList<JTextField>();
+		totalPriceListField = new ArrayList<JTextField>();
+		remarkListField = new ArrayList<JTextField>();
 		
 		goodsTypeLabel.setSize(LW, LH);
 		goodsLabel.setSize(LW, LH);
@@ -149,13 +150,13 @@ public class GoodsChoosePanel extends JPanel{
 		panel.add(remark);
 		panel.add(add);
 		
-		goodsTypeList.add(dt);
-		goodsList.add(dg);
-		numList.add(dn);
-		goodsPriceList.add(dp);
-		totalPriceList.add(total);
-		remarkList.add(remark);
-		labelList.add(dl);
+		goodsTypeListBox.add(dt);
+		goodsListBox.add(dg);
+		numListField.add(dn);
+		goodsPriceListField.add(dp);
+		totalPriceListField.add(total);
+		remarkListField.add(remark);
+		labelListField.add(dl);
 		
 		panelD = new Dimension(ManageFrame.width-20, 300);
 		
@@ -186,13 +187,13 @@ public class GoodsChoosePanel extends JPanel{
 	}
 	
 	private void removeLast(){
-		goodsTypeList.remove(giftNum);
-		goodsList.remove(giftNum);
-		numList.remove(giftNum);
-		labelList.remove(giftNum);
-		goodsPriceList.remove(giftNum);
-		totalPriceList.remove(giftNum);
-		remarkList.remove(giftNum);
+		goodsTypeListBox.remove(giftNum);
+		goodsListBox.remove(giftNum);
+		numListField.remove(giftNum);
+		labelListField.remove(giftNum);
+		goodsPriceListField.remove(giftNum);
+		totalPriceListField.remove(giftNum);
+		remarkListField.remove(giftNum);
 		
 		panel.remove(dt);
 		panel.remove(dg);
@@ -202,13 +203,13 @@ public class GoodsChoosePanel extends JPanel{
 		panel.remove(total);
 		panel.remove(remark);
 		
-		dt = goodsTypeList.get(giftNum-1);
-		dg = goodsList.get(giftNum-1);
-		dn = numList.get(giftNum-1);
-		dl = labelList.get(giftNum-1);
-		dp = goodsPriceList.get(giftNum - 1);
-		total = totalPriceList.get(giftNum - 1);
-		remark = remarkList.get(giftNum - 1);
+		dt = goodsTypeListBox.get(giftNum-1);
+		dg = goodsListBox.get(giftNum-1);
+		dn = numListField.get(giftNum-1);
+		dl = labelListField.get(giftNum-1);
+		dp = goodsPriceListField.get(giftNum - 1);
+		total = totalPriceListField.get(giftNum - 1);
+		remark = remarkListField.get(giftNum - 1);
 		
 		dt.removeAllItems();
 		dg.removeAllItems();
@@ -272,13 +273,13 @@ public class GoodsChoosePanel extends JPanel{
 		
 		delete.setLocation(left+6*LW+6*Lgap, giftNum*Hgap);
 		
-		goodsTypeList.add(dt);
-		goodsList.add(dg);
-		numList.add(dn);
-		goodsPriceList.add(dp);
-		labelList.add(dl);
-		totalPriceList.add(total);
-		remarkList.add(remark);
+		goodsTypeListBox.add(dt);
+		goodsListBox.add(dg);
+		numListField.add(dn);
+		goodsPriceListField.add(dp);
+		labelListField.add(dl);
+		totalPriceListField.add(total);
+		remarkListField.add(remark);
 		
 		panel.add(dt);
 		panel.add(dg);
@@ -301,12 +302,22 @@ public class GoodsChoosePanel extends JPanel{
 		}
 	}
 	
+	/**
+	 * 设置GoodsBox
+	 * @param goods
+	 * @param type
+	 */
 	private void setGoodsBox(JComboBox<String> goods, JComboBox<String> type){
 		int index = type.getSelectedIndex();
 		goods.removeAllItems();
-		ArrayList<GoodsVO> list = typeList.get(index).getAllLeave();
-		for(int i = 0; i < list.size(); i++){
-			goods.addItem(list.get(i).getName());
+		ArrayList<GoodsVO> list = null;
+		if(index >= 0){
+			list = typeList.get(index).getAllLeave();
+		}
+		if(list != null){
+			for(int i = 0; i < list.size(); i++){
+				goods.addItem(list.get(i).getName());
+			}
 		}
 	}
 	
@@ -363,7 +374,7 @@ public class GoodsChoosePanel extends JPanel{
 
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
-			setGoodsBox(goodsList.get(index), goodsTypeList.get(index));
+			setGoodsBox(goodsListBox.get(index), goodsTypeListBox.get(index));
 		}
 		
 	}
@@ -373,6 +384,8 @@ public class GoodsChoosePanel extends JPanel{
 	 */
 	class AddButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent arg0) {
+			setTypeBox(dt);
+			dt.addActionListener(new TypeBoxListener(giftNum));
 			giftNum++;
 			
 			dt.setEnabled(true);
@@ -381,6 +394,8 @@ public class GoodsChoosePanel extends JPanel{
 			dp.setEnabled(true);
 			total.setEnabled(true);
 			remark.setEnabled(true);
+			
+			dg.addActionListener(new GoodsBoxListener(giftNum));
 			
 			setNext();
 			
@@ -391,6 +406,22 @@ public class GoodsChoosePanel extends JPanel{
 		
 	}
 	
+	/**
+	 * 选择具体商品事件
+	 */
+	class GoodsBoxListener implements ActionListener{
+		int index = -1;
+		public GoodsBoxListener(int giftNum) {
+			super();
+			index = giftNum - 1;
+		}
+		
+		public void actionPerformed(ActionEvent e) {
+			double price = getGoodsImportPrice((String)goodsTypeListBox.get(index).getSelectedItem(),
+					(String)goodsListBox.get(index).getSelectedItem());
+			goodsPriceListField.get(index).setText(Double.toString(price));
+		}
+	}
 
 	/**
 	 * 删除按钮事件

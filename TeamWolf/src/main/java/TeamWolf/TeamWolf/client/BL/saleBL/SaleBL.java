@@ -15,6 +15,7 @@ import TeamWolf.TeamWolf.client.vo.ImportListVO;
 import TeamWolf.TeamWolf.client.vo.ImportRejectListVO;
 import TeamWolf.TeamWolf.client.vo.SaleListVO;
 import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
+import TeamWolf.TeamWolf.server.applicationDATA.SaleApplicationDATA;
 
 /**
  * 
@@ -33,6 +34,11 @@ public class SaleBL{
 	public SaleBL(String IP){
 		saleAssist = new SaleBLAssistant();
 		presentDate = saleAssist.getDate();
+		try {
+			saleAppServ = new SaleApplicationDATA();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		cusCtrl = new CustomerController(IP);
 		URL = "rmi://" + IP + "/saleDATAservice";
 	}
@@ -126,11 +132,16 @@ public class SaleBL{
 	
 	public ArrayList<ImportListVO> getImportList() {
 		ArrayList<ImportListVO> importList = new ArrayList<ImportListVO>();
-//		ArrayList<ImportListPO> importListPO = saleAppServ.getImportList();
-//		for (int i = 0; i < importListPO.size(); i++) {
-//			ImportListVO ivo = new ImportListVO(importListPO.get(i));
-//			importList.add(ivo);
-//		}
+		ArrayList<ImportListPO> importListPO = new ArrayList<ImportListPO>();
+		try {
+			importListPO = saleAppServ.getImportList();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		for (int i = 0; i < importListPO.size(); i++) {
+			ImportListVO ivo = new ImportListVO(importListPO.get(i));
+			importList.add(ivo);
+		}
 		return importList;
 	}
 

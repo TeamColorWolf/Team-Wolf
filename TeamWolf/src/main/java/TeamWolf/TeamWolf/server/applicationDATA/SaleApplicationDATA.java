@@ -49,9 +49,10 @@ public class SaleApplicationDATA extends UnicastRemoteObject implements SaleAppl
 	private void getAppList(){
 		try {
 			importList = (ArrayList<ImportListPO>) fo.readFile(FileName.importListFile);
-			importRejectList = (ArrayList<ImportRejectListPO>) fo.readFile(FileName.importRejectListFile);
-			saleList = (ArrayList<SaleListPO>) fo.readFile(FileName.saleListFile);
-			saleRejectList = (ArrayList<SaleRejectListPO>) fo.readFile(FileName.saleRejectListFile);
+			System.out.println("saleAppData " + importList.size());
+//			importRejectList = (ArrayList<ImportRejectListPO>) fo.readFile(FileName.importRejectListFile);
+//			saleList = (ArrayList<SaleListPO>) fo.readFile(FileName.saleListFile);
+//			saleRejectList = (ArrayList<SaleRejectListPO>) fo.readFile(FileName.saleRejectListFile);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
