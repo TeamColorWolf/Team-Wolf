@@ -9,6 +9,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
 
+import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.ApproveDATAservice;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.SaleApplicationDATAservice;
 import TeamWolf.TeamWolf.client.DATAservice.customerDATAservice.CustomerDATAservice;
 import TeamWolf.TeamWolf.client.DATAservice.financeDATAservice.financeDATAservice;
@@ -18,6 +19,7 @@ import TeamWolf.TeamWolf.client.DATAservice.stockDATAservice.StockDataService;
 import TeamWolf.TeamWolf.client.DATAservice.userDATAservice.LoginDATAservice;
 import TeamWolf.TeamWolf.client.DATAservice.userDATAservice.UserDATAservice;
 import TeamWolf.TeamWolf.client.po.financePO;
+import TeamWolf.TeamWolf.server.applicationDATA.ApproveDATA;
 import TeamWolf.TeamWolf.server.applicationDATA.SaleApplicationDATA;
 import TeamWolf.TeamWolf.server.applicationDATA.StockApplicationDATA;
 import TeamWolf.TeamWolf.server.financeDATA.financeDATA;
@@ -38,6 +40,7 @@ public class DATAfactory {
 	PromotionDATAservice promotion;
 	financeDATAservice finance;
 	CustomerDATAservice customer;
+	ApproveDATAservice approve;
 	StockApplicationDATA stockApplication;
 	
 	public DATAfactory(){
@@ -60,6 +63,7 @@ public class DATAfactory {
 			promotion = new PromotionDATA();
 			stockApplication = new StockApplicationDATA();
 			customer = new CustomerDATA();
+			approve = new ApproveDATA();
 		} catch (RemoteException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -74,6 +78,7 @@ public class DATAfactory {
 			Naming.rebind("goodsDATAservice", goods);
 			Naming.rebind("promotionDATAservice", promotion);
 			Naming.rebind("stockApplicationDATAservice", stockApplication);
+			Naming.rebind("approveDATAservice", approve);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

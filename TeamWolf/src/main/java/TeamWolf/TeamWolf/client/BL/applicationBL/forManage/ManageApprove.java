@@ -16,41 +16,35 @@ public class ManageApprove extends ApplicationBL{
 	
 	public ManageApprove(String IP) {
 		super(IP);
-		// TODO Auto-generated constructor stub
-		URL = "rmi://" + IP + "";
+		URL = "rmi://" + IP + "/approveDATAservice";
 	}
 	
 	public ArrayList<ApplicationVO> getUnsetApplicationList(){
-		try {
-			approve = (ApproveDATAservice)Naming.lookup(URL);
-			poList = approve.getUnsetApplicationList();
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NotBoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		initial();
 		return voList;
 	}
 	
 	public int approveOver(ArrayList<ApplicationVO> list){
+		//TODO 
+		return 0;
+	}
+	
+	private void initial(){
 		try {
 			approve = (ApproveDATAservice)Naming.lookup(URL);
-			return approve.approveOver(poList);
+			poList = approve.getUnsetApplicationList();
+			voList = new ArrayList<ApplicationVO>();
+			if(poList != null){
+				for(int i = 0; i < poList.size(); i++){
+					voList.add(getVOfromPO(poList.get(i)));
+				}
+			}
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NotBoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return 0;
 	}
 }

@@ -2,8 +2,8 @@ package TeamWolf.TeamWolf.client.po;
 
 import java.util.ArrayList;
 
-import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
+import TeamWolf.TeamWolf.client.vo.ImportRejectListVO;
 
 /**
  * 
@@ -39,18 +39,23 @@ public class ImportRejectListPO extends ApplicationPO{
 	double total;
 
 	
-	public ImportRejectListPO(String number, CustomerPO customer, String storage, String operator,
-			ArrayList<GoodsPO> goodsList, String remark) {
+	public ImportRejectListPO(ImportRejectListVO irvo) {
 		// TODO Auto-generated constructor stub
-		this.number = number;
-		this.customer = customer;
-		this.storage = storage;
-		this.operator = operator;
-		this.GoodsList = goodsList;
-		this.remark = remark;
-		this.total = calTotal(goodsList);
+		this.number = irvo.number;
+		this.customer = new CustomerPO(irvo.getCustomer());
+		this.storage = irvo.getStorage();
+		this.operator = irvo.operator;
+		this.remark = irvo.getRemark();
+		this.total = irvo.getTotal();
+		toGoodsPO(irvo.getGoodsList());
 	}
 	
+	private void toGoodsPO(ArrayList<GoodsVO> gvo) {
+		for (int i = 0; i < gvo.size(); i++) {
+			GoodsPO gpo = new GoodsPO(gvo.get(i));
+			GoodsList.add(gpo);
+		}
+	}
 	
 	/**
 	 * 计算总额

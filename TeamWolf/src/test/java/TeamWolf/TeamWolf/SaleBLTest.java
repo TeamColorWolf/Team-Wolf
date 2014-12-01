@@ -24,7 +24,7 @@ public class SaleBLTest {
 	static SaleBL_Driver saleDiv;
 	CustomerVO cvo = new CustomerVO("0001", "进货商", "5", "习近平", "19999999999",
 			"北京", "100000", "xjp@software.nju.edu.cn", "999999", "0", "0", "WKS");
-	ImportListVO ivo = new ImportListVO("Import", cvo, "1", "WKS", goodsList, "nothing");
+	ImportListVO ivo = new ImportListVO("Import", cvo, "1", "WKS", goodsList, "nothing", "0");
 	ImportRejectListVO irvo = new ImportRejectListVO("ImportReject", cvo, "0", "WKS", goodsList, "nothing");
 	SaleListVO svo = new SaleListVO("Sale", cvo, "XaioMing", "WKS", "0", goodsList, "0", "0", "nothing");
 	SaleRejectListVO srvo = new SaleRejectListVO("SaleReject", cvo, "XaioMing", "WKS", "0", goodsList, "0", "0", "nothing");
