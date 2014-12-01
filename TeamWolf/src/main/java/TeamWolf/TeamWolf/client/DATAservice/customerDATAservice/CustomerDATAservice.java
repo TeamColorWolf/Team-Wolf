@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.po.CustomerPO;
+import TeamWolf.TeamWolf.client.vo.CustomerVO;
 
 public interface CustomerDATAservice extends Remote{
 
@@ -13,6 +14,8 @@ public interface CustomerDATAservice extends Remote{
 	public int delCustomer (CustomerPO cpo) throws RemoteException;
 	
 	public ArrayList<CustomerPO> checkPO() throws RemoteException;
+	
+	public ArrayList<CustomerVO> checkVO() throws RemoteException;
 	
 	public int modCustomer (CustomerPO po, CustomerPO newpo) throws RemoteException;
 	

@@ -13,11 +13,14 @@ import TeamWolf.TeamWolf.server.FileName;
 import TeamWolf.TeamWolf.server.FileOpr;
 
 public class CustomerDATA extends UnicastRemoteObject implements CustomerDATAservice{
+	
 	static ArrayList<CustomerPO> list = null;
+	
 	public CustomerDATA() throws RemoteException{
 		super();
 		// TODO Auto-generated constructor stub
-		this.getList();
+		getList();
+		System.out.println("gyqgyqgyqgyq   " + list.size());
 		if(list == null){
 			list = new ArrayList<CustomerPO>();
 		}
@@ -62,7 +65,7 @@ public class CustomerDATA extends UnicastRemoteObject implements CustomerDATAser
 	public ArrayList<CustomerVO> checkVO() throws RemoteException{
 		ArrayList<CustomerVO> volist = new ArrayList<CustomerVO>();
 		for(int i=0;i<list.size();i++){
-			volist.set(i, new CustomerVO(list.get(i)));
+			volist.add(new CustomerVO(list.get(i)));
 		}
 		return volist;		
 	}
