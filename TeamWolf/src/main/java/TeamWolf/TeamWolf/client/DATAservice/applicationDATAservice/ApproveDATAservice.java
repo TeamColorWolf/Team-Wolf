@@ -20,5 +20,4 @@ public interface ApproveDATAservice extends Remote {
 	
 	public ArrayList<String> getResult(String workNumber) throws RemoteException;
 	
-	public int approveOver(ArrayList<ApplicationPO> list) throws RemoteException;
 }

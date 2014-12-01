@@ -11,7 +11,7 @@ import TeamWolf.TeamWolf.server.FileName;
 import TeamWolf.TeamWolf.server.FileOpr;
 
 public class ApproveDATA extends UnicastRemoteObject implements ApproveDATAservice{
-	protected ApproveDATA() throws RemoteException {
+	public ApproveDATA() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -54,11 +54,6 @@ public class ApproveDATA extends UnicastRemoteObject implements ApproveDATAservi
 	public ArrayList<String> getResult(String workNumber) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	public int approveOver(ArrayList<ApplicationPO> list) throws RemoteException {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 	
 	private ArrayList<ApplicationPO> allApplication(){
