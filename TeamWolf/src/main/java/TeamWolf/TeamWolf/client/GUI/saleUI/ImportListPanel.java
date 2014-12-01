@@ -46,6 +46,7 @@ public class ImportListPanel extends JPanel{
 	JTextArea remarkArea = new JTextArea();
 	JScrollPane scrollPane = new JScrollPane(remarkArea);
 	GoodsChoosePanel goodschoose;
+	JTextField totalField;
 	
 	/**
 	 * 面板宽度
@@ -133,10 +134,6 @@ public class ImportListPanel extends JPanel{
 		scrollPane.setBorder(BorderFactory.createTitledBorder("备注填写"));
 		
 		setCustomerBox();
-		customerBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		
 		jp.add(customerBox);
 		jp.add(storageBox);
@@ -156,7 +153,8 @@ public class ImportListPanel extends JPanel{
 		Font ChooseBtn_FONT = new Font("黑体", Font.BOLD, 16);
 		
 		//组件们
-		JTextField totalField = new JTextField();
+		totalField = new JTextField("0.0");
+		JButton ensureBtn = new JButton("确定");
 		JButton submitBtn = new JButton("提交");
 		JButton clearBtn = new JButton("清空");
 		
@@ -168,18 +166,26 @@ public class ImportListPanel extends JPanel{
 		
 		//组件设置
 		totalField.setSize(conpW, conpH);
+		ensureBtn.setSize(btnW, btnH);
 		submitBtn.setSize(btnW, btnH);
 		clearBtn.setSize(submitBtn.getSize());
 		
 		totalField.setLocation(Xgap, Ygap);
-		submitBtn.setLocation(totalField.getX() + totalField.getWidth() + Xgap, Ygap);
+		ensureBtn.setLocation(totalField.getX() + totalField.getWidth() + Xgap, Ygap);
+		submitBtn.setLocation(ensureBtn.getX() + ensureBtn.getWidth() + Xgap, Ygap);
 		clearBtn.setLocation(submitBtn.getX() + submitBtn.getWidth() + Xgap, Ygap);
 		
 		totalField.setBorder(BorderFactory.createTitledBorder("全部总额"));
+		ensureBtn.setFont(ChooseBtn_FONT);
 		submitBtn.setFont(ChooseBtn_FONT);
 		clearBtn.setFont(ChooseBtn_FONT);
 		
 		//组件添加监听
+		ensureBtn.addActionListener(new ActionListener() {	
+			public void actionPerformed(ActionEvent e) {
+				ensureBtnEvent();
+			}
+		});
 		submitBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				getImportList();
@@ -193,6 +199,7 @@ public class ImportListPanel extends JPanel{
 		
 		//添加组件
 		jp.add(totalField);
+		jp.add(ensureBtn);
 		jp.add(submitBtn);
 		jp.add(clearBtn);
 		
@@ -204,7 +211,6 @@ public class ImportListPanel extends JPanel{
 	 * 在CustomerBox里添加选择列表
 	 */
 	private void setCustomerBox(){
-		custList = TestMain.getCustVOListTEST();
 		for (int i = 0, k = 0; i < custList.size(); i++) {
 			if(custList.get(i).getKind().equals("进货商")){
 				customerBox.addItem(custList.get(i).getName());
@@ -216,9 +222,9 @@ public class ImportListPanel extends JPanel{
 	/**
 	 * 提交按钮事件
 	 */
-	private ImportListVO getImportList(){
+	private void getImportList(){
 		String number = importListNum();
-		CustomerVO customer = null;
+		CustomerVO customer = getAcustomer((String) customerBox.getSelectedItem());
 		String storage = (String) storageBox.getSelectedItem();
 		String operator = this.operator;
 		String remark = remarkArea.getText();
@@ -232,6 +238,7 @@ public class ImportListPanel extends JPanel{
 						if(goodschoose.goodsListBox.get(i).getSelectedItem().equals(typeList.get(j).getAllLeave().get(k).getName())){
 							GoodsVO gvo = typeList.get(j).getAllLeave().get(k);
 							gvo.setAmount(Integer.parseInt(goodschoose.goodsPriceListField.get(i).getText()));
+							goodsList.add(gvo);
 						}
 					}
 				}
@@ -242,7 +249,23 @@ public class ImportListPanel extends JPanel{
 		
 		ImportListVO importVO = new ImportListVO(number, customer, storage, operator, goodsList, remark);
 		importVO.condition = 0;
-		return importVO;
+		
+		saleLogic.createImport(importVO);
+	}
+	
+
+	/**
+	 * 获取CustomerVO
+	 * @return
+	 */
+	private CustomerVO getAcustomer(String name){
+		CustomerVO cvo = null;
+		for (int i = 0; i < custList.size(); i++) {
+			if(custList.get(i).equals(name) && custList.get(i).getKind().equals("进货商")){
+				cvo = custList.get(i);
+			}
+		}
+		return cvo;
 	}
 	
 	/**
@@ -250,6 +273,7 @@ public class ImportListPanel extends JPanel{
 	 */
 	private void clearBtnEvent(){
 		goodschoose.removeAllGoods();
+		totalField.setText("0.0");
 	}
 	
 	private String importListNum(){
@@ -258,6 +282,15 @@ public class ImportListPanel extends JPanel{
 		String number = String.format("%05d", importList.size());
 		num = num + date + number;
 		return num;
+	}
+	
+	private void ensureBtnEvent(){
+		double allTotal = 0;
+		for (int i = 0; i < goodschoose.giftNum; i++) {
+			allTotal = allTotal + Double.parseDouble(goodschoose.totalPriceListField.get(i).getText());
+		}
+		System.out.println("total = " + allTotal);
+		totalField.setText(Double.toString(allTotal));
 	}
 }
 

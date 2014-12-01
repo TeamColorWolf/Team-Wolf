@@ -83,6 +83,7 @@ public class GoodsChoosePanel extends JPanel{
 		if(typeList == null){
 			typeList = new ArrayList<TypeVO>();
 		}
+		
 		goodsTypeListBox = new ArrayList<JComboBox<String>>();
 		goodsListBox = new ArrayList<JComboBox<String>>();
 		numListField = new ArrayList<JTextField>();
@@ -316,30 +317,11 @@ public class GoodsChoosePanel extends JPanel{
 		}
 		if(list != null){
 			for(int i = 0; i < list.size(); i++){
-				goods.addItem(list.get(i).getName());
+				goods.addItem(list.get(i).getName() + " " + list.get(i).getModel());
 			}
 		}
 	}
 	
-	/**
-	 * 获取货物数量
-	 * @param type
-	 * @param goods
-	 * @return
-	 */
-	private String getGoodsNum(String type, String goods){
-		for(int i = 0; i < typeList.size(); i++){
-			if(typeList.get(i).getName().equals(type)){
-				ArrayList<GoodsVO> list = typeList.get(i).getAllLeave();
-				for(int j = 0; j < list.size(); j++){
-					if(list.get(j).getName().equals(goods)){
-						return list.get(j).getNumber();
-					}
-				}
-			}
-		}
-		return null;
-	}
 	
 	/**
 	 * 获取货物进货单价
@@ -352,7 +334,7 @@ public class GoodsChoosePanel extends JPanel{
 			if(typeList.get(i).getName().equals(type)){
 				ArrayList<GoodsVO> list = typeList.get(i).getAllLeave();
 				for(int j = 0; j < list.size(); j++){
-					if(list.get(j).getName().equals(goods)){
+					if((list.get(j).getName() + " " + list.get(j).getModel()).equals(goods)){
 						return list.get(j).getImprice();
 					}
 				}
@@ -395,6 +377,8 @@ public class GoodsChoosePanel extends JPanel{
 			total.setEnabled(true);
 			remark.setEnabled(true);
 			
+			dn.addActionListener(new NumFieldListener(giftNum));
+			
 			dg.addActionListener(new GoodsBoxListener(giftNum));
 			
 			setNext();
@@ -402,6 +386,23 @@ public class GoodsChoosePanel extends JPanel{
 			panel.updateUI();
 			
 			
+		}
+		
+	}
+	
+	/**
+	 * 显示单项总价和全体总价
+	 */
+	class NumFieldListener implements ActionListener{
+		int index = -1;
+		public NumFieldListener(int giftNum) {
+			super();
+			index = giftNum - 1;
+		}
+		public void actionPerformed(ActionEvent e) {
+			double eachTotal = Double.parseDouble(goodsPriceListField.get(index).getText()) * 
+					Double.parseDouble(numListField.get(index).getText());
+			totalPriceListField.get(index).setText(Double.toString(eachTotal));
 		}
 		
 	}
