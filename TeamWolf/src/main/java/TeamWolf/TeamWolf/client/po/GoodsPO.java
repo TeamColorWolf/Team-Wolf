@@ -12,7 +12,8 @@ import TeamWolf.TeamWolf.client.vo.TypeVO;
  */
 public class GoodsPO implements Serializable {
 
-	String parentNum;
+    String parentNum;
+	String parentName;
 	TypePO parent;
 	String number;
 	String name;
@@ -33,6 +34,7 @@ public class GoodsPO implements Serializable {
 		this.exprice=g.getExprice();
 		this.imprice=g.getImprice();
 		this.parentNum=g.getParentNum();
+		this.parentName=g.getParent();
 		this.WarningLine=g.gerWarningLine();
 		this.model=g.getModel();
 		this.latestExprice=g.getLatestExprice();
@@ -52,6 +54,12 @@ public class GoodsPO implements Serializable {
 		this.latestExprice=latestExprice;
 	}
 	
+	public String getParentName(){
+		return parentName;
+	}
+	public String getParentNumber(){
+		return parentNum;
+	}
 	public TypePO getParent() {
 		return parent;
 	}

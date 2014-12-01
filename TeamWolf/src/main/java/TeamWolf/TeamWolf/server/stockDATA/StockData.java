@@ -140,15 +140,7 @@ public class StockData extends UnicastRemoteObject implements StockDataService {
 			//sd.addType(special);
 			
 			ArrayList<TypePO> tl=sd.stockList;
-			
-			for(TypePO t: tl){
-				
-				
-					System.out.println(t.getName().equals("特价包"));
-					System.out.println(t.getName()+" "+t.getC());
-				
-				
-			}
+			System.out.println(tl.size());
 			
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
