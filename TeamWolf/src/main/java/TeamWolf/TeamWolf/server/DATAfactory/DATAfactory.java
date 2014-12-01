@@ -61,7 +61,7 @@ public class DATAfactory {
 		}
 		try {
 			Naming.rebind("financeDATAservice", finance);
-			Naming.rebind("CustomerDATAservice", customer);
+			Naming.rebind("customerDATAservice", customer);
 			Naming.rebind("loginDATAservice", login);
 			Naming.rebind("userDATAservice", user);
 			Naming.rebind("saleDATAservice", saleApp);

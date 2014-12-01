@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import TeamWolf.TeamWolf.client.DATAservice.customerDATAservice.CustomerDATAservice;
 import TeamWolf.TeamWolf.client.po.CustomerPO;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
+import TeamWolf.TeamWolf.server.saleDATA.CustomerDATA;
 
 public class CustomerOpr implements CustomerOprBLservice{
 	
@@ -21,7 +22,7 @@ public class CustomerOpr implements CustomerOprBLservice{
 	ArrayList<CustomerPO> poList;
 
 	public CustomerOpr(String IP){
-		URL = "rmi://" + IP + "/CustomerDATAservice";
+		URL = "rmi://" + IP + "/customerDATAservice";
 	}
 	
 	public int Customerupdate(CustomerVO vo, CustomerVO newVO) {
@@ -101,7 +102,7 @@ public class CustomerOpr implements CustomerOprBLservice{
 	public ArrayList<CustomerVO> getAllCustomerList(){
 		try {
 			cds = (CustomerDATAservice)Naming.lookup(URL);
-			poList = cds.checkPO();
+			voList = cds.checkVO();
 		} catch (MalformedURLException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();

@@ -65,7 +65,9 @@ public class CustomerDelPanel extends JPanel{
 	public CustomerDelPanel(UserVO user, String ip) {
 		customerLogic = new CustomerOpr(ip);
 		customerList = customerLogic.getAllCustomerList();
+		//TODO
 		if(customerList == null){
+			System.out.println("in");
 			customerList = new ArrayList<CustomerVO>();
 		}
 		
@@ -144,7 +146,7 @@ public class CustomerDelPanel extends JPanel{
 	 */
 	private void showBtnEvent(){
 		clearCustomerTable();
-		System.out.println("customerList: " + customerList.size());
+
 //		customerList = TestMain.getCustVOListTEST();
 		tModel_customer = (DefaultTableModel) customerListTable.getModel();
 		
