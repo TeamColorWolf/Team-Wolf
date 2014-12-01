@@ -14,6 +14,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOpr;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOprBLservice;
 import TeamWolf.TeamWolf.client.BL.saleBL.SaleBLController;
 import TeamWolf.TeamWolf.client.BLservice.saleBLservice.SaleBLservice;
@@ -81,16 +82,19 @@ public class ImportListPanel extends JPanel{
 	public ImportListPanel(UserVO user, String IP) {
 		this.operator = user.workID; 
 		saleLogic = new SaleBLController(IP);
-//		custServ = new CustomerOpr(IP);
+		custServ = new CustomerOpr(IP);
 		goodschoose = new GoodsChoosePanel(IP);
-//		custList = custServ.getAllCustomerList();
+		
+		custList = custServ.getAllCustomerList();
 		importList = saleLogic.getImportList();
+		
 		if(importList == null){
 			importList = new ArrayList<ImportListVO>();
 		}
-//		if(custList == null){
-//			custList = new ArrayList<CustomerVO>();
-//		}
+		if(custList == null){
+			custList = new ArrayList<CustomerVO>();
+		}
+		
 		//设置布局方式
 		this.setLayout(null);
 		//设置大小
@@ -216,8 +220,11 @@ public class ImportListPanel extends JPanel{
 		CustomerVO customer = null;
 		String storage = (String) storageBox.getSelectedItem();
 		String operator = this.operator;
-		ArrayList<GoodsVO> goodsList = GoodsChoosePanel.goodsVOList;
 		String remark = remarkArea.getText();
+		ArrayList<GoodsVO> goodsList = new ArrayList<GoodsVO>();
+		
+		
+		
 		
 		ImportListVO importVO = new ImportListVO(number, customer, storage, operator, goodsList, remark);
 		importVO.condition = 0;
