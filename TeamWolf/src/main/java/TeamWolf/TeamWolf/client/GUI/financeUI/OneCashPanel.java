@@ -30,19 +30,23 @@ public class OneCashPanel extends JPanel{
 	
 	ArrayList<JComboBox<String>> AccountList;
 	ArrayList<JTextField> moneyList;
+	ArrayList<JTextField> nameList;
 	ArrayList<JLabel> labelList;
 
 	ArrayList<JButton> deleteList;
 	ArrayList<financeVO> financeList;
+	ArrayList<String> nameStringList;
 	
 	JButton add = new JButton("增加");
 	JButton delete = new JButton("移除");
 	
 	JComboBox<String> AccountString = new JComboBox<String>();
 	JTextField MoneyString = new JTextField();
+	JTextField NameString = new JTextField();
 	JLabel newLabel = new JLabel("条目1");
 	
-	private JLabel goodsTypeLabel = new JLabel("转账账户");
+	private JLabel goodsTypeLabel = new JLabel("账户");
+	private JLabel goodsLabel = new JLabel("条目名");
 	private JLabel goodsNum = new JLabel("转账金额");
 	
 	private final static int LH = 25;
@@ -56,45 +60,56 @@ public class OneCashPanel extends JPanel{
 		financeList = service.checkVO();
 		
 		if(financeList == null){
-			System.out.println("G");
 			financeList = new ArrayList<financeVO>();
 		}
 		AccountList = new ArrayList<JComboBox<String>>();
 		moneyList = new ArrayList<JTextField>();
+		nameList = new ArrayList<JTextField>();
 		labelList = new ArrayList<JLabel>();
 		
 		goodsTypeLabel.setSize(LW, LH);
+		goodsLabel.setSize(LW, LH);
 		goodsNum.setSize(LW, LH);
 		
+
 		goodsTypeLabel.setLocation(left, Hgap/2);
-		goodsNum.setLocation(left+2*LW+2*Lgap-LW-50, Hgap/2);
+		goodsLabel.setLocation(left+LW+Lgap, Hgap/2);
+		goodsNum.setLocation(left+2*LW+2*Lgap, Hgap/2);
+		
 		
 		panel.add(goodsTypeLabel);
+		panel.add(goodsLabel);
 		panel.add(goodsNum);
 		
 		AccountString.setEnabled(false);
 		MoneyString.setEnabled(false);
+		NameString.setEnabled(false);
 		
 		AccountString.setSize(LW, LH);
 		MoneyString.setSize(LW, LH);
+		NameString.setSize(LW,LH);
 		newLabel.setSize(Lgap, LH);
 		add.setSize(Lgap, LH);
 		delete.setSize(Lgap, LH);
 		
 		AccountString.setLocation(left, Hgap);
-		MoneyString.setLocation(left+2*LW+2*Lgap-LW-50, Hgap);
+		NameString.setLocation(left+LW+Lgap, Hgap);
+		MoneyString.setLocation(left+2*LW+2*Lgap, Hgap);
 		newLabel.setLocation(left-Lgap, Hgap);
 		add.setLocation(left+3*LW+3*Lgap, Hgap);
 		
 		AccountString.setBackground(Color.white);
+		NameString.setBackground(Color.white);
 		
 		panel.add(AccountString);
 		panel.add(MoneyString);
+		panel.add(NameString);
 		panel.add(newLabel);
 		panel.add(add);
 		
 		AccountList.add(AccountString);
 		moneyList.add(MoneyString);
+		nameList.add(NameString);
 		labelList.add(newLabel);
 		
 		panelD = new Dimension(FinanceFrame.width-20, 260);
@@ -130,19 +145,23 @@ public class OneCashPanel extends JPanel{
 		
 		AccountString = new JComboBox<String>();
 		MoneyString = new JTextField();
+		NameString = new JTextField();
 		newLabel = new JLabel("条目 "+(MoneyNum+1));
 		 
 		AccountString.setBackground(Color.white);
 		
 		AccountString.setEnabled(false);
 		MoneyString.setEnabled(false);
+		NameString.setEnabled(false);
 		
 		AccountString.setSize(LW, LH);
 		MoneyString.setSize(LW, LH);
+		NameString.setSize(LW,LH);
 		newLabel.setSize(Lgap, LH);
 		
 		AccountString.setLocation(left, (MoneyNum+1)*Hgap);
-		MoneyString.setLocation(left+2*LW+2*Lgap-LW-50, (MoneyNum+1)*Hgap);
+		MoneyString.setLocation(left+LW+Lgap, (MoneyNum+1)*Hgap);
+		NameString.setLocation(left+2*LW+2*Lgap, (MoneyNum+1)*Hgap);
 		newLabel.setLocation(left-Lgap, (MoneyNum+1)*Hgap);
 		add.setLocation(left+3*LW+3*Lgap, (MoneyNum+1)*Hgap);
 		
@@ -150,10 +169,12 @@ public class OneCashPanel extends JPanel{
 		
 		AccountList.add(AccountString);
 		moneyList.add(MoneyString);
+		nameList.add(NameString);
 		labelList.add(newLabel);
 		
 		panel.add(AccountString);
 		panel.add(MoneyString);
+		panel.add(NameString);
 		panel.add(newLabel);
 		panel.add(delete);
 		
@@ -165,21 +186,26 @@ public class OneCashPanel extends JPanel{
 	private void removeLast(){
 		AccountList.remove(MoneyNum);
 		moneyList.remove(MoneyNum);
+		nameList.remove(nameList);
 		labelList.remove(MoneyNum);
 		
 		panel.remove(AccountString);
 		panel.remove(MoneyString);
+		panel.remove(NameString);
 		panel.remove(newLabel);
 		
 		AccountString = AccountList.get(MoneyNum-1);
 		MoneyString = moneyList.get(MoneyNum-1);
+		NameString = nameList.get(MoneyNum-1);
 		newLabel = labelList.get(MoneyNum-1);
 		
 		AccountString.removeAllItems();
 		MoneyString.setText(null);
+		NameString.setText(null);
 		
 		AccountString.setEnabled(false);
 		MoneyString.setEnabled(false);
+		NameString.setEnabled(false);
 		
 		delete.setLocation(left+3*LW+3*Lgap, (MoneyNum-1)*Hgap);
 		
@@ -221,6 +247,15 @@ public class OneCashPanel extends JPanel{
 		return list;
 	}
 	
+	protected ArrayList<String> getTheName(){
+		ArrayList<String> list = new ArrayList<String>();
+		for(int i = 0; i < MoneyNum; i++){
+			list.add(nameList.get(i).getText());
+		}
+		return list;
+	} 
+	
+	
 	
 	class AddButtonListener implements ActionListener{
 
@@ -231,6 +266,7 @@ public class OneCashPanel extends JPanel{
 			
 			AccountString.setEnabled(true);
 			MoneyString.setEnabled(true);
+			NameString.setEnabled(true);
 			
 			setNext();
 			

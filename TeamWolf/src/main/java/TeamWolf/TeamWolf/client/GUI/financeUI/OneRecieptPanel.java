@@ -201,7 +201,7 @@ public class OneRecieptPanel extends JPanel{
 
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
-			//setAccountsBox(AccountList.get(index));
+			setAccountsBox(AccountList.get(index));
 		}
 
 		
@@ -225,6 +225,7 @@ public class OneRecieptPanel extends JPanel{
 	class AddButtonListener implements ActionListener{
 
 		public void actionPerformed(ActionEvent arg0) {
+
 			setAccountsBox(AccountString);
 			AccountString.addActionListener(new AccountBoxListener(MoneyNum));
 			MoneyNum++;
