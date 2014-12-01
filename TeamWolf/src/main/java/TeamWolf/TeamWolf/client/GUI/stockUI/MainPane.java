@@ -101,6 +101,7 @@ public class MainPane extends JPanel {
 		AnnouceArea.setEditable(false);
 		AnnouceArea.setBounds(0, 0, 800, 300);
 		AnnouceArea.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
+		AnnouceArea.setText("操作员真踏马帅！");
 		
 		StyledDocument doc = AnnouceArea.getStyledDocument();  
 	    doc.setCharacterAttributes(105, doc.getLength()-105, aSet, false);  
