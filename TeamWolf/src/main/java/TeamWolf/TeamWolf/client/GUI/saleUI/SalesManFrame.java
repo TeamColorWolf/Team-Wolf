@@ -20,7 +20,7 @@ import TeamWolf.TeamWolf.client.vo.UserVO;
  * @author HalaWKS
  *
  */
-public class FunctionChoose extends JFrame{
+public class SalesManFrame extends JFrame{
 	
 	/**
 	 * 选择类型判断
@@ -40,7 +40,7 @@ public class FunctionChoose extends JFrame{
 	
 	private String ip = "";
 	
-	public FunctionChoose(UserVO userVO, String ip) {
+	public SalesManFrame(UserVO userVO, String ip) {
 		this.ip = ip;
 		
 		//设置布局管理器为“null”
@@ -87,7 +87,7 @@ public class FunctionChoose extends JFrame{
 		userNum.setSize(userName.getSize());
 		userPower.setSize(userName.getSize());
 		//设置标签位置
-		userName.setLocation(jp.getWidth() / 4, jp.getHeight() / 6);
+		userName.setLocation(jp.getWidth() / 6, jp.getHeight() / 6);
 		userNum.setLocation(userName.getX(), jp.getHeight() / 2 - 30);
 		userPower.setLocation(userName.getX(), jp.getHeight() * 2 / 3);
 		//设置标签字体

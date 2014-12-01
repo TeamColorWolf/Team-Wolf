@@ -16,7 +16,7 @@ public class TestMain {
 		// TODO Auto-generated method stub
 		UserVO user = new UserVO("WKS", "131250196", "0001", UserType.销售人员);
 		String IP = "127.0.0.1";
-		FunctionChoose fc = new FunctionChoose(user, IP);
+//		FunctionChoose fc = new FunctionChoose(user, IP);
 	}
 	
 	public static ArrayList<CustomerVO> getCustVOListTEST(){
