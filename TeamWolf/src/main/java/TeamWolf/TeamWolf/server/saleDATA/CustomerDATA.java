@@ -28,7 +28,7 @@ public class CustomerDATA extends UnicastRemoteObject implements CustomerDATAser
 		// TODO Auto-generated method stub
 		list.add(cpo);
 		try {
-			FileOpr.writeFile(FileName.userFile, list);
+			FileOpr.writeFile(FileName.customerFile, list);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -42,7 +42,7 @@ public class CustomerDATA extends UnicastRemoteObject implements CustomerDATAser
 			if(list.get(i).getNum().equals(cpo.getNum())){
 				list.remove(i);
 				try {
-					FileOpr.writeFile(FileName.userFile, list);
+					FileOpr.writeFile(FileName.customerFile,list);
 					return 0;
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -73,7 +73,7 @@ public class CustomerDATA extends UnicastRemoteObject implements CustomerDATAser
 			  list.remove(list.get(i));
 			  list.add(i,newpo);
 				try {
-					FileOpr.writeFile(FileName.userFile, list);
+					FileOpr.writeFile(FileName.customerFile, list);
 					return 0;
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
