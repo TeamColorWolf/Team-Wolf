@@ -89,7 +89,7 @@ public class CustomerAddPanel extends JPanel{
 	private static final int Label_W = 70;
 	private static final int Label_H = 30;
 	private static final Dimension Label_Size = new Dimension(Label_W, Label_H);
-		
+	
 	public CustomerAddPanel(UserVO user, String ip) {
 		customerLogic = new CustomerOpr(ip);
 		customerList = customerLogic.getAllCustomerList();
@@ -217,7 +217,6 @@ public class CustomerAddPanel extends JPanel{
 		topLimitLabel.setFont(Label_FONT);
 		emailLabel.setFont(Label_FONT);
 		addressLabel.setFont(Label_FONT);
-
 		
 		nameLabel.setLocation(Xgap, Ygap);
 		telLabel.setLocation(Xgap, nameLabel.getY() + nameLabel.getHeight() + Ygap);
