@@ -1,6 +1,8 @@
 package TeamWolf.TeamWolf.client.GUI.manageUI;
 
 import java.awt.Color;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultCellEditor;
@@ -54,6 +56,8 @@ public class ApplicationPanel extends JPanel{
 		this.setLocation(0, 0);
 		this.setLayout(null);
 		this.setVisible(true);
+		
+		table.addMouseListener(new TableListener());
 	}
 	
 	private void getContent(){
@@ -73,5 +77,22 @@ public class ApplicationPanel extends JPanel{
 				content[i][2] = vo.operator;
 			}
 		}
+	}
+	
+	class TableListener implements MouseListener{
+
+		public void mouseClicked(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			int row = table.getSelectedRow();
+			if(row < list.size())
+				ApprovePanel.detial.flashPanel(list.get(row));
+			else
+				ApprovePanel.detial.flashPanel(null);
+		}
+
+		public void mouseEntered(MouseEvent arg0) {}
+		public void mouseExited(MouseEvent arg0) {}
+		public void mousePressed(MouseEvent arg0) {}
+		public void mouseReleased(MouseEvent arg0) {}
 	}
 }
