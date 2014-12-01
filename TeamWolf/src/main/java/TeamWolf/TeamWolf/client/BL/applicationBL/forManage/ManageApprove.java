@@ -17,6 +17,7 @@ public class ManageApprove extends ApplicationBL{
 	public ManageApprove(String IP) {
 		super(IP);
 		// TODO Auto-generated constructor stub
+		URL = "rmi://" + IP + "";
 	}
 	
 	public ArrayList<ApplicationVO> getUnsetApplicationList(){

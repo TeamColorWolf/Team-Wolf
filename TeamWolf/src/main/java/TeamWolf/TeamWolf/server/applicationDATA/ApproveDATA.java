@@ -18,16 +18,36 @@ public class ApproveDATA extends UnicastRemoteObject implements ApproveDATAservi
 
 	public ArrayList<ApplicationPO> getUnsetApplicationList() throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<ApplicationPO> templist = this.allApplication();
+		ArrayList<ApplicationPO> list = new ArrayList<ApplicationPO>();
+		for(int i = 0; i < templist.size(); i++){
+			if(templist.get(i).condition == 0){
+				list.add(templist.get(i));
+			}
+		}
+		return list;
 	}
 
 	public ArrayList<ApplicationPO> getApprovalApplicationList() throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<ApplicationPO> templist = this.allApplication();
+		ArrayList<ApplicationPO> list = new ArrayList<ApplicationPO>();
+		for(int i = 0; i < templist.size(); i++){
+			if(templist.get(i).condition == 1){
+				list.add(templist.get(i));
+			}
+		}
+		return list;
 	}
 
 	public ApplicationPO findApplication(String number) throws RemoteException {
 		// TODO Auto-generated method stub
+		ArrayList<ApplicationPO> templist = this.allApplication();
+		for(int i = 0; i < templist.size(); i++){
+			if(templist.get(i).number.equals(number)){
+				return templist.get(i);
+			}
+		}
 		return null;
 	}
 

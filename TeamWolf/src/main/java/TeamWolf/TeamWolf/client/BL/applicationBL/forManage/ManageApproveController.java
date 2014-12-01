@@ -12,6 +12,7 @@ public class ManageApproveController extends MutiRoleController implements Manag
 	
 	public ManageApproveController(String IP){
 		super(IP);
+		app = new ManageApprove(IP);
 	}
 	
 	public ArrayList<ApplicationVO> getUnsetApplicationList(){

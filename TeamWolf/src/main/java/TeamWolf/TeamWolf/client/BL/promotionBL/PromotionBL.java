@@ -212,28 +212,6 @@ public class PromotionBL{
 	public GoodsVO findGoods(String number){
 		return proAssist.findGoods(number);
 	}
-
-	public SaleListVO adaptPromotionForSaleList(SaleListVO vo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public ImportListVO adaptPromotionForImportList(ImportListVO vo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	public ArrayList<SpecialGoodsPromotionVO> specialGoodsPackage() {
-		ArrayList<SpecialGoodsPromotionVO> list = new ArrayList<SpecialGoodsPromotionVO>();
-		if(voList != null){
-			for(int i = 0; i < voList.size(); i++){
-				if(voList.get(i).type == PromotionTypeVO.specialGoods){
-					list.add((SpecialGoodsPromotionVO)voList.get(i));
-				}
-			}
-		}
-		return list;
-	}
 	
 	private String creatPromotionNumber(PromotionVO vo){
 		int max = 0;

@@ -9,20 +9,20 @@ import TeamWolf.TeamWolf.client.vo.SaleListVO;
  */
 public class PromotionForSaleController implements PromotionForSaleService{
 	
-	PromotionBL bl;
+	PromotionForOther b;
 	
 	public PromotionForSaleController(String IP){
-		bl = new PromotionBL(IP);
+		b = new PromotionForOther(IP);
 	}
 	
 	public SaleListVO adaptPromotionForSaleList(SaleListVO vo) {
 		// TODO Auto-generated method stub
-		return bl.adaptPromotionForSaleList(vo);
+		return b.adaptPromotionForSaleList(vo);
 	}
 
 	public ImportListVO adaptPromotionForImportList(ImportListVO vo) {
 		// TODO Auto-generated method stub
-		return bl.adaptPromotionForImportList(vo);
+		return b.adaptPromotionForImportList(vo);
 	}
 
 }
