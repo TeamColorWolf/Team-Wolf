@@ -287,8 +287,8 @@ public class ImportListPanel extends JPanel{
 	private String importListNum(){
 		String num = "JHD-";
 		String date = saleLogic.getPresentDate();
-		String number = String.format("%05d", importList.size());
-		num = num + date + number;
+		String number = String.format("%05d", importList.size() + 1);
+		num = num + date + "-" + number;
 		return num;
 	}
 	
