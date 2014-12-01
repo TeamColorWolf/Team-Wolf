@@ -3,7 +3,9 @@ package TeamWolf.TeamWolf.client.BL.stockBL;
 import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.BL.goodsBL.GoodsManager;
+import TeamWolf.TeamWolf.client.BL.goodsBL.GoodsTrade;
 import TeamWolf.TeamWolf.client.vo.DecreaseToMatchVO;
+import TeamWolf.TeamWolf.client.vo.GiftForPromotionVO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
 import TeamWolf.TeamWolf.client.vo.IncreaseToMatchVO;
 import TeamWolf.TeamWolf.client.vo.SpecialGoodsPromotionVO;
@@ -13,12 +15,14 @@ public class ExternalServiceController implements ExternalService{
 
 	StockBLManager man;
 	GoodsManager gm;
+	GoodsTrade gt;
 	String IP;
 	
 	public ExternalServiceController(String IP){
 		this.IP=IP;
 		man=new StockBLManager(IP);
 		gm=new GoodsManager(IP);
+		gt=new GoodsTrade(IP);
 	}
 	
 	public ArrayList<TypeVO> getLeaveType() {
@@ -32,10 +36,8 @@ public class ExternalServiceController implements ExternalService{
 		return gm.finGoods(tofin);
 	}
 
-	public int addSpecialPackage(SpecialGoodsPromotionVO sp) {
-		// TODO Auto-generated method stub
-		
-		return 0;
+	public int handlePresentList(ArrayList<GiftForPromotionVO> gpl, String customer){
+		return gt.handlePresentList(gpl, customer);
 	}
     
 	public ArrayList<IncreaseToMatchVO> getITM() {
@@ -65,5 +67,11 @@ public class ExternalServiceController implements ExternalService{
 		
 		System.out.println(!s.contains("specialGoods"));
 	}
+
+	public int addSpecialPackage(SpecialGoodsPromotionVO sp) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	
 }

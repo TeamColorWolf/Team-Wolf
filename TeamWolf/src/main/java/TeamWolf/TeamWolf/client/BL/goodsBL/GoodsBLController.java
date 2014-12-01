@@ -50,9 +50,6 @@ public class GoodsBLController implements GoodManService,GoodTService,GoodMonSer
 	public int goodsImportReject(ImportRejectListVO irl){
 		return gt.goodsImportReject(irl);
 	}
-	public int handlePresentList(PresentListVO p){
-		return gt.handlePresentList(p);
-	}
 	public int MonitoringWL(GoodsVO g){
 		return gmo.MonitoringWL(g);
 	}

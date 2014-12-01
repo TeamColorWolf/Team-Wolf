@@ -197,12 +197,13 @@ public class GoodsTrade {
 		return 0;
 	}
 	
-	public int handlePresentList(PresentListVO p){
+	public int handlePresentList(ArrayList<GiftForPromotionVO> gl, String customer){
 		
-		ArrayList<GoodsVO> pl=p.getPList();
-		for(GoodsVO g:pl){
+		
+		for(GiftForPromotionVO g:gl){
 			int r=0;
-			if((r=gmo.decreaseGoods(g))!=0){
+			GoodsVO gg=new GoodsVO("", "", g.GoodsName, "", "", ""+g.sendNumber, "", "", "", "", "");
+			if((r=gmo.decreaseGoods(gg))!=0){
 				return r;  //若操作失败返回错误类型
 			}; //逐个将被赠送商品库存数量减少
 		}
