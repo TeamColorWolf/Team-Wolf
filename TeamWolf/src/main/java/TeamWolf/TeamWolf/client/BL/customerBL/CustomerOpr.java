@@ -24,7 +24,7 @@ public class CustomerOpr implements CustomerOprBLservice{
 
 	public CustomerOpr(String IP){
 		URL = "rmi://" + IP + "/CustomerDATAservice";
-		this.getAllCustomerList();
+		this.CheckPO();
 	}
 	
 	public int Customerupdate(CustomerVO vo, CustomerVO newVO) {
@@ -45,7 +45,9 @@ public class CustomerOpr implements CustomerOprBLservice{
 	    try {
 			int success = cds.modCustomer(po, newpo);
 			if(success==0){
-			   //这里要接着写
+			   voList.set(voList.indexOf(vo),newVO);
+			   poList.set(poList.indexOf(po), newpo);
+			   return success;
 			}
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
@@ -96,9 +98,10 @@ public class CustomerOpr implements CustomerOprBLservice{
 			e.printStackTrace();
 		}
 		try {
+			int success = cds.delCustomer(po);
 			voList.remove(cvo);
 			poList.remove(new CustomerPO(cvo));
-			return cds.delCustomer(po);
+			return success;
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -146,6 +149,23 @@ public class CustomerOpr implements CustomerOprBLservice{
 		return voList;
 	}
 	
+	
+	public ArrayList<CustomerPO> CheckPO(){
+		try {
+			cds = (CustomerDATAservice)Naming.lookup(URL);
+			poList =cds.checkPO();
+		} catch (MalformedURLException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return poList;
+	}
 
 	public ArrayList<CustomerVO> checkCustomerVO(String keyWord, String num) {
 		// TODO 自动生成的方法存根
