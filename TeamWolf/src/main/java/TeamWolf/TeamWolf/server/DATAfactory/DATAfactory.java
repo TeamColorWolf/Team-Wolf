@@ -19,6 +19,7 @@ import TeamWolf.TeamWolf.client.DATAservice.userDATAservice.LoginDATAservice;
 import TeamWolf.TeamWolf.client.DATAservice.userDATAservice.UserDATAservice;
 import TeamWolf.TeamWolf.client.po.financePO;
 import TeamWolf.TeamWolf.server.applicationDATA.SaleApplicationDATA;
+import TeamWolf.TeamWolf.server.applicationDATA.StockApplicationDATA;
 import TeamWolf.TeamWolf.server.financeDATA.financeDATA;
 import TeamWolf.TeamWolf.server.goodsDATA.GoodsData;
 import TeamWolf.TeamWolf.server.promotionDATA.PromotionDATA;
@@ -37,6 +38,7 @@ public class DATAfactory {
 	PromotionDATAservice promotion;
 	financeDATAservice finance;
 	CustomerDATAservice customer;
+	StockApplicationDATA stockApplication;
 	
 	public DATAfactory(){
 //		try {
@@ -52,9 +54,10 @@ public class DATAfactory {
 			login = new LoginDATA();
 			user = new UserDATA();
 			saleApp = new SaleApplicationDATA();
-			stock=new StockData();
-			goods=new GoodsData();
+			stock = new StockData();
+			goods = new GoodsData();
 			promotion = new PromotionDATA();
+			stockApplication = new StockApplicationDATA();
 		} catch (RemoteException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -68,6 +71,7 @@ public class DATAfactory {
 			Naming.rebind("stockDATAservice", stock);
 			Naming.rebind("goodsDATAservice", goods);
 			Naming.rebind("promotionDATAservice", promotion);
+			Naming.rebind("stockApplicationDATAservice", stockApplication);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

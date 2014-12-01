@@ -3,32 +3,19 @@ package TeamWolf.TeamWolf.client.po;
 import java.io.Serializable;
 
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
+import TeamWolf.TeamWolf.client.vo.IncreaseToMatchVO;
 
 public class IncreaseToMatchPO extends ApplicationPO implements Serializable {
 
-	 GoodsPO toIncrease;
+	 String toIncreaseInfo;
 		
-     public IncreaseToMatchPO(GoodsPO toIncrease){
-   	  this.toIncrease=toIncrease; 
+         
+     public IncreaseToMatchPO(IncreaseToMatchVO vo){
+    	 this.toIncreaseInfo=vo.getInfo();
      }
      
      public String getInfo(){
-   	  return toIncrease.getNumber()+" "+toIncrease.getName()+" "+toIncrease.getModel()+" "+toIncrease.getAmount();
+   	  return toIncreaseInfo;
      }
      
-     public String getNumber(){
-   	  return toIncrease.getNumber();
-     }
-     
-     public String getName(){
-   	  return toIncrease.getName();
-     }
-     
-     public String getModel(){
-   	  return toIncrease.getModel();
-     }
-     
-     public String getAmount(){
-   	  return ""+toIncrease.getAmount();
-     }
 }

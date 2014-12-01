@@ -11,7 +11,7 @@ public class DecreaseToMatchVO extends ApplicationVO{
       }
       
       public String getInfo(){
-    	  return toDecrease.getNumber()+" "+toDecrease.getName()+" "+toDecrease.getModel()+" "+toDecrease.getAmount();
+    	  return toDecrease.getNumber()+" "+toDecrease.getName()+" "+toDecrease.getModel()+" 报损数量"+toDecrease.getAmount();
       }
       
       public String getNumber(){

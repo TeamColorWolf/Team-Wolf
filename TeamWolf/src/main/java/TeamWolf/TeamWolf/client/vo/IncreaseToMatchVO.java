@@ -9,7 +9,7 @@ public class IncreaseToMatchVO extends ApplicationVO {
      }
      
      public String getInfo(){
-   	  return toIncrease.getNumber()+" "+toIncrease.getName()+" "+toIncrease.getModel()+" "+toIncrease.getAmount();
+   	  return toIncrease.getNumber()+" "+toIncrease.getName()+" "+toIncrease.getModel()+" 报溢数量"+toIncrease.getAmount();
      }
      
      public String getNumber(){
@@ -27,4 +27,5 @@ public class IncreaseToMatchVO extends ApplicationVO {
      public String getAmount(){
    	  return ""+toIncrease.getAmount();
      }
+     
 }

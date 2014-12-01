@@ -113,7 +113,7 @@ public class GoodsMonitor{
 			//商品报溢			
 			//调用ApplicationBL接口生成报溢单
 			    IncreaseToMatchVO itm=new IncreaseToMatchVO(toIncrease);
-			    //appController.submitIncreaseToMatch(itm);		
+			    appController.submitIncreaseToMatch(itm);		
 		}
 		else{
 			//返回错误类型
@@ -133,7 +133,7 @@ public class GoodsMonitor{
 			//调用ApplicationBL接口生成报损单
 			if(result==0){
 			     DecreaseToMatchVO dtm=new DecreaseToMatchVO(toDecrease);
-			     //appController.submitDecreaseToMatch(dtm);
+			     appController.submitDecreaseToMatch(dtm);
 			}
 			else{
 				return result;  //减少数量不成功（通信错误或库存不足）
