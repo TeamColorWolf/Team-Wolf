@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import TeamWolf.TeamWolf.client.BL.applicationBL.FinanceApplicationService;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOpr;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOprBLservice;
 import TeamWolf.TeamWolf.client.BL.financeBL.financeController;
@@ -28,6 +29,8 @@ public class PaymentPanel extends JPanel{
 	public static AccountBlservice service = null;
 	public static CustomerOprBLservice cusservice =null;
 	public OnePaymentPanel opp;
+	
+	FinanceApplicationService faservice = ApplicationPanel.faservice;
 	
 	JComboBox<String> CustomerBox = new JComboBox<String>();
 	JLabel CustomerLabel = new JLabel("客户");

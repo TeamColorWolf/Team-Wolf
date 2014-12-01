@@ -3,6 +3,10 @@ package TeamWolf.TeamWolf.client.GUI.financeUI;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+import TeamWolf.TeamWolf.client.BL.applicationBL.FinanceApplicationService;
+import TeamWolf.TeamWolf.client.BL.applicationBL.forFinance.FinanceApplicationController;
+import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.FinanceApplicationDATAservice;
+
 
 public class ApplicationPanel extends JPanel{
 
@@ -11,15 +15,18 @@ public class ApplicationPanel extends JPanel{
 	public static final int height = 540;
 	
 	JTabbedPane tab;
-	
 	PaymentPanel pp;
 	CashPanel cp;
 	ReceiptPanel rp;
+	
+	public static FinanceApplicationService faservice;
 	
 	public ApplicationPanel(String IP){
 		tab = new JTabbedPane(JTabbedPane.TOP);
 		tab.setSize(width, height);
 		tab.setVisible(true);
+		
+		faservice = new FinanceApplicationController(IP);
 		
 		pp = new PaymentPanel(IP);
 		cp = new CashPanel(IP);

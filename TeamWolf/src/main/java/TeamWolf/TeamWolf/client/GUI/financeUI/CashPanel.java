@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import TeamWolf.TeamWolf.client.BL.applicationBL.FinanceApplicationService;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOpr;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOprBLservice;
 import TeamWolf.TeamWolf.client.BL.financeBL.financeController;
@@ -35,6 +36,8 @@ public class CashPanel extends JPanel{
 	JLabel AddLabel = new JLabel("总额");
 	JTextField NoteText = new JTextField();
 	JTextField AddText = new JTextField();
+	
+	FinanceApplicationService faservice = ApplicationPanel.faservice;
 	
 	JButton ensure = new JButton("确认");
 	JButton cancel = new JButton("取消");
