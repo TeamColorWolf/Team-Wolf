@@ -16,14 +16,14 @@ public class ApplicationPanel extends JPanel{
 	CashPanel cp;
 	ReceiptPanel rp;
 	
-	public ApplicationPanel(){
+	public ApplicationPanel(String IP){
 		tab = new JTabbedPane(JTabbedPane.TOP);
 		tab.setSize(width, height);
 		tab.setVisible(true);
 		
 		pp = new PaymentPanel();
 		cp = new CashPanel();
-		rp = new ReceiptPanel();
+		rp = new ReceiptPanel(IP);
 		
 		tab.add(rp,"制定收款单");
 		tab.add(pp,"制定付款单");

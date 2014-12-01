@@ -7,7 +7,9 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.DATAservice.customerDATAservice.CustomerDATAservice;
+import TeamWolf.TeamWolf.client.DATAservice.financeDATAservice.financeDATAservice;
 import TeamWolf.TeamWolf.client.po.CustomerPO;
+import TeamWolf.TeamWolf.client.po.financePO;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 
 public class CustomerOpr implements CustomerOprBLservice{
@@ -25,7 +27,30 @@ public class CustomerOpr implements CustomerOprBLservice{
 	}
 	
 	public int Customerupdate(CustomerVO vo, CustomerVO newVO) {
-		// TODO 自动生成的方法存根
+		try {
+			cds = (CustomerDATAservice)Naming.lookup(URL);
+		} catch (MalformedURLException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}	
+		CustomerPO po = new CustomerPO(vo);
+	    CustomerPO newpo = new CustomerPO(newVO);
+	    try {
+			int success = cds.modCustomer(po, newpo);
+			if(success==0){
+			   //这里要接着写
+			}
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+	    
 		return 0;
 	}
 
@@ -44,6 +69,8 @@ public class CustomerOpr implements CustomerOprBLservice{
 			e.printStackTrace();
 		}
 		try {
+			poList.add(new CustomerPO(vo));
+			voList.add(vo);
 			return cds.addCustomer(po);
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
@@ -67,6 +94,8 @@ public class CustomerOpr implements CustomerOprBLservice{
 			e.printStackTrace();
 		}
 		try {
+			voList.remove(cvo);
+			poList.remove(new CustomerPO(cvo));
 			return cds.delCustomer(po);
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块

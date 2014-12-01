@@ -43,7 +43,7 @@ public class FinanceFrame extends JFrame{
 		tab.setSize(width, height);
 		
 		accountpanel = new AccountPanel();
-		apppanel = new ApplicationPanel();
+		apppanel = new ApplicationPanel(IP);
 		evepanel = new EventPanel();
 		inipanel = new INIPanel();
 		evpanel = new EventViewPanel();
