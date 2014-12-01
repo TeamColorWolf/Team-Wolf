@@ -34,6 +34,7 @@ public class ExternalServiceController implements ExternalService{
 
 	public int addSpecialPackage(SpecialGoodsPromotionVO sp) {
 		// TODO Auto-generated method stub
+		
 		return 0;
 	}
     
@@ -45,6 +46,16 @@ public class ExternalServiceController implements ExternalService{
 	public ArrayList<DecreaseToMatchVO> getDTM() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public static void main(String[] args){
+		
+		ExternalServiceController esc=new ExternalServiceController("114.212.42.159");
+		ArrayList<TypeVO> typeList=esc.getLeaveType();
+		for(TypeVO t: typeList){
+			
+			System.out.println(t.getName());
+		}
 	}
 	
 }

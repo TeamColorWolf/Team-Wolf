@@ -44,7 +44,7 @@ public class StockShowPane extends JPanel implements ItemListener, ActionListene
 	JScrollPane SSAContainer;
 	JButton checkStock;
 	JButton daliyStock;
-		
+	 	
 	public StockShowPane(String iP) {
 		// TODO Auto-generated constructor stub
 		Calendar c=Calendar.getInstance();

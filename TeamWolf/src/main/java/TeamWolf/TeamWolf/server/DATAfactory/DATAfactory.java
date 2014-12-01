@@ -43,13 +43,12 @@ public class DATAfactory {
 	public DATAfactory(){
 //		try {
 //			Registry registry = LocateRegistry.createRegistry(1099);
-//		} catch (RemoteException e2) {
+//			} catch (RemoteException e2) {
 //			// TODO Auto-generated catch block
 //			e2.printStackTrace();
 //		}
 		
 		try {
-			customer = new CustomerDATA();
 			finance = new financeDATA();
 			login = new LoginDATA();
 			user = new UserDATA();
@@ -58,6 +57,7 @@ public class DATAfactory {
 			goods = new GoodsData();
 			promotion = new PromotionDATA();
 			stockApplication = new StockApplicationDATA();
+			customer = new CustomerDATA();
 		} catch (RemoteException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
