@@ -23,7 +23,17 @@ public class AppPane extends JPanel  {
 	GoodsBLController gbcontroller;
 	
 	JTabbedPane back;
+	
+	JButton refreshITM;
+	JPanel ITMOprArea;
+	JScrollPane ITMContainer;
+	JTextArea ITMArea;
 	JPanel ITMP;
+	
+	JButton refreshDTM;
+	JPanel DTMOprArea;
+	JScrollPane DTMContainer;
+	JTextArea DTMArea;
 	JPanel DTMP;
 	
 	JButton refresh;
@@ -66,6 +76,14 @@ public class AppPane extends JPanel  {
 			}
 		});
 		WOprArea.add(refresh);
+	}
+	
+	public void initialITMP(){
+		
+	}
+	
+	public void initialDTMP(){
+		
 	}
 
 	public void initialPane(){
