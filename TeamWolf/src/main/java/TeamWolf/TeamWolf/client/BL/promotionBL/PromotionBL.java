@@ -223,6 +223,18 @@ public class PromotionBL{
 		return null;
 	}
 	
+	public ArrayList<SpecialGoodsPromotionVO> specialGoodsPackage() {
+		ArrayList<SpecialGoodsPromotionVO> list = new ArrayList<SpecialGoodsPromotionVO>();
+		if(voList != null){
+			for(int i = 0; i < voList.size(); i++){
+				if(voList.get(i).type == PromotionTypeVO.specialGoods){
+					list.add((SpecialGoodsPromotionVO)voList.get(i));
+				}
+			}
+		}
+		return list;
+	}
+	
 	private String creatPromotionNumber(PromotionVO vo){
 		int max = 0;
 		for(int i = 0; i < voList.size(); i++){

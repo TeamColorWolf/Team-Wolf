@@ -12,7 +12,9 @@ import TeamWolf.TeamWolf.client.po.CustomerPO;
  * 客户属性:编号、分类（进货商、销售商）、级别（五级，一级普通用户，五级VIP客户）、姓名、电话、地址、邮编、电子邮箱、应收额度（允许客户欠款的上限）
  *       应收、应付、默认业务员
  */
+
 public class CustomerVO implements Serializable {
+
 	
 	private String num;
 	private String kind;

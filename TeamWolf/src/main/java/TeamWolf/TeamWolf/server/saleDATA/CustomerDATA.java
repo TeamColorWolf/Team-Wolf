@@ -20,7 +20,7 @@ public class CustomerDATA extends UnicastRemoteObject implements CustomerDATAser
 		super();
 		// TODO Auto-generated constructor stub
 		getList();
-		
+
 		if(list == null){
 			list = new ArrayList<CustomerPO>();
 		}
