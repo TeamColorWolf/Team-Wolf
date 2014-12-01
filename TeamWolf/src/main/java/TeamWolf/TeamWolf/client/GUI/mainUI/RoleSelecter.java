@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 
 import TeamWolf.TeamWolf.client.GUI.financeUI.FinanceFrame;
 import TeamWolf.TeamWolf.client.GUI.manageUI.ManageFrame;
+import TeamWolf.TeamWolf.client.GUI.stockUI.StockFrame;
 import TeamWolf.TeamWolf.client.GUI.userUI.AdminFrame;
 import TeamWolf.TeamWolf.client.vo.UserType;
 import TeamWolf.TeamWolf.client.vo.UserVO;
@@ -17,6 +18,7 @@ public class RoleSelecter {
 	public static int roleSelect(UserVO user, String IP){
 		if(user.power == UserType.库存管理员){
 			//打开库存管理员界面
+			frame = new StockFrame(IP, user);
 		}
 		else if(user.power == UserType.销售人员 || user.power == UserType.销售经理){
 			//打开销售人员界面,2为普通销售人员， 3为销售经理
