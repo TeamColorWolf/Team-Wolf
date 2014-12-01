@@ -1,6 +1,5 @@
 package TeamWolf.TeamWolf.client.BL.promotionBL;
 
-import TeamWolf.TeamWolf.client.vo.ImportListVO;
 import TeamWolf.TeamWolf.client.vo.SaleListVO;
 /**
  * 
@@ -15,14 +14,8 @@ public class PromotionForSaleController implements PromotionForSaleService{
 		b = new PromotionForOther(IP);
 	}
 	
-	public SaleListVO adaptPromotionForSaleList(SaleListVO vo) {
+	public double adaptPromotionForSaleList(SaleListVO vo) {
 		// TODO Auto-generated method stub
 		return b.adaptPromotionForSaleList(vo);
 	}
-
-	public ImportListVO adaptPromotionForImportList(ImportListVO vo) {
-		// TODO Auto-generated method stub
-		return b.adaptPromotionForImportList(vo);
-	}
-
 }
