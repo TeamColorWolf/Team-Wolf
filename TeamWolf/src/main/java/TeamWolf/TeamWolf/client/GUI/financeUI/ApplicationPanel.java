@@ -21,8 +21,8 @@ public class ApplicationPanel extends JPanel{
 		tab.setSize(width, height);
 		tab.setVisible(true);
 		
-		pp = new PaymentPanel();
-		cp = new CashPanel();
+		pp = new PaymentPanel(IP);
+		cp = new CashPanel(IP);
 		rp = new ReceiptPanel(IP);
 		
 		tab.add(rp,"制定收款单");

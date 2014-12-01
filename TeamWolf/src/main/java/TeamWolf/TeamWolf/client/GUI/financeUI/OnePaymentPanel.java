@@ -17,9 +17,9 @@ import TeamWolf.TeamWolf.client.BL.applicationBL.FinanceApplicationService;
 import TeamWolf.TeamWolf.client.BLservice.financeBLservice.AccountBlservice;
 import TeamWolf.TeamWolf.client.vo.financeVO;
 
-public class OneRecieptPanel extends JPanel{
+public class OnePaymentPanel extends JPanel{
 	
-	AccountBlservice service = ReceiptPanel.service;
+	AccountBlservice service = PaymentPanel.service;
 	
 	int MoneyNum = 0;
 	
@@ -51,7 +51,7 @@ public class OneRecieptPanel extends JPanel{
 	private final static int Lgap = 80;
 	private final static int left = 130;
 	
-	public OneRecieptPanel(){
+	public OnePaymentPanel(){
 		panel = new JPanel();
 		financeList = service.checkVO();
 		
