@@ -21,7 +21,7 @@ public class CustomerOpr implements CustomerOprBLservice{
 	ArrayList<CustomerPO> poList;
 
 	public CustomerOpr(String IP){
-		
+		URL = "rmi://" + IP + "/CustomerDATAservice";
 	}
 	
 	public int Customerupdate(CustomerVO vo, CustomerVO newVO) {

@@ -2,6 +2,7 @@ package TeamWolf.TeamWolf.client.GUI.saleUI;
 
 import java.util.ArrayList;
 
+import TeamWolf.TeamWolf.client.po.CustomerPO;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
 import TeamWolf.TeamWolf.client.vo.ImportListVO;
@@ -20,16 +21,25 @@ public class TestMain {
 	
 	public static ArrayList<CustomerVO> getCustVOListTEST(){
 		ArrayList<CustomerVO> custList = new ArrayList<CustomerVO>();
-		CustomerVO cvo1 = new CustomerVO("0001", "进货商", "1", "WHJ", "", "", "", "", "", "", "", "");
-		CustomerVO cvo2 = new CustomerVO("0002", "销售商", "1", "习近平", "", "", "", "", "", "", "", "");
-		CustomerVO cvo3 = new CustomerVO("0003", "进货商", "1", "WKS", "", "", "", "", "", "", "", "");
-		CustomerVO cvo4 = new CustomerVO("0004", "进货商", "1", "XYJ", "", "", "", "", "", "", "", "");
-		CustomerVO cvo5 = new CustomerVO("0005", "销售商", "1", "GYQ", "", "", "", "", "", "", "", "");
+		CustomerVO cvo1 = new CustomerVO("0001", "进货商", "1", "WHJ", "13311111111", "1B248", "210046", "whj@qq.com", "5000", "0", "0", "业务员1");
+		CustomerVO cvo2 = new CustomerVO("0002", "销售商", "1", "习近平", "13911111111", "中南海", "100000", "xjp@hehe.com", "999999", "0", "0", "业务员2");
+		CustomerVO cvo3 = new CustomerVO("0003", "进货商", "1", "WKS", "15611111111", "1B248", "210046", "wks@nju.com", "2000", "0", "0", "业务员3");
+		CustomerVO cvo4 = new CustomerVO("0004", "进货商", "1", "XYJ", "15811111111", "1B248", "210046", "xyj@163.com", "3000", "0", "0", "业务员4");
+		CustomerVO cvo5 = new CustomerVO("0005", "销售商", "1", "GYQ", "15911111111", "1B235", "210046", "gyq@hehe.com", "4000", "0", "0", "业务员5");
 		custList.add(cvo1);
 		custList.add(cvo2);
 		custList.add(cvo3);
 		custList.add(cvo4);
 		custList.add(cvo5);
+		return custList;
+	}
+	
+	public static ArrayList<CustomerPO> getCustPOListTest(ArrayList<CustomerVO> cvoList){
+		ArrayList<CustomerPO> custList = new ArrayList<CustomerPO>();
+		for (int i = 0; i < cvoList.size(); i++) {
+			CustomerPO cpo = new CustomerPO(cvoList.get(i));
+			custList.add(cpo);
+		}
 		return custList;
 	}
 	

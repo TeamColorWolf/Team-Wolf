@@ -4,7 +4,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.zip.ZipFile;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -13,6 +13,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOpr;
+import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOprBLservice;
+import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.UserVO;
 
 /**
@@ -21,6 +24,11 @@ import TeamWolf.TeamWolf.client.vo.UserVO;
  *
  */
 public class CustomerAddPanel extends JPanel{
+	
+	CustomerOprBLservice customerLogic;
+	
+	CustomerVO customer;
+	ArrayList<CustomerVO> customerList;
 
 	//组件们
 	JComboBox<String> kindBox;
@@ -83,7 +91,12 @@ public class CustomerAddPanel extends JPanel{
 	private static final Dimension Label_Size = new Dimension(Label_W, Label_H);
 		
 	public CustomerAddPanel(UserVO user, String ip) {
-		// TODO Auto-generated constructor stub
+		customerLogic = new CustomerOpr(ip);
+		customerList = customerLogic.getAllCustomerList();
+		if(customerList == null){
+			customerList = new ArrayList<CustomerVO>();
+		}
+		
 		//设置布局方式
 		this.setLayout(null);
 		//设置大小
@@ -239,6 +252,23 @@ public class CustomerAddPanel extends JPanel{
 	 * 添加按钮事件
 	 */
 	private void addBtnAction(){
-		
+		String num =  String.format("%05d", customerList.size());
+		String kind = (String) kindBox.getSelectedItem();
+		String level = (String)levelBox.getSelectedItem();
+		String name = nameField.getText();
+		String tel = telField.getText();
+		String address = addressField.getText();
+		String zipCode = zipCodeField.getText();
+		String email = emailField.getText();
+		String topLimit = topLimitField.getText();
+		String receive = "0";
+		String pay = "0";
+		String businessMan = (String) salesManBox.getSelectedItem();
+		customer = new CustomerVO(num, kind, level, name, tel, address,
+				zipCode, email, topLimit, receive, pay, businessMan);
+		System.out.println("addsuccess");
+		customerLogic.Customeradd(customer);
 	}
+	
+	
 }

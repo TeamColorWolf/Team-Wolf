@@ -1,5 +1,6 @@
 package TeamWolf.TeamWolf.client.GUI.saleUI;
 
+import java.awt.Checkbox;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,7 +8,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
+import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -65,7 +68,6 @@ public class ImportRejectListPanel extends JPanel{
 	 * 组件间距
 	 */
 	private static final int Xgap = 100;
-	private static final int Ygap = 30;
 	
 	/**
 	 * 字体
@@ -214,6 +216,7 @@ public class ImportRejectListPanel extends JPanel{
 		tModel_import = (DefaultTableModel) importListTable.getModel();
 		
 		for (int i = 0; i < importList.size(); i++) {
+			
 			ImportListVO ivo = importList.get(i);
 
 			Object[] data = new Object[5];

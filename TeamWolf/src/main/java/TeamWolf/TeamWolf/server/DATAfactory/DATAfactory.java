@@ -39,12 +39,12 @@ public class DATAfactory {
 	CustomerDATAservice customer;
 	
 	public DATAfactory(){
-		try {
-			Registry registry = LocateRegistry.createRegistry(1099);
-		} catch (RemoteException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		}
+//		try {
+//			Registry registry = LocateRegistry.createRegistry(1099);
+//		} catch (RemoteException e2) {
+//			// TODO Auto-generated catch block
+//			e2.printStackTrace();
+//		}
 		
 		try {
 			customer = new CustomerDATA();
