@@ -20,11 +20,10 @@ public class CustomerDATA extends UnicastRemoteObject implements CustomerDATAser
 		super();
 		// TODO Auto-generated constructor stub
 		getList();
-		System.out.println("gyqgyqgyqgyq   " + list.size());
 		if(list == null){
 			list = new ArrayList<CustomerPO>();
 		}
-		
+		System.out.println("gyqgyqgyqgyq   " + list.size());
 	}
 	
 	public int addCustomer(CustomerPO cpo) throws RemoteException {

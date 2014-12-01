@@ -21,6 +21,7 @@ import TeamWolf.TeamWolf.client.BLservice.saleBLservice.SaleBLservice;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
 import TeamWolf.TeamWolf.client.vo.ImportListVO;
+import TeamWolf.TeamWolf.client.vo.TypeVO;
 import TeamWolf.TeamWolf.client.vo.UserVO;
 
 /**
@@ -221,8 +222,21 @@ public class ImportListPanel extends JPanel{
 		String storage = (String) storageBox.getSelectedItem();
 		String operator = this.operator;
 		String remark = remarkArea.getText();
-		ArrayList<GoodsVO> goodsList = new ArrayList<GoodsVO>();
 		
+		ArrayList<GoodsVO> goodsList = new ArrayList<GoodsVO>();
+		ArrayList<TypeVO> typeList = goodschoose.typeList;
+		for (int i = 0; i < goodschoose.giftNum; i++) {
+			for (int j = 0; j < typeList.size(); j++) {
+				if(goodschoose.goodsTypeListBox.get(i).getSelectedItem().equals(typeList.get(j).getName())){
+					for (int k = 0; k < typeList.get(j).getAllLeave().size(); k++) {
+						if(goodschoose.goodsListBox.get(i).getSelectedItem().equals(typeList.get(j).getAllLeave().get(k).getName())){
+							GoodsVO gvo = typeList.get(j).getAllLeave().get(k);
+							gvo.setAmount(Integer.parseInt(goodschoose.goodsPriceListField.get(i).getText()));
+						}
+					}
+				}
+			}
+		}
 		
 		
 		

@@ -24,6 +24,7 @@ public class CustomerOpr implements CustomerOprBLservice{
 
 	public CustomerOpr(String IP){
 		URL = "rmi://" + IP + "/CustomerDATAservice";
+		this.getAllCustomerList();
 	}
 	
 	public int Customerupdate(CustomerVO vo, CustomerVO newVO) {
@@ -69,9 +70,10 @@ public class CustomerOpr implements CustomerOprBLservice{
 			e.printStackTrace();
 		}
 		try {
+			int success = cds.addCustomer(po);
 			poList.add(new CustomerPO(vo));
 			voList.add(vo);
-			return cds.addCustomer(po);
+			return success;
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -130,7 +132,7 @@ public class CustomerOpr implements CustomerOprBLservice{
 	public ArrayList<CustomerVO> getAllCustomerList(){
 		try {
 			cds = (CustomerDATAservice)Naming.lookup(URL);
-			poList = cds.checkPO();
+			voList = cds.checkVO();
 		} catch (MalformedURLException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -143,6 +145,7 @@ public class CustomerOpr implements CustomerOprBLservice{
 		}
 		return voList;
 	}
+	
 
 	public ArrayList<CustomerVO> checkCustomerVO(String keyWord, String num) {
 		// TODO 自动生成的方法存根
