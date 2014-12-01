@@ -5,6 +5,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import TeamWolf.TeamWolf.client.BL.promotionBL.PromotionForStockController;
 import TeamWolf.TeamWolf.client.BLservice.stockBLservice.GoodManService;
 import TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice.GoodsDataService;
 import TeamWolf.TeamWolf.client.DATAservice.stockDATAservice.StockDataService;
@@ -23,6 +24,7 @@ public class GoodsManager {
 	GoodsBLAssistant assistant;
 	GoodsDataService GdataService;
 	StockDataService SdataService;
+    PromotionForStockController promoteController;
 	
 	public GoodsManager(String IP){
 		
@@ -30,6 +32,8 @@ public class GoodsManager {
 		URL2="rmi://"+IP+"/stockDATAservice";
 		
 		assistant=new GoodsBLAssistant(URL1);
+		promoteController=new PromotionForStockController(IP);
+		
 		try {
 			
 			GdataService=(GoodsDataService)Naming.lookup(URL1);
@@ -187,7 +191,13 @@ public class GoodsManager {
 	public GoodsListVO shoGoods(){
 		
 		GoodsListVO gl=new GoodsListVO();
+		ArrayList<SpecialGoodsPromotionVO> sgl=promoteController.specialGoodsPackage();
+		
 		try {
+			for(SpecialGoodsPromotionVO sg: sgl){
+				gl.addGood(new GoodsVO("0000", "特价包", "0000"+sg.number, "特价包"+sg.number, "s"+sg.number, "", "", ""+sg.totalPrice, "", "", ""));
+			}
+			
 			ArrayList<GoodsPO> agl=GdataService.getGoodList();
 			for(GoodsPO g:agl){
 				//逐个加入 gl中

@@ -9,6 +9,7 @@ import TeamWolf.TeamWolf.client.po.SpecialGoodsPromotionPO;
  *
  */
 public class SpecialGoodsPromotionVO extends PromotionVO{
+	
 	public ArrayList<GiftForPromotionVO> list;
 	public double totalPrice;
 	
