@@ -6,6 +6,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.BL.applicationBL.forStock.StockApplicationController;
+import TeamWolf.TeamWolf.client.BL.promotionBL.PromotionForStockController;
 import TeamWolf.TeamWolf.client.BLservice.stockBLservice.GoodTService;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.ApproveDATAservice;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.StockApplicationDATAservice;
@@ -27,6 +28,7 @@ public class GoodsTrade {
 	GoodsDataService dataService;
 	ApproveDATAservice appRead;
 	StockApplicationController appController;
+	PromotionForStockController promoteController;
 	
 	public GoodsTrade(String IP){
 		
@@ -34,6 +36,8 @@ public class GoodsTrade {
 		
 		assistant=new GoodsBLAssistant(URL1);
 		gmo=new GoodsMonitor(IP);
+		promoteController=new PromotionForStockController(IP);
+		
 		try {
 			dataService=(GoodsDataService)Naming.lookup(URL1);
 			//appRead=(ApproveDATAservice)Naming.lookup(URL2);
@@ -56,14 +60,48 @@ public class GoodsTrade {
 		//逐个修改库存数量，最近售价
 		try{
 		for(GoodsVO g: goodsSL){
-			GoodsPO toSale=dataService.finGood(g.getNumber());
-			if(toSale.getAmount()>=g.getAmount()){
-			    toSale.setAmount(toSale.getAmount()-g.getAmount());
-			    toSale.setLatestExprice(g.getExprice());
-			    dataService.updGood(toSale);
+			
+			if(!g.getName().contains("specialGoods")){
+			      GoodsPO toSale=dataService.finGood(g.getNumber());
+			      if(toSale.getAmount()>=g.getAmount()){
+			           toSale.setAmount(toSale.getAmount()-g.getAmount());
+			           toSale.setLatestExprice(g.getExprice());
+			           dataService.updGood(toSale);
+			      }
+			      else{
+				        //返回错误类型:库存不足
+			      }
 			}
 			else{
-				//返回错误类型:库存不足
+				  ArrayList<SpecialGoodsPromotionVO> sgl=promoteController.specialGoodsPackage();
+				  boolean existed=false;
+				  int index=0;
+				  for(SpecialGoodsPromotionVO sg: sgl){
+					  if(g.getName().equals(sg.number)){
+						  existed=true;
+						  index=sgl.indexOf(sg);
+						  break;
+					  }
+				  }
+				  if(existed==true){
+					  
+					  SpecialGoodsPromotionVO sg=sgl.get(index);
+					  ArrayList<GiftForPromotionVO> gl=sg.list;
+					  for(GiftForPromotionVO gp: gl){
+						  GoodsPO toSale=dataService.finGood(gp.GoodsName);
+						  if(toSale.getAmount()>=(gp.sendNumber*g.getAmount())){
+					           toSale.setAmount(toSale.getAmount()-gp.sendNumber*g.getAmount());					           
+					           dataService.updGood(toSale);
+					      }
+					      else{
+						        //返回错误类型:库存不足
+					      }
+					  }
+				  }
+				  else{					 
+					   //返回错误类型： 该特价包已经不在了
+				  }
+				  
 			}
 		}
 		}catch(RemoteException e){
