@@ -108,4 +108,15 @@ public class GoodsBLController implements GoodManService,GoodTService,GoodMonSer
 		
 		return gmo.getAlarmList();
 	}
+	
+	public static void main(String[] args){
+		
+		GoodsBLController gbc=new GoodsBLController("192.168.1.102");
+		GoodsListVO gl=gbc.shoGoods();
+		ArrayList<GoodsVO> ggl=gl.gList;
+		
+		for(GoodsVO g :ggl){
+			System.out.println(g.getNumber()+g.getName());
+		}
+	}
 }

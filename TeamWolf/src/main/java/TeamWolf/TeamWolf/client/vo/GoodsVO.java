@@ -52,8 +52,8 @@ public class GoodsVO {
 	
 	public GoodsVO(GoodsPO g) {
 		// TODO Auto-generated constructor stub
-		parentNumber=g.getParent().getNumber();
-		parent=g.getParent().getName();
+		parentNumber=g.getParentNumber();
+		parent=g.getParentName();
 		number=g.getNumber();
 		name=g.getName();
 		model=g.getModel();

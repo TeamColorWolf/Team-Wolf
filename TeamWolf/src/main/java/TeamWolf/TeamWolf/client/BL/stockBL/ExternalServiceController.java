@@ -55,10 +55,10 @@ public class ExternalServiceController implements ExternalService{
 		
 		for(TypeVO t: typeList){
 			
-			//System.out.println(t.getName());
+			System.out.println(t.getName());
 			ArrayList<GoodsVO> gl=t.getAllLeave();
-			//for(GoodsVO g: gl)
-				//System.out.println(g.getName());
+		    for(GoodsVO g: gl)
+				System.out.println(g.getName());
 		}
 		
 		String s="specialGoods";
