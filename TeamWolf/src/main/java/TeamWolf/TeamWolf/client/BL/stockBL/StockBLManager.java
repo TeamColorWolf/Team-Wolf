@@ -165,14 +165,16 @@ public class StockBLManager{
 		
 		ArrayList<TypeVO> leaveTypeL=new ArrayList<TypeVO>();
 		ArrayList<SpecialGoodsPromotionVO> sgl=promoteController.specialGoodsPackage();
+		
 		try {
 			ArrayList<TypePO> atl=dataService.shoTypeList();
 			for(TypePO t:atl){
 			    if(t.getName().equals("特价包")){
 			    	 TypeVO special=new TypeVO(t);
 			    	 for(SpecialGoodsPromotionVO sg: sgl){
-			    		 special.addLeave(new GoodsVO("0000", "特价包", "0000"+sg.number, "特价包"+sg.number, "s"+sg.number, "", "", ""+sg.totalPrice, "", "", ""));
+			    		 special.addLeave(new GoodsVO("0000", "特价包", "", sg.number, "", "", "", ""+sg.totalPrice, "", "", ""));
 			    	 }
+			    	 leaveTypeL.add(special);
 			    }
 			    else if(t.getC()==2){
 			    	 leaveTypeL.add(new TypeVO(t));

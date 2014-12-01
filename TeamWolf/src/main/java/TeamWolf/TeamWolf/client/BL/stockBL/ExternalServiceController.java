@@ -50,11 +50,15 @@ public class ExternalServiceController implements ExternalService{
 	
 	public static void main(String[] args){
 		
-		ExternalServiceController esc=new ExternalServiceController("114.212.42.159");
+		ExternalServiceController esc=new ExternalServiceController("192.168.1.102");
 		ArrayList<TypeVO> typeList=esc.getLeaveType();
+		
 		for(TypeVO t: typeList){
 			
 			System.out.println(t.getName());
+			ArrayList<GoodsVO> gl=t.getAllLeave();
+			for(GoodsVO g: gl)
+				System.out.println(g.getName());
 		}
 	}
 	
