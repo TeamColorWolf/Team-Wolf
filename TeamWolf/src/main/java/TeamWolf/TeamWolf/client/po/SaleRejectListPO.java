@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
+import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
 
 
 /**
@@ -60,44 +61,25 @@ public class SaleRejectListPO extends ApplicationPO{
 	String remark;
 
 	
-	public SaleRejectListPO(String number, CustomerPO customer, String salesman, String operator,
-			String storage, ArrayList<GoodsPO> goodsList, String discount, String coupon, String remark) {
-		this.number = number;
-		this.customer = customer;
-		this.salesman = salesman;
-		this.operator = operator;
-		this.storage = storage;
-		this.GoodsList = goodsList;
-		this.total = calTotal(goodsList);
-		this.totalAfterDiscount = calTotalAfterDiscount(total);
-		this.remark = remark;
-		
-		try {
-			this.discount = Double.parseDouble(discount);
-			this.coupon = Double.parseDouble(coupon);
-		} catch (Exception e) {
-			// TODO: 数据类型转换异常
+	public SaleRejectListPO(SaleRejectListVO srvo) {
+		this.number = srvo.number;
+		this.customer = new CustomerPO(srvo.getCustomer());
+		this.salesman = srvo.getSalesman();
+		this.operator = srvo.getOperator();
+		this.storage = srvo.getStorage();
+		this.total = srvo.getTotal();
+		this.totalAfterDiscount = srvo.getTotalAfterDiscount();
+		this.remark = srvo.getRemark();
+		this.discount = srvo.getDiscount();
+		this.coupon = srvo.getCoupon();
+		toGoodsPO(srvo.getGoodsList());
+	}
+	
+	private void toGoodsPO(ArrayList<GoodsVO> gvo) {
+		for (int i = 0; i < gvo.size(); i++) {
+			GoodsPO gpo = new GoodsPO(gvo.get(i));
+			GoodsList.add(gpo);
 		}
-	}
-	
-	/**
-	 * 计算折让前总额
-	 * @param goodsList
-	 * @return
-	 */
-	private double calTotal(ArrayList<GoodsPO> goodsList){
-		//TODO: 计算折让前总额的方法
-		return 0;
-	}
-	
-	/**
-	 * 计算折让后总额
-	 * @param total
-	 * @return
-	 */
-	private double calTotalAfterDiscount(double total){
-		//TODO 计算折让后总额的方法
-		return 0;
 	}
 
 	public CustomerPO getCustomer() {

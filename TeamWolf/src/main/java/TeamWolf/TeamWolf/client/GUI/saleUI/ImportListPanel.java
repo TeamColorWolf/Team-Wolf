@@ -228,6 +228,7 @@ public class ImportListPanel extends JPanel{
 		String storage = (String) storageBox.getSelectedItem();
 		String operator = this.operator;
 		String remark = remarkArea.getText();
+		String total = totalField.getText();
 		
 		ArrayList<GoodsVO> goodsList = new ArrayList<GoodsVO>();
 		ArrayList<TypeVO> typeList = goodschoose.typeList;
@@ -235,9 +236,11 @@ public class ImportListPanel extends JPanel{
 			for (int j = 0; j < typeList.size(); j++) {
 				if(goodschoose.goodsTypeListBox.get(i).getSelectedItem().equals(typeList.get(j).getName())){
 					for (int k = 0; k < typeList.get(j).getAllLeave().size(); k++) {
-						if(goodschoose.goodsListBox.get(i).getSelectedItem().equals(typeList.get(j).getAllLeave().get(k).getName())){
+						if(goodschoose.goodsListBox.get(i).getSelectedItem().equals(
+								typeList.get(j).getAllLeave().get(k).getName() + " " + 
+						           typeList.get(j).getAllLeave().get(k).getModel())){
 							GoodsVO gvo = typeList.get(j).getAllLeave().get(k);
-							gvo.setAmount(Integer.parseInt(goodschoose.goodsPriceListField.get(i).getText()));
+							gvo.setAmount(Integer.parseInt(goodschoose.numListField.get(i).getText()));
 							goodsList.add(gvo);
 						}
 					}
@@ -245,9 +248,12 @@ public class ImportListPanel extends JPanel{
 			}
 		}
 		
+		//TODO：TEST
+		for (int i = 0; i < goodsList.size(); i++) {
+			System.out.println(goodsList.get(i).getName() + " " + goodsList.get(i).getModel() + " " + goodsList.get(i).getAmount()); 
+		}
 		
-		
-		ImportListVO importVO = new ImportListVO(number, customer, storage, operator, goodsList, remark);
+		ImportListVO importVO = new ImportListVO(number, customer, storage, operator, goodsList, remark, total);
 		importVO.condition = 0;
 		
 		saleLogic.createImport(importVO);
@@ -260,11 +266,13 @@ public class ImportListPanel extends JPanel{
 	 */
 	private CustomerVO getAcustomer(String name){
 		CustomerVO cvo = null;
+		System.out.println("客户单列表  " + custList.size());
 		for (int i = 0; i < custList.size(); i++) {
-			if(custList.get(i).equals(name) && custList.get(i).getKind().equals("进货商")){
+			if(custList.get(i).getName().equals(name) && custList.get(i).getKind().equals("进货商")){
 				cvo = custList.get(i);
 			}
 		}
+		System.out.println(cvo.getNum() + " " + cvo.getName());
 		return cvo;
 	}
 	

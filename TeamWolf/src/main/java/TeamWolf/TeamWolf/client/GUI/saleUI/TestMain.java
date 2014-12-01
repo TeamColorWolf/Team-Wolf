@@ -46,9 +46,9 @@ public class TestMain {
 	public static ArrayList<ImportListVO> getImportListTEST(){
 		ArrayList<ImportListVO> importList = new ArrayList<ImportListVO>();
 		CustomerVO cvo1 = new CustomerVO("0001", "进货商", "1", "WHJ", "", "", "", "", "", "", "", "");
-		ImportListVO imp1 = new ImportListVO("0001", cvo1, "", "", getGoodsListTEST1(), "呵呵呵");
-		ImportListVO imp2 = new ImportListVO("0002", cvo1, "", "", getGoodsListTEST2(), "草草草");
-		ImportListVO imp3 = new ImportListVO("0003", cvo1, "", "", getGoodsListTEST3(), "呃呃呃");
+		ImportListVO imp1 = new ImportListVO("0001", cvo1, "", "", getGoodsListTEST1(), "呵呵呵", "0");
+		ImportListVO imp2 = new ImportListVO("0002", cvo1, "", "", getGoodsListTEST2(), "草草草", "0");
+		ImportListVO imp3 = new ImportListVO("0003", cvo1, "", "", getGoodsListTEST3(), "呃呃呃", "0");
 		importList.add(imp1);
 		importList.add(imp2);
 		importList.add(imp3);

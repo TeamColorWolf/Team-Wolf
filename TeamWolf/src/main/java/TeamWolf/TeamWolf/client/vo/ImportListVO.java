@@ -39,7 +39,7 @@ public class ImportListVO extends ApplicationVO{
 	double total;
 
 	public ImportListVO(String number, CustomerVO customer, String storage, String operator,
-			ArrayList<GoodsVO> goodsList, String remark) {
+			ArrayList<GoodsVO> goodsList, String remark, String total) {
 		// TODO Auto-generated constructor stub
 		this.number = number;
 		this.customer = customer;
@@ -47,7 +47,7 @@ public class ImportListVO extends ApplicationVO{
 		this.operator = operator;
 		this.GoodsList = goodsList;
 		this.remark = remark;
-		this.total = calTotal(goodsList);
+		this.total = Double.parseDouble(total);
 	}
 	
 	public ImportListVO(ImportListPO ipo){
@@ -60,18 +60,6 @@ public class ImportListVO extends ApplicationVO{
 		this.total = ipo.getTotal();
 	}
 	
-	/**
-	 * 计算总额
-	 * @param goodsList
-	 * @return
-	 */
-	private double calTotal(ArrayList<GoodsVO> goodsList){
-		double totalPrice = 0.0;
-		for (int i = 0; i < goodsList.size(); i++) {
-			totalPrice = totalPrice + goodsList.get(i).getImprice() * goodsList.get(i).getAmount();
-		}
-		return totalPrice;
-	}
 	
 	private ArrayList<GoodsVO> tranToGoodsListVO(ArrayList<GoodsPO> goodsListPO){
 		ArrayList<GoodsVO> goodsList = new ArrayList<GoodsVO>();
