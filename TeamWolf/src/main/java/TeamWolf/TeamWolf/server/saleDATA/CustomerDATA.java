@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import TeamWolf.TeamWolf.client.DATAservice.customerDATAservice.CustomerDATAservice;
 import TeamWolf.TeamWolf.client.po.CustomerPO;
 import TeamWolf.TeamWolf.client.po.UserPO;
+import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.server.FileName;
 import TeamWolf.TeamWolf.server.FileOpr;
 
@@ -55,7 +56,15 @@ public class CustomerDATA extends UnicastRemoteObject implements CustomerDATAser
 
 	public ArrayList<CustomerPO> checkPO() throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		return list;
+	}
+	
+	public ArrayList<CustomerVO> checkVO() throws RemoteException{
+		ArrayList<CustomerVO> volist = new ArrayList<CustomerVO>();
+		for(int i=0;i<list.size();i++){
+			volist.set(i, new CustomerVO(list.get(i)));
+		}
+		return volist;		
 	}
 
 	public int modCustomer(CustomerPO po, CustomerPO newpo) throws RemoteException {
