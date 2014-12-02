@@ -172,7 +172,7 @@ public class StockBLManager{
 			    if(t.getName().equals("特价包")){
 			    	 TypeVO special=new TypeVO(t);
 			    	 for(SpecialGoodsPromotionVO sg: sgl){
-			    		 special.addLeave(new GoodsVO("0000", "特价包", "", sg.number, "", "", "", ""+sg.totalPrice, "", "", ""));
+			    		 special.addLeave(new GoodsVO("0000", "特价包", "", sg.number, "", "0", "0", ""+sg.totalPrice, "0", "0", "0"));
 			    	 }
 			    	 leaveTypeL.add(special);
 			    }

@@ -60,7 +60,7 @@ public class ExternalServiceController implements ExternalService{
 			System.out.println(t.getName());
 			ArrayList<GoodsVO> gl=t.getAllLeave();
 		    for(GoodsVO g: gl)
-				System.out.println(g.getName());
+				System.out.println(g.getName()+" "+g.getExprice());
 		}
 		
 		String s="specialGoods";

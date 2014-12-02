@@ -233,24 +233,30 @@ public class StockShowPane extends JPanel implements ItemListener, ActionListene
 
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		
+		/*stockInfoList=null;
+		stockInfoList=new Object[1][14];
+		for(int i=0;i<1;i++){
+			for(int j=0;j<14;j++){
+				stockInfoList[i][j]=""+j;
+			}
+		}*/
+		
+		GoodsStockListVO gsl=null;
+		
 		if(((JButton)e.getSource()).equals(daliyStock)){
 			
-			/*stockInfoList=null;
-			stockInfoList=new Object[1][14];
-			for(int i=0;i<1;i++){
-				for(int j=0;j<14;j++){
-					stockInfoList[i][j]=""+j;
-				}
-			}*/
+			gsl=gbcontroller.shoStockDaily();
 		  
 		}
 		else{
 			
 			int beginDate=beginYear*10000+beginMonth*100+beginDay;
 			int endDate=endYear*10000+endMonth*100+endDay;
-		    GoodsStockListVO gsl=gbcontroller.shoStockList(beginDate, endDate);
+		    gsl=gbcontroller.shoStockList(beginDate, endDate);
 		}
 		
+		   
 		   this.remove(SSAContainer);
 		   this.repaint();
 		   this.initialStockShoArea();
