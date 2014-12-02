@@ -61,8 +61,7 @@ public class ApplicationPanel extends JPanel{
 	}
 	
 	private void getContent(){
-		list = service.getUnsetApplicationList();//TODO 
-		System.out.println(list.size());
+		list = service.getUnsetApplicationList();
 		if(list == null || list.size() < 18){
 			content = new Object[18][4];
 		}

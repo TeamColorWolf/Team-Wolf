@@ -32,15 +32,15 @@ public class ApplicationBL {
 		if(n[0].equals("JHD")){//进货单
 			return new ImportListVO((ImportListPO)po);
 		}
-//		else if(n[0].equals("JHTHD")){//进货退货单
-//			return new ImportRejectListVO((ImportRejectListPO)po);
-//		}
-//		else if(n[0].equals("XSD")){//销售单
-//			return new SaleListVO((SaleListPO)po);
-//		}
-//		else if(n[0].equals("XSTHD")){//销售退货单
-//			return new SaleRejectListVO((SaleRejectListPO)po);
-//		}
+		else if(n[0].equals("JHTHD")){//进货退货单
+			return new ImportRejectListVO((ImportRejectListPO)po);
+		}
+		else if(n[0].equals("XSD")){//销售单
+			return new SaleListVO((SaleListPO)po);
+		}
+		else if(n[0].equals("XSTHD")){//销售退货单
+			return new SaleRejectListVO((SaleRejectListPO)po);
+		}
 		return null;
 	}
 	

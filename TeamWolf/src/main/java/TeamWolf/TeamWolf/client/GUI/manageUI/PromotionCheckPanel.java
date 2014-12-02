@@ -111,7 +111,7 @@ public class PromotionCheckPanel extends JPanel{
 			}
 			else if(type == PromotionTypeVO.specialGoods){
 				content[i][0] = "特价包";
-				content[i][2] = "包总价" + ((SpecialGoodsPromotionVO)list.get(i)).totalPrice;
+				content[i][2] = "包总价  " + ((SpecialGoodsPromotionVO)list.get(i)).totalPrice;
 			}
 		}
 	}

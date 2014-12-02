@@ -60,9 +60,9 @@ public class ApproveDATA extends UnicastRemoteObject implements ApproveDATAservi
 		ArrayList<ApplicationPO> list = new ArrayList<ApplicationPO>();
 		ArrayList<ApplicationPO> tempList;
 		tempList = this.getAllApplicationFromFile(FileName.importListFile);
-		for(int i = 0; i < tempList.size(); i++){
-			list.add(tempList.get(i));
-		}
+		arrayListCat(list, tempList);
+		tempList = this.getAllApplicationFromFile(FileName.importRejectListFile);
+		arrayListCat(list, tempList);
 		return list;
 	}
 	
@@ -82,6 +82,14 @@ public class ApproveDATA extends UnicastRemoteObject implements ApproveDATAservi
 			list = new ArrayList<ApplicationPO>();
 		}
 		return list;
+	}
+	
+	private void arrayListCat(ArrayList<ApplicationPO> to, ArrayList<ApplicationPO> from){
+		if(from != null){
+			for(int i = 0; i < from.size(); i++){
+				to.add(from.get(i));
+			}
+		}
 	}
 
 }
