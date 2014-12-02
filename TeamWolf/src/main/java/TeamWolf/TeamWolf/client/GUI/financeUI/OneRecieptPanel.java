@@ -191,7 +191,7 @@ public class OneRecieptPanel extends JPanel{
 	}
 	
 	
-	class AccountBoxListener implements ActionListener{
+	/*class AccountBoxListener implements ActionListener{
 		int index = -1;
 		public AccountBoxListener(int i){
 			super();
@@ -200,11 +200,11 @@ public class OneRecieptPanel extends JPanel{
 
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
-			setAccountsBox(AccountList.get(index));
+			//setAccountsBox(AccountList.get(index));
 		}
 
 		
-	}
+	}*/
 	private void setAccountsBox(JComboBox<String> accounts) {
 		accounts.removeAllItems();
 		for(int i=0;i<financeList.size();i++){
@@ -215,7 +215,7 @@ public class OneRecieptPanel extends JPanel{
 	public ArrayList<String> getTheAccount(){
 		ArrayList<String> list = new ArrayList<String>();
 		for(int i=0;i<MoneyNum;i++){
-			list.add(AccountString.getItemAt(AccountString.getSelectedIndex()));
+			list.add((String)AccountList.get(i).getSelectedItem());
 		}
 		return list;
 	}
@@ -234,7 +234,7 @@ public class OneRecieptPanel extends JPanel{
 		public void actionPerformed(ActionEvent arg0) {
 
 			setAccountsBox(AccountString);
-			AccountString.addActionListener(new AccountBoxListener(MoneyNum));
+			//AccountString.addActionListener(new AccountBoxListener(MoneyNum));
 			MoneyNum++;
 			
 			AccountString.setEnabled(true);

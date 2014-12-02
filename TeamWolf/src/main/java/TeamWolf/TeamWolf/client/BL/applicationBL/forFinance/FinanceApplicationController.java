@@ -11,6 +11,7 @@ public class FinanceApplicationController extends MutiRoleController implements 
 	
 	public FinanceApplicationController(String IP) {
 		super(IP);
+		submit = new FinanceSubmit(IP);
 		// TODO Auto-generated constructor stub
 	}
 	
