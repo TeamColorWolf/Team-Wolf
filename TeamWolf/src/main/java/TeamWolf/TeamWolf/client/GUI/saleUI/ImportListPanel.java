@@ -248,7 +248,6 @@ public class ImportListPanel extends JPanel{
 			}
 		}
 		
-		//TODO：TEST
 		for (int i = 0; i < goodsList.size(); i++) {
 			System.out.println(goodsList.get(i).getName() + " " + goodsList.get(i).getModel() + " " + goodsList.get(i).getAmount()); 
 		}
