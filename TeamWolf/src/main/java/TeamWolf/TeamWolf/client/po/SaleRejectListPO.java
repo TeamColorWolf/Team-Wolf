@@ -143,6 +143,8 @@ public class SaleRejectListPO extends ApplicationPO{
 		return totalAfterDiscount;
 	}
 
+	
+	
 	public void setTotalAfterDiscount(double totalAfterDiscount) {
 		this.totalAfterDiscount = totalAfterDiscount;
 	}

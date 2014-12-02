@@ -2,6 +2,10 @@ package TeamWolf.TeamWolf.client.vo;
 
 import java.util.ArrayList;
 
+import TeamWolf.TeamWolf.client.po.CustomerPO;
+import TeamWolf.TeamWolf.client.po.GoodsPO;
+import TeamWolf.TeamWolf.client.po.ImportRejectListPO;
+
 /**
  * 
  * @author HalaWKS
@@ -47,6 +51,23 @@ public class ImportRejectListVO extends ApplicationVO{
 		this.total = calTotal(goodsList);
 	}
 	
+	public ImportRejectListVO(ImportRejectListPO irpo) {
+		// TODO Auto-generated constructor stub
+		this.number = irpo.number;
+		this.customer = new CustomerVO(irpo.getCustomer());
+		this.storage = irpo.getStorage();
+		this.operator = irpo.operator;
+		this.remark = irpo.getRemark();
+		this.total = irpo.getTotal();
+		toGoodsVO(irpo.getGoodsList());
+	}
+	
+	private void toGoodsVO(ArrayList<GoodsPO> gpo) {
+		for (int i = 0; i < gpo.size(); i++) {
+			GoodsVO gvo = new GoodsVO(gpo.get(i));
+			GoodsList.add(gvo);
+		}
+	}
 	
 	/**
 	 * 计算总额

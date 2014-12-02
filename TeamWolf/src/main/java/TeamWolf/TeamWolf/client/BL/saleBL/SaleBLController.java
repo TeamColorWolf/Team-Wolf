@@ -80,5 +80,13 @@ public class SaleBLController implements SaleBLservice{
 		return sale.getSaleList();
 	}
 
+	public ArrayList<ImportRejectListVO> getImportRejectList() {
+		return sale.getImportRejectList();
+	}
+
+	public ArrayList<SaleRejectListVO> getSaleRejectList() {
+		return sale.getSaleRejectList();
+	}
+
 	
 }

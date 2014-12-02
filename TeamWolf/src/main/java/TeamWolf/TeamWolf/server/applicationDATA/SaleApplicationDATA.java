@@ -50,47 +50,64 @@ public class SaleApplicationDATA extends UnicastRemoteObject implements SaleAppl
 		try {
 			importList = (ArrayList<ImportListPO>) fo.readFile(FileName.importListFile);
 			System.out.println("saleAppData " + importList.size());
-//			importRejectList = (ArrayList<ImportRejectListPO>) fo.readFile(FileName.importRejectListFile);
-//			saleList = (ArrayList<SaleListPO>) fo.readFile(FileName.saleListFile);
-//			saleRejectList = (ArrayList<SaleRejectListPO>) fo.readFile(FileName.saleRejectListFile);
+			importRejectList = (ArrayList<ImportRejectListPO>) fo.readFile(FileName.importRejectListFile);
+			saleList = (ArrayList<SaleListPO>) fo.readFile(FileName.saleListFile);
+			saleRejectList = (ArrayList<SaleRejectListPO>) fo.readFile(FileName.saleRejectListFile);
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
 	public int submitImportList(ImportListPO ipo) throws RemoteException {
-		//TODO
 		int judge = 0;
 		importList.add(ipo);
 		try {
 			fo.writeFile(fileName.importListFile, importList);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			judge = 999999;
 		}
 		return judge;
 	}
 
-	public int submitImportRejectList(ImportRejectListPO po)
+	public int submitImportRejectList(ImportRejectListPO irpo)
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return 0;
+		int judge = 0;
+		importRejectList.add(irpo);
+		try {
+			fo.writeFile(fileName.importRejectListFile, importRejectList);
+		} catch (IOException e) {
+			e.printStackTrace();
+			judge = 999999;
+		}
+		return judge;
 	}
 
-	public int submitExportList(SaleListPO po) throws RemoteException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int submitExportList(SaleListPO spo) throws RemoteException {
+		int judge = 0;
+		saleList.add(spo);
+		try {
+			fo.writeFile(fileName.saleListFile, saleList);
+		} catch (IOException e) {
+			e.printStackTrace();
+			judge = 999999;
+		}
+		return judge;
 	}
 
-	public int submitExportRejectList(SaleRejectListPO po)
+	public int submitExportRejectList(SaleRejectListPO srpo)
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return 0;
+		int judge = 0;
+		saleRejectList.add(srpo);
+		try {
+			fo.writeFile(fileName.saleRejectListFile, saleRejectList);
+		} catch (IOException e) {
+			e.printStackTrace();
+			judge = 999999;
+		}
+		return judge;
 	}
 
 	public int approvalImportList(ImportListPO po) throws RemoteException {

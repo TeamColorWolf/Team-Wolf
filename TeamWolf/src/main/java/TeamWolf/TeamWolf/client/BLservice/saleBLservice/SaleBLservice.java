@@ -100,6 +100,10 @@ public interface SaleBLservice {
 
 	public ArrayList<ImportListVO> getImportList();
 	
+	public ArrayList<ImportRejectListVO> getImportRejectList();
+	
 	public ArrayList<SaleListVO> getSaleList();
+	
+	public ArrayList<SaleRejectListVO> getSaleRejectList();
 
 }

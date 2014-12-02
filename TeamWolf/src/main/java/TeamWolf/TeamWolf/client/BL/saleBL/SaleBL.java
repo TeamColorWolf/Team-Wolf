@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerController;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.SaleApplicationDATAservice;
 import TeamWolf.TeamWolf.client.po.ImportListPO;
+import TeamWolf.TeamWolf.client.po.ImportRejectListPO;
+import TeamWolf.TeamWolf.client.po.SaleListPO;
+import TeamWolf.TeamWolf.client.po.SaleRejectListPO;
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.ImportListVO;
@@ -145,9 +148,51 @@ public class SaleBL{
 		return importList;
 	}
 
-	public ArrayList<SaleListVO> getSaleList() {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<ImportRejectListVO> getImportRejectList() {
+		ArrayList<ImportRejectListVO> importRejectList = new ArrayList<ImportRejectListVO>();
+		ArrayList<ImportRejectListPO> importRejectListPO = new ArrayList<ImportRejectListPO>();
+		try {
+			importRejectListPO = saleAppServ.getImportRejectList();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		for (int i = 0; i < importRejectListPO.size(); i++) {
+			ImportRejectListVO irvo = new ImportRejectListVO(importRejectListPO.get(i));
+			importRejectList.add(irvo);
+		}
+		return importRejectList;
 	}
 
+	
+	public ArrayList<SaleListVO> getSaleList() {
+		ArrayList<SaleListVO> saleList = new ArrayList<SaleListVO>();
+		ArrayList<SaleListPO> saleListPO = new ArrayList<SaleListPO>();
+		try {
+			saleListPO = saleAppServ.getSaleList();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		for (int i = 0; i < saleListPO.size(); i++) {
+			SaleListVO svo = new SaleListVO(saleListPO.get(i));
+			saleList.add(svo);
+		}
+		return saleList;
+	}
+
+
+	public ArrayList<SaleRejectListVO> getSaleRejectList() {
+		ArrayList<SaleRejectListVO> saleRejectList = new ArrayList<SaleRejectListVO>();
+		ArrayList<SaleRejectListPO> saleRejectListPO = new ArrayList<SaleRejectListPO>();
+		try {
+			saleRejectListPO = saleAppServ.getSaleRejectList();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		for (int i = 0; i < saleRejectListPO.size(); i++) {
+			SaleRejectListVO srvo = new SaleRejectListVO(saleRejectListPO.get(i));
+			saleRejectList.add(srvo);
+		}
+		return saleRejectList;
+	}
+	
 }

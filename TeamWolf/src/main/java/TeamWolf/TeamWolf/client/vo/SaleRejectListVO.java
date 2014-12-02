@@ -1,7 +1,10 @@
 package TeamWolf.TeamWolf.client.vo;
 
-import java.io.Serializable;
 import java.util.ArrayList;
+
+import TeamWolf.TeamWolf.client.po.CustomerPO;
+import TeamWolf.TeamWolf.client.po.GoodsPO;
+import TeamWolf.TeamWolf.client.po.SaleRejectListPO;
 
 /**
  * 
@@ -76,6 +79,27 @@ public class SaleRejectListVO extends ApplicationVO{
 		}
 	}
 
+	public SaleRejectListVO(SaleRejectListPO srpo) {
+		this.number = srpo.number;
+		this.customer = new CustomerVO(srpo.getCustomer());
+		this.salesman = srpo.getSalesman();
+		this.operator = srpo.operator;
+		this.storage = srpo.getStorage();
+		this.total = srpo.getTotal();
+		this.totalAfterDiscount = srpo.getTotalAfterDiscount();
+		this.remark = srpo.getRemark();
+		this.discount = srpo.getDiscount();
+		this.coupon = srpo.getCoupon();
+		toGoodsVO(srpo.getGoodsList());
+	}
+	
+	private void toGoodsVO(ArrayList<GoodsPO> gpo) {
+		for (int i = 0; i < gpo.size(); i++) {
+			GoodsVO gvo = new GoodsVO(gpo.get(i));
+			GoodsList.add(gvo);
+		}
+	}
+	
 	
 	/**
 	 * 计算折让前总额
