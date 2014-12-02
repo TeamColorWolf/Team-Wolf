@@ -21,4 +21,7 @@ public class GoodsStockListVO {
 		}
 		return GStockListInfo;
 	}
+	public ArrayList<GoodsStockVO> getGoodsSL(){
+		return goodsSL;
+	}
 }

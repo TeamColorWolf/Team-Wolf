@@ -43,6 +43,15 @@ public class GoodsBLAssistant {
 		return time;
 	}
 	
+	public String getPresentDate(){
+		
+		//获得当前日期
+		Calendar c=Calendar.getInstance();
+		SimpleDateFormat s=new SimpleDateFormat("yyyyMMdd");
+		String date=s.format(c.getTime());
+		return date;
+	}
+	
 	public boolean canAdd(GoodsVO g) throws RemoteException{
 		//判断商品能否被加入系统
 		if(isExisted(g)==false)

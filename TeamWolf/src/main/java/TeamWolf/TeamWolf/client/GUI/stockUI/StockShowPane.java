@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.DefaultComboBoxModel;
@@ -24,13 +25,19 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
+import TeamWolf.TeamWolf.client.BL.goodsBL.GoodsBLController;
+import TeamWolf.TeamWolf.client.vo.GoodsStockListVO;
+import TeamWolf.TeamWolf.client.vo.GoodsStockVO;
+
 public class StockShowPane extends JPanel implements ItemListener, ActionListener {
 
+	GoodsBLController gbcontroller;
+	
 	int beginYear, endYear, beginMonth, endMonth, beginDay, endDay; 
 	String[] years=null;
 	String[] months=new String[12];
-	String[] tableTitle={"商品编号", "商品名称", "商品型号", "商品库存数量", "商品进价", "商品售价", "商品最近进价", "商品最近售价", "商品进货量", "平均进货价", "进货总价", "商品出货量", "平均出货价", "出货总价"};
-	Object[][] stockInfoList={{"12102", "样板", "测试", "测试", "测试", "测试", "测试", "测试", "测试", "测试", "测试", "测试", "测试", "测试"}};
+	String[] tableTitle={"商品编号", "商品名称", "商品型号", "商品库存数量", "库存均价", "商品进价", "商品售价", "商品最近进价", "商品最近售价", "商品进货量", "平均进货价", "进货总价", "商品出货量", "平均出货价", "出货总价"};
+	Object[][] stockInfoList={{"12102", "样板", "测试", "测试", "测试", "测试", "测试", "测试", "测试", "测试", "测试", "测试", "测试", "测试", "测试"}};
 	String todayDate;
 	int year;
 	JComboBox beginY;
@@ -47,6 +54,8 @@ public class StockShowPane extends JPanel implements ItemListener, ActionListene
 	 	
 	public StockShowPane(String iP) {
 		// TODO Auto-generated constructor stub
+		
+		gbcontroller=new GoodsBLController(iP);
 		Calendar c=Calendar.getInstance();
 		year=c.get(Calendar.YEAR);
 		SimpleDateFormat s=new SimpleDateFormat("yyyy-MM-dd");
@@ -125,10 +134,24 @@ public class StockShowPane extends JPanel implements ItemListener, ActionListene
 		daliyStock.setVisible(true);
 		daliyStock.addActionListener(this);
 		daliyStock.setToolTipText(todayDate);
+		daliyStock.addActionListener(new ActionListener(){
+			
+			public void actionPerformed(ActionEvent e){
+				
+				GoodsStockListVO sl=gbcontroller.shoStockDaily();
+				ArrayList<GoodsStockVO> gsl=sl.getGoodsSL();
+			}
+		});
 		checkStock=new JButton("查看库存");
 		checkStock.setBounds(600, 430, 120, 25);
 		checkStock.setVisible(true);
 		checkStock.addActionListener(this);
+		checkStock.addActionListener(new ActionListener(){
+			
+			public void actionPerformed(ActionEvent e){
+				
+			}
+		});
 	}
 
 	public void itemStateChanged(ItemEvent e) {

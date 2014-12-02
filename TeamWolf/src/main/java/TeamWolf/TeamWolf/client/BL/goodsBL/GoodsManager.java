@@ -6,6 +6,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.BL.promotionBL.PromotionForStockController;
+import TeamWolf.TeamWolf.client.BL.saleBL.SaleBLController;
 import TeamWolf.TeamWolf.client.BLservice.stockBLservice.GoodManService;
 import TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice.GoodsDataService;
 import TeamWolf.TeamWolf.client.DATAservice.stockDATAservice.StockDataService;
@@ -25,6 +26,7 @@ public class GoodsManager {
 	GoodsDataService GdataService;
 	StockDataService SdataService;
     PromotionForStockController promoteController;
+    SaleBLController sbc;
 	
 	public GoodsManager(String IP){
 		
@@ -33,6 +35,7 @@ public class GoodsManager {
 		
 		assistant=new GoodsBLAssistant(URL1);
 		promoteController=new PromotionForStockController(IP);
+		sbc=new SaleBLController(IP);
 		
 		try {
 			
@@ -215,19 +218,121 @@ public class GoodsManager {
 	public GoodsStockListVO shoStockList(int beginDate, int endDate){
 		
 		GoodsStockListVO gsl=new GoodsStockListVO();
+		ArrayList<GoodsPO> gl=null;
 		
-		//根据时间查找每个库存商品的交易记录，计算并生成对应的GoodsStockVO
+		try {
+			gl=GdataService.getGoodList();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//查找当天的交易记录，计算并生成对应的GoodsStockVO
 		//需要知道交易单据存储位置
+		ArrayList<ImportListVO> ipl=sbc.getImportList();
+		ArrayList<SaleListVO> sl=sbc.getSaleList();
+		ArrayList<ImportRejectListVO> iprl=sbc.getImportRejectList();
+		ArrayList<SaleRejectListVO> srl=sbc.getSaleRejectList();
+	    
+	    
+	    for(GoodsPO g: gl){
+	    	
+	    	GoodsStockVO gs=new GoodsStockVO();
+	    	gs.setGood(new GoodsVO(g));
+	    	int ImportAmount=0;
+	    	int ImportPrice=0;
+	    	int ExportAmount=0;
+	    	int ExportPrice=0;
+	    	int totalPrice=0;
+	    	int totalAmount=0;
+	    	
+	    	for(ImportListVO ip : ipl){
+	    		String[] info=ip.number.split("-");
+	    		int date=Integer.parseInt(info[1]);
+	    		ArrayList<GoodsVO> importGL=ip.getGoodsList();
+	    		
+	    		for(GoodsVO imported: importGL){
+	    		    if(imported.getNumber().equals(g.getNumber())){
+	    		    	if(date>=beginDate&&date<=endDate){
+	    				      ImportAmount+=imported.getAmount();
+	    				      ImportPrice+=imported.getAmount()*imported.getImprice();
+	    		    	}
+	    		    	totalAmount+=imported.getAmount();
+	    		    	totalPrice+=imported.getAmount()*imported.getImprice();
+	    			 }
+	    		}
+	    		    			    	  
+	    	}
+	    	for(ImportRejectListVO ipr : iprl){
+	    		String[] info=ipr.number.split("-");
+	    		int date=Integer.parseInt(info[1]);
+	    		ArrayList<GoodsVO> importRejectedGL=ipr.getGoodsList();
+	    		
+	    		for(GoodsVO importR: importRejectedGL){
+	    			if(importR.getNumber().equals(g.getNumber())){
+	    				if(date>=beginDate&&date<=endDate){
+	    				      ImportAmount-=importR.getAmount();
+	    				      ImportPrice-=importR.getAmount()*importR.getImprice();
+	    				}
+	    				int aP=totalPrice/totalAmount;
+	    				totalAmount-=importR.getAmount();
+	    				totalPrice-=(aP*importR.getAmount());
+	    			}
+	    		}
+	    	}
+	    	for(SaleListVO sa: sl){
+	    		String[] info=sa.number.split("-");
+	    		int date=Integer.parseInt(info[1]);
+	    		ArrayList<GoodsVO> saleGL=sa.getGoodsList();
+	    		
+	    		for(GoodsVO sold: saleGL){
+	    		   if(sold.getNumber().equals(g.getNumber())){
+	    			  if(date>=beginDate&&date<=endDate){  
+	    			     ExportAmount+=sold.getAmount();
+	    			     ExportPrice+=sold.getExprice()*sold.getAmount();
+	    			  }
+	    			  
+	    			  int aP=totalPrice/totalAmount;
+	    			  totalAmount-=sold.getAmount();
+	    			  totalPrice-=(aP*sold.getAmount());
+	    		   }
+	    		}
+	    	}
+	    	for(SaleRejectListVO sar : srl){
+	    		String[] info=sar.number.split("-");
+	    		int date=Integer.parseInt(info[1]);
+	    		ArrayList<GoodsVO> saleRGL=sar.getGoodsList();
+	    		
+	    		for(GoodsVO soldR: saleRGL){
+	    			if(soldR.getNumber().equals(g.getNumber())){
+	    				if(date>=beginDate&&date<=endDate){
+	    					ExportAmount-=soldR.getAmount();
+	    					ExportPrice-=soldR.getExprice()*soldR.getAmount();
+	    				}
+	    				
+	    				int aP=totalPrice/totalAmount;
+	    				totalAmount+=soldR.getAmount();
+	    				totalPrice+=(aP*soldR.getAmount());
+	    			}
+	    		}
+	    		
+	    	}
+	    	
+	    	gs.setExportAmount(ExportAmount);
+	    	gs.setExportTotalPrice(ExportPrice);
+	    	gs.setImportAmount(ImportAmount);
+	    	gs.setImportTotalPrice(ImportPrice);
+	    	gs.setTotalPrice(totalPrice);
+	    	
+	    	gsl.addGoodSVO(gs);
+	    	
+	    }
 		
 		return gsl;
 	}
 	public GoodsStockListVO shoStockDaily(){
 		
-		GoodsStockListVO gsl=new GoodsStockListVO();
-		//查找当天的交易记录，计算并生成对应的GoodsStockVO
-		//需要知道交易单据存储位置
-		
-		return gsl;
+		int presentDate=Integer.parseInt(assistant.getPresentDate());
+		return this.shoStockList(presentDate, presentDate);
 	}
 	
 }

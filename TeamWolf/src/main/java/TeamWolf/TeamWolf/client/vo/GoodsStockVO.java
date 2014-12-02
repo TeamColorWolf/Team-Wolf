@@ -16,7 +16,7 @@ public class GoodsStockVO {
 	private double averagePrice;
 	private String GStockInfo;
 	
-	GoodsStockVO(){
+	public GoodsStockVO(){
 		
 	}
 
@@ -64,4 +64,15 @@ public class GoodsStockVO {
 		return GStockInfo;
 	}
 	
+	public double getIAP(){
+		return importTotalPrice/importAmount;
+	}
+	
+	public double getEAP(){
+		return exportTotalPrice/exportAmount;
+	}
+	
+	public void setTotalPrice(double totalP){
+		this.totalPrice=totalP;
+	}
 }
