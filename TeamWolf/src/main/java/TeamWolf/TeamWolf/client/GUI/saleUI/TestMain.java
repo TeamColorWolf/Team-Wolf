@@ -58,8 +58,8 @@ public class TestMain {
 	public static ArrayList<SaleListVO> getSaleListTEST(){
 		ArrayList<SaleListVO> saleList = new ArrayList<SaleListVO>();
 		CustomerVO cvo1 = new CustomerVO("0001", "销售商", "1", "许老j", "", "", "", "", "", "", "", "");
-		SaleListVO sal1 = new SaleListVO("0001", cvo1, "", "", "", getGoodsListTEST3(), "1000", "0", "sal1");
-		SaleListVO sal2 = new SaleListVO("0001", cvo1, "", "", "", getGoodsListTEST4(), "3000", "0", "sal2");
+		SaleListVO sal1 = new SaleListVO("0001", cvo1, "", "", "", getGoodsListTEST3(), "1000", "0", "sal1", "0", "0");
+		SaleListVO sal2 = new SaleListVO("0001", cvo1, "", "", "", getGoodsListTEST4(), "3000", "0", "sal2", "0", "0");
 		saleList.add(sal1);
 		saleList.add(sal2);
 		return saleList;

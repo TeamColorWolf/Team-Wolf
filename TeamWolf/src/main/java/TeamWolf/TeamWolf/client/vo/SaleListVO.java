@@ -64,26 +64,26 @@ public class SaleListVO extends ApplicationVO{
 	String remark;
 
 	public SaleListVO(String number, CustomerVO customer, String salesman, String operator,
-			String storage, ArrayList<GoodsVO> goodsList, String discount, String coupon, String remark) {
+			String storage, ArrayList<GoodsVO> goodsList, String discount, String coupon,
+			String remark, String total, String totalAfterDiscount) {
 		this.number = number;
 		this.customer = customer;
 		this.salesman = salesman;
 		this.operator = operator;
 		this.storage = storage;
 		this.GoodsList = goodsList;
-		this.total = calTotal(goodsList);
 		this.remark = remark;
 		
 		try {
+			this.total = Double.parseDouble(total);
 			this.discount = Double.parseDouble(discount);
 			this.coupon = Double.parseDouble(coupon);
+			this.totalAfterDiscount = Double.parseDouble(totalAfterDiscount);
 		} catch (Exception e) {
 			// TODO: 数据类型转换异常
 		}
-		this.totalAfterDiscount = calTotalAfterDiscount(total, this.discount);
+		
 	}
-
-	
 	
 	public SaleListVO(SaleListPO spo) {
 		this.number = spo.number;
@@ -100,35 +100,13 @@ public class SaleListVO extends ApplicationVO{
 	}
 	
 	private void toGoodsVO(ArrayList<GoodsPO> gpo) {
+		GoodsList = new ArrayList<GoodsVO>();
 		for (int i = 0; i < gpo.size(); i++) {
 			GoodsVO gvo = new GoodsVO(gpo.get(i));
 			GoodsList.add(gvo);
 		}
 	}
 	
-	
-	/**
-	 * 计算折让前总额
-	 * @param goodsList
-	 * @return
-	 */
-	private double calTotal(ArrayList<GoodsVO> goodsList){
-		double totalPrice = 0.0;
-		for (int i = 0; i < goodsList.size(); i++) {
-			totalPrice = totalPrice + goodsList.get(i).getExprice() * goodsList.get(i).getAmount();
-		}
-		return totalPrice;
-	}
-	
-	/**
-	 * 计算折让后总额
-	 * @param total
-	 * @return
-	 */
-	private double calTotalAfterDiscount(double total, double discount){
-		double totalAfter = total - discount;
-		return totalAfter;
-	}
 	
 	public CustomerVO getCustomer() {
 		return customer;

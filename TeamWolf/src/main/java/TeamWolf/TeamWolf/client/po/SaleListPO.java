@@ -78,6 +78,7 @@ public class SaleListPO extends ApplicationPO{
 	}
 	
 	private void toGoodsPO(ArrayList<GoodsVO> gvo) {
+		GoodsList = new ArrayList<GoodsPO>();
 		for (int i = 0; i < gvo.size(); i++) {
 			GoodsPO gpo = new GoodsPO(gvo.get(i));
 			GoodsList.add(gpo);

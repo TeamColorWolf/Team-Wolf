@@ -26,8 +26,8 @@ public class SaleBLTest {
 			"北京", "100000", "xjp@software.nju.edu.cn", "999999", "0", "0", "WKS");
 	ImportListVO ivo = new ImportListVO("Import", cvo, "1", "WKS", goodsList, "nothing", "0");
 	ImportRejectListVO irvo = new ImportRejectListVO("ImportReject", cvo, "0", "WKS", goodsList, "nothing");
-	SaleListVO svo = new SaleListVO("Sale", cvo, "XaioMing", "WKS", "0", goodsList, "0", "0", "nothing");
-	SaleRejectListVO srvo = new SaleRejectListVO("SaleReject", cvo, "XaioMing", "WKS", "0", goodsList, "0", "0", "nothing");
+	SaleListVO svo = new SaleListVO("Sale", cvo, "XaioMing", "WKS", "0", goodsList, "0", "0", "nothing", "0", "0");
+	SaleRejectListVO srvo = new SaleRejectListVO("SaleReject", cvo, "XaioMing", "WKS", "0", goodsList, "0", "0", "nothing", "0", "0");
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {

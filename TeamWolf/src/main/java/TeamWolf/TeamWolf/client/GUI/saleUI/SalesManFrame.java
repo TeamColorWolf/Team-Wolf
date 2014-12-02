@@ -113,7 +113,7 @@ public class SalesManFrame extends JFrame{
 		jp.setLayout(null);
 		
 		JLabel ipLabel = new JLabel("当前ip:" + ip);
-		Font message_FONT= new Font("楷体", Font.BOLD, 16);
+		Font message_FONT= new Font("微软雅黑", Font.BOLD, 12);
 		
 		//设置面板属性
 		jp.setSize(w / 3, h / 3);

@@ -38,6 +38,15 @@ public class ImportRejectListPO extends ApplicationPO{
 	 */
 	double total;
 
+	public ImportRejectListPO(String number, String remark, ImportListPO ipo) {
+		this.number = number;
+		this.operator = ipo.operator;
+		this.GoodsList = ipo.getGoodsList();
+		this.customer = ipo.getCustomer();
+		this.remark = remark;
+		this.storage = ipo.getStorage();
+		this.total = ipo.getTotal();
+	}
 	
 	public ImportRejectListPO(ImportRejectListVO irvo) {
 		// TODO Auto-generated constructor stub
@@ -51,6 +60,7 @@ public class ImportRejectListPO extends ApplicationPO{
 	}
 	
 	private void toGoodsPO(ArrayList<GoodsVO> gvo) {
+		GoodsList = new ArrayList<GoodsPO>();
 		for (int i = 0; i < gvo.size(); i++) {
 			GoodsPO gpo = new GoodsPO(gvo.get(i));
 			GoodsList.add(gpo);

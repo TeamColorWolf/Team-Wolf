@@ -1,6 +1,6 @@
 package TeamWolf.TeamWolf.client.GUI.saleUI;
 
-import java.awt.Checkbox;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,19 +8,22 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
-import javax.swing.DefaultCellEditor;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 import TeamWolf.TeamWolf.client.BL.saleBL.SaleBLController;
 import TeamWolf.TeamWolf.client.BLservice.saleBLservice.SaleBLservice;
+import TeamWolf.TeamWolf.client.po.ImportListPO;
+import TeamWolf.TeamWolf.client.po.ImportRejectListPO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
 import TeamWolf.TeamWolf.client.vo.ImportListVO;
+import TeamWolf.TeamWolf.client.vo.ImportRejectListVO;
 import TeamWolf.TeamWolf.client.vo.UserVO;
 
 /**
@@ -32,7 +35,8 @@ public class ImportRejectListPanel extends JPanel{
 	
 	SaleBLservice saleLogic;
 	
-	ArrayList<ImportListVO> importList;
+	public static ArrayList<ImportListVO> importList;
+	ArrayList<ImportRejectListVO> importRejectList;
 	ArrayList<GoodsVO> goodsList;
 	
 	private DefaultTableModel tModel_import;
@@ -41,6 +45,10 @@ public class ImportRejectListPanel extends JPanel{
 	private JTable goodsInfoTable;
 	private JScrollPane scroll_import;
 	private JScrollPane scroll_goods;
+	JButton submitBtn;
+	JButton showBtn;
+	JTextArea remarkArea = new JTextArea();
+	JScrollPane scrollPane = new JScrollPane(remarkArea);
 	
 	private String[] goodsInfo = {"商品名称", "商品数量", "商品单价", "单项商品总价"};
 	private Object[][] object_goodsList;
@@ -65,6 +73,16 @@ public class ImportRejectListPanel extends JPanel{
 	private static final int btnH = 40;
 	
 	/**
+	 * 组件宽度(不包括按钮)
+	 */
+	private static final int conpW = 200;
+	
+	/**
+	 * 组件高度(不包括按钮)
+	 */
+	private static final int conpH = 60;
+	
+	/**
 	 * 组件间距
 	 */
 	private static final int Xgap = 100;
@@ -78,8 +96,12 @@ public class ImportRejectListPanel extends JPanel{
 		saleLogic = new SaleBLController(IP);
 
 		importList = saleLogic.getImportList();
+		importRejectList = saleLogic.getImportRejectList();
 		if(importList == null){
 			importList = new ArrayList<ImportListVO>();
+		}
+		if(importRejectList == null){
+			importRejectList = new ArrayList<ImportRejectListVO>();
 		}
 		//设置布局方式
 		this.setLayout(null);
@@ -90,6 +112,7 @@ public class ImportRejectListPanel extends JPanel{
 		this.add(this.createGoodsInfo());
 		this.add(this.submitBtn());
 		this.add(this.showBtn());
+		this.add(this.remarkFld());
 		
 	}
 	
@@ -98,7 +121,7 @@ public class ImportRejectListPanel extends JPanel{
 	 * @return
 	 */
 	private JScrollPane createGoodsInfo(){
-		tModel_goods = new DefaultTableModel(object_goodsList, goodsInfo);
+		tModel_goods = new DefaultTableModel(new Object[][] {}, goodsInfo);
 		goodsInfoTable = new JTable(tModel_goods);
 		scroll_goods = new JScrollPane(goodsInfoTable);
 		
@@ -149,6 +172,7 @@ public class ImportRejectListPanel extends JPanel{
 	 * 在右边table里显示商品信息
 	 */
 	private void showGoodsInfo(int index){
+		goodsInfoTable.setRowHeight(25);
 		goodsList = importList.get(index).getGoodsList();
 		tModel_goods = (DefaultTableModel) goodsInfoTable.getModel();
 		object_goodsList = new Object[goodsList.size()][4];
@@ -167,24 +191,39 @@ public class ImportRejectListPanel extends JPanel{
 	}
 	
 	/**
+	 * 备注填写
+	 * @return
+	 */
+	private JScrollPane remarkFld(){
+		
+		scrollPane.setSize(conpW * 2, conpH * 3 / 2);
+		scrollPane.setLocation(Xgap, scroll_import.getHeight() + 5);
+		scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		scrollPane.setBorder(BorderFactory.createTitledBorder("备注填写"));
+		scrollPane.setEnabled(true);
+		
+		return scrollPane;
+	}
+	
+	/**
 	 * 提交按钮
 	 * @return
 	 */
 	private JButton submitBtn(){
-		JButton submit = new JButton("提交");
+		submitBtn = new JButton("提交");
 		
 		//button设置
-		submit.setSize(btnW, btnH);
-		submit.setLocation(btnW + 2 * Xgap, scroll_import.getHeight() + 40);
-		submit.setFont(ChooseBtn_FONT);
+		submitBtn.setSize(btnW, btnH);
+		submitBtn.setLocation(2 * Xgap + conpW * 2 + 3 * Xgap, scroll_import.getHeight() + 40);
+		submitBtn.setFont(ChooseBtn_FONT);
 		
-		submit.addActionListener(new ActionListener() {			
+		submitBtn.addActionListener(new ActionListener() {			
 			public void actionPerformed(ActionEvent e) {	
 				subBtnAction();
 			}
 		});
 		
-		return submit;
+		return submitBtn;
 	}
 	
 	/**
@@ -192,26 +231,26 @@ public class ImportRejectListPanel extends JPanel{
 	 * @return
 	 */
 	private JButton showBtn(){
-		JButton show = new JButton("显示");
+		showBtn = new JButton("显示");
 		
-		show.setSize(btnW, btnH);
-		show.setLocation(Xgap, scroll_import.getHeight() + 40);
-		show.setFont(ChooseBtn_FONT);
+		showBtn.setSize(btnW, btnH);
+		showBtn.setLocation(2 * Xgap + conpW * 2, scroll_import.getHeight() + 40);
+		showBtn.setFont(ChooseBtn_FONT);
 		
-		show.addActionListener(new ActionListener() {		
+		showBtn.addActionListener(new ActionListener() {		
 			public void actionPerformed(ActionEvent e) {	
 				showBtnAction();
 			}
 		});
 		
-		return show;
+		return showBtn;
 	}
 	
 	/**
 	 * 显示按钮事件
 	 */
 	private void showBtnAction(){
-		clearImportInfoTable();
+//		clearImportInfoTable();
 //		importList = TestMain.getImportListTEST();
 		tModel_import = (DefaultTableModel) importListTable.getModel();
 		
@@ -230,21 +269,37 @@ public class ImportRejectListPanel extends JPanel{
 			importListTable.setModel(tModel_import);
 		}
 		
-
+		showBtn.setEnabled(false);
 	}
 	
 	/**
 	 * 提交按钮事件
 	 */
 	private void subBtnAction(){
-		//TODO
+		ImportListVO ivo = null;
+		for (int i = 0; i < importList.size(); i++) {
+			if(importListTable.getValueAt(i, 0).equals(true)){
+				ivo = importList.get(i);
+			}
+		}
+		if(ivo == null){
+			return;
+		}
+		ImportRejectListVO irvo = new ImportRejectListVO(importRejectListNum(),
+				remarkArea.getText(), ivo);
+		irvo.condition = 0;
+		
+		saleLogic.createImportReject(irvo);
 	}
 	
-	private void clearImportInfoTable(){
-		object_importList = null;
-		tModel_import.setDataVector(object_importList, importInfo);
-		importListTable.updateUI();
+	private String importRejectListNum(){
+		String num = "JHTHD-";
+		String date = saleLogic.getPresentDate();
+		String number = String.format("%05d", importRejectList.size() + 1);
+		num = num + date + "-" + number;
+		return num;
 	}
+
 	
 	/**
 	 * 清空表格方法

@@ -255,6 +255,10 @@ public class ImportListPanel extends JPanel{
 		ImportListVO importVO = new ImportListVO(number, customer, storage, operator, goodsList, remark, total);
 		importVO.condition = 0;
 		
+		if(ImportRejectListPanel.importList == null){
+			ImportRejectListPanel.importList = new ArrayList<ImportListVO>();
+		}
+		ImportRejectListPanel.importList.add(importVO);
 		saleLogic.createImport(importVO);
 	}
 	

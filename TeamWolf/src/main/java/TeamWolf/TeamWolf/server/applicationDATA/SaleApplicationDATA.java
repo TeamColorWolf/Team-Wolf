@@ -89,6 +89,7 @@ public class SaleApplicationDATA extends UnicastRemoteObject implements SaleAppl
 		int judge = 0;
 		saleList.add(spo);
 		try {
+			System.out.println("add saleList success");
 			fo.writeFile(fileName.saleListFile, saleList);
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -96,15 +96,45 @@ public class SaleBL{
 	}
 
 	public int createImportReject(ImportRejectListVO irvo) {
-		int judge = saleAssist.canAddImportReject(irvo);
-		// TODO Auto-generated method stub
-		return 0;
+//		int judge = saleAssist.canAddImportReject(irvo);
+		int judge = 0;
+		ImportRejectListPO irpo = new ImportRejectListPO(irvo);
+		try {
+			saleAppServ = (SaleApplicationDATAservice) Naming.lookup(URL);
+			System.out.println("add importRejectList successfully");
+			return saleAppServ.submitImportRejectList(irpo);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 999999;
 	}
 
 	public int createSale(SaleListVO svo) {
 		int judge = saleAssist.canAddSale(svo);
-		// TODO Auto-generated method stub
-		return 0;
+		if(judge != 0){
+			System.out.println(judge);
+			return judge;
+		}
+		SaleListPO spo = new SaleListPO(svo);
+		try {
+			saleAppServ = (SaleApplicationDATAservice) Naming.lookup(URL);
+			return saleAppServ.submitExportList(spo);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
+		
+		return 999999;
 	}
 
 	public int createSaleReject(SaleRejectListVO srvo) {

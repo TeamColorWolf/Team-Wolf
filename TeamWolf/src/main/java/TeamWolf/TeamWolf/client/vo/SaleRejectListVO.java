@@ -60,18 +60,19 @@ public class SaleRejectListVO extends ApplicationVO{
 	String remark;
 
 	public SaleRejectListVO(String number, CustomerVO customer, String salesman, String operator,
-			String storage, ArrayList<GoodsVO> goodsList, String discount, String coupon, String remark) {
+			String storage, ArrayList<GoodsVO> goodsList, String discount, String coupon,
+			String remark, String total, String totalAfterDiscount) {
 		this.number = number;
 		this.customer = customer;
 		this.salesman = salesman;
 		this.operator = operator;
 		this.storage = storage;
 		this.GoodsList = goodsList;
-		this.total = calTotal(goodsList);
-		this.totalAfterDiscount = calTotalAfterDiscount(total);
 		this.remark = remark;
 		
 		try {
+			this.total = Double.parseDouble(total);
+			this.totalAfterDiscount = Double.parseDouble(totalAfterDiscount);
 			this.discount = Double.parseDouble(discount);
 			this.coupon = Double.parseDouble(coupon);
 		} catch (Exception e) {
@@ -94,32 +95,13 @@ public class SaleRejectListVO extends ApplicationVO{
 	}
 	
 	private void toGoodsVO(ArrayList<GoodsPO> gpo) {
+		GoodsList = new ArrayList<GoodsVO>();
 		for (int i = 0; i < gpo.size(); i++) {
 			GoodsVO gvo = new GoodsVO(gpo.get(i));
 			GoodsList.add(gvo);
 		}
 	}
 	
-	
-	/**
-	 * 计算折让前总额
-	 * @param goodsList
-	 * @return
-	 */
-	private double calTotal(ArrayList<GoodsVO> goodsList){
-		//TODO: 计算折让前总额的方法
-		return 0;
-	}
-	
-	/**
-	 * 计算折让后总额
-	 * @param total
-	 * @return
-	 */
-	private double calTotalAfterDiscount(double total){
-		//TODO 计算折让后总额的方法
-		return 0;
-	}
 
 	public CustomerVO getCustomer() {
 		return customer;

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.po.CustomerPO;
 import TeamWolf.TeamWolf.client.po.GoodsPO;
+import TeamWolf.TeamWolf.client.po.ImportListPO;
 import TeamWolf.TeamWolf.client.po.ImportRejectListPO;
 
 /**
@@ -39,6 +40,16 @@ public class ImportRejectListVO extends ApplicationVO{
 	 */
 	double total;
 
+	public ImportRejectListVO(String number, String remark, ImportListVO ivo) {
+		this.number = number;
+		this.operator = ivo.operator;
+		this.GoodsList = ivo.getGoodsList();
+		this.customer = ivo.getCustomer();
+		this.remark = remark;
+		this.storage = ivo.getStorage();
+		this.total = ivo.getTotal();
+	}
+	
 	public ImportRejectListVO(String number, CustomerVO customer, String storage, String operator,
 			ArrayList<GoodsVO> goodsList, String remark) {
 		// TODO Auto-generated constructor stub
@@ -63,6 +74,7 @@ public class ImportRejectListVO extends ApplicationVO{
 	}
 	
 	private void toGoodsVO(ArrayList<GoodsPO> gpo) {
+		GoodsList = new ArrayList<GoodsVO>();
 		for (int i = 0; i < gpo.size(); i++) {
 			GoodsVO gvo = new GoodsVO(gpo.get(i));
 			GoodsList.add(gvo);

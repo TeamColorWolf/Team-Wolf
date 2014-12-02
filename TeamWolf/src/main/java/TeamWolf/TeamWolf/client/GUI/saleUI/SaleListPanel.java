@@ -143,10 +143,10 @@ public class SaleListPanel extends JPanel{
 		scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		scrollPane.setBorder(BorderFactory.createTitledBorder("备注填写"));
 		
-		
 		setCustomerBox();
-		customerBox.addActionListener(new ActionListener() {
+		customerBox.addActionListener(new ActionListener() {	
 			public void actionPerformed(ActionEvent e) {
+				setSalesMan();
 			}
 		});
 		
@@ -169,8 +169,8 @@ public class SaleListPanel extends JPanel{
 		
 		//组件们
 		discountField = new JTextField();
-		preTotalField = new JTextField();
-		totalField = new JTextField();
+		preTotalField = new JTextField("0.0");
+		totalField = new JTextField("0.0");
 		ensureBtn = new JButton("确定");
 		submitBtn = new JButton("提交");
 		clearBtn = new JButton("清空");
@@ -211,12 +211,15 @@ public class SaleListPanel extends JPanel{
 		});
 		submitBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO
+				getSaleList();
 			}
 		});
 		clearBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				goodschoose.removeAllGoods();
+				discountField.setText("0");
+				preTotalField.setText("0.0");
+				totalField.setText("0.0");
 			}
 		});
 		
@@ -248,11 +251,14 @@ public class SaleListPanel extends JPanel{
 	 */
 	private void ensureBtnEvent(){
 		double allTotal = 0;
+		double afterDiscoutTotal = 0;
 		for (int i = 0; i < goodschoose.giftNum; i++) {
 			allTotal = allTotal + Double.parseDouble(goodschoose.totalPriceListField.get(i).getText());
 		}
+		afterDiscoutTotal = allTotal - Double.parseDouble(discountField.getText());
 		System.out.println("total = " + allTotal);
 		preTotalField.setText(Double.toString(allTotal));
+		totalField.setText(Double.toString(afterDiscoutTotal));
 	}
 	
 	
@@ -267,8 +273,9 @@ public class SaleListPanel extends JPanel{
 		businessManArea.setText(salesMan);
 		String operator = this.operator;
 		String remark = remarkArea.getText();
-		String total = totalField.getText();
+		String total = preTotalField.getText();
 		String discount = discountField.getText();
+		String totalAfterDiscount = totalField.getText();
 		String storage = "仓库1";
 		
 		ArrayList<GoodsVO> goodsList = new ArrayList<GoodsVO>();
@@ -294,7 +301,7 @@ public class SaleListPanel extends JPanel{
 		}
 		
 		SaleListVO saleVO = new SaleListVO(number, customer, salesMan,
-				operator, storage, goodsList, discount, "0", remark);
+				operator, storage, goodsList, discount, "0", remark, total, totalAfterDiscount);
 		saleVO.condition = 0;
 		
 		saleLogic.createSale(saleVO);
@@ -317,10 +324,15 @@ public class SaleListPanel extends JPanel{
 	}
 	
 	private String SaleListNum(){
-		String num = "JHD-";
+		String num = "XSD-";
 		String date = saleLogic.getPresentDate();
 		String number = String.format("%05d", saleList.size() + 1);
 		num = num + date + "-" + number;
 		return num;
+	}
+	
+	private void setSalesMan(){
+		CustomerVO customer = getAcustomer((String) customerBox.getSelectedItem());
+		businessManArea.setText(customer.getBusinessMan());
 	}
 }
