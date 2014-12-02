@@ -63,13 +63,13 @@ public class StockShowPane extends JPanel implements ItemListener, ActionListene
 		for(int i=0;i<12;i++){
 			months[i]=""+(i+1);
 		}
-		years=new String[year-2013];
-		for(int i=2014;i<=year;i++){
-			years[i-2014]=""+i;
+		years=new String[year-2012];
+		for(int i=2013;i<=year;i++){
+			years[i-2013]=""+i;
 		}
-		if((year-2013)==1){
-			beginYear=endYear=year;
-		}
+		beginYear=endYear=2013;
+		beginMonth=endMonth=1;
+		beginDay=endDay=1;
 		this.setVisible(true);
 		this.setLayout(null);
 		this.initialStockShoArea();
@@ -110,6 +110,10 @@ public class StockShowPane extends JPanel implements ItemListener, ActionListene
 		endY=new JComboBox(years);
 		endM=new JComboBox(months);
 		endD=new JComboBox(new DefaultComboBoxModel());
+		for(int i=0;i<31;i++){
+			endD.addItem(""+(i+1));
+			beginD.addItem(""+(i+1));
+		}
 		beginY.setBounds(120, 380, 100, 25);
 		beginY.setVisible(true);
 		beginY.addItemListener(this);
@@ -118,6 +122,7 @@ public class StockShowPane extends JPanel implements ItemListener, ActionListene
 		beginM.addItemListener(this);
 		beginD.setBounds(360, 380, 100, 25);
 		beginD.setVisible(true);
+		beginD.addItemListener(this);
 		to=new JLabel("～");
 		to.setFont(new Font("SansSerif", Font.BOLD, 16));
 		to.setBounds(480, 380, 100, 25);
@@ -129,29 +134,17 @@ public class StockShowPane extends JPanel implements ItemListener, ActionListene
 		endM.addItemListener(this);
 		endD.setBounds(760, 380, 100, 25);
 		endD.setVisible(true);
+		endD.addItemListener(this);
 		daliyStock=new JButton("库存快照");
 		daliyStock.setBounds(200, 430, 120, 25);
 		daliyStock.setVisible(true);
 		daliyStock.addActionListener(this);
 		daliyStock.setToolTipText(todayDate);
-		daliyStock.addActionListener(new ActionListener(){
-			
-			public void actionPerformed(ActionEvent e){
-				
-				GoodsStockListVO sl=gbcontroller.shoStockDaily();
-				ArrayList<GoodsStockVO> gsl=sl.getGoodsSL();
-			}
-		});
+		
 		checkStock=new JButton("查看库存");
 		checkStock.setBounds(600, 430, 120, 25);
 		checkStock.setVisible(true);
 		checkStock.addActionListener(this);
-		checkStock.addActionListener(new ActionListener(){
-			
-			public void actionPerformed(ActionEvent e){
-				
-			}
-		});
 	}
 
 	public void itemStateChanged(ItemEvent e) {
@@ -162,10 +155,12 @@ public class StockShowPane extends JPanel implements ItemListener, ActionListene
 			if(((JComboBox)e.getSource()).equals(beginY)){
 				
 				beginYear=Integer.parseInt((String)e.getItem());
+				System.out.println(beginYear);
 			}
 			else if(((JComboBox)e.getSource()).equals(endY)){
 				
 				endYear=Integer.parseInt((String)e.getItem());
+				System.out.println(endYear);
 			}			
 			else if(((JComboBox)e.getSource()).equals(beginM)){
 			   
@@ -192,15 +187,16 @@ public class StockShowPane extends JPanel implements ItemListener, ActionListene
 				    beginD.addItem(""+(i+1));
 			   }		
 			   this.remove(beginD);
-			   this.add(beginD);			   			    
+			   this.add(beginD);	
+			   //System.out.println(beginMonth);
 			}
 			else if(((JComboBox)e.getSource()).equals(endM)){
 				   endMonth=Integer.parseInt((String)e.getItem());
 				   int days=0;
-				   if(beginMonth==1||beginMonth==3||beginMonth==5||beginMonth==7||beginMonth==8||beginMonth==10||beginMonth==12){
+				   if(endMonth==1||endMonth==3||endMonth==5||endMonth==7||endMonth==8||endMonth==10||endMonth==12){
 					    days=31;
 				    }
-				   else if(beginMonth==2){
+				   else if(endMonth==2){
 					   if(endYear!=0){
 						   if((endYear%4!=0)||(endYear%100==0&&endYear%400!=0)){
 							     days=28;
@@ -219,14 +215,17 @@ public class StockShowPane extends JPanel implements ItemListener, ActionListene
 				   }		
 				   this.remove(endD);
 				   this.add(endD);	
+				   //System.out.println(endMonth);
 			}
 			else if(((JComboBox)e.getSource()).equals(beginD)){
 				
 				beginDay=Integer.parseInt((String)e.getItem());
+				//System.out.println(beginDay);
 			}
 			else{
 				
 				endDay=Integer.parseInt((String)e.getItem());
+				//System.out.println(endDay);
 			}
 		}
 		
@@ -243,12 +242,20 @@ public class StockShowPane extends JPanel implements ItemListener, ActionListene
 					stockInfoList[i][j]=""+j;
 				}
 			}*/
+		  
+		}
+		else{
+			
+			int beginDate=beginYear*10000+beginMonth*100+beginDay;
+			int endDate=endYear*10000+endMonth*100+endDay;
+		    GoodsStockListVO gsl=gbcontroller.shoStockList(beginDate, endDate);
+		}
+		
 		   this.remove(SSAContainer);
 		   this.repaint();
 		   this.initialStockShoArea();
 		   this.add(SSAContainer);
 		   this.repaint();
-		}
 	}
 	
 	
