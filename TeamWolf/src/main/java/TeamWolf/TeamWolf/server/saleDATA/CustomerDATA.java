@@ -98,6 +98,14 @@ public class CustomerDATA extends UnicastRemoteObject implements CustomerDATAser
 		return null;
 	}
 
+	public CustomerPO findCustomer(String nameOrnumber) throws RemoteException {
+		for(int i = 0; i < list.size(); i++){
+			if(list.get(i).getNum().equals(nameOrnumber)||list.get(i).getName().equals(nameOrnumber)){
+				return list.get(i);
+			}
+		}
+		return null;
+	}
 	public ArrayList<String> getCustomerList() throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
@@ -114,5 +122,6 @@ public class CustomerDATA extends UnicastRemoteObject implements CustomerDATAser
 			e.printStackTrace();
 		}
 	}
+
 
 }

@@ -172,4 +172,26 @@ public class CustomerOpr implements CustomerOprBLservice{
 		return null;
 	}
 
+	public CustomerVO findCustomer(String nameOrnumber) {
+		try {
+			cds = (CustomerDATAservice)Naming.lookup(URL);
+		} catch (MalformedURLException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		try {
+			return new CustomerVO(cds.findCustomer(nameOrnumber));
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

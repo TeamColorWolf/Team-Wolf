@@ -56,7 +56,6 @@ public class OneRecieptPanel extends JPanel{
 		financeList = service.checkVO();
 		
 		if(financeList == null){
-			System.out.println("G");
 			financeList = new ArrayList<financeVO>();
 		}
 		AccountList = new ArrayList<JComboBox<String>>();
@@ -211,6 +210,14 @@ public class OneRecieptPanel extends JPanel{
 		for(int i=0;i<financeList.size();i++){
 			accounts.addItem(financeList.get(i).getName());
 		}
+	}
+	
+	public ArrayList<String> getTheAccount(){
+		ArrayList<String> list = new ArrayList<String>();
+		for(int i=0;i<MoneyNum;i++){
+			list.add(AccountString.getItemAt(AccountString.getSelectedIndex()));
+		}
+		return list;
 	}
 	
 	protected ArrayList<String> getTheMoney(){

@@ -15,11 +15,15 @@ import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOpr;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOprBLservice;
 import TeamWolf.TeamWolf.client.BL.financeBL.financeController;
 import TeamWolf.TeamWolf.client.BLservice.financeBLservice.AccountBlservice;
+import TeamWolf.TeamWolf.client.vo.ApplicationVO;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
+import TeamWolf.TeamWolf.client.vo.ImportListVO;
+import TeamWolf.TeamWolf.client.vo.RecieptApplicationVO;
+import TeamWolf.TeamWolf.client.vo.financeVO;
 
 public class ReceiptPanel extends JPanel{
 
-	
+	public static int ApplicationNumber = 00000;
 	private final static int LW = 150;
 	private final static int LH = 25;
 	private final static int BW = 80;
@@ -134,16 +138,34 @@ public class ReceiptPanel extends JPanel{
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
 			AddText.setText("0.00");
-			orp.removeAllAccounts();;
+			orp.removeAllAccounts();
+			NoteText.setText("");
 		}
 		
 	}
 	
 	class EnsureListener implements ActionListener{
 
+        ArrayList<String> accountNameList = orp.getTheAccount();
+        ArrayList<financeVO> accountList = new ArrayList<financeVO>();
+        ArrayList<String> moneyList = orp.getTheMoney();
+        int number = ApplicationNumber++;
+        String operator = FinanceFrame.user.userName;
+        String note = NoteText.getText();
+        String customerName = CustomerBox.getItemAt(CustomerBox.getSelectedIndex());
+        CustomerVO customer = cusservice.findCustomer(customerName); 
+		
+	    RecieptApplicationVO submitRav = new RecieptApplicationVO(accountList, moneyList,""+number, operator, note, customer);
+		
 		public void actionPerformed(ActionEvent arg0) {
-
+             faservice.submitRecieptApplication(submitRav);
 		}
+	    
+	    public void getfinanceList(){
+	        for(int index=0 ; index<accountNameList.size();index++){
+	        	accountList.add(service.find(new financeVO(accountNameList.get(index))));
+	        }
+	    }
 		
 	}
 }

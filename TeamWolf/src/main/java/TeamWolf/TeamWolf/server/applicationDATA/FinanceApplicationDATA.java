@@ -17,7 +17,7 @@ public class FinanceApplicationDATA extends UnicastRemoteObject implements Finan
 	private ArrayList<RecieptApplicationPO> recieptlist;
 	private ArrayList<PaymentApplicationPO> paymentlist;
 	private ArrayList<CashApplicationPO> cashlist;
-	protected FinanceApplicationDATA() throws RemoteException {
+	public FinanceApplicationDATA() throws RemoteException {
 		super();
 		init();
 		if(recieptlist==null){

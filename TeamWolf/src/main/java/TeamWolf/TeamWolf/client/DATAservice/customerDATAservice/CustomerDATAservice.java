@@ -21,6 +21,8 @@ public interface CustomerDATAservice extends Remote{
 	
 	public CustomerPO findCustomer (String name,String number) throws RemoteException;
 	
+	public CustomerPO findCustomer (String nameOrnumber) throws RemoteException;
+	
 	public ArrayList<String> getCustomerList() throws RemoteException;
 	
 }

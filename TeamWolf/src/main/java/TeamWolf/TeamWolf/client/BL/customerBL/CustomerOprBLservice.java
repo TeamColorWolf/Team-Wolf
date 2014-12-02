@@ -10,5 +10,6 @@ public interface CustomerOprBLservice {
 	public int Customerdel(CustomerVO cvo);
 	public ArrayList<CustomerVO> checkCustomerVO(String keyWord, String number);
 	public CustomerVO findCustomer(String name,String number);
+	public CustomerVO findCustomer(String nameOrnumber);
 	public ArrayList<CustomerVO> getAllCustomerList();
 }
