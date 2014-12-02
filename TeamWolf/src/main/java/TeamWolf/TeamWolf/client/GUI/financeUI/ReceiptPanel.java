@@ -146,25 +146,39 @@ public class ReceiptPanel extends JPanel{
 	
 	class EnsureListener implements ActionListener{
 
-        ArrayList<String> accountNameList = orp.getTheAccount();
-        ArrayList<financeVO> accountList = new ArrayList<financeVO>();
-        ArrayList<String> moneyList = orp.getTheMoney();
-        int number = ApplicationNumber++;
-        String operator = FinanceFrame.user.userName;
-        String note = NoteText.getText();
-        String customerName = CustomerBox.getItemAt(CustomerBox.getSelectedIndex());
-        CustomerVO customer = cusservice.findCustomer(customerName); 
-		
-	    RecieptApplicationVO submitRav = new RecieptApplicationVO(accountList, moneyList,""+number, operator, note, customer);
-		
+ 
 		public void actionPerformed(ActionEvent arg0) {
-             faservice.submitRecieptApplication(submitRav);
+		    ArrayList<String> accountNameList = orp.getTheAccount();
+		    //System.out.println(accountNameList);
+		    ArrayList<financeVO> accountList = new ArrayList<financeVO>();
+		    ArrayList<String> moneyList = orp.getTheMoney();
+		    accountList = this.getfinanceList(accountNameList);
+		    int number = ApplicationNumber++;
+		    String operator = FinanceFrame.user.userName;
+		    String note = NoteText.getText();
+		    String customerName = CustomerBox.getItemAt(CustomerBox.getSelectedIndex());
+		    CustomerVO customer = cusservice.findCustomer(customerName); 
+				
+			RecieptApplicationVO submitRav = new RecieptApplicationVO(accountList, moneyList,""+number, operator, note, customer);
+				
+			/*System.out.println(accountList);
+			System.out.println(moneyList);
+			System.out.println(number);
+			System.out.println(operator);
+			System.out.println(note);
+			System.out.println(customerName);
+			System.out.println(submitRav);
+			System.out.println(faservice);
+			System.out.println(submitRav.getAddup());*/
+            faservice.submitRecieptApplication(submitRav);
 		}
 	    
-	    public void getfinanceList(){
+	    public ArrayList<financeVO> getfinanceList(ArrayList<String> accountNameList){
+	    	ArrayList<financeVO> accountList = new ArrayList<financeVO>();
 	        for(int index=0 ; index<accountNameList.size();index++){
 	        	accountList.add(service.find(new financeVO(accountNameList.get(index))));
 	        }
+	        return accountList;
 	    }
 		
 	}

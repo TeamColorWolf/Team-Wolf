@@ -20,6 +20,7 @@ public class CashApplicationPO extends ApplicationPO implements Serializable{
 			this.note = note;
 			this.customer = customer;
 			
+			this.accountList = new ArrayList<financePO>();
 			this.setNameList(nameList);
 			this.setAccountList(accountList);
 			this.moneyList = moneyList;
@@ -40,7 +41,7 @@ public class CashApplicationPO extends ApplicationPO implements Serializable{
 	}
 	private void setAccountListPO(ArrayList<financeVO> accountList2) {
 		for(int i=0;i<accountList2.size();i++){
-			this.accountList.set(i,new financePO(accountList2.get(i)));
+			this.accountList.add(new financePO(accountList2.get(i)));
 		}
 		
 	}
