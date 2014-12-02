@@ -289,6 +289,8 @@ public class ImportRejectListPanel extends JPanel{
 				remarkArea.getText(), ivo);
 		irvo.condition = 0;
 		
+		System.out.println(irvo.number);
+		
 		saleLogic.createImportReject(irvo);
 	}
 	

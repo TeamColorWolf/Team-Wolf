@@ -24,7 +24,6 @@ public class CustomerDATA extends UnicastRemoteObject implements CustomerDATAser
 		if(list == null){
 			list = new ArrayList<CustomerPO>();
 		}
-		System.out.println("gyqgyqgyqgyq   " + list.size());
 	}
 	
 	public int addCustomer(CustomerPO cpo) throws RemoteException {
