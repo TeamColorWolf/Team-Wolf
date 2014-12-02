@@ -18,6 +18,7 @@ public class RecieptApplicationPO extends ApplicationPO implements Serializable{
 				this.note = note;
 				this.customer = customer;
 				
+				this.accountList = new ArrayList<financePO>();
 				this.setAccountList(accountList);
 				this.moneyList = moneyList;
 				

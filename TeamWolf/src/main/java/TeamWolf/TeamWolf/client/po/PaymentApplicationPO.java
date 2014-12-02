@@ -30,6 +30,7 @@ public class PaymentApplicationPO extends ApplicationPO implements Serializable{
 	public PaymentApplicationPO(PaymentApplicationVO vo) {
 		this.note = vo.getNote();
 		this.addup=vo.getAddup();
+		this.accountList = new ArrayList<financePO>();
 		this.customer=new CustomerPO(vo.getCustomer());
 		this.setAccountListPO(vo.getAccountList());
 		this.moneyList = vo.getMoneyList();

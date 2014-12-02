@@ -16,10 +16,13 @@ import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOprBLservice;
 import TeamWolf.TeamWolf.client.BL.financeBL.financeController;
 import TeamWolf.TeamWolf.client.BLservice.financeBLservice.AccountBlservice;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
+import TeamWolf.TeamWolf.client.vo.PaymentApplicationVO;
+import TeamWolf.TeamWolf.client.vo.RecieptApplicationVO;
+import TeamWolf.TeamWolf.client.vo.financeVO;
 
 public class PaymentPanel extends JPanel{
 
-	
+	public static int ApplicationNumber = 00000;
 	private final static int LW = 150;
 	private final static int LH = 25;
 	private final static int BW = 80;
@@ -141,9 +144,40 @@ public class PaymentPanel extends JPanel{
 	
 	class EnsureListener implements ActionListener{
 
+		 
 		public void actionPerformed(ActionEvent arg0) {
-
+		    ArrayList<String> accountNameList = opp.getTheAccount();
+		    //System.out.println(accountNameList);
+		    ArrayList<financeVO> accountList = new ArrayList<financeVO>();
+		    ArrayList<String> moneyList = opp.getTheMoney();
+		    accountList = this.getfinanceList(accountNameList);
+		    int number = ApplicationNumber++;
+		    String operator = FinanceFrame.user.userName;
+		    String note = NoteText.getText();
+		    String customerName = CustomerBox.getItemAt(CustomerBox.getSelectedIndex());
+		    CustomerVO customer = cusservice.findCustomer(customerName); 
+				
+			PaymentApplicationVO submitRav = new PaymentApplicationVO(accountList, moneyList,""+number, operator, note, customer);
+				
+			/*System.out.println(accountList);
+			System.out.println(moneyList);
+			System.out.println(number);
+			System.out.println(operator);
+			System.out.println(note);
+			System.out.println(customerName);
+			System.out.println(submitRav);
+			System.out.println(faservice);
+			System.out.println(submitRav.getAddup());*/
+            faservice.submitPaymentApplication(submitRav);
 		}
+	    
+	    public ArrayList<financeVO> getfinanceList(ArrayList<String> accountNameList){
+	    	ArrayList<financeVO> accountList = new ArrayList<financeVO>();
+	        for(int index=0 ; index<accountNameList.size();index++){
+	        	accountList.add(service.find(new financeVO(accountNameList.get(index))));
+	        }
+	        return accountList;
+	    }
 		
 	}
 }
