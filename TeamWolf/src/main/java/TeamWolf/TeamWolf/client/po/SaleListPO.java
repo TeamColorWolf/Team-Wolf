@@ -59,6 +59,7 @@ public class SaleListPO extends ApplicationPO{
 
 	
 	public SaleListPO(SaleListVO svo) {
+		this.condition = svo.condition;
 		this.number = svo.number;
 		this.customer = new CustomerPO(svo.getCustomer());
 		this.salesman = svo.getSalesman();

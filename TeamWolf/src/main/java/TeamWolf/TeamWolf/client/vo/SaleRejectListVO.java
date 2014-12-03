@@ -81,6 +81,7 @@ public class SaleRejectListVO extends ApplicationVO{
 	}
 
 	public SaleRejectListVO(SaleRejectListPO srpo) {
+		this.condition = srpo.condition;
 		this.number = srpo.number;
 		this.customer = new CustomerVO(srpo.getCustomer());
 		this.salesman = srpo.getSalesman();

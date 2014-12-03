@@ -51,6 +51,7 @@ public class ImportListVO extends ApplicationVO{
 	}
 	
 	public ImportListVO(ImportListPO ipo){
+		this.condition = ipo.condition;
 		this.number = ipo.number;
 		this.customer = new CustomerVO(ipo.getCustomer());
 		this.storage = ipo.getStorage();

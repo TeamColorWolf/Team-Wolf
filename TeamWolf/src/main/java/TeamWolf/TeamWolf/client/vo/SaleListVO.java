@@ -81,7 +81,9 @@ public class SaleListVO extends ApplicationVO{
 	}
 	
 	public SaleListVO(SaleListPO spo) {
+		this.condition = spo.condition;
 		this.number = spo.number;
+		this.operator = spo.operator;
 		this.customer = new CustomerVO(spo.getCustomer());
 		this.salesman = spo.getSalesman();
 		this.operator = spo.getOperator();

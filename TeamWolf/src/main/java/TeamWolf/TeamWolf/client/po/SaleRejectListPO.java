@@ -62,6 +62,7 @@ public class SaleRejectListPO extends ApplicationPO{
 
 	
 	public SaleRejectListPO(SaleRejectListVO srvo) {
+		this.condition = srvo.condition;
 		this.number = srvo.number;
 		this.customer = new CustomerPO(srvo.getCustomer());
 		this.salesman = srvo.getSalesman();

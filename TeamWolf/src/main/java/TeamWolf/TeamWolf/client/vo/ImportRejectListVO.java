@@ -64,6 +64,7 @@ public class ImportRejectListVO extends ApplicationVO{
 	
 	public ImportRejectListVO(ImportRejectListPO irpo) {
 		// TODO Auto-generated constructor stub
+		this.condition = irpo.condition;
 		this.number = irpo.number;
 		this.customer = new CustomerVO(irpo.getCustomer());
 		this.storage = irpo.getStorage();
