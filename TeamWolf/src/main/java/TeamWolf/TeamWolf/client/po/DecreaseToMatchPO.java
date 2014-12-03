@@ -7,14 +7,20 @@ import TeamWolf.TeamWolf.client.vo.GoodsVO;
 
 public class DecreaseToMatchPO extends ApplicationPO implements Serializable{
 
-	 String toDecreaseInfo;		    
+	 public String[] toDecreaseInfo;		    
      
 	 public DecreaseToMatchPO(DecreaseToMatchVO vo){
-		 toDecreaseInfo=vo.getInfo();
+		 this.number=vo.number;
+		 toDecreaseInfo=new String[4];
+    	 toDecreaseInfo[0]=vo.getNumber();
+    	 toDecreaseInfo[1]=vo.getName();
+    	 toDecreaseInfo[2]=vo.getModel();
+    	 toDecreaseInfo[3]=vo.getAmount();
 	 }
-	 
-     public String getInfo(){
-   	  return toDecreaseInfo;
-     }
+
+	public String getInfo() {
+		// TODO Auto-generated method stub
+		return toDecreaseInfo[0]+" "+toDecreaseInfo[1]+" "+toDecreaseInfo[2]+" "+toDecreaseInfo[3];
+	}
      
 }

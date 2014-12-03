@@ -38,7 +38,8 @@ public class StockRead {
 		try {
 			ArrayList<IncreaseToMatchPO> ITML=dataService.shoITM();
 			for(IncreaseToMatchPO itm: ITML){
-				result.add(itm.getInfo());
+				
+		        result.add(itm.getInfo());
 			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -63,4 +64,28 @@ public class StockRead {
 		}
 		return result;
 	}
+	
+	public int todayQuantityOfITM(){
+		int result=0;
+		try {
+			result=dataService.todayQuantityOfITM();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public int todayQuantityOfDTM(){
+		int result=0;
+		try {
+			result=dataService.todayQuantityOfDTM();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	
 }

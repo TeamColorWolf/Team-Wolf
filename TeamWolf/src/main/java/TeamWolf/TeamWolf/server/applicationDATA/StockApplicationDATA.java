@@ -3,8 +3,11 @@ package TeamWolf.TeamWolf.server.applicationDATA;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
+import TeamWolf.TeamWolf.client.BL.applicationBL.forStock.DecreaseToMatch;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.StockApplicationDATAservice;
 import TeamWolf.TeamWolf.client.po.DecreaseToMatchPO;
 import TeamWolf.TeamWolf.client.po.IncreaseToMatchPO;
@@ -143,4 +146,54 @@ public class StockApplicationDATA extends UnicastRemoteObject implements StockAp
 		}
 	}
 
+	public int todayQuantityOfITM() throws RemoteException {
+		// TODO Auto-generated method stub
+		int result=0;
+	    String date=this.getPresentTime();
+		for(IncreaseToMatchPO itm : ITMList){
+			String[] number=itm.number.split("-");
+			if(number[1].equals(date))
+				result++;
+		}
+		
+		return result;
+	}
+
+	public int todayQuantityOfDTM() throws RemoteException {
+		// TODO Auto-generated method stub
+		int result=0;
+		String date=this.getPresentTime();
+		for(DecreaseToMatchPO dtm : DTMList){
+			String[] number=dtm.number.split("-");
+			if(number[1].equals(date))
+				result++;
+		}
+		
+		return result;
+	}
+	
+	private String getPresentTime(){
+ 		//获得当前时间
+ 		Calendar c=Calendar.getInstance();
+ 		SimpleDateFormat s=new SimpleDateFormat("yyyyMMdd");
+ 		//SimpleDateFormat s=new SimpleDateFormat("MM-dd HH:mm:ss");
+ 		String time=s.format(c.getTime());
+ 		return time;
+ 	}
+
+	public static void main(String[] args){
+		
+		try {
+			StockApplicationDATA sad=new StockApplicationDATA();
+			
+			ArrayList<DecreaseToMatchPO> dp=sad.DTMList;
+			
+			for(DecreaseToMatchPO i : dp){
+				System.out.println(i.number);
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

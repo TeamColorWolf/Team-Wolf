@@ -112,7 +112,11 @@ public class GoodsMonitor{
 		if(assistant.isExisted(toIncrease)&&increaseGoods(toIncrease)==0){
 			//商品报溢			
 			//调用ApplicationBL接口生成报溢单
-			    IncreaseToMatchVO itm=new IncreaseToMatchVO(toIncrease);
+			    String number=""+(appController.todayQuantityOfITM()+1);
+			    while(number.length()<5){
+			    	number="0"+number;
+			    }
+			    IncreaseToMatchVO itm=new IncreaseToMatchVO(toIncrease, number);
 			    appController.submitIncreaseToMatch(itm);		
 		}
 		else{
@@ -132,7 +136,11 @@ public class GoodsMonitor{
 			int result=decreaseGoods(toDecrease);
 			//调用ApplicationBL接口生成报损单
 			if(result==0){
-			     DecreaseToMatchVO dtm=new DecreaseToMatchVO(toDecrease);
+				String number=""+(appController.todayQuantityOfDTM()+1);
+			    while(number.length()<5){
+			    	number="0"+number;
+			     }
+			     DecreaseToMatchVO dtm=new DecreaseToMatchVO(toDecrease, number);
 			     appController.submitDecreaseToMatch(dtm);
 			}
 			else{

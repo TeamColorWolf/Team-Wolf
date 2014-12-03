@@ -42,5 +42,15 @@ public class StockApplicationController extends MutiRoleController implements St
 	    
 		return read.getDTMList();
 	}
+	
+	public int todayQuantityOfITM(){
+		
+		return read.todayQuantityOfITM();
+	}
+	
+	public int todayQuantityOfDTM(){
+		
+		return read.todayQuantityOfDTM();
+	}
 
 }

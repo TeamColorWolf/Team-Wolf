@@ -31,6 +31,7 @@ import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
+import TeamWolf.TeamWolf.client.BL.applicationBL.forStock.StockApplicationController;
 import TeamWolf.TeamWolf.client.BL.goodsBL.GoodsBLController;
 import TeamWolf.TeamWolf.client.BL.stockBL.StockBLController;
 import TeamWolf.TeamWolf.client.vo.GoodsListVO;
@@ -44,7 +45,7 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     String IP;
     StockBLController sbcontroller;
 	GoodsBLController gbcontroller;
-    
+   
 	DefaultMutableTreeNode root=new DefaultMutableTreeNode("商品");
 	JTree stockStruct;
     DefaultTreeModel treeModel;

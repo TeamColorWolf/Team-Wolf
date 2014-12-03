@@ -43,4 +43,8 @@ public interface StockApplicationDATAservice extends Remote {
 	public ArrayList<IncreaseToMatchPO> shoITM() throws RemoteException;
 	
 	public ArrayList<DecreaseToMatchPO> shoDTM() throws RemoteException;
+	
+	public int todayQuantityOfITM() throws RemoteException;
+	
+	public int todayQuantityOfDTM() throws RemoteException;
 }

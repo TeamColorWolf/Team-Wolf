@@ -140,7 +140,7 @@ public class AppPane extends JPanel  {
 					DTMInfo=DTMInfo+dtm+"\n";
 				}
 				
-				ITMArea.setText(DTMInfo);
+				DTMArea.setText(DTMInfo);
 			}
 		});
 		DTMOprArea.add(refreshDTM);
