@@ -9,8 +9,8 @@ import java.util.ArrayList;
 public class PresentListVO extends ApplicationVO{
     
 	
-	CustomerVO customer;
-	String operator;
+	public CustomerVO customer;
+	public String operator;
 	
 	private ArrayList<GoodsVO> pl=new ArrayList<GoodsVO>();
 	private String presentListInfo;

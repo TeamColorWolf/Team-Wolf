@@ -69,9 +69,9 @@ public class MockGoodsTrade {
 		
 	public PresentListVO checkPL(int number) {
 		// TODO Auto-generated method stub
-		PresentListVO pl=new PresentListVO();
-		System.out.println("查看赠送单！");
-		return pl;
+	
+		
+		return null;
 	}
 	
 	public ArrayList<PresentListVO> shoSimplifiedPL() {

@@ -171,34 +171,11 @@ public class GoodsTrade {
 		return 0;
 	}
 	
-	public int presentList(ArrayList<GoodsVO> presentList, String operator, CustomerVO customer){
-		
-		int r=0;
-		PresentListVO pl=new PresentListVO();
-		pl.setOperator(operator);
-		pl.setCustomer(customer);
-		for(GoodsVO g:presentList){
-			try{
-			if((r=assistant.canSent(g))==0){
-				pl.addPresent(g);
-			}
-			else{ //返回具体错误类型：该商品无法赠送（不存在或者库存不足）
-				return r; 
-			}
-			}catch(RemoteException e){
-				e.printStackTrace();
-				//返回通信错误
-			}
-		}
-			    
-		//检查完毕后生成赠送单，提交审批，调用ApplicationBL接口
- 		appController.submitPresentList(pl);
-		//操作成功为返回0
-		return 0;
-	}
+	
 	
 	public int handlePresentList(ArrayList<GiftForPromotionVO> gl, String customer){
 		
+		ArrayList<String> pll=new ArrayList<String>();
 		
 		for(GiftForPromotionVO g:gl){
 			int r=0;
@@ -206,7 +183,10 @@ public class GoodsTrade {
 			if((r=gmo.decreaseGoods(gg))!=0){
 				return r;  //若操作失败返回错误类型
 			}; //逐个将被赠送商品库存数量减少
+			
+			pll.add(g.GoodsName+" "+g.sendNumber);
 		}
+		
 		
 		return 0;
 	}

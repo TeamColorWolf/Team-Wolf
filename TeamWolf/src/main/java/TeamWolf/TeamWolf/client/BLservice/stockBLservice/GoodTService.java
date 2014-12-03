@@ -6,12 +6,7 @@ import TeamWolf.TeamWolf.client.vo.*;
 
 public interface GoodTService {
 
-	/**
-	 * �����Ʒ��
-	 * @param present
-	 * @return
-	 */
-	public int presentList(ArrayList<GoodsVO> present, String operator, CustomerVO customer);
+
     /**
      * �鿴�ض���Ʒ������ϸ��Ϣ
      * @param number

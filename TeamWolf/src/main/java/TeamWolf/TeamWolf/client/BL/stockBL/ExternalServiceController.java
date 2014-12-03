@@ -50,7 +50,12 @@ public class ExternalServiceController implements ExternalService{
 		return null;
 	}
 	
-	public static void main(String[] args){
+	public int addSpecialPackage(SpecialGoodsPromotionVO sp) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+    public static void main(String[] args){
 		
 		ExternalServiceController esc=new ExternalServiceController("192.168.1.102");
 		ArrayList<TypeVO> typeList=esc.getLeaveType();
@@ -68,10 +73,4 @@ public class ExternalServiceController implements ExternalService{
 		System.out.println(!s.contains("specialGoods"));
 	}
 
-	public int addSpecialPackage(SpecialGoodsPromotionVO sp) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	
 }

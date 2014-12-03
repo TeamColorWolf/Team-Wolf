@@ -65,10 +65,7 @@ public class GoodsBLController implements GoodManService,GoodTService,GoodMonSer
 		// TODO Auto-generated method stub
 		return gmo.setWaringLine(goodWL);
 	}
-	public int presentList(ArrayList<GoodsVO> present, String operator, CustomerVO customer) {
-		// TODO Auto-generated method stub
-		return gt.presentList(present, operator, customer);
-	}
+	
 	public PresentListVO checkPL(int number) {
 		// TODO Auto-generated method stub
 		return gt.checkPL(number);

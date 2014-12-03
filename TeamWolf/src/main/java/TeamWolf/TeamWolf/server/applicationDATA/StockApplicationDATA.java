@@ -21,7 +21,7 @@ public class StockApplicationDATA extends UnicastRemoteObject implements StockAp
 	
 	ArrayList<IncreaseToMatchPO> ITMList;
 	ArrayList<DecreaseToMatchPO> DTMList;
-	
+	ArrayList<PresentListPO> PList;
 	
 	public StockApplicationDATA() throws RemoteException {
 		super();
@@ -32,6 +32,8 @@ public class StockApplicationDATA extends UnicastRemoteObject implements StockAp
 			ITMList=new ArrayList<IncreaseToMatchPO>();
 		if(DTMList==null)
 			DTMList=new ArrayList<DecreaseToMatchPO>();
+		if(PList==null)
+			PList=new ArrayList<PresentListPO>();
 	}
 
 	public int submitIncreaseToMatch(IncreaseToMatchPO po)
@@ -63,6 +65,14 @@ public class StockApplicationDATA extends UnicastRemoteObject implements StockAp
 
 	public int submitPresentList(PresentListPO po) throws RemoteException {
 		// TODO Auto-generated method stub
+		PList.add(po);
+		try {
+			FileOpr.writeFile(FileName.presnetListFile, PList);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return 0;
 	}
 
@@ -119,7 +129,7 @@ public class StockApplicationDATA extends UnicastRemoteObject implements StockAp
 
 	public ArrayList<PresentListPO> shoPL() throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		return PList;
 	}
 
 	public ArrayList<IncreaseToMatchPO> shoITM() throws RemoteException {
@@ -137,6 +147,7 @@ public class StockApplicationDATA extends UnicastRemoteObject implements StockAp
 		try {
 			ITMList=(ArrayList<IncreaseToMatchPO>)FileOpr.readFile(FileName.increaseToMatchFile);
 			DTMList=(ArrayList<DecreaseToMatchPO>)FileOpr.readFile(FileName.decreaseToMatchFile);
+			PList=(ArrayList<PresentListPO>)FileOpr.readFile(FileName.presnetListFile);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

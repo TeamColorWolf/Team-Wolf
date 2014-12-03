@@ -3,6 +3,7 @@ package TeamWolf.TeamWolf.client.po;
 import java.io.Serializable;
 
 public class GiftForPromotionPO implements Serializable{
+	
 	public String GoodsNum;
 	public int sendNumber;
 	

@@ -240,38 +240,18 @@ public class StockShowPane extends JPanel implements ItemListener, ActionListene
 		
 		if(((JButton)e.getSource()).equals(daliyStock)){
 			
-			//gsl=gbcontroller.shoStockDaily();
+			gsl=gbcontroller.shoStockDaily();
 		  
 		}
 		else{
 			
 			int beginDate=beginYear*10000+beginMonth*100+beginDay;
 			int endDate=endYear*10000+endMonth*100+endDay;
-		    //gsl=gbcontroller.shoStockList(beginDate, endDate);
+		    gsl=gbcontroller.shoStockList(beginDate, endDate);
 		}
 		
-		   //ArrayList<GoodsStockVO> gsvlist=gsl.getGoodsSL();
-		   ArrayList<GoodsStockVO> gsvlist=new ArrayList<GoodsStockVO>();
-		   GoodsVO g1=new GoodsVO(null, null, "1", "g1", "gg1", "2", "7", "9", "5", "1", "3");
-		   GoodsStockVO gs1=new GoodsStockVO();
-		   gs1.setGood(g1);
-		   gs1.setExportAmount(45);
-		   gs1.setExportTotalPrice(324);
-		   gs1.setImportAmount(43);
-		   gs1.setImportTotalPrice(333);
-		   gs1.setTotalPrice(99);
-		   gsvlist.add(gs1);
-		   
-		   GoodsVO g2=new GoodsVO(null, null, "1", "g2", "gg2", "2", "7", "9", "5", "1", "3");
-		   GoodsStockVO gs2=new GoodsStockVO();
-		   gs2.setGood(g2);
-		   gs2.setExportAmount(45);
-		   gs2.setExportTotalPrice(324);
-		   gs2.setImportAmount(43);
-		   gs2.setImportTotalPrice(333);
-		   gs2.setTotalPrice(99);
-		   gsvlist.add(gs2);
-		   
+		   ArrayList<GoodsStockVO> gsvlist=gsl.getGoodsSL();
+		 
 		   int size=gsvlist.size();
 		   
 		   this.remove(SSAContainer);

@@ -29,6 +29,6 @@ public class StockSubmit extends ApplicationBL{
 	
 	public int submitPresentList(PresentListVO vo){
 		PresentList app = new PresentList(vo, IP);
-		return 0;
+		return app.submit();
 	}
 }
