@@ -23,12 +23,14 @@ public class ImportList extends Application{
 	ImportListVO ivo;
 	CustomerInfoBLservice custInfoServ;
 	SaleApplicationDATAservice saleDataServ;
+	GoodTService goodServ;
 	String URL;
 	
 	public ImportList(ImportListVO vo, String IP) {
 		super(vo, IP);
 		// TODO Auto-generated constructor stub
 		custInfoServ = new CustomerInfo(IP);
+		goodServ = new GoodsBLController(IP);
 		
 		this.ivo = vo;
 		URL = "rmi://" + IP + "/saleApplicationDATAservice";
@@ -57,6 +59,7 @@ public class ImportList extends Application{
 		// TODO Auto-generated method stub
 		ivo.condition = 1;
 		custInfoServ.ImportListInfoMod(ivo);
+		goodServ.goodsImport(ivo);
 		ImportListPO ipo = new ImportListPO(ivo);
 
 		try {
