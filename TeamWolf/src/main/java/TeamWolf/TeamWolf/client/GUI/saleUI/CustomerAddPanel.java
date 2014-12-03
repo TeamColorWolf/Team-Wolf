@@ -252,7 +252,7 @@ public class CustomerAddPanel extends JPanel{
 	 * 添加按钮事件
 	 */
 	private void addBtnAction(){
-		String num =  String.format("%05d", customerList.size());
+		String num =  getCustomerNum();
 		String kind = (String) kindBox.getSelectedItem();
 		String level = (String)levelBox.getSelectedItem();
 		String name = nameField.getText();
@@ -267,8 +267,14 @@ public class CustomerAddPanel extends JPanel{
 		customer = new CustomerVO(num, kind, level, name, tel, address,
 				zipCode, email, topLimit, receive, pay, businessMan);
 		System.out.println("addsuccess");
+		
+		CustomerDelPanel.customerList.add(customer);
 		customerLogic.Customeradd(customer);
 	}
 	
-	
+	private String getCustomerNum(){
+		int num = Integer.parseInt(customerList.get(customerList.size() - 1).getNum());
+		String number = String.format("%05d", num + 1);
+		return number;
+	}
 }

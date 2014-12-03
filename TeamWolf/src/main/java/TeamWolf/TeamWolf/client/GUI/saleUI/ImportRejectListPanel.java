@@ -250,7 +250,7 @@ public class ImportRejectListPanel extends JPanel{
 	 * 显示按钮事件
 	 */
 	private void showBtnAction(){
-//		clearImportInfoTable();
+		clearImportInfoTable();
 //		importList = TestMain.getImportListTEST();
 		tModel_import = (DefaultTableModel) importListTable.getModel();
 		
@@ -269,7 +269,6 @@ public class ImportRejectListPanel extends JPanel{
 			importListTable.setModel(tModel_import);
 		}
 		
-		showBtn.setEnabled(false);
 	}
 	
 	/**
@@ -294,6 +293,9 @@ public class ImportRejectListPanel extends JPanel{
 		saleLogic.createImportReject(irvo);
 	}
 	
+	/**
+	 * 获取单据编号
+	 */
 	private String importRejectListNum(){
 		String num = "JHTHD-";
 		String date = saleLogic.getPresentDate();
@@ -302,6 +304,18 @@ public class ImportRejectListPanel extends JPanel{
 		return num;
 	}
 
+	/**
+	 * 清空表格方法
+	 */
+	private void clearImportInfoTable(){
+		object_importList = null;
+		tModel_import.setDataVector(object_importList, importInfo);
+		TableColumn tc0 = importListTable.getColumnModel().getColumn(0);
+		tc0.setCellEditor(importListTable.getDefaultEditor(Boolean.class));
+		tc0.setCellRenderer(importListTable.getDefaultRenderer(Boolean.class));
+		importListTable.updateUI();
+		
+	}
 	
 	/**
 	 * 清空表格方法

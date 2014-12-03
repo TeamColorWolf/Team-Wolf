@@ -45,10 +45,12 @@ public class CustomerDATA extends UnicastRemoteObject implements CustomerDATAser
 				list.remove(i);
 				try {
 					FileOpr.writeFile(FileName.customerFile,list);
+					System.out.println("del customer success");
 					return 0;
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					System.out.println("hehehehe");
 					return 30002;
 				}
 			}

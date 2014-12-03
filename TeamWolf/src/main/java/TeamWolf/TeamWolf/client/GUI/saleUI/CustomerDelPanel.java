@@ -14,9 +14,7 @@ import javax.swing.table.TableColumn;
 
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOpr;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOprBLservice;
-import TeamWolf.TeamWolf.client.po.CustomerPO;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
-import TeamWolf.TeamWolf.client.vo.ImportListVO;
 import TeamWolf.TeamWolf.client.vo.UserVO;
 
 /**
@@ -26,7 +24,7 @@ import TeamWolf.TeamWolf.client.vo.UserVO;
  */
 public class CustomerDelPanel extends JPanel{
 	
-	ArrayList<CustomerVO> customerList;
+	public static ArrayList<CustomerVO> customerList;
 	CustomerOprBLservice customerLogic;
 	
 	private JScrollPane scroll_customer;
@@ -133,6 +131,7 @@ public class CustomerDelPanel extends JPanel{
 		
 		delet.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				delBtnEvent();
 			}
 		});
 		
@@ -174,6 +173,27 @@ public class CustomerDelPanel extends JPanel{
 	private void clearCustomerTable(){
 		object_customerList = null;
 		tModel_customer.setDataVector(object_customerList, customerInfo);
+		TableColumn tc0 = customerListTable.getColumnModel().getColumn(0);
+		tc0.setCellEditor(customerListTable.getDefaultEditor(Boolean.class));
+		tc0.setCellRenderer(customerListTable.getDefaultRenderer(Boolean.class));
+		
 		customerListTable.updateUI();
+	}
+	
+	/**
+	 * 删除按钮事件
+	 */
+	private void delBtnEvent(){
+		CustomerVO cvo = null;
+		for (int i = 0; i < customerList.size(); i++) {
+			if(customerListTable.getValueAt(i, 0).equals(true)){
+				cvo = customerList.get(i);
+			}
+		}
+		if(cvo == null){
+			System.out.println("delet failed");
+			return;
+		}
+		customerLogic.Customerdel(cvo);
 	}
 }

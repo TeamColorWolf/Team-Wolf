@@ -20,7 +20,6 @@ import TeamWolf.TeamWolf.client.BL.saleBL.SaleBLController;
 import TeamWolf.TeamWolf.client.BLservice.saleBLservice.SaleBLservice;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
-import TeamWolf.TeamWolf.client.vo.ImportListVO;
 import TeamWolf.TeamWolf.client.vo.SaleListVO;
 import TeamWolf.TeamWolf.client.vo.TypeVO;
 import TeamWolf.TeamWolf.client.vo.UserType;
@@ -238,8 +237,7 @@ public class SaleListPanel extends JPanel{
 	 * 在CustomerBox里添加选择列表
 	 */
 	private void setCustomerBox(){
-		custList = TestMain.getCustVOListTEST();
-		for (int i = 0, k = 0; i < custList.size(); i++) {
+		for (int i = 0; i < custList.size(); i++) {
 			if(custList.get(i).getKind().equals("销售商")){
 				customerBox.addItem(custList.get(i).getName());
 			}
