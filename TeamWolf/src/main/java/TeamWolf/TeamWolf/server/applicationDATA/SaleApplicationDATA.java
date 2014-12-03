@@ -70,7 +70,7 @@ public class SaleApplicationDATA extends UnicastRemoteObject implements SaleAppl
 			fo.writeFile(fileName.importListFile, importList);
 		} catch (Exception e) {
 			e.printStackTrace();
-			judge = 999999;
+			judge = 9;
 		}
 		return judge;
 	}
@@ -83,7 +83,7 @@ public class SaleApplicationDATA extends UnicastRemoteObject implements SaleAppl
 			fo.writeFile(fileName.importRejectListFile, importRejectList);
 		} catch (IOException e) {
 			e.printStackTrace();
-			judge = 999999;
+			judge = 9;
 		}
 		return judge;
 	}
@@ -96,7 +96,7 @@ public class SaleApplicationDATA extends UnicastRemoteObject implements SaleAppl
 			fo.writeFile(fileName.saleListFile, saleList);
 		} catch (IOException e) {
 			e.printStackTrace();
-			judge = 999999;
+			judge = 9;
 		}
 		return judge;
 	}
@@ -109,14 +109,28 @@ public class SaleApplicationDATA extends UnicastRemoteObject implements SaleAppl
 			fo.writeFile(fileName.saleRejectListFile, saleRejectList);
 		} catch (IOException e) {
 			e.printStackTrace();
-			judge = 999999;
+			judge = 9;
 		}
 		return judge;
 	}
 
-	public int approvalImportList(ImportListPO po) throws RemoteException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int approvalImportList(ImportListPO ipo) throws RemoteException {
+		int judge = 9;
+		for (int i = 0; i < importList.size(); i++) {
+			if(ipo.number.equals(importList.get(i).number)){
+				importList.remove(i);
+				importList.add(ipo);
+				break;
+			}
+		}
+		try {
+			fo.writeFile(fileName.importListFile, importList);
+			judge = 0;
+			return judge;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return judge;
 	}
 
 	public int approvalImportRejectList(ImportRejectListPO po)

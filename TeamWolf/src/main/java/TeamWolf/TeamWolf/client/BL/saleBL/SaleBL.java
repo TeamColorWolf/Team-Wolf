@@ -37,11 +37,11 @@ public class SaleBL{
 	public SaleBL(String IP){
 		saleAssist = new SaleBLAssistant();
 		presentDate = saleAssist.getDate();
-		try {
-			saleAppServ = new SaleApplicationDATA();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			saleAppServ = new SaleApplicationDATA();
+//		} catch (RemoteException e) {
+//			e.printStackTrace();
+//		}
 		cusCtrl = new CustomerController(IP);
 		URL = "rmi://" + IP + "/saleDATAservice";
 	}
@@ -167,8 +167,15 @@ public class SaleBL{
 		ArrayList<ImportListVO> importList = new ArrayList<ImportListVO>();
 		ArrayList<ImportListPO> importListPO = new ArrayList<ImportListPO>();
 		try {
+			saleAppServ = (SaleApplicationDATAservice) Naming.lookup(URL);
 			importListPO = saleAppServ.getImportList();
 		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		for (int i = 0; i < importListPO.size(); i++) {
@@ -182,8 +189,15 @@ public class SaleBL{
 		ArrayList<ImportRejectListVO> importRejectList = new ArrayList<ImportRejectListVO>();
 		ArrayList<ImportRejectListPO> importRejectListPO = new ArrayList<ImportRejectListPO>();
 		try {
+			saleAppServ = (SaleApplicationDATAservice) Naming.lookup(URL);
 			importRejectListPO = saleAppServ.getImportRejectList();
 		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		for (int i = 0; i < importRejectListPO.size(); i++) {
@@ -198,8 +212,15 @@ public class SaleBL{
 		ArrayList<SaleListVO> saleList = new ArrayList<SaleListVO>();
 		ArrayList<SaleListPO> saleListPO = new ArrayList<SaleListPO>();
 		try {
+			saleAppServ = (SaleApplicationDATAservice) Naming.lookup(URL);
 			saleListPO = saleAppServ.getSaleList();
 		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		for (int i = 0; i < saleListPO.size(); i++) {
@@ -214,8 +235,15 @@ public class SaleBL{
 		ArrayList<SaleRejectListVO> saleRejectList = new ArrayList<SaleRejectListVO>();
 		ArrayList<SaleRejectListPO> saleRejectListPO = new ArrayList<SaleRejectListPO>();
 		try {
+			saleAppServ = (SaleApplicationDATAservice) Naming.lookup(URL);
 			saleRejectListPO = saleAppServ.getSaleRejectList();
 		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		for (int i = 0; i < saleRejectListPO.size(); i++) {

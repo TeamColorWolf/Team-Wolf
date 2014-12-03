@@ -31,7 +31,8 @@ public class CustomerInfo implements CustomerInfoBLservice{
 		URL = "rmi://" + IP + "/customerDATAservice";
 	}
 	
-	public int ImportListInfoMod(ImportListVO vo) {
+	public int ImportListInfoMod(ImportListVO ivo) {
+		ivo.getCustomer().setPay(ivo.getTotal());
 		return 0;
 	}
 

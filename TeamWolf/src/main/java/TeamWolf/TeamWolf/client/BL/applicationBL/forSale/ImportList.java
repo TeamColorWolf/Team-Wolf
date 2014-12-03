@@ -1,15 +1,37 @@
 package TeamWolf.TeamWolf.client.BL.applicationBL.forSale;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+
 import TeamWolf.TeamWolf.client.BL.applicationBL.Application;
+import TeamWolf.TeamWolf.client.BL.customerBL.CustomerInfo;
+import TeamWolf.TeamWolf.client.BL.customerBL.CustomerInfoBLservice;
+import TeamWolf.TeamWolf.client.BL.goodsBL.GoodsBLController;
+import TeamWolf.TeamWolf.client.BLservice.stockBLservice.GoodTService;
+import TeamWolf.TeamWolf.client.BLservice.stockBLservice.StockBLservice;
+import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.SaleApplicationDATAservice;
 import TeamWolf.TeamWolf.client.po.ApplicationPO;
+import TeamWolf.TeamWolf.client.po.ImportListPO;
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;
 import TeamWolf.TeamWolf.client.vo.ImportListVO;
+import TeamWolf.TeamWolf.server.applicationDATA.SaleApplicationDATA;
 
 public class ImportList extends Application{
 
+	ImportListVO ivo;
+	CustomerInfoBLservice custInfoServ;
+	SaleApplicationDATAservice saleDataServ;
+	String URL;
+	
 	public ImportList(ImportListVO vo, String IP) {
 		super(vo, IP);
 		// TODO Auto-generated constructor stub
+		custInfoServ = new CustomerInfo(IP);
+		
+		this.ivo = vo;
+		URL = "rmi://" + IP + "/saleApplicationDATAservice";
 	}
 
 	@Override
@@ -33,6 +55,25 @@ public class ImportList extends Application{
 	@Override
 	public int approve() {
 		// TODO Auto-generated method stub
+		ivo.condition = 1;
+		custInfoServ.ImportListInfoMod(ivo);
+		ImportListPO ipo = new ImportListPO(ivo);
+
+		try {
+			saleDataServ = (SaleApplicationDATAservice) Naming.lookup(URL);
+			saleDataServ.approvalImportList(ipo);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		return 0;
 	}
 
