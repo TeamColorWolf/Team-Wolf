@@ -160,6 +160,7 @@ public class TimeSelectPanel extends JPanel{
 		
 		this.setLayout(null);
 		this.setSize(width, height);
+		this.setLocation(0, 0);
 		this.setVisible(true);
 		this.setOpaque(false);
 	}
@@ -234,17 +235,5 @@ public class TimeSelectPanel extends JPanel{
 			setComboBoxDate(ey, em, ed);
 		}
 		
-	}
-	
-	public static void main(String[] args){
-		TimeSelectPanel t = new TimeSelectPanel();
-		JFrame f = new JFrame();
-		
-		f.add(t);
-		
-		f.setSize(width, height);
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setLocationRelativeTo(null);
-		f.setVisible(true);
 	}
 }

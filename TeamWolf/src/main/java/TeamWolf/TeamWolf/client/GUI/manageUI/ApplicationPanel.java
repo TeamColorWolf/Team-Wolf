@@ -63,11 +63,11 @@ public class ApplicationPanel extends JPanel{
 	public ArrayList<ApplicationVO> getResult(){
 		if(list != null){
 			for(int i = 0; i < list.size(); i++){
-				if(content[i][3] != null){
-					if(content[i][3].equals("通过")){
+				if(table.getValueAt(i, 3) != null){
+					if(((String)table.getValueAt(i, 3)).equals("通过")){
 						list.get(i).condition = 1;
 					}
-					else if(content[i][3].equals("驳回")){
+					else if(((String)table.getValueAt(i, 3)).equals("驳回")){
 						list.get(i).condition = -1;
 					}
 				}
@@ -79,6 +79,8 @@ public class ApplicationPanel extends JPanel{
 	public void flashPanel(){
 		getContent();
 		tableModel.setDataVector(content, column);
+		approve = table.getColumnModel().getColumn(3);
+		approve.setCellEditor(new DefaultCellEditor(choice));
 		table.updateUI();
 	}
 	

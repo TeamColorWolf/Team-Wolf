@@ -31,10 +31,11 @@ public class ApplicationBL {
 	protected ArrayList<ApplicationPO> poList;
 	protected ArrayList<ApplicationVO> voList;
 	protected String URL;
+	protected String IP;
 	protected ApproveDATAservice approve;
 	
 	public ApplicationBL(String IP){
-		
+		this.IP = IP;
 	}
 	
 	protected ApplicationVO getVOfromPO(ApplicationPO po){

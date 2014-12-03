@@ -40,6 +40,7 @@ public class ImportListPO extends ApplicationPO{
 	
 	public ImportListPO(ImportListVO ivo) {
 		// TODO Auto-generated constructor stub
+		this.condition = ivo.condition;
 		this.number = ivo.number;
 		this.customer = new CustomerPO(ivo.getCustomer());
 		this.storage = ivo.getStorage();

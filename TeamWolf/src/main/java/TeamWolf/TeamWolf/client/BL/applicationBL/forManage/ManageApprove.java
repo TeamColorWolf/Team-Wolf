@@ -6,6 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import TeamWolf.TeamWolf.client.BL.applicationBL.Application;
 import TeamWolf.TeamWolf.client.BL.applicationBL.ApplicationBL;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.ApproveDATAservice;
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;
@@ -26,7 +27,18 @@ public class ManageApprove extends ApplicationBL{
 	
 	public int approveOver(ArrayList<ApplicationVO> list){
 		//TODO 
-		System.out.println("approve over!");
+		if(list != null){
+			for(int i = 0; i < list.size(); i++){
+				if(list.get(i).condition == 1){
+					System.out.println(list.get(i).number + " approval");
+					Application.getApplication(list.get(i), IP).approve();
+				}
+				else if(list.get(i).condition == -1){
+					Application.getApplication(list.get(i), IP).reject();
+				}
+			}
+		}
+		System.out.println("approve over successfully");
 		return 0;
 	}
 	

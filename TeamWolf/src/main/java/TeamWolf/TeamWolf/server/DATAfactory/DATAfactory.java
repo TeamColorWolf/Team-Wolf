@@ -45,6 +45,7 @@ public class DATAfactory {
 	ApproveDATAservice approve;
 	StockApplicationDATA stockApplication;
 	FinanceApplicationDATAservice financeApplication;
+	SaleApplicationDATAservice saleApplication;
 	
 	public DATAfactory(){
 
@@ -68,6 +69,7 @@ public class DATAfactory {
 			customer = new CustomerDATA();
 			approve = new ApproveDATA();
 			financeApplication = new FinanceApplicationDATA();
+			saleApplication = new SaleApplicationDATA();
 		} catch (RemoteException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -84,6 +86,7 @@ public class DATAfactory {
 			Naming.rebind("stockApplicationDATAservice", stockApplication);
 			Naming.rebind("approveDATAservice", approve);
 			Naming.rebind("financeApplicationDATAservice", financeApplication);
+			Naming.rebind("saleApplicationDATAservice", saleApplication);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
