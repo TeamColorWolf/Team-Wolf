@@ -128,7 +128,7 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     	this.IP=iP;
     	sbcontroller=new StockBLController(iP);
     	gbcontroller=new GoodsBLController(iP);
-    
+    	
     	initialTree();
 		initialButton();
 		initialTextField();

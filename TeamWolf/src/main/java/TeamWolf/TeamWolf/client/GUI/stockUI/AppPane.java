@@ -18,6 +18,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import TeamWolf.TeamWolf.client.BL.applicationBL.forStock.StockApplicationController;
 import TeamWolf.TeamWolf.client.BL.goodsBL.GoodsBLController;
 import TeamWolf.TeamWolf.client.vo.GoodsAlarmVO;
+import TeamWolf.TeamWolf.client.vo.GoodsVO;
 
 public class AppPane extends JPanel  {
 	
@@ -45,6 +46,7 @@ public class AppPane extends JPanel  {
 	JPanel WarningP;
 	
 	public void initialTMP(){
+		
 		
 	}
 	

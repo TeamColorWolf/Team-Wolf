@@ -16,18 +16,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.RowSorter;
-import javax.swing.border.EtchedBorder;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.text.SimpleAttributeSet;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyledDocument;
 
 import TeamWolf.TeamWolf.client.BL.goodsBL.GoodsBLController;
 import TeamWolf.TeamWolf.client.vo.GoodsStockListVO;
 import TeamWolf.TeamWolf.client.vo.GoodsStockVO;
+import TeamWolf.TeamWolf.client.vo.GoodsVO;
 
 public class StockShowPane extends JPanel implements ItemListener, ActionListener {
 
@@ -51,6 +44,7 @@ public class StockShowPane extends JPanel implements ItemListener, ActionListene
 	JScrollPane SSAContainer;
 	JButton checkStock;
 	JButton daliyStock;
+	
 	 	
 	public StockShowPane(String iP) {
 		// TODO Auto-generated constructor stub

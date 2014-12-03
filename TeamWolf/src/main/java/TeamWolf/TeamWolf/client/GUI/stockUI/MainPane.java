@@ -18,6 +18,7 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
+import TeamWolf.TeamWolf.client.vo.GoodsVO;
 import TeamWolf.TeamWolf.client.vo.UserVO;
 
 public class MainPane extends JPanel {
@@ -44,6 +45,7 @@ public class MainPane extends JPanel {
 		this.add(APContainer);
 		this.add(refresh);
 		this.repaint();
+		
 	}
 	
 	public void initialRefresh(){
