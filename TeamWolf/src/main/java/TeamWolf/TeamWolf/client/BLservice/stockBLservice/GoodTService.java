@@ -19,4 +19,12 @@ public interface GoodTService {
 	 */
 	public ArrayList<PresentListVO> shoSimplifiedPL();
 	
+	public int goodsExport(SaleListVO sl);
+	
+	public int goodsExportReject(SaleRejectListVO srl);
+	
+	public int goodsImport(ImportListVO il);
+	
+	public int goodsImportReject(ImportRejectListVO irl);
+	
 }
