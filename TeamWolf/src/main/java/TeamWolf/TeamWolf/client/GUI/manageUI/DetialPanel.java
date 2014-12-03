@@ -32,7 +32,7 @@ public class DetialPanel extends JPanel{
 	private final static int height = ManageFrame.height-60;
 	private final static int rowH = 25;
 	private final static int tableW = 450;
-	private final static int tableH = height;
+	private final static int tableH = height-50;
 	
 	public DetialPanel(){
 		super();
@@ -62,22 +62,41 @@ public class DetialPanel extends JPanel{
 		String customer = null;
 		double total = -1;
 		if(vo == null){
-			content = new Object[18][5];
+			content = new Object[16][5];
 			columnName = goodsList;
 			return;
 		}
+		//强制转换并赋值
 		if(vo instanceof ImportListVO){
 			columnName = goodsList;
 			list = ((ImportListVO)vo).getGoodsList();
 			customer = ((ImportListVO)vo).getCustomer().getName();
 			total = ((ImportListVO)vo).getTotal();
 		}
+		else if(vo instanceof ImportRejectListVO){
+			columnName = goodsList;
+			list = ((ImportRejectListVO)vo).getGoodsList();
+			customer = ((ImportRejectListVO)vo).getCustomer().getName();
+			total = ((ImportRejectListVO)vo).getTotal();
+		}
+		else if(vo instanceof SaleListVO){
+			columnName = goodsList;
+			list = ((SaleListVO)vo).getGoodsList();
+			customer = ((SaleListVO)vo).getCustomer().getName();
+			total = ((SaleListVO)vo).getTotal();
+		}
+		else if(vo instanceof SaleRejectListVO){
+			columnName = goodsList;
+			list = ((SaleRejectListVO)vo).getGoodsList();
+			customer = ((SaleRejectListVO)vo).getCustomer().getName();
+			total = ((SaleRejectListVO)vo).getTotal();
+		}
 		//TODO 还要补充其他的单据情况
 		if(list == null){
-			content = new Object[18][5];
+			content = new Object[16][5];
 		}
-		else if(list != null && list.size() < 17){
-			content = new Object[18][5];
+		else if(list != null && list.size() < 15){
+			content = new Object[16][5];
 			for(int i = 0; i < list.size(); i++){
 				content[i][0] = list.get(i).getNumber();
 				content[i][1] = list.get(i).getName() + " " + list.get(i).getModel();
@@ -93,7 +112,7 @@ public class DetialPanel extends JPanel{
 				content[i][1] = list.get(i).getName() + " " + list.get(i).getModel();
 				content[i][2] = list.get(i).getAmount();
 				content[i][3] = list.get(i).getExprice();
-				content[i][4] = (Double)content[i][3] * (Double)content[i][2];
+				content[i][4] = list.get(i).getAmount() * list.get(i).getExprice();
 			}
 		}
 		if(list != null && customer != null && total >= 0){

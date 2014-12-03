@@ -26,6 +26,7 @@ public class ManageApprove extends ApplicationBL{
 	
 	public int approveOver(ArrayList<ApplicationVO> list){
 		//TODO 
+		System.out.println("approve over!");
 		return 0;
 	}
 	

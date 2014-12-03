@@ -60,6 +60,28 @@ public class ApplicationPanel extends JPanel{
 		table.addMouseListener(new TableListener());
 	}
 	
+	public ArrayList<ApplicationVO> getResult(){
+		if(list != null){
+			for(int i = 0; i < list.size(); i++){
+				if(content[i][3] != null){
+					if(content[i][3].equals("通过")){
+						list.get(i).condition = 1;
+					}
+					else if(content[i][3].equals("驳回")){
+						list.get(i).condition = -1;
+					}
+				}
+			}
+		}
+		return list;
+	}
+	
+	public void flashPanel(){
+		getContent();
+		tableModel.setDataVector(content, column);
+		table.updateUI();
+	}
+	
 	private void getContent(){
 		list = service.getUnsetApplicationList();
 		if(list == null || list.size() < 18){
