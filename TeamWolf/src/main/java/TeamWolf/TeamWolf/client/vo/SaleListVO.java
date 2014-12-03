@@ -24,11 +24,6 @@ public class SaleListVO extends ApplicationVO{
 	String salesman;
 	
 	/**
-	 * 操作员
-	 */
-	String operator;
-
-	/**
 	 * 仓库
 	 */
 	String storage;
@@ -122,10 +117,6 @@ public class SaleListVO extends ApplicationVO{
 
 	public void setSalesman(String salesman) {
 		this.salesman = salesman;
-	}
-
-	public String getOperator() {
-		return operator;
 	}
 
 	public void setOperator(String operator) {

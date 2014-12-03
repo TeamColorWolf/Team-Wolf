@@ -45,7 +45,7 @@ public class SaleListPanel extends JPanel{
 	JTextArea businessManArea = new JTextArea();
 	JTextArea remarkArea = new JTextArea();
 	JScrollPane scrollPane = new JScrollPane(remarkArea);
-	GoodsChoosePanel goodschoose;
+	GoodsChooseForSalePanel goodschoose;
 	JTextField discountField;
 	JTextField preTotalField;
 	JTextField totalField;
@@ -88,7 +88,7 @@ public class SaleListPanel extends JPanel{
 	public SaleListPanel(UserVO user, String ip) {
 		this.operator = user.workID; 
 		saleLogic = new SaleBLController(ip);
-		goodschoose = new GoodsChoosePanel(ip);
+		goodschoose = new GoodsChooseForSalePanel(ip);
 		custServ = new CustomerOpr(ip);
 		power = user.power;
 
@@ -301,6 +301,10 @@ public class SaleListPanel extends JPanel{
 		SaleListVO saleVO = new SaleListVO(number, customer, salesMan,
 				operator, storage, goodsList, discount, "0", remark, total, totalAfterDiscount);
 		saleVO.condition = 0;
+		
+		//TODO:TEST
+		System.out.println("销售单操作员：" + saleVO.operator);
+		
 		
 		saleLogic.createSale(saleVO);
 	}

@@ -21,12 +21,7 @@ public class SaleListPO extends ApplicationPO{
 	 * 业务员
 	 */
 	String salesman;
-	
-	/**
-	 * 操作员
-	 */
-	String operator;
-	
+
 	/**
 	 * 仓库
 	 */
@@ -67,7 +62,7 @@ public class SaleListPO extends ApplicationPO{
 		this.number = svo.number;
 		this.customer = new CustomerPO(svo.getCustomer());
 		this.salesman = svo.getSalesman();
-		this.operator = svo.getOperator();
+		this.operator = svo.operator;
 		this.storage = svo.getStorage();
 		this.total = svo.getTotal();
 		this.totalAfterDiscount = svo.getTotalAfterDiscount();

@@ -26,7 +26,7 @@ import TeamWolf.TeamWolf.client.vo.UserVO;
  * @author HalaWKS
  *
  */
-public class GoodsChoosePanel extends JPanel{
+public class GoodsChooseForSalePanel extends JPanel{
 	
 	static ExternalService stockLogic;
 	
@@ -74,7 +74,7 @@ public class GoodsChoosePanel extends JPanel{
 	private final static int Lgap = 50;
 	private final static int left = 120;
 	
-	public GoodsChoosePanel(String IP) {
+	public GoodsChooseForSalePanel(String IP) {
 		stockLogic = new ExternalServiceController(IP);
 		
 		panel = new JPanel();
@@ -299,10 +299,7 @@ public class GoodsChoosePanel extends JPanel{
 	private void setTypeBox(JComboBox<String> type){
 		type.removeAllItems();
 		for(int i = 0; i < typeList.size(); i++){
-			if(!typeList.get(i).getName().equals("特价包")){
-				type.addItem(typeList.get(i).getName());
-			}
-			
+			type.addItem(typeList.get(i).getName());
 		}
 	}
 	
@@ -312,24 +309,22 @@ public class GoodsChoosePanel extends JPanel{
 	 * @param type
 	 */
 	private void setGoodsBox(JComboBox<String> goods, JComboBox<String> type){
-		String index = (String) type.getSelectedItem();
+		int index = type.getSelectedIndex();
 		goods.removeAllItems();
-		ArrayList<GoodsVO> goodsList = null;
-		for(int i = 0; i < typeList.size(); i++){
-			if(index.equals(typeList.get(i).getName())){
-				goodsList = typeList.get(i).getAllLeave();
+		ArrayList<GoodsVO> list = null;
+		if(index >= 0){
+			list = typeList.get(index).getAllLeave();
+		}
+		if(list != null){
+			for(int i = 0; i < list.size(); i++){
+				goods.addItem(list.get(i).getName() + " " + list.get(i).getModel());
 			}
-		}
-		if(goodsList != null){
-			for(int i = 0; i < goodsList.size(); i++){
-			goods.addItem(goodsList.get(i).getName() + " " + goodsList.get(i).getModel());
-		}
 		}
 	}
 	
 	
 	/**
-	 * 获取货物进货单价
+	 * 获取货物销售单价
 	 * @param type
 	 * @param goods
 	 * @return
@@ -340,7 +335,7 @@ public class GoodsChoosePanel extends JPanel{
 				ArrayList<GoodsVO> list = typeList.get(i).getAllLeave();
 				for(int j = 0; j < list.size(); j++){
 					if((list.get(j).getName() + " " + list.get(j).getModel()).equals(goods)){
-						return list.get(j).getImprice();
+						return list.get(j).getExprice();
 					}
 				}
 			}
