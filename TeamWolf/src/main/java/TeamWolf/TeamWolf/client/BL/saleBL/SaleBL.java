@@ -139,7 +139,21 @@ public class SaleBL{
 
 	public int createSaleReject(SaleRejectListVO srvo) {
 		int judge = saleAssist.canAddSaleReject(srvo);
-		// TODO Auto-generated method stub
+		if(judge != 0){
+			System.out.println(judge);
+			return judge;
+		}
+		SaleRejectListPO srpo = new SaleRejectListPO(srvo);
+		try {
+			saleAppServ = (SaleApplicationDATAservice) Naming.lookup(URL);
+			return saleAppServ.submitExportRejectList(srpo);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
 		return 0;
 	}
 

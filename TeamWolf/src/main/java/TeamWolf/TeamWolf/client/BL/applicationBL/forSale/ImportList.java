@@ -82,7 +82,22 @@ public class ImportList extends Application{
 
 	@Override
 	public int reject() {
-		// TODO Auto-generated method stub
+		ivo.condition = -1;
+		
+		ImportListPO ipo = new ImportListPO(ivo);
+		try {
+			saleDataServ = (SaleApplicationDATAservice) Naming.lookup(URL);
+			saleDataServ.rejectImportList(ipo);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return 0;
 	}
 

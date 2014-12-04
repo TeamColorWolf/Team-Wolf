@@ -58,6 +58,16 @@ public class SaleRejectListVO extends ApplicationVO{
 	 * 单据备注
 	 */
 	String remark;
+	
+	public SaleRejectListVO(String number, String remark, SaleListVO svo) {
+		this.number = number;
+		this.operator = svo.operator;
+		this.GoodsList = svo.getGoodsList();
+		this.customer = svo.getCustomer();
+		this.remark = remark;
+		this.storage = svo.getStorage();
+		this.total = svo.getTotal();
+	}
 
 	public SaleRejectListVO(String number, CustomerVO customer, String salesman, String operator,
 			String storage, ArrayList<GoodsVO> goodsList, String discount, String coupon,

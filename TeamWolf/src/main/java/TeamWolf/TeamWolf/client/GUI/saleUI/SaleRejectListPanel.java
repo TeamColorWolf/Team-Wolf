@@ -1,5 +1,6 @@
 package TeamWolf.TeamWolf.client.GUI.saleUI;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,18 +8,22 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 import TeamWolf.TeamWolf.client.BL.saleBL.SaleBLController;
 import TeamWolf.TeamWolf.client.BLservice.saleBLservice.SaleBLservice;
+import TeamWolf.TeamWolf.client.po.SaleRejectListPO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
 import TeamWolf.TeamWolf.client.vo.ImportListVO;
 import TeamWolf.TeamWolf.client.vo.SaleListVO;
+import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
 import TeamWolf.TeamWolf.client.vo.UserVO;
 
 /**
@@ -30,7 +35,8 @@ public class SaleRejectListPanel extends JPanel{
 	
 	SaleBLservice saleLogic;
 	
-	ArrayList<SaleListVO> saleList;
+	public static ArrayList<SaleListVO> saleList;
+	ArrayList<SaleRejectListVO> saleRejectList;
 	ArrayList<GoodsVO> goodsList;
 	
 	private DefaultTableModel tModel_sale;
@@ -39,6 +45,10 @@ public class SaleRejectListPanel extends JPanel{
 	private JTable goodsInfoTable;
 	private JScrollPane scroll_sale;
 	private JScrollPane scroll_goods;
+	JButton submitBtn;
+	JButton showBtn;
+	JTextArea remarkArea = new JTextArea();
+	JScrollPane scrollPane = new JScrollPane(remarkArea);
 	
 	private String[] goodsInfo = {"商品名称", "商品数量", "商品单价", "单项商品总价"};
 	private Object[][] object_goodsList;
@@ -57,6 +67,16 @@ public class SaleRejectListPanel extends JPanel{
 	private static final int h = 600;	
 	
 	/**
+	 * 组件宽度(不包括按钮)
+	 */
+	private static final int conpW = 200;
+	
+	/**
+	 * 组件高度(不包括按钮)
+	 */
+	private static final int conpH = 60;
+	
+	/**
 	 * 按钮宽、高
 	 */
 	private static final int btnW = 150;
@@ -66,7 +86,6 @@ public class SaleRejectListPanel extends JPanel{
 	 * 组件间距
 	 */
 	private static final int Xgap = 100;
-	private static final int Ygap = 30;
 	
 	/**
 	 * 字体
@@ -76,6 +95,14 @@ public class SaleRejectListPanel extends JPanel{
 	public SaleRejectListPanel(UserVO user, String ip) {
 		saleLogic = new SaleBLController(ip);
 		
+		saleList = saleLogic.getSaleList();
+		saleRejectList = saleLogic.getSaleRejectList();
+		if(saleList == null){
+			saleList = new ArrayList<SaleListVO>();
+		}
+		if(saleRejectList == null){
+			saleRejectList = new ArrayList<SaleRejectListVO>();
+		}
 		//设置布局方式
 		this.setLayout(null);
 		//设置大小
@@ -83,9 +110,11 @@ public class SaleRejectListPanel extends JPanel{
 		//添加组件
 		this.add(this.createSaleList());
 		this.add(this.createGoodsInfo());
+		this.add(this.remarkFld());
 		this.add(this.showBtn());
 		this.add(this.submitBtn());
 		
+		this.setVisible(true);
 	}
 	
 	/**
@@ -140,24 +169,39 @@ public class SaleRejectListPanel extends JPanel{
 	}
 	
 	/**
+	 * 备注填写
+	 * @return
+	 */
+	private JScrollPane remarkFld(){
+		
+		scrollPane.setSize(conpW * 2, conpH * 3 / 2);
+		scrollPane.setLocation(Xgap, scroll_sale.getHeight() + 5);
+		scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		scrollPane.setBorder(BorderFactory.createTitledBorder("备注填写"));
+		scrollPane.setEnabled(true);
+		
+		return scrollPane;
+	}
+	
+	/**
 	 * 提交按钮
 	 * @return
 	 */
 	private JButton submitBtn(){
-		JButton submit = new JButton("提交");
+		submitBtn = new JButton("提交");
 		
 		//button设置
-		submit.setSize(btnW, btnH);
-		submit.setLocation(btnW + 2 * Xgap, scroll_sale.getHeight() + 40);
-		submit.setFont(ChooseBtn_FONT);
+		submitBtn.setSize(btnW, btnH);
+		submitBtn.setLocation(2 * Xgap + conpW * 2 + 3 * Xgap, scroll_sale.getHeight() + 40);
+		submitBtn.setFont(ChooseBtn_FONT);
 		
-		submit.addActionListener(new ActionListener() {			
+		submitBtn.addActionListener(new ActionListener() {			
 			public void actionPerformed(ActionEvent e) {	
 				subBtnAction();
 			}
 		});
 		
-		return submit;
+		return submitBtn;
 	}
 	
 	/**
@@ -165,25 +209,26 @@ public class SaleRejectListPanel extends JPanel{
 	 * @return
 	 */
 	private JButton showBtn(){
-		JButton show = new JButton("显示");
+		showBtn = new JButton("显示");
 		
-		show.setSize(btnW, btnH);
-		show.setLocation(Xgap, scroll_sale.getHeight() + 40);
-		show.setFont(ChooseBtn_FONT);
+		showBtn.setSize(btnW, btnH);
+		showBtn.setLocation(2 * Xgap + conpW * 2, scroll_sale.getHeight() + 40);
+		showBtn.setFont(ChooseBtn_FONT);
 		
-		show.addActionListener(new ActionListener() {		
+		showBtn.addActionListener(new ActionListener() {		
 			public void actionPerformed(ActionEvent e) {	
 				showBtnAction();
 			}
 		});
 		
-		return show;
+		return showBtn;
 	}
 	
 	/**
 	 * 在右边table里显示商品信息
 	 */
 	private void showGoodsInfo(int index){
+		goodsInfoTable.setRowHeight(25);
 		goodsList = saleList.get(index).getGoodsList();
 		tModel_goods = (DefaultTableModel) goodsInfoTable.getModel();
 		object_goodsList = new Object[goodsList.size()][4];
@@ -205,7 +250,7 @@ public class SaleRejectListPanel extends JPanel{
 	 */
 	private void showBtnAction(){
 		clearSaleInfoTable();
-		saleList = TestMain.getSaleListTEST();
+//		saleList = TestMain.getSaleListTEST();
 		tModel_sale = (DefaultTableModel) saleListTable.getModel();
 		
 		for (int i = 0; i < saleList.size(); i++) {
@@ -229,9 +274,39 @@ public class SaleRejectListPanel extends JPanel{
 	 * 提交按钮事件
 	 */
 	private void subBtnAction(){
+		SaleListVO svo = null;
+		for (int i = 0; i < saleList.size(); i++) {
+			if(saleListTable.getValueAt(i, 0).equals(true)){
+				svo = saleList.get(i);
+				//从当前界面持有的SaleList里删除该对应进货单，以免重复退货
+				saleList.remove(i);
+			}
+		}
+		if(svo == null){
+			return;
+		}
+		SaleRejectListVO srvo = new SaleRejectListVO(saleRejectListNum(), remarkArea.getText(), svo);
+		srvo.condition = 0;
+		System.out.println(srvo.number);
 		
+		//显示退货之后剩余进货单
+		showBtnAction();
+		//清空商品显示table
+		clearGoodsInfoTable();
+		
+		saleLogic.createSaleReject(srvo);
 	}
 	
+	/**
+	 * 获取单据编号
+	 */
+	private String saleRejectListNum(){
+		String num = "XSTHD-";
+		String date = saleLogic.getPresentDate();
+		String number = String.format("%05d", saleRejectList.size() + 1);
+		num = num + date + "-" + number;
+		return num;
+	}
 	
 	/**
 	 * 清空SaleList表格
@@ -239,6 +314,9 @@ public class SaleRejectListPanel extends JPanel{
 	private void clearSaleInfoTable(){
 		object_saleList = null;
 		tModel_sale.setDataVector(object_saleList, saleInfo);
+		TableColumn tc0 = saleListTable.getColumnModel().getColumn(0);
+		tc0.setCellEditor(saleListTable.getDefaultEditor(Boolean.class));
+		tc0.setCellRenderer(saleListTable.getDefaultRenderer(Boolean.class));
 		saleListTable.updateUI();
 	}
 	
@@ -248,6 +326,7 @@ public class SaleRejectListPanel extends JPanel{
 	private void clearGoodsInfoTable(){
 		object_goodsList = null;
 		tModel_goods.setDataVector(object_goodsList, goodsInfo);
+		goodsInfoTable.setRowHeight(25);
 		goodsInfoTable.updateUI();
 	}
 	

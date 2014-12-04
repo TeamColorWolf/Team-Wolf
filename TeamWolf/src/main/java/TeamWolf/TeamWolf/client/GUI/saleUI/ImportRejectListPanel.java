@@ -114,6 +114,7 @@ public class ImportRejectListPanel extends JPanel{
 		this.add(this.showBtn());
 		this.add(this.remarkFld());
 		
+		this.setVisible(true);
 	}
 	
 	/**
@@ -279,6 +280,8 @@ public class ImportRejectListPanel extends JPanel{
 		for (int i = 0; i < importList.size(); i++) {
 			if(importListTable.getValueAt(i, 0).equals(true)){
 				ivo = importList.get(i);
+				//从当前界面持有的ImportList里删除该对应进货单，以免重复退货
+				importList.remove(i);
 			}
 		}
 		if(ivo == null){
@@ -287,8 +290,11 @@ public class ImportRejectListPanel extends JPanel{
 		ImportRejectListVO irvo = new ImportRejectListVO(importRejectListNum(),
 				remarkArea.getText(), ivo);
 		irvo.condition = 0;
-		
 		System.out.println(irvo.number);
+		//显示退货之后剩余进货单
+		showBtnAction();
+		//清空商品显示table
+		clearGoodsInfoTable();
 		
 		saleLogic.createImportReject(irvo);
 	}

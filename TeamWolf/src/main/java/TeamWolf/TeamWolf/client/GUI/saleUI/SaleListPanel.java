@@ -305,6 +305,10 @@ public class SaleListPanel extends JPanel{
 		//TODO:TEST
 		System.out.println("销售单操作员：" + saleVO.operator);
 		
+		if(SaleRejectListPanel.saleList == null){
+			SaleRejectListPanel.saleList = new ArrayList<SaleListVO>();
+		}
+		SaleRejectListPanel.saleList.add(saleVO);
 		
 		saleLogic.createSale(saleVO);
 	}
