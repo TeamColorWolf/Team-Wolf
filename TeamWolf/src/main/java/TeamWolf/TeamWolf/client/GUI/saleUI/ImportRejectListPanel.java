@@ -320,7 +320,7 @@ public class ImportRejectListPanel extends JPanel{
 		tc0.setCellEditor(importListTable.getDefaultEditor(Boolean.class));
 		tc0.setCellRenderer(importListTable.getDefaultRenderer(Boolean.class));
 		importListTable.updateUI();
-		importListTable.setRowHeight(30);
+		
 	}
 	
 	/**
@@ -330,6 +330,5 @@ public class ImportRejectListPanel extends JPanel{
 		object_goodsList = null;
 		tModel_goods.setDataVector(object_goodsList, goodsInfo);
 		goodsInfoTable.updateUI();
-		goodsInfoTable.setRowHeight(25);
 	}
 }

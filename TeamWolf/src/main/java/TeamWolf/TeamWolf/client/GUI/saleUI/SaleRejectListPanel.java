@@ -254,19 +254,6 @@ public class SaleRejectListPanel extends JPanel{
 		tModel_sale = (DefaultTableModel) saleListTable.getModel();
 		
 		for (int i = 0; i < saleList.size(); i++) {
-			//判断销售单的商品列表里有没有特价包，有的话就不显示，即不能退货
-			ArrayList<GoodsVO> goodsList = saleList.get(i).getGoodsList();
-			int k = 0;
-			for (int j = 0; j < goodsList.size(); j++) {
-				if(goodsList.get(j).getName().contains("specialGoods")){
-					k = 1;
-					break;
-				}
-			}
-			if(k == 1){
-				continue;
-			}
-			
 			SaleListVO svo = saleList.get(i);
 
 			Object[] data = new Object[6];
@@ -334,7 +321,6 @@ public class SaleRejectListPanel extends JPanel{
 		tc0.setCellEditor(saleListTable.getDefaultEditor(Boolean.class));
 		tc0.setCellRenderer(saleListTable.getDefaultRenderer(Boolean.class));
 		saleListTable.updateUI();
-		saleListTable.setRowHeight(30);
 	}
 	
 	/**
@@ -343,8 +329,8 @@ public class SaleRejectListPanel extends JPanel{
 	private void clearGoodsInfoTable(){
 		object_goodsList = null;
 		tModel_goods.setDataVector(object_goodsList, goodsInfo);
-		goodsInfoTable.updateUI();
 		goodsInfoTable.setRowHeight(25);
+		goodsInfoTable.updateUI();
 	}
 	
 }
