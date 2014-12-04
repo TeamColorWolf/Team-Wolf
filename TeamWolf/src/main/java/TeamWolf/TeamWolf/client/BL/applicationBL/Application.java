@@ -1,6 +1,9 @@
 package TeamWolf.TeamWolf.client.BL.applicationBL;
 
 import TeamWolf.TeamWolf.client.BL.applicationBL.forSale.ImportList;
+import TeamWolf.TeamWolf.client.BL.applicationBL.forSale.ImportRejectList;
+import TeamWolf.TeamWolf.client.BL.applicationBL.forSale.SaleList;
+import TeamWolf.TeamWolf.client.BL.applicationBL.forSale.SaleRejectList;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerController;
 import TeamWolf.TeamWolf.client.BL.goodsBL.GoodsBLController;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.FinanceApplicationDATAservice;
@@ -61,15 +64,15 @@ public abstract class Application {
 		if(n[0].equals("JHD")){//进货单
 			return new ImportList((ImportListVO)vo, IP);
 		}
-//		else if(n[0].equals("JHTHD")){//进货退货单
-//			return new ImportRejectList((ImportRejectListVO)vo);
-//		}
-//		else if(n[0].equals("XSD")){//销售单
-//			return new SaleList((SaleListVO)vo);
-//		}
-//		else if(n[0].equals("XSTHD")){//销售退货单
-//			return new SaleRejectList((SaleRejectListVO)vo);
-//		}
+		else if(n[0].equals("JHTHD")){//进货退货单
+			return new ImportRejectList((ImportRejectListVO)vo, IP);
+		}
+		else if(n[0].equals("XSD")){//销售单
+			return new SaleList((SaleListVO)vo, IP);
+		}
+		else if(n[0].equals("XSTHD")){//销售退货单
+			return new SaleRejectList((SaleRejectListVO)vo, IP);
+		}
 //		else if(n[0].equals("KCBYD")){//库存报溢单
 //			return new IncreaseToMatch((IncreaseToMatchVO)vo); TODO
 //		}
