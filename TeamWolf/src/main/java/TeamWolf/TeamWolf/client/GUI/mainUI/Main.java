@@ -1,6 +1,5 @@
 package TeamWolf.TeamWolf.client.GUI.mainUI;
 
-import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.UIManager;
