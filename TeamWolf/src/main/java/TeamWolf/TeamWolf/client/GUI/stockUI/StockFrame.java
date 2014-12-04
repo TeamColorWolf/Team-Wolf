@@ -62,7 +62,7 @@ public class StockFrame extends JFrame {
         UIManager.put("ComboBox.font", font);
         UIManager.put("TabbedPane.font", font);
         UserVO user=new UserVO("HELLO", null, "12345", null);
-        String IP="192.168.1.102";
+        String IP="114.212.42.159";
 		new StockFrame(IP, user);
 	}
 }

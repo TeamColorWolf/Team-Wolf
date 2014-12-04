@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -13,9 +15,11 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 import TeamWolf.TeamWolf.client.BL.goodsBL.GoodsBLController;
 import TeamWolf.TeamWolf.client.vo.GoodsStockListVO;
@@ -44,6 +48,7 @@ public class StockShowPane extends JPanel implements ItemListener, ActionListene
 	JScrollPane SSAContainer;
 	JButton checkStock;
 	JButton daliyStock;
+	JButton exportExcel;
 	
 	 	
 	public StockShowPane(String iP) {
@@ -71,6 +76,7 @@ public class StockShowPane extends JPanel implements ItemListener, ActionListene
 		this.add(SSAContainer);
 		this.add(daliyStock);
 		this.add(checkStock);
+		this.add(exportExcel);
 		this.add(beginY);
 		this.add(beginM);
 		this.add(beginD);
@@ -82,7 +88,9 @@ public class StockShowPane extends JPanel implements ItemListener, ActionListene
 
 	public void initialStockShoArea(){
 		
-		StockShoArea=new JTable(stockInfoList, tableTitle);
+		DefaultTableModel model=new DefaultTableModel(stockInfoList, tableTitle);
+		//StockShoArea=new JTable(stockInfoList, tableTitle);
+		StockShoArea=new JTable(model);
 		StockShoArea.setVisible(true);
 		StockShoArea.setBounds(0, 0, 1400, 300);
 		for(int i=0;i<14;i++){
@@ -139,6 +147,26 @@ public class StockShowPane extends JPanel implements ItemListener, ActionListene
 		checkStock.setBounds(600, 430, 120, 25);
 		checkStock.setVisible(true);
 		checkStock.addActionListener(this);
+		
+		exportExcel=new JButton("导出表单");
+		exportExcel.setVisible(true);
+		exportExcel.setBounds(400, 430, 120, 25);
+		exportExcel.addActionListener(new ActionListener(){
+			
+			public void actionPerformed(ActionEvent e){
+			    
+				ExcelExporter eep=new ExcelExporter();
+				Calendar c=Calendar.getInstance();
+				SimpleDateFormat s=new SimpleDateFormat("yyyyMMdd-HHmmss");
+				String date=s.format(c.getTime());
+				try {
+					eep.exportTable(StockShoArea, new File(date+"-库存表单.xls"));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 	}
 
 	public void itemStateChanged(ItemEvent e) {

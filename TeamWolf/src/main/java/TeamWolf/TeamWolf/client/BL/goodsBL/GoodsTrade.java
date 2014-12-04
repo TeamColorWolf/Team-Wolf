@@ -64,7 +64,8 @@ public class GoodsTrade {
 			if(!g.getName().contains("specialGoods")){
 			      GoodsPO toSale=dataService.finGood(g.getNumber());
 			      if(toSale.getAmount()>=g.getAmount()){
-			           toSale.setAmount(toSale.getAmount()-g.getAmount());
+			    	   int amount=toSale.getAmount()-g.getAmount();
+			           toSale.setAmount(amount);
 			           toSale.setLatestExprice(g.getExprice());
 			           dataService.updGood(toSale);
 			      }
@@ -90,7 +91,8 @@ public class GoodsTrade {
 					  for(GiftForPromotionVO gp: gl){
 						  GoodsPO toSale=dataService.finGood(gp.GoodsName);
 						  if(toSale.getAmount()>=(gp.sendNumber*g.getAmount())){
-					           toSale.setAmount(toSale.getAmount()-gp.sendNumber*g.getAmount());					           
+					           int amount=toSale.getAmount()-gp.sendNumber*g.getAmount();
+							   toSale.setAmount(amount);					           
 					           dataService.updGood(toSale);
 					      }
 					      else{
@@ -118,7 +120,8 @@ public class GoodsTrade {
 		try{
 		for(GoodsVO g: goodsSRL){
 			GoodsPO toEReject=dataService.finGood(g.getNumber());
-			toEReject.setAmount(toEReject.getAmount()+g.getAmount());
+			int amount=toEReject.getAmount()+g.getAmount();
+			toEReject.setAmount(amount);
 			dataService.updGood(toEReject);
 		}			
 		}catch(RemoteException e){
@@ -136,7 +139,8 @@ public class GoodsTrade {
 		try{
 		for(GoodsVO g: goodsIL){
 			GoodsPO toImport=dataService.finGood(g.getNumber());
-			toImport.setAmount(toImport.getAmount()+g.getAmount());
+			int amount=toImport.getAmount()+g.getAmount();
+			toImport.setAmount(amount);
 			toImport.setLatestImprice(g.getImprice());
 			dataService.updGood(toImport);
 		}
@@ -155,7 +159,8 @@ public class GoodsTrade {
 		for(GoodsVO g: goodsIRL){
 		    GoodsPO toIReject=dataService.finGood(g.getNumber());
 		    if(toIReject.getAmount()>=g.getAmount()){
-		    	toIReject.setAmount(toIReject.getAmount()-g.getAmount());
+		    	int amount=toIReject.getAmount()-g.getAmount();
+		    	toIReject.setAmount(amount);
 		    	dataService.updGood(toIReject);
 		    }
 		    else{
