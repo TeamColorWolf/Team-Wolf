@@ -33,8 +33,8 @@ public class StockShowPane extends JPanel implements ItemListener, ActionListene
 	int beginYear, endYear, beginMonth, endMonth, beginDay, endDay; 
 	String[] years=null;
 	String[] months=new String[12];
-	String[] tableTitle={"商品编号", "商品名称", "商品型号", "商品库存数量", "库存均价", "商品进价", "商品售价", "商品最近进价", "商品最近售价", "商品进货量", "平均进货价", "进货总价", "商品出货量", "平均出货价", "出货总价"};
-	Object[][] stockInfoList={{"12102", "样板", "测试", "测试", "测试", "测试", "测试", "测试", "测试", "测试", "测试", "测试", "测试", "测试", "测试"}};
+	String[] tableTitle={"   ", "商品编号", "商品名称", "商品型号", "商品库存数量", "库存均价", "商品进价", "商品售价", "商品最近进价", "商品最近售价", "商品进货量", "平均进货价", "进货总价", "商品出货量", "平均出货价", "出货总价"};
+	Object[][] stockInfoList={{"1" ,"12102", "样板", "测试", "测试", "测试", "测试", "测试", "测试", "测试", "测试", "测试", "测试", "测试", "测试", "测试"}};
 	String todayDate;
 	int year;
 	JComboBox beginY;
@@ -93,7 +93,8 @@ public class StockShowPane extends JPanel implements ItemListener, ActionListene
 		StockShoArea=new JTable(model);
 		StockShoArea.setVisible(true);
 		StockShoArea.setBounds(0, 0, 1400, 300);
-		for(int i=0;i<14;i++){
+		StockShoArea.getColumnModel().getColumn(0).setPreferredWidth(35);
+		for(int i=1;i<16;i++){						
 			StockShoArea.getColumnModel().getColumn(i).setPreferredWidth(100);
 		}
 		StockShoArea.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -284,10 +285,13 @@ public class StockShowPane extends JPanel implements ItemListener, ActionListene
 		   
 		   this.remove(SSAContainer);
 		   this.repaint();
-		   stockInfoList=new Object[size][15];
+		   stockInfoList=new Object[size][16];
 		   for(int i=0;i<size;i++){
-			   for(int j=0;j<15;j++){
-				   stockInfoList[i][j]=gsvlist.get(i).getIndexOf(j);
+			   for(int j=0;j<16;j++){
+				   if(j==0)
+					   stockInfoList[i][j]=""+(i+1);
+				   else
+				       stockInfoList[i][j]=gsvlist.get(i).getIndexOf(j-1);
 			   }
 		   }
 		   this.initialStockShoArea();
