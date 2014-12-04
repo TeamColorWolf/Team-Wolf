@@ -40,7 +40,7 @@ public class TableInquireBL {
 				String[] n = app.number.split("-");
 				if(n[0].equals("XSD")){
 					SaleListVO sale = (SaleListVO)app;
-					if(vo.customer == null || vo.customer.equals(sale.getCustomer())){
+					if(vo.customer == null || vo.customer.equals(sale.getCustomer().getName())){
 						if(vo.storage == null || vo.storage.equals(sale.getStorage())){
 							if(vo.workID == null || vo.workID.equals(sale.getSalesman())){
 								ArrayList<GoodsVO> goodslist = sale.getGoodsList();
@@ -59,7 +59,7 @@ public class TableInquireBL {
 				}
 				else if(n[0].equals("XSTHD")){
 					SaleRejectListVO sale = (SaleRejectListVO)app;
-					if(vo.customer == null || vo.customer.equals(sale.getCustomer())){
+					if(vo.customer == null || vo.customer.equals(sale.getCustomer().getName())){
 						if(vo.storage == null || vo.storage.equals(sale.getStorage())){
 							if(vo.workID == null || vo.workID.equals(sale.getSalesman())){
 								ArrayList<GoodsVO> goodslist = sale.getGoodsList();

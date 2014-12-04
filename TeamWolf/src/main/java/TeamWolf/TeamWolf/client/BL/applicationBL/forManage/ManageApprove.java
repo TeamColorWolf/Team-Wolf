@@ -26,7 +26,6 @@ public class ManageApprove extends ApplicationBL{
 	}
 	
 	public int approveOver(ArrayList<ApplicationVO> list){
-		//TODO 
 		if(list != null){
 			for(int i = 0; i < list.size(); i++){
 				if(list.get(i).condition == 1){

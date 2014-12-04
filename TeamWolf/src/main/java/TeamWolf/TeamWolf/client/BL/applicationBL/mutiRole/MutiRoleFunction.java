@@ -15,7 +15,6 @@ public class MutiRoleFunction extends ApplicationBL{
 
 	public MutiRoleFunction(String IP) {
 		super(IP);
-		// TODO Auto-generated constructor stub
 		URL = "rmi://" + IP + "/approveDATAservice";
 	}
 	
@@ -23,14 +22,17 @@ public class MutiRoleFunction extends ApplicationBL{
 		try {
 			approve = (ApproveDATAservice)Naming.lookup(URL);
 			poList = approve.getApprovalApplicationList();
+			voList = new ArrayList<ApplicationVO>();
+			if(poList != null){
+				for(int i = 0; i < poList.size(); i++){
+					voList.add(this.getVOfromPO(poList.get(i)));
+				}
+			}
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NotBoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return voList;
@@ -43,13 +45,10 @@ public class MutiRoleFunction extends ApplicationBL{
 			ApplicationVO vo = null;
 			return vo;
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NotBoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -60,13 +59,10 @@ public class MutiRoleFunction extends ApplicationBL{
 			approve = (ApproveDATAservice)Naming.lookup(URL);
 			return approve.getResult(workNumber);
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NotBoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
