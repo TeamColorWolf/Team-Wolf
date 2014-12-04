@@ -15,6 +15,8 @@ import javax.swing.JTextField;
 
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOpr;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOprBLservice;
+import TeamWolf.TeamWolf.client.BL.userBL.ForAllUserController;
+import TeamWolf.TeamWolf.client.BLservice.userBLservice.ForAllUserService;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.UserVO;
 
@@ -26,10 +28,11 @@ import TeamWolf.TeamWolf.client.vo.UserVO;
 public class CustomerAddPanel extends JPanel{
 	
 	CustomerOprBLservice customerLogic;
-	
+	ForAllUserService userServ;
 	CustomerVO customer;
 	ArrayList<CustomerVO> customerList;
-
+	ArrayList<String> workerID;
+	
 	//组件们
 	JComboBox<String> kindBox;
 	JComboBox<String> levelBox;
@@ -91,10 +94,16 @@ public class CustomerAddPanel extends JPanel{
 	private static final Dimension Label_Size = new Dimension(Label_W, Label_H);
 		
 	public CustomerAddPanel(UserVO user, String ip) {
+		userServ = new ForAllUserController(ip);
 		customerLogic = new CustomerOpr(ip);
+		
+		workerID = userServ.getWorkNumberList();
 		customerList = customerLogic.getAllCustomerList();
 		if(customerList == null){
 			customerList = new ArrayList<CustomerVO>();
+		}
+		if(workerID == null){
+			workerID = new ArrayList<String>();
 		}
 		
 		//设置布局方式
@@ -123,12 +132,22 @@ public class CustomerAddPanel extends JPanel{
 		Font ChooseBtn_FONT = new Font("黑体", Font.BOLD, 16);
 		String[] custKind = {"进货商", "销售商"};
 		String[] custLevel = {"1", "2", "3", "4", "5"};
-		String[] defualtSalesMan = {"业务员1", "业务员2", "业务员3", "业务员4", "业务员5"};
+//		String[] defualtSalesMan = null;
+//		
+//		//设置默认业务员
+//		for (int i = 0; i < workerID.size(); i++) {
+//			defualtSalesMan[i] = workerID.get(i);
+//		}
 		
 		kindBox = new JComboBox<String>(custKind);
 		levelBox = new JComboBox<String>(custLevel);
-		salesManBox = new JComboBox<String>(defualtSalesMan);
+		salesManBox = new JComboBox<String>();
 		addButton = new JButton("添加");
+		
+		//设置默认业务员
+		for (int i = 0; i < workerID.size(); i++) {
+			salesManBox.addItem(workerID.get(i));
+		}
 		
 		//设置Box和button
 		kindBox.setSize(conpW, conpH);
@@ -273,6 +292,9 @@ public class CustomerAddPanel extends JPanel{
 	}
 	
 	private String getCustomerNum(){
+		if(customerList.size() == 0){
+			return String.format("%05d", 1);
+		}
 		int num = Integer.parseInt(customerList.get(customerList.size() - 1).getNum());
 		String number = String.format("%05d", num + 1);
 		return number;

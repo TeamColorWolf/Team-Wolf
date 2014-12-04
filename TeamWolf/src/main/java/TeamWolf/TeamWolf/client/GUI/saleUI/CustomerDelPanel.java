@@ -178,6 +178,7 @@ public class CustomerDelPanel extends JPanel{
 		tc0.setCellRenderer(customerListTable.getDefaultRenderer(Boolean.class));
 		
 		customerListTable.updateUI();
+		customerListTable.setRowHeight(30);
 	}
 	
 	/**
