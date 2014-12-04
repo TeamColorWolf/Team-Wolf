@@ -186,10 +186,5 @@ public class SaleRejectListVO extends ApplicationVO{
 		this.remark = remark;
 	}
 
-	public String getOperator() {
-		return null;
-	}
-	
-	
 	
 }

@@ -55,7 +55,7 @@ public class SaleApplicationDATA extends UnicastRemoteObject implements SaleAppl
 			System.out.println("importList " + importList.size());
 			System.out.println("importRejectList " + importRejectList.size());
 			System.out.println("saleList " + saleList.size());
-//			System.out.println("importList " + importList.size());
+			System.out.println("importList " + importList.size());
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -188,7 +188,6 @@ public class SaleApplicationDATA extends UnicastRemoteObject implements SaleAppl
 	}
 
 	public int rejectImportList(ImportListPO ipo) throws RemoteException {
-		// TODO Auto-generated method stub
 		int judge = 9;
 		for (int i = 0; i < importList.size(); i++) {
 			if(ipo.number.equals(importList.get(i).number)){
@@ -207,10 +206,23 @@ public class SaleApplicationDATA extends UnicastRemoteObject implements SaleAppl
 		return judge;
 	}
 
-	public int rejectImportRejectList(ImportRejectListPO po)
-			throws RemoteException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int rejectImportRejectList(ImportRejectListPO irpo) throws RemoteException {
+		int judge = 9;
+		for (int i = 0; i < importRejectList.size(); i++) {
+			if(irpo.number.equals(importRejectList.get(i).number)){
+				importRejectList.remove(i);
+				importRejectList.add(irpo);
+				break;
+			}
+		}
+		try {
+			fo.writeFile(fileName.importRejectListFile, importRejectList);
+			judge = 0;
+			return judge;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return judge;
 	}
 
 	public int rejectExportList(SaleListPO po) throws RemoteException {

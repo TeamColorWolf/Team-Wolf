@@ -56,7 +56,6 @@ public class ImportList extends Application{
 
 	@Override
 	public int approve() {
-		// TODO Auto-generated method stub
 		ivo.condition = 1;
 		custInfoServ.ImportListInfoMod(ivo);
 		goodServ.goodsImport(ivo);
@@ -64,7 +63,7 @@ public class ImportList extends Application{
 
 		try {
 			saleDataServ = (SaleApplicationDATAservice) Naming.lookup(URL);
-			saleDataServ.approvalImportList(ipo);
+			return saleDataServ.approvalImportList(ipo);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -75,9 +74,8 @@ public class ImportList extends Application{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		return 0;
+
+		return 9;
 	}
 
 	@Override
@@ -87,7 +85,7 @@ public class ImportList extends Application{
 		ImportListPO ipo = new ImportListPO(ivo);
 		try {
 			saleDataServ = (SaleApplicationDATAservice) Naming.lookup(URL);
-			saleDataServ.rejectImportList(ipo);
+			return saleDataServ.rejectImportList(ipo);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -98,7 +96,7 @@ public class ImportList extends Application{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return 0;
+		return 9;
 	}
 
 	@Override

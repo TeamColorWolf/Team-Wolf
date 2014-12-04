@@ -286,8 +286,11 @@ public class SaleRejectListPanel extends JPanel{
 			return;
 		}
 		SaleRejectListVO srvo = new SaleRejectListVO(saleRejectListNum(), remarkArea.getText(), svo);
-		srvo.condition = 0;
+		srvo.condition = 0;	
+		
+		//TODO:TEST
 		System.out.println(srvo.number);
+		System.out.println("销售退货单操作员：" + srvo.operator);
 		
 		//显示退货之后剩余进货单
 		showBtnAction();

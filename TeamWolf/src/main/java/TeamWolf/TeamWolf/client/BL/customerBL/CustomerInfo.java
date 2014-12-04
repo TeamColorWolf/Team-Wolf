@@ -36,18 +36,18 @@ public class CustomerInfo implements CustomerInfoBLservice{
 		return 0;
 	}
 
-	public int ImportRejectListMod(ImportRejectListVO vo) {
-		// TODO 自动生成的方法存根
+	public int ImportRejectListMod(ImportRejectListVO irvo) {
+		irvo.getCustomer().setReceive(irvo.getTotal());
 		return 0;
 	}
 
-	public int SaleListMod(SaleListVO vo) {
-		// TODO 自动生成的方法存根
+	public int SaleListMod(SaleListVO svo) {
+		svo.getCustomer().setReceive(svo.getTotalAfterDiscount());
 		return 0;
 	}
 
-	public int SaleRejectListMod(SaleRejectListVO vo) {
-		// TODO 自动生成的方法存根
+	public int SaleRejectListMod(SaleRejectListVO srvo) {
+		srvo.getCustomer().setPay(srvo.getTotalAfterDiscount());
 		return 0;
 	}
 

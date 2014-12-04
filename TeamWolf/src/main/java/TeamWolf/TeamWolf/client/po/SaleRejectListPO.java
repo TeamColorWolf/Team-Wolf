@@ -66,7 +66,7 @@ public class SaleRejectListPO extends ApplicationPO{
 		this.number = srvo.number;
 		this.customer = new CustomerPO(srvo.getCustomer());
 		this.salesman = srvo.getSalesman();
-		this.operator = srvo.getOperator();
+		this.operator = srvo.operator;
 		this.storage = srvo.getStorage();
 		this.total = srvo.getTotal();
 		this.totalAfterDiscount = srvo.getTotalAfterDiscount();
