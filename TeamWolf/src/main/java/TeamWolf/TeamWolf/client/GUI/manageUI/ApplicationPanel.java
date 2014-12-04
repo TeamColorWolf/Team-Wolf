@@ -82,6 +82,7 @@ public class ApplicationPanel extends JPanel{
 		approve = table.getColumnModel().getColumn(3);
 		approve.setCellEditor(new DefaultCellEditor(choice));
 		table.updateUI();
+		table.setRowHeight(rowH);
 	}
 	
 	private void getContent(){

@@ -155,6 +155,7 @@ public class CheckUserPanel extends JPanel{
 		this.getContent();
 		tableModel.setDataVector(content, columnName);
 		userTable.updateUI();
+		userTable.setRowHeight(LH);
 	}
 	
 	class CheckListener implements MouseListener{

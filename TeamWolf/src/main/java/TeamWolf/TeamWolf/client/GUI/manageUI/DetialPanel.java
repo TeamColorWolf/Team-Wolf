@@ -127,5 +127,6 @@ public class DetialPanel extends JPanel{
 		getContent(vo);
 		tableModel.setDataVector(content, columnName);
 		table.updateUI();
+		table.setRowHeight(rowH);
 	}
 }
