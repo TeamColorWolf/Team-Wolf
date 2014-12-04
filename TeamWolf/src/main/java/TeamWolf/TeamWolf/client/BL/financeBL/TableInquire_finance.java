@@ -22,7 +22,8 @@ public class TableInquire_finance implements TableInquireBLservice, RedBLservice
 		return 0;
 	}
 
-	public ArrayList<SaleDetialVO> saleDetial(SaleDetialSelectFactVO vo) {
+	public ArrayList<SaleDetialVO> saleDetial(SaleDetialSelectFactVO vo,
+			TimeVO begin, TimeVO end) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -36,5 +37,7 @@ public class TableInquire_finance implements TableInquireBLservice, RedBLservice
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 }

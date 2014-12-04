@@ -2,13 +2,22 @@ package TeamWolf.TeamWolf.client.GUI.tableInquireUI;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.LookAndFeel;
+import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import TeamWolf.TeamWolf.client.BL.tableInquireBL.TableInquireController;
+import TeamWolf.TeamWolf.client.BLservice.tableInquireBLservice.TableInquireBLservice;
+
 public class TableInquirePanel extends JPanel{
 	public static String IP;
+	
+	public static TableInquireBLservice service;
+	
+	JTabbedPane tab = new JTabbedPane();
+	
+	SaleDetialPanel saleDetial;
 	
 	final static int width = 960;
 	final static int height = 540;
@@ -16,6 +25,16 @@ public class TableInquirePanel extends JPanel{
 	public TableInquirePanel(String IP){
 		super();
 		this.IP = IP;
+		
+		service = new TableInquireController(IP);
+		
+		saleDetial = new SaleDetialPanel();
+		
+		tab.add(saleDetial, "销售明细表");
+		tab.setSize(width, height);
+		tab.setLocation(0, 0);
+		
+		this.add(tab);
 		
 		this.setSize(width, height);
 		this.setLocation(0, 0);
@@ -26,14 +45,26 @@ public class TableInquirePanel extends JPanel{
 	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException{
 		IP = "127.0.0.1";
 		
-		TimeSelectPanel t = new TimeSelectPanel();
-		AlterFactPanel a = new AlterFactPanel();
+		try {
+			UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedLookAndFeelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		JFrame f = new JFrame();
+		TableInquirePanel tip = new TableInquirePanel(IP);
 		
-		SwingUtilities.updateComponentTreeUI(f);
-		
-		f.add(t);
-		f.add(a);
+		f.add(tip);
 		
 		f.setLayout(null);
 		f.setSize(width, height);

@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+import TeamWolf.TeamWolf.client.GUI.tableInquireUI.TableInquirePanel;
 import TeamWolf.TeamWolf.client.vo.UserType;
 import TeamWolf.TeamWolf.client.vo.UserVO;
 
@@ -17,6 +18,7 @@ public class ManageFrame extends JFrame{
 	
 	PromotionPanel promotion;
 	ApprovePanel approve;
+	TableInquirePanel tableInquire;
 	
 	public static final int width = 960;
 	public static final int height = 540;
@@ -31,9 +33,11 @@ public class ManageFrame extends JFrame{
 		
 		approve = new ApprovePanel();
 		promotion = new PromotionPanel();
+		tableInquire = new TableInquirePanel(this.IP);
 		
 		tab.add(approve, "审批单据");
 		tab.add(promotion, "促销策略");
+		tab.add(tableInquire, "查看表单");
 		
 		panel.add(tab);
 		

@@ -114,7 +114,7 @@ public class GiftSetPanel extends JPanel{
 		panel.setLayout(null);
 		panel.setPreferredSize(panelD);
 		scroll = new JScrollPane(panel);
-		scroll.setSize(ManageFrame.width, 260);
+		scroll.setSize(ManageFrame.width+5, 260);
 		
 		this.add(scroll);
 		

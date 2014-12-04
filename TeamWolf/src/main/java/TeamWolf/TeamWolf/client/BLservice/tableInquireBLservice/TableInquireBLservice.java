@@ -10,7 +10,7 @@ import TeamWolf.TeamWolf.client.vo.TimeVO;
 
 public interface TableInquireBLservice {
 
-	public ArrayList<SaleDetialVO> saleDetial(SaleDetialSelectFactVO vo);
+	public ArrayList<SaleDetialVO> saleDetial(SaleDetialSelectFactVO vo, TimeVO begin, TimeVO end);
 	
 	public ArrayList<RunProcessVO> runProcess(TimeVO time1, TimeVO time2);
 	

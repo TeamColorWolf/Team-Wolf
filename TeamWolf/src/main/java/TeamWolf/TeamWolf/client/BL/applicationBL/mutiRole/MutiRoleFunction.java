@@ -16,6 +16,7 @@ public class MutiRoleFunction extends ApplicationBL{
 	public MutiRoleFunction(String IP) {
 		super(IP);
 		// TODO Auto-generated constructor stub
+		URL = "rmi://" + IP + "/approveDATAservice";
 	}
 	
 	public ArrayList<ApplicationVO> getApprovalApplicationList(){
