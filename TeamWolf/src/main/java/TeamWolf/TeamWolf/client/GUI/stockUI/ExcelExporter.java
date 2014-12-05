@@ -54,7 +54,7 @@ public class ExcelExporter {
                 e.printStackTrace();  
             }  
         } catch (FileNotFoundException e) {  
-            JOptionPane.showMessageDialog(null, "导入数据前请关闭工作表");  
+            JOptionPane.showMessageDialog(null, "导入数据前关闭工作表");  
         }  
     }  
     public static void main(String[] args) {  

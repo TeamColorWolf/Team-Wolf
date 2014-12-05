@@ -1,4 +1,4 @@
-package TeamWolf.TeamWolf.client.BL.stockBL;
+  package TeamWolf.TeamWolf.client.BL.stockBL;
 
 import TeamWolf.TeamWolf.client.BLservice.stockBLservice.StockBLservice;
 import TeamWolf.TeamWolf.client.vo.TypeListVO;
