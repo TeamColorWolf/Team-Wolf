@@ -7,11 +7,15 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOpr;
+import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOprBLservice;
+import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.UserVO;
 
 
@@ -22,6 +26,9 @@ import TeamWolf.TeamWolf.client.vo.UserVO;
  */
 public class CustomerFinPanel extends JPanel{
 
+	CustomerVO customer;
+	CustomerOprBLservice customerLogic;
+	
 	//组件们
 	JButton inquireBtn;
 	JTextField numberInputField;
@@ -35,6 +42,8 @@ public class CustomerFinPanel extends JPanel{
 	JTextField topLimitField;
 	JTextField emailField;
 	JTextField addressField;
+	JTextArea shouldPayArea;
+	JTextArea shouldReceiveArea;
 	JLabel nameLabel;
 	JLabel zipCodeLabel;
 	JLabel telLabel;
@@ -88,6 +97,7 @@ public class CustomerFinPanel extends JPanel{
 	private static final Dimension Label_Size = new Dimension(Label_W, Label_H);
 	
 	public CustomerFinPanel(UserVO user, String ip) {
+		customerLogic = new CustomerOpr(ip);
 		
 		//设置布局方式
 		this.setLayout(null);
@@ -129,7 +139,7 @@ public class CustomerFinPanel extends JPanel{
 		inquireBtn.setFont(Btn_FONT);
 		inquireBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO
+				inquireBtnEvent();
 			}
 		});
 		
@@ -155,27 +165,39 @@ public class CustomerFinPanel extends JPanel{
 		kindField = new JTextField("kind");
 		levelField = new JTextField("level");
 		salesManField = new JTextField("salesMan");
+		shouldPayArea = new JTextArea();
+		shouldReceiveArea = new JTextArea();
 		
 		//组件设置
 		kindField.setSize(conpW, conpH);
 		levelField.setSize(conpW, conpH);
 		salesManField.setSize(conpW, conpH);
+		shouldPayArea.setSize(conpW, conpH);
+		shouldReceiveArea.setSize(conpW, conpH);
 		
 		kindField.setLocation(Xgap, Ygap);
 		levelField.setLocation(Xgap, kindField.getY() + kindField.getHeight() + Ygap);
 		salesManField.setLocation(Xgap, levelField.getY() + levelField.getHeight() + Ygap);
+		shouldPayArea.setLocation(Xgap, salesManField.getY() + salesManField.getHeight() + Ygap);
+		shouldReceiveArea.setLocation(Xgap, shouldPayArea.getY() + shouldPayArea.getHeight() + Ygap);
 		
 		kindField.setBorder(BorderFactory.createTitledBorder("客户种类"));
 		levelField.setBorder(BorderFactory.createTitledBorder("客户等级"));
 		salesManField.setBorder(BorderFactory.createTitledBorder("默认业务员"));
+		shouldPayArea.setBorder(BorderFactory.createTitledBorder("应付金额"));
+		shouldReceiveArea.setBorder(BorderFactory.createTitledBorder("应收金额"));
 
 		kindField.setEditable(false);
 		levelField.setEditable(false);
 		salesManField.setEditable(false);
+		shouldPayArea.setEditable(false);
+		shouldReceiveArea.setEditable(false);
 		
 		jp.add(kindField);
 		jp.add(levelField);
 		jp.add(salesManField);
+		jp.add(shouldPayArea);
+		jp.add(shouldReceiveArea);
 		
 		return jp;
 	}
@@ -271,6 +293,28 @@ public class CustomerFinPanel extends JPanel{
 		jp.add(addressField);
 		
 		return jp;
+	}
+	
+	/**
+	 * 查询按钮事件
+	 */
+	private void inquireBtnEvent(){
+		customer = customerLogic.findCustomer(nameImpurField.getText(), numberInputField.getText());
+		if(customer == null){
+			 JOptionPane.showMessageDialog(null, "未找到对应客户");
+			 return;
+		}
+		kindField.setText(customer.getKind());
+		levelField.setText(Integer.toString(customer.getLevel()));
+		salesManField.setText(customer.getBusinessMan());
+		nameField.setText(customer.getName());
+		zipCodeField.setText(customer.getZipCode());
+		telField.setText(customer.getTel());
+		topLimitField.setText(Double.toString(customer.getTopLimit()));
+		emailField.setText(customer.getEmail());
+		addressField.setText(customer.getAddress());
+		shouldPayArea.setText(Double.toString(customer.getPay()));
+		shouldReceiveArea.setText(Double.toString(customer.getReceive()));
 	}
 	
 }
