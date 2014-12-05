@@ -65,6 +65,7 @@ public class SaleDetialPanel extends JPanel{
 		this.setVisible(true);
 		
 		timeSelect.setCheckListener(new SaleDetialCheck());
+		expert.addActionListener(new ExpertListener(table, "销售明细表"));
 	}
 	
 	private void getContent(SaleDetialSelectFactVO fact){
