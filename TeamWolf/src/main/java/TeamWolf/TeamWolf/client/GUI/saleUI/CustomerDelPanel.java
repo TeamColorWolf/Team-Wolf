@@ -189,12 +189,18 @@ public class CustomerDelPanel extends JPanel{
 		for (int i = 0; i < customerList.size(); i++) {
 			if(customerListTable.getValueAt(i, 0).equals(true)){
 				cvo = customerList.get(i);
+				//从当前界面持有的customerList删除当前客户，以免重复删除
+				customerList.remove(i);
 			}
 		}
 		if(cvo == null){
 			System.out.println("delet failed");
 			return;
 		}
+		//显示剩余客户单
+		showBtnEvent();
+		
 		customerLogic.Customerdel(cvo);
+		
 	}
 }

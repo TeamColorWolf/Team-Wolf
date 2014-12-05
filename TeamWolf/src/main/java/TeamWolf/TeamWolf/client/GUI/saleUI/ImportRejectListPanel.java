@@ -19,8 +19,6 @@ import javax.swing.table.TableColumn;
 
 import TeamWolf.TeamWolf.client.BL.saleBL.SaleBLController;
 import TeamWolf.TeamWolf.client.BLservice.saleBLservice.SaleBLservice;
-import TeamWolf.TeamWolf.client.po.ImportListPO;
-import TeamWolf.TeamWolf.client.po.ImportRejectListPO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
 import TeamWolf.TeamWolf.client.vo.ImportListVO;
 import TeamWolf.TeamWolf.client.vo.ImportRejectListVO;

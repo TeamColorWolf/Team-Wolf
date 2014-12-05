@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -17,7 +19,10 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOpr;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOprBLservice;
+import TeamWolf.TeamWolf.client.BL.userBL.ForAllUserController;
+import TeamWolf.TeamWolf.client.BLservice.userBLservice.ForAllUserService;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.UserVO;
 
@@ -29,9 +34,11 @@ import TeamWolf.TeamWolf.client.vo.UserVO;
 public class CustomerModPanel extends JPanel{
 	
 	CustomerOprBLservice customerLogic;
+	ForAllUserService userServ;
 	
 	CustomerVO customer;
 	ArrayList<CustomerVO> customerList;
+	ArrayList<String> workerID;
 	
 	//组件们
 	JComboBox<String> kindBox;
@@ -103,7 +110,17 @@ public class CustomerModPanel extends JPanel{
 	private static final Dimension Label_Size = new Dimension(Label_W, Label_H);
 	
 	public CustomerModPanel(UserVO user, String ip) {
-		// TODO Auto-generated constructor stub
+		customerLogic = new CustomerOpr(ip);
+		userServ = new ForAllUserController(ip);
+		
+		customerList = customerLogic.getAllCustomerList();
+		workerID = userServ.getWorkNumberList();
+		if(customerList == null){
+			customerList = new ArrayList<CustomerVO>();
+		}
+		if(workerID == null){
+			workerID = new ArrayList<String>();
+		}
 		
 		//设置布局方式
 		this.setLayout(null);
@@ -136,6 +153,17 @@ public class CustomerModPanel extends JPanel{
 		scroll_customer = new JScrollPane(customerListTable);
 		scroll_customer.setSize(220, h - 100);
 		scroll_customer.setLocation(10, 10);
+		
+		customerListTable.addMouseListener(new MouseListener() {
+			public void mouseReleased(MouseEvent e) {}
+			public void mousePressed(MouseEvent e) {}		
+			public void mouseExited(MouseEvent e) {}		
+			public void mouseEntered(MouseEvent e) {}		
+			public void mouseClicked(MouseEvent e) {
+				int row = customerListTable.getSelectedRow();
+				showCustomerInfo(row);
+			}
+		});
 		
 		return scroll_customer;
 	}
@@ -175,12 +203,16 @@ public class CustomerModPanel extends JPanel{
 		Font ChooseBtn_FONT = new Font("黑体", Font.BOLD, 16);
 		String[] custKind = {"进货商", "销售商"};
 		String[] custLevel = {"1", "2", "3", "4", "5"};
-		String[] defualtSalesMan = {"业务员1", "业务员2", "业务员3", "业务员4", "业务员5"};
 		
 		kindBox = new JComboBox<String>(custKind);
 		levelBox = new JComboBox<String>(custLevel);
-		salesManBox = new JComboBox<String>(defualtSalesMan);
+		salesManBox = new JComboBox<String>();
 		addButton = new JButton("修改");
+		
+		//设置默认业务员
+		for (int i = 0; i < workerID.size(); i++) {
+			salesManBox.addItem(workerID.get(i));
+		}
 		
 		//设置Box和button
 		kindBox.setSize(conpW, conpH);
@@ -304,7 +336,20 @@ public class CustomerModPanel extends JPanel{
 	 * 显示按钮事件
 	 */
 	private void showBtnEvent(){
-		//TODO
+		clearCustomerTable();
+		System.out.println("customerList: " + customerList.size());
+//		customerList = TestMain.getCustVOListTEST();
+		tModel_customer = (DefaultTableModel) customerListTable.getModel();
+		
+		for (int i = 0; i < customerList.size(); i++) {
+			CustomerVO cvo = customerList.get(i);
+			//"编号", "姓名"
+			Object[] data = new Object[2];
+			data[0] = cvo.getNum();
+			data[1] = cvo.getName();	
+			tModel_customer.addRow(data);
+			customerListTable.setModel(tModel_customer);
+		}
 	}
 	
 	/**
@@ -314,4 +359,29 @@ public class CustomerModPanel extends JPanel{
 		//TODO
 	}
 	
+	/**
+	 * 显示所选客户详细信息
+	 */
+	private void showCustomerInfo(int row){
+		CustomerVO cvo = customerList.get(row);
+		nameField.setText(cvo.getName());
+		zipCodeField.setText(cvo.getZipCode());
+		telField.setText(cvo.getTel());
+		topLimitField.setText(Double.toString(cvo.getTopLimit()));
+		emailField.setText(cvo.getEmail());
+		addressField.setText(cvo.getAddress());
+		salesManBox.setSelectedItem(cvo.getBusinessMan());
+		levelBox.setSelectedItem(Integer.toString(cvo.getLevel()));
+		kindBox.setSelectedItem(cvo.getKind());
+	}
+	
+	/**
+	 * 清空表格方法
+	 */
+	private void clearCustomerTable(){
+		object_customerList = null;
+		tModel_customer.setDataVector(object_customerList, customerInfo);
+		customerListTable.updateUI();
+		customerListTable.setRowHeight(30);
+	}
 }

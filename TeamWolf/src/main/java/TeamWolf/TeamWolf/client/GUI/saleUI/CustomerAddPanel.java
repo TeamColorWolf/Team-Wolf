@@ -132,12 +132,7 @@ public class CustomerAddPanel extends JPanel{
 		Font ChooseBtn_FONT = new Font("黑体", Font.BOLD, 16);
 		String[] custKind = {"进货商", "销售商"};
 		String[] custLevel = {"1", "2", "3", "4", "5"};
-//		String[] defualtSalesMan = null;
-//		
-//		//设置默认业务员
-//		for (int i = 0; i < workerID.size(); i++) {
-//			defualtSalesMan[i] = workerID.get(i);
-//		}
+
 		
 		kindBox = new JComboBox<String>(custKind);
 		levelBox = new JComboBox<String>(custLevel);
