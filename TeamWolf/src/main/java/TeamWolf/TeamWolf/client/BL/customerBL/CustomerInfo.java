@@ -24,8 +24,7 @@ import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
 public class CustomerInfo implements CustomerInfoBLservice{
 
 	public String URL = null;
-	public CustomerVO customer =null;
-	FinanceApplicationDATAservice fad;
+	public static CustomerDATAservice cds;
 	
 	public CustomerInfo(String IP){
 		URL = "rmi://" + IP + "/customerDATAservice";
@@ -52,8 +51,10 @@ public class CustomerInfo implements CustomerInfoBLservice{
 	}
 
 	public int RecieptListMod(RecieptApplicationVO vo) {
+		CustomerPO oldCustomer = new CustomerPO(vo.getCustomer());
+		vo.getCustomer().setReceive(vo.getCustomer().getReceive()-Double.parseDouble(vo.getAddup()));
 		try {
-			fad = (FinanceApplicationDATAservice) Naming.lookup(URL);
+			cds = (CustomerDATAservice)Naming.lookup("CustomerDATAservice");
 		} catch (MalformedURLException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -65,7 +66,7 @@ public class CustomerInfo implements CustomerInfoBLservice{
 			e.printStackTrace();
 		}
 		try {
-			fad.approvalRecieptApplication(new RecieptApplicationPO(vo));
+			cds.modCustomer(oldCustomer,new CustomerPO(vo.getCustomer()));
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -74,7 +75,26 @@ public class CustomerInfo implements CustomerInfoBLservice{
 	}
 
 	public int PaymentListMod(PaymentApplicationVO vo) {
-		// TODO 自动生成的方法存根
+		CustomerPO oldCustomer = new CustomerPO(vo.getCustomer());
+		vo.getCustomer().setPay(vo.getCustomer().getPay()-Double.parseDouble(vo.getAddup()));
+		try {
+			cds = (CustomerDATAservice)Naming.lookup("CustomerDATAservice");
+		} catch (MalformedURLException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		try {
+			cds.modCustomer(oldCustomer,new CustomerPO(vo.getCustomer()));
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
 		return 0;
 	}
 
