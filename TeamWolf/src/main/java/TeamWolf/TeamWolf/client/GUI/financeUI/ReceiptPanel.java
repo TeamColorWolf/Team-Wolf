@@ -2,7 +2,9 @@ package TeamWolf.TeamWolf.client.GUI.financeUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -23,7 +25,7 @@ import TeamWolf.TeamWolf.client.vo.financeVO;
 
 public class ReceiptPanel extends JPanel{
 
-	public static int ApplicationNumber = 00000;
+	public static int ApplicationNumber ;
 	private final static int LW = 150;
 	private final static int LH = 25;
 	private final static int BW = 80;
@@ -53,6 +55,9 @@ public class ReceiptPanel extends JPanel{
 	public ReceiptPanel(String IP){
 		service = new financeController(IP);
 		cusservice = new CustomerOpr(IP);
+		
+		ApplicationNumber = 0;
+		
 		
 		CustomerVOList = cusservice.getAllCustomerList();
 		if(CustomerVOList == null){
@@ -133,6 +138,24 @@ public class ReceiptPanel extends JPanel{
 		}
 	}
 	
+	public String getDate (){
+		String date = "";
+		Date dt = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		
+		date = sdf.format(dt);
+		return date;
+	}
+	
+	public String getNumber(){
+		String num = "SKD-";
+		String date = getDate();
+		String number = String.format("%05d", ApplicationNumber++);
+		num = num + date + "-" + number;
+		return num;
+		
+	}
+	
 	class CancelListener implements ActionListener{
 
 		public void actionPerformed(ActionEvent arg0) {
@@ -153,17 +176,18 @@ public class ReceiptPanel extends JPanel{
 		    ArrayList<financeVO> accountList = new ArrayList<financeVO>();
 		    ArrayList<String> moneyList = orp.getTheMoney();
 		    accountList = this.getfinanceList(accountNameList);
-		    int number = ApplicationNumber++;
+		    String number = getNumber();
 		    String operator = FinanceFrame.user.userName;
 		    String note = NoteText.getText();
 		    String customerName = CustomerBox.getItemAt(CustomerBox.getSelectedIndex());
 		    CustomerVO customer = cusservice.findCustomer(customerName); 
 				
-			RecieptApplicationVO submitRav = new RecieptApplicationVO(accountList, moneyList,""+number, operator, note, customer);
+			RecieptApplicationVO submitRav = new RecieptApplicationVO(accountList, moneyList,number, operator, note, customer);
 				
 			/*System.out.println(accountList);
-			System.out.println(moneyList);
-			System.out.println(number);
+			System.out.println(moneyList);*/
+
+			System.out.println(number);/*
 			System.out.println(operator);
 			System.out.println(note);
 			System.out.println(customerName);
