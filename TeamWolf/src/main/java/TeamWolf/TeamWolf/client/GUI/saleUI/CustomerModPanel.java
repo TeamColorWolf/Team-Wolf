@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.zip.ZipFile;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -356,23 +357,39 @@ public class CustomerModPanel extends JPanel{
 	 * 修改按钮事件
 	 */
 	private void modBtnAction(){
-		//TODO
+		String num = customer.getNum();
+		String kind = (String) kindBox.getSelectedItem();
+		String level = (String) levelBox.getSelectedItem();
+		String name = nameField.getText();
+		String tel = telField.getText();
+		String address = addressField.getText();
+		String zipCode = zipCodeField.getText();
+		String email = emailField.getText();
+		String topLimit = topLimitField.getText();
+		String receive = Double.toString(customer.getReceive());
+		String pay = Double.toString(customer.getPay());
+		String businessMan = (String) salesManBox.getSelectedItem();
+		
+		CustomerVO newVO = new CustomerVO(num, kind, level, name, tel, address, zipCode,
+				email, topLimit, receive, pay, businessMan);
+		
+		customerLogic.Customerupdate(customer, newVO);
 	}
 	
 	/**
 	 * 显示所选客户详细信息
 	 */
 	private void showCustomerInfo(int row){
-		CustomerVO cvo = customerList.get(row);
-		nameField.setText(cvo.getName());
-		zipCodeField.setText(cvo.getZipCode());
-		telField.setText(cvo.getTel());
-		topLimitField.setText(Double.toString(cvo.getTopLimit()));
-		emailField.setText(cvo.getEmail());
-		addressField.setText(cvo.getAddress());
-		salesManBox.setSelectedItem(cvo.getBusinessMan());
-		levelBox.setSelectedItem(Integer.toString(cvo.getLevel()));
-		kindBox.setSelectedItem(cvo.getKind());
+		customer = customerList.get(row);
+		nameField.setText(customer.getName());
+		zipCodeField.setText(customer.getZipCode());
+		telField.setText(customer.getTel());
+		topLimitField.setText(Double.toString(customer.getTopLimit()));
+		emailField.setText(customer.getEmail());
+		addressField.setText(customer.getAddress());
+		salesManBox.setSelectedItem(customer.getBusinessMan());
+		levelBox.setSelectedItem(Integer.toString(customer.getLevel()));
+		kindBox.setSelectedItem(customer.getKind());
 	}
 	
 	/**
