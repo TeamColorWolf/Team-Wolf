@@ -19,6 +19,7 @@ public class AccountInfo implements AccountInfoBLservice{
 	
 	public int RecieptMod(RecieptApplicationVO vo) {
 		ArrayList<financeVO> volist = vo.getAccountList();
+		
 		return 0;
 	}
 

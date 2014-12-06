@@ -25,6 +25,7 @@ public class CustomerOpr implements CustomerOprBLservice{
 	public CustomerOpr(String IP){
 		URL = "rmi://" + IP + "/CustomerDATAservice";
 		this.CheckPO();
+		this.getAllCustomerList();
 	}
 	
 	public int Customerupdate(CustomerVO vo, CustomerVO newVO) {
