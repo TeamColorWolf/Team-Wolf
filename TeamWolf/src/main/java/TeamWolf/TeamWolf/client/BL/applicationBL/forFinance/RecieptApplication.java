@@ -3,19 +3,27 @@ package TeamWolf.TeamWolf.client.BL.applicationBL.forFinance;
 import java.rmi.RemoteException;
 
 import TeamWolf.TeamWolf.client.BL.applicationBL.Application;
+import TeamWolf.TeamWolf.client.BL.customerBL.CustomerController;
 import TeamWolf.TeamWolf.client.po.ApplicationPO;
 import TeamWolf.TeamWolf.client.po.RecieptApplicationPO;
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;
 import TeamWolf.TeamWolf.client.vo.RecieptApplicationVO;
+import TeamWolf.TeamWolf.client.BL.financeBL.financeController;
 
 public class RecieptApplication extends Application {
 
 	RecieptApplicationVO vo;
+	String URL;
+	CustomerController cc;
+	financeController fc;
 	
-	public RecieptApplication(RecieptApplicationVO vo, String URL) {
-		super(vo, URL);
+	
+	public RecieptApplication(RecieptApplicationVO vo, String IP) {
+		super(vo, IP);
 		this.vo = vo;
-		// TODO Auto-generated constructor stub
+		URL = "rmi://" + IP + "/financeApplicationDATAservice";
+		cc = new CustomerController(IP);
+		fc = new financeController(IP);
 	}
 
 	@Override
@@ -43,6 +51,7 @@ public class RecieptApplication extends Application {
 
 	@Override
 	public int approve() {
+		vo.condition = 1;
 		// TODO Auto-generated method stub
 		try {
 			finance.approvalRecieptApplication(getApplicationPO());
@@ -50,12 +59,14 @@ public class RecieptApplication extends Application {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		customerController.RecieptListMod(getApplicationVO());
+		cc.RecieptListMod(getApplicationVO());
+		fc.RecieptMod(getApplicationVO());
 		return 0;
 	}
 
 	@Override
 	public int reject() {
+		vo.condition = -1;
 		// TODO Auto-generated method stub
 		try {
 			finance.rejectRecieptApplication(getApplicationPO());

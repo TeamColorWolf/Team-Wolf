@@ -29,6 +29,7 @@ public class Account implements AccountBlservice{
 		URL = "rmi://" + IP + "/financeDATAservice";
 		fba = new financeBLAssistant(IP);
 		this.getpoList();
+		this.checkVO();
 	}
 	
 

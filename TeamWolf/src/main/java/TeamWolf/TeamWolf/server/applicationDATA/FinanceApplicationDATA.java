@@ -147,7 +147,7 @@ public class FinanceApplicationDATA extends UnicastRemoteObject implements Finan
 	}
 
 	public void setRecieptlist(ArrayList<RecieptApplicationPO> recieptlist) {
-		recieptlist = recieptlist;
+		this.recieptlist = recieptlist;
 	}
 
 	public ArrayList<PaymentApplicationPO> getPaymentlist() {
@@ -155,7 +155,7 @@ public class FinanceApplicationDATA extends UnicastRemoteObject implements Finan
 	}
 
 	public void setPaymentlist(ArrayList<PaymentApplicationPO> paymentlist) {
-		paymentlist = paymentlist;
+		this.paymentlist = paymentlist;
 	}
 
 	public ArrayList<CashApplicationPO> getCashlist() {
@@ -163,7 +163,18 @@ public class FinanceApplicationDATA extends UnicastRemoteObject implements Finan
 	}
 
 	public void setCashlist(ArrayList<CashApplicationPO> cashlist) {
-		cashlist = cashlist;
+		this.cashlist = cashlist;
+	}
+	public ArrayList<RecieptApplicationPO> getAllRecieptList() {
+		return recieptlist;
+	}
+	public ArrayList<PaymentApplicationPO> getAllPaymentList() {
+		// TODO 自动生成的方法存根
+		return paymentlist;
+	}
+	public ArrayList<CashApplicationPO> getAllCashList() {
+		// TODO 自动生成的方法存根
+		return cashlist;
 	}
 
 }

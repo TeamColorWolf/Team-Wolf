@@ -13,8 +13,9 @@ import TeamWolf.TeamWolf.client.vo.financeVO;
  * @author GYQQQQ
  *
  */
-public class financeController implements AccountBlservice {
+public class financeController implements AccountBlservice ,AccountInfoBLservice{
 	  Account as;
+	  AccountInfo ai;
 	  Eventview es;
 	  Initial is ;
 	  Table t;
@@ -26,6 +27,7 @@ public class financeController implements AccountBlservice {
 	    	 es = new Eventview(IP);
 	    	 t = new Table(IP);
 	    	 mf = new Mock_finance(IP);
+	    	 ai = new AccountInfo(IP);
 		}
 	
      public int Accountmanage(int operationType,financeVO f,financeVO newf){
@@ -86,5 +88,20 @@ public class financeController implements AccountBlservice {
 
 	public ArrayList<financeVO> checkVO() {
 		return as.checkVO();
+	}
+
+	public int RecieptMod(RecieptApplicationVO vo) {
+		// TODO 自动生成的方法存根
+		return ai.RecieptMod(vo);
+	}
+
+	public int PaymentMod(PaymentApplicationVO vo) {
+		// TODO 自动生成的方法存根
+		return ai.PaymentMod(vo);
+	}
+
+	public int CashMod(CashApplicationVO vo) {
+		// TODO 自动生成的方法存根
+		return ai.CashMod(vo);
 	}     
 }

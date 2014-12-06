@@ -17,6 +17,7 @@ import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOpr;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOprBLservice;
 import TeamWolf.TeamWolf.client.BL.financeBL.financeController;
 import TeamWolf.TeamWolf.client.BLservice.financeBLservice.AccountBlservice;
+import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.FinanceApplicationDATAservice;
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.ImportListVO;
@@ -51,12 +52,11 @@ public class ReceiptPanel extends JPanel{
 	ArrayList<String> CustomerList;
 	ArrayList<CustomerVO> CustomerVOList;
 	ArrayList<String> CustomerTopList;
+	ArrayList<RecieptApplicationVO> RecieptList;
 	
 	public ReceiptPanel(String IP){
 		service = new financeController(IP);
 		cusservice = new CustomerOpr(IP);
-		
-		ApplicationNumber = 0;
 		
 		
 		CustomerVOList = cusservice.getAllCustomerList();
@@ -156,6 +156,10 @@ public class ReceiptPanel extends JPanel{
 		
 	}
 	
+	public void getAllApplication(){
+		
+	}
+	
 	class CancelListener implements ActionListener{
 
 		public void actionPerformed(ActionEvent arg0) {
@@ -183,7 +187,8 @@ public class ReceiptPanel extends JPanel{
 		    CustomerVO customer = cusservice.findCustomer(customerName); 
 				
 			RecieptApplicationVO submitRav = new RecieptApplicationVO(accountList, moneyList,number, operator, note, customer);
-				
+			
+			
 			/*System.out.println(accountList);
 			System.out.println(moneyList);*/
 
