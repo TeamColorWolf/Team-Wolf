@@ -29,12 +29,32 @@ public class FinanceSubmit extends ApplicationBL{
 	public FinanceSubmit(String IP) {
 		super(IP);
 		URL = "rmi://" + IP + "/financeApplicationDATAservice";
-		rapoList = new ArrayList<RecieptApplicationPO>();
-		ravoList = new ArrayList<RecieptApplicationVO>();
-		pavoList = new ArrayList<PaymentApplicationVO>();
-		papoList = new ArrayList<PaymentApplicationPO>();
-		capoList = new ArrayList<CashApplicationPO>();
-		cavoList = new ArrayList<CashApplicationVO>();
+		this.capoList = this.getCashPO();
+		if(capoList==null){			
+			capoList = new ArrayList<CashApplicationPO>();
+		}
+		if(cavoList==null){	
+			cavoList = new ArrayList<CashApplicationVO>();
+		}
+		this.getCashVO();
+		this.papoList = this.getPaymentPO(); 
+		if(pavoList==null){			
+			pavoList = new ArrayList<PaymentApplicationVO>();
+		}
+		if(papoList==null){
+			papoList = new ArrayList<PaymentApplicationPO>();
+		}
+		this.getPaymentVO();
+		this.rapoList = this.getRecieptPO();
+		if(rapoList==null){
+			rapoList = new ArrayList<RecieptApplicationPO>();
+			System.out.println("ss");;
+		}
+		System.out.println(this.rapoList.get(0).getAccountList().size());
+		if(ravoList==null){
+			ravoList = new ArrayList<RecieptApplicationVO>();
+		}
+		this.getRecieptVO();
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -112,5 +132,88 @@ public class FinanceSubmit extends ApplicationBL{
 		}
 		return 30001;
 	}
+	
+	public ArrayList<RecieptApplicationPO> getRecieptPO(){
+		try {
+			fads = (FinanceApplicationDATAservice)Naming.lookup(URL);
+		} catch (MalformedURLException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		try {
+			return fads.getAllRecieptList();
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}return null;
+	}
+	public ArrayList<RecieptApplicationVO> getRecieptVO(){
+		for(int i=0;i<rapoList.size();i++){
+			ravoList.add(new RecieptApplicationVO(rapoList.get(i)));
+		}
+		return ravoList;
+	}
+	public ArrayList<PaymentApplicationPO> getPaymentPO(){
+		try {
+			fads = (FinanceApplicationDATAservice)Naming.lookup(URL);
+		} catch (MalformedURLException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		try {
+			return fads.getAllPaymentList();
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public ArrayList<PaymentApplicationVO> getPaymentVO(){
+		for(int i=0;i<papoList.size();i++){
+			pavoList.add(new PaymentApplicationVO(papoList.get(i)));
+		}
+		return pavoList;
+	}
+	public ArrayList<CashApplicationPO> getCashPO(){
+		try {
+			fads = (FinanceApplicationDATAservice)Naming.lookup(URL);
+		} catch (MalformedURLException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		try {
+			return fads.getAllCashList();
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public ArrayList<CashApplicationVO> getCashVO(){
+		for(int i=0;i<capoList.size();i++){
+			cavoList.add(new CashApplicationVO(capoList.get(i)));
+		}
+		return cavoList;
+	}
+	
+	                  
 
 }

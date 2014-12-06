@@ -2,6 +2,10 @@ package TeamWolf.TeamWolf.client.vo;
 
 import java.util.ArrayList;
 
+import TeamWolf.TeamWolf.client.po.CashApplicationPO;
+import TeamWolf.TeamWolf.client.po.PaymentApplicationPO;
+import TeamWolf.TeamWolf.client.po.financePO;
+
 public class CashApplicationVO extends ApplicationVO{
     private String note;
     private String addup;
@@ -31,6 +35,25 @@ public class CashApplicationVO extends ApplicationVO{
 			AllAdd += Double.parseDouble(S);
 					}
 		return String.valueOf(AllAdd);			
+	}
+	public CashApplicationVO(CashApplicationPO po) {
+		this.note = po.getNote();
+		this.customer =new CustomerVO(po.getCustomer());
+		
+		this.accountList = new ArrayList<financeVO>();
+		this.getAccountListVO(po);
+		this.nameList = po.getNameList();
+		this.moneyList = po.getMoneyList();
+		
+		this.number = po.number;
+		this.operator = po.operator;
+		
+		this.setAddup(calcuAdd(moneyList));
+	}
+	public void getAccountListVO(CashApplicationPO po){
+		for(financePO f: po.getAccountList()){
+			this.accountList.add(new financeVO(f));
+		}
 	}
 	
 	public String getNote() {

@@ -57,7 +57,13 @@ public class ReceiptPanel extends JPanel{
 	public ReceiptPanel(String IP){
 		service = new financeController(IP);
 		cusservice = new CustomerOpr(IP);
+		RecieptList= faservice.getRecieptVO();
 		
+		if(RecieptList==null){
+			RecieptList =new ArrayList<RecieptApplicationVO>();
+		}
+		
+		ApplicationNumber =RecieptList.size();
 		
 		CustomerVOList = cusservice.getAllCustomerList();
 		if(CustomerVOList == null){
@@ -150,7 +156,7 @@ public class ReceiptPanel extends JPanel{
 	public String getNumber(){
 		String num = "SKD-";
 		String date = getDate();
-		String number = String.format("%05d", ApplicationNumber++);
+		String number = String.format("%05d", ApplicationNumber);
 		num = num + date + "-" + number;
 		return num;
 		

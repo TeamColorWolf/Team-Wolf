@@ -39,9 +39,9 @@ public interface FinanceApplicationDATAservice extends Remote {
 	
 	public int changeCashApplication(CashApplicationPO po) throws RemoteException;
 	
-	public ArrayList<RecieptApplicationPO> getAllRecieptList();
+	public ArrayList<RecieptApplicationPO> getAllRecieptList()  throws RemoteException;
 	
-	public ArrayList<PaymentApplicationPO> getAllPaymentList();
+	public ArrayList<PaymentApplicationPO> getAllPaymentList() throws RemoteException;
 	
-	public ArrayList<CashApplicationPO> getAllCashList();
+	public ArrayList<CashApplicationPO> getAllCashList() throws RemoteException;
 }
