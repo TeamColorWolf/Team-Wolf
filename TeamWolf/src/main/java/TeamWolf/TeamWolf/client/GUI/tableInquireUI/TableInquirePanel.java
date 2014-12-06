@@ -18,6 +18,7 @@ public class TableInquirePanel extends JPanel{
 	JTabbedPane tab = new JTabbedPane();
 	
 	SaleDetialPanel saleDetial;
+	RunProcessPanel runProcess;
 	
 	final static int width = 960;
 	final static int height = 540;
@@ -29,7 +30,9 @@ public class TableInquirePanel extends JPanel{
 		service = new TableInquireController(IP);
 		
 		saleDetial = new SaleDetialPanel();
+		runProcess = new RunProcessPanel();
 		
+		tab.add(runProcess, "经营历程表");
 		tab.add(saleDetial, "销售明细表");
 		tab.setSize(width, height);
 		tab.setLocation(0, 0);

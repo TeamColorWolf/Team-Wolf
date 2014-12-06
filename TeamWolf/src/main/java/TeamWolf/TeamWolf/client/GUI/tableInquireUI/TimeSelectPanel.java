@@ -126,12 +126,12 @@ public class TimeSelectPanel extends JPanel{
 		this.add(em);
 		this.add(ed);
 		
-		for(int i = 0; i < 10; i++){
+		for(int i = -5; i < 10; i++){
 			by.addItem(year+i);
 			ey.addItem(year+i);
 		}
-		by.setSelectedIndex(0);
-		ey.setSelectedIndex(0);
+		by.setSelectedIndex(5);
+		ey.setSelectedIndex(5);
 		
 		for(int i = 1; i < 13; i++){
 			bm.addItem(i);

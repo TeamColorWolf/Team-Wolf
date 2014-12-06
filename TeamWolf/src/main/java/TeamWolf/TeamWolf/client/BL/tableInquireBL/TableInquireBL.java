@@ -6,6 +6,8 @@ import TeamWolf.TeamWolf.client.BL.applicationBL.MutiRoleService;
 import TeamWolf.TeamWolf.client.BL.applicationBL.mutiRole.MutiRoleController;
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
+import TeamWolf.TeamWolf.client.vo.ImportListVO;
+import TeamWolf.TeamWolf.client.vo.ImportRejectListVO;
 import TeamWolf.TeamWolf.client.vo.RunConditionVO;
 import TeamWolf.TeamWolf.client.vo.RunProcessVO;
 import TeamWolf.TeamWolf.client.vo.SaleDetialSelectFactVO;
@@ -82,6 +84,56 @@ public class TableInquireBL {
 	}
 
 	public ArrayList<RunProcessVO> runProcess(TimeVO time1, TimeVO time2) {
+		ArrayList<ApplicationVO> applist = rightTimeList(time1, time2);
+		runProcess = new ArrayList<RunProcessVO>();
+		for(int i = 0; i < applist.size(); i++){
+			ApplicationVO app = applist.get(i);
+			String[] n = app.number.split("-");
+			if(n[0].equals("XSD")){
+				SaleListVO sale = (SaleListVO)app;
+				ArrayList<GoodsVO> goodslist = sale.getGoodsList();
+				if(goodslist != null){
+					for(int j = 0; j < goodslist.size(); j++){
+						GoodsVO goods = goodslist.get(j);
+						RunProcessVO process = new RunProcessVO(sale.number, sale.getCustomer().getName(), sale.getSalesman(), sale.getStorage(), goods.getName(), goods.getAmount(), goods.getExprice());
+						runProcess.add(process);
+					}
+				}
+			}
+			else if(n[0].equals("XSDTHD")){
+				SaleRejectListVO sale = (SaleRejectListVO)app;
+				ArrayList<GoodsVO> goodslist = sale.getGoodsList();
+				if(goodslist != null){
+					for(int j = 0; j < goodslist.size(); j++){
+						GoodsVO goods = goodslist.get(j);
+						RunProcessVO process = new RunProcessVO(sale.number, sale.getCustomer().getName(), sale.getSalesman(), sale.getStorage(), goods.getName(), goods.getAmount(), goods.getExprice());
+						runProcess.add(process);
+					}
+				}
+			}
+			else if(n[0].equals("JHD")){
+				ImportListVO im = (ImportListVO)app;
+				ArrayList<GoodsVO> goodslist = im.getGoodsList();
+				if(goodslist != null){
+					for(int j = 0; j < goodslist.size(); j++){
+						GoodsVO goods = goodslist.get(j);
+						RunProcessVO process = new RunProcessVO(im.number, im.getCustomer().getName(), null, im.getStorage(), goods.getName(), goods.getAmount(), goods.getImprice());
+						runProcess.add(process);
+					}
+				}
+			}
+			else if(n[0].equals("JHTHD")){
+				ImportRejectListVO im = (ImportRejectListVO)app;
+				ArrayList<GoodsVO> goodslist = im.getGoodsList();
+				if(goodslist != null){
+					for(int j = 0; j < goodslist.size(); j++){
+						GoodsVO goods = goodslist.get(j);
+						RunProcessVO process = new RunProcessVO(im.number, im.getCustomer().getName(), null, im.getStorage(), goods.getName(), goods.getAmount(), goods.getImprice());
+						runProcess.add(process);
+					}
+				}
+			}
+		}
 		return runProcess;
 	}
 
