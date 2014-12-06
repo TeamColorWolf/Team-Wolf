@@ -5,6 +5,7 @@ import TeamWolf.TeamWolf.client.BL.applicationBL.forSale.ImportRejectList;
 import TeamWolf.TeamWolf.client.BL.applicationBL.forSale.SaleList;
 import TeamWolf.TeamWolf.client.BL.applicationBL.forSale.SaleRejectList;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerController;
+import TeamWolf.TeamWolf.client.BL.financeBL.financeController;
 import TeamWolf.TeamWolf.client.BL.goodsBL.GoodsBLController;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.FinanceApplicationDATAservice;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.SaleApplicationDATAservice;
@@ -30,6 +31,7 @@ public abstract class Application {
 	protected int condition;//0 表示未审批， 1 表示审批通过， -1表示审批不通过
 	protected GoodsBLController goodsController;
 	protected CustomerController customerController;
+	protected financeController financeController;
 	
 	protected FinanceApplicationDATAservice finance;
 	protected StockApplicationDATAservice stock;
