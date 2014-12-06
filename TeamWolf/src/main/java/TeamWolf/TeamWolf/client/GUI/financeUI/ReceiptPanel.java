@@ -18,6 +18,7 @@ import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOprBLservice;
 import TeamWolf.TeamWolf.client.BL.financeBL.financeController;
 import TeamWolf.TeamWolf.client.BLservice.financeBLservice.AccountBlservice;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.FinanceApplicationDATAservice;
+import TeamWolf.TeamWolf.client.po.RecieptApplicationPO;
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.ImportListVO;
@@ -52,18 +53,11 @@ public class ReceiptPanel extends JPanel{
 	ArrayList<String> CustomerList;
 	ArrayList<CustomerVO> CustomerVOList;
 	ArrayList<String> CustomerTopList;
-	ArrayList<RecieptApplicationVO> RecieptList;
 	
 	public ReceiptPanel(String IP){
 		service = new financeController(IP);
 		cusservice = new CustomerOpr(IP);
-		RecieptList= faservice.getRecieptVO();
 		
-		if(RecieptList==null){
-			RecieptList =new ArrayList<RecieptApplicationVO>();
-		}
-		
-		ApplicationNumber =RecieptList.size();
 		
 		CustomerVOList = cusservice.getAllCustomerList();
 		if(CustomerVOList == null){

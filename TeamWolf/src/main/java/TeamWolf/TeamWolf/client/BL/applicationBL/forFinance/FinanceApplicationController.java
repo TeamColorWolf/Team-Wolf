@@ -32,27 +32,20 @@ public class FinanceApplicationController extends MutiRoleController implements 
 		return submit.submitCashApplication(vo);
 	}
 
-	public ArrayList<RecieptApplicationPO> getRecieptPO() {
-		return submit.getRecieptPO();
-	}
-
 	public ArrayList<RecieptApplicationVO> getRecieptVO() {
+		// TODO 自动生成的方法存根
 		return submit.getRecieptVO();
 	}
 
-	public ArrayList<CashApplicationPO> getCashPO() {
-        return submit.getCashPO();		
-	}
-
 	public ArrayList<CashApplicationVO> getCashVO() {
-		return  submit.getCashVO();
-	}
-
-	public ArrayList<PaymentApplicationPO> getPaymentPO() {
-		return submit.getPaymentPO();
+		// TODO 自动生成的方法存根
+		return submit.getCashVO();
 	}
 
 	public ArrayList<PaymentApplicationVO> getPaymentVO() {
+		// TODO 自动生成的方法存根
 		return submit.getPaymentVO();
 	}
+
+
 }

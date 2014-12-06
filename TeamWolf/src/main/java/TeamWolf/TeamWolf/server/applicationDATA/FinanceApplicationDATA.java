@@ -21,6 +21,7 @@ public class FinanceApplicationDATA extends UnicastRemoteObject implements Finan
 		super();
 		init();
 		if(recieptlist==null){
+			System.out.println("Empty");
 			recieptlist = new ArrayList<RecieptApplicationPO>();
 		}
 		if(paymentlist== null){
