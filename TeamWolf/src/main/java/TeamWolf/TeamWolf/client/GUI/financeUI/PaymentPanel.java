@@ -50,12 +50,15 @@ public class PaymentPanel extends JPanel{
 	ArrayList<String> CustomerList;
 	ArrayList<CustomerVO> CustomerVOList;
 	ArrayList<String> CustomerTopList;
+	ArrayList<PaymentApplicationVO> app;
 	
 	public PaymentPanel(String IP){
 		service = new financeController(IP);
 		cusservice = new CustomerOpr(IP);
 		
-		ApplicationNumber=0;
+		app = faservice.getPaymentVO();
+		
+		ApplicationNumber=app.size();
 		
 		CustomerVOList = cusservice.getAllCustomerList();
 		if(CustomerVOList == null){

@@ -53,12 +53,15 @@ public class ReceiptPanel extends JPanel{
 	ArrayList<String> CustomerList;
 	ArrayList<CustomerVO> CustomerVOList;
 	ArrayList<String> CustomerTopList;
+	ArrayList<RecieptApplicationVO> arp;
 	
 	public ReceiptPanel(String IP){
 		service = new financeController(IP);
 		cusservice = new CustomerOpr(IP);
 		
+		arp = faservice.getRecieptVO();
 		
+		ApplicationNumber = arp.size();
 		CustomerVOList = cusservice.getAllCustomerList();
 		if(CustomerVOList == null){
 			CustomerVOList = new ArrayList<CustomerVO>();
@@ -150,15 +153,12 @@ public class ReceiptPanel extends JPanel{
 	public String getNumber(){
 		String num = "SKD-";
 		String date = getDate();
-		String number = String.format("%05d", ApplicationNumber);
+		String number = String.format("%05d", ApplicationNumber++);
 		num = num + date + "-" + number;
 		return num;
 		
 	}
 	
-	public void getAllApplication(){
-		
-	}
 	
 	class CancelListener implements ActionListener{
 
