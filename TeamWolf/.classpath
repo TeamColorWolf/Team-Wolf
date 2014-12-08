@@ -22,7 +22,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="D:/Documents/GitHub/Team-Wolf/TeamWolf/界面风格包/JTattoo-1.6.11.jar"/>
-	<classpathentry kind="lib" path="D:/Documents/GitHub/Team-Wolf/TeamWolf/excel导出包/jxl.jar"/>
+	<classpathentry kind="lib" path="C:/Users/lenovo/Desktop/学习/软工二/lib/JTattoo-1.6.11.jar"/>
+	<classpathentry kind="lib" path="C:/Users/lenovo/Desktop/学习/软工二/jexcelapi/jxl.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
