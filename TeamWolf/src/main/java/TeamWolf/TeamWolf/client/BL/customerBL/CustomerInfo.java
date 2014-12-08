@@ -31,22 +31,66 @@ public class CustomerInfo implements CustomerInfoBLservice{
 	}
 	
 	public int ImportListInfoMod(ImportListVO ivo) {
-		ivo.getCustomer().setPay(ivo.getTotal());
+		CustomerPO oldCustomer = new CustomerPO(ivo.getCustomer());
+		ivo.getCustomer().setPay(ivo.getCustomer().getPay() + ivo.getTotal());
+		try {
+			cds = (CustomerDATAservice)Naming.lookup("CustomerDATAservice");
+			cds.modCustomer(oldCustomer, new CustomerPO(ivo.getCustomer()));
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
 		return 0;
 	}
 
 	public int ImportRejectListMod(ImportRejectListVO irvo) {
-		irvo.getCustomer().setReceive(irvo.getTotal());
+		CustomerPO oldCustomer = new CustomerPO(irvo.getCustomer());
+		irvo.getCustomer().setReceive(irvo.getCustomer().getReceive() + irvo.getTotal());
+		try {
+			cds = (CustomerDATAservice)Naming.lookup("CustomerDATAservice");
+			cds.modCustomer(oldCustomer, new CustomerPO(irvo.getCustomer()));
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
 		return 0;
 	}
 
 	public int SaleListMod(SaleListVO svo) {
-		svo.getCustomer().setReceive(svo.getTotalAfterDiscount());
+		CustomerPO oldCustomer = new CustomerPO(svo.getCustomer());
+		svo.getCustomer().setReceive(svo.getCustomer().getReceive() + svo.getTotalAfterDiscount());
+		try {
+			cds = (CustomerDATAservice)Naming.lookup("CustomerDATAservice");
+			cds.modCustomer(oldCustomer, new CustomerPO(svo.getCustomer()));
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
 		return 0;
 	}
 
 	public int SaleRejectListMod(SaleRejectListVO srvo) {
-		srvo.getCustomer().setPay(srvo.getTotalAfterDiscount());
+		CustomerPO oldCustomer = new CustomerPO(srvo.getCustomer());
+		srvo.getCustomer().setPay(srvo.getCustomer().getPay() + srvo.getTotalAfterDiscount());
+		try {
+			cds = (CustomerDATAservice)Naming.lookup("CustomerDATAservice");
+			cds.modCustomer(oldCustomer, new CustomerPO(srvo.getCustomer()));
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
 		return 0;
 	}
 
