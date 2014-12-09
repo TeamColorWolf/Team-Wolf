@@ -705,7 +705,11 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     			else{
     				GoodsVO tofin=new GoodsVO(null, null, number, null, null, null, null, null, null, null, null);
     				GoodsVO finded=gbcontroller.finGoods(tofin);
-    				result=finded.getInfo()+"\n";
+    				if(finded!=null)
+    				   result=finded.getInfo()+"\n";
+    				else{
+    					//弹窗：找不到
+    				}
     			}
     			
     			numberTF.setText("");
