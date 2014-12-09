@@ -27,14 +27,14 @@ public class CustomerInfo implements CustomerInfoBLservice{
 	public static CustomerDATAservice cds;
 	
 	public CustomerInfo(String IP){
-		URL = "rmi://" + IP + "/customerDATAservice";
+		URL = "rmi://" + IP + "/CustomerDATAservice";
 	}
 	
 	public int ImportListInfoMod(ImportListVO ivo) {
 		CustomerPO oldCustomer = new CustomerPO(ivo.getCustomer());
 		ivo.getCustomer().setPay(ivo.getCustomer().getPay() + ivo.getTotal());
 		try {
-			cds = (CustomerDATAservice)Naming.lookup("CustomerDATAservice");
+			cds = (CustomerDATAservice)Naming.lookup(URL);
 			cds.modCustomer(oldCustomer, new CustomerPO(ivo.getCustomer()));
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -50,7 +50,7 @@ public class CustomerInfo implements CustomerInfoBLservice{
 		CustomerPO oldCustomer = new CustomerPO(irvo.getCustomer());
 		irvo.getCustomer().setReceive(irvo.getCustomer().getReceive() + irvo.getTotal());
 		try {
-			cds = (CustomerDATAservice)Naming.lookup("CustomerDATAservice");
+			cds = (CustomerDATAservice)Naming.lookup(URL);
 			cds.modCustomer(oldCustomer, new CustomerPO(irvo.getCustomer()));
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -66,7 +66,7 @@ public class CustomerInfo implements CustomerInfoBLservice{
 		CustomerPO oldCustomer = new CustomerPO(svo.getCustomer());
 		svo.getCustomer().setReceive(svo.getCustomer().getReceive() + svo.getTotalAfterDiscount());
 		try {
-			cds = (CustomerDATAservice)Naming.lookup("CustomerDATAservice");
+			cds = (CustomerDATAservice)Naming.lookup(URL);
 			cds.modCustomer(oldCustomer, new CustomerPO(svo.getCustomer()));
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -82,7 +82,7 @@ public class CustomerInfo implements CustomerInfoBLservice{
 		CustomerPO oldCustomer = new CustomerPO(srvo.getCustomer());
 		srvo.getCustomer().setPay(srvo.getCustomer().getPay() + srvo.getTotalAfterDiscount());
 		try {
-			cds = (CustomerDATAservice)Naming.lookup("CustomerDATAservice");
+			cds = (CustomerDATAservice)Naming.lookup(URL);
 			cds.modCustomer(oldCustomer, new CustomerPO(srvo.getCustomer()));
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -98,7 +98,7 @@ public class CustomerInfo implements CustomerInfoBLservice{
 		CustomerPO oldCustomer = new CustomerPO(vo.getCustomer());
 		vo.getCustomer().setReceive(vo.getCustomer().getReceive()-Double.parseDouble(vo.getAddup()));
 		try {
-			cds = (CustomerDATAservice)Naming.lookup("CustomerDATAservice");
+			cds = (CustomerDATAservice)Naming.lookup(URL);
 		} catch (MalformedURLException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -122,7 +122,7 @@ public class CustomerInfo implements CustomerInfoBLservice{
 		CustomerPO oldCustomer = new CustomerPO(vo.getCustomer());
 		vo.getCustomer().setPay(vo.getCustomer().getPay()-Double.parseDouble(vo.getAddup()));
 		try {
-			cds = (CustomerDATAservice)Naming.lookup("CustomerDATAservice");
+			cds = (CustomerDATAservice)Naming.lookup(URL);
 		} catch (MalformedURLException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();

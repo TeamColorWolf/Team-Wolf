@@ -1,5 +1,8 @@
 package TeamWolf.TeamWolf.client.BL.applicationBL.forFinance;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import TeamWolf.TeamWolf.client.BL.applicationBL.Application;
@@ -10,6 +13,7 @@ import TeamWolf.TeamWolf.client.po.PaymentApplicationPO;
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;
 import TeamWolf.TeamWolf.client.vo.PaymentApplicationVO;
 import  TeamWolf.TeamWolf.client.BL.financeBL.financeController;
+import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.FinanceApplicationDATAservice;
 
 public class PaymentApplication extends Application {
 
@@ -41,6 +45,15 @@ public class PaymentApplication extends Application {
 	public int submit() {
 		// TODO Auto-generated method stub
 		try {
+			try {
+				finance = (FinanceApplicationDATAservice) Naming.lookup(URL);
+			} catch (MalformedURLException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			} catch (NotBoundException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
 			finance.submitPaymentApplication(getApplicationPO());
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
