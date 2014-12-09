@@ -42,7 +42,7 @@ public class SaleApplicationDATA extends UnicastRemoteObject implements SaleAppl
 		System.out.println("importList " + importList.size());
 		System.out.println("importRejectList " + importRejectList.size());
 		System.out.println("saleList " + saleList.size());
-		System.out.println("importList " + importList.size());
+		System.out.println("saleRejectList " + saleRejectList.size());
 	}
 
 	/**
@@ -92,8 +92,9 @@ public class SaleApplicationDATA extends UnicastRemoteObject implements SaleAppl
 		int judge = 0;
 		saleList.add(spo);
 		try {
-			System.out.println("add saleList success");
+			System.out.println("================" + saleList.size() + "==================");
 			fo.writeFile(fileName.saleListFile, saleList);
+			System.out.println("add saleList success");
 		} catch (IOException e) {
 			e.printStackTrace();
 			judge = 9;

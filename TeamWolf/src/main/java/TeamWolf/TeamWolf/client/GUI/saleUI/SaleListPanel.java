@@ -307,6 +307,7 @@ public class SaleListPanel extends JPanel{
 		
 		if(SaleRejectListPanel.saleList == null){
 			SaleRejectListPanel.saleList = new ArrayList<SaleListVO>();
+			System.out.println("====================NULL=======================");
 		}
 		SaleRejectListPanel.saleList.add(saleVO);
 		

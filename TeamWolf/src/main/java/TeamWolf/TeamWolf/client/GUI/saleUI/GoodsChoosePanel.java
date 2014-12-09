@@ -83,6 +83,12 @@ public class GoodsChoosePanel extends JPanel{
 		if(typeList == null){
 			typeList = new ArrayList<TypeVO>();
 		}
+		//TODO :对特价包的处理
+		for (int i = 0; i < typeList.size(); i++) {
+			if(typeList.get(i).getName().equals("特价包")){
+				typeList.remove(i);
+			}
+		}
 		
 		goodsTypeListBox = new ArrayList<JComboBox<String>>();
 		goodsListBox = new ArrayList<JComboBox<String>>();
@@ -299,10 +305,10 @@ public class GoodsChoosePanel extends JPanel{
 	private void setTypeBox(JComboBox<String> type){
 		type.removeAllItems();
 		for(int i = 0; i < typeList.size(); i++){
-			if(!typeList.get(i).getName().equals("特价包")){
-				type.addItem(typeList.get(i).getName());
-			}
-			
+//			if(!typeList.get(i).getName().equals("特价包")){
+//				type.addItem(typeList.get(i).getName());
+//			}
+			type.addItem(typeList.get(i).getName());
 		}
 	}
 	
@@ -312,18 +318,16 @@ public class GoodsChoosePanel extends JPanel{
 	 * @param type
 	 */
 	private void setGoodsBox(JComboBox<String> goods, JComboBox<String> type){
-		String index = (String) type.getSelectedItem();
+		int index = type.getSelectedIndex();
 		goods.removeAllItems();
-		ArrayList<GoodsVO> goodsList = null;
-		for(int i = 0; i < typeList.size(); i++){
-			if(index.equals(typeList.get(i).getName())){
-				goodsList = typeList.get(i).getAllLeave();
+		ArrayList<GoodsVO> list = null;
+		if(index >= 0){
+			list = typeList.get(index).getAllLeave();
+		}
+		if(list != null){
+			for(int i = 0; i < list.size(); i++){
+				goods.addItem(list.get(i).getName() + " " + list.get(i).getModel());
 			}
-		}
-		if(goodsList != null){
-			for(int i = 0; i < goodsList.size(); i++){
-			goods.addItem(goodsList.get(i).getName() + " " + goodsList.get(i).getModel());
-		}
 		}
 	}
 	

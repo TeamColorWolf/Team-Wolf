@@ -263,9 +263,9 @@ public class SaleRejectListPanel extends JPanel{
 					break;
 				}
 			}
-			if(k == 1){
-				continue;
-			}
+//			if(k == 1){
+//				continue;
+//			}
 			
 			SaleListVO svo = saleList.get(i);
 
