@@ -97,7 +97,7 @@ public class GoodsTrade {
 		}
 		
 		if(notEnough==true){
-			//返回库存不足
+			return 2006;//返回库存不足
 		}
 		else{
 			for(GoodsVO g: goodsSL){
@@ -152,9 +152,14 @@ public class GoodsTrade {
 		try{
 		for(GoodsVO g: goodsSRL){
 			GoodsPO toEReject=dataService.finGood(g.getNumber());
-			int amount=toEReject.getAmount()+g.getAmount();
-			toEReject.setAmount(amount);
-			dataService.updGood(toEReject);
+			if(toEReject!=null){
+			    int amount=toEReject.getAmount()+g.getAmount();
+			    toEReject.setAmount(amount);
+			    dataService.updGood(toEReject);
+			}
+			else{
+				return 2004;  //商品不存在于系统中
+			}
 		}			
 		}catch(RemoteException e){
 			e.printStackTrace();
@@ -171,10 +176,15 @@ public class GoodsTrade {
 		try{
 		for(GoodsVO g: goodsIL){
 			GoodsPO toImport=dataService.finGood(g.getNumber());
-			int amount=toImport.getAmount()+g.getAmount();
-			toImport.setAmount(amount);
-			toImport.setLatestImprice(g.getImprice());
-			dataService.updGood(toImport);
+			if(toImport!=null){
+			    int amount=toImport.getAmount()+g.getAmount();
+			    toImport.setAmount(amount);
+			    toImport.setLatestImprice(g.getImprice());
+			    dataService.updGood(toImport);
+			}
+			else{
+				return 2004; //商品不存在于系统中
+			}
 		}
 		}catch(RemoteException e){
 			e.printStackTrace();
@@ -190,13 +200,18 @@ public class GoodsTrade {
 		try{
 		for(GoodsVO g: goodsIRL){
 		    GoodsPO toIReject=dataService.finGood(g.getNumber());
-		    if(toIReject.getAmount()>=g.getAmount()){
-		    	int amount=toIReject.getAmount()-g.getAmount();
-		    	toIReject.setAmount(amount);
-		    	dataService.updGood(toIReject);
+		    if(toIReject!=null){
+		        if(toIReject.getAmount()>=g.getAmount()){
+		    	     int amount=toIReject.getAmount()-g.getAmount();
+		    	     toIReject.setAmount(amount);
+		    	     dataService.updGood(toIReject);
+		        }
+		        else{
+		    	     return 2006; //错误类型：库存已不足，无法退货
+		        }
 		    }
 		    else{
-		    	//错误类型：库存已不足，无法退货
+		    	return 2004; //商品不存在于系统中
 		    }
 		}			
 		}catch(RemoteException e){

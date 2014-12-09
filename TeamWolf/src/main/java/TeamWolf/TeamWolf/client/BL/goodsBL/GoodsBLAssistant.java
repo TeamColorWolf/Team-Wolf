@@ -87,7 +87,7 @@ public class GoodsBLAssistant {
 		}
 		else{
 			//返回赠送商品不存在，无法进行赠送
-			return 1;
+			return 2004;
 		}
 	}
 	public boolean isExisted(GoodsVO g) throws RemoteException{

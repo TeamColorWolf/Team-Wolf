@@ -39,33 +39,32 @@ public class ApplicationBL {
 	}
 	
 	protected ApplicationVO getVOfromPO(ApplicationPO po){
-		String[] n = po.number.split("-");
-		if(n[0].equals("JHD")){//进货单
+		if(po instanceof ImportListPO){//进货单
 			return new ImportListVO((ImportListPO)po);
 		}
-		else if(n[0].equals("JHTHD")){//进货退货单
+		else if(po instanceof ImportRejectListPO){//进货退货单
 			return new ImportRejectListVO((ImportRejectListPO)po);
 		}
-		else if(n[0].equals("XSD")){//销售单
+		else if(po instanceof SaleListPO){//销售单
 			return new SaleListVO((SaleListPO)po);
 		}
-		else if(n[0].equals("XSTHD")){//销售退货单
+		else if(po instanceof SaleRejectListPO){//销售退货单
 			return new SaleRejectListVO((SaleRejectListPO)po);
 		}
-		else if(n[0].equals("KCBYD")){//库存报溢单
-//			return new IncreaseToMatchVO((IncreaseToMatchPO)po); TODO
+		else if(po instanceof IncreaseToMatchPO){//库存报溢单
+			return new IncreaseToMatchVO((IncreaseToMatchPO)po);
 		}
-		else if(n[0].equals("KCBSD")){//库存报损单
-//			return new DecreaseToMatchVO((DecreaseToMatchPO)po); TODO
+		else if(po instanceof DecreaseToMatchPO){//库存报损单
+			return new DecreaseToMatchVO((DecreaseToMatchPO)po);
 		}
-		else if(n[0].equals("FKD")){//付款单
-//			return new PaymentApplicationVO((PaymentApplicationPO)po); TODO
+		else if(po instanceof PaymentApplicationPO){//付款单
+			return new PaymentApplicationVO((PaymentApplicationPO)po);
 		}
-		else if(n[0].equals("SKD")){//收款单
-//			return new RecieptApplicationVO((RecieptApplicationPO)po); TODO
+		else if(po instanceof RecieptApplicationPO){//收款单
+			return new RecieptApplicationVO((RecieptApplicationPO)po);
 		}
-		else if(n[0].equals("XJFYD")){//现金费用单
-//			return new CashApplicationVO((CashApplicationPO)po); TODO
+		else if(po instanceof CashApplicationPO){//现金费用单
+			return new CashApplicationVO((CashApplicationPO)po);
 		}
 		return null;
 	}

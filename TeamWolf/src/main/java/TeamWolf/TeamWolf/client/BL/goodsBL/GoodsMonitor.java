@@ -63,7 +63,7 @@ public class GoodsMonitor{
 		    dataService.updGood(toSet);		
 		}
 		else{
-			//返回错误类型
+			return 2004;//返回错误类型:商品不存在于系统中
 		}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -120,7 +120,7 @@ public class GoodsMonitor{
 			    appController.submitIncreaseToMatch(itm);		
 		}
 		else{
-			//返回错误类型
+			return 2004;//返回错误类型:商品不存在于系统中
 		}
 		}catch(RemoteException e){
 			e.printStackTrace();
@@ -148,7 +148,7 @@ public class GoodsMonitor{
 			}
 		}
 		else{
-			//返回错误类型
+			return 2004;//返回错误类型:商品不存在于系统中
 		}
 		}catch(RemoteException e){
 			e.printStackTrace();
@@ -162,14 +162,19 @@ public class GoodsMonitor{
     	try {
     		System.out.println(g.getNumber());
 			GoodsPO toIncrease=dataService.finGood(g.getNumber());
-			String parentNum=toIncrease.getParent().getNumber();
-			//System.out.println(parentNum);
-			TypePO parent=SdataService.finType(parentNum);
-			int amount=toIncrease.getAmount()+g.getAmount();
-			toIncrease.setAmount(amount);
-			parent.updLeaveNode(toIncrease);
-			SdataService.updType(parent);
-			dataService.updGood(toIncrease);
+			if(toIncrease!=null){
+			   String parentNum=toIncrease.getParent().getNumber();
+			   //System.out.println(parentNum);
+			   TypePO parent=SdataService.finType(parentNum);
+			   int amount=toIncrease.getAmount()+g.getAmount();
+			   toIncrease.setAmount(amount);
+			   parent.updLeaveNode(toIncrease);
+			   SdataService.updType(parent);
+			   dataService.updGood(toIncrease);
+			}
+			else{
+				return 2004;  //商品不存在于系统中
+			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -181,16 +186,21 @@ public class GoodsMonitor{
 		
 		try {
 			GoodsPO toDecrease=dataService.finGood(g.getNumber());
-			TypePO parent=SdataService.finType(toDecrease.getParent().getNumber());
-			int amount=toDecrease.getAmount()-g.getAmount();
-			if(amount>=0){
-			   toDecrease.setAmount(amount);
-			   parent.updLeaveNode(toDecrease);
-			   SdataService.updType(parent);
-			   dataService.updGood(toDecrease);	
+			if(toDecrease!=null){
+			    TypePO parent=SdataService.finType(toDecrease.getParent().getNumber());
+			    int amount=toDecrease.getAmount()-g.getAmount();
+			    if(amount>=0){
+			         toDecrease.setAmount(amount);
+			         parent.updLeaveNode(toDecrease);
+			         SdataService.updType(parent);
+			         dataService.updGood(toDecrease);	
+			    } 
+			    else{
+				    return 2006;  //返回库存不足
+			    }
 			}
 			else{
-				//返回库存不足
+				 return 2004; //商品不存在于系统中
 			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
