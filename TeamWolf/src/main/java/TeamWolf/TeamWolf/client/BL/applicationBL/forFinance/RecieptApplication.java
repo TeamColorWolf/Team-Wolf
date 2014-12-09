@@ -1,5 +1,8 @@
 package TeamWolf.TeamWolf.client.BL.applicationBL.forFinance;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import TeamWolf.TeamWolf.client.BL.applicationBL.Application;
@@ -9,6 +12,7 @@ import TeamWolf.TeamWolf.client.po.RecieptApplicationPO;
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;
 import TeamWolf.TeamWolf.client.vo.RecieptApplicationVO;
 import TeamWolf.TeamWolf.client.BL.financeBL.financeController;
+import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.FinanceApplicationDATAservice;
 
 public class RecieptApplication extends Application {
 
@@ -39,7 +43,18 @@ public class RecieptApplication extends Application {
 
 	@Override
 	public int submit() {
-		// TODO Auto-generated method stub
+		try {
+			finance = (FinanceApplicationDATAservice) Naming.lookup(URL);
+		} catch (MalformedURLException e1) {
+			// TODO 自动生成的 catch 块
+			e1.printStackTrace();
+		} catch (RemoteException e1) {
+			// TODO 自动生成的 catch 块
+			e1.printStackTrace();
+		} catch (NotBoundException e1) {
+			// TODO 自动生成的 catch 块
+			e1.printStackTrace();
+		}
 		try {
 			finance.submitRecieptApplication(getApplicationPO());
 		} catch (RemoteException e) {
@@ -52,7 +67,18 @@ public class RecieptApplication extends Application {
 	@Override
 	public int approve() {
 		vo.condition = 1;
-		// TODO Auto-generated method stub
+		try {
+			finance = (FinanceApplicationDATAservice) Naming.lookup(URL);
+		} catch (MalformedURLException e1) {
+			// TODO 自动生成的 catch 块
+			e1.printStackTrace();
+		} catch (RemoteException e1) {
+			// TODO 自动生成的 catch 块
+			e1.printStackTrace();
+		} catch (NotBoundException e1) {
+			// TODO 自动生成的 catch 块
+			e1.printStackTrace();
+		}
 		try {
 			finance.approvalRecieptApplication(getApplicationPO());
 		} catch (RemoteException e) {
@@ -67,7 +93,18 @@ public class RecieptApplication extends Application {
 	@Override
 	public int reject() {
 		vo.condition = -1;
-		// TODO Auto-generated method stub
+		try {
+			finance = (FinanceApplicationDATAservice) Naming.lookup(URL);
+		} catch (MalformedURLException e1) {
+			// TODO 自动生成的 catch 块
+			e1.printStackTrace();
+		} catch (RemoteException e1) {
+			// TODO 自动生成的 catch 块
+			e1.printStackTrace();
+		} catch (NotBoundException e1) {
+			// TODO 自动生成的 catch 块
+			e1.printStackTrace();
+		}
 		try {
 			finance.rejectRecieptApplication(getApplicationPO());
 		} catch (RemoteException e) {

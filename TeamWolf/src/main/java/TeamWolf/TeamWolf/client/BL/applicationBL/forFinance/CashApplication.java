@@ -1,8 +1,13 @@
 package TeamWolf.TeamWolf.client.BL.applicationBL.forFinance;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import TeamWolf.TeamWolf.client.BL.applicationBL.Application;
+import TeamWolf.TeamWolf.client.BL.customerBL.CustomerController;
+import TeamWolf.TeamWolf.client.BL.financeBL.financeController;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.FinanceApplicationDATAservice;
 import TeamWolf.TeamWolf.client.po.ApplicationPO;
 import TeamWolf.TeamWolf.client.po.CashApplicationPO;
@@ -12,11 +17,14 @@ import TeamWolf.TeamWolf.client.vo.CashApplicationVO;
 public class CashApplication extends Application {
 	
 	CashApplicationVO vo;
+	String URL ="";
+	financeController fc;
 	
-	public CashApplication(CashApplicationVO vo, String URL) {
-		super(vo, URL);
+	public CashApplication(CashApplicationVO vo, String IP) {
+		super(vo, IP);
+		URL = "rmi://" + IP + "/financeApplicationDATAservice";
 		this.vo = vo;
-		// TODO Auto-generated constructor stub
+		fc = new financeController(IP);
 	}
 
 	@Override
@@ -33,7 +41,18 @@ public class CashApplication extends Application {
 
 	@Override
 	public int submit() {
-		// TODO Auto-generated method stub
+		try {
+			finance = (FinanceApplicationDATAservice) Naming.lookup(URL);
+		} catch (MalformedURLException e1) {
+			// TODO 自动生成的 catch 块
+			e1.printStackTrace();
+		} catch (RemoteException e1) {
+			// TODO 自动生成的 catch 块
+			e1.printStackTrace();
+		} catch (NotBoundException e1) {
+			// TODO 自动生成的 catch 块
+			e1.printStackTrace();
+		}
 		try {
 			finance.submitCashApplication(getApplicationPO());
 		} catch (RemoteException e) {
@@ -45,7 +64,18 @@ public class CashApplication extends Application {
 
 	@Override
 	public int approve() {
-		// TODO Auto-generated method stub
+		try {
+			finance = (FinanceApplicationDATAservice) Naming.lookup(URL);
+		} catch (MalformedURLException e1) {
+			// TODO 自动生成的 catch 块
+			e1.printStackTrace();
+		} catch (RemoteException e1) {
+			// TODO 自动生成的 catch 块
+			e1.printStackTrace();
+		} catch (NotBoundException e1) {
+			// TODO 自动生成的 catch 块
+			e1.printStackTrace();
+		}
 		try {
 			finance.approvalCashApplication(getApplicationPO());
 		} catch (RemoteException e) {
@@ -58,7 +88,18 @@ public class CashApplication extends Application {
 
 	@Override
 	public int reject() {
-		// TODO Auto-generated method stub
+		try {
+			finance = (FinanceApplicationDATAservice) Naming.lookup(URL);
+		} catch (MalformedURLException e1) {
+			// TODO 自动生成的 catch 块
+			e1.printStackTrace();
+		} catch (RemoteException e1) {
+			// TODO 自动生成的 catch 块
+			e1.printStackTrace();
+		} catch (NotBoundException e1) {
+			// TODO 自动生成的 catch 块
+			e1.printStackTrace();
+		}
 		try {
 			finance.rejectCashApplication(getApplicationPO());
 		} catch (RemoteException e) {

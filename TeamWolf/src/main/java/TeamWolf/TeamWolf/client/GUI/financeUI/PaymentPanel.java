@@ -193,6 +193,7 @@ public class PaymentPanel extends JPanel{
 			System.out.println(submitRav);
 			System.out.println(faservice);
 			System.out.println(submitRav.getAddup());*/
+			AddText.setText(submitRav.getAddup());
             faservice.submitPaymentApplication(submitRav);
 		}
 	    

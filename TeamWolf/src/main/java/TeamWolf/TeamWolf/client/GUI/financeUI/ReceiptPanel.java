@@ -188,7 +188,7 @@ public class ReceiptPanel extends JPanel{
 				
 			RecieptApplicationVO submitRav = new RecieptApplicationVO(accountList, moneyList,number, operator, note, customer);
 			
-			
+			AddText.setText(submitRav.getAddup());
 			/*System.out.println(accountList);
 			System.out.println(moneyList);*/
 

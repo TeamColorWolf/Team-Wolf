@@ -43,17 +43,19 @@ public class PaymentApplication extends Application {
 
 	@Override
 	public int submit() {
-		// TODO Auto-generated method stub
 		try {
-			try {
-				finance = (FinanceApplicationDATAservice) Naming.lookup(URL);
-			} catch (MalformedURLException e) {
-				// TODO 自动生成的 catch 块
-				e.printStackTrace();
-			} catch (NotBoundException e) {
-				// TODO 自动生成的 catch 块
-				e.printStackTrace();
-			}
+			finance = (FinanceApplicationDATAservice) Naming.lookup(URL);
+		} catch (MalformedURLException e1) {
+			// TODO 自动生成的 catch 块
+			e1.printStackTrace();
+		} catch (RemoteException e1) {
+			// TODO 自动生成的 catch 块
+			e1.printStackTrace();
+		} catch (NotBoundException e1) {
+			// TODO 自动生成的 catch 块
+			e1.printStackTrace();
+		}
+		try {
 			finance.submitPaymentApplication(getApplicationPO());
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -65,6 +67,18 @@ public class PaymentApplication extends Application {
 	@Override
 	public int approve() {
 		vo.condition = 1;
+		try {
+			finance = (FinanceApplicationDATAservice) Naming.lookup(URL);
+		} catch (MalformedURLException e1) {
+			// TODO 自动生成的 catch 块
+			e1.printStackTrace();
+		} catch (RemoteException e1) {
+			// TODO 自动生成的 catch 块
+			e1.printStackTrace();
+		} catch (NotBoundException e1) {
+			// TODO 自动生成的 catch 块
+			e1.printStackTrace();
+		}
 		try {
 			finance.approvalPaymentApplication(getApplicationPO());
 		} catch (RemoteException e) {
@@ -79,6 +93,18 @@ public class PaymentApplication extends Application {
 	@Override
 	public int reject() {
 		vo.condition = -1;
+		try {
+			finance = (FinanceApplicationDATAservice) Naming.lookup(URL);
+		} catch (MalformedURLException e1) {
+			// TODO 自动生成的 catch 块
+			e1.printStackTrace();
+		} catch (RemoteException e1) {
+			// TODO 自动生成的 catch 块
+			e1.printStackTrace();
+		} catch (NotBoundException e1) {
+			// TODO 自动生成的 catch 块
+			e1.printStackTrace();
+		}
 		try {
 			finance.rejectPaymentApplication(getApplicationPO());
 		} catch (RemoteException e) {
