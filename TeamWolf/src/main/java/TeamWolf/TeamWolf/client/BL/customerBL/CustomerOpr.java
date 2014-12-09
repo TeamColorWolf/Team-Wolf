@@ -47,7 +47,13 @@ public class CustomerOpr implements CustomerOprBLservice{
 			int success = cds.modCustomer(po, newpo);
 			if(success==0){
 			   voList.set(voList.indexOf(vo),newVO);
-			   poList.set(poList.indexOf(po), newpo);
+			   for (int i = 0; i < poList.size(); i++) {
+				   if(poList.get(i).getNum().equals(po.getName())){
+					   poList.remove(i);
+					   poList.add(po);
+					   break;
+				   }
+			   }
 			   return success;
 			}
 		} catch (RemoteException e) {
