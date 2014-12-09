@@ -45,6 +45,7 @@ public class StockApplicationDATA extends UnicastRemoteObject implements StockAp
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			//返回文件读写错误
 		}
 		return 0;
 	}
@@ -58,6 +59,7 @@ public class StockApplicationDATA extends UnicastRemoteObject implements StockAp
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			//返回文件读写错误
 		}
 		
 		return 0;
@@ -71,6 +73,7 @@ public class StockApplicationDATA extends UnicastRemoteObject implements StockAp
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			//返回文件读写错误
 		}
 		
 		return 0;

@@ -20,7 +20,7 @@ public class IncreaseToMatchVO extends ApplicationVO {
     	 
     	 String[] info=po.toIncreaseInfo;
          this.number=po.number;
-         toIncrease=new GoodsVO(null, null, info[0], info[1], info[2], info[4], null, null, null, null, null);
+         toIncrease=new GoodsVO(null, null, info[0], info[1], info[2], info[3], null, null, null, null, null);
      }
      
      public String getInfo(){

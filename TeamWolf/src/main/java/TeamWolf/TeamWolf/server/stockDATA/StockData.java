@@ -94,6 +94,7 @@ public class StockData extends UnicastRemoteObject implements StockDataService {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			//返回文件读写错误
 		}
 		return 0;
 	}

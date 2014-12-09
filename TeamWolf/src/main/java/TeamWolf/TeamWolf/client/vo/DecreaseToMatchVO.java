@@ -22,7 +22,7 @@ public class DecreaseToMatchVO extends ApplicationVO{
     	  
     	  String[] info=po.toDecreaseInfo;
           this.number=po.number;
-          toDecrease=new GoodsVO(null, null, info[0], info[1], info[2], info[4], null, null, null, null, null);
+          toDecrease=new GoodsVO(null, null, info[0], info[1], info[2], info[3], null, null, null, null, null);
       }
       
       public String getInfo(){
