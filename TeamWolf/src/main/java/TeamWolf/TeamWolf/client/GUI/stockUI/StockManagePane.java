@@ -38,11 +38,13 @@ import TeamWolf.TeamWolf.client.vo.GoodsListVO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
 import TeamWolf.TeamWolf.client.vo.TypeListVO;
 import TeamWolf.TeamWolf.client.vo.TypeVO;
+import TeamWolf.TeamWolf.client.vo.UserVO;
 
 public class StockManagePane extends JPanel implements TreeModelListener {
 
     static int CurrentTypeNum;
     String IP;
+    String operator;
     StockBLController sbcontroller;
 	GoodsBLController gbcontroller;
    
@@ -124,12 +126,12 @@ public class StockManagePane extends JPanel implements TreeModelListener {
 	JButton refreshGoods;
 		
 	
-    public StockManagePane(String iP) {
+    public StockManagePane(String iP, UserVO user) {
 		// TODO Auto-generated constructor stub
     	this.IP=iP;
     	sbcontroller=new StockBLController(iP);
     	gbcontroller=new GoodsBLController(iP);
-    	
+    	operator=user.workID;
     	initialTree();
 		initialButton();
 		initialTextField();
@@ -485,7 +487,7 @@ public class StockManagePane extends JPanel implements TreeModelListener {
         		int result;
         		GoodsVO toIncrease=new GoodsVO(null, null, gInfo[1], gInfo[2], gInfo[3], amount, null, null, null, null, null);
         		
-        		result=gbcontroller.increaseToMatch(toIncrease);
+        		result=gbcontroller.increaseToMatch(toIncrease, operator);
         		
         		if(result==0){
         			 MainPane.Infomation=MainPane.Infomation+MainPane.getPresentTime()+" 报溢了商品  "+ITMGITF.getText()+"\n";
@@ -509,7 +511,7 @@ public class StockManagePane extends JPanel implements TreeModelListener {
         		int result;
         		GoodsVO toDecrease=new GoodsVO(null, null, gInfo[1], gInfo[2], gInfo[3], amount, null, null, null, null, null);
         		
-        		result=gbcontroller.decreaseToMatch(toDecrease);
+        		result=gbcontroller.decreaseToMatch(toDecrease, operator);
         		
         		if(result==0){
         			 MainPane.Infomation=MainPane.Infomation+MainPane.getPresentTime()+" 报损了商品  "+DTMGITF.getText()+"\n";

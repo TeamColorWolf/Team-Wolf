@@ -106,7 +106,7 @@ public class GoodsMonitor{
 		}
 		return 0;
 	}
-	public int increaseToMatch(GoodsVO toIncrease) {
+	public int increaseToMatch(GoodsVO toIncrease, String operator) {
 		// TODO Auto-generated method stub
 		try{
 		if(assistant.isExisted(toIncrease)&&increaseGoods(toIncrease)==0){
@@ -116,7 +116,7 @@ public class GoodsMonitor{
 			    while(number.length()<5){
 			    	number="0"+number;
 			    }
-			    IncreaseToMatchVO itm=new IncreaseToMatchVO(toIncrease, number);
+			    IncreaseToMatchVO itm=new IncreaseToMatchVO(toIncrease, number, operator);
 			    appController.submitIncreaseToMatch(itm);		
 		}
 		else{
@@ -128,7 +128,7 @@ public class GoodsMonitor{
 		}
 		return 0;
 	}
-	public int decreaseToMatch(GoodsVO toDecrease) {
+	public int decreaseToMatch(GoodsVO toDecrease, String operator) {
 		// TODO Auto-generated method stub
 		try{
 		if(assistant.isExisted(toDecrease)){
@@ -140,7 +140,7 @@ public class GoodsMonitor{
 			    while(number.length()<5){
 			    	number="0"+number;
 			     }
-			     DecreaseToMatchVO dtm=new DecreaseToMatchVO(toDecrease, number);
+			     DecreaseToMatchVO dtm=new DecreaseToMatchVO(toDecrease, number, operator);
 			     appController.submitDecreaseToMatch(dtm);
 			}
 			else{

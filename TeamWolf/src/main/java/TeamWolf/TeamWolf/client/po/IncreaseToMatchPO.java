@@ -12,6 +12,7 @@ public class IncreaseToMatchPO extends ApplicationPO implements Serializable {
          
      public IncreaseToMatchPO(IncreaseToMatchVO vo){
     	 this.number=vo.number;
+    	 this.operator=this.operator;
     	 toIncreaseInfo=new String[4];
     	 toIncreaseInfo[0]=vo.getNumber();
     	 toIncreaseInfo[1]=vo.getName();

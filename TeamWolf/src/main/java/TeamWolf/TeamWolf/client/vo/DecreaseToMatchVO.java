@@ -12,10 +12,11 @@ public class DecreaseToMatchVO extends ApplicationVO{
       GoodsVO toDecrease;
       String time;
 	
-      public DecreaseToMatchVO(GoodsVO toDecrease, String number){
+      public DecreaseToMatchVO(GoodsVO toDecrease, String number, String operator){
     	  this.toDecrease=toDecrease; 
     	  this.time=this.getPresentTime();
     	  this.number="KCBSD-"+time+"-"+number;
+    	  this.operator = operator;
       }
       
       public DecreaseToMatchVO(DecreaseToMatchPO po){

@@ -11,6 +11,7 @@ public class DecreaseToMatchPO extends ApplicationPO implements Serializable{
      
 	 public DecreaseToMatchPO(DecreaseToMatchVO vo){
 		 this.number=vo.number;
+		 this.operator=vo.operator;
 		 toDecreaseInfo=new String[4];
     	 toDecreaseInfo[0]=vo.getNumber();
     	 toDecreaseInfo[1]=vo.getName();

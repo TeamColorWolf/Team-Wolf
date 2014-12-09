@@ -53,13 +53,13 @@ public class GoodsBLController implements GoodManService,GoodTService,GoodMonSer
 	public int MonitoringWL(GoodsVO g){
 		return gmo.MonitoringWL(g);
 	}
-	public int increaseToMatch(GoodsVO toIncrease) {
+	public int increaseToMatch(GoodsVO toIncrease, String operator) {
 		// TODO Auto-generated method stub
-		return gmo.increaseToMatch(toIncrease);
+		return gmo.increaseToMatch(toIncrease, operator);
 	}
-	public int decreaseToMatch(GoodsVO toDecrease) {
+	public int decreaseToMatch(GoodsVO toDecrease, String operator) {
 		// TODO Auto-generated method stub
-		return gmo.decreaseToMatch(toDecrease);
+		return gmo.decreaseToMatch(toDecrease, operator);
 	}
 	public int setWaringLine(GoodsVO goodWL) {
 		// TODO Auto-generated method stub

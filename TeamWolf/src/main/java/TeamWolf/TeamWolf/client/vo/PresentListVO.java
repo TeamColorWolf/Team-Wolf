@@ -15,6 +15,7 @@ public class PresentListVO extends ApplicationVO{
 	private ArrayList<GoodsVO> pl=new ArrayList<GoodsVO>();
 	private String presentListInfo;
 	
+	
 	public void setCustomer(CustomerVO customer){
 		this.customer=customer;
 	}

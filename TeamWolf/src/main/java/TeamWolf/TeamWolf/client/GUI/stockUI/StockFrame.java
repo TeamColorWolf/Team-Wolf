@@ -27,7 +27,7 @@ public class StockFrame extends JFrame {
 		this.user=user;
 		this.IP=IP;
 		mainPane=new MainPane(user, IP);
-		stockMPane=new StockManagePane(IP);
+		stockMPane=new StockManagePane(IP, user);
 		stockSPane=new StockShowPane(IP);
 		appPane=new AppPane(IP);
 		initial();

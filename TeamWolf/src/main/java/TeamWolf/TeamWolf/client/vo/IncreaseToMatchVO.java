@@ -10,10 +10,11 @@ public class IncreaseToMatchVO extends ApplicationVO {
 	 GoodsVO toIncrease;
 	 String time;
 		
-     public IncreaseToMatchVO(GoodsVO toIncrease, String number){
+     public IncreaseToMatchVO(GoodsVO toIncrease, String number, String operator){
    	      this.toIncrease=toIncrease; 
    	      this.time=this.getPresentTime();
    	      this.number="KCBYD-"+time+"-"+number;
+   	      this.operator=operator;
      }
      
      public IncreaseToMatchVO(IncreaseToMatchPO po){

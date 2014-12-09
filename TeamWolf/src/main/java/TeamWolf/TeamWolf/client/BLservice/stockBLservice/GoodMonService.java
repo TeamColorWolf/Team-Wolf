@@ -9,13 +9,13 @@ public interface GoodMonService {
 	 * @param toIncrease
 	 * @return
 	 */
-	public int increaseToMatch( GoodsVO toIncrease);
+	public int increaseToMatch( GoodsVO toIncrease, String operator);
 	/**
 	 * ��Ʒ����
 	 * @param toDecrease
 	 * @return
 	 */
-	public int decreaseToMatch( GoodsVO toDecrease);
+	public int decreaseToMatch( GoodsVO toDecrease, String operator);
 	/**
 	 * ������Ʒ����ֵ
 	 * @param goodWL
