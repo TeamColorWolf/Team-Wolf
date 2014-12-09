@@ -73,7 +73,7 @@ public class CustomerDATA extends UnicastRemoteObject implements CustomerDATAser
 
 	public int modCustomer(CustomerPO po, CustomerPO newpo) throws RemoteException {
 		for(int i = 0; i < list.size(); i++){
-			if(list.get(i).getNum().equals(po.getName())){
+			if(list.get(i).getNum().equals(po.getNum())){
 			  list.remove(list.get(i));
 			  list.add(i,newpo);
 				try {
