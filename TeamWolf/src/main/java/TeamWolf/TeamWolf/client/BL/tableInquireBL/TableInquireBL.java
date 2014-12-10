@@ -36,11 +36,11 @@ public class TableInquireBL {
 	public ArrayList<SaleDetialVO> saleDetial(SaleDetialSelectFactVO vo, TimeVO begin, TimeVO end) {
 		saleDetial = new ArrayList<SaleDetialVO>();
 		ArrayList<ApplicationVO> applist = rightTimeList(begin, end);
+		//填充SaleDetialVO信息
 		if(applist != null){
 			for(int i = 0; i < applist.size(); i++){
 				ApplicationVO app = applist.get(i);
-				String[] n = app.number.split("-");
-				if(n[0].equals("XSD")){
+				if(app instanceof SaleListVO){
 					SaleListVO sale = (SaleListVO)app;
 					if(vo.customer == null || vo.customer.equals(sale.getCustomer().getName())){
 						if(vo.storage == null || vo.storage.equals(sale.getStorage())){
@@ -59,7 +59,7 @@ public class TableInquireBL {
 						}
 					}
 				}
-				else if(n[0].equals("XSTHD")){
+				else if(app instanceof SaleRejectListVO){
 					SaleRejectListVO sale = (SaleRejectListVO)app;
 					if(vo.customer == null || vo.customer.equals(sale.getCustomer().getName())){
 						if(vo.storage == null || vo.storage.equals(sale.getStorage())){
@@ -88,8 +88,8 @@ public class TableInquireBL {
 		runProcess = new ArrayList<RunProcessVO>();
 		for(int i = 0; i < applist.size(); i++){
 			ApplicationVO app = applist.get(i);
-			String[] n = app.number.split("-");
-			if(n[0].equals("XSD")){
+			//填充RunProcessVO信息
+			if(app instanceof SaleListVO){
 				SaleListVO sale = (SaleListVO)app;
 				ArrayList<GoodsVO> goodslist = sale.getGoodsList();
 				if(goodslist != null){
@@ -100,7 +100,7 @@ public class TableInquireBL {
 					}
 				}
 			}
-			else if(n[0].equals("XSDTHD")){
+			else if(app instanceof SaleRejectListVO){
 				SaleRejectListVO sale = (SaleRejectListVO)app;
 				ArrayList<GoodsVO> goodslist = sale.getGoodsList();
 				if(goodslist != null){
@@ -111,7 +111,7 @@ public class TableInquireBL {
 					}
 				}
 			}
-			else if(n[0].equals("JHD")){
+			else if(app instanceof ImportListVO){
 				ImportListVO im = (ImportListVO)app;
 				ArrayList<GoodsVO> goodslist = im.getGoodsList();
 				if(goodslist != null){
@@ -122,7 +122,7 @@ public class TableInquireBL {
 					}
 				}
 			}
-			else if(n[0].equals("JHTHD")){
+			else if(app instanceof ImportRejectListVO){
 				ImportRejectListVO im = (ImportRejectListVO)app;
 				ArrayList<GoodsVO> goodslist = im.getGoodsList();
 				if(goodslist != null){
