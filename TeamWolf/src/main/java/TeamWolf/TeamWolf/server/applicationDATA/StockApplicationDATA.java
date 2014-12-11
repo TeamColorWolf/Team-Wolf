@@ -342,10 +342,11 @@ public class StockApplicationDATA extends UnicastRemoteObject implements StockAp
 		try {
 			StockApplicationDATA sad=new StockApplicationDATA();
 			
-			ArrayList<DecreaseToMatchPO> dp=sad.DTMList;
+			ArrayList<IncreaseToMatchPO> dp=sad.ITMList;
 			
-			for(DecreaseToMatchPO i : dp){
+			for(IncreaseToMatchPO i : dp){
 				System.out.println(i.number);
+				System.out.println(i.operator);
 			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
