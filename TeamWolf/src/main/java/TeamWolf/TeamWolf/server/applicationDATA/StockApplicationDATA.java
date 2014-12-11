@@ -93,10 +93,19 @@ public class StockApplicationDATA extends UnicastRemoteObject implements StockAp
 		if(finded==true){
 		   ITMList.remove(index);
 		   ITMList.add(index, po);
+		   try {
+				FileOpr.writeFile(FileName.increaseToMatchFile, ITMList);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				//返回文件读写错误
+			}
 		   return 0;
 		}
 		else
 			return 1; //单子不存在
+		
+		
 	}
 
 	public int approvalDecreaseToMatch(DecreaseToMatchPO po) throws RemoteException {
@@ -113,6 +122,13 @@ public class StockApplicationDATA extends UnicastRemoteObject implements StockAp
 		if(finded==true){
 		   DTMList.remove(index);
 		   DTMList.add(index, po);
+		   try {
+				FileOpr.writeFile(FileName.decreaseToMatchFile, DTMList);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				//返回文件读写错误
+			}
 		   return 0;
 		}
 		else
@@ -137,6 +153,13 @@ public class StockApplicationDATA extends UnicastRemoteObject implements StockAp
 			
 			PList.remove(index);
 			PList.add(index, po);
+			try {
+				FileOpr.writeFile(FileName.presnetListFile, PList);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				//返回文件读写错误
+			}
 			return 0;
 		}
 		else{
@@ -159,6 +182,13 @@ public class StockApplicationDATA extends UnicastRemoteObject implements StockAp
 		if(finded==true){
 		   ITMList.remove(index);
 		   ITMList.add(index, po);
+		   try {
+				FileOpr.writeFile(FileName.increaseToMatchFile, ITMList);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				//返回文件读写错误
+			}
 		   return 0;
 		}
 		else
@@ -180,6 +210,13 @@ public class StockApplicationDATA extends UnicastRemoteObject implements StockAp
 		if(finded==true){
 		   DTMList.remove(index);
 		   DTMList.add(index, po);
+		   try {
+				FileOpr.writeFile(FileName.decreaseToMatchFile, DTMList);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				//返回文件读写错误
+			}
 		   return 0;
 		}
 		else
@@ -204,6 +241,13 @@ public class StockApplicationDATA extends UnicastRemoteObject implements StockAp
 			
 			PList.remove(index);
 			PList.add(index, po);
+			try {
+				FileOpr.writeFile(FileName.presnetListFile, PList);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				//返回文件读写错误
+			}
 			return 0;
 		}
 		else{
