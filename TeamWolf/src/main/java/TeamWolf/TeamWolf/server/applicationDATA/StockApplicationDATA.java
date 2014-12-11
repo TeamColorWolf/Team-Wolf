@@ -79,38 +79,136 @@ public class StockApplicationDATA extends UnicastRemoteObject implements StockAp
 		return 0;
 	}
 
-	public int approvalIncreaseToMatch(IncreaseToMatchPO po)
-			throws RemoteException {
+	public int approvalIncreaseToMatch(IncreaseToMatchPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		return 0;
+		int index=0;
+		boolean finded=false;
+		for(IncreaseToMatchPO itm:this.ITMList){
+			if(po.number.equals(itm.number)){
+				index=ITMList.indexOf(itm);
+				finded=true;
+				break;
+			}
+		}
+		if(finded==true){
+		   ITMList.remove(index);
+		   ITMList.add(index, po);
+		   return 0;
+		}
+		else
+			return 1; //单子不存在
 	}
 
-	public int approvalDecreaseToMatch(DecreaseToMatchPO po)
-			throws RemoteException {
+	public int approvalDecreaseToMatch(DecreaseToMatchPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		return 0;
+		int index=0;
+		boolean finded=false;
+		for(DecreaseToMatchPO dtm:this.DTMList){
+			if(po.number.equals(dtm.number)){
+				index=DTMList.indexOf(dtm);
+				finded=true;
+				break;
+			}
+		}
+		if(finded==true){
+		   DTMList.remove(index);
+		   DTMList.add(index, po);
+		   return 0;
+		}
+		else
+			return 1; //单子不存在
 	}
 
 	public int approvalPresentList(PresentListPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		return 0;
+		int index=0;
+		boolean finded=false;
+		
+		for(PresentListPO p: this.PList){
+			
+			if(po.number.equals(p.number)){
+				index=PList.indexOf(p);
+				finded=true;
+				break;
+			}
+		}
+		
+		if(finded==true){
+			
+			PList.remove(index);
+			PList.add(index, po);
+			return 0;
+		}
+		else{
+			return 1;
+		}
 	}
 
 	public int rejectIncreaseToMatch(IncreaseToMatchPO po)
 			throws RemoteException {
 		// TODO Auto-generated method stub
-		return 0;
+		int index=0;
+		boolean finded=false;
+		for(IncreaseToMatchPO itm:this.ITMList){
+			if(po.number.equals(itm.number)){
+				index=ITMList.indexOf(itm);
+				finded=true;
+				break;
+			}
+		}
+		if(finded==true){
+		   ITMList.remove(index);
+		   ITMList.add(index, po);
+		   return 0;
+		}
+		else
+			return 1; //单子不存在
 	}
 
 	public int rejectDecreaseToMatch(DecreaseToMatchPO po)
 			throws RemoteException {
 		// TODO Auto-generated method stub
-		return 0;
+		int index=0;
+		boolean finded=false;
+		for(DecreaseToMatchPO dtm:this.DTMList){
+			if(po.number.equals(dtm.number)){
+				index=DTMList.indexOf(dtm);
+				finded=true;
+				break;
+			}
+		}
+		if(finded==true){
+		   DTMList.remove(index);
+		   DTMList.add(index, po);
+		   return 0;
+		}
+		else
+			return 1; //单子不存在
 	}
 
 	public int rejectPresentList(PresentListPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		return 0;
+		int index=0;
+		boolean finded=false;
+		
+		for(PresentListPO p: this.PList){
+			
+			if(po.number.equals(p.number)){
+				index=PList.indexOf(p);
+				finded=true;
+				break;
+			}
+		}
+		
+		if(finded==true){
+			
+			PList.remove(index);
+			PList.add(index, po);
+			return 0;
+		}
+		else{
+			return 1;
+		}
 	}
 
 	public int changeIncreaseToMatch(IncreaseToMatchPO po)

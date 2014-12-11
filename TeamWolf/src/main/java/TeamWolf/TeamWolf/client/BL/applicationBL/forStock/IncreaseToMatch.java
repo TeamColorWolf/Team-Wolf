@@ -67,14 +67,30 @@ public class IncreaseToMatch extends Application{
 	@Override
 	public int approve(){
 		//改变其状态并且进行后续操作
-		condition = 1;
-		return 0;
+		int result=0;
+		application.condition=1;
+		try {
+			result=dataService.approvalIncreaseToMatch(application);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			//result=通信错误
+		}
+		return result;
 	}
 	@Override
 	public int reject(){
 		//改变其状态并且进行后续操作
-		condition = -1;
-		return 0;
+		int result=0;
+		application.condition=-1;
+		try {
+			result=dataService.rejectIncreaseToMatch(application);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			//result=通信错误
+		}
+		return result;
 	}
 	@Override
 	public int change(ApplicationVO vo){

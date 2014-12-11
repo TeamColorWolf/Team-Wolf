@@ -67,13 +67,31 @@ public class DecreaseToMatch extends Application{
 	@Override
 	public int approve() {
 		// TODO Auto-generated method stub
-		return 0;
+		int result=0;
+		application.condition=1;
+		try {
+			result=dataService.approvalDecreaseToMatch(application);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			//result=通信错误
+		}
+		return result;
 	}
 
 	@Override
 	public int reject() {
 		// TODO Auto-generated method stub
-		return 0;
+		int result=0;
+		application.condition=-1;
+		try {
+			result=dataService.rejectDecreaseToMatch(application);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			//result=通信错误
+		}
+		return result;
 	}
 
 	@Override
