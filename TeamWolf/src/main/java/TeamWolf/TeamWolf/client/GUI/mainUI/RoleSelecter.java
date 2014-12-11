@@ -37,7 +37,7 @@ public class RoleSelecter {
 			//打开系统管理员界面
 			frame = new AdminFrame(user, IP);
 		}
-		return 0;
+		return 99999;
 	}
 	
 	public static void main(String[] args){

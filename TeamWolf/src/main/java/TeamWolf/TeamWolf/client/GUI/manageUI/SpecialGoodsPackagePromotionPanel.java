@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 
 import TeamWolf.TeamWolf.client.BLservice.manageBLservice.PromotionBLservice;
 import TeamWolf.TeamWolf.client.GUI.mainUI.RoleSelecter;
+import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
 import TeamWolf.TeamWolf.client.vo.SpecialGoodsPromotionVO;
 
 public class SpecialGoodsPackagePromotionPanel extends JPanel{
@@ -89,9 +90,11 @@ public class SpecialGoodsPackagePromotionPanel extends JPanel{
 					mf.promotion.check.flashPanel();
 					System.out.println("add specialGoods successfully!");
 				}
+				new MessageFrame(success);
 			}
 			else{
 				System.out.println("input error!");
+				new MessageFrame(promotion.error);
 			}
 		}
 		

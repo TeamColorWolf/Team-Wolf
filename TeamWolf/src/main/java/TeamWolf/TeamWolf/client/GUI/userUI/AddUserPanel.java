@@ -13,11 +13,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
 
-import TeamWolf.TeamWolf.client.BL.userBL.AdminController;
 import TeamWolf.TeamWolf.client.BLservice.userBLservice.AdminBLservice;
 import TeamWolf.TeamWolf.client.GUI.mainUI.RoleSelecter;
+import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
 import TeamWolf.TeamWolf.client.vo.UserType;
 import TeamWolf.TeamWolf.client.vo.UserVO;
 /**
@@ -43,6 +44,8 @@ public class AddUserPanel extends JPanel{
 	private JLabel Power = new JLabel("用户类型");
 	private JLabel work = new JLabel("业务编号");
 	
+	private JLabel isSame = new JLabel();
+	
 	private final int LW = 80;
 	private final int LH = 25;
 	private final int TW = 150;
@@ -50,6 +53,9 @@ public class AddUserPanel extends JPanel{
 	private final int spaH = 100;
 	private final int LeX = 180;
 	private final int RiX = 550;
+	
+	private final String falsePas = "ensure your password!";
+	private final String rightPas = null;
 	
 	public AddUserPanel(){
 		super();
@@ -62,6 +68,9 @@ public class AddUserPanel extends JPanel{
 		workID.setBackground(Color.white);
 		workID.setForeground(Color.BLUE);
 		
+		isSame.setText(falsePas);
+		isSame.setForeground(Color.red);
+		
 		ID.setSize(LW, LH);
 		pas.setSize(LW, LH);
 		ensure.setSize(LW, LH);
@@ -71,6 +80,7 @@ public class AddUserPanel extends JPanel{
 		userID.setSize(TW, LH);
 		UserPas.setSize(TW, LH);
 		ensurePas.setSize(TW, LH);
+		isSame.setSize(TW, LH);
 		power.setSize(TW, LH);
 		workID.setSize(TW, LH);
 		
@@ -83,6 +93,7 @@ public class AddUserPanel extends JPanel{
 		userID.setLocation(LeX+LW, spaH);
 		UserPas.setLocation(LeX+LW, 2*spaH);
 		ensurePas.setLocation(LeX+LW, 3*spaH);
+		isSame.setLocation(LeX+TW+LW, 3*spaH);
 		power.setLocation(RiX+LW, spaH);
 		workID.setLocation(RiX+LW, 2*spaH);
 		
@@ -94,6 +105,7 @@ public class AddUserPanel extends JPanel{
 		
 		this.add(ensure);
 		this.add(ensurePas);
+		this.add(isSame);
 		
 		this.add(Power);
 		this.add(power);
@@ -119,43 +131,36 @@ public class AddUserPanel extends JPanel{
 		
 		add.addMouseListener(new AddUserListener());
 		power.addActionListener(new PowerListener());
+		UserPas.addCaretListener(new PasListener());
+		ensurePas.addCaretListener(new EnsureListener());
+		add.setEnabled(false);
 	}
 	
 	private void cancelMouseListener(){
 		cancel.addMouseListener(new MouseListener(){
 
 			public void mouseClicked(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 				userID.setText(null);
 				UserPas.setText(null);
 				ensurePas.setText(null);
 				workID.setText(null);
 			}
-			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-			}
-			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-			}
-			public void mousePressed(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-			}
-			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-			}
+			public void mouseEntered(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) {}
 		});
 	}
 	
 	class AddUserListener implements MouseListener{
 
 		public void mouseClicked(MouseEvent arg0) {
-			// TODO Auto-generated method stub
 			String name = userID.getText();
 			String password = UserPas.getText();
 			String ensure = ensurePas.getText();
-			if(password.equals(ensure)){
-				String work = workID.getText();
-				UserType POWER = (UserType)power.getSelectedItem();
+			UserType POWER = (UserType)power.getSelectedItem();
+			String work = workID.getText();
+			if(name.length()>0 && password.length()>0 && work.length()>0 && password.equals(ensure)){
 				UserVO vo = new UserVO(name, password, work, POWER);
 				int success = service.addUser(vo);
 				if(success == 0){
@@ -163,6 +168,10 @@ public class AddUserPanel extends JPanel{
 					adf.checkUser.flashPanel();
 					System.out.println("add successfully");
 				}
+				new MessageFrame(success);
+			}
+			else if(name.length() == 0 || password.length() == 0 || work.length() == 0){
+				new MessageFrame(10000);//TODO 换ErrorTW中错误
 			}
 		}
 
@@ -176,11 +185,44 @@ public class AddUserPanel extends JPanel{
 	class PowerListener implements ActionListener{
 
 		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
 			UserType POWER = (UserType)power.getSelectedItem();
 			String work = service.creatWorkID(POWER);
 			workID.setText(work);
 			workID.updateUI();
+		}
+		
+	}
+	
+	class PasListener implements CaretListener{
+		
+		public void caretUpdate(CaretEvent arg0) {
+			String userPas = UserPas.getText();
+			String ensure = ensurePas.getText();
+			if(userPas.length()>0 && userPas.equals(ensure)){
+				add.setEnabled(true);
+				isSame.setText(rightPas);
+			}
+			else{
+				add.setEnabled(false);
+				isSame.setText(falsePas);
+			}
+		}
+		
+	}
+	
+	class EnsureListener implements CaretListener{
+		
+		public void caretUpdate(CaretEvent e) {
+			String userPas = UserPas.getText();
+			String ensure = ensurePas.getText();
+			if(userPas.length()>0 && userPas.equals(ensure)){
+				add.setEnabled(true);
+				isSame.setText(rightPas);
+			}
+			else{
+				add.setEnabled(false);
+				isSame.setText(falsePas);
+			}
 		}
 		
 	}
