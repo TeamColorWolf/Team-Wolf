@@ -73,8 +73,8 @@ public class ApproveDATA extends UnicastRemoteObject implements ApproveDATAservi
 		arrayListCat(list, tempList);
 		tempList = this.getAllApplicationFromFile(FileName.recieptFile);
 		arrayListCat(list, tempList);
-//		tempList = this.getAllApplicationFromFile(FileName.paymentFile);
-//		arrayListCat(list, tempList);
+		tempList = this.getAllApplicationFromFile(FileName.paymentFile);
+		arrayListCat(list, tempList);
 		return list;
 	}
 	
