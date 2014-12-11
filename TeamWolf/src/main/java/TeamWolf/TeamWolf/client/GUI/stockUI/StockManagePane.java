@@ -354,23 +354,24 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     				if(!parentNode.toString().equals("商品")){
     				int GoodsNum=0;
     				int NOC=parentNode.getChildCount();
-    				for(int i=0;i<NOC;i++){
-    					String[] cInfo=((TreeNode)parentNode.getChildAt(i)).toString().split(" ");
-    					int num=Integer.parseInt(cInfo[1].substring(4));
-    			        //System.out.println(cInfo[1].substring(4));
-    					if(num>GoodsNum)
-    						GoodsNum=num;
-    				}
-    				String GNum=""+(GoodsNum+1);
-    				while(GNum.length()<4){
-    					GNum="0"+GNum;
-    				}
     				int result=0;
+    				String GNum=null;
     				String[] parentInfo=addGPTF.getText().split(" ");
     				if(parentInfo[1].equals("0000")){
     					result=1000;
     				}
     				else{
+    					for(int i=0;i<NOC;i++){
+        					String[] cInfo=((TreeNode)parentNode.getChildAt(i)).toString().split(" ");
+        					int num=Integer.parseInt(cInfo[1].substring(4));
+        			        //System.out.println(cInfo[1].substring(4));
+        					if(num>GoodsNum)
+        						GoodsNum=num;
+        				}
+        				GNum=""+(GoodsNum+1);
+        				while(GNum.length()<4){
+        					GNum="0"+GNum;
+        				}
     					GoodsVO toadd=new GoodsVO(parentInfo[1], parentInfo[2], parentInfo[1]+GNum, addGoodsName, addGoodsModel, "0", addGoodsIP, addGoodsEP, "0", "0", "0");
     					if(toadd.isPackSuccess()==0){
     					      result=gbcontroller.addGoods(toadd);
@@ -414,13 +415,13 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     					GoodsVO todel=null;
     				    String[] GoodsInfo=selectionNode.toString().split(" ");
     				    String[] pInfo=parent.toString().split(" ");
-    				   
-    				    todel=new GoodsVO(pInfo[1], pInfo[2], GoodsInfo[1], GoodsInfo[2], GoodsInfo[3], null, null, null, null, null, null);
-    					    					
-    					if(todel.getParentNum().equals("0000")){
+    				    if(pInfo[1].equals("0000")){
+    				    	
     						result=1000;   ///错误类型:特价包不能由库存管理人员由编辑
-    					}
+    						System.out.println(result);
+    					}    				    
     					else{
+    						todel=new GoodsVO(pInfo[1], pInfo[2], GoodsInfo[1], GoodsInfo[2], GoodsInfo[3], null, null, null, null, null, null);
     						result=gbcontroller.delGoods(todel);
     					}
     					if(result==0){
@@ -450,18 +451,26 @@ public class StockManagePane extends JPanel implements TreeModelListener {
 				String Info=updGNTF.getText();
 				String[] uInfo=Info.split(" ");
 				int result=0;
-				
+				boolean canUpd=true;
 				//System.out.println(updGIPTF.getText()+updGEPTF.getText());
 				TreeNode select=(TreeNode)stockStruct.getSelectionPath().getLastPathComponent();
 				TreeNode parent=select.getParent();
 				String[] PInfo=parent.toString().split(" ");
-				GoodsVO toUpd=new GoodsVO(PInfo[1], PInfo[2], uInfo[1], uInfo[2], uInfo[3], null, updGIPTF.getText(), updGEPTF.getText(), null, null, null);
 				
+				if(PInfo[1].equals("0000"))
+				     canUpd=false;
+				
+				GoodsVO toUpd=null;
+				
+				if(canUpd==true)
+					toUpd=new GoodsVO(PInfo[1], PInfo[2], uInfo[1], uInfo[2], uInfo[3], null, updGIPTF.getText(), updGEPTF.getText(), null, null, null);
+					 
 				//System.out.println(PInfo[1]+" "+PInfo[2]);
-				
-				if(toUpd.isPackSuccess()==0)
+				if(toUpd==null)
+					result=1000;
+				else if(toUpd.isPackSuccess()==0)
 				    result=gbcontroller.updGoods(toUpd);
-				else
+				else 
 					result=10001;
 				
 				if(result==0){
@@ -484,17 +493,21 @@ public class StockManagePane extends JPanel implements TreeModelListener {
         		
         		String[] gInfo=ITMGITF.getText().split(" ");
         		String amount=ITMAmountTF.getText();
-        		int result;
-        		GoodsVO toIncrease=new GoodsVO(null, null, gInfo[1], gInfo[2], gInfo[3], amount, null, null, null, null, null);
+        		int result=0;
         		
-        		result=gbcontroller.increaseToMatch(toIncrease, operator);
-        		
+        		if(gInfo[2].contains("specialGoods")){
+        			result=1000;
+        		}
+        		else{
+        		   // GoodsVO toIncrease=new GoodsVO(null, null, gInfo[1], gInfo[2], gInfo[3], amount, null, null, null, null, null);        		
+        		    //result=gbcontroller.increaseToMatch(toIncrease, operator);
+        		}
         		if(result==0){
         			 MainPane.Infomation=MainPane.Infomation+MainPane.getPresentTime()+" 报溢了商品  "+ITMGITF.getText()+"\n";
         		     ITMAmountTF.setText("");
         		}
         		else{
-        			//弹窗报错
+        			System.out.println(result);//弹窗报错
         		}
         	}
         });
@@ -508,17 +521,21 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     			
     			String[] gInfo=DTMGITF.getText().split(" ");
         		String amount=DTMGAmountTF.getText();
-        		int result;
-        		GoodsVO toDecrease=new GoodsVO(null, null, gInfo[1], gInfo[2], gInfo[3], amount, null, null, null, null, null);
+        		int result=0;
         		
-        		result=gbcontroller.decreaseToMatch(toDecrease, operator);
-        		
+        		if(gInfo[2].contains("specialGoods")){
+        			result=1000;
+        		}
+        		else{
+        		    GoodsVO toDecrease=new GoodsVO(null, null, gInfo[1], gInfo[2], gInfo[3], amount, null, null, null, null, null);        		
+        		    result=gbcontroller.decreaseToMatch(toDecrease, operator);
+        		}
         		if(result==0){
         			 MainPane.Infomation=MainPane.Infomation+MainPane.getPresentTime()+" 报损了商品  "+DTMGITF.getText()+"\n";
         		     DTMGAmountTF.setText("");
         		}
         		else{
-        			//弹窗报错
+        			System.out.println(result);  //弹窗报错
         		}
     		}
     	});
@@ -532,17 +549,21 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     			
     			String[] gInfo=setWLGITF.getText().split(" ");
         		String warningLine=setWLGWLTF.getText();
-        		int result;
-        		GoodsVO toSetWL=new GoodsVO(null, null, gInfo[1], gInfo[2], gInfo[3], null, null, null, null, null, warningLine);
+        		int result=0;
         		
-        		result=gbcontroller.setWaringLine(toSetWL);
-        		
+        		if(gInfo[2].contains("specialGoods")){
+        			result=1000;
+        		}
+        		else{
+        		    GoodsVO toSetWL=new GoodsVO(null, null, gInfo[1], gInfo[2], gInfo[3], null, null, null, null, null, warningLine); 		
+        		    result=gbcontroller.setWaringLine(toSetWL);
+        		}
         		if(result==0){
         			 MainPane.Infomation=MainPane.Infomation+MainPane.getPresentTime()+setWLGITF.getText()+"设置了警戒值"+setWLGWLTF.getText()+"\n";
         		     setWLGWLTF.setText("");
         		}
         		else{
-        			//弹窗报错
+        			System.out.println(result);   //弹窗报错
         		}
     		}
     	});
@@ -667,6 +688,7 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     	updGEPTF.setBounds(210, 180, 250, 30);    	
     	
     	shoPane=new JTextArea();
+    	shoPane.setEditable(false);
     	SGContainer=new JScrollPane(shoPane);
     	SOP=new JPanel();
     	SOP.setLayout(new GridLayout());
@@ -730,7 +752,6 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     			ArrayList<GoodsVO> agl=gl.gList;
     			
     			for(GoodsVO g: agl){
-    				
     				result=result+g.getInfo()+"\n";
     			}
     			

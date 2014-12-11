@@ -198,8 +198,10 @@ public class GoodsManager {
 		
 		try {
 			for(SpecialGoodsPromotionVO sg: sgl){
-				gl.addGood(new GoodsVO("0000", "特价包", "", sg.number, "", "", "", ""+sg.totalPrice, "", "", ""));
+				gl.addGood(new GoodsVO("0000", "特价包", "", sg.number, "", "0", "0", ""+sg.totalPrice, "0", "0", "0"));
 			}
+			
+			
 			
 			ArrayList<GoodsPO> agl=GdataService.getGoodList();
 			for(GoodsPO g:agl){
