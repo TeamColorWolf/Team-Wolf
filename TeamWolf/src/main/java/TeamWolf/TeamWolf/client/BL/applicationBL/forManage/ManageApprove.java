@@ -26,11 +26,15 @@ public class ManageApprove extends ApplicationBL{
 	}
 	
 	public int approveOver(ArrayList<ApplicationVO> list){
+		int success = 0;
 		if(list != null){
 			for(int i = 0; i < list.size(); i++){
 				if(list.get(i).condition == 1){
 					System.out.println(list.get(i).number + " approval");
-					Application.getApplication(list.get(i), IP).approve();
+					success = Application.getApplication(list.get(i), IP).approve();
+					if(success != 0){
+						System.out.println(list.get(i).number + "approve failed");
+					}
 				}
 				else if(list.get(i).condition == -1){
 					Application.getApplication(list.get(i), IP).reject();
