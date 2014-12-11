@@ -238,6 +238,13 @@ public class OneCashPanel extends JPanel{
 			accounts.addItem(financeList.get(i).getName());
 		}
 	}
+	public ArrayList<String> getTheAccount(){
+		ArrayList<String> list = new ArrayList<String>();
+		for(int i=0;i<MoneyNum;i++){
+			list.add((String)AccountList.get(i).getSelectedItem());
+		}
+		return list;
+	}
 	
 	protected ArrayList<String> getTheMoney(){
 		ArrayList<String> list = new ArrayList<String>();

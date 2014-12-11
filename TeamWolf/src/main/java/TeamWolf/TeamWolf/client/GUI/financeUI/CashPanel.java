@@ -2,7 +2,9 @@ package TeamWolf.TeamWolf.client.GUI.financeUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -15,11 +17,14 @@ import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOpr;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOprBLservice;
 import TeamWolf.TeamWolf.client.BL.financeBL.financeController;
 import TeamWolf.TeamWolf.client.BLservice.financeBLservice.AccountBlservice;
+import TeamWolf.TeamWolf.client.vo.CashApplicationVO;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
+import TeamWolf.TeamWolf.client.vo.PaymentApplicationVO;
+import TeamWolf.TeamWolf.client.vo.financeVO;
 
 public class CashPanel extends JPanel{
 
-	
+	public static int ApplicationNumber;
 	private final static int LW = 150;
 	private final static int LH = 25;
 	private final static int BW = 80;
@@ -45,10 +50,15 @@ public class CashPanel extends JPanel{
 	ArrayList<String> CustomerList;
 	ArrayList<CustomerVO> CustomerVOList;
 	ArrayList<String> CustomerTopList;
+	ArrayList<CashApplicationVO> aca;
 	
 	public CashPanel(String IP){
 		service = new financeController(IP);
 		cusservice = new CustomerOpr(IP);
+		
+		aca = faservice.getCashVO();
+		
+		ApplicationNumber = aca.size(); 
 		
 		CustomerVOList = cusservice.getAllCustomerList();
 		if(CustomerVOList == null){
@@ -128,7 +138,22 @@ public class CashPanel extends JPanel{
 			CustomerBox.addItem(CustomerList.get(i));
 		}
 	}
-	
+	public String getDate (){
+		String date = "";
+		Date dt = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		
+		date = sdf.format(dt);
+		return date;
+	}
+	public String getNumber(){
+		String num = "XJFKD-";
+		String date = getDate();
+		String number = String.format("%05d", ApplicationNumber++);
+		num = num + date + "-" + number;
+		return num;
+		
+	}
 	class CancelListener implements ActionListener{
 
 		public void actionPerformed(ActionEvent arg0) {
@@ -142,8 +167,38 @@ public class CashPanel extends JPanel{
 	class EnsureListener implements ActionListener{
 
 		public void actionPerformed(ActionEvent arg0) {
-
+		    ArrayList<String> accountNameList = ocp.getTheAccount();
+		    //System.out.println(accountNameList);
+		    ArrayList<financeVO> accountList = new ArrayList<financeVO>();
+		    ArrayList<String> moneyList = ocp.getTheMoney();
+		    accountList = this.getfinanceList(accountNameList);
+		    String number = getNumber();
+		    String operator = FinanceFrame.user.userName;
+		    String note = NoteText.getText();
+				
+			
+				
+			System.out.println(number);
+			/*System.out.println(accountList);
+			System.out.println(moneyList);
+			
+			System.out.println(operator);
+			System.out.println(note);
+			System.out.println(customerName);
+			System.out.println(submitRav);
+			System.out.println(faservice);
+			System.out.println(submitRav.getAddup());*/
+			//AddText.setText(submitRav.getAddup());
+           // faservice.submitPaymentApplication(submitRav);
 		}
+	    
+	    public ArrayList<financeVO> getfinanceList(ArrayList<String> accountNameList){
+	    	ArrayList<financeVO> accountList = new ArrayList<financeVO>();
+	        for(int index=0 ; index<accountNameList.size();index++){
+	        	accountList.add(service.find(new financeVO(accountNameList.get(index))));
+	        }
+	        return accountList;
+	    }
 		
 	}
 }

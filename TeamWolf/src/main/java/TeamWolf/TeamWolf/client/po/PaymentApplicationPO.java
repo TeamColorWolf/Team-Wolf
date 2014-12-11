@@ -35,6 +35,9 @@ public class PaymentApplicationPO extends ApplicationPO implements Serializable{
 		this.setAccountListPO(vo.getAccountList());
 		this.moneyList = vo.getMoneyList();
 		
+		this.number = vo.number;
+		this.operator =vo. operator;
+		
 	}
 	private void setAccountListPO(ArrayList<financeVO> accountList2) {
 		for(int i=0;i<accountList2.size();i++){
