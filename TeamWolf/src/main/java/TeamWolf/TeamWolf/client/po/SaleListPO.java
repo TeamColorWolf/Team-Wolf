@@ -57,7 +57,6 @@ public class SaleListPO extends ApplicationPO{
 	 */
 	String remark;
 
-	
 	public SaleListPO(SaleListVO svo) {
 		this.condition = svo.condition;
 		this.number = svo.number;
@@ -80,7 +79,7 @@ public class SaleListPO extends ApplicationPO{
 			GoodsList.add(gpo);
 		}
 	}
-	
+
 	public CustomerPO getCustomer() {
 		return customer;
 	}

@@ -19,6 +19,7 @@ import javax.swing.table.TableColumn;
 
 import TeamWolf.TeamWolf.client.BL.saleBL.SaleBLController;
 import TeamWolf.TeamWolf.client.BLservice.saleBLservice.SaleBLservice;
+import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
 import TeamWolf.TeamWolf.client.po.SaleRejectListPO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
 import TeamWolf.TeamWolf.client.vo.ImportListVO;
@@ -197,7 +198,7 @@ public class SaleRejectListPanel extends JPanel{
 		
 		submitBtn.addActionListener(new ActionListener() {			
 			public void actionPerformed(ActionEvent e) {	
-				subBtnAction();
+				new MessageFrame(subBtnAction());
 			}
 		});
 		
@@ -254,15 +255,15 @@ public class SaleRejectListPanel extends JPanel{
 		tModel_sale = (DefaultTableModel) saleListTable.getModel();
 		
 		for (int i = 0; i < saleList.size(); i++) {
-			//判断销售单的商品列表里有没有特价包，有的话就不显示，即不能退货
-			ArrayList<GoodsVO> goodsList = saleList.get(i).getGoodsList();
-			int k = 0;
-			for (int j = 0; j < goodsList.size(); j++) {
-				if(goodsList.get(j).getName().contains("specialGoods")){
-					k = 1;
-					break;
-				}
-			}
+//			//判断销售单的商品列表里有没有特价包，有的话就不显示，即不能退货
+//			ArrayList<GoodsVO> goodsList = saleList.get(i).getGoodsList();
+//			int k = 0;
+//			for (int j = 0; j < goodsList.size(); j++) {
+//				if(goodsList.get(j).getName().contains("specialGoods")){
+//					k = 1;
+//					break;
+//				}
+//			}
 //			if(k == 1){
 //				continue;
 //			}
@@ -286,7 +287,7 @@ public class SaleRejectListPanel extends JPanel{
 	/**
 	 * 提交按钮事件
 	 */
-	private void subBtnAction(){
+	private int subBtnAction(){
 		SaleListVO svo = null;
 		for (int i = 0; i < saleList.size(); i++) {
 			if(saleListTable.getValueAt(i, 0).equals(true)){
@@ -296,8 +297,16 @@ public class SaleRejectListPanel extends JPanel{
 			}
 		}
 		if(svo == null){
-			return;
+			return 7002;
 		}
+		//判断所选单据的商品列表里是否包含特价包
+		ArrayList<GoodsVO> goodsList = svo.getGoodsList();
+		for (int i = 0; i < goodsList.size(); i++) {
+			if(goodsList.get(i).getName().contains("specialGoods")){
+				return 7003;
+			}
+		}
+		
 		SaleRejectListVO srvo = new SaleRejectListVO(saleRejectListNum(), remarkArea.getText(), svo);
 		srvo.condition = 0;	
 		
@@ -310,16 +319,24 @@ public class SaleRejectListPanel extends JPanel{
 		//清空商品显示table
 		clearGoodsInfoTable();
 		
-		saleLogic.createSaleReject(srvo);
+		return saleLogic.createSaleReject(srvo);
 	}
 	
 	/**
 	 * 获取单据编号
 	 */
 	private String saleRejectListNum(){
+		int listNum = 0;
 		String num = "XSTHD-";
 		String date = saleLogic.getPresentDate();
-		String number = String.format("%05d", saleRejectList.size() + 1);
+		for (int i = 0; i < saleRejectList.size(); i++) {
+			String temp[] = saleRejectList.get(i).number.split("-");
+			String lastItemDate = temp[1];
+			if(lastItemDate.equals(date)){
+				listNum++;
+			}
+		}
+		String number = String.format("%05d", listNum + 1);
 		num = num + date + "-" + number;
 		return num;
 	}

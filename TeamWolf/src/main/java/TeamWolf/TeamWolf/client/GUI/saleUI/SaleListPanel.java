@@ -16,8 +16,11 @@ import javax.swing.JTextField;
 
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOpr;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOprBLservice;
+import TeamWolf.TeamWolf.client.BL.promotionBL.PromotionForSaleController;
+import TeamWolf.TeamWolf.client.BL.promotionBL.PromotionForSaleService;
 import TeamWolf.TeamWolf.client.BL.saleBL.SaleBLController;
 import TeamWolf.TeamWolf.client.BLservice.saleBLservice.SaleBLservice;
+import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
 import TeamWolf.TeamWolf.client.vo.SaleListVO;
@@ -36,6 +39,7 @@ public class SaleListPanel extends JPanel{
 	CustomerOprBLservice custServ;
 	ArrayList<CustomerVO> custList;
 	ArrayList<SaleListVO> saleList;
+	PromotionForSaleService promotionServ;
 	
 	UserType power;
 	String operator = "";
@@ -90,6 +94,7 @@ public class SaleListPanel extends JPanel{
 		saleLogic = new SaleBLController(ip);
 		goodschoose = new GoodsChooseForSalePanel(ip);
 		custServ = new CustomerOpr(ip);
+		promotionServ = new PromotionForSaleController(ip);
 		power = user.power;
 
 		custList = custServ.getAllCustomerList();
@@ -210,7 +215,7 @@ public class SaleListPanel extends JPanel{
 		});
 		submitBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				getSaleList();
+				new MessageFrame(getSaleList());
 			}
 		});
 		clearBtn.addActionListener(new ActionListener() {
@@ -263,7 +268,14 @@ public class SaleListPanel extends JPanel{
 	/**
 	 * 提交按钮事件
 	 */
-	private void getSaleList(){
+	private int getSaleList(){
+		//检查信息是否填写完全
+		if(customerBox.getSelectedItem() == null || totalField.getText() == null ||
+				discountField.getText() == null || goodschoose.giftNum == 0){
+			System.out.println("heheda");
+			return 7001;
+		}
+		
 		String number = SaleListNum();
 		CustomerVO customer = getAcustomer((String) customerBox.getSelectedItem());
 //		String storage = (String) storageBox.getSelectedItem();
@@ -311,7 +323,8 @@ public class SaleListPanel extends JPanel{
 		}
 		SaleRejectListPanel.saleList.add(saleVO);
 		
-		saleLogic.createSale(saleVO);
+		promotionServ.adaptPromotionForSaleList(saleVO);
+		return saleLogic.createSale(saleVO);
 	}
 	
 	/**
@@ -331,9 +344,17 @@ public class SaleListPanel extends JPanel{
 	}
 	
 	private String SaleListNum(){
+		int listNum = 0;
 		String num = "XSD-";
 		String date = saleLogic.getPresentDate();
-		String number = String.format("%05d", saleList.size() + 1);
+		for (int i = 0; i < saleList.size(); i++) {
+			String temp[] = saleList.get(i).number.split("-");
+			String lastItemDate = temp[1];
+			if(lastItemDate.equals(date)){
+				listNum++;
+			}
+		}
+		String number = String.format("%05d", listNum + 1);
 		num = num + date + "-" + number;
 		return num;
 	}

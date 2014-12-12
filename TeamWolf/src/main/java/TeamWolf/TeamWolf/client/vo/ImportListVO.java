@@ -38,6 +38,7 @@ public class ImportListVO extends ApplicationVO{
 	 */
 	double total;
 
+	
 	public ImportListVO(String number, CustomerVO customer, String storage, String operator,
 			ArrayList<GoodsVO> goodsList, String remark, String total) {
 		// TODO Auto-generated constructor stub

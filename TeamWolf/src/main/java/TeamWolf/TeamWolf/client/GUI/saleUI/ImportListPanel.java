@@ -18,6 +18,7 @@ import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOpr;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOprBLservice;
 import TeamWolf.TeamWolf.client.BL.saleBL.SaleBLController;
 import TeamWolf.TeamWolf.client.BLservice.saleBLservice.SaleBLservice;
+import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
 import TeamWolf.TeamWolf.client.vo.ImportListVO;
@@ -188,7 +189,7 @@ public class ImportListPanel extends JPanel{
 		});
 		submitBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				getImportList();
+				new MessageFrame(getImportList());
 			}
 		});
 		clearBtn.addActionListener(new ActionListener() {
@@ -222,7 +223,14 @@ public class ImportListPanel extends JPanel{
 	/**
 	 * 提交按钮事件
 	 */
-	private void getImportList(){
+	private int getImportList(){
+		//检查信息是否填写完全
+		if(customerBox.getSelectedItem() == null || storageBox.getSelectedItem() == null ||
+				totalField.getText() == null || goodschoose.giftNum == 0){
+			System.out.println("heheda");
+			return 7001;
+		}
+		
 		String number = importListNum();
 		CustomerVO customer = getAcustomer((String) customerBox.getSelectedItem());
 		String storage = (String) storageBox.getSelectedItem();
@@ -259,7 +267,8 @@ public class ImportListPanel extends JPanel{
 			ImportRejectListPanel.importList = new ArrayList<ImportListVO>();
 		}
 		ImportRejectListPanel.importList.add(importVO);
-		saleLogic.createImport(importVO);
+		
+		return saleLogic.createImport(importVO);
 	}
 	
 
@@ -288,9 +297,17 @@ public class ImportListPanel extends JPanel{
 	}
 	
 	private String importListNum(){
+		int listNum = 0;
 		String num = "JHD-";
 		String date = saleLogic.getPresentDate();
-		String number = String.format("%05d", importList.size() + 1);
+		for (int i = 0; i < importList.size(); i++) {
+			String temp[] = importList.get(i).number.split("-");
+			String lastItemDate = temp[1];
+			if(lastItemDate.equals(date)){
+				listNum++;
+			}
+		}
+		String number = String.format("%05d", listNum + 1);
 		num = num + date + "-" + number;
 		return num;
 	}

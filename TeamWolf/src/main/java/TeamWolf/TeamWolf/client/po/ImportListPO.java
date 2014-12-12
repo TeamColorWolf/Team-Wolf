@@ -57,6 +57,10 @@ public class ImportListPO extends ApplicationPO{
 		}
 	}
 
+	public void setGoodsList(ArrayList<GoodsPO> goodsList) {
+		this.goodsList = goodsList;
+	}
+
 	public CustomerPO getCustomer() {
 		return customer;
 	}

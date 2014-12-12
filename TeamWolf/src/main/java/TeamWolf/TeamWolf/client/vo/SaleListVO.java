@@ -57,7 +57,7 @@ public class SaleListVO extends ApplicationVO{
 	 * 单据备注
 	 */
 	String remark;
-
+	
 	public SaleListVO(String number, CustomerVO customer, String salesman, String operator,
 			String storage, ArrayList<GoodsVO> goodsList, String discount, String coupon,
 			String remark, String total, String totalAfterDiscount) {
@@ -103,8 +103,7 @@ public class SaleListVO extends ApplicationVO{
 			GoodsList.add(gvo);
 		}
 	}
-	
-	
+
 	public CustomerVO getCustomer() {
 		return customer;
 	}

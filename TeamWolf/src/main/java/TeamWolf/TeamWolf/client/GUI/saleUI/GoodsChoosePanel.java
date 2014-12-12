@@ -12,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
 
 import TeamWolf.TeamWolf.client.BL.stockBL.ExternalService;
 import TeamWolf.TeamWolf.client.BL.stockBL.ExternalServiceController;
@@ -185,6 +187,10 @@ public class GoodsChoosePanel extends JPanel{
 	}
 	
 	protected void removeAllGoods(){
+//		for (int i = giftNum - 1; i >= 0; i++) {
+//			numListField.get(i).setText("0");
+//			goodsPriceListField.get(i).setText("0");
+//		}
 		while(giftNum != 0){
 			this.removeLast();
 			giftNum--;
@@ -194,6 +200,10 @@ public class GoodsChoosePanel extends JPanel{
 	}
 	
 	private void removeLast(){
+		//TODO
+		numListField.get(giftNum).setText("0");
+		goodsPriceListField.get(giftNum).setText("0");
+		
 		goodsTypeListBox.remove(giftNum);
 		goodsListBox.remove(giftNum);
 		numListField.remove(giftNum);
@@ -386,8 +396,8 @@ public class GoodsChoosePanel extends JPanel{
 			total.setEnabled(true);
 			remark.setEnabled(true);
 			
-			dn.addActionListener(new NumFieldListener(giftNum));
-			
+			dn.addCaretListener(new NumFieldListener(giftNum));
+
 			dg.addActionListener(new GoodsBoxListener(giftNum));
 			
 			setNext();
@@ -400,22 +410,22 @@ public class GoodsChoosePanel extends JPanel{
 	}
 	
 	/**
-	 * 显示单项总价和全体总价
+	 * 显示单项总价
 	 */
-	class NumFieldListener implements ActionListener{
+	class NumFieldListener implements CaretListener{
 		int index = -1;
 		public NumFieldListener(int giftNum) {
 			super();
 			index = giftNum - 1;
 		}
-		public void actionPerformed(ActionEvent e) {
+		public void caretUpdate(CaretEvent e) {
 			double eachTotal = Double.parseDouble(goodsPriceListField.get(index).getText()) * 
 					Double.parseDouble(numListField.get(index).getText());
 			totalPriceListField.get(index).setText(Double.toString(eachTotal));
 		}
 		
 	}
-	
+
 	/**
 	 * 选择具体商品事件
 	 */

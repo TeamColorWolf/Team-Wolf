@@ -11,4 +11,10 @@ public class ErrorTW {
 	public static final int cannotAddType_2=1002;  //商品分类已存在于系统中
 	
 	public static final int cannotOperateForNotExist=1004; // 错误类型：商品不存在于系统中
+	public static final int lackListInfo = 7001;//进货单(销售单)信息填写不完整
+	public static final int chooseNoItem = 7002;//未选择需要退的单据
+	public static final int containsSpecialGoods = 7003;//销售单包含特价商品，不能退货
+	public static final int lackCustomerInfo = 701;//客户信息不完整
+	public static final int stillShouldPay = 702;//未结算清，无法删除
+	public static final int notFondCustomer = 703;//未找到对应客户
 }

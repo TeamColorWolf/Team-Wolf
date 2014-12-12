@@ -19,6 +19,7 @@ import javax.swing.table.TableColumn;
 
 import TeamWolf.TeamWolf.client.BL.saleBL.SaleBLController;
 import TeamWolf.TeamWolf.client.BLservice.saleBLservice.SaleBLservice;
+import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
 import TeamWolf.TeamWolf.client.vo.ImportListVO;
 import TeamWolf.TeamWolf.client.vo.ImportRejectListVO;
@@ -218,7 +219,7 @@ public class ImportRejectListPanel extends JPanel{
 		
 		submitBtn.addActionListener(new ActionListener() {			
 			public void actionPerformed(ActionEvent e) {	
-				subBtnAction();
+				new MessageFrame(subBtnAction());
 			}
 		});
 		
@@ -273,7 +274,7 @@ public class ImportRejectListPanel extends JPanel{
 	/**
 	 * 提交按钮事件
 	 */
-	private void subBtnAction(){
+	private int subBtnAction(){
 		ImportListVO ivo = null;
 		for (int i = 0; i < importList.size(); i++) {
 			if(importListTable.getValueAt(i, 0).equals(true)){
@@ -283,7 +284,7 @@ public class ImportRejectListPanel extends JPanel{
 			}
 		}
 		if(ivo == null){
-			return;
+			return 7002;
 		}
 		ImportRejectListVO irvo = new ImportRejectListVO(importRejectListNum(),
 				remarkArea.getText(), ivo);
@@ -294,16 +295,24 @@ public class ImportRejectListPanel extends JPanel{
 		//清空商品显示table
 		clearGoodsInfoTable();
 		
-		saleLogic.createImportReject(irvo);
+		return saleLogic.createImportReject(irvo);
 	}
 	
 	/**
 	 * 获取单据编号
 	 */
 	private String importRejectListNum(){
+		int listNum = 0;
 		String num = "JHTHD-";
 		String date = saleLogic.getPresentDate();
-		String number = String.format("%05d", importRejectList.size() + 1);
+		for (int i = 0; i < importRejectList.size(); i++) {
+			String temp[] = importRejectList.get(i).number.split("-");
+			String lastItemDate = temp[1];
+			if(lastItemDate.equals(date)){
+				listNum++;
+			}
+		}
+		String number = String.format("%05d", listNum + 1);
 		num = num + date + "-" + number;
 		return num;
 	}

@@ -1,7 +1,10 @@
 package TeamWolf.TeamWolf.client.GUI.saleUI;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
+import TeamWolf.TeamWolf.client.BL.saleBL.SaleBLController;
+import TeamWolf.TeamWolf.client.BLservice.saleBLservice.SaleBLservice;
 import TeamWolf.TeamWolf.client.po.CustomerPO;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
@@ -9,14 +12,28 @@ import TeamWolf.TeamWolf.client.vo.ImportListVO;
 import TeamWolf.TeamWolf.client.vo.SaleListVO;
 import TeamWolf.TeamWolf.client.vo.UserType;
 import TeamWolf.TeamWolf.client.vo.UserVO;
+import TeamWolf.TeamWolf.server.FileName;
+import TeamWolf.TeamWolf.server.FileOpr;
 
 public class TestMain {
 
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		UserVO user = new UserVO("WKS", "131250196", "0001", UserType.销售人员);
 		String IP = "127.0.0.1";
-//		FunctionChoose fc = new FunctionChoose(user, IP);
+		try {
+			ArrayList<ImportListVO> importList = (ArrayList<ImportListVO>) FileOpr.readFile(FileName.importListFile);
+			importList.remove(importList.size() - 1);
+			System.out.println(importList.size());
+			FileOpr.writeFile(FileName.importListFile, importList);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public static ArrayList<CustomerVO> getCustVOListTEST(){
