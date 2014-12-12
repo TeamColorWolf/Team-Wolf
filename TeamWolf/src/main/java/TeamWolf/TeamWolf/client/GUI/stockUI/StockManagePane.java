@@ -319,6 +319,9 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     					TypeVO toUpd=null;
     					if(parent.toString().equals("商品")){
     				    	toUpd=new TypeVO(null, null, typeInfo[1], updTNewName.getText());
+    				    	if(typeInfo[1].equals("0000")){
+    				    		result=1000;
+    				    	}
     				    }
     					else{
     						String[] parentInfo=parent.toString().split(" ");
