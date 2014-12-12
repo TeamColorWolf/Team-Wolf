@@ -25,4 +25,5 @@ public class ErrorTW {
 	public static final int stillShouldPay = 702;//未结算清，无法删除
 	public static final int notFondCustomer = 703;//未找到对应客户
 	public static final int haveAlreadyExist = 704;//客户已经存在（添加客户时）
+	public static final int chooseNoCustomer = 705;//未选择要删除的客户
 }
