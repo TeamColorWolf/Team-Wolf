@@ -17,6 +17,7 @@ import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOpr;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOprBLservice;
 import TeamWolf.TeamWolf.client.BL.userBL.ForAllUserController;
 import TeamWolf.TeamWolf.client.BLservice.userBLservice.ForAllUserService;
+import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.UserVO;
 
@@ -165,7 +166,7 @@ public class CustomerAddPanel extends JPanel{
 		salesManBox.setEnabled(true);
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				addBtnAction();
+				new MessageFrame(addBtnAction());
 			}
 		});
 		
@@ -204,13 +205,13 @@ public class CustomerAddPanel extends JPanel{
 		emailField = new JTextField();
 		addressField = new JTextField();
 		
-		//TODO:TEST
-		nameField.setText("name");
-		zipCodeField.setText("zipCode");
-		telField.setText("tel");
-		topLimitField.setText("topLimit");
-		emailField.setText("e-mail");
-		addressField.setText("address");
+//		//TODO:TEST
+//		nameField.setText("name");
+//		zipCodeField.setText("zipCode");
+//		telField.setText("tel");
+//		topLimitField.setText("topLimit");
+//		emailField.setText("e-mail");
+//		addressField.setText("address");
 		
 		nameLabel.setSize(Label_Size);
 		zipCodeLabel.setSize(Label_Size);
@@ -265,7 +266,22 @@ public class CustomerAddPanel extends JPanel{
 	/**
 	 * 添加按钮事件
 	 */
-	private void addBtnAction(){
+	private int addBtnAction(){
+		//信息填写不完整
+		if(kindBox.getSelectedItem() == null || levelBox.getSelectedItem() == null ||
+				nameField.getText() == null || telField.getText() == null ||
+				addressField.getText() == null || zipCodeField.getText() == null ||
+				emailField.getText() == null || topLimitField.getText() == null){
+			return 701;
+		}
+		//检查该客户是否已经存在
+		for (int i = 0; i < customerList.size(); i++) {
+			CustomerVO cvo = customerList.get(i);
+			if(nameField.getText().equals(cvo.getName()) && telField.getText().equals(cvo.getTel())){
+				return 704;
+			}
+		}
+		
 		String num =  getCustomerNum();
 		String kind = (String) kindBox.getSelectedItem();
 		String level = (String)levelBox.getSelectedItem();
@@ -283,9 +299,13 @@ public class CustomerAddPanel extends JPanel{
 		System.out.println("addsuccess");
 		
 		CustomerDelPanel.customerList.add(customer);
-		customerLogic.Customeradd(customer);
+		return customerLogic.Customeradd(customer);
 	}
 	
+	/**
+	 * 获取客户编号
+	 * @return
+	 */
 	private String getCustomerNum(){
 		if(customerList.size() == 0){
 			return String.format("%05d", 1);
