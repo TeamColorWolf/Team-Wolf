@@ -22,6 +22,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import TeamWolf.TeamWolf.client.BL.goodsBL.GoodsBLController;
+import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
 import TeamWolf.TeamWolf.client.vo.GoodsStockListVO;
 import TeamWolf.TeamWolf.client.vo.GoodsStockVO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
@@ -277,6 +278,9 @@ public class StockShowPane extends JPanel implements ItemListener, ActionListene
 			int beginDate=beginYear*10000+beginMonth*100+beginDay;
 			int endDate=endYear*10000+endMonth*100+endDay;
 		    gsl=gbcontroller.shoStockList(beginDate, endDate);
+		    if(beginDate>endDate){
+		        new MessageFrame(2008); //  弹窗报错：输入的时间不合法
+		    }
 		}
 		
 		   ArrayList<GoodsStockVO> gsvlist=gsl.getGoodsSL();

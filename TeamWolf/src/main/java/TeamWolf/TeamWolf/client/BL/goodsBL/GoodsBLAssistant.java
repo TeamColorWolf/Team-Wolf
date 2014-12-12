@@ -83,7 +83,7 @@ public class GoodsBLAssistant {
 				return 0;
 			}
 			else
-				return 2; //库存不足，无法赠送
+				return 2006; //库存不足，无法赠送
 		}
 		else{
 			//返回赠送商品不存在，无法进行赠送

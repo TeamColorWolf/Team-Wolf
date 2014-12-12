@@ -34,6 +34,7 @@ import javax.swing.tree.TreePath;
 import TeamWolf.TeamWolf.client.BL.applicationBL.forStock.StockApplicationController;
 import TeamWolf.TeamWolf.client.BL.goodsBL.GoodsBLController;
 import TeamWolf.TeamWolf.client.BL.stockBL.StockBLController;
+import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
 import TeamWolf.TeamWolf.client.vo.GoodsListVO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
 import TeamWolf.TeamWolf.client.vo.TypeListVO;
@@ -239,8 +240,11 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     			      addTName.setText("");
     			      CurrentTypeNum++;
     			      MainPane.Infomation=MainPane.Infomation+MainPane.getPresentTime()+" 添加了分类  "+newNode.toString()+"\n";
+    			      
+    			      new MessageFrame(0);
     				}
     				else{
+    					new MessageFrame(result);  
     					System.out.println(result); //弹窗报错:根据result数值
     				}
     			}
@@ -274,6 +278,8 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     					
     					if(todel.getParentNum()!=null&&todel.getParentNum().equals("0000")){
     						result=1000;   ///错误类型:特价包不能由库存管理人员由编辑
+    					}else if(typeInfo[1].equals("0000")){
+    						result=1000;
     					}
     					else{
     						result=sbcontroller.delType(todel);
@@ -283,7 +289,12 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     						treeModel.removeNodeFromParent(selectionNode);
     						delTInfo.setText("");
     						MainPane.Infomation=MainPane.Infomation+MainPane.getPresentTime()+" 删除了分类  "+selectionNode.toString()+"\n";
+    						
+    						new MessageFrame(0);
     				     }
+    					}
+    					else{
+    						new MessageFrame(result);
     					}
     				}
     			  }
@@ -315,6 +326,9 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     						if(parentInfo[1].equals("0000")){
         						result=1000;
         					}
+    						else if(typeInfo[1].equals("0000")){
+    							result=1000;
+    						}
     					}
     					if(result==0){
     						result=sbcontroller.updType(toUpd);
@@ -326,6 +340,11 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     				        updTInfo.setText("");
         			        updTNewName.setText("");
         			        MainPane.Infomation=MainPane.Infomation+MainPane.getPresentTime()+" 更新了分类  "+selectionNode.toString()+"\n";
+        			        
+        			        new MessageFrame(0);
+    					}
+    					else{
+    						new MessageFrame(result);
     					}
     				}
     			}
@@ -388,10 +407,11 @@ public class StockManagePane extends JPanel implements TreeModelListener {
       			        addGMTF.setText("");
       			        addGIPTF.setText("");
       			        addGEPTF.setText("");
-      			      MainPane.Infomation=MainPane.Infomation+MainPane.getPresentTime()+" 添加了商品  "+newNode.toString()+"\n";
+      			        MainPane.Infomation=MainPane.Infomation+MainPane.getPresentTime()+" 添加了商品  "+newNode.toString()+"\n";
+      			        new MessageFrame(0);
     				}
     				else{
-    					//弹窗
+    					new MessageFrame(result); //弹窗
     				}
     				}
     			}
@@ -428,11 +448,14 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     				     if(selectionNode.isLeaf()){
     				    	MainPane.Infomation=MainPane.Infomation+MainPane.getPresentTime()+" 删除了商品  "+delGNTF.getText()+"\n";
     						treeModel.removeNodeFromParent(selectionNode);
-    						delGNTF.setText("");    						
+    						delGNTF.setText("");
+    						new MessageFrame(0);
     				     }
     					}
-    					else
+    					else{
+    					    new MessageFrame(result);
     						System.out.println(result);
+    					}
     				}
     			  }
     			}   		
@@ -476,9 +499,11 @@ public class StockManagePane extends JPanel implements TreeModelListener {
 				if(result==0){
 					MainPane.Infomation=MainPane.Infomation+MainPane.getPresentTime()+" 更新了商品   "+updGNTF.getText()+"\n";
 					updGIPTF.setText("");
-					updGEPTF.setText("");          //弹窗：成功
+					updGEPTF.setText("");   
+					new MessageFrame(0); //弹窗：成功
 				}
 				else{
+					new MessageFrame(result);
 					System.out.println(result);   //弹窗：失败
 				}
 			}
@@ -499,14 +524,16 @@ public class StockManagePane extends JPanel implements TreeModelListener {
         			result=1000;
         		}
         		else{
-        		   // GoodsVO toIncrease=new GoodsVO(null, null, gInfo[1], gInfo[2], gInfo[3], amount, null, null, null, null, null);        		
-        		    //result=gbcontroller.increaseToMatch(toIncrease, operator);
+        		    GoodsVO toIncrease=new GoodsVO(null, null, gInfo[1], gInfo[2], gInfo[3], amount, null, null, null, null, null);        		
+        		    result=gbcontroller.increaseToMatch(toIncrease, operator);
         		}
         		if(result==0){
         			 MainPane.Infomation=MainPane.Infomation+MainPane.getPresentTime()+" 报溢了商品  "+ITMGITF.getText()+"\n";
         		     ITMAmountTF.setText("");
+        		     new MessageFrame(0);
         		}
         		else{
+        			new MessageFrame(result);
         			System.out.println(result);//弹窗报错
         		}
         	}
@@ -533,8 +560,10 @@ public class StockManagePane extends JPanel implements TreeModelListener {
         		if(result==0){
         			 MainPane.Infomation=MainPane.Infomation+MainPane.getPresentTime()+" 报损了商品  "+DTMGITF.getText()+"\n";
         		     DTMGAmountTF.setText("");
+        		     new MessageFrame(0);
         		}
         		else{
+        			new MessageFrame(result);  
         			System.out.println(result);  //弹窗报错
         		}
     		}
@@ -561,8 +590,10 @@ public class StockManagePane extends JPanel implements TreeModelListener {
         		if(result==0){
         			 MainPane.Infomation=MainPane.Infomation+MainPane.getPresentTime()+setWLGITF.getText()+"设置了警戒值"+setWLGWLTF.getText()+"\n";
         		     setWLGWLTF.setText("");
+        		     new MessageFrame(0);
         		}
         		else{
+        			new MessageFrame(result);
         			System.out.println(result);   //弹窗报错
         		}
     		}
@@ -721,7 +752,7 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     				  }
     				}
     				else{
-    					//弹窗：找不到
+    					new MessageFrame(404);//弹窗：找不到
     				}
     			}
     			else{
@@ -730,7 +761,7 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     				if(finded!=null)
     				   result=finded.getInfo()+"\n";
     				else{
-    					//弹窗：找不到
+    					new MessageFrame(404);//弹窗：找不到
     				}
     			}
     			

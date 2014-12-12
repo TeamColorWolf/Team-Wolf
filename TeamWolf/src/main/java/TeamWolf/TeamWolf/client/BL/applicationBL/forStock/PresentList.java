@@ -60,7 +60,7 @@ public class PresentList extends Application{
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			result=1000;
+			//result=1000;
 		}
 		
 		return result;

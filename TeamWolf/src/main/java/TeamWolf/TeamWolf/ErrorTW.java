@@ -9,8 +9,15 @@ public class ErrorTW {
 	public static final int powerError=1000;   //权限不足（如库存管理员无法编辑特价包）
 	public static final int cannotAddType_1=1001;  //返回不可在有商品的分类下添加子分类
 	public static final int cannotAddType_2=1002;  //商品分类已存在于系统中
-	
 	public static final int cannotOperateForNotExist=1004; // 错误类型：商品不存在于系统中
+    public static final int notComplete=1005;  //错误类型：信息填写不完整
+    public static final int cannotAddGoods_1=2001;  //分类下有子分类不可添加商品
+    public static final int GoodsIsExisted=2002;  //商品已存在
+    public static final int notMatchToParent=2003; //商品与父类不匹配
+    public static final int GoodsIsnotExisted=2004; //商品不存在
+    public static final int notEnough=2006; //库存不足
+    public static final int specialGoodsGone=2007; //特价包已不存在
+    public static final int illegalTime=2008; //时间不合法
 	public static final int lackListInfo = 7001;//进货单(销售单)信息填写不完整
 	public static final int chooseNoItem = 7002;//未选择需要退的单据
 	public static final int containsSpecialGoods = 7003;//销售单包含特价商品，不能退货

@@ -99,7 +99,7 @@ public class StockBLManager{
 			
             
         }else{ 
-        	 return 1004; // 错误类型：商品不存在于系统中        	
+        	 return 1004; // 错误类型：商品分类不存在于系统中        	
         }
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block

@@ -132,7 +132,7 @@ public class GoodsTrade {
 						  }
 					  }
 					  else{					 
-						   //返回错误类型： 该特价包已经不在了
+						  return 2007; //返回错误类型： 该特价包已经不在了
 					  }
 					  
 				}
