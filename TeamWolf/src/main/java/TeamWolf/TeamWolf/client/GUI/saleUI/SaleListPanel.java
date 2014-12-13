@@ -40,7 +40,7 @@ public class SaleListPanel extends JPanel{
 	ArrayList<CustomerVO> custList;
 	ArrayList<SaleListVO> saleList;
 	PromotionForSaleService promotionServ;
-	
+
 	UserType power;
 	String operator = "";
 	
@@ -275,6 +275,27 @@ public class SaleListPanel extends JPanel{
 			System.out.println("heheda");
 			return 7001;
 		}
+		//检查信息是否填写正确
+		for (int i = 0; i < goodschoose.giftNum; i++) {
+			if(Double.parseDouble(goodschoose.numListField.get(i).getText()) <= 0 || 
+					(Double.parseDouble(goodschoose.numListField.get(i).getText()) % 1) != 0){
+				System.out.println("sb,商品数量你™填错了");
+				return 7004;
+			}
+		}
+		//检查折让金额是否正确（大于等于0，销售员最多折让1000元，销售经理可以折让5000元，总经理可以任意金额的折让）
+		if(Double.parseDouble(discountField.getText()) < 0){
+			return 7005;
+		}
+		if(power.equals(UserType.销售人员) && Double.parseDouble(discountField.getText()) > 1000){
+			return 7006;
+		}
+		if(power.equals(UserType.销售经理) && Double.parseDouble(discountField.getText()) > 5000){
+			return 7006;
+		}
+		if(Double.parseDouble(totalField.getText()) < 0){
+			return 7007;
+		}
 		
 		String number = SaleListNum();
 		CustomerVO customer = getAcustomer((String) customerBox.getSelectedItem());
@@ -321,10 +342,13 @@ public class SaleListPanel extends JPanel{
 			SaleRejectListPanel.saleList = new ArrayList<SaleListVO>();
 			System.out.println("====================NULL=======================");
 		}
-		SaleRejectListPanel.saleList.add(saleVO);
+//		SaleRejectListPanel.saleList.add(saleVO);
 		
 		promotionServ.adaptPromotionForSaleList(saleVO);
-		return saleLogic.createSale(saleVO);
+		int result = saleLogic.createSale(saleVO);
+		saleList = saleLogic.getSaleList();
+		SaleRejectListPanel.saleList = saleLogic.getSaleList();
+		return result;
 	}
 	
 	/**

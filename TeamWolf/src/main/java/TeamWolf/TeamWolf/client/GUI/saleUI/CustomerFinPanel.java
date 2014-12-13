@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOpr;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOprBLservice;
+import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.UserVO;
 
@@ -301,7 +302,7 @@ public class CustomerFinPanel extends JPanel{
 	private void inquireBtnEvent(){
 		customer = customerLogic.findCustomer(nameImpurField.getText(), numberInputField.getText());
 		if(customer == null){
-			 JOptionPane.showMessageDialog(null, "未找到对应客户");
+			 new MessageFrame(703);
 			 return;
 		}
 		kindField.setText(customer.getKind());
@@ -316,5 +317,6 @@ public class CustomerFinPanel extends JPanel{
 		shouldPayArea.setText(Double.toString(customer.getPay()));
 		shouldReceiveArea.setText(Double.toString(customer.getReceive()));
 	}
+	
 	
 }

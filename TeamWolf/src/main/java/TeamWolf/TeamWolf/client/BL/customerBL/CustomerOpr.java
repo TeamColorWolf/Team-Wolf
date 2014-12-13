@@ -119,6 +119,12 @@ public class CustomerOpr implements CustomerOprBLservice{
 	public CustomerVO findCustomer(String name,String number){
         try {
 			cds = (CustomerDATAservice)Naming.lookup(URL);
+			CustomerPO cpo = cds.findCustomer(name, number);
+			if(cpo == null){
+				return null;
+			} else {
+				return new CustomerVO(cpo);
+			}
 		} catch (MalformedURLException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -126,13 +132,6 @@ public class CustomerOpr implements CustomerOprBLservice{
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		} catch (NotBoundException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		}
-		// TODO 自动生成的方法存根
-		try {
-			return new CustomerVO(cds.findCustomer(name,number));
-		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}

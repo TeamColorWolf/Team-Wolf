@@ -269,9 +269,9 @@ public class CustomerAddPanel extends JPanel{
 	private int addBtnAction(){
 		//信息填写不完整
 		if(kindBox.getSelectedItem() == null || levelBox.getSelectedItem() == null ||
-				nameField.getText() == null || telField.getText() == null ||
-				addressField.getText() == null || zipCodeField.getText() == null ||
-				emailField.getText() == null || topLimitField.getText() == null){
+				nameField.getText().equals("") || telField.getText().equals("") ||
+				addressField.getText().equals("") || zipCodeField.getText().equals("") ||
+				emailField.getText().equals("") || topLimitField.getText().equals("")){
 			return 701;
 		}
 		//检查该客户是否已经存在
@@ -280,6 +280,10 @@ public class CustomerAddPanel extends JPanel{
 			if(nameField.getText().equals(cvo.getName()) && telField.getText().equals(cvo.getTel())){
 				return 704;
 			}
+		}
+		//应收额度不能为负
+		if(Double.parseDouble(topLimitField.getText()) < 0){
+			return 706;
 		}
 		
 		String num =  getCustomerNum();

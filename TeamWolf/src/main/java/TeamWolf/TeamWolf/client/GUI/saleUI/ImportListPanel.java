@@ -230,6 +230,14 @@ public class ImportListPanel extends JPanel{
 			System.out.println("heheda");
 			return 7001;
 		}
+		//检查信息是否填写正确
+		for (int i = 0; i < goodschoose.giftNum; i++) {
+			if(Double.parseDouble(goodschoose.numListField.get(i).getText()) <= 0 || 
+					(Double.parseDouble(goodschoose.numListField.get(i).getText()) % 1) != 0){
+				System.out.println("sb,商品数量你™填错了");
+				return 7004;
+			}
+		}
 		
 		String number = importListNum();
 		CustomerVO customer = getAcustomer((String) customerBox.getSelectedItem());
@@ -266,9 +274,11 @@ public class ImportListPanel extends JPanel{
 		if(ImportRejectListPanel.importList == null){
 			ImportRejectListPanel.importList = new ArrayList<ImportListVO>();
 		}
-		ImportRejectListPanel.importList.add(importVO);
-		
-		return saleLogic.createImport(importVO);
+	
+		int result = saleLogic.createImport(importVO);
+		importList = saleLogic.getImportList();
+		ImportRejectListPanel.importList = saleLogic.getImportList();
+		return result;
 	}
 	
 

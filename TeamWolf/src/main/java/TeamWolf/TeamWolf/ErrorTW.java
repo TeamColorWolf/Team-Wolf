@@ -21,9 +21,14 @@ public class ErrorTW {
 	public static final int lackListInfo = 7001;//进货单(销售单)信息填写不完整
 	public static final int chooseNoItem = 7002;//未选择需要退的单据
 	public static final int containsSpecialGoods = 7003;//销售单包含特价商品，不能退货
+	public static final int wrongGoodsNum = 7004;//商品数量小于等于0,或者为小数
+	public static final int wrongDiscountNum = 7005;//折让金额不能小于0
+	public static final int moreThanDiscount = 7006;//折让金额过多
+	public static final int shouldReduceDiscount = 7007;//折让导致总额为负数
 	public static final int lackCustomerInfo = 701;//客户信息不完整
 	public static final int stillShouldPay = 702;//未结算清，无法删除
 	public static final int notFondCustomer = 703;//未找到对应客户
 	public static final int haveAlreadyExist = 704;//客户已经存在（添加客户时）
 	public static final int chooseNoCustomer = 705;//未选择要删除的客户
+	public static final int wrongTopLimit = 706;//应收额度小于0
 }

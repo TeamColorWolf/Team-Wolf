@@ -14,6 +14,7 @@ import javax.swing.table.TableColumn;
 
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOpr;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOprBLservice;
+import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.UserVO;
 
@@ -131,7 +132,7 @@ public class CustomerDelPanel extends JPanel{
 		
 		delet.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				delBtnEvent();
+				new MessageFrame(delBtnEvent());
 			}
 		});
 		
@@ -184,7 +185,7 @@ public class CustomerDelPanel extends JPanel{
 	/**
 	 * 删除按钮事件
 	 */
-	private void delBtnEvent(){
+	private int delBtnEvent(){
 		CustomerVO cvo = null;
 		for (int i = 0; i < customerList.size(); i++) {
 			if(customerListTable.getValueAt(i, 0).equals(true)){
@@ -195,12 +196,15 @@ public class CustomerDelPanel extends JPanel{
 		}
 		if(cvo == null){
 			System.out.println("delet failed");
-			return;
+			return 705;
+		}
+		if(cvo.getPay() != 0 || cvo.getReceive() != 0){
+			return 702;
 		}
 		//显示剩余客户单
 		showBtnEvent();
 		
-		customerLogic.Customerdel(cvo);
+		return customerLogic.Customerdel(cvo);
 		
 	}
 }

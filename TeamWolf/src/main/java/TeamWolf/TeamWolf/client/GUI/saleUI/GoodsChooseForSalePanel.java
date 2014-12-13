@@ -402,9 +402,12 @@ public class GoodsChooseForSalePanel extends JPanel{
 			index = giftNum - 1;
 		}
 		public void caretUpdate(CaretEvent e) {
-			double eachTotal = Double.parseDouble(goodsPriceListField.get(index).getText()) * 
-					Double.parseDouble(numListField.get(index).getText());
-			totalPriceListField.get(index).setText(Double.toString(eachTotal));
+			try {
+				double eachTotal = Double.parseDouble(goodsPriceListField.get(index).getText()) * 
+						Double.parseDouble(numListField.get(index).getText());
+				totalPriceListField.get(index).setText(Double.toString(eachTotal));
+			} catch (Exception e2) {
+			}
 		}
 		
 	}

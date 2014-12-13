@@ -187,10 +187,10 @@ public class GoodsChoosePanel extends JPanel{
 	}
 	
 	protected void removeAllGoods(){
-//		for (int i = giftNum - 1; i >= 0; i++) {
-//			numListField.get(i).setText("0");
-//			goodsPriceListField.get(i).setText("0");
-//		}
+		for (int i = giftNum - 1; i >= 0; i--) {
+			numListField.get(i).setText("");
+			goodsPriceListField.get(i).setText("");
+		}
 		while(giftNum != 0){
 			this.removeLast();
 			giftNum--;
@@ -201,8 +201,7 @@ public class GoodsChoosePanel extends JPanel{
 	
 	private void removeLast(){
 		//TODO
-		numListField.get(giftNum).setText("0");
-		goodsPriceListField.get(giftNum).setText("0");
+		numListField.get(giftNum - 1).setText("");
 		
 		goodsTypeListBox.remove(giftNum);
 		goodsListBox.remove(giftNum);
@@ -419,9 +418,12 @@ public class GoodsChoosePanel extends JPanel{
 			index = giftNum - 1;
 		}
 		public void caretUpdate(CaretEvent e) {
-			double eachTotal = Double.parseDouble(goodsPriceListField.get(index).getText()) * 
-					Double.parseDouble(numListField.get(index).getText());
-			totalPriceListField.get(index).setText(Double.toString(eachTotal));
+			try {
+				double eachTotal = Double.parseDouble(goodsPriceListField.get(index).getText()) * 
+						Double.parseDouble(numListField.get(index).getText());
+				totalPriceListField.get(index).setText(Double.toString(eachTotal));
+			} catch (Exception e2) {
+			}
 		}
 		
 	}

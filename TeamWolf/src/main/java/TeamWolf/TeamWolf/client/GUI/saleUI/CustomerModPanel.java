@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.zip.ZipFile;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -24,6 +23,7 @@ import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOpr;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOprBLservice;
 import TeamWolf.TeamWolf.client.BL.userBL.ForAllUserController;
 import TeamWolf.TeamWolf.client.BLservice.userBLservice.ForAllUserService;
+import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.UserVO;
 
@@ -236,7 +236,7 @@ public class CustomerModPanel extends JPanel{
 		salesManBox.setEnabled(true);
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				modBtnAction();
+				new MessageFrame(modBtnAction());
 			}
 		});
 		
@@ -356,7 +356,19 @@ public class CustomerModPanel extends JPanel{
 	/**
 	 * 修改按钮事件
 	 */
-	private void modBtnAction(){
+	private int modBtnAction(){
+		//信息填写不完整
+		if(kindBox.getSelectedItem() == null || levelBox.getSelectedItem() == null ||
+				nameField.getText().equals("") || telField.getText().equals("") ||
+				addressField.getText().equals("") || zipCodeField.getText().equals("") ||
+				emailField.getText().equals("") || topLimitField.getText().equals("")){
+			return 701;
+		}
+		//应收额度不能为负
+		if(Double.parseDouble(topLimitField.getText()) < 0){
+			return 706;
+		}
+		
 		String num = customer.getNum();
 		String kind = (String) kindBox.getSelectedItem();
 		String level = (String) levelBox.getSelectedItem();
@@ -373,7 +385,7 @@ public class CustomerModPanel extends JPanel{
 		CustomerVO newVO = new CustomerVO(num, kind, level, name, tel, address, zipCode,
 				email, topLimit, receive, pay, businessMan);
 		
-		customerLogic.Customerupdate(customer, newVO);
+		return customerLogic.Customerupdate(customer, newVO);
 	}
 	
 	/**

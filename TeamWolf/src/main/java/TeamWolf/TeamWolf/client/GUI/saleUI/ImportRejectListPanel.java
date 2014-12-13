@@ -295,7 +295,9 @@ public class ImportRejectListPanel extends JPanel{
 		//清空商品显示table
 		clearGoodsInfoTable();
 		
-		return saleLogic.createImportReject(irvo);
+		int result = saleLogic.createImportReject(irvo);
+		importRejectList = saleLogic.getImportRejectList();
+		return result;
 	}
 	
 	/**
