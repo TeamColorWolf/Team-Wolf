@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import TeamWolf.TeamWolf.client.BLservice.manageBLservice.PromotionBLservice;
+import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
 import TeamWolf.TeamWolf.client.vo.ForPricePromotionVO;
 import TeamWolf.TeamWolf.client.vo.ForVIPPromotionVO;
 import TeamWolf.TeamWolf.client.vo.PromotionTypeVO;
@@ -128,6 +129,7 @@ public class PromotionCheckPanel extends JPanel{
 					System.out.println("delete "+num);
 					flashPanel();
 				}
+				new MessageFrame(success);
 			}
 		}
 		

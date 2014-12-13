@@ -6,12 +6,15 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.BL.applicationBL.Application;
 import TeamWolf.TeamWolf.client.BL.applicationBL.ApplicationBL;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.ApproveDATAservice;
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;
 /**
- * Author WHJ
+ * 
+ * @author WHJ
+ *
  */
 public class ManageApprove extends ApplicationBL{
 	
@@ -27,6 +30,7 @@ public class ManageApprove extends ApplicationBL{
 	
 	public int approveOver(ArrayList<ApplicationVO> list){
 		int success = 0;
+		int somethingError = 0;//记录是否有失败
 		if(list != null){
 			for(int i = 0; i < list.size(); i++){
 				if(list.get(i).condition == 1){
@@ -34,6 +38,7 @@ public class ManageApprove extends ApplicationBL{
 					success = Application.getApplication(list.get(i), IP).approve();
 					if(success != 0){
 						System.out.println(list.get(i).number + "approve failed");
+						somethingError = ErrorTW.someApplicationFailed;
 					}
 				}
 				else if(list.get(i).condition == -1){
@@ -41,8 +46,7 @@ public class ManageApprove extends ApplicationBL{
 				}
 			}
 		}
-		System.out.println("approve over successfully");
-		return 0;
+		return somethingError;
 	}
 	
 	private void initial(){
@@ -54,6 +58,9 @@ public class ManageApprove extends ApplicationBL{
 				for(int i = 0; i < poList.size(); i++){
 					voList.add(getVOfromPO(poList.get(i)));
 				}
+			}
+			else{
+				voList = null;
 			}
 		} catch (MalformedURLException e) {
 			e.printStackTrace();

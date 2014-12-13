@@ -8,12 +8,11 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import TeamWolf.TeamWolf.client.BLservice.manageBLservice.PromotionBLservice;
 import TeamWolf.TeamWolf.client.GUI.mainUI.RoleSelecter;
-import TeamWolf.TeamWolf.client.GUI.manageUI.SpecialGoodsPackagePromotionPanel.EnsureListener;
+import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
 import TeamWolf.TeamWolf.client.vo.ForVIPPromotionVO;
 
 public class ForVIPPromotionPanel extends JPanel{
@@ -133,9 +132,11 @@ public class ForVIPPromotionPanel extends JPanel{
 					mf.promotion.check.flashPanel();
 					System.out.println("add forVIPpromotion successfully!");
 				}
+				new MessageFrame(success);
 			}
 			else{
 				System.out.println("input error!");
+				new MessageFrame(promotion.error);
 			}
 		}
 		

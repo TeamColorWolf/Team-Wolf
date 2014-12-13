@@ -15,9 +15,11 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.BL.userBL.AdminController;
 import TeamWolf.TeamWolf.client.BLservice.userBLservice.AdminBLservice;
 import TeamWolf.TeamWolf.client.GUI.mainUI.RoleSelecter;
+import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
 import TeamWolf.TeamWolf.client.vo.UserType;
 import TeamWolf.TeamWolf.client.vo.UserVO;
 
@@ -137,6 +139,7 @@ public class CheckUserPanel extends JPanel{
 		ArrayList<UserVO> list = service.checkUserVO();
 		if(list == null){
 			content = new Object[15][3];
+			new MessageFrame(ErrorTW.webError);
 		}
 		else{
 			if(list.size() > 15)
@@ -168,6 +171,7 @@ public class CheckUserPanel extends JPanel{
 				userName.setText(null);
 				workID.setText(null);
 				password.setText(null);
+				new MessageFrame(ErrorTW.userNameNotExist);
 			}
 			else{
 				userName.setText(vo.userName);
@@ -199,9 +203,11 @@ public class CheckUserPanel extends JPanel{
 			if(success == 0){
 				System.out.println("update successfully.");
 				flashPanel();
+				new MessageFrame(success);
 			}
 			else if(success == -1){
 				System.out.println("no enough information.");
+				new MessageFrame(ErrorTW.userInformationLack);
 			}
 		}
 		public void mouseEntered(MouseEvent arg0) {}
@@ -221,9 +227,11 @@ public class CheckUserPanel extends JPanel{
 			if(success == 0){
 				System.out.println("delete successfully.");
 				flashPanel();
+				new MessageFrame(success);
 			}
 			else if(success == -1){
 				System.out.println("no enough information.");
+				new MessageFrame(ErrorTW.userInformationLack);
 			}
 		}
 		public void mouseEntered(MouseEvent arg0) {}

@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.DATAservice.userDATAservice.UserDATAservice;
 import TeamWolf.TeamWolf.client.po.UserPO;
 import TeamWolf.TeamWolf.server.FileName;
@@ -27,12 +28,12 @@ public class UserDATA extends UnicastRemoteObject implements UserDATAservice{
 		try {
 			FileOpr.writeFile(FileName.userFile, list);
 			System.out.println("add " + user.userName + " password:" + user.password);
+			return 0;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return 30001;
+			return ErrorTW.userServerError;
 		}
-		return 0;
 	}
 
 	public int removeUser(String user) throws RemoteException {
@@ -47,11 +48,11 @@ public class UserDATA extends UnicastRemoteObject implements UserDATAservice{
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-					return 30002;
+					return ErrorTW.userServerError;
 				}
 			}
 		}
-		return 0;
+		return ErrorTW.userNameNotExist;
 	}
 
 	public int update(UserPO user) throws RemoteException {
@@ -68,11 +69,11 @@ public class UserDATA extends UnicastRemoteObject implements UserDATAservice{
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-					return 30003;
+					return ErrorTW.userServerError;
 				}
 			}
 		}
-		return 0;
+		return ErrorTW.userNameNotExist;
 	}
 
 	public ArrayList<UserPO> checkPO() throws RemoteException {

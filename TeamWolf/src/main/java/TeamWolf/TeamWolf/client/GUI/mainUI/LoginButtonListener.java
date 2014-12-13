@@ -3,6 +3,7 @@ package TeamWolf.TeamWolf.client.GUI.mainUI;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.BL.userBL.LoginController;
 import TeamWolf.TeamWolf.client.BLservice.userBLservice.LoginBLservice;
 import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
@@ -25,9 +26,8 @@ public class LoginButtonListener implements MouseListener{
 		password = Main.login.password.getText();
 		IP = Main.login.serverIP.getText();
 		System.out.println(userName+"\n"+password+"\n"+IP);
-		if(userName.length()==0 || password.length()==0){
-			new MessageFrame(10001);//TODO 信息不全
-			return;
+		if(userName == null || userName.length()==0 || password == null || password.length()==0){
+			new MessageFrame(ErrorTW.userInformationLack);//TODO 信息不全
 		}
 		if(IP.length() == 0){
 			IP = "127.0.0.1";
@@ -36,15 +36,15 @@ public class LoginButtonListener implements MouseListener{
 		LoginBLservice c = new LoginController(IP);
 		user = c.login(loginUser);
 		if(user == null){
-			new MessageFrame(10003);//TODO 网络连接错误
-			return;
+			new MessageFrame(ErrorTW.webError);//TODO 网络连接错误
 		}
-		if(user.error != 0){
-			new MessageFrame(10002);//TODO 输入用户名或密码错误
-			return;
+		else if(user.error != 0){
+			new MessageFrame(ErrorTW.userInformationError);//TODO 输入用户名或密码错误
 		}
-		RoleSelecter.roleSelect(user, IP);
-		Main.login.dispose();
+		else{
+			RoleSelecter.roleSelect(user, IP);
+			Main.login.dispose();
+		}
 	}
 
 	public void mouseEntered(MouseEvent arg0) {

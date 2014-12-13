@@ -26,7 +26,9 @@ public class UserVO {
 		password = po.password;
 		workID = po.workID;
 		power = po.power;
-		error = 0;
+		if(!po.notFound){
+			error = 1;
+		}
 	}
 	
 	public UserVO(boolean isError){

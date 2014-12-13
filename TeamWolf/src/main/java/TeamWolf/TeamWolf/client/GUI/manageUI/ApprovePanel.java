@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.BL.applicationBL.ManageApproveService;
 import TeamWolf.TeamWolf.client.BL.applicationBL.forManage.ManageApproveController;
+import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;
 
 public class ApprovePanel extends JPanel{
@@ -47,6 +49,9 @@ public class ApprovePanel extends JPanel{
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
 			ArrayList<ApplicationVO> list = approve.getResult();
+			if(list == null || list.size() == 0){
+				new MessageFrame(ErrorTW.approveWithoutApplication);
+			}
 			service.approveOver(list);
 			approve.flashPanel();
 			detial.flashPanel(null);

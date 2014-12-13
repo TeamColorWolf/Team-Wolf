@@ -3,9 +3,10 @@ package TeamWolf.TeamWolf;
 public class ErrorTW {
 	public static final int webError = 30000;
 	public static final int notFound = 404;
-	public static final int timeError = 20000;
-	public static final int shouldBeInteger = 10001;
-	public static final int shoulbBePositive = 10010;
+	public static final int timeError = 20000;//结束时间早于起始时间
+	public static final int shouldBeInteger = 10001;//商品数量必须为整数
+	public static final int shoulbBePositive = 10010;//商品数量或价格必须为正数
+	public static final int shouldBeDouble = 10011;//商品价格必须为小数
 	public static final int powerError=1000;   //权限不足（如库存管理员无法编辑特价包）
 	public static final int cannotAddType_1=1001;  //返回不可在有商品的分类下添加子分类
 	public static final int cannotAddType_2=1002;  //商品分类已存在于系统中
@@ -31,4 +32,13 @@ public class ErrorTW {
 	public static final int haveAlreadyExist = 704;//客户已经存在（添加客户时）
 	public static final int chooseNoCustomer = 705;//未选择要删除的客户
 	public static final int wrongTopLimit = 706;//应收额度小于0
+	public static final int someApplicationFailed = 40001;//存在审批失败的单据
+	public static final int manageServerError = 40000;//总经理服务器端出错
+	public static final int approveWithoutApplication = 40002;//必须有单据时审批
+	public static final int userServerError = 50000;//用户服务器端出错
+	public static final int userMessageLack = 50001;//用户信息必须填写完整
+	public static final int userNameExist = 50002;//该用户名已经存在
+	public static final int userNameNotExist = 50003;//该用户名不存在
+	public static final int userInformationError = 50004;//用户名或密码错误
+	public static final int userInformationLack = 50005;//输入用户信息不全
 }

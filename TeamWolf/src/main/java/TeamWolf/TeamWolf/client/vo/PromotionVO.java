@@ -54,7 +54,7 @@ public class PromotionVO {
 				error = ErrorTW.shoulbBePositive;//必须输入正数
 			}
 		}catch(Exception e){
-			error = ErrorTW.shouldBeInteger;//必须输入数字
+			error = ErrorTW.shouldBeDouble;//必须输入数字
 		}
 		return t;
 	}
@@ -63,7 +63,7 @@ public class PromotionVO {
 		int t = -1;
 		try{
 			t = Integer.parseInt(i);
-			if(t < 0){
+			if(t <= 0){
 				error = ErrorTW.shoulbBePositive;//必须输入正数
 			}
 		}catch(Exception e){

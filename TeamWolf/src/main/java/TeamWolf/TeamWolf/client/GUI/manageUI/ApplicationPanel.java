@@ -13,7 +13,9 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.BL.applicationBL.ManageApproveService;
+import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;
 
 public class ApplicationPanel extends JPanel{
@@ -87,6 +89,9 @@ public class ApplicationPanel extends JPanel{
 	
 	private void getContent(){
 		list = service.getUnsetApplicationList();
+		if(list == null){
+			new MessageFrame(ErrorTW.manageServerError);
+		}
 		if(list == null || list.size() < 18){
 			content = new Object[18][4];
 		}

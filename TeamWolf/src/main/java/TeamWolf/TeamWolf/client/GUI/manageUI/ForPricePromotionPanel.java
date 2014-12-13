@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 
 import TeamWolf.TeamWolf.client.BLservice.manageBLservice.PromotionBLservice;
 import TeamWolf.TeamWolf.client.GUI.mainUI.RoleSelecter;
-import TeamWolf.TeamWolf.client.GUI.manageUI.SpecialGoodsPackagePromotionPanel.EnsureListener;
+import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
 import TeamWolf.TeamWolf.client.vo.ForPricePromotionVO;
 
 public class ForPricePromotionPanel extends JPanel{
@@ -100,9 +100,11 @@ public class ForPricePromotionPanel extends JPanel{
 					mf.promotion.check.flashPanel();
 					System.out.println("add forPricePromotion successfully!");
 				}
+				new MessageFrame(success);
 			}
 			else{
 				System.out.println("input error!");
+				new MessageFrame(promotion.error);
 			}
 		}
 		

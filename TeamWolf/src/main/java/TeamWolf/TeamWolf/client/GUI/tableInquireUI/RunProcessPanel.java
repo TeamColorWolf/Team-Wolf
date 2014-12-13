@@ -10,7 +10,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.BLservice.tableInquireBLservice.TableInquireBLservice;
+import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
 import TeamWolf.TeamWolf.client.vo.RunProcessVO;
 
 public class RunProcessPanel extends JPanel{
@@ -99,6 +101,10 @@ public class RunProcessPanel extends JPanel{
 	class RunProcessCheck implements ActionListener{
 
 		public void actionPerformed(ActionEvent arg0) {
+			if(timeSelect.getBeginVO().timeCompare(timeSelect.getEndVO()) > 0){
+				new MessageFrame(ErrorTW.timeError);
+				return;
+			}
 			flashPanel();
 		}
 		

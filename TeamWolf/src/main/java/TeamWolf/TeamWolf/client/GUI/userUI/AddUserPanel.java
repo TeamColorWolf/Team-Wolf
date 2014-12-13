@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.BLservice.userBLservice.AdminBLservice;
 import TeamWolf.TeamWolf.client.GUI.mainUI.RoleSelecter;
 import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
@@ -160,6 +161,9 @@ public class AddUserPanel extends JPanel{
 			String ensure = ensurePas.getText();
 			UserType POWER = (UserType)power.getSelectedItem();
 			String work = workID.getText();
+			if(name == null || name.length() == 0 || password == null || password.length() == 0 || work == null || work.length() == 0){
+				new MessageFrame(ErrorTW.userMessageLack);
+			}
 			if(name.length()>0 && password.length()>0 && work.length()>0 && password.equals(ensure)){
 				UserVO vo = new UserVO(name, password, work, POWER);
 				int success = service.addUser(vo);
@@ -169,9 +173,6 @@ public class AddUserPanel extends JPanel{
 					System.out.println("add successfully");
 				}
 				new MessageFrame(success);
-			}
-			else if(name.length() == 0 || password.length() == 0 || work.length() == 0){
-				new MessageFrame(10000);//TODO 换ErrorTW中错误
 			}
 		}
 

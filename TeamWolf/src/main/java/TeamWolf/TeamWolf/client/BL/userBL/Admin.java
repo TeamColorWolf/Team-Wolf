@@ -37,7 +37,7 @@ public class Admin {
 			return ErrorTW.webError;//网络连接故障
 		for(int i = 0; i < poList.size(); i++){
 			if(poList.get(i).userName.equals(user.userName)){
-				return 30001;//该客户名已存在
+				return ErrorTW.userNameExist;//该客户名已存在
 			}
 		}
 		UserPO po = new UserPO(user);
@@ -97,7 +97,7 @@ public class Admin {
 	public int update(UserVO user) {
 		// TODO Auto-generated method stub
 		if(poList == null){
-			return 30000;
+			return ErrorTW.webError;
 		}
 		for(int i = 0; i < poList.size(); i++){
 			if(poList.get(i).userName.equals(user.userName)){
@@ -123,7 +123,7 @@ public class Admin {
 				return ErrorTW.webError;
 			}
 		}
-		return ErrorTW.notFound;//该客户名不存在
+		return ErrorTW.userNameNotExist;//该客户名不存在
 	}
 
 	public ArrayList<UserVO> checkUserVO() {
