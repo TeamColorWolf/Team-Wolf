@@ -238,7 +238,7 @@ public class GoodsManager {
 	    
 	    for(GoodsPO g: gl){
 	    	
-	    	System.out.println(g.getName()+":");
+	    	//System.out.println(g.getName()+":");
 	    	
 	    	GoodsStockVO gs=new GoodsStockVO();
 	    	gs.setGood(new GoodsVO(g));
@@ -260,11 +260,11 @@ public class GoodsManager {
 	    		    	if(date>=beginDate&&date<=endDate){
 	    				      ImportAmount+=imported.getAmount();
 	    				      ImportPrice+=imported.getAmount()*imported.getImprice();
-	    				      System.out.println("进货 "+imported.getAmount()+" "+imported.getImprice());
+	    				      //System.out.println("进货 "+imported.getAmount()+" "+imported.getImprice());
 	    		    	}
 	    		    	totalAmount+=imported.getAmount();
 	    		    	totalPrice+=imported.getAmount()*imported.getImprice();
-	    		    	System.out.println("ip: "+totalPrice+" "+totalAmount);
+	    		    	//System.out.println("ip: "+totalPrice+" "+totalAmount);
 	    			 }
 	    		}
 	    		    			    	  
@@ -279,12 +279,12 @@ public class GoodsManager {
 	    				if(date>=beginDate&&date<=endDate){
 	    				      ImportAmount-=importR.getAmount();
 	    				      ImportPrice-=importR.getAmount()*importR.getImprice();
-	    				      System.out.println("进货退货 "+importR.getAmount()+" "+importR.getImprice());
+	    				      //System.out.println("进货退货 "+importR.getAmount()+" "+importR.getImprice());
 	    				}
 	    				double aP=totalPrice/(double)totalAmount;
 	    				totalAmount-=importR.getAmount();
 	    				totalPrice-=(aP*importR.getAmount());
-	    				System.out.println("irp: "+totalPrice+" "+totalAmount);
+	    				//System.out.println("irp: "+totalPrice+" "+totalAmount);
 	    			}
 	    		}
 	    	}
@@ -298,13 +298,13 @@ public class GoodsManager {
 	    			  if(date>=beginDate&&date<=endDate){  
 	    			     ExportAmount+=sold.getAmount();
 	    			     ExportPrice+=sold.getExprice()*sold.getAmount();
-	    			     System.out.println("销售 "+sold.getAmount()+" "+sold.getImprice());
+	    			     //System.out.println("销售 "+sold.getAmount()+" "+sold.getImprice());
 	    			  }
 	    			  
 	    			  double aP=totalPrice/(double)totalAmount;
 	    			  totalAmount-=sold.getAmount();
 	    			  totalPrice-=(aP*sold.getAmount());
-	    			  System.out.println("ep: "+totalPrice+" "+totalAmount);
+	    			  //System.out.println("ep: "+totalPrice+" "+totalAmount);
 	    		   }
 	    		}
 	    	}
@@ -318,13 +318,13 @@ public class GoodsManager {
 	    				if(date>=beginDate&&date<=endDate){
 	    					ExportAmount-=soldR.getAmount();
 	    					ExportPrice-=soldR.getExprice()*soldR.getAmount();
-	    					System.out.println("销售退货 "+soldR.getAmount()+" "+soldR.getImprice());
+	    					//System.out.println("销售退货 "+soldR.getAmount()+" "+soldR.getImprice());
 	    				}
 	    				
 	    				double aP=totalPrice/(double)totalAmount;
 	    				totalAmount+=soldR.getAmount();
 	    				totalPrice+=(aP*soldR.getAmount());
-	    				System.out.println("erp: "+totalPrice+" "+totalAmount);
+	    				//System.out.println("erp: "+totalPrice+" "+totalAmount);
 	    			}
 	    		}
 	    		
@@ -346,6 +346,6 @@ public class GoodsManager {
 		
 		int presentDate=Integer.parseInt(assistant.getPresentDate());
 		return this.shoStockList(presentDate, presentDate);
-	}
+	}                                                                                                                                                                                                                                                                                                                                                            
 	
 }
