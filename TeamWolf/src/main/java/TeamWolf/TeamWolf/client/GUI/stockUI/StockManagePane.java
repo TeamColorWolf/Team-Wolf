@@ -385,10 +385,16 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     				else{
     					for(int i=0;i<NOC;i++){
         					String[] cInfo=((TreeNode)parentNode.getChildAt(i)).toString().split(" ");
-        					int num=Integer.parseInt(cInfo[1].substring(4));
-        			        //System.out.println(cInfo[1].substring(4));
-        					if(num>GoodsNum)
+        					if(cInfo[1].length()>4){
+        					  int num=Integer.parseInt(cInfo[1].substring(4));
+        			          //System.out.println(cInfo[1].substring(4));
+        					  if(num>GoodsNum)
         						GoodsNum=num;
+        					}
+        					else{
+        						result=2001;
+        					    break;
+        					}
         				}
         				GNum=""+(GoodsNum+1);
         				while(GNum.length()<4){
