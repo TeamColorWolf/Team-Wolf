@@ -23,14 +23,14 @@ public class TestMain {
 		UserVO user = new UserVO("WKS", "131250196", "0001", UserType.销售人员);
 		String IP = "127.0.0.1";
 		try {
-//			ArrayList<ImportListVO> importList = (ArrayList<ImportListVO>) FileOpr.readFile(FileName.importListFile);
-//			importList.remove(importList.size() - 1);
-//			System.out.println(importList.size());
-//			FileOpr.writeFile(FileName.importListFile, importList);
-			ArrayList<SaleListVO> saleList = (ArrayList<SaleListVO>) FileOpr.readFile(FileName.saleListFile);
-			saleList.remove(saleList.size() - 1);
-			System.out.println(saleList.size());
-			FileOpr.writeFile(FileName.saleListFile, saleList);
+			ArrayList<ImportListVO> importList = (ArrayList<ImportListVO>) FileOpr.readFile(FileName.importListFile);
+			importList.remove(importList.size() - 1);
+			System.out.println(importList.size());
+			FileOpr.writeFile(FileName.importListFile, importList);
+//			ArrayList<SaleListVO> saleList = (ArrayList<SaleListVO>) FileOpr.readFile(FileName.saleListFile);
+//			saleList.remove(saleList.size() - 1);
+//			System.out.println(saleList.size());
+//			FileOpr.writeFile(FileName.saleListFile, saleList);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -74,7 +74,7 @@ public class SaleBL{
 	public int createImport(ImportListVO ivo) {
 		//TODO:
 		int judge = 0;
-//		int judge = saleAssist.canAddImport(ivo);
+		judge = saleAssist.canAddImport(ivo);
 		if(judge != 0){
 			return judge;
 		}
@@ -96,8 +96,11 @@ public class SaleBL{
 	}
 
 	public int createImportReject(ImportRejectListVO irvo) {
-//		int judge = saleAssist.canAddImportReject(irvo);
 		int judge = 0;
+		judge = saleAssist.canAddImportReject(irvo);
+		if(judge != 0){
+			return judge;
+		}
 		ImportRejectListPO irpo = new ImportRejectListPO(irvo);
 		try {
 			saleAppServ = (SaleApplicationDATAservice) Naming.lookup(URL);

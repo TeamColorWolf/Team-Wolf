@@ -31,17 +31,17 @@ public class SaleBLAssistant {
 	/**
 	 * 判断是否能够添加进货单
 	 * @param ivo
-	 * @return 0：添加成功；1：单据数量达到上限；2：进货数量错误（为0或小于0）
+	 * @return 0：添加成功；1：单据数量达到上限；2：进货数量错误（为0或小于0或小数）
 	 */
 	public int canAddImport (ImportListVO ivo){
-		
-		int number = Integer.parseInt(ivo.number);
+		String numSplit[] = ivo.number.split("-");
+		int number = Integer.parseInt(numSplit[2]);
 		ArrayList<GoodsVO> goodsList = ivo.getGoodsList();
 		if(number > 99999){
 			return 1;
 		}
 		for(int i = 0; i < goodsList.size(); i++){
-			int goodsNum = Integer.parseInt(goodsList.get(i).getNumber());
+			int goodsNum = goodsList.get(i).getAmount();
 			if(goodsNum <= 0){
 				return 2;
 			}
@@ -56,8 +56,8 @@ public class SaleBLAssistant {
 	 * @return 0：添加成功；1：单据数量达到上限；2：未找到对应的进货单
 	 */
 	public int canAddImportReject (ImportRejectListVO irvo){
-		
-		int number = Integer.parseInt(irvo.number);
+		String numSplit[] = irvo.number.split("-");
+		int number = Integer.parseInt(numSplit[2]);
 		ArrayList<GoodsVO> rejectGoodsList = irvo.getGoodsList();
 		ArrayList<ImportListVO> importList = getImportList();
 		boolean b = true, a = true;
@@ -113,6 +113,18 @@ public class SaleBLAssistant {
 	 * @return 0：添加成功；1：单据数量达到上限；2：销售数量错误（为0或小于0）
 	 */
 	public int canAddSale (SaleListVO svo){
+		String numSplit[] = svo.number.split("-");
+		int number = Integer.parseInt(numSplit[2]);
+		ArrayList<GoodsVO> goodsList = svo.getGoodsList();
+		if(number > 99999){
+			return 1;
+		}
+		for(int i = 0; i < goodsList.size(); i++){
+			int goodsNum = goodsList.get(i).getAmount();
+			if(goodsNum <= 0){
+				return 2;
+			}
+		}
 		return 0;
 	}
 	
@@ -122,6 +134,11 @@ public class SaleBLAssistant {
 	 * @return 0：添加成功；1：单据数量达到上限；2：未找到对应的销售单
 	 */
 	public int canAddSaleReject (SaleRejectListVO srvo){
+		String numSplit[] = srvo.number.split("-");
+		int number = Integer.parseInt(numSplit[2]);
+		if(number > 99999){
+			return 1;
+		}
 		return 0;
 	}
 	
