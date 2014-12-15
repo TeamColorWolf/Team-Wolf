@@ -6,6 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.DATAservice.customerDATAservice.CustomerDATAservice;
 import TeamWolf.TeamWolf.client.DATAservice.financeDATAservice.financeDATAservice;
 import TeamWolf.TeamWolf.client.po.CustomerPO;
@@ -45,6 +46,7 @@ public class CustomerOpr implements CustomerOprBLservice{
 	    CustomerPO newpo = new CustomerPO(newVO);
 	    try {
 			int success = cds.modCustomer(po, newpo);
+			System.out.println(success);
 			if(success==0){
 			   voList.set(voList.indexOf(vo),newVO);
 			   for (int i = 0; i < poList.size(); i++) {
@@ -55,13 +57,15 @@ public class CustomerOpr implements CustomerOprBLservice{
 				   }
 			   }
 			   return success;
+			}else{
+				return success;
 			}
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
 	    
-		return 0;
+		return ErrorTW.webError;
 	}
 
 	public int Customeradd(CustomerVO vo) {
@@ -87,7 +91,7 @@ public class CustomerOpr implements CustomerOprBLservice{
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		};
-		return 12138;
+		return ErrorTW.webError;
 	}
 
 	public int Customerdel(CustomerVO cvo) {
@@ -113,18 +117,16 @@ public class CustomerOpr implements CustomerOprBLservice{
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		return 12138;
+		return ErrorTW.webError;
 	}
 	
 	public CustomerVO findCustomer(String name,String number){
         try {
 			cds = (CustomerDATAservice)Naming.lookup(URL);
 			CustomerPO cpo = cds.findCustomer(name, number);
-			if(cpo == null){
-				return null;
-			} else {
+			if(cpo != null){
 				return new CustomerVO(cpo);
-			}
+				}
 		} catch (MalformedURLException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -192,7 +194,11 @@ public class CustomerOpr implements CustomerOprBLservice{
 			e.printStackTrace();
 		}
 		try {
-			return new CustomerVO(cds.findCustomer(nameOrnumber));
+			CustomerPO getit = cds.findCustomer(nameOrnumber);
+			if(getit!=null){
+				return new CustomerVO(getit);
+			}
+			
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();

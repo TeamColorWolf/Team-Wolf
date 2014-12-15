@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.DATAservice.customerDATAservice.CustomerDATAservice;
 import TeamWolf.TeamWolf.client.po.CustomerPO;
 import TeamWolf.TeamWolf.client.po.UserPO;
@@ -28,6 +29,11 @@ public class CustomerDATA extends UnicastRemoteObject implements CustomerDATAser
 	
 	public int addCustomer(CustomerPO cpo) throws RemoteException {
 		// TODO Auto-generated method stub
+		for(int i=0;i<list.size();i++){
+			if(list.get(i).getNum().equals(cpo.getNum())){
+				return ErrorTW.haveAlreadyExist;
+			}
+		}
 		list.add(cpo);
 		try {
 			FileOpr.writeFile(FileName.customerFile, list);
@@ -45,17 +51,15 @@ public class CustomerDATA extends UnicastRemoteObject implements CustomerDATAser
 				list.remove(i);
 				try {
 					FileOpr.writeFile(FileName.customerFile,list);
-					System.out.println("del customer success");
 					return 0;
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-					System.out.println("hehehehe");
 					return 30002;
 				}
 			}
 		}
-		return 0;
+		return ErrorTW.notFondCustomer;
 	}
 
 	public ArrayList<CustomerPO> checkPO() throws RemoteException {
@@ -72,21 +76,22 @@ public class CustomerDATA extends UnicastRemoteObject implements CustomerDATAser
 	}
 
 	public int modCustomer(CustomerPO po, CustomerPO newpo) throws RemoteException {
-		for(int i = 0; i < list.size(); i++){
+			for(int i = 0; i < list.size(); i++){
 			if(list.get(i).getNum().equals(po.getNum())){
-			  list.remove(list.get(i));
-			  list.add(i,newpo);
+				//if(!list.contains(findCustomer(newpo.getNum()))){
+			         list.remove(list.get(i));
+			         list.add(i,newpo);
 				try {
 					FileOpr.writeFile(FileName.customerFile, list);
 					return 0;
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-					return 30003;
+					return ErrorTW.webError;
 				}
 			}
 		}
-		return 0;
+		return ErrorTW.cannotOperateForNotExist;
 	}
 
 	public CustomerPO findCustomer(String name, String number)
@@ -100,12 +105,14 @@ public class CustomerDATA extends UnicastRemoteObject implements CustomerDATAser
 	}
 
 	public CustomerPO findCustomer(String nameOrnumber) throws RemoteException {
+		CustomerPO tofind = null;
 		for(int i = 0; i < list.size(); i++){
 			if(list.get(i).getNum().equals(nameOrnumber)||list.get(i).getName().equals(nameOrnumber)){
-				return list.get(i);
+				tofind =  list.get(i);
+				break;
 			}
 		}
-		return null;
+		return tofind;
 	}
 	public ArrayList<String> getCustomerList() throws RemoteException {
 		// TODO Auto-generated method stub
