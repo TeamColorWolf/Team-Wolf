@@ -53,13 +53,13 @@ public class Account implements AccountBlservice{
 		          polist.add(po);
 			      return fds.add(po);
 			}else{
-				return 30001;
+				return ErrorTW.accountNameExist;
 			}
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		return ErrorTW.notFound;
+		return ErrorTW.webError;
 	}
 
 	public int delete(financeVO vo) {

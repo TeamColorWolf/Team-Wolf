@@ -41,4 +41,6 @@ public class ErrorTW {
 	public static final int userNameNotExist = 50003;//该用户名不存在
 	public static final int userInformationError = 50004;//用户名或密码错误
 	public static final int userInformationLack = 50005;//输入用户信息不全
+	public static final int accountNameExist = 99991;//账户名称已存在
+	public static final int accountNameNotExist = 99992;//账户名称不存在
 }
