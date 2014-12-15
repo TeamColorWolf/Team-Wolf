@@ -1,27 +1,30 @@
 package TeamWolf.TeamWolf;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.net.InetAddress;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
-import TeamWolf.TeamWolf.client.BL.userBL.Login_driver;
+import TeamWolf.TeamWolf.client.BL.userBL.LoginController;
+import TeamWolf.TeamWolf.client.BLservice.userBLservice.LoginBLservice;
 import TeamWolf.TeamWolf.client.vo.LoginUserVO;
 import TeamWolf.TeamWolf.client.vo.UserType;
 import TeamWolf.TeamWolf.client.vo.UserVO;
-import TeamWolf.TeamWolf.server.DATAfactory.DATAfactory;
 
+@FixMethodOrder(MethodSorters.JVM)
 public class LoginTest {
 	static String IP;
+	static LoginBLservice lbs;
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		InetAddress addr = InetAddress.getLocalHost();
 		IP = addr.getHostAddress().toString();//获得本机IP
-		
-		new DATAfactory();
+		lbs = new LoginController(IP);
 	}
 
 	@AfterClass
@@ -29,14 +32,29 @@ public class LoginTest {
 	}
 
 	@Test
-	public void test() {
-		LoginUserVO WHJ = new LoginUserVO("admin", "admin");
-		UserVO whj = new UserVO("admin", "admin", "admin_01", UserType.系统管理员);
-		Login_driver login = new Login_driver(IP, WHJ);
-		assertEquals(whj.userName, login.getBack.userName);
-		assertEquals(whj.password, login.getBack.password);
-		assertEquals(whj.workID, login.getBack.workID);
-		assertEquals(whj.power, login.getBack.power);
+	public void test_001_loginSuccess() {
+		LoginUserVO login = new LoginUserVO("admin", "admin");
+		UserVO user = lbs.login(login);
+		assertEquals(user.error, 0);
+		assertEquals(user.userName, "admin");
+		assertEquals(user.password, "admin");
+		assertEquals(user.power, UserType.系统管理员);
+		assertEquals(user.workID, "admin_1");
+	}
+	
+	@Test
+	public void test_002_loginFail(){
+		LoginUserVO login = new LoginUserVO("admin", "*****");
+		UserVO user = lbs.login(login);
+		assertEquals(user.error, 1);
+	}
+	
+	@Test
+	public void test_003_connectRefused(){
+		lbs = new LoginController("128.0.0.1");
+		LoginUserVO login = new LoginUserVO("admin", "admin");
+		UserVO user = lbs.login(login);
+		assertEquals(user, null);
 	}
 
 }

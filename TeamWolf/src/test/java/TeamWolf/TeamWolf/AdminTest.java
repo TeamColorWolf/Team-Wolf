@@ -1,28 +1,29 @@
 package TeamWolf.TeamWolf;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
-import TeamWolf.TeamWolf.client.BL.userBL.Admin_driver;
+import TeamWolf.TeamWolf.client.BL.userBL.AdminController;
+import TeamWolf.TeamWolf.client.BLservice.userBLservice.AdminBLservice;
 import TeamWolf.TeamWolf.client.vo.UserType;
 import TeamWolf.TeamWolf.client.vo.UserVO;
 
+@FixMethodOrder(MethodSorters.JVM)
 public class AdminTest {
 	static String IP;
-	static Admin_driver ad;
-	UserVO WHJ = new UserVO("WHJ", "131250194", "manage_01", UserType.总经理);
-	UserVO WKS = new UserVO("WKS", "131250196", "sale_01", UserType.销售经理);
-	UserVO XYJ = new UserVO("XYJ", "131250197", "stock_01", UserType.库存管理员);
-	UserVO GYQ = new UserVO("GYQ", "131250135", "finance_01", UserType.财务人员);
-	UserVO any = new UserVO("anyone", "******", "******", UserType.系统管理员);
+	static AdminBLservice admin;
+	UserVO WHJ = new UserVO("WHJ", "131250194", "manage_1", UserType.总经理);
+	UserVO any = new UserVO("anyone", "******", "admin_2", UserType.系统管理员);
+	UserVO cha = new UserVO("changeOne", "***", "admin_3", UserType.系统管理员);
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		IP = "127.0.0.1";
-		ad = new Admin_driver(IP);
+		admin = new AdminController(IP);
 	}
 
 	@AfterClass
@@ -30,22 +31,46 @@ public class AdminTest {
 	}
 	
 	@Test
-	public void addUser() {
-		assertEquals(30001, ad.addUser(GYQ));
-		assertEquals(30001, ad.addUser(WHJ));
-		assertEquals(30001, ad.addUser(WKS));
-		assertEquals(30001, ad.addUser(XYJ));
-		assertEquals(0, ad.addUser(any));
-		System.out.println("add anyone");
+	public void test_001_addUserNotExist(){
+		any.error = 0;
+		int success = admin.addUser(any);
+		assertEquals(success, 0);
+		cha.error = 0;
+		success = admin.addUser(cha);
+		assertEquals(success, 0);
 	}
 	
 	@Test
-	public void removeUser(){
-		assertEquals(30002, ad.removeUser("***"));
-		System.out.println("remove fail");
-		//System.out.println(ad.removeUser("anyone"));
-		assertEquals(0, ad.removeUser("WHJ"));
-		System.out.println("remove WHJ");
+	public void test_002_addUserExist(){
+		int fail = admin.addUser(WHJ);
+		assertEquals(fail, ErrorTW.userNameExist);
+	}
+	
+	@Test
+	public void test_003_delUserExist(){
+		int success = admin.removeUser(any.userName);
+		assertEquals(success, 0);
+	}
+	
+	@Test
+	public void test_004_delUserNotExist(){
+		int fail = admin.removeUser("***");
+		assertEquals(fail, ErrorTW.userNameNotExist);
+	}
+	
+	@Test
+	public void test_005_updUserExist(){
+		cha.password = "aaaaa";
+		int success = admin.update(cha);
+		assertEquals(success, 0);
+		success = admin.removeUser(cha.userName);
+		assertEquals(success, 0);
+	}
+	
+	@Test
+	public void test_006_updUserNotExist(){
+		int fail = admin.update(cha);
+		assertEquals(fail, ErrorTW.userNameNotExist);
 	}
 
 }
