@@ -74,8 +74,11 @@ public class financeBLAssistant {
     	financePO po = new financePO(f);
     	financePO newpo = new financePO(newf);
     	try {
-			if(fds.find(newpo)==null){
-				return true;
+			if(fds.find(newpo)!=null){
+				return false;
+			}
+			if(fds.find(po)==null){
+				return false;
 			}
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块

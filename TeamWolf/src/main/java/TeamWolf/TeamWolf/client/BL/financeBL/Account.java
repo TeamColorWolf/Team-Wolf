@@ -125,9 +125,8 @@ public class Account implements AccountBlservice{
 				e1.printStackTrace();
 			}
 			
-			return 30001;
 		}
-		return 0;
+		return ErrorTW.accountNameNotExist;
 	}
 
 	public financeVO find(financeVO vo) {
@@ -145,7 +144,10 @@ public class Account implements AccountBlservice{
 		}
 		financePO po = new financePO(vo);
 		try {
-			return new financeVO(fds.find(po));
+			financePO getit = fds.find(po);
+			if(getit!=null){
+				return new financeVO(getit);
+			}
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
