@@ -10,6 +10,7 @@ public class ErrorTW {
 	public static final int powerError=1000;   //权限不足（如库存管理员无法编辑特价包）
 	public static final int cannotAddType_1=1001;  //返回不可在有商品的分类下添加子分类
 	public static final int cannotAddType_2=1002;  //商品分类已存在于系统中
+	public static final int connotDelType_1=1003;  //不可删除底下有子女的分类
 	public static final int cannotOperateForNotExist=1004; // 错误类型：商品不存在于系统中
     public static final int notComplete=1005;  //错误类型：信息填写不完整
     public static final int cannotAddGoods_1=2001;  //分类下有子分类不可添加商品
