@@ -2,11 +2,15 @@ package TeamWolf.TeamWolf;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import TeamWolf.TeamWolf.client.BL.goodsBL.GoodsBLController;
+import TeamWolf.TeamWolf.client.vo.GoodsAlarmVO;
+import TeamWolf.TeamWolf.client.vo.GoodsListVO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
 
 public class GoodsBLTest {
@@ -24,13 +28,6 @@ public class GoodsBLTest {
 	public static void tearDownAfterClass() throws Exception {
 	}
 
-	 public static final int cannotAddGoods_1=2001;  //分类下有子分类不可添加商品
-	    public static final int GoodsIsExisted=2002;  //商品已存在
-	    public static final int notMatchToParent=2003; //商品与父类不匹配
-	    public static final int GoodsIsnotExisted=2004; //商品不存在
-	    public static final int notEnough=2006; //库存不足
-	    public static final int specialGoodsGone=2007; //特价包已不存在
-	    public static final int illegalTime=2008; //时间不合法
 	    
 	@Test
 	public void testAdd() {
@@ -79,32 +76,64 @@ public class GoodsBLTest {
 	
 	@Test
 	public void testSho() {
-		fail("Not yet implemented");
+		
+		GoodsListVO gl=gbcontroller.shoGoods();
+		boolean finded=false;
+		if(gl.gList!=null)
+			finded=true;
+		assertTrue(finded);
 	}
 	
 	@Test
 	public void testDimFin() {
-		fail("Not yet implemented");
+		
+		boolean right=true;
+		GoodsVO toDimFin=new GoodsVO(null, null, null, "CQWW", "TK01", null, null, null, null, null, null);
+		ArrayList<GoodsVO> result=gbcontroller.dimFinGoods(toDimFin);
+		for(GoodsVO g: result){
+			if((!g.getName().equals(toDimFin.getName()))&&(!g.getModel().equals(toDimFin.getModel())))
+				right=false;
+		}
+		
+		assertTrue(right);
+		
 	}
 	
 	@Test
 	public void testITM() {
-		fail("Not yet implemented");
+        int result=0;
+		
+		GoodsVO g5=new GoodsVO("0002", "虚拟商品", "00020003", "不存在", "90", null, "77", "66", null, null, null);
+		result=gbcontroller.increaseToMatch(g5, "");
+		assertEquals(2004, result);
 	}
 	
 	@Test
 	public void testDTM() {
-		fail("Not yet implemented");
+		 int result=0;
+			
+		 GoodsVO g6=new GoodsVO("0002", "虚拟商品", "00020003", "不存在", "90", null, "77", "66", null, null, null);
+		 result=gbcontroller.decreaseToMatch(g6, "");
+		 assertEquals(2004, result);
 	}
 	
 	@Test
 	public void testSetWL() {
-		fail("Not yet implemented");
+		 int result=0;
+			
+		 GoodsVO g7=new GoodsVO("0002", "虚拟商品", "00020003", "不存在", null, null, "77", "66", null, null, "0");
+		 result=gbcontroller.increaseToMatch(g7, "");
+		 assertEquals(2004, result);
 	}
 	
 	@Test
 	public void testGetAlarm() {
-		fail("Not yet implemented");
+		
+		boolean right=true;
+		ArrayList<GoodsAlarmVO> gal=gbcontroller.getGoodsAlarm();
+		if(gal==null)
+			right=false;
+		assertTrue(right);
 	}
 	
 }
