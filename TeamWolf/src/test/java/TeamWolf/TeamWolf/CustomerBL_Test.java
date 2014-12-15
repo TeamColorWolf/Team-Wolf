@@ -53,8 +53,9 @@ public class CustomerBL_Test {
 	//信息不全
 	/*@Test
 	public void Order12_addTest3(){
-		financeVO GD = new financeVO("");
-		assertEquals(ErrorTW.notComplete, ad.add(GD));
+		CustomerVO GD = new CustomerVO("", "Test", "Test","TKSD", "1888", "NJU", "1888", 
+				"574057633@qq.com", "10000", "10000", "10000", "WO");
+		assertEquals(ErrorTW.notComplete, co.Customeradd(GD));
 	}*/
 	
 	//正常删除客户
