@@ -28,7 +28,7 @@ public class Admin {
 	
 	public Admin(String IP){
 		URL = "rmi://" + IP + "/userDATAservice";
-		this.getpoList();
+		this.getAllUserList();
 	}
 	
 	public int addUser(UserVO user) {
@@ -46,7 +46,7 @@ public class Admin {
 			int success = adm.addUser(po);
 			if(success == 0){
 				poList.add(po);
-				voList.add(new UserVO(po));
+				voList.add(user);
 			}
 			return success;
 		} catch (MalformedURLException e1) {
@@ -91,7 +91,7 @@ public class Admin {
 				return ErrorTW.webError;
 			}
 		}
-		return ErrorTW.notFound;//该客户名不存在
+		return ErrorTW.userNameNotExist;//该客户名不存在
 	}
 
 	public int update(UserVO user) {
