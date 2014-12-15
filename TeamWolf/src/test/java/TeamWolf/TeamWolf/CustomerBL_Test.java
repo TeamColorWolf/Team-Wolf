@@ -68,7 +68,7 @@ public class CustomerBL_Test {
 	
 	//删除一个不存在的账户
 	@Test
-	public void Order14_deldeteAccountTest2(){
+	public void Order14_deldeteTest2(){
 		CustomerVO GD = new CustomerVO("根本就没有", "Test", "Test","TKSD", "1888", "NJU", "1888", 
 				"574057633@qq.com", "10000", "10000", "10000", "WO");
 		assertEquals(ErrorTW.notFondCustomer, co.Customerdel(GD));
@@ -76,7 +76,7 @@ public class CustomerBL_Test {
 	
 	//正常修改账户
 	@Test
-	public void Order16_ModAccountTest1(){
+	public void Order16_ModTest1(){
 		CustomerVO GD1 = new CustomerVO("1", "Test", "Test","TKSD", "1888", "NJU", "1888", 
 				"574057633@qq.com", "10000", "10000", "10000", "WO");
 		CustomerVO GD2 = new CustomerVO("1", "Test", "Test","TKSD", "188899", "NJU", "1888", 
@@ -93,7 +93,7 @@ public class CustomerBL_Test {
 	
 	//修改一个不存在的账户
 	@Test
-	public void Order17_ModAccountTest2(){
+	public void Order17_ModTest2(){
 		CustomerVO GD1 = new CustomerVO("根本没有", "Test", "Test","TKSD", "1888", "NJU", "1888", 
 				"574057633@qq.com", "10000", "10000", "10000", "WO");
 		CustomerVO GD2 = new CustomerVO("根本没有", "Test", "Test","TKSD", "1888", "NJU", "1888", 
@@ -104,7 +104,7 @@ public class CustomerBL_Test {
 
 	/*//修改后的编号已存在
 	@Test
-	public void Order18_ModAccountTest3(){
+	public void Order18_ModTest3(){
 		CustomerVO GD1 = new CustomerVO("修改专用", "Test", "Test","TKSD", "1888", "NJU", "1888", 
 				"574057633@qq.com", "10000", "10000", "10000", "WO");
 		CustomerVO GD2 = new CustomerVO("1", "Test", "Test","TKSD", "1888", "NJU", "1888", 
@@ -115,7 +115,7 @@ public class CustomerBL_Test {
 
 	//寻找账户
 	@Test
-	public void Order19_findAccountTest1(){
+	public void Order19_findTest1(){
 		CustomerVO GD1 = new CustomerVO("修改专用", "Test", "Test","TKSD", "1888", "NJU", "1888", 
 				"574057633@qq.com", "10000", "10000", "10000", "WO");
 		int isFind = 0;
@@ -128,7 +128,7 @@ public class CustomerBL_Test {
 
 	//寻找账户——账户不存在
 		@Test
-		public void Order20_findAccountTest2(){
+		public void Order20_findTest2(){
 			CustomerVO GD1 = new CustomerVO("找不到我", "Test", "Test","TKSD", "1888", "NJU", "1888", 
 					"574057633@qq.com", "10000", "10000", "10000", "WO");
 			int isFind = 0;
