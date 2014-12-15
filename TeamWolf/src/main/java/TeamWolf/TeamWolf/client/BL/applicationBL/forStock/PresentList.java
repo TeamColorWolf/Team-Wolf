@@ -54,8 +54,9 @@ public class PresentList extends Application{
 	public int submit() {
 		// TODO Auto-generated method stub
 		int result=0;
-		
 		try {
+			String number=dataService.todayQuantityOfPL();
+			application.number="ZSD-"+number;
 			dataService.submitPresentList(application);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block

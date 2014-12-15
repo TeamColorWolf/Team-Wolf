@@ -47,4 +47,6 @@ public interface StockApplicationDATAservice extends Remote {
 	public int todayQuantityOfITM() throws RemoteException;
 	
 	public int todayQuantityOfDTM() throws RemoteException;
+	
+	public String todayQuantityOfPL() throws RemoteException;
 }

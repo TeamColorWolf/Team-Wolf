@@ -132,7 +132,7 @@ public class StockBLManager{
 				 
 				 dataService.updType(toUpd);									            
 		}else{ //因输入非法无法进行修改，返回错误类型：商品不存于系统中
-			
+			return 1004;
 		}
 		} catch (RemoteException e1) {
 			// TODO Auto-generated catch block

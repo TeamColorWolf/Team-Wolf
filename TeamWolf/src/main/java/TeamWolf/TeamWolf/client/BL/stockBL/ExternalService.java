@@ -15,11 +15,7 @@ public interface ExternalService {
 	
 	public GoodsVO finGoods(String number);
 	
-	public int addSpecialPackage (SpecialGoodsPromotionVO sp);
-	
-	public ArrayList<IncreaseToMatchVO> getITM();
-	
-	public ArrayList<DecreaseToMatchVO> getDTM();
+	public int addSpecialPackage (SpecialGoodsPromotionVO sp);	
 
 	public int handlePresentList(ArrayList<GiftForPromotionVO> gpl, String customer);
 }

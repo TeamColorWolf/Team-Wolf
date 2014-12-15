@@ -16,6 +16,7 @@ public class ExternalServiceController implements ExternalService{
 	StockBLManager man;
 	GoodsManager gm;
 	GoodsTrade gt;
+	
 	String IP;
 	
 	public ExternalServiceController(String IP){
@@ -40,15 +41,7 @@ public class ExternalServiceController implements ExternalService{
 		return gt.handlePresentList(gpl, customer);
 	}
     
-	public ArrayList<IncreaseToMatchVO> getITM() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	public ArrayList<DecreaseToMatchVO> getDTM() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	public int addSpecialPackage(SpecialGoodsPromotionVO sp) {
 		// TODO Auto-generated method stub

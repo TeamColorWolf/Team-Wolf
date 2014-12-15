@@ -328,6 +328,22 @@ public class StockApplicationDATA extends UnicastRemoteObject implements StockAp
 		return result;
 	}
 	
+	public String todayQuantityOfPL() throws RemoteException {
+		
+	    int result=0;
+	    String date=this.getPresentTime();
+	    for(PresentListPO p : PList){
+	    	String[] number=p.number.split("-");
+	    	if(number[1].equals(date))
+	    		result++;
+	    }
+	    String number=""+result;
+	    while(number.length()<5){
+	    	number="0"+number;
+	    }
+	    return date+"-"+number;
+	}
+	
 	private String getPresentTime(){
  		//获得当前时间
  		Calendar c=Calendar.getInstance();
