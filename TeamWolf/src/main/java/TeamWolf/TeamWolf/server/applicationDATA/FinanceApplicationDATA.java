@@ -91,38 +91,128 @@ public class FinanceApplicationDATA extends UnicastRemoteObject implements Finan
 
 	public int approvalRecieptApplication(RecieptApplicationPO po)
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return 0;
+		int success=-1;
+		for(int i=0;i<recieptlist.size();i++){
+			if(po.number.equals(po.number)){
+				recieptlist.remove(i);
+				recieptlist.add(po);
+				break;
+			}
+		}
+		try {
+			FileOpr.writeFile(FileName.recieptFile,recieptlist);
+			success = 0;
+			return success;
+		} catch (IOException e) {
+			success=-1;
+			e.printStackTrace();
+		}
+		return success;
 	}
 
 	public int approvalPaymentApplication(PaymentApplicationPO po)
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return 0;
+		int success=-1;
+		for(int i=0;i<paymentlist.size();i++){
+			if(po.number.equals(po.number)){
+				paymentlist.remove(i);
+				paymentlist.add(po);
+				break;
+			}
+		}
+		try {
+			FileOpr.writeFile(FileName.paymentFile,paymentlist);
+			success = 0;
+			return success;
+		} catch (IOException e) {
+			success=-1;
+			e.printStackTrace();
+		}
+		return success;
 	}
 
 	public int approvalCashApplication(CashApplicationPO po)
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return 0;
+		int success=-1;
+		for(int i=0;i<cashlist.size();i++){
+			if(po.number.equals(po.number)){
+				cashlist.remove(i);
+				cashlist.add(po);
+				break;
+			}
+		}
+		try {
+			FileOpr.writeFile(FileName.cashFile,cashlist);
+			success = 0;
+			return success;
+		} catch (IOException e) {
+			success=-1;
+			e.printStackTrace();
+		}
+		return success;
 	}
 
 	public int rejectRecieptApplication(RecieptApplicationPO po)
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return 0;
+		int success=-1;
+		for(int i=0;i<recieptlist.size();i++){
+			if(po.number.equals(po.number)){
+				recieptlist.remove(i);
+				recieptlist.add(po);
+				break;
+			}
+		}
+		try {
+			FileOpr.writeFile(FileName.recieptFile,recieptlist);
+			success = 0;
+			return success;
+		} catch (IOException e) {
+			success=-1;
+			e.printStackTrace();
+		}
+		return success;
 	}
 
 	public int rejectPaymentApplication(PaymentApplicationPO po)
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return 0;
+		int success=-1;
+		for(int i=0;i<paymentlist.size();i++){
+			if(po.number.equals(po.number)){
+				paymentlist.remove(i);
+				paymentlist.add(po);
+				break;
+			}
+		}
+		try {
+			FileOpr.writeFile(FileName.paymentFile,paymentlist);
+			success = 0;
+			return success;
+		} catch (IOException e) {
+			success=-1;
+			e.printStackTrace();
+		}
+		return success;
 	}
 
 	public int rejectCashApplication(CashApplicationPO po)
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return 0;
+		int success=-1;
+		for(int i=0;i<cashlist.size();i++){
+			if(po.number.equals(po.number)){
+				cashlist.remove(i);
+				cashlist.add(po);
+				break;
+			}
+		}
+		try {
+			FileOpr.writeFile(FileName.cashFile,cashlist);
+			success = 0;
+			return success;
+		} catch (IOException e) {
+			success=-1;
+			e.printStackTrace();
+		}
+		return success;
 	}
 
 	public int changeRecieptApplication(RecieptApplicationPO po)
