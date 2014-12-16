@@ -190,8 +190,8 @@ public class CustomerDelPanel extends JPanel{
 		for (int i = 0; i < customerList.size(); i++) {
 			if(customerListTable.getValueAt(i, 0).equals(true)){
 				cvo = customerList.get(i);
-				//从当前界面持有的customerList删除当前客户，以免重复删除
-				customerList.remove(i);
+//				//从当前界面持有的customerList删除当前客户，以免重复删除
+//				customerList.remove(i);
 			}
 		}
 		if(cvo == null){
@@ -201,10 +201,16 @@ public class CustomerDelPanel extends JPanel{
 		if(cvo.getPay() != 0 || cvo.getReceive() != 0){
 			return 702;
 		}
+//		//显示剩余客户单
+//		showBtnEvent();
+		
+		int result = customerLogic.Customerdel(cvo);
+		CustomerAddPanel.customerList = customerLogic.getAllCustomerList();
+		CustomerModPanel.customerList = customerLogic.getAllCustomerList();
+		customerList = customerLogic.getAllCustomerList();
 		//显示剩余客户单
 		showBtnEvent();
-		
-		return customerLogic.Customerdel(cvo);
+		return result;
 		
 	}
 }

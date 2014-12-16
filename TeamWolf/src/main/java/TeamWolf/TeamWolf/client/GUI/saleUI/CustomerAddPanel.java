@@ -31,7 +31,7 @@ public class CustomerAddPanel extends JPanel{
 	CustomerOprBLservice customerLogic;
 	ForAllUserService userServ;
 	CustomerVO customer;
-	ArrayList<CustomerVO> customerList;
+	static ArrayList<CustomerVO> customerList;
 	ArrayList<String> workerID;
 	
 	//组件们
@@ -302,8 +302,11 @@ public class CustomerAddPanel extends JPanel{
 				zipCode, email, topLimit, receive, pay, businessMan);
 		System.out.println("addsuccess");
 		
-		CustomerDelPanel.customerList.add(customer);
-		return customerLogic.Customeradd(customer);
+//		CustomerDelPanel.customerList.add(customer);
+		int result = customerLogic.Customeradd(customer);
+		CustomerDelPanel.customerList = customerLogic.getAllCustomerList();
+		CustomerModPanel.customerList = customerLogic.getAllCustomerList();
+		return result;
 	}
 	
 	/**
