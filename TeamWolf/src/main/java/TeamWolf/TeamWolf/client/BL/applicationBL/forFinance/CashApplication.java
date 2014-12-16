@@ -64,6 +64,7 @@ public class CashApplication extends Application {
 
 	@Override
 	public int approve() {
+		vo.condition = 1;
 		try {
 			finance = (FinanceApplicationDATAservice) Naming.lookup(URL);
 		} catch (MalformedURLException e1) {
@@ -82,13 +83,14 @@ public class CashApplication extends Application {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		customerController.CashListMod(this.getApplicationVO());
-		
+		//customerController.CashListMod(this.getApplicationVO());
+		fc.CashMod(getApplicationVO());
 		return 0;
 	}
 
 	@Override
 	public int reject() {
+		vo.condition = -1;
 		try {
 			finance = (FinanceApplicationDATAservice) Naming.lookup(URL);
 		} catch (MalformedURLException e1) {
