@@ -44,7 +44,7 @@ public class CustomerVO implements Serializable {
 		
 		try {
 			this.level =Integer.parseInt(level);
-			this.topLimit = Integer.parseInt(topLimit);
+			this.topLimit = Double.parseDouble(topLimit);
 			this.receive = Double.parseDouble(receive);
 			this.pay = Double.parseDouble(pay);
 		} catch (Exception e) {

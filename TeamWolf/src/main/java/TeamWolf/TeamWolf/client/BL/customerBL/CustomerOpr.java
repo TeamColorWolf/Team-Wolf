@@ -47,19 +47,22 @@ public class CustomerOpr implements CustomerOprBLservice{
 	    try {
 			int success = cds.modCustomer(po, newpo);
 			System.out.println(success);
-			if(success==0){
-			   voList.set(voList.indexOf(vo),newVO);
-			   for (int i = 0; i < poList.size(); i++) {
-				   if(poList.get(i).getNum().equals(po.getName())){
-					   poList.remove(i);
-					   poList.add(po);
-					   break;
-				   }
-			   }
-			   return success;
-			}else{
-				return success;
-			}
+			voList = cds.checkVO();
+			poList = cds.checkPO();
+			return success;
+//			if(success==0){
+//			   voList.set(voList.indexOf(vo),newVO);
+//			   for (int i = 0; i < poList.size(); i++) {
+//				   if(poList.get(i).getNum().equals(po.getName())){
+//					   poList.remove(i);
+//					   poList.add(po);
+//					   break;
+//				   }
+//			   }
+//			   return success;
+//			}else{
+//				return success;
+//			}
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -84,8 +87,10 @@ public class CustomerOpr implements CustomerOprBLservice{
 		}
 		try {
 			int success = cds.addCustomer(po);
-			poList.add(new CustomerPO(vo));
-			voList.add(vo);
+//			poList.add(new CustomerPO(vo));
+//			voList.add(vo);
+			voList = cds.checkVO();
+			poList = cds.checkPO();
 			return success;
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
