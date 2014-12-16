@@ -6,16 +6,21 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import TeamWolf.TeamWolf.client.BL.applicationBL.forStock.PresentList;
+import TeamWolf.TeamWolf.client.BL.stockBL.ExternalService;
+import TeamWolf.TeamWolf.client.BL.stockBL.ExternalServiceController;
 import TeamWolf.TeamWolf.client.DATAservice.promotionDATAservice.PromotionDATAservice;
 import TeamWolf.TeamWolf.client.po.ForPricePromotionPO;
 import TeamWolf.TeamWolf.client.po.ForVIPPromotionPO;
 import TeamWolf.TeamWolf.client.po.PromotionPO;
 import TeamWolf.TeamWolf.client.po.PromotionTypePO;
 import TeamWolf.TeamWolf.client.po.SpecialGoodsPromotionPO;
+import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.ForPricePromotionVO;
 import TeamWolf.TeamWolf.client.vo.ForVIPPromotionVO;
 import TeamWolf.TeamWolf.client.vo.GiftForPromotionVO;
-import TeamWolf.TeamWolf.client.vo.ImportListVO;
+import TeamWolf.TeamWolf.client.vo.GoodsVO;
+import TeamWolf.TeamWolf.client.vo.PresentListVO;
 import TeamWolf.TeamWolf.client.vo.PromotionTypeVO;
 import TeamWolf.TeamWolf.client.vo.PromotionVO;
 import TeamWolf.TeamWolf.client.vo.SaleListVO;
@@ -24,12 +29,15 @@ import TeamWolf.TeamWolf.client.vo.TimeVO;
 
 public class PromotionForOther {
 	PromotionDATAservice data;
-	ArrayList<PromotionPO> poList;
+	ExternalService stockService;
 	ArrayList<PromotionVO> voList;
 	String URL;
+	String IP;
 	
 	public PromotionForOther(String IP){
+		this.IP = IP;
 		URL = "rmi://" + IP + "/promotionDATAservice";
+		initial();
 	}
 	
 	public double adaptPromotionForSaleList(SaleListVO vo) {
@@ -62,8 +70,9 @@ public class PromotionForOther {
 				}
 			}
 		}
-		//TODO 生成库存赠送单
-		creatPresentList(giftlist);
+		if(giftlist.size() != 0){//TODO 生成库存赠送单
+			creatPresentList(giftlist, vo.getCustomer());
+		}
 		return discount;
 	}
 	
@@ -81,6 +90,7 @@ public class PromotionForOther {
 	}
 	
 	private void initial(){
+		ArrayList<PromotionPO> poList = null;
 		try {
 			data = (PromotionDATAservice)Naming.lookup(URL);
 			poList = data.show();
@@ -117,8 +127,15 @@ public class PromotionForOther {
 		return null;
 	}
 	
-	private void creatPresentList(ArrayList<GiftForPromotionVO> gift){
-		
+	private void creatPresentList(ArrayList<GiftForPromotionVO> gift, CustomerVO cus){
+		stockService = new ExternalServiceController(IP);
+		PresentListVO PL = new PresentListVO();
+		for(int i = 0; i < gift.size(); i++){
+			GoodsVO vo = new GoodsVO(null, null, gift.get(i).GoodsName, null, null, gift.get(i).sendNumber+"", null, null, null, null, null);
+			PL.addPresent(vo);
+		}
+		PL.setCustomer(cus);
+		new PresentList(PL, IP).submit();
 	}
 	
 	private TimeVO getTime(SaleListVO vo){

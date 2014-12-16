@@ -8,21 +8,17 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import TeamWolf.TeamWolf.ErrorTW;
-import TeamWolf.TeamWolf.client.BLservice.manageBLservice.PromotionBLservice;
 import TeamWolf.TeamWolf.client.DATAservice.promotionDATAservice.PromotionDATAservice;
 import TeamWolf.TeamWolf.client.po.ForPricePromotionPO;
 import TeamWolf.TeamWolf.client.po.ForVIPPromotionPO;
 import TeamWolf.TeamWolf.client.po.PromotionPO;
 import TeamWolf.TeamWolf.client.po.PromotionTypePO;
 import TeamWolf.TeamWolf.client.po.SpecialGoodsPromotionPO;
-import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.ForPricePromotionVO;
 import TeamWolf.TeamWolf.client.vo.ForVIPPromotionVO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
-import TeamWolf.TeamWolf.client.vo.ImportListVO;
 import TeamWolf.TeamWolf.client.vo.PromotionTypeVO;
 import TeamWolf.TeamWolf.client.vo.PromotionVO;
-import TeamWolf.TeamWolf.client.vo.SaleListVO;
 import TeamWolf.TeamWolf.client.vo.SpecialGoodsPromotionVO;
 import TeamWolf.TeamWolf.client.vo.TypeVO;
 /**
@@ -199,10 +195,6 @@ public class PromotionBL{
 	public ArrayList<PromotionVO> check() {
 		// TODO Auto-generated method stub
 		return voList;
-	}
-	
-	public int creatPresentList(PromotionPO po, CustomerVO customer){
-		return proAssist.creatPresentList(po, customer);
 	}
 	
 	public ArrayList<TypeVO> getLeaveType(){
