@@ -534,7 +534,10 @@ public class StockManagePane extends JPanel implements TreeModelListener {
         		}
         		else{
         		    GoodsVO toIncrease=new GoodsVO(null, null, gInfo[1], gInfo[2], gInfo[3], amount, null, null, null, null, null);        		
-        		    result=gbcontroller.increaseToMatch(toIncrease, operator);
+        		    if(toIncrease.isPackSuccess()==0)
+        		       result=gbcontroller.increaseToMatch(toIncrease, operator);
+        		    else
+        		       result=10001;
         		}
         		if(result==0){
         			 MainPane.Infomation=MainPane.Infomation+MainPane.getPresentTime()+" 报溢了商品  "+ITMGITF.getText()+"\n";
@@ -564,7 +567,10 @@ public class StockManagePane extends JPanel implements TreeModelListener {
         		}
         		else{
         		    GoodsVO toDecrease=new GoodsVO(null, null, gInfo[1], gInfo[2], gInfo[3], amount, null, null, null, null, null);        		
-        		    result=gbcontroller.decreaseToMatch(toDecrease, operator);
+        		    if(toDecrease.isPackSuccess()==0)
+        		        result=gbcontroller.decreaseToMatch(toDecrease, operator);
+        		    else
+        		    	result=10001;
         		}
         		if(result==0){
         			 MainPane.Infomation=MainPane.Infomation+MainPane.getPresentTime()+" 报损了商品  "+DTMGITF.getText()+"\n";
@@ -593,8 +599,11 @@ public class StockManagePane extends JPanel implements TreeModelListener {
         			result=1000;
         		}
         		else{
-        		    GoodsVO toSetWL=new GoodsVO(null, null, gInfo[1], gInfo[2], gInfo[3], null, null, null, null, null, warningLine); 		
-        		    result=gbcontroller.setWaringLine(toSetWL);
+        		    GoodsVO toSetWL=new GoodsVO(null, null, gInfo[1], gInfo[2], gInfo[3], null, null, null, null, null, warningLine);
+        		    if(toSetWL.isPackSuccess()==0)
+        		        result=gbcontroller.setWaringLine(toSetWL);
+        		    else
+        		    	result=10001;
         		}
         		if(result==0){
         			 MainPane.Infomation=MainPane.Infomation+MainPane.getPresentTime()+setWLGITF.getText()+"设置了警戒值"+setWLGWLTF.getText()+"\n";
