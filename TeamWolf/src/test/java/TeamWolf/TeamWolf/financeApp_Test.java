@@ -62,7 +62,7 @@ public class financeApp_Test {
 		AccountArray.add(vo);
 	    moneyList.add(money);
 		String number = "FKD-2014/12/16-99999";
-		String operator = "试验一下，其实这里是自动加入的";
+		String operator = "试验一下，其实这里是自动加入的内容";
 		String note = "测试一下，其实界面的输入机制保证了某些问题不会发生";
 		CustomerVO GD = new CustomerVO("1", "Test", "Test","TKSD", "1888", "NJU", "1888", 
 				"574057633@qq.com", "10000", "10000", "10000", "WO");
