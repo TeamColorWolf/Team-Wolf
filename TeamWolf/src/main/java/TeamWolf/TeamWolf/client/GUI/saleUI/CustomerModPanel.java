@@ -38,7 +38,7 @@ public class CustomerModPanel extends JPanel{
 	ForAllUserService userServ;
 	
 	CustomerVO customer;
-	ArrayList<CustomerVO> customerList;
+	static ArrayList<CustomerVO> customerList;
 	ArrayList<String> workerID;
 	
 	//组件们
@@ -275,13 +275,13 @@ public class CustomerModPanel extends JPanel{
 		emailField = new JTextField();
 		addressField = new JTextField();
 		
-		//TODO:TEST
-		nameField.setText("name");
-		zipCodeField.setText("zipCode");
-		telField.setText("tel");
-		topLimitField.setText("topLimit");
-		emailField.setText("e-mail");
-		addressField.setText("address");
+//		//TODO:TEST
+//		nameField.setText("name");
+//		zipCodeField.setText("zipCode");
+//		telField.setText("tel");
+//		topLimitField.setText("topLimit");
+//		emailField.setText("e-mail");
+//		addressField.setText("address");
 		
 		nameLabel.setSize(Label_Size);
 		zipCodeLabel.setSize(Label_Size);
@@ -357,6 +357,10 @@ public class CustomerModPanel extends JPanel{
 	 * 修改按钮事件
 	 */
 	private int modBtnAction(){
+		//未选择要修改的客户
+		if(customer == null){
+			return 707;
+		}
 		//信息填写不完整
 		if(kindBox.getSelectedItem() == null || levelBox.getSelectedItem() == null ||
 				nameField.getText().equals("") || telField.getText().equals("") ||
@@ -385,7 +389,11 @@ public class CustomerModPanel extends JPanel{
 		CustomerVO newVO = new CustomerVO(num, kind, level, name, tel, address, zipCode,
 				email, topLimit, receive, pay, businessMan);
 		
-		return customerLogic.Customerupdate(customer, newVO);
+		int result = customerLogic.Customerupdate(customer, newVO);
+		CustomerAddPanel.customerList = customerLogic.getAllCustomerList();
+		CustomerDelPanel.customerList = customerLogic.getAllCustomerList();
+		customerList = customerLogic.getAllCustomerList();
+		return result;
 	}
 	
 	/**

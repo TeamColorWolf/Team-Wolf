@@ -34,6 +34,7 @@ public class ErrorTW {
 	public static final int haveAlreadyExist = 704;//客户已经存在（添加客户时）
 	public static final int chooseNoCustomer = 705;//未选择要删除的客户
 	public static final int wrongTopLimit = 706;//应收额度小于0
+	public static final int chooseNoModCustomer = 707;
 	public static final int someApplicationFailed = 40001;//存在审批失败的单据
 	public static final int manageServerError = 40000;//总经理服务器端出错
 	public static final int approveWithoutApplication = 40002;//必须有单据时审批
