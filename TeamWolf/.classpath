@@ -23,7 +23,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="F:/南京大学/编程/Java/jexcelapi/jxl.jar"/>
-	<classpathentry kind="lib" path="F:/南京大学/编程/Java/JTattoo-1.6.11.jar"/>
+	<classpathentry kind="lib" path="D:/Documents/GitHub/Team-Wolf/TeamWolf/excel导出包/jxl.jar"/>
+	<classpathentry kind="lib" path="D:/Documents/GitHub/Team-Wolf/TeamWolf/界面风格包/JTattoo-1.6.11.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
