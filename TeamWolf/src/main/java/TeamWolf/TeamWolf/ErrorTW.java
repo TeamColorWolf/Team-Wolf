@@ -27,6 +27,7 @@ public class ErrorTW {
 	public static final int wrongDiscountNum = 7005;//折让金额不能小于0
 	public static final int moreThanDiscount = 7006;//折让金额过多
 	public static final int shouldReduceDiscount = 7007;//折让导致总额为负数
+	public static final int listAmountOverFlow = 7008;//单据数量达到上限
 	public static final int lackCustomerInfo = 701;//客户信息不完整
 	public static final int stillShouldPay = 702;//未结算清，无法删除
 	public static final int notFondCustomer = 703;//未找到对应客户

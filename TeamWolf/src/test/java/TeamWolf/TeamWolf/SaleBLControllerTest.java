@@ -39,6 +39,7 @@ public class SaleBLControllerTest {
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
+		System.out.println("Test over");
 	}
 
 	@Test
@@ -51,7 +52,7 @@ public class SaleBLControllerTest {
 		ImportListVO list_2 = new ImportListVO("JHD-20141215-100000", importMan, "仓库1", "WKS",
 				wrongNumGoodsList, "", "0.0");
 		result = saleCtrl.createImport(list_2);
-		assertEquals(1, result);
+		assertEquals(7008, result);
 	}
 
 	@Test
@@ -60,7 +61,7 @@ public class SaleBLControllerTest {
 		ImportRejectListVO list_1 = new ImportRejectListVO("JHTHD-20141215-100000", importMan, 
 				"仓库1", "WKS", wrongNumGoodsList, "");
 		result = saleCtrl.createImportReject(list_1);
-		assertEquals(1, result);
+		assertEquals(7008, result);
 	}
 
 	@Test
@@ -73,7 +74,7 @@ public class SaleBLControllerTest {
 		SaleListVO list_2 = new SaleListVO("XSD-20141215-100000", saleMan, "WKS", "WKS", 
 				 "仓库1", wrongNumGoodsList, "0", "0", "0", "0", "0");
 		result = saleCtrl.createSale(list_2);
-		assertEquals(1, result);
+		assertEquals(7008, result);
 	}
 
 	@Test
@@ -82,11 +83,7 @@ public class SaleBLControllerTest {
 		SaleRejectListVO list_1 = new SaleRejectListVO("XSD-20141215-100000", saleMan, "WKS", "WKS", 
 				 "仓库1", wrongNumGoodsList, "0", "0", "0", "0", "0");
 		result = saleCtrl.createSaleReject(list_1);
-		assertEquals(1, result);
-	}
-
-	@Test
-	public void testGetPresentDate() {
+		assertEquals(7008, result);
 	}
 
 }

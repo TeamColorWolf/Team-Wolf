@@ -38,7 +38,7 @@ public class SaleBLAssistant {
 		int number = Integer.parseInt(numSplit[2]);
 		ArrayList<GoodsVO> goodsList = ivo.getGoodsList();
 		if(number > 99999){
-			return 1;
+			return 7008;
 		}
 		for(int i = 0; i < goodsList.size(); i++){
 			int goodsNum = goodsList.get(i).getAmount();
@@ -63,7 +63,7 @@ public class SaleBLAssistant {
 		boolean b = true, a = true;
 		
 		if(number > 99999){
-			return 1;
+			return 7008;
 		}
 		for(int j = 0; j < importList.size(); j++){
 			//b是用来判断是否存在对应进货单的;a是用来判断当前（第j项）进货单是否与要生成的退货单信息一致
@@ -117,7 +117,7 @@ public class SaleBLAssistant {
 		int number = Integer.parseInt(numSplit[2]);
 		ArrayList<GoodsVO> goodsList = svo.getGoodsList();
 		if(number > 99999){
-			return 1;
+			return 7008;
 		}
 		for(int i = 0; i < goodsList.size(); i++){
 			int goodsNum = goodsList.get(i).getAmount();
@@ -137,7 +137,7 @@ public class SaleBLAssistant {
 		String numSplit[] = srvo.number.split("-");
 		int number = Integer.parseInt(numSplit[2]);
 		if(number > 99999){
-			return 1;
+			return 7008;
 		}
 		return 0;
 	}
