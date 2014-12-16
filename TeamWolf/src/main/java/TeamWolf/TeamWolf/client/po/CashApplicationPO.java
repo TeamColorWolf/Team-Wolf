@@ -9,16 +9,16 @@ import TeamWolf.TeamWolf.client.vo.financeVO;
 public class CashApplicationPO extends ApplicationPO implements Serializable{
     private String note;
     private String addup;
-    private CustomerPO customer;
+  //  private CustomerPO customer;
     private ArrayList<String> nameList;
    
     private ArrayList<financePO> accountList;
     private ArrayList<String> moneyList;
     
 	public CashApplicationPO(ArrayList<financePO> accountList,ArrayList<String> moneyList,ArrayList<String> nameList,
-        		String number,String operator,String note,CustomerPO customer) {
+        		String number,String operator,String note) {
 			this.note = note;
-			this.customer = customer;
+			//this.customer = customer;
 			
 			this.accountList = new ArrayList<financePO>();
 			this.setNameList(nameList);
@@ -34,7 +34,8 @@ public class CashApplicationPO extends ApplicationPO implements Serializable{
 	public CashApplicationPO(CashApplicationVO vo) {
 		   this.note=vo.getNote();
 		   this.addup=vo.getAddup();
-		   this.customer=new CustomerPO(vo.getCustomer());
+		   this.accountList = new ArrayList<financePO>();
+		   //this.customer=new CustomerPO(vo.getCustomer());
 		   this.nameList=vo.getNameList();
 		   this.setAccountListPO(vo.getAccountList());
 		   this.moneyList=vo.getMoneyList();
@@ -43,6 +44,7 @@ public class CashApplicationPO extends ApplicationPO implements Serializable{
 			this.operator = vo.operator;
 	}
 	private void setAccountListPO(ArrayList<financeVO> accountList2) {
+		
 		for(int i=0;i<accountList2.size();i++){
 			this.accountList.add(new financePO(accountList2.get(i)));
 		}
@@ -74,12 +76,12 @@ public class CashApplicationPO extends ApplicationPO implements Serializable{
 	public void setAddup(String addup) {
 		this.addup = addup;
 	}
-	public CustomerPO getCustomer() {
-		return customer;
-	}
-	public void setCustomer(CustomerPO customer) {
-		this.customer = customer;
-	}
+//	public CustomerPO getCustomer() {
+//		return customer;
+//	}
+//	public void setCustomer(CustomerPO customer) {
+//		this.customer = customer;
+//	}
 	public ArrayList<String> getNameList() {
 		return nameList;
 	}

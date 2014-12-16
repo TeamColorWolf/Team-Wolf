@@ -9,15 +9,13 @@ import TeamWolf.TeamWolf.client.po.financePO;
 public class CashApplicationVO extends ApplicationVO{
     private String note;
     private String addup;
-    private CustomerVO customer;
     private ArrayList<String> nameList;
     private ArrayList<financeVO> accountList;
     private ArrayList<String> moneyList; 
     
 	public CashApplicationVO(ArrayList<financeVO> accountList,ArrayList<String> moneyList,ArrayList<String> nameList,
-        		String number,String operator,String note,CustomerVO customer) {
+        		String number,String operator,String note) {
 			this.note = note;
-			this.customer = customer;
 			
 			this.setNameList(nameList);
 			this.accountList = accountList;
@@ -38,7 +36,7 @@ public class CashApplicationVO extends ApplicationVO{
 	}
 	public CashApplicationVO(CashApplicationPO po) {
 		this.note = po.getNote();
-		this.customer =new CustomerVO(po.getCustomer());
+		//this.customer =new CustomerVO(po.getCustomer());
 		
 		this.accountList = new ArrayList<financeVO>();
 		this.getAccountListVO(po);
@@ -80,12 +78,12 @@ public class CashApplicationVO extends ApplicationVO{
 	public void setAddup(String addup) {
 		this.addup = addup;
 	}
-	public CustomerVO getCustomer() {
-		return customer;
-	}
-	public void setCustomer(CustomerVO customer) {
-		this.customer = customer;
-	}
+//	public CustomerVO getCustomer() {
+//		return customer;
+//	}
+//	public void setCustomer(CustomerVO customer) {
+//		this.customer = customer;
+//	}
 	public ArrayList<String> getNameList() {
 		return nameList;
 	}

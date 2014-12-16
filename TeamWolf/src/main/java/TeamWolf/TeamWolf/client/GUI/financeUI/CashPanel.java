@@ -79,7 +79,7 @@ public class CashPanel extends JPanel{
 		
 		CustomerBox.setSize(LW,LH);
 		CustomerBox.setLocation(120, 20);
-		CustomerBox.setVisible(true);
+		CustomerBox.setVisible(false);
 		
 		AddText.setSize(LW, LH);
 		AddText.setLocation(120, 400);
@@ -87,19 +87,19 @@ public class CashPanel extends JPanel{
 		AddText.setEditable(false);
 		
 		NoteLabel.setSize(BW,LH);
-		NoteLabel.setLocation(380,20);
+		NoteLabel.setLocation(45,20);
 		NoteLabel.setVisible(true);
 		
 		CustomerLabel.setSize(BW,LH);
 		CustomerLabel.setLocation(45, 20);
-		CustomerLabel.setVisible(true);
+		CustomerLabel.setVisible(false);
 		
 		AddLabel.setSize(BW,BH);
 		AddLabel.setLocation(45,400);
 		AddLabel.setVisible(true);
 		
 		NoteText.setSize(LW*3,LH);
-		NoteText.setLocation(380+50,20);
+		NoteText.setLocation(120,20);
 		NoteText.setVisible(true);
 		
 		ensure.setSize(BW, BH);
@@ -147,7 +147,7 @@ public class CashPanel extends JPanel{
 		return date;
 	}
 	public String getNumber(){
-		String num = "XJFKD-";
+		String num = "XJFYD-";
 		String date = getDate();
 		String number = String.format("%05d", ApplicationNumber++);
 		num = num + date + "-" + number;
@@ -168,16 +168,17 @@ public class CashPanel extends JPanel{
 
 		public void actionPerformed(ActionEvent arg0) {
 		    ArrayList<String> accountNameList = ocp.getTheAccount();
-		    //System.out.println(accountNameList);
+		    System.out.println(accountNameList);
 		    ArrayList<financeVO> accountList = new ArrayList<financeVO>();
 		    ArrayList<String> moneyList = ocp.getTheMoney();
+		    ArrayList<String> noteList = ocp.getTheName();
 		    accountList = this.getfinanceList(accountNameList);
 		    String number = getNumber();
 		    String operator = FinanceFrame.user.userName;
 		    String note = NoteText.getText();
 				
 			
-				
+			CashApplicationVO submitCav = new CashApplicationVO(accountList, moneyList, noteList, number, operator, note);
 			System.out.println(number);
 			/*System.out.println(accountList);
 			System.out.println(moneyList);
@@ -189,7 +190,7 @@ public class CashPanel extends JPanel{
 			System.out.println(faservice);
 			System.out.println(submitRav.getAddup());*/
 			//AddText.setText(submitRav.getAddup());
-           // faservice.submitPaymentApplication(submitRav);
+            faservice.submitCashApplication(submitCav);
 		}
 	    
 	    public ArrayList<financeVO> getfinanceList(ArrayList<String> accountNameList){
