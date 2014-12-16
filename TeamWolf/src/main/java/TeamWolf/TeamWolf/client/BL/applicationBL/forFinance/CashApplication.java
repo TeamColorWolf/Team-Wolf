@@ -83,6 +83,7 @@ public class CashApplication extends Application {
 			e.printStackTrace();
 		}
 		customerController.CashListMod(this.getApplicationVO());
+		
 		return 0;
 	}
 
