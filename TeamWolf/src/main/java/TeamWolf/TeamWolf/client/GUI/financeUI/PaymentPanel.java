@@ -12,11 +12,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.BL.applicationBL.FinanceApplicationService;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOpr;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOprBLservice;
 import TeamWolf.TeamWolf.client.BL.financeBL.financeController;
 import TeamWolf.TeamWolf.client.BLservice.financeBLservice.AccountBlservice;
+import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.PaymentApplicationVO;
 import TeamWolf.TeamWolf.client.vo.RecieptApplicationVO;
@@ -180,8 +182,46 @@ public class PaymentPanel extends JPanel{
 		    String note = NoteText.getText();
 		    String customerName = CustomerBox.getItemAt(CustomerBox.getSelectedIndex());
 		    CustomerVO customer = cusservice.findCustomer(customerName); 
+		    
+		    if(moneyList.size()==0){
+				MessageFrame mf = new MessageFrame(ErrorTW.InputNumberWrong);
+	    		return;
+			}
+		    for(int i=0;i<moneyList.size();i++){
+		    	if((!moneyList.get(i).contains("0"))&&(!moneyList.get(i).contains("1"))
+		    	&&(!moneyList.get(i).contains("2"))&&(!moneyList.get(i).contains("3"))
+		        &&(!moneyList.get(i).contains("4"))&&(!moneyList.get(i).contains("5"))
+		    	&&(!moneyList.get(i).contains("6"))&&(!moneyList.get(i).contains("7"))
+		    	&&(!moneyList.get(i).contains("8"))&&(!moneyList.get(i).contains("9"))){
+		    		MessageFrame mf = new MessageFrame(ErrorTW.InputNumberWrong);
+		    		return;
+		    	}
+		    	if(moneyList.get(i).length()>6){
+		    		MessageFrame mf = new MessageFrame(ErrorTW.InputNumberWrong);
+		    		return;
+		    	}
+		    }
+		    
+		    PaymentApplicationVO submitRav = new PaymentApplicationVO(accountList, moneyList,number, operator, note, customer);
+			
+			//付款单和现金费用单要查
+		    double AddCheck = Double.parseDouble(submitRav.getAddup());
+		    double AccountAdd = 0;
+		    for(int i=0;i<accountList.size();i++){
+		    	AccountAdd+=accountList.get(i).getAccount();
+		    }
+		    
+		    if(AddCheck > AccountAdd){
+		    	MessageFrame mf = new MessageFrame(ErrorTW.AccountLack);
+		    	return;
+		    }
+			
+		    if(AddCheck > customer.getPay()){
+		    	MessageFrame mf = new MessageFrame(ErrorTW.CustomerAccountLack);
+		    	return;
+		    };
+		    
 				
-			PaymentApplicationVO submitRav = new PaymentApplicationVO(accountList, moneyList,number, operator, note, customer);
 				
 			System.out.println(number);
 			/*System.out.println(accountList);
