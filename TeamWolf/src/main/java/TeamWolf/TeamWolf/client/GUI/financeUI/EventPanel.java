@@ -3,35 +3,45 @@ package TeamWolf.TeamWolf.client.GUI.financeUI;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+import TeamWolf.TeamWolf.client.BL.tableInquireBL.TableInquireController;
+import TeamWolf.TeamWolf.client.BLservice.tableInquireBLservice.TableInquireBLservice;
+import TeamWolf.TeamWolf.client.GUI.tableInquireUI.RunProcessPanel;
+import TeamWolf.TeamWolf.client.GUI.tableInquireUI.SaleDetialPanel;
+
 
 public class EventPanel extends JPanel{
 
+public static String IP;
 	
-	public static final int width = 960;
-	public static final int height = 540;
+	public static TableInquireBLservice service;
 	
-	JTabbedPane tab;
+	JTabbedPane tab = new JTabbedPane();
 	
-	JourneyPanel jp;
-	DetailPanel dp;
-	RunPanel rp;
+	SaleDetialPanel saleDetial;
+	RunProcessPanel runProcess;
 	
-	public EventPanel(){
-		tab = new JTabbedPane(JTabbedPane.TOP);
+	final static int width = 960;
+	final static int height = 540;
+	
+	public EventPanel(String IP){
+		super();
+		this.IP = IP;
+		
+		service = new TableInquireController(IP);
+		
+		saleDetial = new SaleDetialPanel();
+		runProcess = new RunProcessPanel();
+		
+		tab.add(runProcess, "经营历程表");
+		tab.add(saleDetial, "销售明细表");
 		tab.setSize(width, height);
-		tab.setVisible(true);
-		
-		jp = new JourneyPanel();
-		dp = new DetailPanel();
-		rp = new RunPanel();
-		
-		tab.add(jp,"查看经营历程");
-		tab.add(dp,"查看销售明细");
-		tab.add(rp,"查看经营情况");
+		tab.setLocation(0, 0);
 		
 		this.add(tab);
 		
-		this.setLayout(null);
+		this.setSize(width, height);
+		this.setLocation(0, 0);
 		this.setVisible(true);
+		this.setLayout(null);
 	}
 }

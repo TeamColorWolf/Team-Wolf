@@ -44,7 +44,7 @@ public class FinanceFrame extends JFrame{
 		
 		accountpanel = new AccountPanel();
 		apppanel = new ApplicationPanel(IP);
-		evepanel = new EventPanel();
+		//evepanel = new EventPanel(IP);
 		inipanel = new INIPanel();
 		evpanel = new EventViewPanel();
 		
