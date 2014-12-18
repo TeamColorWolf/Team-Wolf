@@ -37,6 +37,7 @@ public class RecieptApplicationPO extends ApplicationPO implements Serializable{
 			this.setAccountListPO(vo.getAccountList());
 			this.operator =vo.operator;
 			this.number = vo.number;
+			this.condition = vo.condition;
 		}
 		private void setAccountListPO(ArrayList<financeVO> accountList2) {
 			for(int i=0;i<accountList2.size();i++){

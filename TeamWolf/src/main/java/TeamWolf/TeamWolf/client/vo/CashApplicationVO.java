@@ -45,6 +45,7 @@ public class CashApplicationVO extends ApplicationVO{
 		
 		this.number = po.number;
 		this.operator = po.operator;
+		this.condition = po.condition;
 		
 		this.setAddup(calcuAdd(moneyList));
 	}

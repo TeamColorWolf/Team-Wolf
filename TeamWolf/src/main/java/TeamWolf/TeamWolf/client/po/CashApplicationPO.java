@@ -42,6 +42,7 @@ public class CashApplicationPO extends ApplicationPO implements Serializable{
 			
 			this.number = vo.number;
 			this.operator = vo.operator;
+			this.condition = vo.condition;
 	}
 	private void setAccountListPO(ArrayList<financeVO> accountList2) {
 		

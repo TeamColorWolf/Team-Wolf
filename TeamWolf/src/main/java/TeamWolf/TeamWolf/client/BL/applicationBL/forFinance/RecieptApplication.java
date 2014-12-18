@@ -43,6 +43,7 @@ public class RecieptApplication extends Application {
 
 	@Override
 	public int submit() {
+		vo.condition = 0;
 		try {
 			finance = (FinanceApplicationDATAservice) Naming.lookup(URL);
 		} catch (MalformedURLException e1) {

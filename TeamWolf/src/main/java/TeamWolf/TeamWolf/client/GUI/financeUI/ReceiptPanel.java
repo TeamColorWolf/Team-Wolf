@@ -12,12 +12,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.BL.applicationBL.FinanceApplicationService;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOpr;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOprBLservice;
 import TeamWolf.TeamWolf.client.BL.financeBL.financeController;
 import TeamWolf.TeamWolf.client.BLservice.financeBLservice.AccountBlservice;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.FinanceApplicationDATAservice;
+import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
 import TeamWolf.TeamWolf.client.po.RecieptApplicationPO;
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
@@ -185,7 +187,18 @@ public class ReceiptPanel extends JPanel{
 		    String note = NoteText.getText();
 		    String customerName = CustomerBox.getItemAt(CustomerBox.getSelectedIndex());
 		    CustomerVO customer = cusservice.findCustomer(customerName); 
-				
+			
+		    for(int i=0;i<moneyList.size();i++){
+		    	if((!moneyList.get(i).contains("0"))&&(!moneyList.get(i).contains("1"))
+		    	&&(!moneyList.get(i).contains("2"))&&(!moneyList.get(i).contains("3"))
+		        &&(!moneyList.get(i).contains("4"))&&(!moneyList.get(i).contains("5"))
+		    	&&(!moneyList.get(i).contains("6"))&&(!moneyList.get(i).contains("7"))
+		    	&&(!moneyList.get(i).contains("8"))&&(!moneyList.get(i).contains("9"))){
+		    		// MessageFrame mf = new MessageFrame(ErrorTW.);
+		    		 return;
+		    	}
+		    }
+		    
 			RecieptApplicationVO submitRav = new RecieptApplicationVO(accountList, moneyList,number, operator, note, customer);
 			
 			AddText.setText(submitRav.getAddup());
