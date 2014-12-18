@@ -194,7 +194,7 @@ public class ReceiptPanel extends JPanel{
 		        &&(!moneyList.get(i).contains("4"))&&(!moneyList.get(i).contains("5"))
 		    	&&(!moneyList.get(i).contains("6"))&&(!moneyList.get(i).contains("7"))
 		    	&&(!moneyList.get(i).contains("8"))&&(!moneyList.get(i).contains("9"))){
-		    		// MessageFrame mf = new MessageFrame(ErrorTW.);
+		    		MessageFrame mf = new MessageFrame(ErrorTW.);
 		    		 return;
 		    	}
 		    }

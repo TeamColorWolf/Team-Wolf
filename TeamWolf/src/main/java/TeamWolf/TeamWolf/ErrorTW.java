@@ -46,4 +46,10 @@ public class ErrorTW {
 	public static final int userInformationLack = 50005;//输入用户信息不全
 	public static final int accountNameExist = 99991;//账户名称已存在
 	public static final int accountNameNotExist = 99992;//账户名称不存在
+	public static final int RecieptInfoLack = 99993;//单据信息不全
+	public static final int PaymentInfoLack = 99994;//单据信息不全
+	public static final int CashInfoLack = 99995;//单据信息不全
+	public static final int AccountLack = 99996;//账户余额不足
+	public static final int CustomerAccountLack = 99997;//客户的应收应付不足
+	public static final int InputNumberWrong = 99998;//输入的数据存在问题
 }
