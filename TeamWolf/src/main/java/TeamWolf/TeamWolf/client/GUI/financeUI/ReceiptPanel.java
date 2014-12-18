@@ -183,7 +183,7 @@ public class ReceiptPanel extends JPanel{
 		    ArrayList<String> moneyList = orp.getTheMoney();
 		    accountList = this.getfinanceList(accountNameList);
 		    String number = getNumber();
-		    String operator = FinanceFrame.user.userName;
+		    String operator = FinanceFrame.user.workID;
 		    String note = NoteText.getText();
 		    String customerName = CustomerBox.getItemAt(CustomerBox.getSelectedIndex());
 		    CustomerVO customer = cusservice.findCustomer(customerName); 

@@ -176,7 +176,7 @@ public class CashPanel extends JPanel{
 		    ArrayList<String> noteList = ocp.getTheName();
 		    accountList = this.getfinanceList(accountNameList);
 		    String number = getNumber();
-		    String operator = FinanceFrame.user.userName;
+		    String operator = FinanceFrame.user.workID;
 		    String note = NoteText.getText();
 				
 		    if(moneyList.size()==0){
