@@ -71,6 +71,7 @@ public class financeDATA extends UnicastRemoteObject implements financeDATAservi
 		for(financePO intr : AccountList){
 			if(intr.getName().equals(po.getName())){
 				intr.setName(newpo.getName());
+				intr.setAccount(newpo.getAccount());
 				}
 		}
 		try {
