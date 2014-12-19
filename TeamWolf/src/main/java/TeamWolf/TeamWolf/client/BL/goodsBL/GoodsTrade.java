@@ -90,7 +90,7 @@ public class GoodsTrade {
 					  }
 				  }
 				  else{					 
-					   //返回错误类型： 该特价包已经不在了
+					   return 2007; //返回错误类型： 该特价包已经不在了
 				  }
 				  
 			}
@@ -140,7 +140,7 @@ public class GoodsTrade {
 		}
 		}catch(RemoteException e){
 			e.printStackTrace();
-			//返回通信错误
+			return 30000;  //返回通信错误
 		}
 		return 0;
 	}
@@ -163,7 +163,7 @@ public class GoodsTrade {
 		}			
 		}catch(RemoteException e){
 			e.printStackTrace();
-			//返回通信错误
+			return 30000;  //返回通信错误
 		}
 		
 		return 0;
@@ -188,7 +188,7 @@ public class GoodsTrade {
 		}
 		}catch(RemoteException e){
 			e.printStackTrace();
-			//返回通信错误
+			return 30000; //返回通信错误
 		}
 		return 0;
 	}
@@ -216,7 +216,7 @@ public class GoodsTrade {
 		}			
 		}catch(RemoteException e){
 			e.printStackTrace();
-			//返回通信错误
+			return 30000;   //返回通信错误
 		}
 		
 		

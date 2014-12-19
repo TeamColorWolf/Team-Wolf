@@ -59,7 +59,7 @@ public class IncreaseToMatch extends Application{
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			//返回通信错误
+			result=30000;  //返回通信错误
 		}
 		
 		return result;
@@ -74,7 +74,7 @@ public class IncreaseToMatch extends Application{
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			//result=通信错误
+			result=30000;
 		}
 		return result;
 	}
@@ -88,7 +88,7 @@ public class IncreaseToMatch extends Application{
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			//result=通信错误
+			result=30000;
 		}
 		return result;
 	}

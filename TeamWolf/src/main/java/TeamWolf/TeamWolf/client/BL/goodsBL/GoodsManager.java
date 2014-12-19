@@ -76,7 +76,7 @@ public class GoodsManager {
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			//返回通信错误
+			return 30000;   //返回通信错误
 		}
 		return 0;
 	}
@@ -102,7 +102,7 @@ public class GoodsManager {
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			//返回通信错误
+			return 30000;   //返回通信错误
 		}
 		
 		return 0;
@@ -140,7 +140,7 @@ public class GoodsManager {
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			//返回通信错误
+			return 30000;  //返回通信错误
 		}
 		return 0;
 	}

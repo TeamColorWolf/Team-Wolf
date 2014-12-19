@@ -68,7 +68,7 @@ public class GoodsMonitor{
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-            //返回通信错误
+            return 30000;  //返回通信错误
 		}
 		return 0;
 	}
@@ -83,7 +83,7 @@ public class GoodsMonitor{
 				if(warning(g)==0)
 					; //报警成功
 				else 
-					; //报警出现通信错误，需要手动确认商品库存
+					return 30000; //报警出现通信错误，需要手动确认商品库存
 				//返回警报类型
 			}else{
 				//库存正常
@@ -91,7 +91,7 @@ public class GoodsMonitor{
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			//返回通信错误
+			return 30000;  //返回通信错误
 		}
 		return 0;
 	}
@@ -103,6 +103,7 @@ public class GoodsMonitor{
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return 30000;
 		}
 		return 0;
 	}
@@ -124,7 +125,7 @@ public class GoodsMonitor{
 		}
 		}catch(RemoteException e){
 			e.printStackTrace();
-			//返回通信错误
+			return 30000;  //返回通信错误
 		}
 		return 0;
 	}
@@ -152,7 +153,7 @@ public class GoodsMonitor{
 		}
 		}catch(RemoteException e){
 			e.printStackTrace();
-			//返回通信错误
+			return 30000;  //返回通信错误
 		}
 		return 0;
 	}
@@ -178,7 +179,7 @@ public class GoodsMonitor{
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			//返回通信错误
+			return 30000; //返回通信错误
 		}
 		return 0;
 	}
@@ -205,7 +206,7 @@ public class GoodsMonitor{
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			//返回通信错误
+			return 30000; //返回通信错误
 		}
 		this.MonitoringWL(g); 
 		

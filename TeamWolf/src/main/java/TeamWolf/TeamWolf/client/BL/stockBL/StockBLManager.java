@@ -73,7 +73,7 @@ public class StockBLManager{
 		} catch (RemoteException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-			//返回通信错误
+			return 30000;   //返回通信错误
 		}	
 		return 0;
 	}
@@ -104,7 +104,7 @@ public class StockBLManager{
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			//返回通信错误
+			return 30000;    //返回通信错误
 		}
 		
         return 0; //操作成功
@@ -138,6 +138,7 @@ public class StockBLManager{
 			// TODO Auto-generated catch block
 			//返回通信错误
 			e1.printStackTrace();
+			return 30000;
 		}
 		
 		return 0; //操作成功
