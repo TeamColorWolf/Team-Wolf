@@ -8,11 +8,17 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import TeamWolf.TeamWolf.ErrorTW;
+import TeamWolf.TeamWolf.client.BL.applicationBL.FinanceApplicationService;
+import TeamWolf.TeamWolf.client.BL.applicationBL.forFinance.FinanceApplicationController;
+import TeamWolf.TeamWolf.client.BL.applicationBL.forFinance.RecieptApplication;
 import TeamWolf.TeamWolf.client.BLservice.tableInquireBLservice.TableInquireBLservice;
 import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
 import TeamWolf.TeamWolf.client.GUI.tableInquireUI.RunProcessPanel;
 import TeamWolf.TeamWolf.client.GUI.tableInquireUI.TableInquirePanel;
+import TeamWolf.TeamWolf.client.vo.CustomerVO;
+import TeamWolf.TeamWolf.client.vo.RecieptApplicationVO;
 import TeamWolf.TeamWolf.client.vo.RunProcessVO;
+import TeamWolf.TeamWolf.client.vo.financeVO;
 
 public class RedManage {
 	
@@ -56,15 +62,40 @@ public class RedManage {
 			content[i][6] = list.get(i).price;
 		}
 		for(int i=list.size()-1;i>=0;i--){
-			if(content[i][0].equals(content[i-1][0])){
+			String[] checkOne = ((String) content[i][0]).split("-");
+			String[] checkTwo = ((String) content[i][0]).split("-");
+			//if(!((String)content[i][0]).equals("")&&!content[i][0].equals(null)){
+			System.out.println(checkOne[0]);
+			System.out.println(checkOne[0]);			
+			if(checkOne[0].equals(checkTwo[0])){
 				AppVOList.add(list.get(i));
-				System.out.println("HS");
 			}else{
+				AppVOList.add(list.get(i));
 				break;
 			}
 		}
 	     }
      }
+    
+    public int CreateNewApp(){
+    	String AppType="";
+    	if(AppVOList!=null){
+        	String[] AppTypeArray = AppVOList.get(0).number.split("-");
+        	AppType = AppTypeArray[0];
+        }else{
+        	return -1;
+        }
+        if(AppType.equals("SKD")){
+    	    ArrayList<financeVO> accountList = new ArrayList<financeVO>();
+    	 //   ArrayList<String> moneyList = new 
+		    
+        	//RecieptApplicationVO vo = new RecieptApplicationVO(accountList, moneyList, number, operator, note, customer)
+        	
+        	//RecieptApplication fa = new RecieptApplication(vo, AppType);
+        	
+        }
+    	return 0;
+    }
       
       public RunProcessPanel panelBack(){
     	  return panel;
