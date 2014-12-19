@@ -45,7 +45,7 @@ public class FinanceFrame extends JFrame{
 		
 		accountpanel = new AccountPanel();
 		apppanel = new ApplicationPanel(IP);
-		inipanel = new INIPanel();
+		inipanel = new INIPanel(IP);
 		evpanel = new EventViewPanel();
 		TableInquirePanel tip = new TableInquirePanel(IP); 
 		tip.runProcess =new RedManage(IP, tip.runProcess).panelBack();
