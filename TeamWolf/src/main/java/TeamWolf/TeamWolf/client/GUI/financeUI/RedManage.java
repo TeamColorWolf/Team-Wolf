@@ -95,12 +95,12 @@ public class RedManage {
 				content[i][6] = list.get(i).price;
 			}
 			for (int i = list.size() - 1; i >= 0; i--) {
-				String[] checkOne = ((String) content[i][0]).split("-");
-				String[] checkTwo = ((String) content[i][0]).split("-");
+				String checkOne = ((String) content[i][0]);
+				String checkTwo = ((String) content[i][0]);
 				// if(!((String)content[i][0]).equals("")&&!content[i][0].equals(null)){
-				System.out.println(checkOne[0]);
-				System.out.println(checkOne[0]);
-				if (checkOne[0].equals(checkTwo[0])) {
+				System.out.println(checkOne);
+				System.out.println(checkTwo);
+				if (checkOne.equals(checkTwo)) {
 					AppVOList.add(list.get(i));
 				} else {
 					AppVOList.add(list.get(i));
@@ -121,6 +121,7 @@ public class RedManage {
 		// ---------------------------------------------------------------------------------------------------------
 
 		if (AppType.equals("JHD")) {
+			System.out.println("IN1");
 			String NUMBER = AppVOList.get(0).number;
 			ArrayList<ImportListPO> poList = new ArrayList<ImportListPO>();
 			ImportListPO old = null;
@@ -137,16 +138,15 @@ public class RedManage {
 					return -1;
 				}
 				String[] numberAdjustArray = old.number.split("-");
-				double numberAdjust = Double.parseDouble(numberAdjustArray[2]) + 1;
-				numberAdjustArray[2] = "" + numberAdjust;
-				String newNumber = numberAdjustArray.toString();
+				int numberAdjust = Integer.parseInt(numberAdjustArray[2]) + 1;
+				numberAdjustArray[2] = String.format("%05d",numberAdjust);
+				String newNumber = numberAdjustArray[0]+"-"+numberAdjustArray[1]+"-"+numberAdjustArray[2];
 				old.number = newNumber;
 				ArrayList<GoodsPO> goodsList = old.getGoodsList();
 				for (int i = 0; i < goodsList.size(); i++) {
-					String oldNumber = goodsList.get(i).getNumber();
-					String oppsiteNumber = ""
-							+ (Double.parseDouble(oldNumber) * (-1));
-					goodsList.get(i).setNumber(oppsiteNumber);
+					int oldN = goodsList.get(i).getAmount();
+					int newN = 0-oldN;
+					goodsList.get(i).setAmount(newN);
 				}
 				old.setGoodsList(goodsList);
 				saleads.submitImportList(old);
@@ -159,6 +159,7 @@ public class RedManage {
 		// -------------------------------------------------------------------------------------------------------
 
 		else if (AppType.equals("JHTHD")) {
+			System.out.println("IN2");
 			String NUMBER = AppVOList.get(0).number;
 			ArrayList<ImportRejectListPO> poList = new ArrayList<ImportRejectListPO>();
 			ImportRejectListPO old = null;
@@ -175,16 +176,16 @@ public class RedManage {
 					return -1;
 				}
 				String[] numberAdjustArray = old.number.split("-");
-				double numberAdjust = Double.parseDouble(numberAdjustArray[2]) + 1;
-				numberAdjustArray[2] = "" + numberAdjust;
-				String newNumber = numberAdjustArray.toString();
+				int numberAdjust = Integer.parseInt(numberAdjustArray[2]) + 1;
+				numberAdjustArray[2] = String.format("%05d",numberAdjust);
+				String newNumber = numberAdjustArray[0]+"-"+numberAdjustArray[1]+"-"+numberAdjustArray[2];
 				old.number = newNumber;
 				ArrayList<GoodsPO> goodsList = old.getGoodsList();
+				System.out.println(goodsList.size());
 				for (int i = 0; i < goodsList.size(); i++) {
-					String oldNumber = goodsList.get(i).getNumber();
-					String oppsiteNumber = ""
-							+ (Double.parseDouble(oldNumber) * (-1));
-					goodsList.get(i).setNumber(oppsiteNumber);
+					int oldN = goodsList.get(i).getAmount();
+					int newN = 0-oldN;
+					goodsList.get(i).setAmount(newN);
 				}
 				old.setGoodsList(goodsList);
 				saleads.submitImportRejectList(old);
@@ -195,6 +196,7 @@ public class RedManage {
 		}
 		// ---------------------------------------------------------------------------------------------------
 		else if (AppType.equals("XSD")) {
+			System.out.println("IN3");
 			String NUMBER = AppVOList.get(0).number;
 			ArrayList<SaleListPO> poList = new ArrayList<SaleListPO>();
 			SaleListPO old = null;
@@ -211,16 +213,21 @@ public class RedManage {
 					return -1;
 				}
 				String[] numberAdjustArray = old.number.split("-");
-				double numberAdjust = Double.parseDouble(numberAdjustArray[2]) + 1;
-				numberAdjustArray[2] = "" + numberAdjust;
-				String newNumber = numberAdjustArray.toString();
+				int numberAdjust = Integer.parseInt(numberAdjustArray[2]) + 1;
+				numberAdjustArray[2] = String.format("%05d",numberAdjust);
+				String newNumber = numberAdjustArray[0]+"-"+numberAdjustArray[1]+"-"+numberAdjustArray[2];
 				old.number = newNumber;
 				ArrayList<GoodsPO> goodsList = old.getGoodsList();
+				System.out.println("Red success"+newNumber);
+				System.out.println(goodsList);
+				System.out.println(goodsList.size());
 				for (int i = 0; i < goodsList.size(); i++) {
-					String oldNumber = goodsList.get(i).getNumber();
-					String oppsiteNumber = ""
-							+ (Double.parseDouble(oldNumber) * (-1));
-					goodsList.get(i).setNumber(oppsiteNumber);
+					int oldN = goodsList.get(i).getAmount();
+					int newN = 0-oldN;
+					goodsList.get(i).setAmount(newN);
+				}
+				for (int i = 0; i < goodsList.size(); i++) {
+					System.out.println(goodsList.get(i).getAmount());
 				}
 				old.setGoodsList(goodsList);
 				saleads.submitExportList(old);
@@ -232,6 +239,7 @@ public class RedManage {
 		// ------------------------------------------------------------------------------------------------------
 
 		else if (AppType.equals("XSTHD")) {
+			System.out.println("IN4");
 			String NUMBER = AppVOList.get(0).number;
 			ArrayList<SaleRejectListPO> poList = new ArrayList<SaleRejectListPO>();
 			SaleRejectListPO old = null;
@@ -248,16 +256,15 @@ public class RedManage {
 					return -1;
 				}
 				String[] numberAdjustArray = old.number.split("-");
-				double numberAdjust = Double.parseDouble(numberAdjustArray[2]) + 1;
-				numberAdjustArray[2] = "" + numberAdjust;
-				String newNumber = numberAdjustArray.toString();
+				int numberAdjust = Integer.parseInt(numberAdjustArray[2]) + 1;
+				numberAdjustArray[2] = String.format("%05d",numberAdjust);
+				String newNumber = numberAdjustArray[0]+"-"+numberAdjustArray[1]+"-"+numberAdjustArray[2];
 				old.number = newNumber;
 				ArrayList<GoodsPO> goodsList = old.getGoodsList();
 				for (int i = 0; i < goodsList.size(); i++) {
-					String oldNumber = goodsList.get(i).getNumber();
-					String oppsiteNumber = ""
-							+ (Double.parseDouble(oldNumber) * (-1));
-					goodsList.get(i).setNumber(oppsiteNumber);
+					int oldN = goodsList.get(i).getAmount();
+					int newN = 0-oldN;
+					goodsList.get(i).setAmount(newN);
 				}
 				old.setGoodsList(goodsList);
 				saleads.submitExportRejectList(old);
@@ -270,6 +277,7 @@ public class RedManage {
 		// ------------------------------------------------------------------------------------------------------
 
 		else if (AppType.equals("SKD")) {
+			System.out.println("IN5");
 			String NUMBER = AppVOList.get(0).number;
 			ArrayList<RecieptApplicationPO> poList = new ArrayList<RecieptApplicationPO>();
 			RecieptApplicationPO old = null;
@@ -286,9 +294,9 @@ public class RedManage {
 					return -1;
 				}
 				String[] numberAdjustArray = old.number.split("-");
-				double numberAdjust = Double.parseDouble(numberAdjustArray[2]) + 1;
-				numberAdjustArray[2] = "" + numberAdjust;
-				String newNumber = numberAdjustArray.toString();
+				int numberAdjust = Integer.parseInt(numberAdjustArray[2]) + 1;
+				numberAdjustArray[2] = String.format("%05d",numberAdjust);
+				String newNumber = numberAdjustArray[0]+"-"+numberAdjustArray[1]+"-"+numberAdjustArray[2];
 				old.number = newNumber;
 				ArrayList<String> moneyList = old.getMoneyList();
 				for (int i = 0; i < moneyList.size(); i++) {
@@ -307,6 +315,7 @@ public class RedManage {
 		// ------------------------------------------------------------------------------------------------------
 
 		else if (AppType.equals("FKD")) {
+			System.out.println("IN6");
 			String NUMBER = AppVOList.get(0).number;
 			ArrayList<PaymentApplicationPO> poList = new ArrayList<PaymentApplicationPO>();
 			PaymentApplicationPO old = null;
@@ -323,9 +332,9 @@ public class RedManage {
 					return -1;
 				}
 				String[] numberAdjustArray = old.number.split("-");
-				double numberAdjust = Double.parseDouble(numberAdjustArray[2]) + 1;
-				numberAdjustArray[2] = "" + numberAdjust;
-				String newNumber = numberAdjustArray.toString();
+				int numberAdjust = Integer.parseInt(numberAdjustArray[2]) + 1;
+				numberAdjustArray[2] = String.format("%05d",numberAdjust);
+				String newNumber = numberAdjustArray[0]+"-"+numberAdjustArray[1]+"-"+numberAdjustArray[2];
 				old.number = newNumber;
 				ArrayList<String> moneyList = old.getMoneyList();
 				for (int i = 0; i < moneyList.size(); i++) {
@@ -345,6 +354,7 @@ public class RedManage {
 		// ------------------------------------------------------------------------------------------------------
 
 		else if (AppType.equals("XJFYD")) {
+			System.out.println("IN7");
 			String NUMBER = AppVOList.get(0).number;
 			ArrayList<CashApplicationPO> poList = new ArrayList<CashApplicationPO>();
 			CashApplicationPO old = null;
@@ -361,9 +371,9 @@ public class RedManage {
 					return -1;
 				}
 				String[] numberAdjustArray = old.number.split("-");
-				double numberAdjust = Double.parseDouble(numberAdjustArray[2]) + 1;
-				numberAdjustArray[2] = "" + numberAdjust;
-				String newNumber = numberAdjustArray.toString();
+				int numberAdjust = Integer.parseInt(numberAdjustArray[2]) + 1;
+				numberAdjustArray[2] = String.format("%05d",numberAdjust);
+				String newNumber = numberAdjustArray[0]+"-"+numberAdjustArray[1]+"-"+numberAdjustArray[2];
 				old.number = newNumber;
 				ArrayList<String> moneyList = old.getMoneyList();
 				for (int i = 0; i < moneyList.size(); i++) {
@@ -400,10 +410,10 @@ public class RedManage {
 		public void actionPerformed(ActionEvent e) {
 			getContent();
 			int success = CreateNewApp();
+			System.out.println(" ");
 			if(success == 0){
 				MessageFrame mf = new MessageFrame(0);
 			}
-			int lines = panel.content.length / 7;
 		}
 
 	}
