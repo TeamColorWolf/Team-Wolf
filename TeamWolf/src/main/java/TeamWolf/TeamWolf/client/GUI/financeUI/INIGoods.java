@@ -26,7 +26,7 @@ public class INIGoods extends JPanel {
 	int year;
 	JTable StockShoArea;
 	JScrollPane SSAContainer;
-	 	
+	private static final int lineHeight = 25;
 	public INIGoods(String IP) {
 		// TODO Auto-generated constructor stub
 		GoodsStockListVO gsl=null;
@@ -60,7 +60,7 @@ public class INIGoods extends JPanel {
 		   
 		   this.remove(SSAContainer);
 		   this.repaint();
-		  stockInfoList=new Object[size][16];
+		   stockInfoList=new Object[size][16];
 		   for(int i=0;i<size;i++){
 			   for(int j=0;j<16;j++){
 				   if(j==0)
@@ -70,6 +70,7 @@ public class INIGoods extends JPanel {
 			   }
 		   }
 		   this.initialStockShoArea();
+		   StockShoArea.setRowHeight(lineHeight);
 		   this.add(SSAContainer);
 		   this.repaint();
 	}

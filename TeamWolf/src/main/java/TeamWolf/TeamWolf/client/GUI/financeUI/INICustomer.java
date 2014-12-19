@@ -35,25 +35,9 @@ public class INICustomer extends JPanel{
 	private String[] customerInfo = {"编号", "分类", "等级", "姓名", "电话", "电子邮箱", "应收额度", "默认业务员"};
 	private Object[][] object_customerList;
 	
-	/**
-	 * 面板宽度
-	 */
 	private static final int w = 1000;
-	
-	/**
-	 * 面板高度
-	 */
-	private static final int h = 500;
-	/**
-	 * 按钮宽、高
-	 */
-	private static final int btnW = 150;
-	private static final int btnH = 40;
-	
-	/**
-	 * 组件间距
-	 */
-	private static final int Xgap = 100;
+	private static final int h = 500;	
+	private static final int lineHeight = 25;
 	
 	public INICustomer(String ip) {
 		customerLogic = new CustomerOpr(ip);
@@ -78,7 +62,7 @@ public class INICustomer extends JPanel{
 		customerListTable = new JTable(tModel_customer);
 		
 		//表格设置
-		customerListTable.setRowHeight(25);	
+		customerListTable.setRowHeight(lineHeight);	
 		scroll_customer = new JScrollPane(customerListTable);
 		scroll_customer.setSize(w - 10, h - 100);
 		scroll_customer.setLocation(0, 0);

@@ -36,7 +36,7 @@ public class INIAccount extends JPanel{
 		tableModel.setDataVector(content, columnName);
 		accountTable = new JTable(tableModel);
 		accountTable.setSize(400, 400);
-		accountTable.setLocation(0, 0);
+		accountTable.setLocation(0,0);
 		accountTable.setVisible(true);
 		accountTable.setRowHeight(LH);
 		scroll = new JScrollPane(accountTable);
@@ -53,9 +53,9 @@ public class INIAccount extends JPanel{
 		this.add(scroll);
 		this.add(jb);
 		this.setLayout(null);
-		this.setSize(width,height-sho);
+		this.setSize(width,height);
 		this.setVisible(true);
-		this.setLocation(0,sho);
+		this.setLocation(0,0);
 	}
 	
 	private void getContent(){
