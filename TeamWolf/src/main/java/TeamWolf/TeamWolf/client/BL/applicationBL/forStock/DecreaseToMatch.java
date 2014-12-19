@@ -60,6 +60,7 @@ public class DecreaseToMatch extends Application{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			//返回通信错误
+			result=30000;
 		}
 		return result;
 	}
@@ -75,6 +76,7 @@ public class DecreaseToMatch extends Application{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			//result=通信错误
+			result=30000;
 		}
 		return result;
 	}
@@ -89,7 +91,7 @@ public class DecreaseToMatch extends Application{
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			//result=通信错误
+			result=30000;
 		}
 		return result;
 	}
