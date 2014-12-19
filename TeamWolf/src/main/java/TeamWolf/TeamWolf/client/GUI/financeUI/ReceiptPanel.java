@@ -238,6 +238,7 @@ public class ReceiptPanel extends JPanel{
 			System.out.println(faservice);
 			System.out.println(submitRav.getAddup());*/
             faservice.submitRecieptApplication(submitRav);
+            MessageFrame mf = new MessageFrame(0);
 		}
 	    
 	    public ArrayList<financeVO> getfinanceList(ArrayList<String> accountNameList){

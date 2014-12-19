@@ -235,6 +235,7 @@ public class PaymentPanel extends JPanel{
 			System.out.println(submitRav.getAddup());*/
 			AddText.setText(submitRav.getAddup());
             faservice.submitPaymentApplication(submitRav);
+            MessageFrame mf = new MessageFrame(0);
 		}
 	    
 	    public ArrayList<financeVO> getfinanceList(ArrayList<String> accountNameList){

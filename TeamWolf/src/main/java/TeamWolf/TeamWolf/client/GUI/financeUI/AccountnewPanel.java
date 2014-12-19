@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 
 import TeamWolf.TeamWolf.client.BLservice.financeBLservice.AccountBlservice;
 import TeamWolf.TeamWolf.client.GUI.mainUI.RoleSelecter;
+import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
 import TeamWolf.TeamWolf.client.vo.financeVO;
 public class AccountnewPanel extends JPanel{
 	AccountBlservice service = FinanceFrame.service;
@@ -106,6 +107,7 @@ public class AccountnewPanel extends JPanel{
 					adf.accountpanel.aop.flashPanel();
 					userID.setText("");
 				}
+				MessageFrame mf = new MessageFrame(0);
 		}
 
 		public void mouseEntered(MouseEvent arg0) {}

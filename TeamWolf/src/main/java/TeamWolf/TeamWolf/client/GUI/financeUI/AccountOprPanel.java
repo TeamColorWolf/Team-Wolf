@@ -15,7 +15,9 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.BLservice.financeBLservice.AccountBlservice;
+import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
 import TeamWolf.TeamWolf.client.GUI.userUI.AdminFrame;
 import TeamWolf.TeamWolf.client.GUI.userUI.SetComboBoxUser;
 import TeamWolf.TeamWolf.client.vo.UserType;
@@ -145,6 +147,10 @@ public class AccountOprPanel extends JPanel{
 			String name = AccountName.getText();
 			financeVO fin=new financeVO(name);
 			financeVO vo = service.find(fin);
+			if(vo==null){
+				MessageFrame mf = new MessageFrame(ErrorTW.notFound);
+				return;
+			}
 			if(vo.error != 0){
 				AccountName.setText(null);
 				AccountMoney.setText(null);
@@ -154,6 +160,7 @@ public class AccountOprPanel extends JPanel{
 				AccountMoney.setText(""+vo.getAccount());
 			}
 			flashPanel();
+			MessageFrame mf = new MessageFrame(0);
 		}
 		public void mouseEntered(MouseEvent arg0) {}
 		public void mouseExited(MouseEvent arg0) {}
@@ -182,6 +189,7 @@ public class AccountOprPanel extends JPanel{
 				System.out.println("no enough information.");
 			}
 			flashPanel();
+			MessageFrame mf = new MessageFrame(0);
 		}
 		public void mouseEntered(MouseEvent arg0) {}
 		public void mouseExited(MouseEvent arg0) {}
@@ -205,6 +213,7 @@ public class AccountOprPanel extends JPanel{
 			else if(success == -1){
 				System.out.println("no enough information.");
 			}
+			MessageFrame mf = new MessageFrame(0);
 		}
 		public void mouseEntered(MouseEvent arg0) {}
 		public void mouseExited(MouseEvent arg0) {}

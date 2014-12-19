@@ -222,6 +222,7 @@ public class CashPanel extends JPanel{
 			System.out.println(submitRav.getAddup());*/
 			//AddText.setText(submitRav.getAddup());
             faservice.submitCashApplication(submitCav);
+            MessageFrame mf = new MessageFrame(0);
 		}
 	    
 	    public ArrayList<financeVO> getfinanceList(ArrayList<String> accountNameList){
