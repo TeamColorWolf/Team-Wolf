@@ -1,5 +1,7 @@
 package TeamWolf.TeamWolf.client.GUI.financeUI;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -9,6 +11,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import TeamWolf.TeamWolf.client.BLservice.financeBLservice.AccountBlservice;
+import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
 import TeamWolf.TeamWolf.client.GUI.userUI.AdminFrame;
 import TeamWolf.TeamWolf.client.vo.financeVO;
 
@@ -25,6 +28,7 @@ public class INIAccount extends JPanel{
 	Object[][] content;
 	
 	JButton jb = new JButton();
+	JButton jbHistory = new JButton();
 	
 	String UpdateString = "";
 	JTable accountTable;
@@ -46,12 +50,18 @@ public class INIAccount extends JPanel{
 		jb.setText("确认期初信息无误后，单击此处进行期初建账");
 		jb.setVisible(true);
 		
+		jbHistory.setLocation(width/2,380-(int)(LH*2.5));
+		jbHistory.setSize((int)(width/2.2), LH*2);
+		jbHistory.setText("单击此处，查看过往的期初建账情况");
+		jbHistory.setVisible(true);
+		jbHistory.addActionListener(new HistoryListener());
 		
 		scroll.setLocation(40, 40);
 		
 		
 		this.add(scroll);
 		this.add(jb);
+		this.add(jbHistory);
 		this.setLayout(null);
 		this.setSize(width,height);
 		this.setVisible(true);
@@ -82,5 +92,12 @@ public class INIAccount extends JPanel{
 		this.updateUI();
 	}
 	
+	class HistoryListener implements ActionListener{
+
+		public void actionPerformed(ActionEvent arg0) {
+			INIHistoryFrame ihf = new INIHistoryFrame();
+		}
+		
+	}
 
 }
