@@ -9,6 +9,7 @@ import TeamWolf.TeamWolf.client.BL.financeBL.financeController;
 import TeamWolf.TeamWolf.client.BLservice.financeBLservice.AccountBlservice;
 import TeamWolf.TeamWolf.client.GUI.manageUI.ManageFrame;
 import TeamWolf.TeamWolf.client.GUI.manageUI.PromotionPanel;
+import TeamWolf.TeamWolf.client.GUI.tableInquireUI.RunProcessPanel;
 import TeamWolf.TeamWolf.client.GUI.tableInquireUI.TableInquirePanel;
 import TeamWolf.TeamWolf.client.vo.UserType;
 import TeamWolf.TeamWolf.client.vo.UserVO;
@@ -47,6 +48,8 @@ public class FinanceFrame extends JFrame{
 		inipanel = new INIPanel();
 		evpanel = new EventViewPanel();
 		TableInquirePanel tip = new TableInquirePanel(IP); 
+		tip.runProcess =new RedManage(IP, tip.runProcess).panelBack();
+		//tip = new RedManage(IP, tip).panelBack();
 		
 		tab.add(accountpanel,"账户管理");
 		tab.add(apppanel,"单据制定");

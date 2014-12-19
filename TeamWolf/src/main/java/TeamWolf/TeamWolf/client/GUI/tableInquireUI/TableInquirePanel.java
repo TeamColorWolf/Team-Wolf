@@ -18,7 +18,7 @@ public class TableInquirePanel extends JPanel{
 	JTabbedPane tab = new JTabbedPane();
 	
 	SaleDetialPanel saleDetial;
-	RunProcessPanel runProcess;
+	public RunProcessPanel runProcess;
 	
 	final static int width = 960;
 	final static int height = 540;

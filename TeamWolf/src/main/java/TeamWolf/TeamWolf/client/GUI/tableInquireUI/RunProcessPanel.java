@@ -19,10 +19,10 @@ public class RunProcessPanel extends JPanel{
 	
 	TableInquireBLservice service = TableInquirePanel.service;
 	
-	TimeSelectPanel timeSelect;
+	public TimeSelectPanel timeSelect;
 	static String[] column = {"单据编号", "客户", "业务员", "仓库编号", "商品名", "销售量", "销售单价"};
 	
-	Object[][] content;
+	public Object[][] content;
 	JTable table;
 	DefaultTableModel tableModel = new DefaultTableModel();
 	JScrollPane scroll;
@@ -70,7 +70,7 @@ public class RunProcessPanel extends JPanel{
 		
 	}
 	
-	private void getContent(){
+	public void getContent(){
 		ArrayList<RunProcessVO> list = service.runProcess(timeSelect.getBeginVO(), timeSelect.getEndVO());
 		if(list == null || list.size() < 12){
 			content = new Object[12][7];
@@ -91,7 +91,7 @@ public class RunProcessPanel extends JPanel{
 		}
 	}
 	
-	private void flashPanel(){
+	public void flashPanel(){
 		getContent();
 		tableModel.setDataVector(content, column);
 		table.updateUI();
