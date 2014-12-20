@@ -11,6 +11,10 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 
 import TeamWolf.TeamWolf.ErrorTW;
+import TeamWolf.TeamWolf.client.BL.applicationBL.forSale.ImportList;
+import TeamWolf.TeamWolf.client.BL.applicationBL.forSale.ImportRejectList;
+import TeamWolf.TeamWolf.client.BL.applicationBL.forSale.SaleList;
+import TeamWolf.TeamWolf.client.BL.applicationBL.forSale.SaleRejectList;
 import TeamWolf.TeamWolf.client.BLservice.tableInquireBLservice.TableInquireBLservice;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.FinanceApplicationDATAservice;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.SaleApplicationDATAservice;
@@ -26,7 +30,11 @@ import TeamWolf.TeamWolf.client.po.PaymentApplicationPO;
 import TeamWolf.TeamWolf.client.po.RecieptApplicationPO;
 import TeamWolf.TeamWolf.client.po.SaleListPO;
 import TeamWolf.TeamWolf.client.po.SaleRejectListPO;
+import TeamWolf.TeamWolf.client.vo.ImportListVO;
+import TeamWolf.TeamWolf.client.vo.ImportRejectListVO;
 import TeamWolf.TeamWolf.client.vo.RunProcessVO;
+import TeamWolf.TeamWolf.client.vo.SaleListVO;
+import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
 
 public class RedManage {
 
@@ -36,6 +44,10 @@ public class RedManage {
 	SaleApplicationDATAservice saleads;
 	FinanceApplicationDATAservice fads;
 	StockApplicationDATAservice stockads;
+	SaleList redSa;
+	SaleRejectList redSar;
+	ImportList redIm;
+	ImportRejectList redImr;
 	String IP;
 	String URLsale;
 	String URLfinance;
@@ -46,11 +58,13 @@ public class RedManage {
 
 	public RedManage(String IP, RunProcessPanel Inputpanel) {
 
+		this.IP = IP;
+		
 		URLsale = "rmi://" + IP + "/saleApplicationDATAservice";
 		URLfinance = "rmi://" + IP + "/financeApplicationDATAservice";
 		URLstock = "rmi://" + IP + "/stockApplicationDATAservice";
 		DATAfactory();
-
+		
 		AppVOList = new ArrayList<RunProcessVO>();
 		panel = new RunProcessPanel();
 		this.panel = Inputpanel;
@@ -147,10 +161,15 @@ public class RedManage {
 					int oldN = goodsList.get(i).getAmount();
 					int newN = 0-oldN;
 					goodsList.get(i).setAmount(newN);
+					if(goodsList.get(i).getName().contains("speacialGoods")){
+						MessageFrame mf = new MessageFrame(ErrorTW.RedError);
+						return -1;
+					}
 				}
 				old.setGoodsList(goodsList);
+				redIm = new ImportList(new ImportListVO(old), IP);
 				saleads.submitImportList(old);
-				saleads.approvalImportList(old);
+				redIm.approve();
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
@@ -186,17 +205,21 @@ public class RedManage {
 					int oldN = goodsList.get(i).getAmount();
 					int newN = 0-oldN;
 					goodsList.get(i).setAmount(newN);
+					if(goodsList.get(i).getName().contains("speacialGoods")){
+						MessageFrame mf = new MessageFrame(ErrorTW.RedError);
+						return -1;
+					}
 				}
 				old.setGoodsList(goodsList);
+				redImr = new ImportRejectList(new ImportRejectListVO(old), IP);
 				saleads.submitImportRejectList(old);
-				saleads.approvalImportRejectList(old);
+			    redImr.approve();
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
 		}
 		// ---------------------------------------------------------------------------------------------------
 		else if (AppType.equals("XSD")) {
-			System.out.println("IN3");
 			String NUMBER = AppVOList.get(0).number;
 			ArrayList<SaleListPO> poList = new ArrayList<SaleListPO>();
 			SaleListPO old = null;
@@ -218,20 +241,21 @@ public class RedManage {
 				String newNumber = numberAdjustArray[0]+"-"+numberAdjustArray[1]+"-"+numberAdjustArray[2];
 				old.number = newNumber;
 				ArrayList<GoodsPO> goodsList = old.getGoodsList();
-				System.out.println("Red success"+newNumber);
-				System.out.println(goodsList);
-				System.out.println(goodsList.size());
 				for (int i = 0; i < goodsList.size(); i++) {
 					int oldN = goodsList.get(i).getAmount();
 					int newN = 0-oldN;
 					goodsList.get(i).setAmount(newN);
-				}
-				for (int i = 0; i < goodsList.size(); i++) {
-					System.out.println(goodsList.get(i).getAmount());
+					if(goodsList.get(i).getName().contains("speacialGoods")){
+						MessageFrame mf = new MessageFrame(ErrorTW.RedError);
+						return -1;
+					}
 				}
 				old.setGoodsList(goodsList);
+				SaleListVO slv =  new SaleListVO(old);
+				redSa = new SaleList((slv), IP);
 				saleads.submitExportList(old);
-				saleads.approvalExportList(old);
+				redSa.approve();
+				System.out.println(slv.condition);
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
@@ -265,10 +289,15 @@ public class RedManage {
 					int oldN = goodsList.get(i).getAmount();
 					int newN = 0-oldN;
 					goodsList.get(i).setAmount(newN);
+					if(goodsList.get(i).getName().contains("speacialGoods")){
+						MessageFrame mf = new MessageFrame(ErrorTW.RedError);
+						return -1;
+					}
 				}
 				old.setGoodsList(goodsList);
+				redSar = new SaleRejectList(new SaleRejectListVO(old),IP);
 				saleads.submitExportRejectList(old);
-				saleads.submitExportRejectList(old);
+				redSar.approve();
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
