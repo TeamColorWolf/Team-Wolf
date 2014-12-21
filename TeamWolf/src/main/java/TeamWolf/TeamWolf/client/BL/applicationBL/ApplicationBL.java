@@ -10,6 +10,7 @@ import TeamWolf.TeamWolf.client.po.ImportListPO;
 import TeamWolf.TeamWolf.client.po.ImportRejectListPO;
 import TeamWolf.TeamWolf.client.po.IncreaseToMatchPO;
 import TeamWolf.TeamWolf.client.po.PaymentApplicationPO;
+import TeamWolf.TeamWolf.client.po.PresentListPO;
 import TeamWolf.TeamWolf.client.po.RecieptApplicationPO;
 import TeamWolf.TeamWolf.client.po.SaleListPO;
 import TeamWolf.TeamWolf.client.po.SaleRejectListPO;
@@ -20,6 +21,7 @@ import TeamWolf.TeamWolf.client.vo.ImportListVO;
 import TeamWolf.TeamWolf.client.vo.ImportRejectListVO;
 import TeamWolf.TeamWolf.client.vo.IncreaseToMatchVO;
 import TeamWolf.TeamWolf.client.vo.PaymentApplicationVO;
+import TeamWolf.TeamWolf.client.vo.PresentListVO;
 import TeamWolf.TeamWolf.client.vo.RecieptApplicationVO;
 import TeamWolf.TeamWolf.client.vo.SaleListVO;
 import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
@@ -66,10 +68,16 @@ public class ApplicationBL {
 		else if(po instanceof CashApplicationPO){//现金费用单
 			return new CashApplicationVO((CashApplicationPO)po);
 		}
+		else if(po instanceof PresentListPO){//库存赠送单
+			return new PresentListVO((PresentListPO)po);
+		}
 		return null;
 	}
 	
 	protected ApplicationType getPOType(ApplicationPO po){
+		if(po.number == null){
+			return null;
+		}
 		String[] n = po.number.split("-");
 		if(n[0].equals("JHD")){//进货单
 			return ApplicationType.ImportList;
@@ -97,6 +105,9 @@ public class ApplicationBL {
 		}
 		else if(n[0].equals("XJFYD")){//现金费用单
 			return ApplicationType.CashApplication;
+		}
+		else if(n[0].equals("KCZSD")){//库存赠送单
+			return ApplicationType.PresentList;
 		}
 		return null;
 	}

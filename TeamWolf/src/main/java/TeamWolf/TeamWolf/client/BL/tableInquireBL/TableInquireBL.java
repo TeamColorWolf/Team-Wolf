@@ -5,9 +5,13 @@ import java.util.ArrayList;
 import TeamWolf.TeamWolf.client.BL.applicationBL.MutiRoleService;
 import TeamWolf.TeamWolf.client.BL.applicationBL.mutiRole.MutiRoleController;
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;
+import TeamWolf.TeamWolf.client.vo.CashApplicationVO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
 import TeamWolf.TeamWolf.client.vo.ImportListVO;
 import TeamWolf.TeamWolf.client.vo.ImportRejectListVO;
+import TeamWolf.TeamWolf.client.vo.IncreaseToMatchVO;
+import TeamWolf.TeamWolf.client.vo.PaymentApplicationVO;
+import TeamWolf.TeamWolf.client.vo.RecieptApplicationVO;
 import TeamWolf.TeamWolf.client.vo.RunConditionVO;
 import TeamWolf.TeamWolf.client.vo.RunProcessVO;
 import TeamWolf.TeamWolf.client.vo.SaleDetialSelectFactVO;
@@ -15,6 +19,7 @@ import TeamWolf.TeamWolf.client.vo.SaleDetialVO;
 import TeamWolf.TeamWolf.client.vo.SaleListVO;
 import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
 import TeamWolf.TeamWolf.client.vo.TimeVO;
+import TeamWolf.TeamWolf.client.vo.financeVO;
 /**
  * 
  * @author WHJ
@@ -133,11 +138,70 @@ public class TableInquireBL {
 					}
 				}
 			}
+			else if(app instanceof RecieptApplicationVO){
+				RecieptApplicationVO ra = (RecieptApplicationVO)app;
+				ArrayList<financeVO> flist = ra.getAccountList();
+				if(flist != null){
+					for(int j = 0; j < flist.size(); j++){
+						RunProcessVO process = new RunProcessVO(ra.number, flist.get(j).getName(), ra.operator, null, null, 0, flist.get(j).getAccount());
+						runProcess.add(process);
+					}
+				}
+			}
+			else if(app instanceof PaymentApplicationVO){
+				PaymentApplicationVO ra = (PaymentApplicationVO)app;
+				ArrayList<financeVO> flist = ra.getAccountList();
+				if(flist != null){
+					for(int j = 0; j < flist.size(); j++){
+						RunProcessVO process = new RunProcessVO(ra.number, flist.get(j).getName(), ra.operator, null, null, 0, flist.get(j).getAccount());
+						runProcess.add(process);
+					}
+				}
+			}
+			else if(app instanceof CashApplicationVO){
+				CashApplicationVO ra = (CashApplicationVO)app;
+				ArrayList<financeVO> flist = ra.getAccountList();
+				if(flist != null){
+					for(int j = 0; j < flist.size(); j++){
+						RunProcessVO process = new RunProcessVO(ra.number, flist.get(j).getName(), ra.operator, null, null, 0, flist.get(j).getAccount());
+						runProcess.add(process);
+					}
+				}
+			}
 		}
 		return runProcess;
 	}
 
 	public RunConditionVO runCondition(TimeVO time1, TimeVO time2) {
+		runCondition = new RunConditionVO();
+		ArrayList<ApplicationVO> applist = rightTimeList(time1, time2);
+		for(int i = 0; i < applist.size(); i++){
+			ApplicationVO app = applist.get(i);
+			//填充RunProcessVO信息
+			if(app instanceof SaleListVO){
+				SaleListVO sale = (SaleListVO)app;
+				runCondition.discount += sale.getDiscount();
+				runCondition.saleIncome += sale.getTotal();
+			}
+			else if(app instanceof SaleRejectListVO){
+				SaleRejectListVO sale = (SaleRejectListVO)app;
+				runCondition.discount -= sale.getDiscount();
+				runCondition.saleIncome -= sale.getTotal();
+			}
+			else if(app instanceof ImportListVO){
+				ImportListVO im = (ImportListVO)app;
+				runCondition.SaleOutcome += im.getTotal();
+			}
+			else if(app instanceof ImportRejectListVO){
+				ImportRejectListVO im = (ImportRejectListVO)app;
+				runCondition.saleIncome -= im.getTotal();
+			}
+			else if(app instanceof IncreaseToMatchVO){
+				IncreaseToMatchVO itm = (IncreaseToMatchVO)app;
+				
+			}
+			//待添加 TODO
+		}
 		return runCondition;
 	}
 	/**

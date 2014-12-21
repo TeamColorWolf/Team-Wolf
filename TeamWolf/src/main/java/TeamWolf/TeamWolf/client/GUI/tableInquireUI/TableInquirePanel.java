@@ -19,6 +19,7 @@ public class TableInquirePanel extends JPanel{
 	
 	SaleDetialPanel saleDetial;
 	public RunProcessPanel runProcess;
+	RunConditionPanel runCondition;
 	
 	final static int width = 960;
 	final static int height = 540;
@@ -31,7 +32,9 @@ public class TableInquirePanel extends JPanel{
 		
 		saleDetial = new SaleDetialPanel();
 		runProcess = new RunProcessPanel();
+		runCondition = new RunConditionPanel();
 		
+		tab.add(runCondition, "经营情况表");
 		tab.add(runProcess, "经营历程表");
 		tab.add(saleDetial, "销售明细表");
 		tab.setSize(width, height);

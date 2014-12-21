@@ -19,6 +19,9 @@ public class ApplicationType {
 	}
 	
 	public static String getType(String number){
+		if(number == null){
+			return "Unknow Application";
+		}
 		String[] n = number.split("-");
 		if(n[0].equals("KCBYD")){
 			return Type.库存报溢单.toString();
@@ -49,6 +52,9 @@ public class ApplicationType {
 		}
 		else if(n[0].equals("XJFYD")){
 			return Type.现金费用单.toString();
+		}
+		else if(n[0].equals("KCZSD")){
+			return Type.库存赠送单.toString();
 		}
 		return "Unknow Application";
 	}

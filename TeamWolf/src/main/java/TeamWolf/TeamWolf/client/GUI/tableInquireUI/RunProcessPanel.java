@@ -20,7 +20,7 @@ public class RunProcessPanel extends JPanel{
 	TableInquireBLservice service = TableInquirePanel.service;
 	
 	public TimeSelectPanel timeSelect;
-	static String[] column = {"单据编号", "客户", "业务员", "仓库编号", "商品名", "销售量", "销售单价"};
+	static String[] column = {"单据编号", "客户", "业务员", "仓库编号", "商品/条目名", "销售量", "销售单价/交易额"};
 	
 	public Object[][] content;
 	JTable table;

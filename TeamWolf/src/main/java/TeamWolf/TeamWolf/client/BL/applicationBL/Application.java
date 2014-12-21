@@ -9,6 +9,7 @@ import TeamWolf.TeamWolf.client.BL.applicationBL.forSale.SaleList;
 import TeamWolf.TeamWolf.client.BL.applicationBL.forSale.SaleRejectList;
 import TeamWolf.TeamWolf.client.BL.applicationBL.forStock.DecreaseToMatch;
 import TeamWolf.TeamWolf.client.BL.applicationBL.forStock.IncreaseToMatch;
+import TeamWolf.TeamWolf.client.BL.applicationBL.forStock.PresentList;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerController;
 import TeamWolf.TeamWolf.client.BL.financeBL.financeController;
 import TeamWolf.TeamWolf.client.BL.goodsBL.GoodsBLController;
@@ -23,6 +24,7 @@ import TeamWolf.TeamWolf.client.vo.ImportListVO;
 import TeamWolf.TeamWolf.client.vo.ImportRejectListVO;
 import TeamWolf.TeamWolf.client.vo.IncreaseToMatchVO;
 import TeamWolf.TeamWolf.client.vo.PaymentApplicationVO;
+import TeamWolf.TeamWolf.client.vo.PresentListVO;
 import TeamWolf.TeamWolf.client.vo.RecieptApplicationVO;
 import TeamWolf.TeamWolf.client.vo.SaleListVO;
 import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
@@ -68,7 +70,6 @@ public abstract class Application {
 	}
 	
 	public static Application getApplication(ApplicationVO vo, String IP){
-		String[] n = vo.number.split("-");
 		if(vo instanceof ImportListVO){//进货单
 			return new ImportList((ImportListVO)vo, IP);
 		}
@@ -95,6 +96,9 @@ public abstract class Application {
 		}
 		else if(vo instanceof CashApplicationVO){//现金费用单
 			return new CashApplication((CashApplicationVO)vo, IP);
+		}
+		else if(vo instanceof PresentListVO){//库存赠送单
+			return new PresentList((PresentListVO)vo, IP);
 		}
 		return null;
 	}

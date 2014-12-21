@@ -8,12 +8,14 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;
+import TeamWolf.TeamWolf.client.vo.CashApplicationVO;
 import TeamWolf.TeamWolf.client.vo.DecreaseToMatchVO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
 import TeamWolf.TeamWolf.client.vo.ImportListVO;
 import TeamWolf.TeamWolf.client.vo.ImportRejectListVO;
 import TeamWolf.TeamWolf.client.vo.IncreaseToMatchVO;
 import TeamWolf.TeamWolf.client.vo.PaymentApplicationVO;
+import TeamWolf.TeamWolf.client.vo.PresentListVO;
 import TeamWolf.TeamWolf.client.vo.RecieptApplicationVO;
 import TeamWolf.TeamWolf.client.vo.SaleListVO;
 import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
@@ -99,6 +101,13 @@ public class DetialPanel extends JPanel{
 			customer = ((SaleRejectListVO)vo).getCustomer().getName();
 			total = ((SaleRejectListVO)vo).getTotal();
 		}
+//		else if(vo instanceof PresentListVO){
+//			columnName = stockList;
+//			content = new Object[16][4];
+//			list = ((PresentListVO)vo).getPList();
+//			customer = null;
+//			total = 0;
+//		}
 		else if(vo instanceof IncreaseToMatchVO){
 			type = 1;
 			columnName = stockList;
@@ -130,6 +139,11 @@ public class DetialPanel extends JPanel{
 			type = 2;
 			columnName = financeList;
 			flist = ((RecieptApplicationVO)vo).getAccountList();
+		}
+		else if(vo instanceof CashApplicationVO){
+			type = 2;
+			columnName = financeList;
+			flist = ((CashApplicationVO)vo).getAccountList();
 		}
 		
 		if(type == 0){
