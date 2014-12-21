@@ -24,7 +24,7 @@ public class DecreaseToMatchVO extends ApplicationVO{
     	  String[] info=po.toDecreaseInfo;
           this.number=po.number;
           this.operator=po.operator;
-          toDecrease=new GoodsVO(null, null, info[0], info[1], info[2], info[3], null, null, null, null, null);
+          toDecrease=new GoodsVO(null, null, info[0], info[1], info[2], info[3], info[4], null, null, null, null);
       }
       
       public String getInfo(){
@@ -45,6 +45,10 @@ public class DecreaseToMatchVO extends ApplicationVO{
       
       public String getAmount(){
     	  return ""+toDecrease.getAmount();
+      }
+      
+      public String getImprice(){
+    	  return ""+toDecrease.getImprice();
       }
       
       private String getPresentTime(){

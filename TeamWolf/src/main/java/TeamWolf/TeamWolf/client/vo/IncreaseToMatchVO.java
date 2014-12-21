@@ -21,28 +21,32 @@ public class IncreaseToMatchVO extends ApplicationVO {
     	 
     	 String[] info=po.toIncreaseInfo;
          this.number=po.number;
-         toIncrease=new GoodsVO(null, null, info[0], info[1], info[2], info[3], null, null, null, null, null);
+         toIncrease=new GoodsVO(null, null, info[0], info[1], info[2], info[3], info[4], null, null, null, null);
          this.operator=po.operator;
      }
      
      public String getInfo(){
-   	  return time+" "+toIncrease.getNumber()+" "+toIncrease.getName()+" "+toIncrease.getModel()+" 报溢数量"+toIncrease.getAmount();
+   	     return time+" "+toIncrease.getNumber()+" "+toIncrease.getName()+" "+toIncrease.getModel()+" 报溢数量"+toIncrease.getAmount();
      }
      
      public String getNumber(){
-   	  return toIncrease.getNumber();
+   	     return toIncrease.getNumber();
      }
      
      public String getName(){
-   	  return toIncrease.getName();
+   	     return toIncrease.getName();
      }
      
      public String getModel(){
-   	  return toIncrease.getModel();
+   	     return toIncrease.getModel();
      }
      
      public String getAmount(){
-   	  return ""+toIncrease.getAmount();
+   	     return ""+toIncrease.getAmount();
+     }
+     
+     public String getImprice(){
+    	 return ""+toIncrease.getImprice();
      }
      
      private String getPresentTime(){

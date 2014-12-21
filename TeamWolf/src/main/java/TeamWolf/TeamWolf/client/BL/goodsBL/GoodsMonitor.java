@@ -117,6 +117,8 @@ public class GoodsMonitor{
 			    while(number.length()<5){
 			    	number="0"+number;
 			    }
+			    GoodsPO goods=dataService.finGood(toIncrease.getNumber());
+			    toIncrease.setImprice(goods.getImprice());
 			    IncreaseToMatchVO itm=new IncreaseToMatchVO(toIncrease, number, operator);
 			    appController.submitIncreaseToMatch(itm);		
 		}
@@ -141,6 +143,8 @@ public class GoodsMonitor{
 			    while(number.length()<5){
 			    	number="0"+number;
 			     }
+			     GoodsPO goods=dataService.finGood(toDecrease.getNumber());
+			     toDecrease.setImprice(goods.getImprice());
 			     DecreaseToMatchVO dtm=new DecreaseToMatchVO(toDecrease, number, operator);
 			     appController.submitDecreaseToMatch(dtm);
 			}
