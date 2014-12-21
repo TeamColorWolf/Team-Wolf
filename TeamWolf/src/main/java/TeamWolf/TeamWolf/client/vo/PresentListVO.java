@@ -30,8 +30,7 @@ public class PresentListVO extends ApplicationVO{
 		ArrayList<String> pInfo=po.getPlInfo();
 		for(String s: pInfo){
 			String[] pI=s.split(" ");
-			GoodsVO present=new GoodsVO(null, null, pI[0], pI[1], null, pI[2], null, null, null, null, null);
-			
+			GoodsVO present=new GoodsVO(null, null, pI[0], pI[1], null, pI[2], pI[3], null, null, null, null);
 			pl.add(present);
 		}
 	}

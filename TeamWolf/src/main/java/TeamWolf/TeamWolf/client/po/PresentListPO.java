@@ -21,7 +21,7 @@ public class PresentListPO extends ApplicationPO implements Serializable{
 		plInfo=new ArrayList<String>();
 		ArrayList<GoodsVO> pl=vo.getPList();
 		for(GoodsVO g: pl){
-			plInfo.add(g.getNumber()+" "+g.getName()+" "+g.getAmount());
+			plInfo.add(g.getNumber()+" "+g.getName()+" "+g.getAmount()+" "+g.getImprice());
 		}
 		this.condition=1;
 		operator=vo.operator;
