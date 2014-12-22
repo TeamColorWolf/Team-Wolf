@@ -31,10 +31,13 @@ public class CustomerInfo implements CustomerInfoBLservice{
 	}
 	
 	public int ImportListInfoMod(ImportListVO ivo) {
-		CustomerPO oldCustomer = new CustomerPO(ivo.getCustomer());
-		ivo.getCustomer().setPay(ivo.getCustomer().getPay() + ivo.getTotal());
 		try {
 			cds = (CustomerDATAservice)Naming.lookup(URL);
+			String number = ivo.getCustomer().getNum();
+			String name = ivo.getCustomer().getName();
+			CustomerPO oldCustomer = cds.findCustomer(name, number);
+			System.out.println("oldCustomer should pay = " + oldCustomer.getPay());
+			ivo.getCustomer().setPay(oldCustomer.getPay() + ivo.getTotal());
 			cds.modCustomer(oldCustomer, new CustomerPO(ivo.getCustomer()));
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -47,10 +50,13 @@ public class CustomerInfo implements CustomerInfoBLservice{
 	}
 
 	public int ImportRejectListMod(ImportRejectListVO irvo) {
-		CustomerPO oldCustomer = new CustomerPO(irvo.getCustomer());
-		irvo.getCustomer().setReceive(irvo.getCustomer().getReceive() + irvo.getTotal());
 		try {
 			cds = (CustomerDATAservice)Naming.lookup(URL);
+			String number = irvo.getCustomer().getNum();
+			String name = irvo.getCustomer().getName();
+			CustomerPO oldCustomer = cds.findCustomer(name, number);
+			System.out.println("oldCustomer should receive = " + oldCustomer.getReceive());
+			irvo.getCustomer().setReceive(oldCustomer.getReceive() + irvo.getTotal());
 			cds.modCustomer(oldCustomer, new CustomerPO(irvo.getCustomer()));
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -63,10 +69,13 @@ public class CustomerInfo implements CustomerInfoBLservice{
 	}
 
 	public int SaleListMod(SaleListVO svo) {
-		CustomerPO oldCustomer = new CustomerPO(svo.getCustomer());
-		svo.getCustomer().setReceive(svo.getCustomer().getReceive() + svo.getTotalAfterDiscount());
 		try {
 			cds = (CustomerDATAservice)Naming.lookup(URL);
+			String number = svo.getCustomer().getNum();
+			String name = svo.getCustomer().getName();
+			CustomerPO oldCustomer = cds.findCustomer(name, number);
+			System.out.println("oldCustomer should receive = " + oldCustomer.getReceive());
+			svo.getCustomer().setReceive(oldCustomer.getReceive() + svo.getTotal());
 			cds.modCustomer(oldCustomer, new CustomerPO(svo.getCustomer()));
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -79,10 +88,13 @@ public class CustomerInfo implements CustomerInfoBLservice{
 	}
 
 	public int SaleRejectListMod(SaleRejectListVO srvo) {
-		CustomerPO oldCustomer = new CustomerPO(srvo.getCustomer());
-		srvo.getCustomer().setPay(srvo.getCustomer().getPay() + srvo.getTotalAfterDiscount());
 		try {
 			cds = (CustomerDATAservice)Naming.lookup(URL);
+			String number = srvo.getCustomer().getNum();
+			String name = srvo.getCustomer().getName();
+			CustomerPO oldCustomer = cds.findCustomer(name, number);
+			System.out.println("oldCustomer should pay = " + oldCustomer.getPay());
+			srvo.getCustomer().setPay(srvo.getCustomer().getPay() + srvo.getTotalAfterDiscount());
 			cds.modCustomer(oldCustomer, new CustomerPO(srvo.getCustomer()));
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
