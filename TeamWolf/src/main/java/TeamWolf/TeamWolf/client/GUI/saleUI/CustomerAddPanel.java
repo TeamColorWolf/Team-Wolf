@@ -304,6 +304,7 @@ public class CustomerAddPanel extends JPanel{
 		
 //		CustomerDelPanel.customerList.add(customer);
 		int result = customerLogic.Customeradd(customer);
+		customerList = customerLogic.getAllCustomerList();
 		CustomerDelPanel.customerList = customerLogic.getAllCustomerList();
 		CustomerModPanel.customerList = customerLogic.getAllCustomerList();
 		return result;

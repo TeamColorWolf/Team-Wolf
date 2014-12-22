@@ -50,8 +50,21 @@ public class ImportList extends Application{
 
 	@Override
 	public int submit() {
-		// TODO Auto-generated method stub
-		return 0;
+		ImportListPO ipo = new ImportListPO(ivo);
+		try {
+			saleDataServ = (SaleApplicationDATAservice) Naming.lookup(URL);
+			return saleDataServ.submitImportList(ipo);
+		} catch (MalformedURLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (NotBoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		return 999999;
 	}
 
 	@Override
