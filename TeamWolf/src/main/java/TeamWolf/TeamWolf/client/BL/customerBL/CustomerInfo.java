@@ -107,10 +107,14 @@ public class CustomerInfo implements CustomerInfoBLservice{
 	}
 
 	public int RecieptListMod(RecieptApplicationVO vo) {
-		CustomerPO oldCustomer = new CustomerPO(vo.getCustomer());
-		vo.getCustomer().setReceive(vo.getCustomer().getReceive()-Double.parseDouble(vo.getAddup()));
+
 		try {
 			cds = (CustomerDATAservice)Naming.lookup(URL);
+			String number = vo.getCustomer().getNum();
+			String name = vo.getCustomer().getName();
+			CustomerPO oldCustomer = cds.findCustomer(name, number);
+			vo.getCustomer().setReceive(oldCustomer.getReceive() - Double.parseDouble(vo.getAddup()));
+			cds.modCustomer(oldCustomer,new CustomerPO(vo.getCustomer()));
 		} catch (MalformedURLException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -118,12 +122,6 @@ public class CustomerInfo implements CustomerInfoBLservice{
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		} catch (NotBoundException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		}
-		try {
-			cds.modCustomer(oldCustomer,new CustomerPO(vo.getCustomer()));
-		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
@@ -131,10 +129,13 @@ public class CustomerInfo implements CustomerInfoBLservice{
 	}
 
 	public int PaymentListMod(PaymentApplicationVO vo) {
-		CustomerPO oldCustomer = new CustomerPO(vo.getCustomer());
-		vo.getCustomer().setPay(vo.getCustomer().getPay()-Double.parseDouble(vo.getAddup()));
 		try {
 			cds = (CustomerDATAservice)Naming.lookup(URL);
+			String number = vo.getCustomer().getNum();
+			String name = vo.getCustomer().getName();
+			CustomerPO oldCustomer = cds.findCustomer(name, number);
+			vo.getCustomer().setPay(oldCustomer.getPay() + Double.parseDouble(vo.getAddup()));
+			cds.modCustomer(oldCustomer,new CustomerPO(vo.getCustomer()));
 		} catch (MalformedURLException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -142,12 +143,6 @@ public class CustomerInfo implements CustomerInfoBLservice{
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		} catch (NotBoundException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		}
-		try {
-			cds.modCustomer(oldCustomer,new CustomerPO(vo.getCustomer()));
-		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
