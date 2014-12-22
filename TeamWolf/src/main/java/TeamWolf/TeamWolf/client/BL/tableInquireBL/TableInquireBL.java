@@ -6,11 +6,13 @@ import TeamWolf.TeamWolf.client.BL.applicationBL.MutiRoleService;
 import TeamWolf.TeamWolf.client.BL.applicationBL.mutiRole.MutiRoleController;
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;
 import TeamWolf.TeamWolf.client.vo.CashApplicationVO;
+import TeamWolf.TeamWolf.client.vo.DecreaseToMatchVO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
 import TeamWolf.TeamWolf.client.vo.ImportListVO;
 import TeamWolf.TeamWolf.client.vo.ImportRejectListVO;
 import TeamWolf.TeamWolf.client.vo.IncreaseToMatchVO;
 import TeamWolf.TeamWolf.client.vo.PaymentApplicationVO;
+import TeamWolf.TeamWolf.client.vo.PresentListVO;
 import TeamWolf.TeamWolf.client.vo.RecieptApplicationVO;
 import TeamWolf.TeamWolf.client.vo.RunConditionVO;
 import TeamWolf.TeamWolf.client.vo.RunProcessVO;
@@ -177,7 +179,7 @@ public class TableInquireBL {
 		ArrayList<ApplicationVO> applist = rightTimeList(time1, time2);
 		for(int i = 0; i < applist.size(); i++){
 			ApplicationVO app = applist.get(i);
-			//填充RunProcessVO信息
+			//填充RunConditionVO信息
 			if(app instanceof SaleListVO){
 				SaleListVO sale = (SaleListVO)app;
 				runCondition.discount += sale.getDiscount();
@@ -198,9 +200,22 @@ public class TableInquireBL {
 			}
 			else if(app instanceof IncreaseToMatchVO){
 				IncreaseToMatchVO itm = (IncreaseToMatchVO)app;
-				
+				runCondition.stockIncome += Integer.parseInt(itm.getAmount()) * Double.parseDouble(itm.getImprice());
 			}
-			//待添加 TODO
+			else if(app instanceof DecreaseToMatchVO){
+				DecreaseToMatchVO dtm = (DecreaseToMatchVO)app;
+				runCondition.StockOutcome += Integer.parseInt(dtm.getAmount()) * Double.parseDouble(dtm.getImprice());
+			}
+			else if(app instanceof PresentListVO){
+				PresentListVO pl = (PresentListVO)app;
+				ArrayList<GoodsVO> glist = pl.getPList();
+				if(glist != null){
+					for(int j = 0; j < glist.size(); j++){
+						runCondition.StockOutcome += glist.get(j).getImprice() * glist.get(j).getAmount();
+					}
+				}
+			}
+			runCondition.profit = runCondition.saleIncome + runCondition.stockIncome - runCondition.discount - runCondition.SaleOutcome - runCondition.StockOutcome;
 		}
 		return runCondition;
 	}
