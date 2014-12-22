@@ -49,8 +49,22 @@ public class ImportRejectList extends Application{
 
 	@Override
 	public int submit() {
-		// TODO Auto-generated method stub
-		return 0;
+		ImportRejectListPO irpo = new ImportRejectListPO(irvo);
+		try {
+			saleDataServ = (SaleApplicationDATAservice) Naming.lookup(URL);
+			System.out.println("add importRejectList successfully");
+			return saleDataServ.submitImportRejectList(irpo);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 999999;
 	}
 
 	@Override

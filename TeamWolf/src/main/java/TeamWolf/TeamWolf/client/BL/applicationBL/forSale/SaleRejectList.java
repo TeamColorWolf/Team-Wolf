@@ -49,8 +49,18 @@ public class SaleRejectList extends Application {
 
 	@Override
 	public int submit() {
-		// TODO Auto-generated method stub
-		return 0;
+		SaleRejectListPO srpo = new SaleRejectListPO(srvo);
+		try {
+			saleDataServ = (SaleApplicationDATAservice) Naming.lookup(URL);
+			return saleDataServ.submitExportRejectList(srpo);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
+		return 999999;
 	}
 
 	@Override

@@ -95,6 +95,11 @@ public class SaleBL{
 		return 999999;
 	}
 
+	/**
+	 * 创建进货退货单
+	 * @param irvo
+	 * @return
+	 */
 	public int createImportReject(ImportRejectListVO irvo) {
 		int judge = 0;
 		judge = saleAssist.canAddImportReject(irvo);
@@ -119,6 +124,11 @@ public class SaleBL{
 		return 999999;
 	}
 
+	/**
+	 * 创建销售单
+	 * @param svo
+	 * @return
+	 */
 	public int createSale(SaleListVO svo) {
 		int judge = saleAssist.canAddSale(svo);
 		if(judge != 0){
@@ -140,6 +150,11 @@ public class SaleBL{
 		return 999999;
 	}
 
+	/**
+	 * 创建销售退货单
+	 * @param srvo
+	 * @return
+	 */
 	public int createSaleReject(SaleRejectListVO srvo) {
 		int judge = saleAssist.canAddSaleReject(srvo);
 		if(judge != 0){

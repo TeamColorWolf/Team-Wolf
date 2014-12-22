@@ -49,8 +49,19 @@ public class SaleList extends Application {
 
 	@Override
 	public int submit() {
-		// TODO Auto-generated method stub
-		return 0;
+		SaleListPO spo = new SaleListPO(svo);
+		try {
+			saleDataServ = (SaleApplicationDATAservice) Naming.lookup(URL);
+			return saleDataServ.submitExportList(spo);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
+		
+		return 999999;
 	}
 
 	@Override
