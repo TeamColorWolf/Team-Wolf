@@ -344,7 +344,11 @@ public class SaleListPanel extends JPanel{
 		}
 //		SaleRejectListPanel.saleList.add(saleVO);
 		
-		promotionServ.adaptPromotionForSaleList(saleVO);
+		double dis = promotionServ.adaptPromotionForSaleList(saleVO);
+		discountField.setText(Double.toString(dis));
+		saleVO.setDiscount(dis);
+		saleVO.setTotalAfterDiscount(Double.parseDouble(totalField.getText()) - dis);
+		
 		int result = saleLogic.createSale(saleVO);
 		saleList = saleLogic.getSaleList();
 		SaleRejectListPanel.saleList = saleLogic.getSaleList();
