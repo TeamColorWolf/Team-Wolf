@@ -96,14 +96,14 @@ public class DetialPanel extends JPanel{
 			columnName = goodsList;
 			list = ((SaleListVO)vo).getGoodsList();
 			customer = ((SaleListVO)vo).getCustomer().getName();
-			total = ((SaleListVO)vo).getTotal();
+			total = ((SaleListVO)vo).getTotalAfterDiscount();
 		}
 		else if(vo instanceof SaleRejectListVO){
 			type = 0;
 			columnName = goodsList;
 			list = ((SaleRejectListVO)vo).getGoodsList();
 			customer = ((SaleRejectListVO)vo).getCustomer().getName();
-			total = ((SaleRejectListVO)vo).getTotal();
+			total = ((SaleRejectListVO)vo).getTotalAfterDiscount();
 		}
 //		else if(vo instanceof PresentListVO){
 //			columnName = stockList;
