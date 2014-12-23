@@ -21,6 +21,8 @@ public class AccountnewPanel extends JPanel{
 	public JTextField userID;
 	public JLabel workID;
 	
+	ApplicationPanel ap;
+	
 	public JButton add;
 	public JButton cancel;
 	
@@ -34,7 +36,7 @@ public class AccountnewPanel extends JPanel{
 	private final int LeX = 180;
 	private final int RiX = 550;
 	
-	public AccountnewPanel(){
+	public AccountnewPanel(String IP){
 		super();
 		userID = new JTextField();
 		workID = new JLabel();
@@ -54,6 +56,9 @@ public class AccountnewPanel extends JPanel{
 		this.add(ID);
 		this.add(userID);
 		
+		ap =new ApplicationPanel(IP);
+		
+	
 		add = new JButton("添加");
 		cancel = new JButton("取消");
 		add.setSize(LW, 30);

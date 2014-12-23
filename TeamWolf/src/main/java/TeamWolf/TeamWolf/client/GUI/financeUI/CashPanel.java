@@ -75,7 +75,7 @@ public class CashPanel extends JPanel{
 		getCustomerList();
 		getCustomerTopList();
 		
-		ocp = new OneCashPanel();
+		ocp = new OneCashPanel(IP);
 		
 		setCustomerBox(CustomerList);
 		

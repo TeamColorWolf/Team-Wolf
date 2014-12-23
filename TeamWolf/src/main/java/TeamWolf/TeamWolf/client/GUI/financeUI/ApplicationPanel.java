@@ -32,6 +32,8 @@ public class ApplicationPanel extends JPanel{
 		cp = new CashPanel(IP);
 		rp = new ReceiptPanel(IP);
 		
+		rp.orp.flashPanel();
+		
 		tab.add(rp,"制定收款单");
 		tab.add(pp,"制定付款单");
 		tab.add(cp,"制定现金费用单");

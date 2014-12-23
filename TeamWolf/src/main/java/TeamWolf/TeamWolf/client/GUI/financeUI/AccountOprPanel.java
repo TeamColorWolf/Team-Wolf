@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import TeamWolf.TeamWolf.ErrorTW;
+import TeamWolf.TeamWolf.client.BL.financeBL.financeController;
 import TeamWolf.TeamWolf.client.BLservice.financeBLservice.AccountBlservice;
 import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
 import TeamWolf.TeamWolf.client.GUI.userUI.AdminFrame;
@@ -37,7 +38,7 @@ public class AccountOprPanel extends JPanel{
 	JButton delete = new JButton("确认删除");
 	JButton cancel = new JButton("取消");
 	JButton check = new JButton("查找");
-	
+	String IP;
 	JTextField AccountName = new JTextField();
 	JTextField AccountMoney = new JTextField();
 	
@@ -54,9 +55,11 @@ public class AccountOprPanel extends JPanel{
 	private final int up = 50;
 	private final int dis = 80;
 	
-	public AccountOprPanel(){
+	public AccountOprPanel(String IP){
 		super();
 		this.getContent();
+		this.IP = IP;
+		service = new financeController(IP);
 		tableModel.setDataVector(content, columnName);
 		accountTable = new JTable(tableModel);
 		accountTable.setSize(400, 400);
@@ -116,7 +119,7 @@ public class AccountOprPanel extends JPanel{
 		accountTable.addMouseListener(new TableListener(accountTable));
 	}
 	
-	private void getContent(){
+	public void getContent(){
 		ArrayList<financeVO> list = service.checkVO();
 		if(list == null){
 			content = new Object[15][3];
@@ -136,8 +139,12 @@ public class AccountOprPanel extends JPanel{
 	public void flashPanel(){
 		this.getContent();
 		tableModel.setDataVector(content, columnName);
+		accountTable.removeAll();
+		tableModel.setDataVector(content, columnName);
+		accountTable.repaint();
 		accountTable.updateUI();
 		this.updateUI();
+		this.repaint();
 	}
 	
 	class CheckListener implements MouseListener{

@@ -14,13 +14,16 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import TeamWolf.TeamWolf.client.BL.applicationBL.FinanceApplicationService;
+import TeamWolf.TeamWolf.client.BL.financeBL.financeController;
 import TeamWolf.TeamWolf.client.BLservice.financeBLservice.AccountBlservice;
 import TeamWolf.TeamWolf.client.vo.financeVO;
 
 public class OneRecieptPanel extends JPanel{
 	
-	AccountBlservice service = ReceiptPanel.service;
+	//AccountBlservice service = ReceiptPanel.service;
 	
+	AccountBlservice service = null;
+	String IP;
 	int MoneyNum = 0;
 	
 	JScrollPane scroll;
@@ -51,9 +54,12 @@ public class OneRecieptPanel extends JPanel{
 	private final static int Lgap = 80;
 	private final static int left = 130;
 	
-	public OneRecieptPanel(){
+	public OneRecieptPanel(String IP){
 		panel = new JPanel();
-		financeList = service.checkVO();
+		
+		
+		this.IP = IP;
+		//financeList = service.checkVO();
 		
 		if(financeList == null){
 			financeList = new ArrayList<financeVO>();
@@ -229,10 +235,20 @@ public class OneRecieptPanel extends JPanel{
 	}
 	
 	
+	public void flashPanel(){
+		panel.updateUI();
+	}
+	
+	
 	class AddButtonListener implements ActionListener{
 
 		public void actionPerformed(ActionEvent arg0) {
 
+			service = new financeController(IP);
+			financeList = service.checkVO();
+			for(int i=0;i<financeList.size();i++){
+				System.out.println(financeList.get(i).getName());
+			}
 			setAccountsBox(AccountString);
 			//AccountString.addActionListener(new AccountBoxListener(MoneyNum));
 			MoneyNum++;

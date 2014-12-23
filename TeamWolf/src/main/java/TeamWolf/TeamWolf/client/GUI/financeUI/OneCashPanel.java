@@ -14,6 +14,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import TeamWolf.TeamWolf.client.BL.applicationBL.FinanceApplicationService;
+import TeamWolf.TeamWolf.client.BL.financeBL.financeController;
 import TeamWolf.TeamWolf.client.BLservice.financeBLservice.AccountBlservice;
 import TeamWolf.TeamWolf.client.vo.financeVO;
 
@@ -26,6 +27,7 @@ public class OneCashPanel extends JPanel{
 	JScrollPane scroll;
 	JPanel panel;
 	
+	String IP;
 	Dimension panelD;
 	
 	ArrayList<JComboBox<String>> AccountList;
@@ -55,10 +57,10 @@ public class OneCashPanel extends JPanel{
 	private final static int Lgap = 80;
 	private final static int left = 130;
 	
-	public OneCashPanel(){
+	public OneCashPanel(String IP){
 		panel = new JPanel();
-		financeList = service.checkVO();
-		
+		//financeList = service.checkVO();
+		this.IP = IP;
 		if(financeList == null){
 			financeList = new ArrayList<financeVO>();
 		}
@@ -267,6 +269,8 @@ public class OneCashPanel extends JPanel{
 	class AddButtonListener implements ActionListener{
 
 		public void actionPerformed(ActionEvent arg0) {
+			service = new financeController(IP);
+			financeList = service.checkVO();
 			setAccountsBox(AccountString);
 			AccountString.addActionListener(new AccountBoxListener(MoneyNum));
 			MoneyNum++;

@@ -36,7 +36,8 @@ public class ReceiptPanel extends JPanel{
 	private final static int BH = 30;
 	public static final int width = 960;
 	public static final int height = 540;
-	public static AccountBlservice service = null;
+	//public static AccountBlservice service = null;
+	AccountBlservice service = null;
 	public static CustomerOprBLservice cusservice =null;
 	public OneRecieptPanel orp;
 	
@@ -77,7 +78,7 @@ public class ReceiptPanel extends JPanel{
 		getCustomerList();
 		getCustomerTopList();
 		
-		orp = new OneRecieptPanel();
+		orp = new OneRecieptPanel(IP);
 		
 		setCustomerBox(CustomerList);
 		

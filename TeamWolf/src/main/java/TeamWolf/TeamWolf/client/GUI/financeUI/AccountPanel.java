@@ -15,13 +15,13 @@ public class AccountPanel extends JPanel{
 	AccountnewPanel anp;
 	AccountOprPanel aop;
 	
-	public AccountPanel(){
+	public AccountPanel(String IP){
 		tab = new JTabbedPane(JTabbedPane.TOP);
 		tab.setSize(width, height);
 		tab.setVisible(true);
 		
-		anp = new AccountnewPanel();
-		aop = new AccountOprPanel();
+		anp = new AccountnewPanel(IP);
+		aop = new AccountOprPanel(IP);
 		
 		tab.add("添加新的账户",anp);
 		tab.add("对现在的账户进行修改",aop);

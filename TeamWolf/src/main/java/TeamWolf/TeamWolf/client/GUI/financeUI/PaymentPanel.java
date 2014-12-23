@@ -75,7 +75,7 @@ public class PaymentPanel extends JPanel{
 		getCustomerList();
 		getCustomerTopList();
 		
-		opp = new OnePaymentPanel();
+		opp = new OnePaymentPanel(IP);
 		
 		setCustomerBox(CustomerList);
 		
