@@ -75,7 +75,7 @@ public class CustomerInfo implements CustomerInfoBLservice{
 			String name = svo.getCustomer().getName();
 			CustomerPO oldCustomer = cds.findCustomer(name, number);
 			System.out.println("oldCustomer should receive = " + oldCustomer.getReceive());
-			svo.getCustomer().setReceive(oldCustomer.getReceive() + svo.getTotal());
+			svo.getCustomer().setReceive(oldCustomer.getReceive() + svo.getTotalAfterDiscount());
 			cds.modCustomer(oldCustomer, new CustomerPO(svo.getCustomer()));
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
