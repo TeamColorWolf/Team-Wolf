@@ -11,8 +11,10 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTree;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 import TeamWolf.TeamWolf.client.BL.applicationBL.forStock.StockApplicationController;
@@ -44,6 +46,14 @@ public class AppPane extends JPanel  {
 	JScrollPane WAContainer;
 	JTextArea WArea;
 	JPanel WarningP;
+	
+	String[] tableTitle={"   ", "赠送日期", "商品编号", "商品名称", "商品型号", "赠送数量", "商品进价"};
+	Object[][] stockInfoList={{"" ,"20141223", "样板", "测试", "测试", "测试", "测试"}};
+	JPanel PresentListP;
+	JTable shoP;
+	JScrollPane shoContainer;
+	JPanel oprP;
+	JButton pRefresh;
 	
 	public void initialTMP(){
 		
@@ -80,6 +90,7 @@ public class AppPane extends JPanel  {
 			}
 		});
 		WOprArea.add(refresh);
+		
 	}
 	
 	public void initialITMP(){
@@ -170,6 +181,38 @@ public class AppPane extends JPanel  {
 		WarningP.add(WOprArea, BorderLayout.SOUTH);
 		back.addTab("查看警报", WarningP);
 		back.setEnabledAt(2, true);
+		PresentListP=new JPanel();
+		PresentListP.setLayout(new BorderLayout());
+		PresentListP.setVisible(true);
+		PresentListP.add(shoContainer, BorderLayout.CENTER);
+		PresentListP.add(oprP, BorderLayout.SOUTH);
+		back.addTab("赠送单", PresentListP);
+		back.setEnabledAt(3, true);
+	}
+	
+	public void initialPList(){
+		
+		DefaultTableModel model=new DefaultTableModel(stockInfoList, tableTitle);
+		//StockShoArea=new JTable(stockInfoList, tableTitle);
+		shoP=new JTable(model);
+		shoP.setVisible(true);
+		shoP.setBounds(0, 0, 1400, 300);
+		shoP.getColumnModel().getColumn(0).setPreferredWidth(100);
+		for(int i=1;i<7;i++){						
+			shoP.getColumnModel().getColumn(i).setPreferredWidth(150);
+		}
+		shoP.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		//StockShoArea.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
+		shoContainer=new JScrollPane(shoP, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		shoContainer.setVisible(true);
+		shoContainer.setBounds(20, 50, 915, 300);
+		
+		oprP=new JPanel();
+		oprP.setVisible(true);
+		oprP.setLayout(new FlowLayout());
+		pRefresh=new JButton("刷新赠送单");
+		pRefresh.setVisible(true);
+		oprP.add(pRefresh);		
 	}
 	
 	public AppPane(String iP) {
@@ -179,6 +222,7 @@ public class AppPane extends JPanel  {
 		initialWOprArea();
 		initialITMP();
 		initialDTMP();
+		initialPList();
 		initialPane(); 		   
 		this.setLayout(new BorderLayout());
 		this.add(back, BorderLayout.CENTER);

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.ApproveDATAservice;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.FinanceApplicationDATAservice;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.SaleApplicationDATAservice;
+import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.StockApplicationDATAservice;
 import TeamWolf.TeamWolf.client.DATAservice.customerDATAservice.CustomerDATAservice;
 import TeamWolf.TeamWolf.client.DATAservice.financeDATAservice.financeDATAservice;
 import TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice.GoodsDataService;
