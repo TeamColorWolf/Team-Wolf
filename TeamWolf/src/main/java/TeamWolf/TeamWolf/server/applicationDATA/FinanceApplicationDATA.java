@@ -93,10 +93,10 @@ public class FinanceApplicationDATA extends UnicastRemoteObject implements Finan
 			throws RemoteException {
 		int success=-1;
 		for(int i=0;i<recieptlist.size();i++){
-			if(po.number.equals(po.number)){
+			if(po.number.equals(recieptlist.get(i).number)){
 				recieptlist.remove(i);
 				recieptlist.add(po);
-				break;
+			 	break;
 			}
 		}
 		try {
@@ -114,7 +114,7 @@ public class FinanceApplicationDATA extends UnicastRemoteObject implements Finan
 			throws RemoteException {
 		int success=-1;
 		for(int i=0;i<paymentlist.size();i++){
-			if(po.number.equals(po.number)){
+			if(po.number.equals(paymentlist.get(i).number)){
 				paymentlist.remove(i);
 				paymentlist.add(po);
 				break;
@@ -135,7 +135,7 @@ public class FinanceApplicationDATA extends UnicastRemoteObject implements Finan
 			throws RemoteException {
 		int success=-1;
 		for(int i=0;i<cashlist.size();i++){
-			if(po.number.equals(po.number)){
+			if(po.number.equals(cashlist.get(i).number)){
 				cashlist.remove(i);
 				cashlist.add(po);
 				break;
@@ -156,7 +156,7 @@ public class FinanceApplicationDATA extends UnicastRemoteObject implements Finan
 			throws RemoteException {
 		int success=-1;
 		for(int i=0;i<recieptlist.size();i++){
-			if(po.number.equals(po.number)){
+			if(po.number.equals(recieptlist.get(i).number)){
 				recieptlist.remove(i);
 				recieptlist.add(po);
 				break;
@@ -177,7 +177,7 @@ public class FinanceApplicationDATA extends UnicastRemoteObject implements Finan
 			throws RemoteException {
 		int success=-1;
 		for(int i=0;i<paymentlist.size();i++){
-			if(po.number.equals(po.number)){
+			if(po.number.equals(paymentlist.get(i).number)){
 				paymentlist.remove(i);
 				paymentlist.add(po);
 				break;
@@ -198,7 +198,7 @@ public class FinanceApplicationDATA extends UnicastRemoteObject implements Finan
 			throws RemoteException {
 		int success=-1;
 		for(int i=0;i<cashlist.size();i++){
-			if(po.number.equals(po.number)){
+			if(po.number.equals(cashlist.get(i).number)){
 				cashlist.remove(i);
 				cashlist.add(po);
 				break;

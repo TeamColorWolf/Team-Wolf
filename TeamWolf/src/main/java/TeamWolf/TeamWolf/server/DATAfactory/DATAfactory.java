@@ -59,6 +59,7 @@ public class DATAfactory {
 		
 		try {
 			finance = new financeDATA();
+			
 			login = new LoginDATA();
 			user = new UserDATA();
 			saleApp = new SaleApplicationDATA();

@@ -78,24 +78,28 @@ public class DetialPanel extends JPanel{
 		}
 		//强制转换并赋值
 		if(vo instanceof ImportListVO){
+			type = 1;
 			columnName = goodsList;
 			list = ((ImportListVO)vo).getGoodsList();
 			customer = ((ImportListVO)vo).getCustomer().getName();
 			total = ((ImportListVO)vo).getTotal();
 		}
 		else if(vo instanceof ImportRejectListVO){
+			type = 1;
 			columnName = goodsList;
 			list = ((ImportRejectListVO)vo).getGoodsList();
 			customer = ((ImportRejectListVO)vo).getCustomer().getName();
 			total = ((ImportRejectListVO)vo).getTotal();
 		}
 		else if(vo instanceof SaleListVO){
+			type = 0;
 			columnName = goodsList;
 			list = ((SaleListVO)vo).getGoodsList();
 			customer = ((SaleListVO)vo).getCustomer().getName();
 			total = ((SaleListVO)vo).getTotal();
 		}
 		else if(vo instanceof SaleRejectListVO){
+			type = 0;
 			columnName = goodsList;
 			list = ((SaleRejectListVO)vo).getGoodsList();
 			customer = ((SaleRejectListVO)vo).getCustomer().getName();
@@ -109,7 +113,7 @@ public class DetialPanel extends JPanel{
 //			total = 0;
 //		}
 		else if(vo instanceof IncreaseToMatchVO){
-			type = 1;
+			type = -1;
 			columnName = stockList;
 			content = new Object[16][4];
 			content[0][0] = ((IncreaseToMatchVO)vo).getNumber();
@@ -120,7 +124,7 @@ public class DetialPanel extends JPanel{
 			total = 0;
 		}
 		else if(vo instanceof DecreaseToMatchVO){
-			type = 1;
+			type = -1;
 			columnName = stockList;
 			content = new Object[16][4];
 			content[0][0] = ((DecreaseToMatchVO)vo).getNumber();
@@ -168,6 +172,37 @@ public class DetialPanel extends JPanel{
 					content[i][2] = list.get(i).getAmount();
 					content[i][3] = list.get(i).getExprice();
 					content[i][4] = list.get(i).getAmount() * list.get(i).getExprice();
+				}
+			}
+			if(list != null && customer != null && total >= 0){
+				content[list.size()][0] = "客户名";
+				content[list.size()][1] = customer;
+				content[list.size()][3] = "总金额";
+				content[list.size()][4] = total;
+			}
+		}
+		else if(type == 1){
+			if(list == null){
+				content = new Object[16][5];
+			}
+			else if(list != null && list.size() < 15){
+				content = new Object[16][5];
+				for(int i = 0; i < list.size(); i++){
+					content[i][0] = list.get(i).getNumber();
+					content[i][1] = list.get(i).getName() + " " + list.get(i).getModel();
+					content[i][2] = list.get(i).getAmount();
+					content[i][3] = list.get(i).getImprice();
+					content[i][4] = list.get(i).getAmount() * list.get(i).getImprice();
+				}
+			}
+			else{
+				content = new Object[list.size()+1][5];
+				for(int i = 0; i < list.size(); i++){
+					content[i][0] = list.get(i).getNumber();
+					content[i][1] = list.get(i).getName() + " " + list.get(i).getModel();
+					content[i][2] = list.get(i).getAmount();
+					content[i][3] = list.get(i).getImprice();
+					content[i][4] = list.get(i).getAmount() * list.get(i).getImprice();
 				}
 			}
 			if(list != null && customer != null && total >= 0){
