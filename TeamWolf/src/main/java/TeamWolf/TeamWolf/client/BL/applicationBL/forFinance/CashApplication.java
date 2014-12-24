@@ -13,6 +13,13 @@ import TeamWolf.TeamWolf.client.po.ApplicationPO;
 import TeamWolf.TeamWolf.client.po.CashApplicationPO;
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;
 import TeamWolf.TeamWolf.client.vo.CashApplicationVO;
+/**
+ * 
+ * @author YQ
+ *
+ */
+
+//该类用于现金费用单提交，通过，与驳回
 
 public class CashApplication extends Application {
 	

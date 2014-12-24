@@ -11,6 +11,9 @@ import TeamWolf.TeamWolf.client.vo.CashApplicationVO;
 import TeamWolf.TeamWolf.client.vo.PaymentApplicationVO;
 import TeamWolf.TeamWolf.client.vo.RecieptApplicationVO;
 
+
+//Controller，用于管理账户类单据的提交，驳回，通过
+
 public class FinanceApplicationController extends MutiRoleController implements FinanceApplicationService{
 	FinanceSubmit submit;
 	

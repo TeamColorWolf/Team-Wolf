@@ -14,7 +14,8 @@ import TeamWolf.TeamWolf.client.po.RecieptApplicationPO;
 import TeamWolf.TeamWolf.client.vo.CashApplicationVO;
 import TeamWolf.TeamWolf.client.vo.PaymentApplicationVO;
 import TeamWolf.TeamWolf.client.vo.RecieptApplicationVO;
-
+//该类用于处理账户类单据的提交
+//该类同时用于获取账户类单据
 public class FinanceSubmit extends ApplicationBL{
 	
 	public String URL;

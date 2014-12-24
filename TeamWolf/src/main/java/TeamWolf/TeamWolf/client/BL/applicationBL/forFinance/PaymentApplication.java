@@ -15,6 +15,7 @@ import TeamWolf.TeamWolf.client.vo.PaymentApplicationVO;
 import  TeamWolf.TeamWolf.client.BL.financeBL.financeController;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.FinanceApplicationDATAservice;
 
+//该类用于付款单的审批，驳回，通过
 public class PaymentApplication extends Application {
 
 	String URL;

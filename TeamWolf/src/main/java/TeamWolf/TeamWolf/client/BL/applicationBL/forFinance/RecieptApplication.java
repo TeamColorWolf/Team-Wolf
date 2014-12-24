@@ -14,6 +14,7 @@ import TeamWolf.TeamWolf.client.vo.RecieptApplicationVO;
 import TeamWolf.TeamWolf.client.BL.financeBL.financeController;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.FinanceApplicationDATAservice;
 
+//该类用于收款单的审批，通过，驳回
 public class RecieptApplication extends Application {
 
 	RecieptApplicationVO vo;
