@@ -286,6 +286,7 @@ public class CustomerAddPanel extends JPanel{
 			return 706;
 		}
 		
+		
 		String num =  getCustomerNum();
 		String kind = (String) kindBox.getSelectedItem();
 		String level = (String)levelBox.getSelectedItem();
