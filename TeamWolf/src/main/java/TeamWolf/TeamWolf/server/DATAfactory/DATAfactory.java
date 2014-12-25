@@ -44,7 +44,7 @@ public class DATAfactory {
 	financeDATAservice finance;
 	CustomerDATAservice customer;
 	ApproveDATAservice approve;
-	StockApplicationDATA stockApplication;
+	StockApplicationDATAservice stockApplication;
 	FinanceApplicationDATAservice financeApplication;
 	SaleApplicationDATAservice saleApplication;
 	
