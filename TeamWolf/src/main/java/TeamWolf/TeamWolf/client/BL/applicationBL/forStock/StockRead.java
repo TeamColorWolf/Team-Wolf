@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.StockApplicationDATAservice;
 import TeamWolf.TeamWolf.client.po.DecreaseToMatchPO;
 import TeamWolf.TeamWolf.client.po.IncreaseToMatchPO;
+import TeamWolf.TeamWolf.client.po.PresentListPO;
+import TeamWolf.TeamWolf.client.vo.PresentListVO;
 
 public class StockRead {
 
@@ -84,6 +86,26 @@ public class StockRead {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return result;
+	}
+	
+	public ArrayList<PresentListVO> getPresentList(){
+		
+		ArrayList<PresentListVO> result=new ArrayList<PresentListVO>();
+		
+		try {
+			ArrayList<PresentListPO> poList=dataService.getPresentList();
+			for(PresentListPO g: poList){
+				if(g!=null){
+					//System.out.println(g.number);
+				    result.add(new PresentListVO(g));
+				}
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return result;
 	}
 	

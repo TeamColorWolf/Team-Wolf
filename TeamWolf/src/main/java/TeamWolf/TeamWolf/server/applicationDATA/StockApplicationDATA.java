@@ -13,6 +13,9 @@ import TeamWolf.TeamWolf.client.po.DecreaseToMatchPO;
 import TeamWolf.TeamWolf.client.po.IncreaseToMatchPO;
 import TeamWolf.TeamWolf.client.po.PresentListPO;
 import TeamWolf.TeamWolf.client.po.TypePO;
+import TeamWolf.TeamWolf.client.vo.CustomerVO;
+import TeamWolf.TeamWolf.client.vo.GoodsVO;
+import TeamWolf.TeamWolf.client.vo.PresentListVO;
 import TeamWolf.TeamWolf.server.FileName;
 import TeamWolf.TeamWolf.server.FileOpr;
 
@@ -353,16 +356,29 @@ public class StockApplicationDATA extends UnicastRemoteObject implements StockAp
  		return time;
  	}
 
+	public ArrayList<PresentListPO> getPresentList() throws RemoteException {
+		// TODO Auto-generated method stub
+		return this.PList;
+	}
+	
 	public static void main(String[] args){
 		
 		try {
 			StockApplicationDATA sad=new StockApplicationDATA();
 			
-			ArrayList<IncreaseToMatchPO> dp=sad.ITMList;
+			ArrayList<PresentListPO> p=sad.PList;
+			for(PresentListPO pp:p){
+				System.out.println(pp.number);
+				System.out.println(pp.condition);
+				System.out.println(pp.getOperator());
+				System.out.println(pp.getPlInfo().get(0));
+				System.out.println(pp.getPlInfo().get(1)); 
+			}
+			/*ArrayList<IncreaseToMatchPO> dp=sad.ITMList;
 			ArrayList<DecreaseToMatchPO> dd=sad.DTMList;
 			for(IncreaseToMatchPO i : dp){
 				System.out.println(i.number);
-				System.out.println(i.operator);
+		  		System.out.println(i.operator);
 				if(i.toIncreaseInfo[4]!=null)
 				   System.out.println(i.toIncreaseInfo[4]);
 			}
@@ -371,10 +387,22 @@ public class StockApplicationDATA extends UnicastRemoteObject implements StockAp
 				System.out.println(d.operator);
 				if(d.toDecreaseInfo[4]!=null)
 				   System.out.println(d.toDecreaseInfo[4]);
-			}
+			}*/
+			//PresentListVO pv=new PresentListVO();
+			//pv.number="ZSD-20151225-00001";
+			//pv.condition=1;
+			//pv.operator="XYJ";
+			//pv.customer=new CustomerVO(null, null, null, "sadas", null, null, null, null, null, null, null, null);
+			//pv.addPresent(new GoodsVO(null, null, "02020202", "999gml", "gm", "99", "21", null, null, null, null));
+			//pv.addPresent(new GoodsVO(null, null, "02020203", "888gml", "gm", "99", "21", null, null, null, null));
+	        //PresentListPO p=new PresentListPO(pv);
+	        //p.number="ZSD-20151225-00001";
+			//sad.submitPresentList(p);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+
+
 }
