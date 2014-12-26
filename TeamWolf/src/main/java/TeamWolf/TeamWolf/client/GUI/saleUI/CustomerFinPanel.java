@@ -8,11 +8,11 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOpr;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOprBLservice;
 import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
@@ -302,7 +302,7 @@ public class CustomerFinPanel extends JPanel{
 	private void inquireBtnEvent(){
 		customer = customerLogic.findCustomer(nameImpurField.getText(), numberInputField.getText());
 		if(customer == null){
-			 new MessageFrame(703);
+			 new MessageFrame(ErrorTW.notFondCustomer);
 			 return;
 		}
 		kindField.setText(customer.getKind());

@@ -14,6 +14,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOpr;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOprBLservice;
 import TeamWolf.TeamWolf.client.BL.promotionBL.PromotionForSaleController;
@@ -280,21 +281,21 @@ public class SaleListPanel extends JPanel{
 			if(Double.parseDouble(goodschoose.numListField.get(i).getText()) <= 0 || 
 					(Double.parseDouble(goodschoose.numListField.get(i).getText()) % 1) != 0){
 				System.out.println("sb,商品数量你™填错了");
-				return 7004;
+				return ErrorTW.wrongGoodsNum;
 			}
 		}
 		//检查折让金额是否正确（大于等于0，销售员最多折让1000元，销售经理可以折让5000元，总经理可以任意金额的折让）
 		if(Double.parseDouble(discountField.getText()) < 0){
-			return 7005;
+			return ErrorTW.wrongDiscountNum;
 		}
 		if(power.equals(UserType.销售人员) && Double.parseDouble(discountField.getText()) > 1000){
-			return 7006;
+			return ErrorTW.moreThanDiscount;
 		}
 		if(power.equals(UserType.销售经理) && Double.parseDouble(discountField.getText()) > 5000){
-			return 7006;
+			return ErrorTW.moreThanDiscount;
 		}
 		if(Double.parseDouble(totalField.getText()) < 0){
-			return 7007;
+			return ErrorTW.shouldReduceDiscount;
 		}
 		
 		String number = SaleListNum();

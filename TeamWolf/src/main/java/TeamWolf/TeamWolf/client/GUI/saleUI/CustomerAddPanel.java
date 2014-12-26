@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOpr;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOprBLservice;
 import TeamWolf.TeamWolf.client.BL.userBL.ForAllUserController;
@@ -272,18 +273,18 @@ public class CustomerAddPanel extends JPanel{
 				nameField.getText().equals("") || telField.getText().equals("") ||
 				addressField.getText().equals("") || zipCodeField.getText().equals("") ||
 				emailField.getText().equals("") || topLimitField.getText().equals("")){
-			return 701;
+			return ErrorTW.lackCustomerInfo;
 		}
 		//检查该客户是否已经存在
 		for (int i = 0; i < customerList.size(); i++) {
 			CustomerVO cvo = customerList.get(i);
 			if(nameField.getText().equals(cvo.getName()) && telField.getText().equals(cvo.getTel())){
-				return 704;
+				return ErrorTW.haveAlreadyExist;
 			}
 		}
 		//应收额度不能为负
 		if(Double.parseDouble(topLimitField.getText()) < 0){
-			return 706;
+			return ErrorTW.wrongTopLimit;
 		}
 		
 		

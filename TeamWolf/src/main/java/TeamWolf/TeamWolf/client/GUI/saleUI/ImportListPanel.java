@@ -14,6 +14,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOpr;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOprBLservice;
 import TeamWolf.TeamWolf.client.BL.saleBL.SaleBLController;
@@ -228,14 +229,14 @@ public class ImportListPanel extends JPanel{
 		if(customerBox.getSelectedItem() == null || storageBox.getSelectedItem() == null ||
 				totalField.getText() == null || goodschoose.giftNum == 0){
 			System.out.println("heheda");
-			return 7001;
+			return ErrorTW.lackListInfo;
 		}
 		//检查信息是否填写正确
 		for (int i = 0; i < goodschoose.giftNum; i++) {
 			if(Double.parseDouble(goodschoose.numListField.get(i).getText()) <= 0 || 
 					(Double.parseDouble(goodschoose.numListField.get(i).getText()) % 1) != 0){
 				System.out.println("sb,商品数量你™填错了");
-				return 7004;
+				return ErrorTW.wrongGoodsNum;
 			}
 		}
 		

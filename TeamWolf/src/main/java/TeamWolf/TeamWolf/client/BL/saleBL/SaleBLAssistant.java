@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.SaleApplicationDATAservice;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
@@ -38,7 +39,7 @@ public class SaleBLAssistant {
 		int number = Integer.parseInt(numSplit[2]);
 		ArrayList<GoodsVO> goodsList = ivo.getGoodsList();
 		if(number > 99999){
-			return 7008;
+			return ErrorTW.listAmountOverFlow;
 		}
 		for(int i = 0; i < goodsList.size(); i++){
 			int goodsNum = goodsList.get(i).getAmount();
@@ -61,7 +62,7 @@ public class SaleBLAssistant {
 
 		
 		if(number > 99999){
-			return 7008;
+			return ErrorTW.listAmountOverFlow;
 		}
 		
 		return 0;
@@ -77,7 +78,7 @@ public class SaleBLAssistant {
 		int number = Integer.parseInt(numSplit[2]);
 		ArrayList<GoodsVO> goodsList = svo.getGoodsList();
 		if(number > 99999){
-			return 7008;
+			return ErrorTW.listAmountOverFlow;
 		}
 		for(int i = 0; i < goodsList.size(); i++){
 			int goodsNum = goodsList.get(i).getAmount();
@@ -97,7 +98,7 @@ public class SaleBLAssistant {
 		String numSplit[] = srvo.number.split("-");
 		int number = Integer.parseInt(numSplit[2]);
 		if(number > 99999){
-			return 7008;
+			return ErrorTW.listAmountOverFlow;
 		}
 		return 0;
 	}

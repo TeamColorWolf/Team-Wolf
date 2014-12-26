@@ -17,12 +17,11 @@ import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.BL.saleBL.SaleBLController;
 import TeamWolf.TeamWolf.client.BLservice.saleBLservice.SaleBLservice;
 import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
-import TeamWolf.TeamWolf.client.po.SaleRejectListPO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
-import TeamWolf.TeamWolf.client.vo.ImportListVO;
 import TeamWolf.TeamWolf.client.vo.SaleListVO;
 import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
 import TeamWolf.TeamWolf.client.vo.UserVO;
@@ -284,13 +283,13 @@ public class SaleRejectListPanel extends JPanel{
 			}
 		}
 		if(svo == null){
-			return 7002;
+			return ErrorTW.chooseNoItem;
 		}
 		//判断所选单据的商品列表里是否包含特价包
 		ArrayList<GoodsVO> goodsList = svo.getGoodsList();
 		for (int i = 0; i < goodsList.size(); i++) {
 			if(goodsList.get(i).getName().contains("specialGoods")){
-				return 7003;
+				return ErrorTW.containsSpecialGoods;
 			}
 		}
 		

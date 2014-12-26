@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOpr;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOprBLservice;
 import TeamWolf.TeamWolf.client.BL.userBL.ForAllUserController;
@@ -359,18 +360,18 @@ public class CustomerModPanel extends JPanel{
 	private int modBtnAction(){
 		//未选择要修改的客户
 		if(customer == null){
-			return 707;
+			return ErrorTW.chooseNoModCustomer;
 		}
 		//信息填写不完整
 		if(kindBox.getSelectedItem() == null || levelBox.getSelectedItem() == null ||
 				nameField.getText().equals("") || telField.getText().equals("") ||
 				addressField.getText().equals("") || zipCodeField.getText().equals("") ||
 				emailField.getText().equals("") || topLimitField.getText().equals("")){
-			return 701;
+			return ErrorTW.lackCustomerInfo;
 		}
 		//应收额度不能为负
 		if(Double.parseDouble(topLimitField.getText()) < 0){
-			return 706;
+			return ErrorTW.wrongTopLimit;
 		}
 		
 		String num = customer.getNum();

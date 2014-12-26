@@ -17,6 +17,7 @@ import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.BL.saleBL.SaleBLController;
 import TeamWolf.TeamWolf.client.BLservice.saleBLservice.SaleBLservice;
 import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
@@ -284,7 +285,7 @@ public class ImportRejectListPanel extends JPanel{
 			}
 		}
 		if(ivo == null){
-			return 7002;
+			return ErrorTW.chooseNoItem;
 		}
 		ImportRejectListVO irvo = new ImportRejectListVO(importRejectListNum(),
 				remarkArea.getText(), ivo);

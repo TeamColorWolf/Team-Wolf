@@ -12,6 +12,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOpr;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOprBLservice;
 import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
@@ -196,10 +197,10 @@ public class CustomerDelPanel extends JPanel{
 		}
 		if(cvo == null){
 			System.out.println("delet failed");
-			return 705;
+			return ErrorTW.chooseNoCustomer;
 		}
 		if(cvo.getPay() != 0 || cvo.getReceive() != 0){
-			return 702;
+			return ErrorTW.stillShouldPay;
 		}
 //		//显示剩余客户单
 //		showBtnEvent();
