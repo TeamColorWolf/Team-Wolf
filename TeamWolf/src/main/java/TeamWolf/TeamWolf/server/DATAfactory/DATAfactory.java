@@ -14,6 +14,7 @@ import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.FinanceApplic
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.SaleApplicationDATAservice;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.StockApplicationDATAservice;
 import TeamWolf.TeamWolf.client.DATAservice.customerDATAservice.CustomerDATAservice;
+import TeamWolf.TeamWolf.client.DATAservice.financeDATAservice.INIDATAservice;
 import TeamWolf.TeamWolf.client.DATAservice.financeDATAservice.financeDATAservice;
 import TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice.GoodsDataService;
 import TeamWolf.TeamWolf.client.DATAservice.promotionDATAservice.PromotionDATAservice;
@@ -25,6 +26,7 @@ import TeamWolf.TeamWolf.server.applicationDATA.ApproveDATA;
 import TeamWolf.TeamWolf.server.applicationDATA.FinanceApplicationDATA;
 import TeamWolf.TeamWolf.server.applicationDATA.SaleApplicationDATA;
 import TeamWolf.TeamWolf.server.applicationDATA.StockApplicationDATA;
+import TeamWolf.TeamWolf.server.financeDATA.INIDATA;
 import TeamWolf.TeamWolf.server.financeDATA.financeDATA;
 import TeamWolf.TeamWolf.server.goodsDATA.GoodsData;
 import TeamWolf.TeamWolf.server.promotionDATA.PromotionDATA;
@@ -47,6 +49,7 @@ public class DATAfactory {
 	StockApplicationDATAservice stockApplication;
 	FinanceApplicationDATAservice financeApplication;
 	SaleApplicationDATAservice saleApplication;
+	INIDATAservice ini;
 	
 	public DATAfactory(){
 
@@ -72,6 +75,7 @@ public class DATAfactory {
 			approve = new ApproveDATA();
 			financeApplication = new FinanceApplicationDATA();
 			saleApplication = new SaleApplicationDATA();
+			ini = new INIDATA();
 		} catch (RemoteException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -89,6 +93,7 @@ public class DATAfactory {
 			Naming.rebind("approveDATAservice", approve);
 			Naming.rebind("financeApplicationDATAservice", financeApplication);
 			Naming.rebind("saleApplicationDATAservice", saleApplication);
+			Naming.rebind("iniDATAservice", ini);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
