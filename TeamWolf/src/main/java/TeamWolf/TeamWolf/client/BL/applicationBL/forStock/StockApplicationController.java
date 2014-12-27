@@ -52,5 +52,10 @@ public class StockApplicationController extends MutiRoleController implements St
 		
 		return read.todayQuantityOfDTM();
 	}
+	
+	public ArrayList<PresentListVO> getPresentList(){
+		
+		return read.getPresentList();
+	}
 
 }

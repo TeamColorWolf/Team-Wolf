@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.BLservice.financeBLservice.AccountBlservice;
 import TeamWolf.TeamWolf.client.vo.CashApplicationVO;
+import TeamWolf.TeamWolf.client.vo.CustomerVO;
+import TeamWolf.TeamWolf.client.vo.GoodsStockListVO;
 import TeamWolf.TeamWolf.client.vo.PaymentApplicationVO;
 import TeamWolf.TeamWolf.client.vo.RecieptApplicationVO;
 import TeamWolf.TeamWolf.client.vo.TimeVO;
@@ -60,11 +62,11 @@ public class financeController implements AccountBlservice ,AccountInfoBLservice
     	 }
  		return 0;
       }
-     public int Initial(int operationType,String commodityType, String commodity, String Type,
- 			String number, String customerType, String customer,
- 			String customerConnect){
+     public int Initial(int operationType,int number, ArrayList<financeVO> accArray,
+				GoodsStockListVO gslArray, ArrayList<CustomerVO> cusArray){
     	 if(operationType == financeContoller_helper.INI){
-    		 return is.DoInitial(commodityType, commodity, Type, number, customerType, customer, customerConnect);
+    		 return is.DoInitial(number,accArray,
+    					gslArray, cusArray);
     	 }
  		return 0;
       }

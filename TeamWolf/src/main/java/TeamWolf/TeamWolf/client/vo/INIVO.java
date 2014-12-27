@@ -1,66 +1,49 @@
 package TeamWolf.TeamWolf.client.vo;
 
+import java.util.ArrayList;
+
+import TeamWolf.TeamWolf.client.po.INIPO;
+
 public class INIVO {
-	private String commodityType;
-	private String commodity;
-	private String Type;	
-	private String number;
-	private String customerType;
-	private String customer;	
-	private String customerConnect;
-	public INIVO(String commodityType, String commodity, String Type,
-			String number, String customerType, String customer,
-			String customerConnect){
-		this.commodityType = commodityType;
-		this.commodity = commodity;
-		this.Type = Type;
-		this.number = number;
-		this.customerType = customerType;
-		this.customer = customer;
-		this.customerConnect = customerConnect;
+	private int number;
+	private ArrayList<financeVO> accArray;
+	private GoodsStockListVO gslArray;
+	private ArrayList<CustomerVO> cusArray;
+	public INIVO(int number,ArrayList<financeVO> accArray,GoodsStockListVO gslArray,
+			ArrayList<CustomerVO> cusArray){
+		this.setNumber(number);
+		this.setAccArray(accArray);
+		this.setGslArray(gslArray);
+		this.setCusArray(cusArray);
 	}
-	
-	
-	public String getCommodityType() {
-		return commodityType;
+	public INIVO(INIPO po) {
+		this.number = po.getNumber();
+		this.accArray = po .getAccArray();
+		this.gslArray = po .getGslArray();
+		this.cusArray = po .getCusArray();
 	}
-	public void setCommodityType(String commodityType) {
-		this.commodityType = commodityType;
-	}
-	public String getCommodity() {
-		return commodity;
-	}
-	public void setCommodity(String commodity) {
-		this.commodity = commodity;
-	}
-	public String getType() {
-		return Type;
-	}
-	public void setType(String type) {
-		Type = type;
-	}
-	public String getNumber() {
+	public int getNumber() {
 		return number;
 	}
-	public void setNumber(String number) {
+	public void setNumber(int number) {
 		this.number = number;
 	}
-	public String getCustomerType() {
-		return customerType;
+	public ArrayList<financeVO> getAccArray() {
+		return accArray;
 	}
-	public void setCustomerType(String customerType) {
-		this.customerType = customerType;
+	public void setAccArray(ArrayList<financeVO> accArray) {
+		this.accArray = accArray;
 	}
-	public String getCustomer() {
-		return customer;
+	public GoodsStockListVO getGslArray() {
+		return gslArray;
 	}
-	public void setCustomer(String customer) {
-		this.customer = customer;
+	public void setGslArray(GoodsStockListVO gslArray) {
+		this.gslArray = gslArray;
 	}
-	public String getCustomerConnect() {
-		return customerConnect;
+	public ArrayList<CustomerVO> getCusArray() {
+		return cusArray;
 	}
-	public void setCustomerConnect(String customerConnect) {
-		this.customerConnect = customerConnect;
+	public void setCusArray(ArrayList<CustomerVO> cusArray) {
+		this.cusArray = cusArray;
 	}
 }

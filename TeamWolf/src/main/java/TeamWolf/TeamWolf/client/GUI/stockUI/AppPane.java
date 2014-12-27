@@ -19,10 +19,13 @@ import javax.swing.tree.DefaultMutableTreeNode;
 
 import TeamWolf.TeamWolf.client.BL.applicationBL.forStock.StockApplicationController;
 import TeamWolf.TeamWolf.client.BL.goodsBL.GoodsBLController;
+import TeamWolf.TeamWolf.client.GUI.manageUI.ManageFrame;
+import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
 import TeamWolf.TeamWolf.client.vo.GoodsAlarmVO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
+import TeamWolf.TeamWolf.client.vo.PresentListVO;
 
-public class AppPane extends JPanel  {
+public class AppPane extends JPanel implements ActionListener {
 	
 	StockApplicationController sacontroller;
 	GoodsBLController gbcontroller;
@@ -47,8 +50,8 @@ public class AppPane extends JPanel  {
 	JTextArea WArea;
 	JPanel WarningP;
 	
-	String[] tableTitle={"   ", "赠送日期", "商品编号", "商品名称", "商品型号", "赠送数量", "商品进价"};
-	Object[][] stockInfoList={{"" ,"20141223", "样板", "测试", "测试", "测试", "测试"}};
+	String[] tableTitle={"单据号", "赠送客户", "商品编号", "商品名称", "赠送数量", "商品进价"};
+	Object[][] stockInfoList={{"20141223", "样板", "测试", "测试", "测试", "测试"}};
 	JPanel PresentListP;
 	JTable shoP;
 	JScrollPane shoContainer;
@@ -184,7 +187,7 @@ public class AppPane extends JPanel  {
 		PresentListP=new JPanel();
 		PresentListP.setLayout(new BorderLayout());
 		PresentListP.setVisible(true);
-		PresentListP.add(shoContainer, BorderLayout.CENTER);
+		PresentListP.add(shoContainer);
 		PresentListP.add(oprP, BorderLayout.SOUTH);
 		back.addTab("赠送单", PresentListP);
 		back.setEnabledAt(3, true);
@@ -197,8 +200,8 @@ public class AppPane extends JPanel  {
 		shoP=new JTable(model);
 		shoP.setVisible(true);
 		shoP.setBounds(0, 0, 1400, 300);
-		shoP.getColumnModel().getColumn(0).setPreferredWidth(100);
-		for(int i=1;i<7;i++){						
+		shoP.getColumnModel().getColumn(0).setPreferredWidth(200);
+		for(int i=1;i<6;i++){						
 			shoP.getColumnModel().getColumn(i).setPreferredWidth(150);
 		}
 		shoP.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -212,6 +215,7 @@ public class AppPane extends JPanel  {
 		oprP.setLayout(new FlowLayout());
 		pRefresh=new JButton("刷新赠送单");
 		pRefresh.setVisible(true);
+		pRefresh.addActionListener(this);
 		oprP.add(pRefresh);		
 	}
 	
@@ -227,6 +231,43 @@ public class AppPane extends JPanel  {
 		this.setLayout(new BorderLayout());
 		this.add(back, BorderLayout.CENTER);
 		this.setVisible(true);
+	}
+
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
+		ArrayList<PresentListVO> pl=sacontroller.getPresentList();
+		if(pl!=null){
+		int size=0;
+		for(PresentListVO p:pl){
+			size+=p.getPList().size();
+		}
+	    PresentListP.remove(shoContainer);
+		PresentListP.repaint();
+		stockInfoList=new Object[size][6];
+		int i=0;
+		for(PresentListVO p:pl){
+			String number=p.number;
+			String customer=p.customer.getName();
+			ArrayList<GoodsVO> gl=p.getPList();
+			for(GoodsVO g:gl){
+				stockInfoList[i][0]=number;
+				stockInfoList[i][1]=customer;
+				stockInfoList[i][2]=g.getNumber();
+				stockInfoList[i][3]=g.getName();
+				stockInfoList[i][4]=g.getAmount();
+				stockInfoList[i][5]=g.getImprice();
+				i++;
+			}
+		}
+		 this.initialPList();
+		 PresentListP.add(shoContainer, BorderLayout.CENTER);
+		 PresentListP.repaint();
+		 back.updateUI();
+		 this.updateUI();
+		}
+		else
+			new MessageFrame(404);
 	}
 	
 }
