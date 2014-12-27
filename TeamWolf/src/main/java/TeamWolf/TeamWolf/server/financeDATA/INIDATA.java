@@ -25,13 +25,25 @@ public class INIDATA extends UnicastRemoteObject implements INIDATAservice{
 	}
 
 	public int insert(INIPO po) throws RemoteException {
+		int number = iList.size();
+		po.setNumber(number);
 		iList.add(po);
+		try {
+			FileOpr.writeFile(FileName.iniFile, iList);
+		} catch (IOException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
 		return 0;
 	}
 
-	public int find(INIPO po) throws RemoteException {
-		// TODO 自动生成的方法存根
-		return 0;
+	public INIPO find(int number) throws RemoteException {
+		for(INIPO intr : iList){
+			if(intr.getNumber()==number){
+				return intr;
+			}
+		}
+		return null;
 	}
 	
 	private void initial(){

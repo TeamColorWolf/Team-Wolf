@@ -2,6 +2,8 @@ package TeamWolf.TeamWolf.client.vo;
 
 import java.util.ArrayList;
 
+import TeamWolf.TeamWolf.client.po.INIPO;
+
 public class INIVO {
 	private int number;
 	private ArrayList<financeVO> accArray;
@@ -13,6 +15,12 @@ public class INIVO {
 		this.setAccArray(accArray);
 		this.setGslArray(gslArray);
 		this.setCusArray(cusArray);
+	}
+	public INIVO(INIPO po) {
+		this.number = po.getNumber();
+		this.accArray = po .getAccArray();
+		this.gslArray = po .getGslArray();
+		this.cusArray = po .getCusArray();
 	}
 	public int getNumber() {
 		return number;
