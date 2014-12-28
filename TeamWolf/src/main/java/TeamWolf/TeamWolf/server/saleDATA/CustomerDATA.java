@@ -76,11 +76,12 @@ public class CustomerDATA extends UnicastRemoteObject implements CustomerDATAser
 	}
 
 	public int modCustomer(CustomerPO po, CustomerPO newpo) throws RemoteException {
-			for(int i = 0; i < list.size(); i++){
-			if(list.get(i).getNum().equals(po.getNum())){
-				//if(!list.contains(findCustomer(newpo.getNum()))){
-			         list.remove(list.get(i));
-			         list.add(i,newpo);
+		getList();
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).getNum().equals(po.getNum())) {
+				// if(!list.contains(findCustomer(newpo.getNum()))){
+				list.remove(list.get(i));
+				list.add(i, newpo);
 				try {
 					FileOpr.writeFile(FileName.customerFile, list);
 					return 0;

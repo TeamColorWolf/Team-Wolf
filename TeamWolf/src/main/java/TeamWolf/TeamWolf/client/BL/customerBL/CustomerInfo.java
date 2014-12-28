@@ -55,8 +55,8 @@ public class CustomerInfo implements CustomerInfoBLservice{
 			String number = irvo.getCustomer().getNum();
 			String name = irvo.getCustomer().getName();
 			CustomerPO oldCustomer = cds.findCustomer(name, number);
-			System.out.println("oldCustomer should receive = " + oldCustomer.getReceive());
-			irvo.getCustomer().setReceive(oldCustomer.getReceive() + irvo.getTotal());
+			System.out.println("oldCustomer should pay = " + oldCustomer.getPay());
+			irvo.getCustomer().setPay(oldCustomer.getPay() - irvo.getTotal());
 			cds.modCustomer(oldCustomer, new CustomerPO(irvo.getCustomer()));
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -93,8 +93,8 @@ public class CustomerInfo implements CustomerInfoBLservice{
 			String number = srvo.getCustomer().getNum();
 			String name = srvo.getCustomer().getName();
 			CustomerPO oldCustomer = cds.findCustomer(name, number);
-			System.out.println("oldCustomer should pay = " + oldCustomer.getPay());
-			srvo.getCustomer().setPay(srvo.getCustomer().getPay() + srvo.getTotalAfterDiscount());
+			System.out.println("oldCustomer should receive = " + oldCustomer.getReceive());
+			srvo.getCustomer().setReceive(srvo.getCustomer().getReceive() - srvo.getTotalAfterDiscount());
 			cds.modCustomer(oldCustomer, new CustomerPO(srvo.getCustomer()));
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
