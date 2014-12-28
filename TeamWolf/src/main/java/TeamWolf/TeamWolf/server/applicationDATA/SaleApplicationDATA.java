@@ -65,6 +65,13 @@ public class SaleApplicationDATA extends UnicastRemoteObject implements SaleAppl
 	
 	public int submitImportList(ImportListPO ipo) throws RemoteException {
 		int judge = 0;
+		try {
+			importList = (ArrayList<ImportListPO>) fo.readFile(FileName.importListFile);
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 		importList.add(ipo);
 		try {
 			fo.writeFile(fileName.importListFile, importList);
@@ -78,6 +85,13 @@ public class SaleApplicationDATA extends UnicastRemoteObject implements SaleAppl
 	public int submitImportRejectList(ImportRejectListPO irpo)
 			throws RemoteException {
 		int judge = 0;
+		try {
+			importRejectList = (ArrayList<ImportRejectListPO>) fo.readFile(FileName.importRejectListFile);
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 		importRejectList.add(irpo);
 		try {
 			fo.writeFile(fileName.importRejectListFile, importRejectList);
@@ -90,6 +104,13 @@ public class SaleApplicationDATA extends UnicastRemoteObject implements SaleAppl
 
 	public int submitExportList(SaleListPO spo) throws RemoteException {
 		int judge = 0;
+		try {
+			saleList = (ArrayList<SaleListPO>) fo.readFile(FileName.saleListFile);
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 		saleList.add(spo);
 		try {
 			System.out.println("================" + saleList.size() + "==================");
@@ -104,6 +125,15 @@ public class SaleApplicationDATA extends UnicastRemoteObject implements SaleAppl
 
 	public int submitExportRejectList(SaleRejectListPO srpo) throws RemoteException {
 		int judge = 0;
+		try {
+			saleRejectList = (ArrayList<SaleRejectListPO>) fo.readFile(FileName.saleRejectListFile);
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		saleRejectList.add(srpo);
 		try {
 			System.out.println("add saleRejectList success");
