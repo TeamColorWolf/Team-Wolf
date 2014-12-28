@@ -14,14 +14,16 @@ import javax.swing.table.TableColumn;
 
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOpr;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOprBLservice;
+import TeamWolf.TeamWolf.client.BL.financeBL.Initial;
+import TeamWolf.TeamWolf.client.BLservice.financeBLservice.InitialBLservice;
 import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.UserVO;
 
-public class INICustomer extends JPanel{
-	
+public class INIHCustomer extends JPanel{
+	InitialBLservice ibs;
 	public static ArrayList<CustomerVO> customerList;
-	CustomerOprBLservice customerLogic;
+	//CustomerOprBLservice customerLogic;
 	
 	private JScrollPane scroll_customer;
 	private JTable customerListTable;
@@ -34,9 +36,11 @@ public class INICustomer extends JPanel{
 	private static final int h = 500;	
 	private static final int lineHeight = 25;
 	
-	public INICustomer(String ip) {
-		customerLogic = new CustomerOpr(ip);
-		customerList = customerLogic.getAllCustomerList();
+	public INIHCustomer(String ip,int number) {
+		//customerLogic = new CustomerOpr(ip);
+		//customerList = customerLogic.getAllCustomerList();
+		ibs = new Initial(ip);
+		customerList  = ibs.FinInitial(number).getCusArray();
 		if(customerList == null){
 			customerList = new ArrayList<CustomerVO>();
 		}

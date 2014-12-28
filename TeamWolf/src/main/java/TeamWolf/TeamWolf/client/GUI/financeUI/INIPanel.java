@@ -26,7 +26,7 @@ public class INIPanel extends JPanel{
 		tab.setVisible(true);
 		
 		
-		iniAc = new INIAccount();
+		iniAc = new INIAccount(IP);
 		iniCu = new INICustomer(IP);
 		iniGo = new INIGoods(IP);
 		

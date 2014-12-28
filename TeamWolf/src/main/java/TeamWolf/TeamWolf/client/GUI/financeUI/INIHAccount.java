@@ -4,51 +4,40 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.BL.financeBL.Initial;
-import TeamWolf.TeamWolf.client.BLservice.financeBLservice.AccountBlservice;
 import TeamWolf.TeamWolf.client.BLservice.financeBLservice.InitialBLservice;
-import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
-import TeamWolf.TeamWolf.client.GUI.userUI.AdminFrame;
-import TeamWolf.TeamWolf.client.vo.CustomerVO;
-import TeamWolf.TeamWolf.client.vo.GoodsStockListVO;
-import TeamWolf.TeamWolf.client.vo.INIVO;
 import TeamWolf.TeamWolf.client.vo.financeVO;
 
-public class INIAccount extends JPanel{
-	AccountBlservice service = FinanceFrame.service;
-	InitialBLservice iservice;
+public class INIHAccount extends JPanel{
+	InitialBLservice ibs;
+	
+	int number;
     String IP;
 	public static final int width = 960;
 	public static final int height = 540;
 	public static final int sho = 10;
 	
-	ArrayList<financeVO> list1 ;
-	ArrayList<CustomerVO> list2;
-	GoodsStockListVO list3;
-	
 	static String[] columnName = {"账户名", "账户余额"};
 	DefaultTableModel tableModel = new DefaultTableModel();
 	Object[][] content;
 	
-	JButton jb = new JButton();
-	JButton jbHistory = new JButton();
 	
 	String UpdateString = "";
 	JTable accountTable;
 	JScrollPane scroll;
 	private final int LH = 25;
-	public INIAccount(String IP){
+	public INIHAccount(String IP,int number){
 		super();
+		
+		ibs = new Initial(IP);
 		this.IP = IP;
+		this.number = number;
 		this.getContent();
-		iservice = new Initial(IP);
 		tableModel.setDataVector(content, columnName);
 		accountTable = new JTable(tableModel);
 		accountTable.setSize(400, 400);
@@ -57,24 +46,11 @@ public class INIAccount extends JPanel{
 		accountTable.setRowHeight(LH);
 		scroll = new JScrollPane(accountTable);
 		scroll.setSize(400, 400);
-		jb.setLocation(width/2,380);
-		jb.setSize((int)(width/2.2), LH*2);
-		jb.setText("确认期初信息无误后，单击此处进行期初建账");
-		jb.setVisible(true);
-		jb.addActionListener(new NewListener());
-		
-		jbHistory.setLocation(width/2,380-(int)(LH*2.5));
-		jbHistory.setSize((int)(width/2.2), LH*2);
-		jbHistory.setText("单击此处，查看过往的期初建账情况");
-		jbHistory.setVisible(true);
-		jbHistory.addActionListener(new HistoryListener());
 		
 		scroll.setLocation(40, 40);
 		
 		
 		this.add(scroll);
-		this.add(jb);
-		this.add(jbHistory);
 		this.setLayout(null);
 		this.setSize(width,height);
 		this.setVisible(true);
@@ -82,7 +58,8 @@ public class INIAccount extends JPanel{
 	}
 	
 	private void getContent(){
-		ArrayList<financeVO> list = service.checkVO();
+		//ArrayList<financeVO> list = service.checkVO();
+		ArrayList<financeVO> list = ibs.getINIList().get(number).getAccArray();
 		if(list == null){
 			content = new Object[15][3];
 		}
@@ -109,25 +86,7 @@ public class INIAccount extends JPanel{
 
 		public void actionPerformed(ActionEvent arg0) {
 			//INIHistoryFrame ihf = new INIHistoryFrame();
-		   
 			INIFrame iframe = new INIFrame(IP);
-		}
-		
-	}
-	
-	class NewListener implements ActionListener{
-
-		public void actionPerformed(ActionEvent e) {
-			
-			 list1 =service.checkVO();
-			 list2 = INICustomer.customerList;
-			 list3 = INIGoods.gsl;
-			 int success = iservice.DoInitial(0, list1,list3,list2);
-			 if(success == 0){
-				 MessageFrame mf = new MessageFrame(0);
-			 }else{
-				 MessageFrame mf = new MessageFrame(ErrorTW.webError);
-			 }
 		}
 		
 	}

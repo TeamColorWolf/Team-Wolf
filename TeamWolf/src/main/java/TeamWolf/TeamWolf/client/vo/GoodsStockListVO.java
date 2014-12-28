@@ -1,12 +1,13 @@
 package TeamWolf.TeamWolf.client.vo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 /**
  * 
  * @author XYJ
  *
  */
-public class GoodsStockListVO {
+public class GoodsStockListVO implements Serializable{
 
 	ArrayList<GoodsStockVO> goodsSL=new ArrayList<GoodsStockVO>();
 	String GStockListInfo;

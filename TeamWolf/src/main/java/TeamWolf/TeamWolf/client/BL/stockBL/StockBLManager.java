@@ -7,6 +7,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.BL.promotionBL.PromotionForStockController;
+import TeamWolf.TeamWolf.client.BL.promotionBL.PromotionForStockService;
 import TeamWolf.TeamWolf.client.DATAservice.stockDATAservice.StockDataService;
 import TeamWolf.TeamWolf.client.po.TypePO;
 import TeamWolf.TeamWolf.client.vo.*;
@@ -21,7 +22,7 @@ public class StockBLManager{
 	String URL;
 	StockBLAssistant assistant;
 	StockDataService dataService;
-	PromotionForStockController promoteController;
+	PromotionForStockService promoteController;
 	
 	public StockBLManager(String IP){
 		

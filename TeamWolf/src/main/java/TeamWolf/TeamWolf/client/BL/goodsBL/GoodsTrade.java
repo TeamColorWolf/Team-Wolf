@@ -5,8 +5,10 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import TeamWolf.TeamWolf.client.BL.applicationBL.StockApplicationService;
 import TeamWolf.TeamWolf.client.BL.applicationBL.forStock.StockApplicationController;
 import TeamWolf.TeamWolf.client.BL.promotionBL.PromotionForStockController;
+import TeamWolf.TeamWolf.client.BL.promotionBL.PromotionForStockService;
 import TeamWolf.TeamWolf.client.BLservice.stockBLservice.GoodTService;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.ApproveDATAservice;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.StockApplicationDATAservice;
@@ -27,8 +29,8 @@ public class GoodsTrade {
 	GoodsMonitor gmo;
 	GoodsDataService dataService;
 	ApproveDATAservice appRead;
-	StockApplicationController appController;
-	PromotionForStockController promoteController;
+	StockApplicationService appController;
+	PromotionForStockService promoteController;
 	
 	public GoodsTrade(String IP){
 		

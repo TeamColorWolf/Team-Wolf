@@ -1,5 +1,7 @@
 package TeamWolf.TeamWolf.client.BLservice.stockBLservice;
 
+import java.util.ArrayList;
+
 import TeamWolf.TeamWolf.client.vo.*;
 
 public interface GoodMonService {
@@ -23,4 +25,5 @@ public interface GoodMonService {
 	 */
 	public int setWaringLine(GoodsVO goodWL);
 	
+	public ArrayList<GoodsAlarmVO> getGoodsAlarm();
 }

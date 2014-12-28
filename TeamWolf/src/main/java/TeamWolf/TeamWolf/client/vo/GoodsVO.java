@@ -1,5 +1,7 @@
 package TeamWolf.TeamWolf.client.vo;
 
+import java.io.Serializable;
+
 import TeamWolf.TeamWolf.client.po.GoodsPO;
 
 /**
@@ -7,7 +9,7 @@ import TeamWolf.TeamWolf.client.po.GoodsPO;
  * @author XYJ
  *
  */
-public class GoodsVO {
+public class GoodsVO implements Serializable{
 
 	private String parent;
 	private String parentNumber;

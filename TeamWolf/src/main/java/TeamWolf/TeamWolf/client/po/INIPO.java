@@ -1,5 +1,6 @@
 package TeamWolf.TeamWolf.client.po;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
@@ -7,7 +8,7 @@ import TeamWolf.TeamWolf.client.vo.GoodsStockListVO;
 import TeamWolf.TeamWolf.client.vo.INIVO;
 import TeamWolf.TeamWolf.client.vo.financeVO;
 
-public class INIPO {
+public class INIPO implements Serializable{
 	private int number;
 	private ArrayList<financeVO> accArray;
 	private GoodsStockListVO gslArray;

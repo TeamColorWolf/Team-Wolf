@@ -5,6 +5,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import TeamWolf.TeamWolf.client.BL.applicationBL.StockApplicationService;
 import TeamWolf.TeamWolf.client.BL.applicationBL.forStock.StockApplicationController;
 import TeamWolf.TeamWolf.client.BLservice.stockBLservice.GoodMonService;
 import TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice.GoodsDataService;
@@ -25,7 +26,7 @@ public class GoodsMonitor{
 	GoodsBLAssistant assistant;
 	GoodsDataService dataService;
 	StockDataService SdataService;
-	StockApplicationController appController;
+	StockApplicationService appController;
 	
 	public GoodsMonitor(String IP){
 		

@@ -34,6 +34,9 @@ import javax.swing.tree.TreePath;
 import TeamWolf.TeamWolf.client.BL.applicationBL.forStock.StockApplicationController;
 import TeamWolf.TeamWolf.client.BL.goodsBL.GoodsBLController;
 import TeamWolf.TeamWolf.client.BL.stockBL.StockBLController;
+import TeamWolf.TeamWolf.client.BLservice.stockBLservice.GoodManService;
+import TeamWolf.TeamWolf.client.BLservice.stockBLservice.GoodMonService;
+import TeamWolf.TeamWolf.client.BLservice.stockBLservice.StockBLservice;
 import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
 import TeamWolf.TeamWolf.client.vo.GoodsListVO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
@@ -46,8 +49,9 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     static int CurrentTypeNum;
     String IP;
     String operator;
-    StockBLController sbcontroller;
-	GoodsBLController gbcontroller;
+    StockBLservice sbcontroller;
+	GoodManService gbcontroller;
+	GoodMonService gbcontroller2;
    
 	DefaultMutableTreeNode root=new DefaultMutableTreeNode("商品");
 	JTree stockStruct;
@@ -132,6 +136,7 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     	this.IP=iP;
     	sbcontroller=new StockBLController(iP);
     	gbcontroller=new GoodsBLController(iP);
+    	gbcontroller2=new GoodsBLController(iP);
     	operator=user.workID;
     	initialTree();
 		initialButton();
@@ -273,7 +278,9 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     				    }
     					else{
     						String[] parentInfo=parent.toString().split(" ");
-    						todel=new TypeVO(parentInfo[1], parentInfo[2], typeInfo[1], typeInfo[2]);
+    						todel=new TypeVO(parentInfo[1], parentInfo[2], typeInfo[1], null);
+    						if(typeInfo.length>2)
+    							todel.setName(typeInfo[2]);
     					}
     					
     					if(todel.getParentNum()!=null&&todel.getParentNum().equals("0000")){
@@ -535,7 +542,7 @@ public class StockManagePane extends JPanel implements TreeModelListener {
         		else{
         		    GoodsVO toIncrease=new GoodsVO(null, null, gInfo[1], gInfo[2], gInfo[3], amount, null, null, null, null, null);        		
         		    if(toIncrease.isPackSuccess()==0)
-        		       result=gbcontroller.increaseToMatch(toIncrease, operator);
+        		       result=gbcontroller2.increaseToMatch(toIncrease, operator);
         		    else
         		       result=10001;
         		}
@@ -568,7 +575,7 @@ public class StockManagePane extends JPanel implements TreeModelListener {
         		else{
         		    GoodsVO toDecrease=new GoodsVO(null, null, gInfo[1], gInfo[2], gInfo[3], amount, null, null, null, null, null);        		
         		    if(toDecrease.isPackSuccess()==0)
-        		        result=gbcontroller.decreaseToMatch(toDecrease, operator);
+        		        result=gbcontroller2.decreaseToMatch(toDecrease, operator);
         		    else
         		    	result=10001;
         		}
@@ -601,7 +608,7 @@ public class StockManagePane extends JPanel implements TreeModelListener {
         		else{
         		    GoodsVO toSetWL=new GoodsVO(null, null, gInfo[1], gInfo[2], gInfo[3], null, null, null, null, null, warningLine);
         		    if(toSetWL.isPackSuccess()==0)
-        		        result=gbcontroller.setWaringLine(toSetWL);
+        		        result=gbcontroller2.setWaringLine(toSetWL);
         		    else
         		    	result=10001;
         		}

@@ -17,8 +17,10 @@ import javax.swing.JTree;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 
+import TeamWolf.TeamWolf.client.BL.applicationBL.StockApplicationService;
 import TeamWolf.TeamWolf.client.BL.applicationBL.forStock.StockApplicationController;
 import TeamWolf.TeamWolf.client.BL.goodsBL.GoodsBLController;
+import TeamWolf.TeamWolf.client.BLservice.stockBLservice.GoodMonService;
 import TeamWolf.TeamWolf.client.GUI.manageUI.ManageFrame;
 import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
 import TeamWolf.TeamWolf.client.vo.GoodsAlarmVO;
@@ -27,8 +29,8 @@ import TeamWolf.TeamWolf.client.vo.PresentListVO;
 
 public class AppPane extends JPanel implements ActionListener {
 	
-	StockApplicationController sacontroller;
-	GoodsBLController gbcontroller;
+	StockApplicationService sacontroller;
+	GoodMonService gbcontroller;
 	
 	JTabbedPane back;
 	
