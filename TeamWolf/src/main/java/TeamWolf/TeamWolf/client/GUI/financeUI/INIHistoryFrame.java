@@ -8,6 +8,8 @@ public class INIHistoryFrame extends JFrame{
 	public static final int height = 540;
 	JTabbedPane tab;
 	INIHAccount inia;
+	INIHCustomer inic;
+	INIHGoods inig;
 	public INIHistoryFrame(String IP, int number){
 		super("过往期初建账信息");
 		
@@ -16,8 +18,12 @@ public class INIHistoryFrame extends JFrame{
 		tab.setVisible(true);
 		
 		inia = new INIHAccount(IP, number);
+		inic = new INIHCustomer(IP, number);
+		inig = new INIHGoods(IP, number);
 		
 		tab.add(inia,"期初账户信息");
+		tab.add(inic,"期初客户信息");
+		tab.add(inig,"期初商品信息");
 		
 		this.setSize(width, height);
 		this.getFocusableWindowState();

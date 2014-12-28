@@ -9,13 +9,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import TeamWolf.TeamWolf.client.BL.financeBL.Initial;
 import TeamWolf.TeamWolf.client.BL.goodsBL.GoodsBLController;
+import TeamWolf.TeamWolf.client.BLservice.financeBLservice.InitialBLservice;
 import TeamWolf.TeamWolf.client.vo.GoodsStockListVO;
 import TeamWolf.TeamWolf.client.vo.GoodsStockVO;
 
 public class INIHGoods extends JPanel {
-
-	GoodsBLController gbcontroller;
+	InitialBLservice ibs;
+	//GoodsBLController gbcontroller;
 	
 	int beginYear, endYear, beginMonth, endMonth, beginDay, endDay; 
 	String[] years=null;
@@ -28,14 +30,12 @@ public class INIHGoods extends JPanel {
 	JScrollPane SSAContainer;
 	public static GoodsStockListVO gsl=null;
 	private static final int lineHeight = 25;
-	public INIHGoods(String IP) {
+	public INIHGoods(String IP,int number) {
 		// TODO Auto-generated constructor stub
-		gbcontroller = new GoodsBLController(IP);
-		{
-			int beginDate=beginYear*10000+beginMonth*100+beginDay;
-			int endDate=endYear*10000+endMonth*100+endDay;
-		    gsl=gbcontroller.shoStockList(beginDate, endDate);
-		}
+		//gbcontroller = new GoodsBLController(IP);
+		ibs = new Initial(IP);
+		gsl = ibs.FinInitial(number).getGslArray();
+        // gsl=gbcontroller.shoStockList(beginDate, endDate);
 		Calendar c=Calendar.getInstance();
 		year=c.get(Calendar.YEAR);
 		SimpleDateFormat s=new SimpleDateFormat("yyyy-MM-dd");
