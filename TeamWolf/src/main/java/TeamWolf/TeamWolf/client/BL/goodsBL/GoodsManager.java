@@ -6,7 +6,9 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.BL.promotionBL.PromotionForStockController;
+import TeamWolf.TeamWolf.client.BL.promotionBL.PromotionForStockService;
 import TeamWolf.TeamWolf.client.BL.saleBL.SaleBLController;
+import TeamWolf.TeamWolf.client.BLservice.saleBLservice.SaleBLservice;
 import TeamWolf.TeamWolf.client.BLservice.stockBLservice.GoodManService;
 import TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice.GoodsDataService;
 import TeamWolf.TeamWolf.client.DATAservice.stockDATAservice.StockDataService;
@@ -25,8 +27,8 @@ public class GoodsManager {
 	GoodsBLAssistant assistant;
 	GoodsDataService GdataService;
 	StockDataService SdataService;
-    PromotionForStockController promoteController;
-    SaleBLController sbc;
+    PromotionForStockService promoteController;
+    SaleBLservice sbc;
 	
 	public GoodsManager(String IP){
 		

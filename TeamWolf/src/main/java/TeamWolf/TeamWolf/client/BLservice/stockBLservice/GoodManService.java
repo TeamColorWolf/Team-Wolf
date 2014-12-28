@@ -1,5 +1,7 @@
 package TeamWolf.TeamWolf.client.BLservice.stockBLservice;
 
+import java.util.ArrayList;
+
 import TeamWolf.TeamWolf.client.vo.*;
 
 public interface GoodManService {
@@ -45,5 +47,7 @@ public interface GoodManService {
 	 * @return
 	 */
 	public GoodsStockListVO shoStockDaily();
+	
+	public ArrayList<GoodsVO> dimFinGoods(GoodsVO g);
 	
 }

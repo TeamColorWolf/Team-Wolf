@@ -22,6 +22,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import TeamWolf.TeamWolf.client.BL.goodsBL.GoodsBLController;
+import TeamWolf.TeamWolf.client.BLservice.stockBLservice.GoodManService;
 import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
 import TeamWolf.TeamWolf.client.vo.GoodsStockListVO;
 import TeamWolf.TeamWolf.client.vo.GoodsStockVO;
@@ -29,7 +30,7 @@ import TeamWolf.TeamWolf.client.vo.GoodsVO;
 
 public class StockShowPane extends JPanel implements ItemListener, ActionListener {
 
-	GoodsBLController gbcontroller;
+	GoodManService gbcontroller;
 	
 	int beginYear, endYear, beginMonth, endMonth, beginDay, endDay; 
 	String[] years=null;
