@@ -58,4 +58,9 @@ public class INIDATA extends UnicastRemoteObject implements INIDATAservice{
 		}
 	}
 
+	public ArrayList<INIPO> getINIList() throws RemoteException {
+		// TODO 自动生成的方法存根
+		return iList;
+	}
+
 }

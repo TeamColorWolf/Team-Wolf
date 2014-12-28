@@ -1,11 +1,14 @@
 package TeamWolf.TeamWolf.client.vo;
+
+import java.io.Serializable;
+
 /**
  * 
  * @author XYJ
  * 这是库存查看类型的商品对象
  */
 
-public class GoodsStockVO {
+public class GoodsStockVO implements Serializable{
 
 	private GoodsVO good;
 	private double importAmount;

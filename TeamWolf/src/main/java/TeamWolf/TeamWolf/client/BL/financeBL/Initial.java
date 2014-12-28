@@ -22,8 +22,11 @@ public class Initial implements InitialBLservice{
 	String URL;
 	INIDATAservice ids;
 	ArrayList<INIVO> iList;
+	ArrayList<INIPO> pList;
 	public Initial(String IP) {
 		URL = "rmi://" + IP + "/iniDATAservice";
+		this.ini();
+		this.getINIList();
 	}
 
 	public int DoInitial(int number, ArrayList<financeVO> accArray,
@@ -32,6 +35,8 @@ public class Initial implements InitialBLservice{
 			ids = (INIDATAservice) Naming.lookup(URL);
 			INIPO po = new INIPO(number,accArray,gslArray,cusArray); 
 			ids.insert(po);
+			iList.add(new INIVO(po));
+			pList.add(po);
 		} catch (MalformedURLException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -64,6 +69,46 @@ public class Initial implements InitialBLservice{
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public ArrayList<INIVO> getINIList() {
+		if(iList==null){
+			try {
+				ids = (INIDATAservice) Naming.lookup(URL);
+				pList = ids.getINIList();
+				iList = new ArrayList<INIVO>();
+				for(int i=0;i<pList.size();i++){
+					INIVO vo = new INIVO(pList.get(i));
+					iList.add(vo);
+				}
+			} catch (MalformedURLException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			} catch (RemoteException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			} catch (NotBoundException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
+		}
+		return iList;	
+	}
+	
+	private void ini(){
+		try {
+			ids = (INIDATAservice) Naming.lookup(URL);
+			pList = ids.getINIList();
+		} catch (MalformedURLException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
 	}
 
 

@@ -1,8 +1,10 @@
 package TeamWolf.TeamWolf.client.vo;
 
+import java.io.Serializable;
+
 import TeamWolf.TeamWolf.client.po.financePO;
 
-public class financeVO {
+public class financeVO implements Serializable{
 	private String name;
     private double account;
 	public int error;

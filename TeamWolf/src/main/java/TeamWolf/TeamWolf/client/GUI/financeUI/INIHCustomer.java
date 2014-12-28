@@ -18,7 +18,7 @@ import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.UserVO;
 
-public class INICustomer extends JPanel{
+public class INIHCustomer extends JPanel{
 	
 	public static ArrayList<CustomerVO> customerList;
 	CustomerOprBLservice customerLogic;
@@ -34,7 +34,7 @@ public class INICustomer extends JPanel{
 	private static final int h = 500;	
 	private static final int lineHeight = 25;
 	
-	public INICustomer(String ip) {
+	public INIHCustomer(String ip) {
 		customerLogic = new CustomerOpr(ip);
 		customerList = customerLogic.getAllCustomerList();
 		if(customerList == null){

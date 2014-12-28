@@ -13,7 +13,7 @@ import TeamWolf.TeamWolf.client.BL.goodsBL.GoodsBLController;
 import TeamWolf.TeamWolf.client.vo.GoodsStockListVO;
 import TeamWolf.TeamWolf.client.vo.GoodsStockVO;
 
-public class INIGoods extends JPanel {
+public class INIHGoods extends JPanel {
 
 	GoodsBLController gbcontroller;
 	
@@ -28,7 +28,7 @@ public class INIGoods extends JPanel {
 	JScrollPane SSAContainer;
 	public static GoodsStockListVO gsl=null;
 	private static final int lineHeight = 25;
-	public INIGoods(String IP) {
+	public INIHGoods(String IP) {
 		// TODO Auto-generated constructor stub
 		gbcontroller = new GoodsBLController(IP);
 		{
