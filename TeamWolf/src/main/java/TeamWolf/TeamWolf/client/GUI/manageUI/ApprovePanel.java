@@ -20,6 +20,7 @@ public class ApprovePanel extends JPanel{
 	static DetialPanel detial;
 	
 	JButton over = new JButton("审批完成");
+	JButton flash = new JButton("刷新");
 	
 	public ApprovePanel(){
 		super();
@@ -28,13 +29,18 @@ public class ApprovePanel extends JPanel{
 		detial = new DetialPanel();
 		
 		over.setSize(100, 30);
-		over.setLocation(ManageFrame.width-300, ManageFrame.height-100);
+		over.setLocation(ManageFrame.width-400, ManageFrame.height-100);
 		over.setVisible(true);
+		
+		flash.setSize(100, 30);
+		flash.setLocation(ManageFrame.width-200, ManageFrame.height-100);
+		flash.setVisible(true);
 		
 		this.add(approve);
 		this.add(detial);
 		
 		this.add(over, 0);
+		this.add(flash, 0);
 		
 		this.setLayout(null);
 		this.setSize(ManageFrame.width, ManageFrame.height-ManageFrame.sho);
@@ -42,17 +48,26 @@ public class ApprovePanel extends JPanel{
 		this.setLocation(0, ManageFrame.sho);
 		
 		over.addActionListener(new ApproveOverListener());
+		flash.addActionListener(new FlashListener());
 	}
 	
 	class ApproveOverListener implements ActionListener{
-
+		//提交当前审批结果并且刷新
 		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
 			ArrayList<ApplicationVO> list = approve.getResult();
 			if(list == null || list.size() == 0){
 				new MessageFrame(ErrorTW.approveWithoutApplication);
 			}
 			service.approveOver(list);
+			approve.flashPanel();
+			detial.flashPanel(null);
+		}
+		
+	}
+	
+	class FlashListener implements ActionListener{
+		//刷新该Panel
+		public void actionPerformed(ActionEvent arg0) {
 			approve.flashPanel();
 			detial.flashPanel(null);
 		}

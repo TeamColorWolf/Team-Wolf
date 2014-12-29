@@ -50,7 +50,7 @@ public class PromotionForOther {
 		TimeVO time = getTime(vo);
 		for(int i = 0; i < voList.size(); i++){
 			PromotionVO p = voList.get(i);
-			if(p.begin.timeCompare(time) < 0 && p.end.timeCompare(time) > 0){
+			if(p.begin.timeCompare(time) <= 0 && p.end.timeCompare(time) >= 0){
 				if(p.type == PromotionTypeVO.forVIP){//对forVIP进行的操作
 					ForVIPPromotionVO f = (ForVIPPromotionVO)p;
 					if(rank >= f.VIPrank){
@@ -131,7 +131,8 @@ public class PromotionForOther {
 		stockService = new ExternalServiceController(IP);
 		PresentListVO PL = new PresentListVO();
 		for(int i = 0; i < gift.size(); i++){
-			GoodsVO vo = new GoodsVO(null, null, gift.get(i).GoodsName, null, null, gift.get(i).sendNumber+"", null, null, null, null, null);
+			GoodsVO vo = stockService.finGoods(gift.get(i).GoodsName);
+			vo.setAmount(gift.get(i).sendNumber);
 			PL.addPresent(vo);
 		}
 		PL.setCustomer(cus);
