@@ -69,11 +69,19 @@ public class RedManage {
 		panel = new RunProcessPanel();
 		this.panel = Inputpanel;
 		JButton rdBut = new JButton("红冲");
+		JButton rdcpBut = new JButton("红冲并复制");
 		rdBut.setLocation(700, 410);
 		rdBut.setSize(BW, BH);
 		rdBut.setVisible(true);
+		
+		rdcpBut.setLocation(580, 410);
+		rdcpBut.setSize(BW+20, BH);
+		rdcpBut.setVisible(true);
+		
 		rdBut.addActionListener(new RedCheck());
+		rdcpBut.addActionListener(new RedCpCheck());
 		panel.add(rdBut);
+		panel.add(rdcpBut);
 	}
 
 	public void DATAfactory() {
@@ -124,7 +132,7 @@ public class RedManage {
 		}
 	}
 
-	public int CreateNewApp() {
+	public int CreateNewApp(int CpOrNot) {
 		String AppType = "";
 		if (AppVOList != null) {
 			String[] AppTypeArray = AppVOList.get(0).number.split("-");
@@ -170,6 +178,9 @@ public class RedManage {
 				redIm = new ImportList(new ImportListVO(old), IP);
 				saleads.submitImportList(old);
 				redIm.approve();
+				if(CpOrNot == 1){
+					RedAndCopyFrame racf = new RedAndCopyFrame(IP, 1);
+				}
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
@@ -214,6 +225,9 @@ public class RedManage {
 				redImr = new ImportRejectList(new ImportRejectListVO(old), IP);
 				saleads.submitImportRejectList(old);
 			    redImr.approve();
+			    if(CpOrNot == 1){
+					RedAndCopyFrame racf = new RedAndCopyFrame(IP, 2);
+				}
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
@@ -256,6 +270,9 @@ public class RedManage {
 				saleads.submitExportList(old);
 				redSa.approve();
 				System.out.println(slv.condition);
+				if(CpOrNot == 1){
+					RedAndCopyFrame racf = new RedAndCopyFrame(IP, 3);
+				}
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
@@ -298,6 +315,9 @@ public class RedManage {
 				redSar = new SaleRejectList(new SaleRejectListVO(old),IP);
 				saleads.submitExportRejectList(old);
 				redSar.approve();
+				if(CpOrNot == 1){
+					RedAndCopyFrame racf = new RedAndCopyFrame(IP, 4);
+				}
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
@@ -335,8 +355,15 @@ public class RedManage {
 					moneyList.set(i, oppsiteNumber);
 				}
 				old.setMoneyList(moneyList);
+				String beforeAddup = old.getAddup();
+				double add = Double.parseDouble(beforeAddup);
+				double opp = -1*add;
+				old.setAddup(""+opp);
 				fads.submitRecieptApplication(old);
 				fads.approvalRecieptApplication(old);
+				if(CpOrNot == 1){
+					RedAndCopyFrame racf = new RedAndCopyFrame(IP, 5);
+				}
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
@@ -373,8 +400,15 @@ public class RedManage {
 					moneyList.set(i, oppsiteNumber);
 				}
 				old.setMoneyList(moneyList);
+				String beforeAddup = old.getAddup();
+				double add = Double.parseDouble(beforeAddup);
+				double opp = -1*add;
+				old.setAddup(""+opp);
 				fads.submitPaymentApplication(old);
 				fads.approvalPaymentApplication(old);
+				if(CpOrNot == 1){
+					RedAndCopyFrame racf = new RedAndCopyFrame(IP, 6);
+				}
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
@@ -412,8 +446,15 @@ public class RedManage {
 					moneyList.set(i, oppsiteNumber);
 				}
 				old.setMoneyList(moneyList);
+				String beforeAddup = old.getAddup();
+				double add = Double.parseDouble(beforeAddup);
+				double opp = -1*add;
+				old.setAddup(""+opp);
 				fads.submitCashApplication(old);
-				fads.submitCashApplication(old);
+				fads.approvalCashApplication(old);
+				if(CpOrNot == 1){
+					RedAndCopyFrame racf = new RedAndCopyFrame(IP, 7);
+				}
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
@@ -438,13 +479,25 @@ public class RedManage {
 
 		public void actionPerformed(ActionEvent e) {
 			getContent();
-			int success = CreateNewApp();
+			int success = CreateNewApp(0);
 			System.out.println(" ");
 			if(success == 0){
 				MessageFrame mf = new MessageFrame(0);
 			}
 		}
 
+	}
+	class RedCpCheck implements ActionListener{
+
+		public void actionPerformed(ActionEvent e) {
+			getContent();
+			int success = CreateNewApp(1);
+			System.out.println(" ");
+			if(success == 0){
+				MessageFrame mf = new MessageFrame(0);
+			}
+		}
+		
 	}
 
 }
