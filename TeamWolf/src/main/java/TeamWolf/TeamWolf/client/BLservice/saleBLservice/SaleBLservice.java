@@ -71,26 +71,7 @@ public interface SaleBLservice {
 	 * @return
 	 */
 	public int createSaleReject (SaleRejectListVO srvo);
-	
-	/**
-	 * ��ȡ�ֿ���
-	 * @return
-	 */
-	public ArrayList<String> getStock ();
-	
-	/**
-	 * ��ʾ����
-	 * @param num
-	 * @return
-	 */
-	public ArrayList<ApplicationVO> show (String num);
-	
-	/**
-	 * �ύ����
-	 * @param avo
-	 * @return
-	 */
-	public int submit (ApplicationVO avo);
+
 	
 	/**
 	 * 获取当前日期

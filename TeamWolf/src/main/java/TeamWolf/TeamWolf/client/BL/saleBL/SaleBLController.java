@@ -56,18 +56,6 @@ public class SaleBLController implements SaleBLservice{
 		return sale.createSaleReject(srvo);
 	}
 
-	public ArrayList<String> getStock() {
-		return sale.getStock();
-	}
-
-	public ArrayList<ApplicationVO> show(String num) {
-		return sale.show(num);
-	}
-
-	public int submit(ApplicationVO avo) {
-		return sale.submit(avo);
-	}
-
 	public String getPresentDate() {
 		return sale.getPresentDate();
 	}

@@ -71,10 +71,7 @@ public class SaleBL_Driver{
 		return saleCtrl.createSaleReject(srvo);
 	}
 
-	public int submit(ApplicationVO avo) {
-		return saleCtrl.submit(avo);
-	}
-	
+
 	public void driver() {
 		SaleBL_Stub sbs = new SaleBL_Stub();
 		ArrayList<GoodsVO> goodsList = new ArrayList<GoodsVO>();

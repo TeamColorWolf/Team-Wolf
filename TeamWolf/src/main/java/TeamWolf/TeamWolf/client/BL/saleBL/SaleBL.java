@@ -175,20 +175,6 @@ public class SaleBL{
 		return 0;
 	}
 
-	public ArrayList<String> getStock() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public ArrayList<ApplicationVO> show(String num) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public int submit(ApplicationVO avo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 	
 	public String getPresentDate() {
 		String date = saleAssist.getDate();
