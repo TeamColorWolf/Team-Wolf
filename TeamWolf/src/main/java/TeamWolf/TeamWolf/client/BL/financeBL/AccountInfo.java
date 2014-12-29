@@ -38,13 +38,15 @@ public class AccountInfo implements AccountInfoBLservice{
 				// TODO 自动生成的 catch 块
 				e.printStackTrace();
 			}
-		    financeVO newf = new financeVO(volist.get(i).getName()
-		    		,volist.get(i).getAccount()+Double.parseDouble(moneylist.get(i)));
 		    financeVO oldf = volist.get(i);
-		    financePO oldpo = new financePO(oldf);
-		    financePO newpo = new financePO(newf);
 		    try {
-				fds.update(oldpo, newpo);
+		    	financePO getPO = fds.find(new financePO(oldf));
+				
+		         financeVO newf = new financeVO(getPO.getName()
+		    		,getPO.getAccount()+Double.parseDouble(moneylist.get(i)));
+		        financePO oldpo = getPO;
+		        financePO newpo = new financePO(newf);
+		        fds.update(oldpo, newpo);
 			} catch (RemoteException e) {
 				// TODO 自动生成的 catch 块
 				e.printStackTrace();
@@ -70,13 +72,15 @@ public class AccountInfo implements AccountInfoBLservice{
 				// TODO 自动生成的 catch 块
 				e.printStackTrace();
 			}
-		    financeVO newf = new financeVO(volist.get(i).getName()
-		    		,volist.get(i).getAccount()-Double.parseDouble(moneylist.get(i)));
 		    financeVO oldf = volist.get(i);
-		    financePO oldpo = new financePO(oldf);
-		    financePO newpo = new financePO(newf);
 		    try {
-				fds.update(oldpo, newpo);
+		    	financePO getPO = fds.find(new financePO(oldf));
+				
+		         financeVO newf = new financeVO(getPO.getName()
+		    		,getPO.getAccount()-Double.parseDouble(moneylist.get(i)));
+		        financePO oldpo = getPO;
+		        financePO newpo = new financePO(newf);
+		        fds.update(oldpo, newpo);
 			} catch (RemoteException e) {
 				// TODO 自动生成的 catch 块
 				e.printStackTrace();
@@ -102,16 +106,19 @@ public class AccountInfo implements AccountInfoBLservice{
 				// TODO 自动生成的 catch 块
 				e.printStackTrace();
 			}
-		    financeVO newf = new financeVO(volist.get(i).getName()
-		    		,volist.get(i).getAccount()-Double.parseDouble(moneylist.get(i)));
-		    financeVO oldf = volist.get(i);
-		    financePO oldpo = new financePO(oldf);
-		    financePO newpo = new financePO(newf);
-		    try {
-				fds.update(oldpo, newpo);
-			} catch (RemoteException e) {
+			
+			financeVO oldf = volist.get(i);
+			try {
+				financePO getPO = fds.find(new financePO(oldf));
+			
+		         financeVO newf = new financeVO(getPO.getName()
+		    		,getPO.getAccount()-Double.parseDouble(moneylist.get(i)));
+		        financePO oldpo = getPO;
+		        financePO newpo = new financePO(newf);
+		        fds.update(oldpo, newpo);
+			} catch (RemoteException e1) {
 				// TODO 自动生成的 catch 块
-				e.printStackTrace();
+				e1.printStackTrace();
 			}
 		}
 		return 0;

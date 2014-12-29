@@ -59,7 +59,7 @@ public class AccountOprPanel extends JPanel{
 		super();
 		this.getContent();
 		this.IP = IP;
-		service = new financeController(IP);
+		//service = new financeController(IP);
 		tableModel.setDataVector(content, columnName);
 		accountTable = new JTable(tableModel);
 		accountTable.setSize(400, 400);
@@ -139,12 +139,8 @@ public class AccountOprPanel extends JPanel{
 	public void flashPanel(){
 		this.getContent();
 		tableModel.setDataVector(content, columnName);
-		accountTable.removeAll();
-		tableModel.setDataVector(content, columnName);
-		accountTable.repaint();
 		accountTable.updateUI();
 		this.updateUI();
-		this.repaint();
 	}
 	
 	class CheckListener implements MouseListener{

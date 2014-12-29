@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 
 import TeamWolf.TeamWolf.ErrorTW;
+import TeamWolf.TeamWolf.client.BL.applicationBL.forFinance.CashApplication;
+import TeamWolf.TeamWolf.client.BL.applicationBL.forFinance.PaymentApplication;
+import TeamWolf.TeamWolf.client.BL.applicationBL.forFinance.RecieptApplication;
 import TeamWolf.TeamWolf.client.BL.applicationBL.forSale.ImportList;
 import TeamWolf.TeamWolf.client.BL.applicationBL.forSale.ImportRejectList;
 import TeamWolf.TeamWolf.client.BL.applicationBL.forSale.SaleList;
@@ -30,8 +33,11 @@ import TeamWolf.TeamWolf.client.po.PaymentApplicationPO;
 import TeamWolf.TeamWolf.client.po.RecieptApplicationPO;
 import TeamWolf.TeamWolf.client.po.SaleListPO;
 import TeamWolf.TeamWolf.client.po.SaleRejectListPO;
+import TeamWolf.TeamWolf.client.vo.CashApplicationVO;
 import TeamWolf.TeamWolf.client.vo.ImportListVO;
 import TeamWolf.TeamWolf.client.vo.ImportRejectListVO;
+import TeamWolf.TeamWolf.client.vo.PaymentApplicationVO;
+import TeamWolf.TeamWolf.client.vo.RecieptApplicationVO;
 import TeamWolf.TeamWolf.client.vo.RunProcessVO;
 import TeamWolf.TeamWolf.client.vo.SaleListVO;
 import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
@@ -48,6 +54,9 @@ public class RedManage {
 	SaleRejectList redSar;
 	ImportList redIm;
 	ImportRejectList redImr;
+	RecieptApplication redR;
+	PaymentApplication redP;
+	CashApplication redC;
 	String IP;
 	String URLsale;
 	String URLfinance;
@@ -359,8 +368,13 @@ public class RedManage {
 				double add = Double.parseDouble(beforeAddup);
 				double opp = -1*add;
 				old.setAddup(""+opp);
-				fads.submitRecieptApplication(old);
-				fads.approvalRecieptApplication(old);
+				
+				redR = new RecieptApplication(new RecieptApplicationVO(old), IP);
+				
+				//fads.submitRecieptApplication(old);
+				//fads.approvalRecieptApplication(old);
+				redR.submit();
+				redR.approve();
 				if(CpOrNot == 1){
 					RedAndCopyFrame racf = new RedAndCopyFrame(IP, 5);
 				}
@@ -404,8 +418,12 @@ public class RedManage {
 				double add = Double.parseDouble(beforeAddup);
 				double opp = -1*add;
 				old.setAddup(""+opp);
-				fads.submitPaymentApplication(old);
-				fads.approvalPaymentApplication(old);
+				
+				redP = new PaymentApplication(new PaymentApplicationVO(old),IP);
+				//fads.submitPaymentApplication(old);
+				//fads.approvalPaymentApplication(old);
+				redP.submit();
+				redP.approve();
 				if(CpOrNot == 1){
 					RedAndCopyFrame racf = new RedAndCopyFrame(IP, 6);
 				}
@@ -450,8 +468,11 @@ public class RedManage {
 				double add = Double.parseDouble(beforeAddup);
 				double opp = -1*add;
 				old.setAddup(""+opp);
+				redC = new CashApplication(new CashApplicationVO(old), IP);
+				//redC.submit();
 				fads.submitCashApplication(old);
-				fads.approvalCashApplication(old);
+				redC.approve();
+				//fads.approvalCashApplication(old);
 				if(CpOrNot == 1){
 					RedAndCopyFrame racf = new RedAndCopyFrame(IP, 7);
 				}
@@ -480,7 +501,6 @@ public class RedManage {
 		public void actionPerformed(ActionEvent e) {
 			getContent();
 			int success = CreateNewApp(0);
-			System.out.println(" ");
 			if(success == 0){
 				MessageFrame mf = new MessageFrame(0);
 			}
@@ -492,7 +512,6 @@ public class RedManage {
 		public void actionPerformed(ActionEvent e) {
 			getContent();
 			int success = CreateNewApp(1);
-			System.out.println(" ");
 			if(success == 0){
 				MessageFrame mf = new MessageFrame(0);
 			}
