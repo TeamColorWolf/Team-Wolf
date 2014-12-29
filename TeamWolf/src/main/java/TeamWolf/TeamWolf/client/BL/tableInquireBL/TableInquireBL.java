@@ -143,9 +143,10 @@ public class TableInquireBL {
 			else if(app instanceof RecieptApplicationVO){
 				RecieptApplicationVO ra = (RecieptApplicationVO)app;
 				ArrayList<financeVO> flist = ra.getAccountList();
+				ArrayList<String> mlist = ra.getMoneyList();
 				if(flist != null){
 					for(int j = 0; j < flist.size(); j++){
-						RunProcessVO process = new RunProcessVO(ra.number, flist.get(j).getName(), ra.operator, null, null, 0, flist.get(j).getAccount());
+						RunProcessVO process = new RunProcessVO(ra.number, flist.get(j).getName(), ra.operator, null, null, 0, Double.parseDouble(mlist.get(j)));
 						runProcess.add(process);
 					}
 				}
@@ -153,9 +154,10 @@ public class TableInquireBL {
 			else if(app instanceof PaymentApplicationVO){
 				PaymentApplicationVO ra = (PaymentApplicationVO)app;
 				ArrayList<financeVO> flist = ra.getAccountList();
+				ArrayList<String> mlist = ra.getMoneyList();
 				if(flist != null){
 					for(int j = 0; j < flist.size(); j++){
-						RunProcessVO process = new RunProcessVO(ra.number, flist.get(j).getName(), ra.operator, null, null, 0, flist.get(j).getAccount());
+						RunProcessVO process = new RunProcessVO(ra.number, flist.get(j).getName(), ra.operator, null, null, 0, Double.parseDouble(mlist.get(j)));
 						runProcess.add(process);
 					}
 				}
@@ -163,9 +165,10 @@ public class TableInquireBL {
 			else if(app instanceof CashApplicationVO){
 				CashApplicationVO ra = (CashApplicationVO)app;
 				ArrayList<financeVO> flist = ra.getAccountList();
+				ArrayList<String> mlist = ra.getMoneyList();
 				if(flist != null){
 					for(int j = 0; j < flist.size(); j++){
-						RunProcessVO process = new RunProcessVO(ra.number, flist.get(j).getName(), ra.operator, null, null, 0, flist.get(j).getAccount());
+						RunProcessVO process = new RunProcessVO(ra.number, flist.get(j).getName(), ra.operator, null, null, 0, Double.parseDouble(mlist.get(j)));
 						runProcess.add(process);
 					}
 				}
