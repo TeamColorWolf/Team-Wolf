@@ -19,4 +19,5 @@ public class FileName {
 	public static String cashFile = "账户类单据//cash.tw";
 	public static String paymentFile = "账户类单据//payment.tw";
 	public static String iniFile = "期初建账信息//ini.tw";
+	public static String logFile = "日志文件//log.tw";
 }
