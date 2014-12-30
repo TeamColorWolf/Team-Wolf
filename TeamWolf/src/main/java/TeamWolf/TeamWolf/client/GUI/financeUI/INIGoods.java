@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
 import TeamWolf.TeamWolf.client.BL.goodsBL.GoodsBLController;
 import TeamWolf.TeamWolf.client.vo.GoodsStockListVO;
 import TeamWolf.TeamWolf.client.vo.GoodsStockVO;
-
+//期初商品信息
 public class INIGoods extends JPanel {
 
 	GoodsBLController gbcontroller;

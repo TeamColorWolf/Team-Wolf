@@ -11,7 +11,8 @@ import TeamWolf.TeamWolf.client.po.PaymentApplicationPO;
 import TeamWolf.TeamWolf.client.po.RecieptApplicationPO;
 import TeamWolf.TeamWolf.server.FileName;
 import TeamWolf.TeamWolf.server.FileOpr;
-
+import TeamWolf.TeamWolf.server.logDATA.LogDATA;
+//账户类单据处理
 public class FinanceApplicationDATA extends UnicastRemoteObject implements FinanceApplicationDATAservice{
 
 	private ArrayList<RecieptApplicationPO> recieptlist;
@@ -21,7 +22,6 @@ public class FinanceApplicationDATA extends UnicastRemoteObject implements Finan
 		super();
 		init();
 		if(recieptlist==null){
-			System.out.println("Empty");
 			recieptlist = new ArrayList<RecieptApplicationPO>();
 		}
 		if(paymentlist== null){
@@ -33,6 +33,7 @@ public class FinanceApplicationDATA extends UnicastRemoteObject implements Finan
 		
 		// TODO Auto-generated constructor stub
 	}
+	//初始化
 	private void init() {
 		try {
 			recieptlist =(ArrayList<RecieptApplicationPO>)FileOpr.readFile(FileName.recieptFile);
@@ -47,13 +48,15 @@ public class FinanceApplicationDATA extends UnicastRemoteObject implements Finan
 		}
 		
 	}
-
+//提交收款单
 	public int submitRecieptApplication(RecieptApplicationPO po)
 			throws RemoteException {
 		int success=0;
 		recieptlist.add(po);
 		try {
 			FileOpr.writeFile(FileName.recieptFile,recieptlist);
+			LogDATA log = new LogDATA();
+			log.submitApplication(po);
 		} catch (IOException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -61,13 +64,15 @@ public class FinanceApplicationDATA extends UnicastRemoteObject implements Finan
 		}
 		return success;
 	}
-
+//提交付款单
 	public int submitPaymentApplication(PaymentApplicationPO po)
 			throws RemoteException {
 		int success=0;
 		paymentlist.add(po);
 		try {
 			FileOpr.writeFile(FileName.paymentFile, paymentlist);
+			LogDATA log = new LogDATA();
+			log.submitApplication(po);
 		} catch (IOException e) {
 			// TODO 自动生成的 catch 块
 			success=-1;
@@ -75,20 +80,22 @@ public class FinanceApplicationDATA extends UnicastRemoteObject implements Finan
 		}
 		return success;
 	}
-
+//提交现金费用单
 	public int submitCashApplication(CashApplicationPO po)
 			throws RemoteException {
 		int success=0;
 		cashlist.add(po);
 		try {
 			FileOpr.writeFile(FileName.cashFile, cashlist);
+			LogDATA log = new LogDATA();
+			log.submitApplication(po);
 		} catch (IOException e) {
 			success=-1;
 			e.printStackTrace();
 		}
 		return success;
 	}
-
+//通过收款单
 	public int approvalRecieptApplication(RecieptApplicationPO po)
 			throws RemoteException {
 		int success=-1;
@@ -102,6 +109,8 @@ public class FinanceApplicationDATA extends UnicastRemoteObject implements Finan
 		try {
 			FileOpr.writeFile(FileName.recieptFile,recieptlist);
 			success = 0;
+			LogDATA log = new LogDATA();
+			log.approveApplication(po);
 			return success;
 		} catch (IOException e) {
 			success=-1;
@@ -109,7 +118,7 @@ public class FinanceApplicationDATA extends UnicastRemoteObject implements Finan
 		}
 		return success;
 	}
-
+//通过付款单
 	public int approvalPaymentApplication(PaymentApplicationPO po)
 			throws RemoteException {
 		int success=-1;
@@ -122,6 +131,8 @@ public class FinanceApplicationDATA extends UnicastRemoteObject implements Finan
 		}
 		try {
 			FileOpr.writeFile(FileName.paymentFile,paymentlist);
+			LogDATA log = new LogDATA();
+			log.approveApplication(po);
 			success = 0;
 			return success;
 		} catch (IOException e) {
@@ -130,7 +141,7 @@ public class FinanceApplicationDATA extends UnicastRemoteObject implements Finan
 		}
 		return success;
 	}
-
+//通过现金费用单
 	public int approvalCashApplication(CashApplicationPO po)
 			throws RemoteException {
 		int success=-1;
@@ -143,6 +154,8 @@ public class FinanceApplicationDATA extends UnicastRemoteObject implements Finan
 		}
 		try {
 			FileOpr.writeFile(FileName.cashFile,cashlist);
+			LogDATA log = new LogDATA();
+			log.approveApplication(po);
 			success = 0;
 			return success;
 		} catch (IOException e) {
@@ -151,7 +164,7 @@ public class FinanceApplicationDATA extends UnicastRemoteObject implements Finan
 		}
 		return success;
 	}
-
+//驳回收款单
 	public int rejectRecieptApplication(RecieptApplicationPO po)
 			throws RemoteException {
 		int success=-1;
@@ -164,6 +177,8 @@ public class FinanceApplicationDATA extends UnicastRemoteObject implements Finan
 		}
 		try {
 			FileOpr.writeFile(FileName.recieptFile,recieptlist);
+			LogDATA log = new LogDATA();
+			log.rejectApplication(po);
 			success = 0;
 			return success;
 		} catch (IOException e) {
@@ -172,7 +187,7 @@ public class FinanceApplicationDATA extends UnicastRemoteObject implements Finan
 		}
 		return success;
 	}
-
+//驳回付款单
 	public int rejectPaymentApplication(PaymentApplicationPO po)
 			throws RemoteException {
 		int success=-1;
@@ -185,6 +200,8 @@ public class FinanceApplicationDATA extends UnicastRemoteObject implements Finan
 		}
 		try {
 			FileOpr.writeFile(FileName.paymentFile,paymentlist);
+			LogDATA log = new LogDATA();
+			log.rejectApplication(po);
 			success = 0;
 			return success;
 		} catch (IOException e) {
@@ -193,7 +210,7 @@ public class FinanceApplicationDATA extends UnicastRemoteObject implements Finan
 		}
 		return success;
 	}
-
+//驳回现金费用单
 	public int rejectCashApplication(CashApplicationPO po)
 			throws RemoteException {
 		int success=-1;
@@ -206,6 +223,8 @@ public class FinanceApplicationDATA extends UnicastRemoteObject implements Finan
 		}
 		try {
 			FileOpr.writeFile(FileName.cashFile,cashlist);
+			LogDATA log = new LogDATA();
+			log.rejectApplication(po);
 			success = 0;
 			return success;
 		} catch (IOException e) {
@@ -214,7 +233,7 @@ public class FinanceApplicationDATA extends UnicastRemoteObject implements Finan
 		}
 		return success;
 	}
-
+	//修改单据的方法
 	public int changeRecieptApplication(RecieptApplicationPO po)
 			throws RemoteException {
 		// TODO Auto-generated method stub
@@ -232,7 +251,7 @@ public class FinanceApplicationDATA extends UnicastRemoteObject implements Finan
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
+//以下几个方法均用于获取所有的不同单据
 	public ArrayList<RecieptApplicationPO> getRecieptlist() {
 		return recieptlist;
 	}

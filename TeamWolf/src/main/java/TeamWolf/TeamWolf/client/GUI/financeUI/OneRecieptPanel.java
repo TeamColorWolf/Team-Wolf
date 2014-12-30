@@ -17,7 +17,7 @@ import TeamWolf.TeamWolf.client.BL.applicationBL.FinanceApplicationService;
 import TeamWolf.TeamWolf.client.BL.financeBL.financeController;
 import TeamWolf.TeamWolf.client.BLservice.financeBLservice.AccountBlservice;
 import TeamWolf.TeamWolf.client.vo.financeVO;
-
+//处理收款单条目的信息
 public class OneRecieptPanel extends JPanel{
 	
 	//AccountBlservice service = ReceiptPanel.service;

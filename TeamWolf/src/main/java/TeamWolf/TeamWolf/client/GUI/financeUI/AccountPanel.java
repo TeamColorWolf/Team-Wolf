@@ -3,7 +3,8 @@ package TeamWolf.TeamWolf.client.GUI.financeUI;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
-
+//账户
+//大标签
 public class AccountPanel extends JPanel{
 
 	

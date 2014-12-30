@@ -3,10 +3,10 @@ package TeamWolf.TeamWolf.client.vo;
 import java.io.Serializable;
 
 import TeamWolf.TeamWolf.client.po.financePO;
-
+//账户
 public class financeVO implements Serializable{
-	private String name;
-    private double account;
+	private String name;//账户名
+    private double account;//余额
 	public int error;
 	public boolean iserror;
     

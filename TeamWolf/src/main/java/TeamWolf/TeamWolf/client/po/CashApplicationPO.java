@@ -5,15 +5,15 @@ import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.vo.CashApplicationVO;
 import TeamWolf.TeamWolf.client.vo.financeVO;
-
+//现金费用单
 public class CashApplicationPO extends ApplicationPO implements Serializable{
-    private String note;
-    private String addup;
+    private String note;//注释
+    private String addup;//合计
   //  private CustomerPO customer;
-    private ArrayList<String> nameList;
+    private ArrayList<String> nameList;//条目名
    
-    private ArrayList<financePO> accountList;
-    private ArrayList<String> moneyList;
+    private ArrayList<financePO> accountList;//账户list
+    private ArrayList<String> moneyList;//金额list
     
 	public CashApplicationPO(ArrayList<financePO> accountList,ArrayList<String> moneyList,ArrayList<String> nameList,
         		String number,String operator,String note) {

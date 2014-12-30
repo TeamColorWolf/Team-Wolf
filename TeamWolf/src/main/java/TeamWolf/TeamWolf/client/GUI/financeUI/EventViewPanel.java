@@ -1,7 +1,7 @@
 package TeamWolf.TeamWolf.client.GUI.financeUI;
 
 import javax.swing.JPanel;
-
+//操作日志界面
 public class EventViewPanel extends JPanel{
 
 	

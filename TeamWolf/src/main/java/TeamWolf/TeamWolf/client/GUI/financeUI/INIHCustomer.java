@@ -19,7 +19,7 @@ import TeamWolf.TeamWolf.client.BLservice.financeBLservice.InitialBLservice;
 import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.UserVO;
-
+//历史期初建账——客户信息
 public class INIHCustomer extends JPanel{
 	InitialBLservice ibs;
 	public static ArrayList<CustomerVO> customerList;

@@ -7,7 +7,8 @@ import TeamWolf.TeamWolf.client.BL.applicationBL.FinanceApplicationService;
 import TeamWolf.TeamWolf.client.BL.applicationBL.forFinance.FinanceApplicationController;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.FinanceApplicationDATAservice;
 
-
+//单据
+//大标签
 public class ApplicationPanel extends JPanel{
 
 	

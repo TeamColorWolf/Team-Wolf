@@ -6,13 +6,13 @@ import TeamWolf.TeamWolf.client.po.CustomerPO;
 import TeamWolf.TeamWolf.client.po.PaymentApplicationPO;
 import TeamWolf.TeamWolf.client.po.RecieptApplicationPO;
 import TeamWolf.TeamWolf.client.po.financePO;
-
+//付款单
 public class PaymentApplicationVO extends ApplicationVO{
-    private String note;
-    private String addup;
-    private CustomerVO customer;
-    private ArrayList<financeVO> accountList;
-    private ArrayList<String> moneyList;
+    private String note;//注释
+    private String addup;//合计
+    private CustomerVO customer;//客户
+    private ArrayList<financeVO> accountList;//账户list
+    private ArrayList<String> moneyList;//金额list
     
 	public PaymentApplicationVO(ArrayList<financeVO> accountList,ArrayList<String> moneyList,
         		String number,String operator,String note,CustomerVO customer) {

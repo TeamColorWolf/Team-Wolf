@@ -14,7 +14,7 @@ import TeamWolf.TeamWolf.client.BL.goodsBL.GoodsBLController;
 import TeamWolf.TeamWolf.client.BLservice.financeBLservice.InitialBLservice;
 import TeamWolf.TeamWolf.client.vo.GoodsStockListVO;
 import TeamWolf.TeamWolf.client.vo.GoodsStockVO;
-
+//历史期初建账——商品信息
 public class INIHGoods extends JPanel {
 	InitialBLservice ibs;
 	//GoodsBLController gbcontroller;

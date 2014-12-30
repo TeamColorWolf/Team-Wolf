@@ -4,12 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.po.INIPO;
-
+//期初建账
 public class INIVO implements Serializable{
-	private int number;
-	private ArrayList<financeVO> accArray;
-	private GoodsStockListVO gslArray;
-	private ArrayList<CustomerVO> cusArray;
+	private int number;//编号
+	private ArrayList<financeVO> accArray;//账户信息
+	private GoodsStockListVO gslArray;//商品信息
+	private ArrayList<CustomerVO> cusArray;//客户信息
 	public INIVO(int number,ArrayList<financeVO> accArray,GoodsStockListVO gslArray,
 			ArrayList<CustomerVO> cusArray){
 		this.setNumber(number);

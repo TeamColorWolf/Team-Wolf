@@ -23,7 +23,7 @@ import TeamWolf.TeamWolf.client.vo.CashApplicationVO;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.PaymentApplicationVO;
 import TeamWolf.TeamWolf.client.vo.financeVO;
-
+//现金费用单界面
 public class CashPanel extends JPanel{
 
 	public static int ApplicationNumber;
@@ -124,8 +124,8 @@ public class CashPanel extends JPanel{
 		this.setLayout(null);
 		this.setVisible(true);
 	}
-	
-	public void getCustomerList(){
+	//获取
+	public void getCustomerList(){//获取客户信息
 		for(int i=0;i<CustomerVOList.size();i++){
 			CustomerList.add(CustomerVOList.get(i).getName());
 		}
@@ -135,11 +135,12 @@ public class CashPanel extends JPanel{
 			CustomerTopList.add(""+CustomerVOList.get(i).getTopLimit());
 		}
 	}
-	public void setCustomerBox(ArrayList<String> CustomerList){
+	public void setCustomerBox(ArrayList<String> CustomerList){//设置客户信息
 		for(int i=0;i<CustomerList.size();i++){
 			CustomerBox.addItem(CustomerList.get(i));
 		}
 	}
+	//获取日期
 	public String getDate (){
 		String date = "";
 		Date dt = new Date();
@@ -148,6 +149,7 @@ public class CashPanel extends JPanel{
 		date = sdf.format(dt);
 		return date;
 	}
+	//获取编号
 	public String getNumber(){
 		String num = "XJFYD-";
 		String date = getDate();
@@ -156,6 +158,7 @@ public class CashPanel extends JPanel{
 		return num;
 		
 	}
+	//“取消”监听
 	class CancelListener implements ActionListener{
 
 		public void actionPerformed(ActionEvent arg0) {
@@ -165,7 +168,7 @@ public class CashPanel extends JPanel{
 		}
 		
 	}
-	
+	//提交“监听”
 	class EnsureListener implements ActionListener{
 
 		public void actionPerformed(ActionEvent arg0) {
@@ -224,7 +227,7 @@ public class CashPanel extends JPanel{
             faservice.submitCashApplication(submitCav);
             MessageFrame mf = new MessageFrame(0);
 		}
-	    
+	    //获取账户列表
 	    public ArrayList<financeVO> getfinanceList(ArrayList<String> accountNameList){
 	    	ArrayList<financeVO> accountList = new ArrayList<financeVO>();
 	        for(int index=0 ; index<accountNameList.size();index++){

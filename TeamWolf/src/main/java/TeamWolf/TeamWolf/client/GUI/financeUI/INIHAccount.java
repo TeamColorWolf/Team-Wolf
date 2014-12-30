@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
 import TeamWolf.TeamWolf.client.BL.financeBL.Initial;
 import TeamWolf.TeamWolf.client.BLservice.financeBLservice.InitialBLservice;
 import TeamWolf.TeamWolf.client.vo.financeVO;
-
+//历史期初建账——账户信息
 public class INIHAccount extends JPanel{
 	InitialBLservice ibs;
 	
