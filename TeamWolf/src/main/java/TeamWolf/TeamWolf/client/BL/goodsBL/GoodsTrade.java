@@ -201,6 +201,8 @@ public class GoodsTrade {
 		}
 		return 0;
 	}
+	
+	
 	public int goodsImportReject(ImportRejectListVO irl){
 		
 		ArrayList<GoodsVO> goodsIRL=irl.getGoodsList();
