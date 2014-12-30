@@ -3,27 +3,21 @@ package TeamWolf.TeamWolf.client.BLservice.stockBLservice;
 import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.vo.*;
-
+/***
+ * 此接口实现商品监控（报溢、报损、警报、设置警戒线）功能
+ * @author XYJ
+ *
+ */
 public interface GoodMonService {
 
-	/**
-	 * ��Ʒ����
-	 * @param toIncrease
-	 * @return
-	 */
+	//报溢
 	public int increaseToMatch( GoodsVO toIncrease, String operator);
-	/**
-	 * ��Ʒ����
-	 * @param toDecrease
-	 * @return
-	 */
+
+    //报损
 	public int decreaseToMatch( GoodsVO toDecrease, String operator);
-	/**
-	 * ������Ʒ����ֵ
-	 * @param goodWL
-	 * @return
-	 */
+	
 	public int setWaringLine(GoodsVO goodWL);
 	
+	//获得警报
 	public ArrayList<GoodsAlarmVO> getGoodsAlarm();
 }

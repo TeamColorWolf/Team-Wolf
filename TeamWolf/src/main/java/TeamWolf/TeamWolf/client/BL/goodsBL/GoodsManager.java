@@ -67,6 +67,7 @@ public class GoodsManager {
 				return 2001;//返回错误类型：父分类下有子分类，不可添加商品
 			}
 			else{
+				//符合前置条件，进行增加商品操作
 				parent.addLeaveNode(toAdd);
 				SdataService.updType(parent);
 				GdataService.addGood(toAdd);
@@ -82,6 +83,7 @@ public class GoodsManager {
 		}
 		return 0;
 	}
+	
 	public int delGoods(GoodsVO g){
 		
 		try {
@@ -89,7 +91,7 @@ public class GoodsManager {
 		if(result==0){
 				
 			    TypePO parent=SdataService.finType(g.getParentNum());
-			    if(parent.delLeaveNode(g.getNumber())){
+			    if(parent.delLeaveNode(g.getNumber())){ //先把商品从父类中删除
 			    	GdataService.delGood(g.getNumber());
 			    	SdataService.updType(parent);
 			    }else{
@@ -109,14 +111,16 @@ public class GoodsManager {
 		
 		return 0;
 	}
+	
 	public int updGoods(GoodsVO g){
 		
 		try {
 		if(assistant.canUpd(g)){
-			
+			    
+			    //把要修改的商品从持久化数据中找出来，再进行完善
 				GoodsPO toUpd=GdataService.finGood(g.getNumber());
 				TypePO parent=SdataService.finType(g.getParentNum());
-				/*对PO进行修改*/
+				/*对PO进行修改,完善信息*/
 				if(g.getName()!=null)
 					toUpd.setName(g.getName());
 				if(g.getModel()!=null)
@@ -151,7 +155,7 @@ public class GoodsManager {
 		try {
 
 		GoodsPO found=GdataService.finGood(g.getNumber());
-		//对g进行修改			
+		//对g进行修改(把g的数据完善以回交给展示层)		
         if(found!=null){
             g.setName(found.getName());
             g.setModel(found.getModel());
@@ -176,6 +180,7 @@ public class GoodsManager {
 		return g;
 	}
 	
+	//根据名称或型号的模糊查找
 	public ArrayList<GoodsVO> dimFinGoods(GoodsVO g){
 	   
 		ArrayList<GoodsVO> result=new ArrayList<GoodsVO>();
@@ -193,6 +198,7 @@ public class GoodsManager {
 		}			
 		return result;
 	}
+	
 	public GoodsListVO shoGoods(){
 		
 		GoodsListVO gl=new GoodsListVO();
@@ -219,6 +225,8 @@ public class GoodsManager {
        
 		return gl;
 	}
+	
+	//库存查看功能
 	public GoodsStockListVO shoStockList(int beginDate, int endDate){
 		
 		GoodsStockListVO gsl=new GoodsStockListVO();
@@ -230,8 +238,9 @@ public class GoodsManager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//查找当天的交易记录，计算并生成对应的GoodsStockVO
-		//需要知道交易单据存储位置
+		
+		//查找该段时间的交易记录，计算并生成对应的GoodsStockVO
+		//读入用于计算的各种交易单据
 		ArrayList<ImportListVO> ipl=sbc.getImportList();
 		ArrayList<SaleListVO> sl=sbc.getSaleList();
 		ArrayList<ImportRejectListVO> iprl=sbc.getImportRejectList();
@@ -251,7 +260,7 @@ public class GoodsManager {
 	    	double totalPrice=0;
 	    	int totalAmount=0;
 	    	
-	    	
+	    	//遍历单据，将在该时间段内的单据用于计算(以下四个循环分别计算四个单据)
 	    	for(ImportListVO ip : ipl){
 	    		String[] info=ip.number.split("-");
 	    		int date=Integer.parseInt(info[1]);
@@ -271,6 +280,7 @@ public class GoodsManager {
 	    		}
 	    		    			    	  
 	    	}
+	    	
 	    	for(ImportRejectListVO ipr : iprl){
 	    		String[] info=ipr.number.split("-");
 	    		int date=Integer.parseInt(info[1]);
@@ -290,6 +300,7 @@ public class GoodsManager {
 	    			}
 	    		}
 	    	}
+	    	
 	    	for(SaleListVO sa: sl){
 	    		String[] info=sa.number.split("-");
 	    		int date=Integer.parseInt(info[1]);
@@ -310,6 +321,7 @@ public class GoodsManager {
 	    		   }
 	    		}
 	    	}
+	    	
 	    	for(SaleRejectListVO sar : srl){
 	    		String[] info=sar.number.split("-");
 	    		int date=Integer.parseInt(info[1]);
@@ -332,21 +344,26 @@ public class GoodsManager {
 	    		
 	    	}
 	    	
+	    	//设置计算好的库存数据
 	    	gs.setExportAmount(ExportAmount);
 	    	gs.setExportTotalPrice(ExportPrice);
 	    	gs.setImportAmount(ImportAmount);
 	    	gs.setImportTotalPrice(ImportPrice);
 	    	gs.setTotalPrice(totalPrice);
 	    	
+	    	//商品库存列表中添加一个商品库存数据
 	    	gsl.addGoodSVO(gs);
 	    	
 	    }
 		
 		return gsl;
 	}
+	
+	//库存快照功能
 	public GoodsStockListVO shoStockDaily(){
 		
 		int presentDate=Integer.parseInt(assistant.getPresentDate());
+		//调用查看库存的方法，起始时间和结束时间均为当天
 		return this.shoStockList(presentDate, presentDate);
 	}                                                                                                                                                                                                                                                                                                                                                            
 	

@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
+import java.rmi.server.LogStream;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
@@ -17,6 +18,8 @@ import TeamWolf.TeamWolf.client.po.GoodsPO;
 import TeamWolf.TeamWolf.client.po.TypePO;
 import TeamWolf.TeamWolf.server.FileName;
 import TeamWolf.TeamWolf.server.FileOpr;
+import TeamWolf.TeamWolf.server.logDATA.LogDATA;
+import TeamWolf.TeamWolf.server.logDATA.WriteLogService;
 
 /**
  * 
@@ -27,6 +30,7 @@ public class StockData extends UnicastRemoteObject implements StockDataService {
 
 	ArrayList<TypePO> stockList;
 	String path="库存商品//";
+	WriteLogService logService=new LogDATA();			
 	
 	public StockData() throws RemoteException {
 		super();
@@ -41,6 +45,7 @@ public class StockData extends UnicastRemoteObject implements StockDataService {
 		stockList.add(t);
 		try {
 			FileOpr.writeFile(FileName.stockFile, stockList);
+	        logService.addGoodsType(t);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -60,8 +65,9 @@ public class StockData extends UnicastRemoteObject implements StockDataService {
 		}
 		if(toDel!=null){
 		   stockList.remove(toDel);
-		   try {
+		  try {
 			FileOpr.writeFile(FileName.stockFile, stockList);
+			logService.deleteGoodsType(toDel);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -91,6 +97,7 @@ public class StockData extends UnicastRemoteObject implements StockDataService {
 		}
 		try {
 			FileOpr.writeFile(FileName.stockFile, stockList);
+			logService.updateGoodsType(t);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

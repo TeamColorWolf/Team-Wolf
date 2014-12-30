@@ -28,6 +28,11 @@ import TeamWolf.TeamWolf.client.vo.GoodsStockListVO;
 import TeamWolf.TeamWolf.client.vo.GoodsStockVO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
 
+/***
+ * 此类是库存人员的库存查看页面
+ * @author XYJ
+ *
+ */
 public class StockShowPane extends JPanel implements ItemListener, ActionListener {
 
 	GoodManService gbcontroller;
@@ -88,6 +93,7 @@ public class StockShowPane extends JPanel implements ItemListener, ActionListene
 		this.add(endD);
 	}
 
+	//初始化表格展示区
 	public void initialStockShoArea(){
 		
 		DefaultTableModel model=new DefaultTableModel(stockInfoList, tableTitle);
@@ -107,6 +113,7 @@ public class StockShowPane extends JPanel implements ItemListener, ActionListene
 		
 	}
 	
+	//初始化操作区
 	public void initialOperationArea(){
 		 
 		beginY=new JComboBox(years);
@@ -172,6 +179,7 @@ public class StockShowPane extends JPanel implements ItemListener, ActionListene
 		});
 	}
 
+	//监听下拉菜单的选中项
 	public void itemStateChanged(ItemEvent e) {
 		// TODO Auto-generated method stub
 		

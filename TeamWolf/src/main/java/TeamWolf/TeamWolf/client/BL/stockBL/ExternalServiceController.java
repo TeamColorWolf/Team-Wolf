@@ -11,6 +11,11 @@ import TeamWolf.TeamWolf.client.vo.IncreaseToMatchVO;
 import TeamWolf.TeamWolf.client.vo.SpecialGoodsPromotionVO;
 import TeamWolf.TeamWolf.client.vo.TypeVO;
 
+/***
+ * 对外服务的控制器
+ * @author XYJ
+ *
+ */
 public class ExternalServiceController implements ExternalService{
 
 	StockBLManager man;
@@ -32,7 +37,7 @@ public class ExternalServiceController implements ExternalService{
 	}
 
 	public GoodsVO finGoods(String number) {
-		// TODO Auto-generated method stub
+    	// TODO Auto-generated method stub
 		GoodsVO tofin=new GoodsVO(null, null, number, null, null, null, null, null, null, null, null);
 		return gm.finGoods(tofin);
 	}
@@ -48,7 +53,7 @@ public class ExternalServiceController implements ExternalService{
 		return 0;
 	}
 
-    public static void main(String[] args){
+    /*public static void main(String[] args){
 		
 		ExternalServiceController esc=new ExternalServiceController("192.168.1.102");
 		ArrayList<TypeVO> typeList=esc.getLeaveType();
@@ -64,6 +69,6 @@ public class ExternalServiceController implements ExternalService{
 		String s="specialGoods";
 		
 		System.out.println(!s.contains("specialGoods"));
-	}
+	}*/
 
 }

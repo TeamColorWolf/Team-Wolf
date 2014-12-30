@@ -178,7 +178,7 @@ public class StockBLManager{
 			    	 }
 			    	 leaveTypeL.add(special);
 			    }
-			    else if(t.getC()==2){
+			    else if(t.getC()==2){  //通过其下有无商品来判断是否为叶节点分类
 			    	 leaveTypeL.add(new TypeVO(t));
 			     }
 			}

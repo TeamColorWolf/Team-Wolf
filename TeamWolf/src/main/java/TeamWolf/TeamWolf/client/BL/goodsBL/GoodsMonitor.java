@@ -98,6 +98,8 @@ public class GoodsMonitor{
 	}
 	
 	public int warning(GoodsVO g){
+	
+		//产生一条警报信息
 		GoodsAlarmPO ga=new GoodsAlarmPO(assistant.getPresentTime(), g.getNumber()+"-"+g.getName()+"-"+g.getModel(),"库存数量已低于警戒线！");
 		try {
 			dataService.addGoodsAlarm(ga);
@@ -108,12 +110,13 @@ public class GoodsMonitor{
 		}
 		return 0;
 	}
+	
+	
 	public int increaseToMatch(GoodsVO toIncrease, String operator) {
 		// TODO Auto-generated method stub
 		try{
 		if(assistant.isExisted(toIncrease)&&increaseGoods(toIncrease)==0){
-			//商品报溢			
-			//调用ApplicationBL接口生成报溢单
+			//商品报溢						
 			    String number=""+(appController.todayQuantityOfITM()+1);
 			    while(number.length()<5){
 			    	number="0"+number;
@@ -121,6 +124,7 @@ public class GoodsMonitor{
 			    GoodsPO goods=dataService.finGood(toIncrease.getNumber());
 			    toIncrease.setImprice(goods.getImprice());
 			    IncreaseToMatchVO itm=new IncreaseToMatchVO(toIncrease, number, operator);
+   			    //调用ApplicationBL接口提交报溢单
 			    appController.submitIncreaseToMatch(itm);		
 		}
 		else{
@@ -137,8 +141,7 @@ public class GoodsMonitor{
 		try{
 		if(assistant.isExisted(toDecrease)){
 			//商品报损
-			int result=decreaseGoods(toDecrease);
-			//调用ApplicationBL接口生成报损单
+			int result=decreaseGoods(toDecrease);			
 			if(result==0){
 				String number=""+(appController.todayQuantityOfDTM()+1);
 			    while(number.length()<5){
@@ -147,6 +150,7 @@ public class GoodsMonitor{
 			     GoodsPO goods=dataService.finGood(toDecrease.getNumber());
 			     toDecrease.setImprice(goods.getImprice());
 			     DecreaseToMatchVO dtm=new DecreaseToMatchVO(toDecrease, number, operator);
+			     //调用ApplicationBL接口生成报损单
 			     appController.submitDecreaseToMatch(dtm);
 			}
 			else{
@@ -163,6 +167,7 @@ public class GoodsMonitor{
 		return 0;
 	}
 
+	//增加某商品的库存
     public int increaseGoods(GoodsVO g){
 		
     	try {
@@ -188,6 +193,8 @@ public class GoodsMonitor{
 		}
 		return 0;
 	}
+
+    //减少某商品的库存
 	public int decreaseGoods(GoodsVO g){
 		
 		try {
@@ -195,7 +202,7 @@ public class GoodsMonitor{
 			if(toDecrease!=null){
 			    TypePO parent=SdataService.finType(toDecrease.getParent().getNumber());
 			    int amount=toDecrease.getAmount()-g.getAmount();
-			    if(amount>=0){
+			    if(amount>=0){ //判断减少后库存数量大于0，才进行真正的减库存操作
 			         toDecrease.setAmount(amount);
 			         parent.updLeaveNode(toDecrease);
 			         SdataService.updType(parent);

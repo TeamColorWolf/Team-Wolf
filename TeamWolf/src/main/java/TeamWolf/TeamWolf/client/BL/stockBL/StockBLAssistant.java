@@ -9,6 +9,11 @@ import java.util.Calendar;
 import TeamWolf.TeamWolf.client.DATAservice.stockDATAservice.StockDataService;
 import TeamWolf.TeamWolf.client.vo.TypeVO;
 
+/***
+ * 辅助类
+ * @author XYJ
+ *
+ */
 public class StockBLAssistant {
 	
     StockDataService reader;

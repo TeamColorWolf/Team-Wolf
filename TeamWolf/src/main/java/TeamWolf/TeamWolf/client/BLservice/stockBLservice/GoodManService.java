@@ -4,50 +4,31 @@ import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.vo.*;
 
+/***
+ * 此接口包含商品管理（增、删、改、查、显示）功能
+ * @author XYJ
+ *
+ */
 public interface GoodManService {
     
-	/**
-	 * ������Ʒ
-	 * @param g
-	 * @return
-	 */
+	
 	public int addGoods(GoodsVO g);
-	/**
-	 * ɾ����Ʒ
-	 * @param g
-	 * @return
-	 */
+	
 	public int delGoods(GoodsVO g);
-	/**
-	 * ������Ʒ
-	 * @param g
-	 * @return
-	 */
+	
 	public int updGoods(GoodsVO g);
-	/**
-	 * ������Ʒ
-	 * @param g
-	 * @return
-	 */
+	
 	public GoodsVO finGoods(GoodsVO g);
-	/**
-	 * ��ʾ������Ʒ
-	 * @return
-	 */
+	
 	public GoodsListVO shoGoods();
-	/**
-	 * �鿴���
-	 * @param beginDate
-	 * @param endDate
-	 * @return
-	 */
+
+    //显示一段时间内的库存信息
 	public GoodsStockListVO shoStockList( int beginDate, int endDate);
-	/**
-	 * ����̵�
-	 * @return
-	 */
+	
+	//库存快照
 	public GoodsStockListVO shoStockDaily();
 	
+	//模糊查找商品
 	public ArrayList<GoodsVO> dimFinGoods(GoodsVO g);
 	
 }

@@ -8,7 +8,7 @@ import jxl.*;
 import jxl.write.*;  
 import jxl.write.biff.RowsExceededException;  
 /** 
- * 
+ * 本类用来处理导出Excel表单功能
  * @author Administrator 
  */  
 public class ExcelExporter {  

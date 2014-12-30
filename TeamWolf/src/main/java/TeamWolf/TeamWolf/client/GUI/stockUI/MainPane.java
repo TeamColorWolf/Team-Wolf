@@ -21,6 +21,11 @@ import javax.swing.text.StyledDocument;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
 import TeamWolf.TeamWolf.client.vo.UserVO;
 
+/***
+ * 此类是库存人员的主页
+ * @author XYJ
+ *
+ */
 public class MainPane extends JPanel {
 
 	static String Infomation="";
@@ -48,6 +53,7 @@ public class MainPane extends JPanel {
 		
 	}
 	
+	//初始化按钮
 	public void initialRefresh(){
 		
 		refresh=new JButton("刷新");
@@ -62,13 +68,8 @@ public class MainPane extends JPanel {
 		});
 	}
 	
-	public void initialInfoArea(){
-		
-		/*SimpleAttributeSet aSet = new SimpleAttributeSet();   
-	    StyleConstants.setForeground(aSet, Color.blue);  
-	    StyleConstants.setBackground(aSet, Color.orange);  
-	    StyleConstants.setFontFamily(aSet, "lucida bright italic");  
-	    StyleConstants.setFontSize(aSet, 10);*/  
+	//初始化信息区
+	public void initialInfoArea(){			
 	   
 	    SimpleAttributeSet bSet = new SimpleAttributeSet();  
 	    StyleConstants.setAlignment(bSet, StyleConstants.ALIGN_CENTER);   
@@ -81,11 +82,11 @@ public class MainPane extends JPanel {
 		InfoArea.setEditable(false);
 		InfoArea.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
 		InfoArea.setText("操作员："+user.workID+"--"+user.userName+"             IP地址："+IP);
-		StyledDocument doc = InfoArea.getStyledDocument();  
-	    //doc.setCharacterAttributes(105, doc.getLength()-105, aSet, false);  
+		StyledDocument doc = InfoArea.getStyledDocument();    
 	    doc.setParagraphAttributes(0, 104, bSet, false);  
 	}
 	
+	//初始化通知区
 	public void initialAnnouceArea(){
 		
 		SimpleAttributeSet aSet = new SimpleAttributeSet();   
@@ -103,7 +104,7 @@ public class MainPane extends JPanel {
 		AnnouceArea.setEditable(false);
 		AnnouceArea.setBounds(0, 0, 800, 300);
 		AnnouceArea.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
-		AnnouceArea.setText("操作员真踏马帅！");
+		AnnouceArea.setText("元旦快乐！");
 		
 		StyledDocument doc = AnnouceArea.getStyledDocument();  
 	    doc.setCharacterAttributes(105, doc.getLength()-105, aSet, false);  
@@ -113,6 +114,7 @@ public class MainPane extends JPanel {
 		APContainer.setBounds(75, 120, 800, 300);
 		APContainer.setVisible(true);
 	}
+	
 	
     public static String getPresentTime(){
 		//获得当前时间

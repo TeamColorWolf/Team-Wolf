@@ -61,6 +61,7 @@ public class GoodsTrade {
 		boolean notEnough=false;
 		//逐个修改库存数量，最近售价
 		try{
+		//先一次性检查销售中所有商品的库存是否足够，如有一个不足够则不执行整个销售单
 		for(GoodsVO g: goodsSL){
 			
 			if(!g.getName().contains("specialGoods")){
@@ -101,6 +102,8 @@ public class GoodsTrade {
 		if(notEnough==true){
 			return 2006;//返回库存不足
 		}
+		
+		//所有商品库存都足够，逐个进行减库存处理
 		else{
 			for(GoodsVO g: goodsSL){
 				
@@ -146,6 +149,8 @@ public class GoodsTrade {
 		}
 		return 0;
 	}
+	
+	
 	public int goodsExportReject(SaleRejectListVO srl){
 		
 		ArrayList<GoodsVO> goodsSRL=srl.getGoodsList();
@@ -170,6 +175,8 @@ public class GoodsTrade {
 		
 		return 0;
 	}
+	
+	
 	public int goodsImport(ImportListVO il){
 		
 		ArrayList<GoodsVO> goodsIL=il.getGoodsList();
