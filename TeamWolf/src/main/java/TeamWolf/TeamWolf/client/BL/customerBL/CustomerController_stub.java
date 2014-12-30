@@ -11,7 +11,7 @@ import TeamWolf.TeamWolf.client.vo.PaymentApplicationVO;
 import TeamWolf.TeamWolf.client.vo.RecieptApplicationVO;
 import TeamWolf.TeamWolf.client.vo.SaleListVO;
 import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
-
+//Customer的桩
 public class CustomerController_stub extends CustomerController{
 	String IP;
 	CustomerOpr_stub co;

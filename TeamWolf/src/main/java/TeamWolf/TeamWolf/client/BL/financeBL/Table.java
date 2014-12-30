@@ -7,6 +7,8 @@ import TeamWolf.TeamWolf.client.vo.CashApplicationVO;
 import TeamWolf.TeamWolf.client.vo.PaymentApplicationVO;
 import TeamWolf.TeamWolf.client.vo.RecieptApplicationVO;
 
+//单据处理
+//由于版本迭代，本类只与桩有关
 public class Table implements TableBlservice{
 
 	FinanceSubmit fs;

@@ -11,7 +11,7 @@ import TeamWolf.TeamWolf.client.vo.PaymentApplicationVO;
 import TeamWolf.TeamWolf.client.vo.RecieptApplicationVO;
 import TeamWolf.TeamWolf.client.vo.SaleListVO;
 import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
-
+//Customer的driver
 public class Customer_driver {
     CustomerController controller;
     ArrayList<CustomerVO> list = new ArrayList<CustomerVO>();

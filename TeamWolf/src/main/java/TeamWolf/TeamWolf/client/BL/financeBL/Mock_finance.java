@@ -7,6 +7,7 @@ import TeamWolf.TeamWolf.client.po.financePO;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.financeVO;
 
+//账户的Mock
 public class Mock_finance extends Account{
 	ArrayList<financeVO> voList;
 	ArrayList<financePO> poList;

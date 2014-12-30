@@ -31,17 +31,21 @@ public class RecieptApplication extends Application {
 		fc = new financeController(IP);
 	}
 
+	
+	//获取当前单据VO
 	@Override
 	public RecieptApplicationVO getApplicationVO() {
 		return vo;
 	}
 
+	//获取当前单据PO
 	@Override
 	public RecieptApplicationPO getApplicationPO() {
 		// TODO Auto-generated method stub
 		return new RecieptApplicationPO(vo);
 	}
 
+	//提交当前单据
 	@Override
 	public int submit() {
 		vo.condition = 0;
@@ -66,6 +70,7 @@ public class RecieptApplication extends Application {
 		return 0;
 	}
 
+	//通过当前单据
 	@Override
 	public int approve() {
 		vo.condition = 1;
@@ -87,11 +92,12 @@ public class RecieptApplication extends Application {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		cc.RecieptListMod(getApplicationVO());
-		fc.RecieptMod(getApplicationVO());
+		cc.RecieptListMod(getApplicationVO());//根据单据修改客户信息
+		fc.RecieptMod(getApplicationVO());//根据单据修改账户信息
 		return 0;
 	}
 
+    //拒绝当前单据	
 	@Override
 	public int reject() {
 		vo.condition = -1;

@@ -2,6 +2,8 @@ package TeamWolf.TeamWolf.client.BL.financeBL;
 
 import TeamWolf.TeamWolf.client.vo.financeVO;
 
+//一个driver类
+//用去测试驱动
 public class Account_driver {
 	 String IP;
      financeController_stub fcs = new financeController_stub();

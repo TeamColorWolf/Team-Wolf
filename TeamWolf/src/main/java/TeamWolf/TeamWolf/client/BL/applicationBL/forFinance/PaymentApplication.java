@@ -31,17 +31,20 @@ public class PaymentApplication extends Application {
 		// TODO Auto-generated constructor stub
 	}
 
+	//获取当前单据的VO
 	@Override
 	public PaymentApplicationVO getApplicationVO() {
 		return vo ;
 	}
 
+	//获取当前单据的PO
 	@Override
 	public PaymentApplicationPO getApplicationPO() {
 		// TODO Auto-generated method stub
 		return new PaymentApplicationPO(vo);
 	}
 
+	//提交当前付款单
 	@Override
 	public int submit() {
 		vo.condition = 0;
@@ -66,6 +69,7 @@ public class PaymentApplication extends Application {
 		return 0;
 	}
 
+	//通过当前付款单
 	@Override
 	public int approve() {
 		vo.condition = 1;
@@ -87,11 +91,12 @@ public class PaymentApplication extends Application {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		cc.PaymentListMod(getApplicationVO());
-		fc.PaymentMod(vo);
+		cc.PaymentListMod(getApplicationVO());//根据现金费用单修改客户信息
+		fc.PaymentMod(vo);//根据付款单修改账户信息;
 		return 0;
 	}
 
+	//驳回当前付款单
 	@Override
 	public int reject() {
 		vo.condition = -1;

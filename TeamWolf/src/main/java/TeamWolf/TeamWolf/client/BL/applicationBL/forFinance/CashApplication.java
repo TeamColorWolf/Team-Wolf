@@ -27,6 +27,7 @@ public class CashApplication extends Application {
 	String URL ="";
 	financeController fc;
 	
+	//构造方法
 	public CashApplication(CashApplicationVO vo, String IP) {
 		super(vo, IP);
 		URL = "rmi://" + IP + "/financeApplicationDATAservice";
@@ -34,18 +35,21 @@ public class CashApplication extends Application {
 		fc = new financeController(IP);
 	}
 
-	@Override
+	//获取当前正在操作的单据VO
+	@Override	
 	public CashApplicationVO getApplicationVO() {
 		// TODO Auto-generated method stub
 		return vo;
 	}
 
+	//获取当前正在操作的单据PO
 	@Override
 	public CashApplicationPO getApplicationPO() {
 		// TODO Auto-generated method stub
 		return new CashApplicationPO(vo);
 	}
 
+	//提交当前正在操作的单据
 	@Override
 	public int submit() {
 		vo.condition = 0;
@@ -70,6 +74,7 @@ public class CashApplication extends Application {
 		return 0;
 	}
 
+	//通过当前正在操作的单据
 	@Override
 	public int approve() {
 		vo.condition = 1;
@@ -92,10 +97,11 @@ public class CashApplication extends Application {
 			e.printStackTrace();
 		}
 		//customerController.CashListMod(this.getApplicationVO());
-		fc.CashMod(getApplicationVO());
+		fc.CashMod(getApplicationVO());//根据单据内容进行相关修改
 		return 0;
 	}
 
+	//驳回单据
 	@Override
 	public int reject() {
 		vo.condition = -1;

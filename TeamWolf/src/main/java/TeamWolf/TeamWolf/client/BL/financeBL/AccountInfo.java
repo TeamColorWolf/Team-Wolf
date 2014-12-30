@@ -13,6 +13,7 @@ import TeamWolf.TeamWolf.client.vo.PaymentApplicationVO;
 import TeamWolf.TeamWolf.client.vo.RecieptApplicationVO;
 import TeamWolf.TeamWolf.client.vo.financeVO;
 
+//用于处理各类单据中对账户的修改
 public class AccountInfo implements AccountInfoBLservice{
 	
 	public String URL = "";
@@ -22,6 +23,7 @@ public class AccountInfo implements AccountInfoBLservice{
 		URL = "rmi://" + IP + "/financeDATAservice";
 	}
 	
+	//处理收款单对账户的修改
 	public int RecieptMod(RecieptApplicationVO vo) {
 		ArrayList<financeVO> volist = vo.getAccountList();
 		ArrayList<String> moneylist = vo.getMoneyList();
@@ -55,7 +57,7 @@ public class AccountInfo implements AccountInfoBLservice{
 		
 		return 9;
 	}
-
+    //处理付款单对账户的修改
 	public int PaymentMod(PaymentApplicationVO vo) {
 		ArrayList<financeVO> volist = vo.getAccountList();
 		ArrayList<String> moneylist = vo.getMoneyList();
@@ -90,6 +92,7 @@ public class AccountInfo implements AccountInfoBLservice{
 		return 9;
 	}
 
+	//处理现金费用单对账户的修改
 	public int CashMod(CashApplicationVO vo) {
 		ArrayList<financeVO> volist = vo.getAccountList();
 		ArrayList<String> moneylist = vo.getMoneyList();

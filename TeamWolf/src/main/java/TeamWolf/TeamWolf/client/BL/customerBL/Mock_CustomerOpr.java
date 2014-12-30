@@ -6,7 +6,7 @@ import TeamWolf.TeamWolf.client.po.CustomerPO;
 import TeamWolf.TeamWolf.client.po.UserPO;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.UserVO;
-
+//客户增删改查的Mock
 public class Mock_CustomerOpr extends CustomerOpr{
 	
 	public Mock_CustomerOpr(String IP){

@@ -2,6 +2,7 @@ package TeamWolf.TeamWolf.client.BL.financeBL;
 
 import TeamWolf.TeamWolf.client.vo.TimeVO;
 
+//查看日志的桩
 public class EventView_stub {
 
 	public int event() {
