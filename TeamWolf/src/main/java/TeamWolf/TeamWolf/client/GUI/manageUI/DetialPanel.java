@@ -69,6 +69,7 @@ public class DetialPanel extends JPanel{
 		int type = 0;
 		ArrayList<GoodsVO> list = null;
 		ArrayList<financeVO> flist = null;
+		ArrayList<String> mlist = null;
 		String customer = null;
 		double total = -1;
 		if(vo == null){
@@ -138,16 +139,19 @@ public class DetialPanel extends JPanel{
 			type = 2;
 			columnName = financeList;
 			flist = ((PaymentApplicationVO)vo).getAccountList();
+			mlist = ((PaymentApplicationVO)vo).getMoneyList();
 		}
 		else if(vo instanceof RecieptApplicationVO){
 			type = 2;
 			columnName = financeList;
 			flist = ((RecieptApplicationVO)vo).getAccountList();
+			mlist = ((RecieptApplicationVO)vo).getMoneyList();
 		}
 		else if(vo instanceof CashApplicationVO){
 			type = 2;
 			columnName = financeList;
 			flist = ((CashApplicationVO)vo).getAccountList();
+			mlist = ((CashApplicationVO)vo).getMoneyList();
 		}
 		
 		if(type == 0){
@@ -220,14 +224,14 @@ public class DetialPanel extends JPanel{
 				content = new Object[16][2];
 				for(int i = 0; i < flist.size(); i++){
 					content[i][0] = flist.get(i).getName();
-					content[i][1] = flist.get(i).getAccount();
+					content[i][1] = mlist.get(i);
 				}
 			}
 			else{
 				content = new Object[flist.size()][2];
 				for(int i = 0; i < flist.size(); i++){
 					content[i][0] = flist.get(i).getName();
-					content[i][1] = flist.get(i).getAccount();
+					content[i][1] = mlist.get(i);
 				}
 			}
 		}
