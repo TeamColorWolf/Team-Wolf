@@ -3,6 +3,7 @@ package TeamWolf.TeamWolf.server.logDATA;
 import TeamWolf.TeamWolf.client.po.ApplicationPO;
 import TeamWolf.TeamWolf.client.po.CustomerPO;
 import TeamWolf.TeamWolf.client.po.GoodsPO;
+import TeamWolf.TeamWolf.client.po.INIPO;
 import TeamWolf.TeamWolf.client.po.PromotionPO;
 import TeamWolf.TeamWolf.client.po.TypePO;
 import TeamWolf.TeamWolf.client.po.UserPO;
@@ -35,4 +36,6 @@ public interface WriteLogService {
 	public int submitApplication(ApplicationPO po);
 	public int approveApplication(ApplicationPO po);
 	public int rejectApplication(ApplicationPO po);
+	
+	public int initial(INIPO po);
 }

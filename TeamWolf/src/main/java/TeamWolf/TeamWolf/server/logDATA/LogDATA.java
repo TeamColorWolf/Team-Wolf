@@ -16,6 +16,7 @@ import TeamWolf.TeamWolf.client.DATAservice.logDATAservice.LogDATAservice;
 import TeamWolf.TeamWolf.client.po.ApplicationPO;
 import TeamWolf.TeamWolf.client.po.CustomerPO;
 import TeamWolf.TeamWolf.client.po.GoodsPO;
+import TeamWolf.TeamWolf.client.po.INIPO;
 import TeamWolf.TeamWolf.client.po.PromotionPO;
 import TeamWolf.TeamWolf.client.po.TimePO;
 import TeamWolf.TeamWolf.client.po.TypePO;
@@ -141,6 +142,11 @@ public class LogDATA implements LogDATAservice, WriteLogService{
 
 	public int rejectApplication(ApplicationPO po) {
 		write("审批驳回单据--单据编号" + po.number + " 单据操作员:" + po.operator);
+		return 0;
+	}
+	
+	public int initial(INIPO po){
+		write("第 " + (po.getNumber() + 1) + " 次期初建账");
 		return 0;
 	}
 	
