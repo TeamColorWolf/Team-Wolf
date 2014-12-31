@@ -10,11 +10,12 @@ import TeamWolf.TeamWolf.client.DATAservice.promotionDATAservice.PromotionDATAse
 import TeamWolf.TeamWolf.client.po.PromotionPO;
 import TeamWolf.TeamWolf.server.FileName;
 import TeamWolf.TeamWolf.server.FileOpr;
+import TeamWolf.TeamWolf.server.logDATA.LogDATA;
 
 public class PromotionDATA extends UnicastRemoteObject implements PromotionDATAservice{
 	
 	static ArrayList<PromotionPO> list;
-	
+	LogDATA log = new LogDATA();
 	public PromotionDATA() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
@@ -29,6 +30,7 @@ public class PromotionDATA extends UnicastRemoteObject implements PromotionDATAs
 		list.add(po);
 		try {
 			FileOpr.writeFile(FileName.promotionFile, list);
+			log.addPromotion(po);
 			return 0;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -41,6 +43,7 @@ public class PromotionDATA extends UnicastRemoteObject implements PromotionDATAs
 		// TODO Auto-generated method stub
 		for(int i = 0; i < list.size(); i++){
 			if(number.equals(list.get(i).number)){
+				log.deletePromotion(list.get(i));
 				list.remove(i);
 				try {
 					FileOpr.writeFile(FileName.promotionFile, list);

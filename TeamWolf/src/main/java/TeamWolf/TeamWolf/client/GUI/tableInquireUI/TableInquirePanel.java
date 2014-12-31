@@ -19,6 +19,7 @@ public class TableInquirePanel extends JPanel{
 	SaleDetialPanel saleDetial;
 	public RunProcessPanel runProcess;
 	RunConditionPanel runCondition;
+	LogCheckPanel logCheck;
 	
 	final static int width = 960;
 	final static int height = 540;
@@ -32,10 +33,12 @@ public class TableInquirePanel extends JPanel{
 		saleDetial = new SaleDetialPanel();
 		runProcess = new RunProcessPanel();
 		runCondition = new RunConditionPanel();
+		logCheck = new LogCheckPanel();
 		
 		tab.add(runCondition, "经营情况表");
 		tab.add(runProcess, "经营历程表");
 		tab.add(saleDetial, "销售明细表");
+		tab.add(logCheck, "日志查看");
 		tab.setSize(width, height);
 		tab.setLocation(0, 0);
 		

@@ -15,4 +15,6 @@ public interface TableInquireBLservice {
 	public ArrayList<RunProcessVO> runProcess(TimeVO time1, TimeVO time2);
 	
 	public RunConditionVO runCondition(TimeVO time1, TimeVO time2);
+	
+	public ArrayList<String> logCheck();
 }

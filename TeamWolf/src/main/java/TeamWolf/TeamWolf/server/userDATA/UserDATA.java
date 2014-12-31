@@ -10,9 +10,11 @@ import TeamWolf.TeamWolf.client.DATAservice.userDATAservice.UserDATAservice;
 import TeamWolf.TeamWolf.client.po.UserPO;
 import TeamWolf.TeamWolf.server.FileName;
 import TeamWolf.TeamWolf.server.FileOpr;
+import TeamWolf.TeamWolf.server.logDATA.LogDATA;
 
 public class UserDATA extends UnicastRemoteObject implements UserDATAservice{
 	static ArrayList<UserPO> list = null;
+	LogDATA log = new LogDATA();
 	public UserDATA() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
@@ -28,6 +30,7 @@ public class UserDATA extends UnicastRemoteObject implements UserDATAservice{
 		try {
 			FileOpr.writeFile(FileName.userFile, list);
 			System.out.println("add " + user.userName + " password:" + user.password);
+			log.addUser(user);
 			return 0;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -40,6 +43,7 @@ public class UserDATA extends UnicastRemoteObject implements UserDATAservice{
 		// TODO Auto-generated method stub
 		for(int i = 0; i < list.size(); i++){
 			if(list.get(i).userName.equals(user)){
+				log.deleteUser(list.get(i));
 				list.remove(i);
 				try {
 					FileOpr.writeFile(FileName.userFile, list);
@@ -65,6 +69,7 @@ public class UserDATA extends UnicastRemoteObject implements UserDATAservice{
 				try {
 					FileOpr.writeFile(FileName.userFile, list);
 					System.out.println("update " + user.userName + " password:" + user.password + " workID:" + user.workID + "power" + user.power);
+					log.updateUser(user);
 					return 0;
 				} catch (IOException e) {
 					// TODO Auto-generated catch block

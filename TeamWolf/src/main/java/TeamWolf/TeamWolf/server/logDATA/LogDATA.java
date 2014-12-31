@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -24,7 +25,11 @@ import TeamWolf.TeamWolf.client.po.UserPO;
 import TeamWolf.TeamWolf.client.po.financePO;
 import TeamWolf.TeamWolf.server.FileName;
 
-public class LogDATA implements LogDATAservice, WriteLogService{
+public class LogDATA extends UnicastRemoteObject implements LogDATAservice, WriteLogService{
+	public LogDATA() throws RemoteException {
+		super();
+	}
+
 	static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	public ArrayList<String> readLog() throws RemoteException {
 		ArrayList<String> loglist = new ArrayList<String>();
@@ -130,12 +135,12 @@ public class LogDATA implements LogDATAservice, WriteLogService{
 	}
 
 	public int addPromotion(PromotionPO po) {
-		write("添加促销策略--促销策略类型:" + po.type + " 促销策略编号:" + po.number + " 促销策略持续时间:" + TimePO.sdf.format(po.begin) + "~~" + TimePO.sdf.format(po.end));
+		write("添加促销策略--促销策略类型:" + po.type + " 促销策略编号:" + po.number + " 促销策略持续时间:" + TimePO.sdf.format(po.begin.date) + "~~" + TimePO.sdf.format(po.end.date));
 		return 0;
 	}
 
 	public int deletePromotion(PromotionPO po) {
-		write("删除促销策略--促销策略类型:" + po.type + " 促销策略编号:" + po.number + " 促销策略持续时间:" + TimePO.sdf.format(po.begin) + "~~" + TimePO.sdf.format(po.end));
+		write("删除促销策略--促销策略类型:" + po.type + " 促销策略编号:" + po.number + " 促销策略持续时间:" + TimePO.sdf.format(po.begin.date) + "~~" + TimePO.sdf.format(po.end.date));
 		return 0;
 	}
 

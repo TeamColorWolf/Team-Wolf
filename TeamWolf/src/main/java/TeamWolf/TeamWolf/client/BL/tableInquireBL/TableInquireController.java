@@ -31,4 +31,8 @@ public class TableInquireController implements TableInquireBLservice{
 	public RunConditionVO runCondition(TimeVO time1, TimeVO time2) {
 		return bl.runCondition(time1, time2);
 	}
+
+	public ArrayList<String> logCheck() {
+		return bl.logCheck();
+	}
 }

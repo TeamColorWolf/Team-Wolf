@@ -43,6 +43,11 @@ public class TableInquire_finance implements TableInquireBLservice, RedBLservice
 		return null;
 	}
 
+	public ArrayList<String> logCheck() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 
 }

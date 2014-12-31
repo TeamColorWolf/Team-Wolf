@@ -1,9 +1,14 @@
 package TeamWolf.TeamWolf.client.BL.tableInquireBL;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.BL.applicationBL.MutiRoleService;
 import TeamWolf.TeamWolf.client.BL.applicationBL.mutiRole.MutiRoleController;
+import TeamWolf.TeamWolf.client.DATAservice.logDATAservice.LogDATAservice;
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;
 import TeamWolf.TeamWolf.client.vo.CashApplicationVO;
 import TeamWolf.TeamWolf.client.vo.DecreaseToMatchVO;
@@ -31,6 +36,7 @@ public class TableInquireBL {
 	//查表需求最后实现
 	String IP;
 	MutiRoleService data;
+	LogDATAservice logdata;
 	ArrayList<SaleDetialVO> saleDetial;
 	ArrayList<RunProcessVO> runProcess;
 	RunConditionVO runCondition;
@@ -221,6 +227,23 @@ public class TableInquireBL {
 			runCondition.profit = runCondition.saleIncome + runCondition.stockIncome - runCondition.discount - runCondition.SaleOutcome - runCondition.StockOutcome;
 		}
 		return runCondition;
+	}
+	
+	public ArrayList<String> logCheck(){
+		try {
+			logdata = (LogDATAservice)Naming.lookup("rmi://" + IP + "/logDATAservice");
+			return logdata.readLog();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 	/**
 	 * 该方法内部调用
