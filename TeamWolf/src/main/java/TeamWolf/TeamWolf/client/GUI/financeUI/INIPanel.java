@@ -7,7 +7,7 @@ import TeamWolf.TeamWolf.client.BL.applicationBL.FinanceApplicationService;
 import TeamWolf.TeamWolf.client.BL.applicationBL.forFinance.FinanceApplicationController;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.FinanceApplicationDATAservice;
 
-
+//期初建账界面
 public class INIPanel extends JPanel{
 
 	

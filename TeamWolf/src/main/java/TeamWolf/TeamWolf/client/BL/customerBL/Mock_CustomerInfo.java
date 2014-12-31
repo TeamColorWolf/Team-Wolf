@@ -2,7 +2,7 @@ package TeamWolf.TeamWolf.client.BL.customerBL;
 
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.ImportListVO;
-
+//客户信息修改的Mock
 public class Mock_CustomerInfo extends CustomerInfo{
 	
 	CustomerVO vo;

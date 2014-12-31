@@ -9,13 +9,14 @@ import java.util.ArrayList;
 import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.BLservice.financeBLservice.AccountBlservice;
 import TeamWolf.TeamWolf.client.DATAservice.financeDATAservice.financeDATAservice;
-import TeamWolf.TeamWolf.client.DATAservice.logDATAservice.UserLogDATAservice;
 import TeamWolf.TeamWolf.client.DATAservice.userDATAservice.UserDATAservice;
 import TeamWolf.TeamWolf.client.po.financePO;
 import TeamWolf.TeamWolf.client.po.UserPO;
 import TeamWolf.TeamWolf.client.vo.UserVO;
 import TeamWolf.TeamWolf.client.vo.financeVO;
 
+
+//该类负责账户的增删改查
 public class Account implements AccountBlservice{
 
 	public String URL;
@@ -32,7 +33,7 @@ public class Account implements AccountBlservice{
 		this.checkVO();
 	}
 	
-
+    //增加账户
 	public int add(financeVO vo) {
 		try {
 			fds = (financeDATAservice)Naming.lookup(URL);
@@ -62,6 +63,7 @@ public class Account implements AccountBlservice{
 		return ErrorTW.webError;
 	}
 
+	//删除账户
 	public int delete(financeVO vo) {
 		try {
 			fds = (financeDATAservice)Naming.lookup(URL);
@@ -96,6 +98,7 @@ public class Account implements AccountBlservice{
 		return 30001;
 	}
 
+	//修改账户
 	public int update(financeVO vo,financeVO newvo) {
 		try {
 			fds = (financeDATAservice)Naming.lookup(URL);
@@ -129,6 +132,7 @@ public class Account implements AccountBlservice{
 		return ErrorTW.accountNameNotExist;
 	}
 
+	//查找账户
 	public financeVO find(financeVO vo) {
 		try {
 			fds = (financeDATAservice)Naming.lookup(URL);
@@ -155,6 +159,8 @@ public class Account implements AccountBlservice{
 		return null;
 	}
 
+	
+	//获取所有账户VO
 	public ArrayList<financeVO> checkVO() {
 		if(volist == null){
 			try {
@@ -179,6 +185,7 @@ public class Account implements AccountBlservice{
 		return volist;
 	}
 
+	//获取所有账户的PO
 	private void getpoList() {
 			try {
 				fds = (financeDATAservice) Naming.lookup(URL);

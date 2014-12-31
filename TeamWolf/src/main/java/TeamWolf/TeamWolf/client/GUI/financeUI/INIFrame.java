@@ -14,7 +14,7 @@ import TeamWolf.TeamWolf.client.BLservice.financeBLservice.InitialBLservice;
 import TeamWolf.TeamWolf.client.GUI.financeUI.INIAccount.HistoryListener;
 import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
 import TeamWolf.TeamWolf.client.vo.INIVO;
-
+//选择查看期初建账编号的界面
 public class INIFrame extends JFrame{
 	InitialBLservice ib;
 	String IP;

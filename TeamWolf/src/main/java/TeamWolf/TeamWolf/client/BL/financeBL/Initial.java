@@ -21,6 +21,7 @@ import TeamWolf.TeamWolf.client.vo.GoodsStockVO;
 import TeamWolf.TeamWolf.client.vo.INIVO;
 import TeamWolf.TeamWolf.client.vo.financeVO;
 
+//期初建账
 public class Initial implements InitialBLservice{
 	String URL;
 	String goodsURL;
@@ -37,7 +38,8 @@ public class Initial implements InitialBLservice{
 		this.getINIList();
 		gbcontroller = new GoodsBLController(IP);
 	}
-
+ 
+	//进行期初建账
 	public int DoInitial(int number, ArrayList<financeVO> accArray,
 			GoodsStockListVO gslArray, ArrayList<CustomerVO> cusArray) {
 		try {
@@ -70,7 +72,7 @@ public class Initial implements InitialBLservice{
 		}
 		return 0;
 	}
-	
+	//查找之前的期初建账
 	public INIVO FinInitial(int number){
 		try {
 			ids = (INIDATAservice) Naming.lookup(URL);
@@ -91,7 +93,7 @@ public class Initial implements InitialBLservice{
 		}
 		return null;
 	}
-
+//获取所有期初建账信息
 	public ArrayList<INIVO> getINIList() {
 		if(iList==null){
 			try {
@@ -115,7 +117,8 @@ public class Initial implements InitialBLservice{
 		}
 		return iList;	
 	}
-	
+	//初始化
+	//缓存所有期初建账
 	private void ini(){
 		try {
 			ids = (INIDATAservice) Naming.lookup(URL);

@@ -17,7 +17,7 @@ import TeamWolf.TeamWolf.client.BL.customerBL.CustomerOprBLservice;
 import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.UserVO;
-
+//期初客户信息
 public class INICustomer extends JPanel{
 	
 	public static ArrayList<CustomerVO> customerList;

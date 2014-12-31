@@ -1,12 +1,14 @@
 package TeamWolf.TeamWolf.client.BL.financeBL;
 
 import TeamWolf.TeamWolf.client.BLservice.financeBLservice.EventviewBlservice;
-import TeamWolf.TeamWolf.client.DATAservice.logDATAservice.UserLogDATAservice;
 import TeamWolf.TeamWolf.client.vo.TimeVO;
+
+//查看日志
+//本类废弃，相关功能转移
+//由于测试的原因，仍保留此类
 
 public class Eventview implements EventviewBlservice{
 
-	UserLogDATAservice uls;
 	
 	public Eventview(String iP) {
 		// TODO 自动生成的构造函数存根

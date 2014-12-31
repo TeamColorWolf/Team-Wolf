@@ -23,7 +23,7 @@ import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.PaymentApplicationVO;
 import TeamWolf.TeamWolf.client.vo.RecieptApplicationVO;
 import TeamWolf.TeamWolf.client.vo.financeVO;
-
+//付款单界面
 public class PaymentPanel extends JPanel{
 
 	public static int ApplicationNumber;

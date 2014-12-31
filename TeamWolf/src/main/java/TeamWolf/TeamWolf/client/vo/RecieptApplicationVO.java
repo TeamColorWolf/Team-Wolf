@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.po.RecieptApplicationPO;
 import TeamWolf.TeamWolf.client.po.financePO;
-
+//收款单
 public class RecieptApplicationVO extends ApplicationVO{
-	    private String note;
-	    private String addup;
-	    private CustomerVO customer;
-	    private ArrayList<financeVO> accountList;
-	    private ArrayList<String> moneyList;
+	    private String note;//注释
+	    private String addup;//合计
+	    private CustomerVO customer;//客户
+	    private ArrayList<financeVO> accountList;//账户list
+	    private ArrayList<String> moneyList;//金额list
 	    
 		public RecieptApplicationVO(ArrayList<financeVO> accountList,ArrayList<String> moneyList,
 	        		String number,String operator,String note,CustomerVO customer) {

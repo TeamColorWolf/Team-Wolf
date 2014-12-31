@@ -11,7 +11,8 @@ import TeamWolf.TeamWolf.client.vo.PaymentApplicationVO;
 import TeamWolf.TeamWolf.client.vo.RecieptApplicationVO;
 import TeamWolf.TeamWolf.client.vo.SaleListVO;
 import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
-
+//接口
+//处理各种单据引起的客户信息修改
 public interface CustomerInfoBLservice {
 	public int ImportListInfoMod(ImportListVO vo);
 	public int ImportRejectListMod(ImportRejectListVO vo);

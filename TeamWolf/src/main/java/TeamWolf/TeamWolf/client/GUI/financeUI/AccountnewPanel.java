@@ -15,6 +15,9 @@ import TeamWolf.TeamWolf.client.BLservice.financeBLservice.AccountBlservice;
 import TeamWolf.TeamWolf.client.GUI.mainUI.RoleSelecter;
 import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
 import TeamWolf.TeamWolf.client.vo.financeVO;
+
+//新建账户界面
+//后现代的设计
 public class AccountnewPanel extends JPanel{
 	AccountBlservice service = FinanceFrame.service;
 	
@@ -77,7 +80,7 @@ public class AccountnewPanel extends JPanel{
 		
 		add.addMouseListener(new AddUserListener());
 	}
-	
+	//按钮“取消”监听
 	private void cancelMouseListener(){
 		cancel.addMouseListener(new MouseListener(){
 
@@ -99,7 +102,7 @@ public class AccountnewPanel extends JPanel{
 			}
 		});
 	}
-	
+	//按钮“增加”监听
 	class AddUserListener implements MouseListener{
 
 		public void mouseClicked(MouseEvent arg0) {

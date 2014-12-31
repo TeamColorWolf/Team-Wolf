@@ -2,7 +2,7 @@ package TeamWolf.TeamWolf.client.GUI.financeUI;
 
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
-
+//查看过往期初信息——界面
 public class INIHistoryFrame extends JFrame{
 	public static final int width = 960;
 	public static final int height = 540;

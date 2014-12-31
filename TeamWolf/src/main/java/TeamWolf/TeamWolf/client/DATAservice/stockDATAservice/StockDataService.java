@@ -6,6 +6,11 @@ import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.po.*;
 
+/**
+ * 
+ * @author XYJ
+ *
+ */
 public interface StockDataService extends Remote{
 
 	public int addType(TypePO t) throws RemoteException;

@@ -10,6 +10,11 @@ import TeamWolf.TeamWolf.client.vo.SaleDetialSelectFactVO;
 import TeamWolf.TeamWolf.client.vo.SaleDetialVO;
 import TeamWolf.TeamWolf.client.vo.TimeVO;
 
+//相关功能已经转移
+//红冲与经营历程查看
+//该类已废弃
+//只在桩中出现
+
 public class TableInquire_finance implements TableInquireBLservice, RedBLservice{
 
 	public int red() {

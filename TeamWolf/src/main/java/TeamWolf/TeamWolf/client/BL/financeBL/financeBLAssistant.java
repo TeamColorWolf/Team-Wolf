@@ -9,13 +9,15 @@ import TeamWolf.TeamWolf.client.DATAservice.financeDATAservice.financeDATAservic
 import TeamWolf.TeamWolf.client.po.financePO;
 import TeamWolf.TeamWolf.client.vo.financeVO;
 
-
+//账户辅助类
+//处理各种特殊情况检查
 public class financeBLAssistant {
 	financeDATAservice fds;
     String URL;	
     public financeBLAssistant(String IP){
     	URL = "rmi://" + IP + "/financeDATAservice";
     }
+    //检查是否可以增加
     public boolean canAdd(financeVO f){	
     	try {
     		fds = (financeDATAservice)Naming.lookup(URL);
@@ -34,6 +36,7 @@ public class financeBLAssistant {
 		}
     	return true;
     }
+    //检查是否可以删除
     public boolean canDel(financeVO f){
     	try {
 			fds = (financeDATAservice)Naming.lookup(URL);
@@ -58,6 +61,7 @@ public class financeBLAssistant {
 		}
     	return true;
     			}
+    //检查是否可以更新
     public boolean canUpd(financeVO f , financeVO newf){
     	try {
 			fds = (financeDATAservice)Naming.lookup(URL);

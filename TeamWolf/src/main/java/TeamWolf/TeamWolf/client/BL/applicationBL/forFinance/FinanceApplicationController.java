@@ -22,15 +22,15 @@ public class FinanceApplicationController extends MutiRoleController implements 
 		submit = new FinanceSubmit(IP);
 		// TODO Auto-generated constructor stub
 	}
-	
+	//收款单
 	public int submitRecieptApplication(RecieptApplicationVO vo){
 		return submit.submitRecieptApplication(vo);
 	}
-	
+	//付款单
 	public int submitPaymentApplication(PaymentApplicationVO vo){
 		return submit.submitPaymentApplication(vo);
 	}
-	
+	//现金费用单
 	public int submitCashApplication(CashApplicationVO vo){
 		return submit.submitCashApplication(vo);
 	}

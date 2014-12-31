@@ -14,7 +14,7 @@ import TeamWolf.TeamWolf.client.GUI.tableInquireUI.TableInquirePanel;
 import TeamWolf.TeamWolf.client.vo.UserType;
 import TeamWolf.TeamWolf.client.vo.UserVO;
 import TeamWolf.TeamWolf.client.vo.financeVO;
-
+//财务人员主界面
 public class FinanceFrame extends JFrame{
 
 	public static AccountBlservice service;
@@ -69,11 +69,11 @@ public class FinanceFrame extends JFrame{
 		this.setResizable(false);
 	}
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		UserVO user = new UserVO("WHJ", "131250194", "manage_1", UserType.总经理);
 		new FinanceFrame(user, "127.0.0.1");
-	}
+	}*/
 
     
     

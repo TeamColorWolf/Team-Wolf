@@ -43,7 +43,11 @@ import TeamWolf.TeamWolf.client.vo.GoodsVO;
 import TeamWolf.TeamWolf.client.vo.TypeListVO;
 import TeamWolf.TeamWolf.client.vo.TypeVO;
 import TeamWolf.TeamWolf.client.vo.UserVO;
-
+/***
+ * 此类是库存人员的库存管理界面
+ * @author XYJ
+ *
+ */
 public class StockManagePane extends JPanel implements TreeModelListener {
 
     static int CurrentTypeNum;
@@ -148,9 +152,10 @@ public class StockManagePane extends JPanel implements TreeModelListener {
 		this.add(oprArea);
 	}
 
+    //构建树
 	public void initialTree(){
 		
-		
+		//先初始化根
 		initialRoot();
 		stockStruct=new JTree(root);
 		treeModel=(DefaultTreeModel) stockStruct.getModel();
@@ -161,6 +166,7 @@ public class StockManagePane extends JPanel implements TreeModelListener {
 		SSContainer.setBounds(25, 25, 300, 445);
 	}
     
+	//初始化根
     private void initialRoot() {
 		// TODO Auto-generated method stub
     	TypeListVO typelist=sbcontroller.shoAllType();
@@ -204,6 +210,7 @@ public class StockManagePane extends JPanel implements TreeModelListener {
 		
 	}
 
+    //统一初始化按钮（按不同功能进行空行间隔）
 	public void initialButton(){
     	
     	addType=new JButton("增加分类");
@@ -626,6 +633,7 @@ public class StockManagePane extends JPanel implements TreeModelListener {
     	
     }
     
+	//统一初始化文本域（按不同功能进行空行间隔）
     public void initialTextField(){
     	
     	addTNL=new JLabel("分类名称");
@@ -873,6 +881,7 @@ public class StockManagePane extends JPanel implements TreeModelListener {
      
     }
     
+    //初始化功能区
     public void initialOprArea(){
     	
     	oprArea=new JPanel();
@@ -998,6 +1007,7 @@ public class StockManagePane extends JPanel implements TreeModelListener {
 		
 	}	
 	
+	//监听JTree中当前的选中项
 	class MouseHandle extends MouseAdapter{
 		
 		public void mousePressed(MouseEvent e){

@@ -26,7 +26,11 @@ import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
 import TeamWolf.TeamWolf.client.vo.GoodsAlarmVO;
 import TeamWolf.TeamWolf.client.vo.GoodsVO;
 import TeamWolf.TeamWolf.client.vo.PresentListVO;
-
+/***
+ * 此类是库存人员的单据服务页面
+ * @author XYJ
+ *
+ */
 public class AppPane extends JPanel implements ActionListener {
 	
 	StockApplicationService sacontroller;
@@ -60,11 +64,8 @@ public class AppPane extends JPanel implements ActionListener {
 	JPanel oprP;
 	JButton pRefresh;
 	
-	public void initialTMP(){
-		
-		
-	}
 	
+	//初始化警报单区域
 	public void initialWOprArea(){
 		
 		WArea=new JTextArea();
@@ -98,6 +99,7 @@ public class AppPane extends JPanel implements ActionListener {
 		
 	}
 	
+	//初始化报溢单区域
 	public void initialITMP(){
 		
 		ITMArea=new JTextArea();
@@ -130,6 +132,7 @@ public class AppPane extends JPanel implements ActionListener {
 		ITMOprArea.add(refreshITM);
 	}
 	
+	//初始化报损单区域
 	public void initialDTMP(){
 		
 		DTMArea=new JTextArea();
@@ -161,7 +164,50 @@ public class AppPane extends JPanel implements ActionListener {
 		});
 		DTMOprArea.add(refreshDTM);
 	}
+	
+	//初始化赠送单界面
+	public void initialPList(){
+		
+		DefaultTableModel model=new DefaultTableModel(stockInfoList, tableTitle);
+		//StockShoArea=new JTable(stockInfoList, tableTitle);
+		shoP=new JTable(model);
+		shoP.setVisible(true);
+		shoP.setBounds(0, 0, 1400, 300);
+		shoP.getColumnModel().getColumn(0).setPreferredWidth(200);
+		for(int i=1;i<6;i++){						
+			shoP.getColumnModel().getColumn(i).setPreferredWidth(150);
+		}
+		shoP.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		//StockShoArea.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
+		shoContainer=new JScrollPane(shoP, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		shoContainer.setVisible(true);
+		shoContainer.setBounds(20, 50, 915, 300);
+		
+		oprP=new JPanel();
+		oprP.setVisible(true);
+		oprP.setLayout(new FlowLayout());
+		pRefresh=new JButton("刷新赠送单");
+		pRefresh.setVisible(true);
+		pRefresh.addActionListener(this);
+		oprP.add(pRefresh);		
+	}
+	
+	
+	public AppPane(String iP) {
+		// TODO Auto-generated constructor stub
+		sacontroller=new StockApplicationController(iP);
+		gbcontroller=new GoodsBLController(iP);
+		initialWOprArea();
+		initialITMP();
+		initialDTMP();
+		initialPList();
+		initialPane(); 		   
+		this.setLayout(new BorderLayout());
+		this.add(back, BorderLayout.CENTER);
+		this.setVisible(true);
+	}
 
+	//初始化本单据服务页面
 	public void initialPane(){
 		
 		back=new JTabbedPane(JTabbedPane.TOP , JTabbedPane.SCROLL_TAB_LAYOUT);
@@ -195,46 +241,6 @@ public class AppPane extends JPanel implements ActionListener {
 		back.setEnabledAt(3, true);
 	}
 	
-	public void initialPList(){
-		
-		DefaultTableModel model=new DefaultTableModel(stockInfoList, tableTitle);
-		//StockShoArea=new JTable(stockInfoList, tableTitle);
-		shoP=new JTable(model);
-		shoP.setVisible(true);
-		shoP.setBounds(0, 0, 1400, 300);
-		shoP.getColumnModel().getColumn(0).setPreferredWidth(200);
-		for(int i=1;i<6;i++){						
-			shoP.getColumnModel().getColumn(i).setPreferredWidth(150);
-		}
-		shoP.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		//StockShoArea.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
-		shoContainer=new JScrollPane(shoP, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		shoContainer.setVisible(true);
-		shoContainer.setBounds(20, 50, 915, 300);
-		
-		oprP=new JPanel();
-		oprP.setVisible(true);
-		oprP.setLayout(new FlowLayout());
-		pRefresh=new JButton("刷新赠送单");
-		pRefresh.setVisible(true);
-		pRefresh.addActionListener(this);
-		oprP.add(pRefresh);		
-	}
-	
-	public AppPane(String iP) {
-		// TODO Auto-generated constructor stub
-		sacontroller=new StockApplicationController(iP);
-		gbcontroller=new GoodsBLController(iP);
-		initialWOprArea();
-		initialITMP();
-		initialDTMP();
-		initialPList();
-		initialPane(); 		   
-		this.setLayout(new BorderLayout());
-		this.add(back, BorderLayout.CENTER);
-		this.setVisible(true);
-	}
-
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		

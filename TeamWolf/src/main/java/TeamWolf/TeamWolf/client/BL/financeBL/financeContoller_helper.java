@@ -1,5 +1,5 @@
 package TeamWolf.TeamWolf.client.BL.financeBL;
-
+//辅助处理Controller
 public class financeContoller_helper {
 	public static final int ACCOUNTADD = 11;
 	public static final int ACCOUNTDEL = 12;

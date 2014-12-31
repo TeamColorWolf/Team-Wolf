@@ -7,6 +7,7 @@ import TeamWolf.TeamWolf.client.vo.financeVO;
  * @author GYQ
  *
  */
+//账户增删改查的桩
 public class Account_stub {
     financeBLAssistant_stub fbas;
     

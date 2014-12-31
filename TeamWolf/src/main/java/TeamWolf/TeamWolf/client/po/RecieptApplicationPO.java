@@ -5,13 +5,13 @@ import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.vo.RecieptApplicationVO;
 import TeamWolf.TeamWolf.client.vo.financeVO;
-
+//收款单list
 public class RecieptApplicationPO extends ApplicationPO implements Serializable{
-	    private String note;
-	    private String addup;
-	    private CustomerPO customer;
-	    private ArrayList<financePO> accountList;
-	    private ArrayList<String> moneyList;
+	    private String note;//注释
+	    private String addup;//合计
+	    private CustomerPO customer;//客户
+	    private ArrayList<financePO> accountList;//账户list
+	    private ArrayList<String> moneyList;//金额list
 	    
 		public RecieptApplicationPO(ArrayList<financePO> accountList,ArrayList<String> moneyList,
 	        		String number,String operator,String note,CustomerPO customer) {

@@ -7,12 +7,12 @@ import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.GoodsStockListVO;
 import TeamWolf.TeamWolf.client.vo.INIVO;
 import TeamWolf.TeamWolf.client.vo.financeVO;
-
+//期初建账
 public class INIPO implements Serializable{
-	private int number;
-	private ArrayList<financeVO> accArray;
-	private GoodsStockListVO gslArray;
-	private ArrayList<CustomerVO> cusArray;
+	private int number;///编号
+	private ArrayList<financeVO> accArray;//账户list
+	private GoodsStockListVO gslArray;//商品list
+	private ArrayList<CustomerVO> cusArray;//客户list
 	public INIPO(int number,ArrayList<financeVO> accArray,GoodsStockListVO gslArray,
 			ArrayList<CustomerVO> cusArray){
 		this.setNumber(number);

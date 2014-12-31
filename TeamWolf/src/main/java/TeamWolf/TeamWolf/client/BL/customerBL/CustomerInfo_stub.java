@@ -10,6 +10,7 @@ import TeamWolf.TeamWolf.client.vo.RecieptApplicationVO;
 import TeamWolf.TeamWolf.client.vo.SaleListVO;
 import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
 
+//客户信息修改类的桩
 public class CustomerInfo_stub extends CustomerInfo{
 	public CustomerInfo_stub(String IP){
 		super(IP);

@@ -7,7 +7,6 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.ErrorTW;
-import TeamWolf.TeamWolf.client.DATAservice.logDATAservice.UserLogDATAservice;
 import TeamWolf.TeamWolf.client.DATAservice.userDATAservice.UserDATAservice;
 import TeamWolf.TeamWolf.client.po.UserPO;
 import TeamWolf.TeamWolf.client.vo.UserType;
@@ -20,7 +19,6 @@ import TeamWolf.TeamWolf.client.vo.UserVO;
 public class Admin {
 	public String URL;
 	UserDATAservice adm;
-	UserLogDATAservice log;
 	
 	ArrayList<UserPO> poList;
 	ArrayList<UserVO> voList;

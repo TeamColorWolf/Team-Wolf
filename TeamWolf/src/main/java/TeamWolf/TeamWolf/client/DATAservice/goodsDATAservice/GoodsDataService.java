@@ -4,6 +4,12 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.po.*;
+
+/**
+ * 
+ * @author XYJ
+ *
+ */
 public interface GoodsDataService extends Remote {
 
 	public int addGood(GoodsPO g) throws RemoteException;

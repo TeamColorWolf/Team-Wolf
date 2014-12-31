@@ -41,7 +41,7 @@ import TeamWolf.TeamWolf.client.vo.RecieptApplicationVO;
 import TeamWolf.TeamWolf.client.vo.RunProcessVO;
 import TeamWolf.TeamWolf.client.vo.SaleListVO;
 import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
-
+//红冲界面
 public class RedManage {
 
 	TableInquireBLservice service = TableInquirePanel.service;

@@ -12,6 +12,7 @@ import TeamWolf.TeamWolf.client.po.UserPO;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.server.FileName;
 import TeamWolf.TeamWolf.server.FileOpr;
+import TeamWolf.TeamWolf.server.logDATA.LogDATA;
 
 public class CustomerDATA extends UnicastRemoteObject implements CustomerDATAservice{
 	
@@ -37,6 +38,8 @@ public class CustomerDATA extends UnicastRemoteObject implements CustomerDATAser
 		list.add(cpo);
 		try {
 			FileOpr.writeFile(FileName.customerFile, list);
+			LogDATA log = new LogDATA();
+			log.addCustomer(cpo);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -51,6 +54,8 @@ public class CustomerDATA extends UnicastRemoteObject implements CustomerDATAser
 				list.remove(i);
 				try {
 					FileOpr.writeFile(FileName.customerFile,list);
+					LogDATA log = new LogDATA();
+					log.deleteCustomer(cpo);
 					return 0;
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -84,6 +89,8 @@ public class CustomerDATA extends UnicastRemoteObject implements CustomerDATAser
 				list.add(i, newpo);
 				try {
 					FileOpr.writeFile(FileName.customerFile, list);
+					LogDATA log = new LogDATA();
+					log.updateCustomer(newpo);
 					return 0;
 				} catch (IOException e) {
 					// TODO Auto-generated catch block

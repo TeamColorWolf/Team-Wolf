@@ -13,6 +13,7 @@ import TeamWolf.TeamWolf.client.po.CustomerPO;
 import TeamWolf.TeamWolf.client.po.financePO;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 
+//处理客户对象的增删改查
 public class CustomerOpr implements CustomerOprBLservice{
 	
 	public String URL = null;
@@ -28,7 +29,7 @@ public class CustomerOpr implements CustomerOprBLservice{
 		this.CheckPO();
 		this.getAllCustomerList();
 	}
-	
+	//客户更新
 	public int Customerupdate(CustomerVO vo, CustomerVO newVO) {
 		try {
 			cds = (CustomerDATAservice)Naming.lookup(URL);
@@ -70,7 +71,7 @@ public class CustomerOpr implements CustomerOprBLservice{
 	    
 		return ErrorTW.webError;
 	}
-
+//客户增加
 	public int Customeradd(CustomerVO vo) {
 		CustomerPO po = new CustomerPO(vo);
 	    try {
@@ -98,7 +99,7 @@ public class CustomerOpr implements CustomerOprBLservice{
 		};
 		return ErrorTW.webError;
 	}
-
+//客户删除
 	public int Customerdel(CustomerVO cvo) {
 		CustomerPO po = new CustomerPO(cvo);
 		try {
@@ -124,7 +125,7 @@ public class CustomerOpr implements CustomerOprBLservice{
 		}
 		return ErrorTW.webError;
 	}
-	
+	//客户查找
 	public CustomerVO findCustomer(String name,String number){
         try {
 			cds = (CustomerDATAservice)Naming.lookup(URL);
@@ -144,7 +145,7 @@ public class CustomerOpr implements CustomerOprBLservice{
 		}
 		return null;
 	}
-	
+	//获取所有客户对象VO
 	public ArrayList<CustomerVO> getAllCustomerList(){
 		try {
 			cds = (CustomerDATAservice)Naming.lookup(URL);
@@ -162,7 +163,7 @@ public class CustomerOpr implements CustomerOprBLservice{
 		return voList;
 	}
 	
-	
+	//获取所有客户对象PO
 	public ArrayList<CustomerPO> CheckPO(){
 		try {
 			cds = (CustomerDATAservice)Naming.lookup(URL);
@@ -179,12 +180,13 @@ public class CustomerOpr implements CustomerOprBLservice{
 		}
 		return poList;
 	}
-
+	//该方法已废弃
+	//相关功能迁移
 	public ArrayList<CustomerVO> checkCustomerVO(String keyWord, String num) {
-		// TODO 自动生成的方法存根
+	  //TODO 自动生成的方法存根
 		return null;
 	}
-
+//客户查找
 	public CustomerVO findCustomer(String nameOrnumber) {
 		try {
 			cds = (CustomerDATAservice)Naming.lookup(URL);

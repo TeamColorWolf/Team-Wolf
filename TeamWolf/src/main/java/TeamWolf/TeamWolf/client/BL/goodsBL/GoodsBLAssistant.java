@@ -13,9 +13,8 @@ import TeamWolf.TeamWolf.client.vo.*;
 /**
  * 
  * @author XYJ
- * 需要与持有交易单据的模块交互
+ * 
  */
-
 public class GoodsBLAssistant {
 
 	GoodsDataService reader;

@@ -26,7 +26,7 @@ import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.ImportListVO;
 import TeamWolf.TeamWolf.client.vo.RecieptApplicationVO;
 import TeamWolf.TeamWolf.client.vo.financeVO;
-
+//收款单界面
 public class ReceiptPanel extends JPanel{
 
 	public static int ApplicationNumber ;

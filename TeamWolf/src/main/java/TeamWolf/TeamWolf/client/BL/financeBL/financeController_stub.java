@@ -8,6 +8,8 @@ import TeamWolf.TeamWolf.client.vo.financeVO;
  * @author GYQQQQQQQQQQQQQ
  *
  */
+
+//Controller的桩
 public class financeController_stub {
      Account_stub as;
      EventView_stub es;

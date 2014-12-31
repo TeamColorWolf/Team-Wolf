@@ -4,19 +4,16 @@ import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.vo.*;
 
+/***
+ * 此接口包含商品交易类（进货、进货退货、销售、销售退货、赠送单）功能
+ * @author XYJ
+ *
+ */
 public interface GoodTService {
 
 
-    /**
-     * �鿴�ض���Ʒ������ϸ��Ϣ
-     * @param number
-     * @return
-     */
 	public PresentListVO checkPL(int number);
-	/**
-	 * �鿴������Ʒ���Ĵ�����Ϣ
-	 * @return
-	 */
+	
 	public ArrayList<PresentListVO> shoSimplifiedPL();
 	
 	public int goodsExport(SaleListVO sl);

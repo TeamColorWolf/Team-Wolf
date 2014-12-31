@@ -10,7 +10,8 @@ import TeamWolf.TeamWolf.client.po.UserPO;
 import TeamWolf.TeamWolf.client.po.financePO;
 import TeamWolf.TeamWolf.server.FileName;
 import TeamWolf.TeamWolf.server.FileOpr;
-
+import TeamWolf.TeamWolf.server.logDATA.LogDATA;
+//账户增删改查
 public class financeDATA extends UnicastRemoteObject implements financeDATAservice{
 	
 	static ArrayList<financePO> AccountList;
@@ -23,7 +24,7 @@ public class financeDATA extends UnicastRemoteObject implements financeDATAservi
 			AccountList = new ArrayList<financePO>();
 		}
 	}
-
+//查找账户
 	public financePO find(financePO po) throws RemoteException {
 		financePO tofind = null;
 		for(financePO f : AccountList){
@@ -35,17 +36,19 @@ public class financeDATA extends UnicastRemoteObject implements financeDATAservi
 		return tofind;
 	}
 
-
+//增加账户
 	public int add(financePO po) throws RemoteException {
 		AccountList.add(po);
 		try {
 			FileOpr.writeFile(FileName.accountFile,AccountList);
+			LogDATA log = new LogDATA();
+			log.addFinance(po);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return 0;
 	}
-
+//删除账户
 	public int delete(financePO po) throws RemoteException {
 		financePO del = null;
 		for(financePO f :AccountList){
@@ -58,6 +61,8 @@ public class financeDATA extends UnicastRemoteObject implements financeDATAservi
 			AccountList.remove(del);
 			try {
 				FileOpr.writeFile(FileName.accountFile, AccountList);
+				LogDATA log = new LogDATA();
+				log.deleteFinance(po);
 				return 0;
 			} catch (IOException e) {
 				// TODO 自动生成的 catch 块
@@ -66,7 +71,7 @@ public class financeDATA extends UnicastRemoteObject implements financeDATAservi
 		}
 		return 12424;
 	}
-
+//修改账户
 	public int update(financePO po, financePO newpo) throws RemoteException {
 		for(financePO intr : AccountList){
 			if(intr.getName().equals(po.getName())){
@@ -76,6 +81,8 @@ public class financeDATA extends UnicastRemoteObject implements financeDATAservi
 		}
 		try {
 			FileOpr.writeFile(FileName.accountFile, AccountList);
+			LogDATA log = new LogDATA();
+			log.updateFinance(newpo);
 		} catch (IOException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -112,7 +119,7 @@ public class financeDATA extends UnicastRemoteObject implements financeDATAservi
 		}
 	}*/
 	
-	public static void main(String[]args){
+	/*public static void main(String[]args){
 		try {
 			financeDATA fd = new financeDATA();
 			financePO f1 = new financePO("DAB",1);
@@ -145,6 +152,6 @@ public class financeDATA extends UnicastRemoteObject implements financeDATAservi
 			e.printStackTrace();
 		}
 		
-	}
+	}*/
 
 }

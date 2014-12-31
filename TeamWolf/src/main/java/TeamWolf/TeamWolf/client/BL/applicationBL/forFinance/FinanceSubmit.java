@@ -20,11 +20,11 @@ public class FinanceSubmit extends ApplicationBL{
 	
 	public String URL;
 	FinanceApplicationDATAservice fads;
-	ArrayList<RecieptApplicationPO> rapoList;
+	ArrayList<RecieptApplicationPO> rapoList;//收款单PO VO List
 	ArrayList<RecieptApplicationVO> ravoList;
-	ArrayList<PaymentApplicationPO> papoList;
+	ArrayList<PaymentApplicationPO> papoList;//付款单PO VO List
 	ArrayList<PaymentApplicationVO> pavoList;
-	ArrayList<CashApplicationPO> capoList;
+	ArrayList<CashApplicationPO> capoList;//现金费用单PO VO List
 	ArrayList<CashApplicationVO> cavoList;
 	
 	public FinanceSubmit(String IP) {
@@ -52,7 +52,7 @@ public class FinanceSubmit extends ApplicationBL{
 			pavoList = new ArrayList<PaymentApplicationVO>();
 		}
 	}
-	
+	//提交收款单
 	public int submitRecieptApplication(RecieptApplicationVO vo){
 		try {
 			fads = (FinanceApplicationDATAservice)Naming.lookup(URL);
@@ -77,7 +77,7 @@ public class FinanceSubmit extends ApplicationBL{
 		}
 		return 30001;
 	}
-	
+	//提交付款单
 	public int submitPaymentApplication(PaymentApplicationVO vo){
 		try {
 			fads = (FinanceApplicationDATAservice)Naming.lookup(URL);
@@ -102,7 +102,7 @@ public class FinanceSubmit extends ApplicationBL{
 		}
 		return 30001;
 	}
-	
+	//提交现金费用单
 	public int submitCashApplication(CashApplicationVO vo){
 		try {
 			fads = (FinanceApplicationDATAservice)Naming.lookup(URL);
@@ -127,7 +127,7 @@ public class FinanceSubmit extends ApplicationBL{
 		}
 		return 30001;
 	}
-
+    //获取所有收款单VO
 	public ArrayList<RecieptApplicationVO> getRecieptVO() {
 		ArrayList<RecieptApplicationVO> volist  = new ArrayList<RecieptApplicationVO>();
 		ArrayList<RecieptApplicationPO> polist  = new ArrayList<RecieptApplicationPO>();
@@ -154,7 +154,7 @@ public class FinanceSubmit extends ApplicationBL{
 		    }		
 		return volist;
 	}
-
+    //获取所有现金费用单VO
 	public ArrayList<CashApplicationVO> getCashVO() {
 		ArrayList<CashApplicationVO> volist  = new ArrayList<CashApplicationVO>();
 		ArrayList<CashApplicationPO> polist  = new ArrayList<CashApplicationPO>();
@@ -181,7 +181,7 @@ public class FinanceSubmit extends ApplicationBL{
 		}		
 		return volist;
 	}
-
+    //获取所有付款单VO
 	public ArrayList<PaymentApplicationVO> getPaymentVO() {
 		ArrayList<PaymentApplicationVO> volist  = new ArrayList<PaymentApplicationVO>();
 		ArrayList<PaymentApplicationPO> polist  = new ArrayList<PaymentApplicationPO>();

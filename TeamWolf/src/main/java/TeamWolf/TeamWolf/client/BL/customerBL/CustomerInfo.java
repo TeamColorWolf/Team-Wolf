@@ -21,6 +21,8 @@ import TeamWolf.TeamWolf.client.vo.RecieptApplicationVO;
 import TeamWolf.TeamWolf.client.vo.SaleListVO;
 import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
 
+//客户信息修改类
+//处理各种单据等原因引起的客户信息修改
 public class CustomerInfo implements CustomerInfoBLservice{
 
 	public String URL = null;
@@ -29,7 +31,7 @@ public class CustomerInfo implements CustomerInfoBLservice{
 	public CustomerInfo(String IP){
 		URL = "rmi://" + IP + "/CustomerDATAservice";
 	}
-	
+	 //处理进货单引起的客户信息修改
 	public int ImportListInfoMod(ImportListVO ivo) {
 		try {
 			cds = (CustomerDATAservice)Naming.lookup(URL);
@@ -48,7 +50,7 @@ public class CustomerInfo implements CustomerInfoBLservice{
 		}
 		return 0;
 	}
-
+	//处理进货退货单引起的客户信息修改
 	public int ImportRejectListMod(ImportRejectListVO irvo) {
 		try {
 			cds = (CustomerDATAservice)Naming.lookup(URL);
@@ -67,7 +69,7 @@ public class CustomerInfo implements CustomerInfoBLservice{
 		}
 		return 0;
 	}
-
+	//处理销售单引起的客户信息修改
 	public int SaleListMod(SaleListVO svo) {
 		try {
 			cds = (CustomerDATAservice)Naming.lookup(URL);
@@ -86,6 +88,7 @@ public class CustomerInfo implements CustomerInfoBLservice{
 		}
 		return 0;
 	}
+	//处理销售退货单引起的客户信息修改
 
 	public int SaleRejectListMod(SaleRejectListVO srvo) {
 		try {
@@ -105,7 +108,7 @@ public class CustomerInfo implements CustomerInfoBLservice{
 		}
 		return 0;
 	}
-
+	//处理收款单引起的客户信息修改
 	public int RecieptListMod(RecieptApplicationVO vo) {
 
 		try {
@@ -127,7 +130,7 @@ public class CustomerInfo implements CustomerInfoBLservice{
 		}
 		return 0;
 	}
-
+	//处理付款单引起的客户信息修改
 	public int PaymentListMod(PaymentApplicationVO vo) {
 		try {
 			cds = (CustomerDATAservice)Naming.lookup(URL);
@@ -148,7 +151,8 @@ public class CustomerInfo implements CustomerInfoBLservice{
 		}
 		return 0;
 	}
-
+	//设计为修改现金费用单的客户修改
+	//但是现金费用单不需要修改客户信息......
 	public int CashListMod(CashApplicationVO vo) {
 		// TODO 自动生成的方法存根
 		return 0;

@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import TeamWolf.TeamWolf.client.po.CashApplicationPO;
 import TeamWolf.TeamWolf.client.po.PaymentApplicationPO;
 import TeamWolf.TeamWolf.client.po.financePO;
-
+//现金费用单
 public class CashApplicationVO extends ApplicationVO{
-    private String note;
-    private String addup;
-    private ArrayList<String> nameList;
-    private ArrayList<financeVO> accountList;
-    private ArrayList<String> moneyList; 
+    private String note;//注释
+    private String addup;//合计
+    private ArrayList<String> nameList;//条目list
+    private ArrayList<financeVO> accountList;//账户list
+    private ArrayList<String> moneyList; //金额list
     
 	public CashApplicationVO(ArrayList<financeVO> accountList,ArrayList<String> moneyList,ArrayList<String> nameList,
         		String number,String operator,String note) {

@@ -20,7 +20,7 @@ import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.GoodsStockListVO;
 import TeamWolf.TeamWolf.client.vo.INIVO;
 import TeamWolf.TeamWolf.client.vo.financeVO;
-
+//期初账户信息
 public class INIAccount extends JPanel{
 	AccountBlservice service = FinanceFrame.service;
 	InitialBLservice iservice;
@@ -80,7 +80,7 @@ public class INIAccount extends JPanel{
 		this.setVisible(true);
 		this.setLocation(0,0);
 	}
-	
+	//获取内容
 	private void getContent(){
 		ArrayList<financeVO> list = service.checkVO();
 		if(list == null){
@@ -97,14 +97,14 @@ public class INIAccount extends JPanel{
 			}
 		}
 	}
-	
+	//刷新
 	public void flashPanel(){
 		this.getContent();
 		tableModel.setDataVector(content, columnName);
 		accountTable.updateUI();
 		this.updateUI();
 	}
-	
+	//监听“历史信息”
 	class HistoryListener implements ActionListener{
 
 		public void actionPerformed(ActionEvent arg0) {
@@ -114,7 +114,7 @@ public class INIAccount extends JPanel{
 		}
 		
 	}
-	
+	//监听“新的期初账”
 	class NewListener implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {

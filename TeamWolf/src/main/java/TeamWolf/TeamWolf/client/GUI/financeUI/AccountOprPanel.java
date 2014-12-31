@@ -23,7 +23,7 @@ import TeamWolf.TeamWolf.client.GUI.userUI.AdminFrame;
 import TeamWolf.TeamWolf.client.GUI.userUI.SetComboBoxUser;
 import TeamWolf.TeamWolf.client.vo.UserType;
 import TeamWolf.TeamWolf.client.vo.financeVO;
-
+//修改，删除，查看账户信息的界面
 public class AccountOprPanel extends JPanel{
 	AccountBlservice service = FinanceFrame.service;
 	
@@ -118,7 +118,7 @@ public class AccountOprPanel extends JPanel{
 		delete.addMouseListener(new DeleteListener());
 		accountTable.addMouseListener(new TableListener(accountTable));
 	}
-	
+	//获取内容
 	public void getContent(){
 		ArrayList<financeVO> list = service.checkVO();
 		if(list == null){
@@ -135,14 +135,14 @@ public class AccountOprPanel extends JPanel{
 			}
 		}
 	}
-	
+	//刷新
 	public void flashPanel(){
 		this.getContent();
 		tableModel.setDataVector(content, columnName);
 		accountTable.updateUI();
 		this.updateUI();
 	}
-	
+	//查找按钮的监听
 	class CheckListener implements MouseListener{
 
 		public void mouseClicked(MouseEvent arg0) {
@@ -170,7 +170,7 @@ public class AccountOprPanel extends JPanel{
 		public void mousePressed(MouseEvent arg0) {}
 		public void mouseReleased(MouseEvent arg0) {}
 	}
-	
+	//更新按钮的监听
 	class UpdateListener implements MouseListener{
 		public void mouseClicked(MouseEvent arg0) {
 			// TODO Auto-generated method stub
@@ -199,7 +199,7 @@ public class AccountOprPanel extends JPanel{
 		public void mousePressed(MouseEvent arg0) {}
 		public void mouseReleased(MouseEvent arg0) {}
 	}
-	
+	//删除按钮的监听
 	class DeleteListener implements MouseListener{
 		public void mouseClicked(MouseEvent arg0) {
 			// TODO Auto-generated method stub
@@ -224,7 +224,7 @@ public class AccountOprPanel extends JPanel{
 		public void mouseReleased(MouseEvent arg0) {}
 	}
 	
-	
+	//表格监听
 	class TableListener implements MouseListener{
 		JTable t;
 		public TableListener(JTable table){

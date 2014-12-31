@@ -21,7 +21,8 @@ import TeamWolf.TeamWolf.client.GUI.saleUI.ImportRejectListPanel;
 import TeamWolf.TeamWolf.client.GUI.saleUI.SaleListPanel;
 import TeamWolf.TeamWolf.client.GUI.saleUI.SaleRejectListPanel;
 import TeamWolf.TeamWolf.client.vo.INIVO;
-
+//红冲并复制的界面
+//该界面是新产生的
 public class RedAndCopyFrame extends JFrame{
 	String IP;
 	String Content="";

@@ -8,7 +8,11 @@ import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 
 import TeamWolf.TeamWolf.client.vo.UserVO;
-
+/***
+ * 此类是库存人员的主窗口
+ * @author XYJ
+ *
+ */
 public class StockFrame extends JFrame {
 
 	private UserVO user;

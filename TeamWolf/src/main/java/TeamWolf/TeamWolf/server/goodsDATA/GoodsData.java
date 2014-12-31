@@ -11,12 +11,14 @@ import TeamWolf.TeamWolf.client.po.GoodsPO;
 import TeamWolf.TeamWolf.client.po.TypePO;
 import TeamWolf.TeamWolf.server.FileName;
 import TeamWolf.TeamWolf.server.FileOpr;
+import TeamWolf.TeamWolf.server.logDATA.LogDATA;
+import TeamWolf.TeamWolf.server.logDATA.WriteLogService;
 
 public class GoodsData extends UnicastRemoteObject implements GoodsDataService {
 
 	ArrayList<GoodsPO> goodsList;
 	ArrayList<GoodsAlarmPO> alarmList;
-	
+	WriteLogService logService=new LogDATA();
 	
 	public GoodsData() throws RemoteException {
 		super();
@@ -35,6 +37,7 @@ public class GoodsData extends UnicastRemoteObject implements GoodsDataService {
 		goodsList.add(g);
 		try {
 			FileOpr.writeFile(FileName.goodsFile, goodsList);
+			logService.addGoods(g);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -56,6 +59,7 @@ public class GoodsData extends UnicastRemoteObject implements GoodsDataService {
 			goodsList.remove(toDel);
 			try {
 				FileOpr.writeFile(FileName.goodsFile, goodsList);
+				logService.delectGoods(toDel);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -87,6 +91,7 @@ public class GoodsData extends UnicastRemoteObject implements GoodsDataService {
 		}
 		try {
 			FileOpr.writeFile(FileName.goodsFile, goodsList);
+			logService.updateGoods(g);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

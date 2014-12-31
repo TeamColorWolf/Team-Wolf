@@ -3,6 +3,7 @@ package TeamWolf.TeamWolf.client.BL.financeBL;
 import TeamWolf.TeamWolf.client.DATAservice.financeDATAservice.financeDATAservice;
 import TeamWolf.TeamWolf.client.vo.financeVO;
 
+//账户辅助类的桩
 public class financeBLAssistant_stub {
 	financeDATAservice fds;
 	public financeBLAssistant_stub() {
