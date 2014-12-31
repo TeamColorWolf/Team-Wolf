@@ -92,6 +92,9 @@ public class CustomerAdminFrame extends JFrame{
 		return returnBtn;
 	}
 	
+	/**
+	 * 返回按钮事件
+	 */
 	private void returnBtnEvent(){
 		this.dispose();
 	}

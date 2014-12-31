@@ -100,6 +100,10 @@ public class SaleBLAssistant {
 		return 0;
 	}
 	
+	/**
+	 * 获取当前日期
+	 * @return 当前日期
+	 */
 	public String getDate (){
 		String date = "";
 		Date dt = new Date();

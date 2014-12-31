@@ -205,7 +205,7 @@ public class CustomerFinPanel extends JPanel{
 	
 	
 	/**
-	 * 信息显示面板
+	 * 信息显示面板(姓名等字数少的信息)
 	 * @return
 	 */
 	private JPanel messageShowPanel_one(){

@@ -76,6 +76,10 @@ public class CreateListFrame extends JFrame{
 		return jtp;
 	}
 	
+	/**
+	 * 返回按钮
+	 * @return
+	 */
 	private JButton returnButton(){
 		JButton returnBtn = new JButton("返回");
 		Font ChooseBtn_FONT = new Font("黑体", Font.BOLD, 16);
@@ -94,7 +98,9 @@ public class CreateListFrame extends JFrame{
 		return returnBtn;
 	}
 	
-	
+	/**
+	 * 返回按钮事件
+	 */
 	private void returnBtnEvent(){
 		this.dispose();
 	}

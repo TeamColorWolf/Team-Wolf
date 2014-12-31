@@ -43,6 +43,9 @@ public class SaleBLControllerTest {
 	}
 
 	@Test
+	/**
+	 * 测试生成进货单
+	 */
 	public void testCreateImport() {
 		int result = 0;
 		ImportListVO list_1 = new ImportListVO("JHD-20141215-00001", importMan, "仓库1", "WKS",
@@ -56,6 +59,9 @@ public class SaleBLControllerTest {
 	}
 
 	@Test
+	/**
+	 * 测试生成进货退货单
+	 */
 	public void testCreateImportReject() {
 		int result = 0;
 		ImportRejectListVO list_1 = new ImportRejectListVO("JHTHD-20141215-100000", importMan, 
@@ -65,6 +71,9 @@ public class SaleBLControllerTest {
 	}
 
 	@Test
+	/**
+	 * 测试生成销售单
+	 */
 	public void testCreateSale() {
 		int result = 0;
 		SaleListVO list_1 = new SaleListVO("XSD-20141215-00001", saleMan, "WKS", "WKS", 
@@ -78,6 +87,9 @@ public class SaleBLControllerTest {
 	}
 
 	@Test
+	/**
+	 * 测试生成销售退货单
+	 */
 	public void testCreateSaleReject() {
 		int result = 0;
 		SaleRejectListVO list_1 = new SaleRejectListVO("XSD-20141215-100000", saleMan, "WKS", "WKS", 

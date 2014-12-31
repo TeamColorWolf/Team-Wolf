@@ -11,7 +11,11 @@ import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
 
 
 
-
+/**
+ * 
+ * @author HalaWKS
+ * 进货销售员相关逻辑的接口
+ */
 public interface SaleBLservice {
 	
 	/**

@@ -175,12 +175,19 @@ public class SaleBL{
 		return 0;
 	}
 
-	
+	/**
+	 * 获取当前日期
+	 * @return
+	 */
 	public String getPresentDate() {
 		String date = saleAssist.getDate();
 		return date;
 	}
 	
+	/**
+	 * 获取全部的进货单
+	 * @return 全部进货单的List
+	 */
 	public ArrayList<ImportListVO> getImportList() {
 		ArrayList<ImportListVO> importList = new ArrayList<ImportListVO>();
 		ArrayList<ImportListPO> importListPO = new ArrayList<ImportListPO>();
@@ -203,6 +210,10 @@ public class SaleBL{
 		return importList;
 	}
 
+	/**
+	 * 获取全部的进货退货单
+	 * @return 全部进货退货单的List
+	 */
 	public ArrayList<ImportRejectListVO> getImportRejectList() {
 		ArrayList<ImportRejectListVO> importRejectList = new ArrayList<ImportRejectListVO>();
 		ArrayList<ImportRejectListPO> importRejectListPO = new ArrayList<ImportRejectListPO>();
@@ -225,7 +236,10 @@ public class SaleBL{
 		return importRejectList;
 	}
 
-	
+	/**
+	 * 获取全部的销售单
+	 * @return 全部销售单的List
+	 */
 	public ArrayList<SaleListVO> getSaleList() {
 		ArrayList<SaleListVO> saleList = new ArrayList<SaleListVO>();
 		ArrayList<SaleListPO> saleListPO = new ArrayList<SaleListPO>();
@@ -249,6 +263,10 @@ public class SaleBL{
 	}
 
 
+	/**
+	 * 获取全部的进销售退货单
+	 * @return 全部销售退货单的List
+	 */
 	public ArrayList<SaleRejectListVO> getSaleRejectList() {
 		ArrayList<SaleRejectListVO> saleRejectList = new ArrayList<SaleRejectListVO>();
 		ArrayList<SaleRejectListPO> saleRejectListPO = new ArrayList<SaleRejectListPO>();
