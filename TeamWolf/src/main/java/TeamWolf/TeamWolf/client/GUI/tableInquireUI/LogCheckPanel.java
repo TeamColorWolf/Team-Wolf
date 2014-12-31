@@ -16,6 +16,7 @@ public class LogCheckPanel extends JPanel implements ActionListener{
 	TableInquireBLservice service = TableInquirePanel.service;
 	
 	static String[] column = {"时间", "行为", "具体信息"};
+	static int[] columnWidth = {150, 150, 650};
 	
 	Object[][] content;
 	ArrayList<String> list;
@@ -43,6 +44,9 @@ public class LogCheckPanel extends JPanel implements ActionListener{
 		getContent();
 		tableModel.setDataVector(content, column);
 		table = new JTable(tableModel);
+		for(int i = 0; i < 3; i++){
+			table.getColumnModel().getColumn(i).setPreferredWidth(columnWidth[i]);
+		}
 		table.setRowHeight(RowH);
 		scroll = new JScrollPane(table);
 		scroll.setSize(tableW, tableH);
@@ -72,11 +76,19 @@ public class LogCheckPanel extends JPanel implements ActionListener{
 			content = new Object[list.size()][3];
 		}
 		for(int i = 0; i < list.size(); i++){
-			String[] time = list.get(i).split(">>");//格式为  时间>>事项--具体信息
-			String[] work = time[1].split("--");
-			content[i][0] = time[0];
-			content[i][1] = work[0];
-			content[i][2] = work[1];
+			try{
+				String[] time = list.get(i).split(">>");//格式为  时间>>事项--具体信息
+				if(time.length == 2){
+					String[] work = time[1].split("--");
+					content[i][0] = time[0];
+					if(work.length == 2){
+						content[i][1] = work[0];
+						content[i][2] = work[1];
+					}
+				}
+			} catch(Exception e){
+				i--;
+			}
 		}
 	}
 	
@@ -85,6 +97,9 @@ public class LogCheckPanel extends JPanel implements ActionListener{
 		tableModel.setDataVector(content, column);
 		table.updateUI();
 		table.setRowHeight(RowH);
+		for(int i = 0; i < 3; i++){
+			table.getColumnModel().getColumn(i).setPreferredWidth(columnWidth[i]);
+		}
 	}
 
 	public void actionPerformed(ActionEvent arg0) {

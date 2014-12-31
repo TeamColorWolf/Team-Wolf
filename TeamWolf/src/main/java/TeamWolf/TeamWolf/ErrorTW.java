@@ -53,4 +53,5 @@ public class ErrorTW {
 	public static final int CustomerAccountLack = 99997;//客户的应收应付不足
 	public static final int InputNumberWrong = 99998;//输入的数据存在问题
 	public static final int RedError = 99999;//最后一张单据无法红冲
+	public static final int rmiError = 23333;//RMI的启动出错
 }

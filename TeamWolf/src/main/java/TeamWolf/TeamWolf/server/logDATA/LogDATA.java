@@ -51,111 +51,111 @@ public class LogDATA extends UnicastRemoteObject implements LogDATAservice, Writ
 	}
 
 	public int addUser(UserPO po) {
-		write("添加用户--ID:" + po.userName + " 密码:" + po.password + " 编号:" + po.workID + " 类型:" + po.power);
+		write("添加用户--ID: " + po.userName + "; 密码:" + po.password + "; 编号:" + po.workID + "; 类型:" + po.power);
 		return 0;
 	}
 
 	public int updateUser(UserPO po) {
-		write("更新用户--ID:" + po.userName + " 密码:" + po.password + " 编号:" + po.workID + " 类型:" + po.power);
+		write("更新用户--ID: " + po.userName + "; 密码:" + po.password + "; 编号:" + po.workID + "; 类型:" + po.power);
 		return 0;
 	}
 
 	public int deleteUser(UserPO po) {
-		write("删除用户--ID:" + po.userName + " 密码:" + po.password + " 编号:" + po.workID + " 类型:" + po.power);
+		write("删除用户--ID: " + po.userName + "; 密码:" + po.password + "; 编号:" + po.workID + "; 类型:" + po.power);
 		return 0;
 	}
 
 	public int addGoodsType(TypePO po) {
 		if(po.getParent() != null)
-			write("添加商品分类--分类名:" + po.getName() + " 分类编号:" + po.getNumber() + " 父类编号:" + po.getParent().getNumber());
+			write("添加商品分类--分类名: " + po.getName() + "; 分类编号:" + po.getNumber() + "; 父类编号:" + po.getParent().getNumber());
 		else
-			write("添加商品分类--分类名:" + po.getName() + " 分类编号:" + po.getNumber() + " 父类编号:" + 0);
+			write("添加商品分类--分类名: " + po.getName() + "; 分类编号:" + po.getNumber() + "; 父类编号:" + 0);
 		return 0;
 	}
 
 	public int updateGoodsType(TypePO po) {
 		if(po.getParent() != null)
-			write("更新商品分类--分类名:" + po.getName() + " 分类编号:" + po.getNumber() + " 父类编号:" + po.getParent().getNumber());
+			write("更新商品分类--分类名: " + po.getName() + "; 分类编号:" + po.getNumber() + "; 父类编号:" + po.getParent().getNumber());
 		else
-			write("更新商品分类--分类名:" + po.getName() + " 分类编号:" + po.getNumber() + " 父类编号:" + 0);
+			write("更新商品分类--分类名: " + po.getName() + "; 分类编号:" + po.getNumber() + "; 父类编号:" + 0);
 		return 0;
 	}
 
 	public int deleteGoodsType(TypePO po) {
 		if(po.getParent() != null)
-			write("删除商品分类--分类名:" + po.getName() + " 分类编号:" + po.getNumber() + " 父类编号:" + po.getParent().getNumber());
+			write("删除商品分类--分类名: " + po.getName() + "; 分类编号:" + po.getNumber() + "; 父类编号:" + po.getParent().getNumber());
 		else
-			write("删除商品分类--分类名:" + po.getName() + " 分类编号:" + po.getNumber() + " 父类编号:" + 0);
+			write("删除商品分类--分类名: " + po.getName() + "; 分类编号:" + po.getNumber() + "; 父类编号:" + 0);
 		return 0;
 	}
 
 	public int addGoods(GoodsPO po) {
-		write("添加商品--商品名:" + po.getName() + " 商品编号:" + po.getNumber() + " 父类名称:" + po.getParentName() + " 默认进价:" + po.getImprice() + " 默认售价:" + po.getExprice());
+		write("添加商品--商品名: " + po.getName() + "; 商品编号:" + po.getNumber() + "; 父类名称:" + po.getParentName() + "; 默认进价:" + po.getImprice() + "; 默认售价:" + po.getExprice());
 		return 0;
 	}
 
 	public int updateGoods(GoodsPO po) {
-		write("更新商品--商品名:" + po.getName() + " 商品编号:" + po.getNumber() + " 父类名称:" + po.getParentName() + " 默认进价:" + po.getImprice() + " 默认售价:" + po.getExprice());
+		write("更新商品--商品名: " + po.getName() + "; 商品编号:" + po.getNumber() + "; 父类名称:" + po.getParentName() + "; 默认进价:" + po.getImprice() + "; 默认售价:" + po.getExprice());
 		return 0;
 	}
 
 	public int delectGoods(GoodsPO po) {
-		write("删除商品--商品名:" + po.getName() + " 商品编号:" + po.getNumber() + " 父类名称:" + po.getParentName() + " 默认进价:" + po.getImprice() + " 默认售价:" + po.getExprice());
+		write("删除商品--商品名: " + po.getName() + "; 商品编号:" + po.getNumber() + "; 父类名称:" + po.getParentName() + "; 默认进价:" + po.getImprice() + "; 默认售价:" + po.getExprice());
 		return 0;
 	}
 
 	public int addCustomer(CustomerPO po) {
-		write("添加客户--客户名:" + po.getName() + " 客户编号:" + po.getNum() + " 客户类型:" + po.getKind() + " 客户等级:" + po.getLevel() + " 默认业务员:" + po.getBusinessMan());
+		write("添加客户--客户名: " + po.getName() + "; 客户编号:" + po.getNum() + "; 客户类型:" + po.getKind() + "; 客户等级:" + po.getLevel() + "; 默认业务员:" + po.getBusinessMan());
 		return 0;
 	}
 
 	public int updateCustomer(CustomerPO po) {
-		write("更新客户--客户名:" + po.getName() + " 客户编号:" + po.getNum() + " 客户类型:" + po.getKind() + " 客户等级:" + po.getLevel() + " 默认业务员:" + po.getBusinessMan());
+		write("更新客户--客户名: " + po.getName() + "; 客户编号:" + po.getNum() + "; 客户类型:" + po.getKind() + "; 客户等级:" + po.getLevel() + "; 默认业务员:" + po.getBusinessMan());
 		return 0;
 	}
 
 	public int deleteCustomer(CustomerPO po) {
-		write("删除客户--客户名:" + po.getName() + " 客户编号:" + po.getNum() + " 客户类型:" + po.getKind() + " 客户等级:" + po.getLevel() + " 默认业务员:" + po.getBusinessMan());
+		write("删除客户--客户名: " + po.getName() + "; 客户编号:" + po.getNum() + "; 客户类型:" + po.getKind() + "; 客户等级:" + po.getLevel() + "; 默认业务员:" + po.getBusinessMan());
 		return 0;
 	}
 
 	public int addFinance(financePO po) {
-		write("添加账户--账户名:" + po.getName() + " 账户余额:" + po.getAccount());
+		write("添加账户--账户名: " + po.getName() + "; 账户余额:" + po.getAccount());
 		return 0;
 	}
 
 	public int updateFinance(financePO po) {
-		write("更新账户--账户名:" + po.getName() + " 账户余额:" + po.getAccount());
+		write("更新账户--账户名: " + po.getName() + "; 账户余额:" + po.getAccount());
 		return 0;
 	}
 
 	public int deleteFinance(financePO po) {
-		write("删除账户--账户名:" + po.getName() + " 账户余额:" + po.getAccount());
+		write("删除账户--账户名: " + po.getName() + "; 账户余额:" + po.getAccount());
 		return 0;
 	}
 
 	public int addPromotion(PromotionPO po) {
-		write("添加促销策略--促销策略类型:" + po.type + " 促销策略编号:" + po.number + " 促销策略持续时间:" + TimePO.sdf.format(po.begin.date) + "~~" + TimePO.sdf.format(po.end.date));
+		write("添加促销策略--促销策略类型: " + po.type + "; 促销策略编号:" + po.number + "; 促销策略持续时间: " + TimePO.sdf.format(po.begin.date) + "~~" + TimePO.sdf.format(po.end.date));
 		return 0;
 	}
 
 	public int deletePromotion(PromotionPO po) {
-		write("删除促销策略--促销策略类型:" + po.type + " 促销策略编号:" + po.number + " 促销策略持续时间:" + TimePO.sdf.format(po.begin.date) + "~~" + TimePO.sdf.format(po.end.date));
+		write("删除促销策略--促销策略类型: " + po.type + "; 促销策略编号:" + po.number + "; 促销策略持续时间: " + TimePO.sdf.format(po.begin.date) + "~~" + TimePO.sdf.format(po.end.date));
 		return 0;
 	}
 
 	public int submitApplication(ApplicationPO po) {
-		write("提交单据--单据编号:" + po.number + " 单据操作员:" + po.operator);
+		write("提交单据--单据编号: " + po.number + "; 单据操作员:" + po.operator);
 		return 0;
 	}
 
 	public int approveApplication(ApplicationPO po) {
-		write("审批通过单据--单据编号" + po.number + " 单据操作员:" + po.operator);
+		write("审批通过单据--单据编号: " + po.number + "; 单据操作员:" + po.operator);
 		return 0;
 	}
 
 	public int rejectApplication(ApplicationPO po) {
-		write("审批驳回单据--单据编号" + po.number + " 单据操作员:" + po.operator);
+		write("审批驳回单据--单据编号: " + po.number + "; 单据操作员:" + po.operator);
 		return 0;
 	}
 	

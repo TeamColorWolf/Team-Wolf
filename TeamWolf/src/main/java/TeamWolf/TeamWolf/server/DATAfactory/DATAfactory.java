@@ -4,10 +4,13 @@ import java.net.InetAddress;
 import java.net.MalformedURLException;
 import java.net.UnknownHostException;
 import java.rmi.Naming;
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
+import TeamWolf.TeamWolf.ErrorTW;
+import TeamWolf.TeamWolf.RMIName;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.ApproveDATAservice;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.FinanceApplicationDATAservice;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.SaleApplicationDATAservice;
@@ -53,57 +56,144 @@ public class DATAfactory {
 	LogDATAservice log;
 	
 	public DATAfactory(){
-
+		
+		int success = 0;
+		
+		success = createRMIregistry();
+		if(success == ErrorTW.rmiError){
+			System.out.println("服务器启动失败");
+		}
+		createService();
+		
+		bindService(user);
+		bindService(login);
+		bindService(saleApp);
+		bindService(stock);
+		bindService(goods);
+		bindService(promotion);
+		bindService(finance);
+		bindService(customer);
+		bindService(approve);
+		bindService(stockApplication);
+		bindService(financeApplication);
+		bindService(saleApplication);
+		bindService(ini);
+		bindService(log);
+	}
+	
+	private int createRMIregistry(){
 		try {
 			Registry registry = LocateRegistry.createRegistry(1099);
+			return 0;
 		} catch (RemoteException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
+			return ErrorTW.rmiError;
 		}
-
-		
+	}
+	
+	private int bindService(Remote rem){
 		try {
-			finance = new financeDATA();
-			
-			login = new LoginDATA();
-			user = new UserDATA();
-			saleApp = new SaleApplicationDATA();
-			stock = new StockData();
-			goods = new GoodsData();
-			promotion = new PromotionDATA();
-			stockApplication = new StockApplicationDATA();
-			customer = new CustomerDATA();
-			approve = new ApproveDATA();
-			financeApplication = new FinanceApplicationDATA();
-			saleApplication = new SaleApplicationDATA();
-			ini = new INIDATA();
-			log = new LogDATA();
-		} catch (RemoteException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		try {
-			Naming.rebind("financeDATAservice", finance);
-			Naming.rebind("CustomerDATAservice", customer);
-			Naming.rebind("loginDATAservice", login);
-			Naming.rebind("userDATAservice", user);
-			Naming.rebind("saleDATAservice", saleApp);
-			Naming.rebind("stockDATAservice", stock);
-			Naming.rebind("goodsDATAservice", goods);
-			Naming.rebind("promotionDATAservice", promotion);
-			Naming.rebind("stockApplicationDATAservice", stockApplication);
-			Naming.rebind("approveDATAservice", approve);
-			Naming.rebind("financeApplicationDATAservice", financeApplication);
-			Naming.rebind("saleApplicationDATAservice", saleApplication);
-			Naming.rebind("iniDATAservice", ini);
-			Naming.rebind("logDATAservice", log);
+			Naming.rebind(RMIName.name(rem), rem);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return ErrorTW.webError;
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return ErrorTW.webError;
 		}
+		return 0;
+	}
+	
+	private int createService(){
+		int success = 0;
+		try {
+			finance = new financeDATA();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			success = ErrorTW.rmiError;
+		}
+		try {
+			login = new LoginDATA();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			success = ErrorTW.rmiError;
+		}
+		try {
+			user = new UserDATA();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			success = ErrorTW.rmiError;
+		}
+		try {
+			saleApp = new SaleApplicationDATA();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			success = ErrorTW.rmiError;
+		}
+		try {
+			stock = new StockData();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			success = ErrorTW.rmiError;
+		}
+		try {
+			goods = new GoodsData();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			success = ErrorTW.rmiError;
+		}
+		try {
+			promotion = new PromotionDATA();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			success = ErrorTW.rmiError;
+		}
+		try {
+			stockApplication = new StockApplicationDATA();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			success = ErrorTW.rmiError;
+		}
+		try {
+			customer = new CustomerDATA();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			success = ErrorTW.rmiError;
+		}
+		try {
+			approve = new ApproveDATA();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			success = ErrorTW.rmiError;
+		}
+		try {
+			financeApplication = new FinanceApplicationDATA();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			success = ErrorTW.rmiError;
+		}
+		try {
+			saleApplication = new SaleApplicationDATA();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			success = ErrorTW.rmiError;
+		}
+		try {
+			ini = new INIDATA();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			success = ErrorTW.rmiError;
+		}
+		try {
+			log = new LogDATA();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			success = ErrorTW.rmiError;
+		}
+		return success;
 	}
 	
 	public static void main(String[] args) throws UnknownHostException{

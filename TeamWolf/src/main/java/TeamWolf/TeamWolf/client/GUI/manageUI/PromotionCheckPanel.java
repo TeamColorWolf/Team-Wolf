@@ -84,6 +84,7 @@ public class PromotionCheckPanel extends JPanel{
 		this.getContent();
 		tableModel.setDataVector(content, columnName);
 		table.updateUI();
+		table.setRowHeight(LH);
 	}
 	
 	private void getContent(){
