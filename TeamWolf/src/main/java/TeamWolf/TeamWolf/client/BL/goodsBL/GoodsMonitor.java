@@ -5,6 +5,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.BL.applicationBL.StockApplicationService;
 import TeamWolf.TeamWolf.client.BL.applicationBL.forStock.StockApplicationController;
 import TeamWolf.TeamWolf.client.BLservice.stockBLservice.GoodMonService;
@@ -64,12 +65,12 @@ public class GoodsMonitor{
 		    dataService.updGood(toSet);		
 		}
 		else{
-			return 2004;//返回错误类型:商品不存在于系统中
+			return ErrorTW.GoodsIsnotExisted;//返回错误类型:商品不存在于系统中
 		}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-            return 30000;  //返回通信错误
+            return ErrorTW.webError;  //返回通信错误
 		}
 		return 0;
 	}
@@ -84,7 +85,7 @@ public class GoodsMonitor{
 				if(warning(g)==0)
 					; //报警成功
 				else 
-					return 30000; //报警出现通信错误，需要手动确认商品库存
+					return ErrorTW.webError; //报警出现通信错误，需要手动确认商品库存
 				//返回警报类型
 			}else{
 				//库存正常
@@ -92,7 +93,7 @@ public class GoodsMonitor{
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return 30000;  //返回通信错误
+			return ErrorTW.webError;  //返回通信错误
 		}
 		return 0;
 	}
@@ -106,7 +107,7 @@ public class GoodsMonitor{
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return 30000;
+			return ErrorTW.webError;
 		}
 		return 0;
 	}
@@ -128,11 +129,11 @@ public class GoodsMonitor{
 			    appController.submitIncreaseToMatch(itm);		
 		}
 		else{
-			return 2004;//返回错误类型:商品不存在于系统中
+			return ErrorTW.GoodsIsnotExisted;//返回错误类型:商品不存在于系统中
 		}
 		}catch(RemoteException e){
 			e.printStackTrace();
-			return 30000;  //返回通信错误
+			return ErrorTW.webError;  //返回通信错误
 		}
 		return 0;
 	}
@@ -158,11 +159,11 @@ public class GoodsMonitor{
 			}
 		}
 		else{
-			return 2004;//返回错误类型:商品不存在于系统中
+			return ErrorTW.GoodsIsnotExisted;//返回错误类型:商品不存在于系统中
 		}
 		}catch(RemoteException e){
 			e.printStackTrace();
-			return 30000;  //返回通信错误
+			return ErrorTW.webError;  //返回通信错误
 		}
 		return 0;
 	}
@@ -184,12 +185,12 @@ public class GoodsMonitor{
 			   dataService.updGood(toIncrease);
 			}
 			else{
-				return 2004;  //商品不存在于系统中
+				return ErrorTW.GoodsIsnotExisted;  //商品不存在于系统中
 			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return 30000; //返回通信错误
+			return ErrorTW.webError; //返回通信错误
 		}
 		return 0;
 	}
@@ -209,16 +210,16 @@ public class GoodsMonitor{
 			         dataService.updGood(toDecrease);	
 			    } 
 			    else{
-				    return 2006;  //返回库存不足
+				    return ErrorTW.notEnough;  //返回库存不足
 			    }
 			}
 			else{
-				 return 2004; //商品不存在于系统中
+				 return ErrorTW.GoodsIsnotExisted; //商品不存在于系统中
 			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return 30000; //返回通信错误
+			return ErrorTW.webError; //返回通信错误
 		}
 		this.MonitoringWL(g); 
 		

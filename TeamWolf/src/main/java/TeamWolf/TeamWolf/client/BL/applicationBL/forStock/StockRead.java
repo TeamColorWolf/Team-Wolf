@@ -40,8 +40,8 @@ public class StockRead {
 		try {
 			ArrayList<IncreaseToMatchPO> ITML=dataService.shoITM();
 			for(IncreaseToMatchPO itm: ITML){
-				
-		        result.add(itm.getInfo());
+				String[] info=itm.number.split("-");
+		        result.add(info[1]+":  "+itm.getInfo());
 			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -58,7 +58,8 @@ public class StockRead {
 		try {
 			ArrayList<DecreaseToMatchPO> DTML=dataService.shoDTM();
 			for(DecreaseToMatchPO dtm: DTML){
-				result.add(dtm.getInfo());
+				String[] info=dtm.number.split("-");
+				result.add(info[1]+":  "+dtm.getInfo());
 			}
 		} catch (RemoteException e) {
 				// TODO Auto-generated catch block

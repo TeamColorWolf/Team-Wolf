@@ -21,6 +21,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.BL.goodsBL.GoodsBLController;
 import TeamWolf.TeamWolf.client.BLservice.stockBLservice.GoodManService;
 import TeamWolf.TeamWolf.client.GUI.messageUI.MessageFrame;
@@ -41,7 +42,7 @@ public class StockShowPane extends JPanel implements ItemListener, ActionListene
 	String[] years=null;
 	String[] months=new String[12];
 	String[] tableTitle={"   ", "商品编号", "商品名称", "商品型号", "商品库存数量", "库存均价", "商品进价", "商品售价", "商品最近进价", "商品最近售价", "商品进货量", "平均进货价", "进货总价", "商品出货量", "平均出货价", "出货总价"};
-	Object[][] stockInfoList={{"1" ,"12102", "样板", "测试", "测试", "测试", "测试", "测试", "测试", "测试", "测试", "测试", "测试", "测试", "测试", "测试"}};
+	Object[][] stockInfoList={{" " ," ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "}};
 	String todayDate;
 	int year;
 	JComboBox beginY;
@@ -288,7 +289,7 @@ public class StockShowPane extends JPanel implements ItemListener, ActionListene
 			int endDate=endYear*10000+endMonth*100+endDay;
 		    gsl=gbcontroller.shoStockList(beginDate, endDate);
 		    if(beginDate>endDate){
-		        new MessageFrame(2008); //  弹窗报错：输入的时间不合法
+		        new MessageFrame(ErrorTW.illegalTime); //  弹窗报错：输入的时间不合法
 		    }
 		}
 		

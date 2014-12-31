@@ -6,6 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.BL.promotionBL.PromotionForStockController;
 import TeamWolf.TeamWolf.client.BL.promotionBL.PromotionForStockService;
 import TeamWolf.TeamWolf.client.DATAservice.stockDATAservice.StockDataService;
@@ -62,19 +63,19 @@ public class StockBLManager{
 					   dataService.updType(parent);  
 				   }
 				   else{
-					  return 1001;//返回不可在有商品的分类下添加子分类
+					  return ErrorTW.cannotAddType_1;//返回不可在有商品的分类下添加子分类
 				   }					
 			}
 			
 		    dataService.addType(toAdd);
 		}
 		else{ 
-			return 1002;  //返回部分逻辑错误类型:商品已存在于系统中
+			return ErrorTW.cannotAddType_2;  //返回部分逻辑错误类型:商品已存在于系统中
 		}
 		} catch (RemoteException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-			return 30000;   //返回通信错误
+			return ErrorTW.webError;   //返回通信错误
 		}	
 		return 0;
 	}
@@ -87,7 +88,7 @@ public class StockBLManager{
         	
 				TypePO toDel=dataService.finType(t.getNumber());
 				if(toDel.getC()!=0){
-					return 1003; //返回其下有子女，不可删除
+					return ErrorTW.connotDelType_1; //返回其下有子女，不可删除
 				}
 				else{ //执行删除操作，需要对父母类进行修改
 					if(t.getParent()!=null){
@@ -100,12 +101,12 @@ public class StockBLManager{
 			
             
         }else{ 
-        	 return 1004; // 错误类型：商品分类不存在于系统中        	
+        	 return ErrorTW.cannotOperateForNotExist; // 错误类型：商品分类不存在于系统中        	
         }
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return 30000;    //返回通信错误
+			return ErrorTW.webError;    //返回通信错误
 		}
 		
         return 0; //操作成功
@@ -129,17 +130,17 @@ public class StockBLManager{
 					 }
 				 }
 				 else
-					 return 1005;//返回错误类型：信息填写不完整
+					 return ErrorTW.notComplete;//返回错误类型：信息填写不完整
 				 
 				 dataService.updType(toUpd);									            
 		}else{ //因输入非法无法进行修改，返回错误类型：商品不存于系统中
-			return 1004;
+			return ErrorTW.cannotOperateForNotExist;
 		}
 		} catch (RemoteException e1) {
 			// TODO Auto-generated catch block
 			//返回通信错误
 			e1.printStackTrace();
-			return 30000;
+			return ErrorTW.webError;
 		}
 		
 		return 0; //操作成功

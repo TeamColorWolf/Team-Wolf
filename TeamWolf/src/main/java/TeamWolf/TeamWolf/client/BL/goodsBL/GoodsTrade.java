@@ -5,6 +5,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.BL.applicationBL.StockApplicationService;
 import TeamWolf.TeamWolf.client.BL.applicationBL.forStock.StockApplicationController;
 import TeamWolf.TeamWolf.client.BL.promotionBL.PromotionForStockController;
@@ -93,14 +94,14 @@ public class GoodsTrade {
 					  }
 				  }
 				  else{					 
-					   return 2007; //返回错误类型： 该特价包已经不在了
+					   return ErrorTW.specialGoodsGone; //返回错误类型： 该特价包已经不在了
 				  }
 				  
 			}
 		}
 		
 		if(notEnough==true){
-			return 2006;//返回库存不足
+			return ErrorTW.notEnough;//返回库存不足
 		}
 		
 		//所有商品库存都足够，逐个进行减库存处理
@@ -137,7 +138,7 @@ public class GoodsTrade {
 						  }
 					  }
 					  else{					 
-						  return 2007; //返回错误类型： 该特价包已经不在了
+						  return ErrorTW.specialGoodsGone; //返回错误类型： 该特价包已经不在了
 					  }
 					  
 				}
@@ -145,7 +146,7 @@ public class GoodsTrade {
 		}
 		}catch(RemoteException e){
 			e.printStackTrace();
-			return 30000;  //返回通信错误
+			return ErrorTW.webError;  //返回通信错误
 		}
 		return 0;
 	}
@@ -165,12 +166,12 @@ public class GoodsTrade {
 			    dataService.updGood(toEReject);
 			}
 			else{
-				return 2004;  //商品不存在于系统中
+				return ErrorTW.GoodsIsnotExisted;  //商品不存在于系统中
 			}
 		}			
 		}catch(RemoteException e){
 			e.printStackTrace();
-			return 30000;  //返回通信错误
+			return ErrorTW.webError;  //返回通信错误
 		}
 		
 		return 0;
@@ -192,12 +193,12 @@ public class GoodsTrade {
 			    dataService.updGood(toImport);
 			}
 			else{
-				return 2004; //商品不存在于系统中
+				return ErrorTW.GoodsIsnotExisted; //商品不存在于系统中
 			}
 		}
 		}catch(RemoteException e){
 			e.printStackTrace();
-			return 30000; //返回通信错误
+			return ErrorTW.webError; //返回通信错误
 		}
 		return 0;
 	}
@@ -218,16 +219,16 @@ public class GoodsTrade {
 		    	     dataService.updGood(toIReject);
 		        }
 		        else{
-		    	     return 2006; //错误类型：库存已不足，无法退货
+		    	     return ErrorTW.notEnough; //错误类型：库存已不足，无法退货
 		        }
 		    }
 		    else{
-		    	return 2004; //商品不存在于系统中
+		    	return ErrorTW.GoodsIsnotExisted; //商品不存在于系统中
 		    }
 		}			
 		}catch(RemoteException e){
 			e.printStackTrace();
-			return 30000;   //返回通信错误
+			return ErrorTW.webError;   //返回通信错误
 		}
 		
 		

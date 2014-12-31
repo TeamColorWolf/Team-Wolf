@@ -5,6 +5,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.BL.promotionBL.PromotionForStockController;
 import TeamWolf.TeamWolf.client.BL.promotionBL.PromotionForStockService;
 import TeamWolf.TeamWolf.client.BL.saleBL.SaleBLController;
@@ -64,7 +65,7 @@ public class GoodsManager {
 			GoodsPO toAdd=new GoodsPO(g);
 			TypePO parent=SdataService.finType(g.getParentNum());
 			if(parent.getC()==1){
-				return 2001;//返回错误类型：父分类下有子分类，不可添加商品
+				return ErrorTW.cannotAddGoods_1;//返回错误类型：父分类下有子分类，不可添加商品
 			}
 			else{
 				//符合前置条件，进行增加商品操作
@@ -73,13 +74,13 @@ public class GoodsManager {
 				GdataService.addGood(toAdd);
 			}			
 		}
-		else{   return 2002;//返回错误类型：商品已经存在与系统中
+		else{   return ErrorTW.GoodsIsExisted;//返回错误类型：商品已经存在与系统中
 			
 		}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return 30000;   //返回通信错误
+			return ErrorTW.webError;   //返回通信错误
 		}
 		return 0;
 	}
@@ -95,7 +96,7 @@ public class GoodsManager {
 			    	GdataService.delGood(g.getNumber());
 			    	SdataService.updType(parent);
 			    }else{
-			    	 return 2003;//错误类型:删除的商品与父分类不匹配
+			    	 return ErrorTW.notMatchToParent;//错误类型:删除的商品与父分类不匹配
 			    }
 						
 		}
@@ -106,7 +107,7 @@ public class GoodsManager {
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return 30000;   //返回通信错误
+			return ErrorTW.webError;   //返回通信错误
 		}
 		
 		return 0;
@@ -140,13 +141,13 @@ public class GoodsManager {
 				GdataService.updGood(toUpd);			
 			
 		}
-		else{  return 2004;//返回错误类型：商品不存在于系统中
+		else{  return ErrorTW.GoodsIsnotExisted;//返回错误类型：商品不存在于系统中
 		
 		}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return 30000;  //返回通信错误
+			return ErrorTW.webError;  //返回通信错误
 		}
 		return 0;
 	}
@@ -220,7 +221,7 @@ public class GoodsManager {
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			//返回通信错误
+			
 		}
        
 		return gl;

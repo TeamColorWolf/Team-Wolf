@@ -6,6 +6,7 @@ import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice.GoodsDataService;
 import TeamWolf.TeamWolf.client.po.GoodsPO;
 import TeamWolf.TeamWolf.client.vo.*;
@@ -63,9 +64,7 @@ public class GoodsBLAssistant {
 		if((isExisted(g)==true)&&(beenTraded(g)==false))
 			return 0;
 		else if(isExisted(g)==false)
-			return 2004; //商品不存在
-		else if(beenTraded(g)==true)
-			return 2005; //商品有过交易记录
+			return ErrorTW.GoodsIsnotExisted; //商品不存在
 		return 0;
 	}
 	public boolean canUpd(GoodsVO g) throws RemoteException{
@@ -82,11 +81,11 @@ public class GoodsBLAssistant {
 				return 0;
 			}
 			else
-				return 2006; //库存不足，无法赠送
+				return ErrorTW.notEnough; //库存不足，无法赠送
 		}
 		else{
 			//返回赠送商品不存在，无法进行赠送
-			return 2004;
+			return ErrorTW.GoodsIsnotExisted;
 		}
 	}
 	public boolean isExisted(GoodsVO g) throws RemoteException{

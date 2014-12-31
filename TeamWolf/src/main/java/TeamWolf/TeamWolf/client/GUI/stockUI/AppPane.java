@@ -17,6 +17,7 @@ import javax.swing.JTree;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.BL.applicationBL.StockApplicationService;
 import TeamWolf.TeamWolf.client.BL.applicationBL.forStock.StockApplicationController;
 import TeamWolf.TeamWolf.client.BL.goodsBL.GoodsBLController;
@@ -57,7 +58,7 @@ public class AppPane extends JPanel implements ActionListener {
 	JPanel WarningP;
 	
 	String[] tableTitle={"单据号", "赠送客户", "商品编号", "商品名称", "赠送数量", "商品进价"};
-	Object[][] stockInfoList={{"20141223", "样板", "测试", "测试", "测试", "测试"}};
+	Object[][] stockInfoList={{" ", " ", " ", " ", " ", " "}};
 	JPanel PresentListP;
 	JTable shoP;
 	JScrollPane shoContainer;
@@ -275,7 +276,7 @@ public class AppPane extends JPanel implements ActionListener {
 		 this.updateUI();
 		}
 		else
-			new MessageFrame(404);
+			new MessageFrame(ErrorTW.notFound);
 	}
 	
 }
