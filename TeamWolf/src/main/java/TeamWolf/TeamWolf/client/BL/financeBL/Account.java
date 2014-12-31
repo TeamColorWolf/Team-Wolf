@@ -70,12 +70,15 @@ public class Account implements AccountBlservice{
 		} catch (MalformedURLException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
+			return ErrorTW.webError;
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
+			return ErrorTW.webError;
 		} catch (NotBoundException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
+			return ErrorTW.webError;
 		}
 		if(fba.canDel(vo)){
 			int success = -1;
@@ -85,17 +88,19 @@ public class Account implements AccountBlservice{
 			} catch (RemoteException e1) {
 				// TODO 自动生成的 catch 块
 				e1.printStackTrace();
+				return ErrorTW.webError;
 			}
 			if(success==0){
 			   getpoList();
 			   volist=null;
 			   volist = this.checkVO();
 			   return success;
-			   }
+			}
+			return success;
 		}else{
 			return ErrorTW.notFound;
 		}
-		return 30001;
+		
 	}
 
 	//修改账户
@@ -105,12 +110,15 @@ public class Account implements AccountBlservice{
 		} catch (MalformedURLException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
+			return ErrorTW.webError;
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
+			return ErrorTW.webError;
 		} catch (NotBoundException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
+			return ErrorTW.webError;
 		}
 		if(fba.canUpd(vo, newvo)){
 			financePO po = new financePO(vo);
@@ -126,6 +134,7 @@ public class Account implements AccountBlservice{
 			} catch (RemoteException e1) {
 				// TODO 自动生成的 catch 块
 				e1.printStackTrace();
+				return ErrorTW.webError;
 			}
 			
 		}

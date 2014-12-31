@@ -5,11 +5,10 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.BL.applicationBL.Application;
-import TeamWolf.TeamWolf.client.BL.customerBL.CustomerController;
 import TeamWolf.TeamWolf.client.BL.financeBL.financeController;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.FinanceApplicationDATAservice;
-import TeamWolf.TeamWolf.client.po.ApplicationPO;
 import TeamWolf.TeamWolf.client.po.CashApplicationPO;
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;
 import TeamWolf.TeamWolf.client.vo.CashApplicationVO;
@@ -58,18 +57,22 @@ public class CashApplication extends Application {
 		} catch (MalformedURLException e1) {
 			// TODO 自动生成的 catch 块
 			e1.printStackTrace();
+			return ErrorTW.webError;
 		} catch (RemoteException e1) {
 			// TODO 自动生成的 catch 块
 			e1.printStackTrace();
+			return ErrorTW.webError;
 		} catch (NotBoundException e1) {
 			// TODO 自动生成的 catch 块
 			e1.printStackTrace();
+			return ErrorTW.webError;
 		}
 		try {
 			finance.submitCashApplication(getApplicationPO());
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return ErrorTW.webError;
 		}
 		return 0;
 	}
@@ -83,18 +86,22 @@ public class CashApplication extends Application {
 		} catch (MalformedURLException e1) {
 			// TODO 自动生成的 catch 块
 			e1.printStackTrace();
+			return ErrorTW.webError;
 		} catch (RemoteException e1) {
 			// TODO 自动生成的 catch 块
 			e1.printStackTrace();
+			return ErrorTW.webError;
 		} catch (NotBoundException e1) {
 			// TODO 自动生成的 catch 块
 			e1.printStackTrace();
+			return ErrorTW.webError;
 		}
 		try {
 			finance.approvalCashApplication(getApplicationPO());
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return ErrorTW.webError;
 		}
 		//customerController.CashListMod(this.getApplicationVO());
 		fc.CashMod(getApplicationVO());//根据单据内容进行相关修改
@@ -110,18 +117,22 @@ public class CashApplication extends Application {
 		} catch (MalformedURLException e1) {
 			// TODO 自动生成的 catch 块
 			e1.printStackTrace();
+			return ErrorTW.webError;
 		} catch (RemoteException e1) {
 			// TODO 自动生成的 catch 块
 			e1.printStackTrace();
+			return ErrorTW.webError;
 		} catch (NotBoundException e1) {
 			// TODO 自动生成的 catch 块
 			e1.printStackTrace();
+			return ErrorTW.webError;
 		}
 		try {
 			finance.rejectCashApplication(getApplicationPO());
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return ErrorTW.webError;
 		}
 		return 0;
 	}

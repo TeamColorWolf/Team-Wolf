@@ -5,6 +5,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.BL.applicationBL.Application;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerController;
 import TeamWolf.TeamWolf.client.po.ApplicationPO;
@@ -54,18 +55,22 @@ public class RecieptApplication extends Application {
 		} catch (MalformedURLException e1) {
 			// TODO 自动生成的 catch 块
 			e1.printStackTrace();
+			return ErrorTW.webError;
 		} catch (RemoteException e1) {
 			// TODO 自动生成的 catch 块
 			e1.printStackTrace();
+			return ErrorTW.webError;
 		} catch (NotBoundException e1) {
 			// TODO 自动生成的 catch 块
 			e1.printStackTrace();
+			return ErrorTW.webError;
 		}
 		try {
 			finance.submitRecieptApplication(getApplicationPO());
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return ErrorTW.webError;
 		}
 		return 0;
 	}
@@ -79,18 +84,22 @@ public class RecieptApplication extends Application {
 		} catch (MalformedURLException e1) {
 			// TODO 自动生成的 catch 块
 			e1.printStackTrace();
+			return ErrorTW.webError;
 		} catch (RemoteException e1) {
 			// TODO 自动生成的 catch 块
 			e1.printStackTrace();
+			return ErrorTW.webError;
 		} catch (NotBoundException e1) {
 			// TODO 自动生成的 catch 块
 			e1.printStackTrace();
+			return ErrorTW.webError;
 		}
 		try {
 			finance.approvalRecieptApplication(getApplicationPO());
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return ErrorTW.webError;
 		}
 		cc.RecieptListMod(getApplicationVO());//根据单据修改客户信息
 		fc.RecieptMod(getApplicationVO());//根据单据修改账户信息
@@ -106,18 +115,22 @@ public class RecieptApplication extends Application {
 		} catch (MalformedURLException e1) {
 			// TODO 自动生成的 catch 块
 			e1.printStackTrace();
+			return ErrorTW.webError;
 		} catch (RemoteException e1) {
 			// TODO 自动生成的 catch 块
 			e1.printStackTrace();
+			return ErrorTW.webError;
 		} catch (NotBoundException e1) {
 			// TODO 自动生成的 catch 块
 			e1.printStackTrace();
+			return ErrorTW.webError;
 		}
 		try {
 			finance.rejectRecieptApplication(getApplicationPO());
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return ErrorTW.webError;
 		}
 		return 0;
 	}

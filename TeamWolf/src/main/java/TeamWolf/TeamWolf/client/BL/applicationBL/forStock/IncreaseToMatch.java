@@ -5,6 +5,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.BL.applicationBL.Application;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.StockApplicationDATAservice;
 import TeamWolf.TeamWolf.client.po.ApplicationPO;
@@ -59,7 +60,7 @@ public class IncreaseToMatch extends Application{
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			result=30000;  //返回通信错误
+			result = ErrorTW.webError;  //返回通信错误
 		}
 		
 		return result;
@@ -74,7 +75,7 @@ public class IncreaseToMatch extends Application{
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			result=30000;
+			result = ErrorTW.webError;
 		}
 		return result;
 	}
@@ -88,7 +89,7 @@ public class IncreaseToMatch extends Application{
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			result=30000;
+			result = ErrorTW.webError;
 		}
 		return result;
 	}

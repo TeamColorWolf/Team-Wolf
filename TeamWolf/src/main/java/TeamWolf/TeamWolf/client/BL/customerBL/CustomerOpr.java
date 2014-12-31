@@ -8,9 +8,7 @@ import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.DATAservice.customerDATAservice.CustomerDATAservice;
-import TeamWolf.TeamWolf.client.DATAservice.financeDATAservice.financeDATAservice;
 import TeamWolf.TeamWolf.client.po.CustomerPO;
-import TeamWolf.TeamWolf.client.po.financePO;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 
 //处理客户对象的增删改查

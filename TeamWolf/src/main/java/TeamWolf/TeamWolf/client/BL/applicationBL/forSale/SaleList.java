@@ -5,6 +5,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.BL.applicationBL.Application;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerInfo;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerInfoBLservice;
@@ -12,7 +13,6 @@ import TeamWolf.TeamWolf.client.BL.goodsBL.GoodsBLController;
 import TeamWolf.TeamWolf.client.BLservice.stockBLservice.GoodTService;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.SaleApplicationDATAservice;
 import TeamWolf.TeamWolf.client.po.ApplicationPO;
-import TeamWolf.TeamWolf.client.po.ImportListPO;
 import TeamWolf.TeamWolf.client.po.SaleListPO;
 import TeamWolf.TeamWolf.client.vo.ApplicationVO;
 import TeamWolf.TeamWolf.client.vo.SaleListVO;
@@ -38,13 +38,13 @@ public class SaleList extends Application {
 	@Override
 	public ApplicationVO getApplicationVO() {
 		// TODO Auto-generated method stub
-		return null;
+		return svo;
 	}
 
 	@Override
 	public ApplicationPO getApplicationPO() {
 		// TODO Auto-generated method stub
-		return null;
+		return new SaleListPO(svo);
 	}
 
 	@Override
@@ -61,7 +61,7 @@ public class SaleList extends Application {
 			e.printStackTrace();
 		}
 		
-		return 999999;
+		return ErrorTW.webError;
 	}
 
 	@Override
@@ -85,7 +85,7 @@ public class SaleList extends Application {
 			e.printStackTrace();
 		}
 
-		return 9;
+		return ErrorTW.webError;
 	}
 
 	@Override
@@ -106,7 +106,7 @@ public class SaleList extends Application {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return 9;
+		return ErrorTW.webError;
 	}
 
 	@Override

@@ -4,16 +4,11 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 
-import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.FinanceApplicationDATAservice;
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.DATAservice.customerDATAservice.CustomerDATAservice;
 import TeamWolf.TeamWolf.client.po.CustomerPO;
-import TeamWolf.TeamWolf.client.po.RecieptApplicationPO;
-import TeamWolf.TeamWolf.client.po.financePO;
-import TeamWolf.TeamWolf.client.po.SaleListPO;
 import TeamWolf.TeamWolf.client.vo.CashApplicationVO;
-import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.ImportListVO;
 import TeamWolf.TeamWolf.client.vo.ImportRejectListVO;
 import TeamWolf.TeamWolf.client.vo.PaymentApplicationVO;
@@ -41,6 +36,7 @@ public class CustomerInfo implements CustomerInfoBLservice{
 			System.out.println("oldCustomer should pay = " + oldCustomer.getPay());
 			ivo.getCustomer().setPay(oldCustomer.getPay() + ivo.getTotal());
 			cds.modCustomer(oldCustomer, new CustomerPO(ivo.getCustomer()));
+			return 0;
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (RemoteException e) {
@@ -48,7 +44,7 @@ public class CustomerInfo implements CustomerInfoBLservice{
 		} catch (NotBoundException e) {
 			e.printStackTrace();
 		}
-		return 0;
+		return ErrorTW.webError;
 	}
 	//处理进货退货单引起的客户信息修改
 	public int ImportRejectListMod(ImportRejectListVO irvo) {
@@ -60,6 +56,7 @@ public class CustomerInfo implements CustomerInfoBLservice{
 			System.out.println("oldCustomer should pay = " + oldCustomer.getPay());
 			irvo.getCustomer().setPay(oldCustomer.getPay() - irvo.getTotal());
 			cds.modCustomer(oldCustomer, new CustomerPO(irvo.getCustomer()));
+			return 0;
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (RemoteException e) {
@@ -67,7 +64,7 @@ public class CustomerInfo implements CustomerInfoBLservice{
 		} catch (NotBoundException e) {
 			e.printStackTrace();
 		}
-		return 0;
+		return ErrorTW.webError;
 	}
 	//处理销售单引起的客户信息修改
 	public int SaleListMod(SaleListVO svo) {
@@ -79,6 +76,7 @@ public class CustomerInfo implements CustomerInfoBLservice{
 			System.out.println("oldCustomer should receive = " + oldCustomer.getReceive());
 			svo.getCustomer().setReceive(oldCustomer.getReceive() + svo.getTotalAfterDiscount());
 			cds.modCustomer(oldCustomer, new CustomerPO(svo.getCustomer()));
+			return 0;
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (RemoteException e) {
@@ -86,7 +84,7 @@ public class CustomerInfo implements CustomerInfoBLservice{
 		} catch (NotBoundException e) {
 			e.printStackTrace();
 		}
-		return 0;
+		return ErrorTW.webError;
 	}
 	//处理销售退货单引起的客户信息修改
 
@@ -99,6 +97,7 @@ public class CustomerInfo implements CustomerInfoBLservice{
 			System.out.println("oldCustomer should receive = " + oldCustomer.getReceive());
 			srvo.getCustomer().setReceive(srvo.getCustomer().getReceive() - srvo.getTotalAfterDiscount());
 			cds.modCustomer(oldCustomer, new CustomerPO(srvo.getCustomer()));
+			return 0;
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (RemoteException e) {
@@ -106,7 +105,7 @@ public class CustomerInfo implements CustomerInfoBLservice{
 		} catch (NotBoundException e) {
 			e.printStackTrace();
 		}
-		return 0;
+		return ErrorTW.webError;
 	}
 	//处理收款单引起的客户信息修改
 	public int RecieptListMod(RecieptApplicationVO vo) {
@@ -118,6 +117,7 @@ public class CustomerInfo implements CustomerInfoBLservice{
 			CustomerPO oldCustomer = cds.findCustomer(name, number);
 			vo.getCustomer().setReceive(oldCustomer.getReceive() - Double.parseDouble(vo.getAddup()));
 			cds.modCustomer(oldCustomer,new CustomerPO(vo.getCustomer()));
+			return 0;
 		} catch (MalformedURLException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -128,7 +128,7 @@ public class CustomerInfo implements CustomerInfoBLservice{
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		return 0;
+		return ErrorTW.webError;
 	}
 	//处理付款单引起的客户信息修改
 	public int PaymentListMod(PaymentApplicationVO vo) {
@@ -139,6 +139,7 @@ public class CustomerInfo implements CustomerInfoBLservice{
 			CustomerPO oldCustomer = cds.findCustomer(name, number);
 			vo.getCustomer().setPay(oldCustomer.getPay() + Double.parseDouble(vo.getAddup()));
 			cds.modCustomer(oldCustomer,new CustomerPO(vo.getCustomer()));
+			return 0;
 		} catch (MalformedURLException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -149,7 +150,7 @@ public class CustomerInfo implements CustomerInfoBLservice{
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		return 0;
+		return ErrorTW.webError;
 	}
 	//设计为修改现金费用单的客户修改
 	//但是现金费用单不需要修改客户信息......

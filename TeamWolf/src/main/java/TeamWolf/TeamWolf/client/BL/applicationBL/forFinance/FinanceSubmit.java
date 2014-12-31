@@ -6,6 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.BL.applicationBL.ApplicationBL;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.FinanceApplicationDATAservice;
 import TeamWolf.TeamWolf.client.po.CashApplicationPO;
@@ -75,7 +76,7 @@ public class FinanceSubmit extends ApplicationBL{
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		return 30001;
+		return ErrorTW.webError;
 	}
 	//提交付款单
 	public int submitPaymentApplication(PaymentApplicationVO vo){
@@ -100,7 +101,7 @@ public class FinanceSubmit extends ApplicationBL{
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		return 30001;
+		return ErrorTW.webError;
 	}
 	//提交现金费用单
 	public int submitCashApplication(CashApplicationVO vo){
@@ -125,7 +126,7 @@ public class FinanceSubmit extends ApplicationBL{
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		return 30001;
+		return ErrorTW.webError;
 	}
     //获取所有收款单VO
 	public ArrayList<RecieptApplicationVO> getRecieptVO() {

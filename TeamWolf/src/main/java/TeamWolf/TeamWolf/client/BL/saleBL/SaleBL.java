@@ -6,19 +6,18 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.BL.customerBL.CustomerController;
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.SaleApplicationDATAservice;
 import TeamWolf.TeamWolf.client.po.ImportListPO;
 import TeamWolf.TeamWolf.client.po.ImportRejectListPO;
 import TeamWolf.TeamWolf.client.po.SaleListPO;
 import TeamWolf.TeamWolf.client.po.SaleRejectListPO;
-import TeamWolf.TeamWolf.client.vo.ApplicationVO;
 import TeamWolf.TeamWolf.client.vo.CustomerVO;
 import TeamWolf.TeamWolf.client.vo.ImportListVO;
 import TeamWolf.TeamWolf.client.vo.ImportRejectListVO;
 import TeamWolf.TeamWolf.client.vo.SaleListVO;
 import TeamWolf.TeamWolf.client.vo.SaleRejectListVO;
-import TeamWolf.TeamWolf.server.applicationDATA.SaleApplicationDATA;
 
 /**
  * 
@@ -92,7 +91,7 @@ public class SaleBL{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		return 999999;
+		return ErrorTW.webError;
 	}
 
 	/**
@@ -121,7 +120,7 @@ public class SaleBL{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return 999999;
+		return ErrorTW.webError;
 	}
 
 	/**
@@ -147,7 +146,7 @@ public class SaleBL{
 			e.printStackTrace();
 		}
 		
-		return 999999;
+		return ErrorTW.webError;
 	}
 
 	/**
@@ -172,7 +171,7 @@ public class SaleBL{
 		} catch (NotBoundException e) {
 			e.printStackTrace();
 		}
-		return 0;
+		return ErrorTW.webError;
 	}
 
 	/**
