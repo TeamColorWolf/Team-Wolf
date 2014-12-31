@@ -61,17 +61,26 @@ public class LogDATA implements LogDATAservice, WriteLogService{
 	}
 
 	public int addGoodsType(TypePO po) {
-		write("添加商品分类--分类名:" + po.getName() + " 分类编号:" + po.getNumber() + " 父类编号:" + po.getParent().getNumber());
+		if(po.getParent() != null)
+			write("添加商品分类--分类名:" + po.getName() + " 分类编号:" + po.getNumber() + " 父类编号:" + po.getParent().getNumber());
+		else
+			write("添加商品分类--分类名:" + po.getName() + " 分类编号:" + po.getNumber() + " 父类编号:" + 0);
 		return 0;
 	}
 
 	public int updateGoodsType(TypePO po) {
-		write("更新商品分类--分类名:" + po.getName() + " 分类编号:" + po.getNumber() + " 父类编号:" + po.getParent().getNumber());
+		if(po.getParent() != null)
+			write("更新商品分类--分类名:" + po.getName() + " 分类编号:" + po.getNumber() + " 父类编号:" + po.getParent().getNumber());
+		else
+			write("更新商品分类--分类名:" + po.getName() + " 分类编号:" + po.getNumber() + " 父类编号:" + 0);
 		return 0;
 	}
 
 	public int deleteGoodsType(TypePO po) {
-		write("删除商品分类--分类名:" + po.getName() + " 分类编号:" + po.getNumber() + " 父类编号:" + po.getParent().getNumber());
+		if(po.getParent() != null)
+			write("删除商品分类--分类名:" + po.getName() + " 分类编号:" + po.getNumber() + " 父类编号:" + po.getParent().getNumber());
+		else
+			write("删除商品分类--分类名:" + po.getName() + " 分类编号:" + po.getNumber() + " 父类编号:" + 0);
 		return 0;
 	}
 
