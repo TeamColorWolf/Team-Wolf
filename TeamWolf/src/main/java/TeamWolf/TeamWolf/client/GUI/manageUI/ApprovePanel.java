@@ -54,11 +54,13 @@ public class ApprovePanel extends JPanel{
 	class ApproveOverListener implements ActionListener{
 		//提交当前审批结果并且刷新
 		public void actionPerformed(ActionEvent arg0) {
+			int success = -1;
 			ArrayList<ApplicationVO> list = approve.getResult();
 			if(list == null || list.size() == 0){
 				new MessageFrame(ErrorTW.approveWithoutApplication);
 			}
-			service.approveOver(list);
+			success = service.approveOver(list);
+			new MessageFrame(success);
 			approve.flashPanel();
 			detial.flashPanel(null);
 		}
