@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import TeamWolf.TeamWolf.ErrorTW;
 import TeamWolf.TeamWolf.client.DATAservice.financeDATAservice.financeDATAservice;
 import TeamWolf.TeamWolf.client.po.UserPO;
 import TeamWolf.TeamWolf.client.po.financePO;
@@ -69,7 +70,7 @@ public class financeDATA extends UnicastRemoteObject implements financeDATAservi
 				e.printStackTrace();
 			}
 		}
-		return 12424;
+		return ErrorTW.notFound;
 	}
 //修改账户
 	public int update(financePO po, financePO newpo) throws RemoteException {

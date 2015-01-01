@@ -42,7 +42,7 @@ public class SaleBL{
 //			e.printStackTrace();
 //		}
 		cusCtrl = new CustomerController(IP);
-		URL = "rmi://" + IP + "/saleDATAservice";
+		URL = "rmi://" + IP + "/saleApplicationDATAservice";
 	}
 		
 	public int addCustomer(CustomerVO cvo) {
