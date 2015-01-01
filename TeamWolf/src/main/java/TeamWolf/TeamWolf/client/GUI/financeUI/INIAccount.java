@@ -2,6 +2,8 @@ package TeamWolf.TeamWolf.client.GUI.financeUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -130,6 +132,21 @@ public class INIAccount extends JPanel{
 			 }
 		}
 		
+	}
+	
+	//表格监听
+	class TableListener implements MouseListener{
+		JTable t;
+		public TableListener(JTable table){
+			t = table;
+		}
+		public void mouseClicked(MouseEvent arg0) {
+			flashPanel();
+		}
+		public void mouseEntered(MouseEvent arg0) {}
+		public void mouseExited(MouseEvent arg0) {}
+		public void mousePressed(MouseEvent arg0) {}
+		public void mouseReleased(MouseEvent arg0) {}
 	}
 
 }

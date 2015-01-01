@@ -272,11 +272,11 @@ public class GoodsManager {
 	    		    	if(date>=beginDate&&date<=endDate){
 	    				      ImportAmount+=imported.getAmount();
 	    				      ImportPrice+=imported.getAmount()*imported.getImprice();
-	    				      //System.out.println("进货 "+imported.getAmount()+" "+imported.getImprice());
+	    				      System.out.println("进货 "+imported.getAmount()+" "+imported.getImprice());
 	    		    	}
 	    		    	totalAmount+=imported.getAmount();
 	    		    	totalPrice+=imported.getAmount()*imported.getImprice();
-	    		    	//System.out.println("ip: "+totalPrice+" "+totalAmount);
+	    		    	System.out.println("ip: "+totalPrice+" "+totalAmount);
 	    			 }
 	    		}
 	    		    			    	  
@@ -312,13 +312,13 @@ public class GoodsManager {
 	    			  if(date>=beginDate&&date<=endDate){  
 	    			     ExportAmount+=sold.getAmount();
 	    			     ExportPrice+=sold.getExprice()*sold.getAmount();
-	    			     //System.out.println("销售 "+sold.getAmount()+" "+sold.getImprice());
+	    			     System.out.println("销售 "+sold.getAmount()+" "+sold.getImprice());
 	    			  }
 	    			  
 	    			  double aP=totalPrice/(double)totalAmount;
 	    			  totalAmount-=sold.getAmount();
 	    			  totalPrice-=(aP*sold.getAmount());
-	    			  //System.out.println("ep: "+totalPrice+" "+totalAmount);
+	    			  System.out.println("ep: "+totalPrice+" "+totalAmount);
 	    		   }
 	    		}
 	    	}

@@ -171,7 +171,6 @@ public class Account implements AccountBlservice{
 	
 	//获取所有账户VO
 	public ArrayList<financeVO> checkVO() {
-		if(volist == null){
 			try {
 				fds = (financeDATAservice) Naming.lookup(URL);
 				polist = fds.checklist();
@@ -190,7 +189,6 @@ public class Account implements AccountBlservice{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
 		return volist;
 	}
 
