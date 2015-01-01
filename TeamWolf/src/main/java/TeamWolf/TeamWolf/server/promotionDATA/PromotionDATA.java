@@ -18,7 +18,6 @@ public class PromotionDATA extends UnicastRemoteObject implements PromotionDATAs
 	LogDATA log = new LogDATA();
 	public PromotionDATA() throws RemoteException {
 		super();
-		// TODO Auto-generated constructor stub
 		this.getList();
 		if(list == null){
 			list = new ArrayList<PromotionPO>();
@@ -26,21 +25,18 @@ public class PromotionDATA extends UnicastRemoteObject implements PromotionDATAs
 	}
 
 	public int addPromotion(PromotionPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		list.add(po);
 		try {
 			FileOpr.writeFile(FileName.promotionFile, list);
 			log.addPromotion(po);
 			return 0;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return ErrorTW.webError;
 	}
 
 	public int delPromotion(String number) throws RemoteException {
-		// TODO Auto-generated method stub
 		for(int i = 0; i < list.size(); i++){
 			if(number.equals(list.get(i).number)){
 				log.deletePromotion(list.get(i));
@@ -49,7 +45,6 @@ public class PromotionDATA extends UnicastRemoteObject implements PromotionDATAs
 					FileOpr.writeFile(FileName.promotionFile, list);
 					return 0;
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				return ErrorTW.webError;
@@ -58,8 +53,7 @@ public class PromotionDATA extends UnicastRemoteObject implements PromotionDATAs
 		return ErrorTW.notFound;//未找到
 	}
 	
-	public int updPromotion(PromotionPO po) throws RemoteException {
-		// TODO Auto-generated method stub
+	public int updPromotion(PromotionPO po) throws RemoteException {//界面层未实现
 		for(int i = 0; i < list.size(); i++){
 			if(list.get(i).number.equals(po.number)){
 				list.get(i).begin = po.begin;
@@ -68,7 +62,6 @@ public class PromotionDATA extends UnicastRemoteObject implements PromotionDATAs
 					FileOpr.writeFile(FileName.promotionFile, list);
 					return 0;
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -76,7 +69,6 @@ public class PromotionDATA extends UnicastRemoteObject implements PromotionDATAs
 		return ErrorTW.notFound;
 	}
 	public PromotionPO findPromotion(String number) throws RemoteException {
-		// TODO Auto-generated method stub
 		for(int i = 0; i < list.size(); i++){
 			if(list.get(i).number.equals(number)){
 				return list.get(i);
@@ -86,7 +78,6 @@ public class PromotionDATA extends UnicastRemoteObject implements PromotionDATAs
 	}
 
 	public ArrayList<PromotionPO> show() throws RemoteException {
-		// TODO Auto-generated method stub
 		return list;
 	}
 	
@@ -95,10 +86,8 @@ public class PromotionDATA extends UnicastRemoteObject implements PromotionDATAs
 		try {
 			list = (ArrayList<PromotionPO>)FileOpr.readFile(FileName.promotionFile);
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

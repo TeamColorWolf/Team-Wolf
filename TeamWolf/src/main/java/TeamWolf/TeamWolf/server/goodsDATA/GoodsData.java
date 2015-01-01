@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import TeamWolf.TeamWolf.client.DATAservice.goodsDATAservice.GoodsDataService;
 import TeamWolf.TeamWolf.client.po.GoodsAlarmPO;
 import TeamWolf.TeamWolf.client.po.GoodsPO;
-import TeamWolf.TeamWolf.client.po.TypePO;
 import TeamWolf.TeamWolf.server.FileName;
 import TeamWolf.TeamWolf.server.FileOpr;
 import TeamWolf.TeamWolf.server.logDATA.LogDATA;

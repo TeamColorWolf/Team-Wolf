@@ -35,7 +35,7 @@ public class ManageApprove extends ApplicationBL{
 			for(int i = 0; i < list.size(); i++){
 				if(list.get(i).condition == 1){
 					System.out.println(list.get(i).number + " approval");
-					success = Application.getApplication(list.get(i), IP).approve();
+					success = Application.getApplication(list.get(i), IP).approve();//审批一个单据
 					if(success != 0){
 						System.out.println(list.get(i).number + "approve failed");
 						somethingError = ErrorTW.someApplicationFailed;

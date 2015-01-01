@@ -29,7 +29,6 @@ public class CustomerDATA extends UnicastRemoteObject implements CustomerDATAser
 	}
 	
 	public int addCustomer(CustomerPO cpo) throws RemoteException {
-		// TODO Auto-generated method stub
 		for(int i=0;i<list.size();i++){
 			if(list.get(i).getNum().equals(cpo.getNum())){
 				return ErrorTW.haveAlreadyExist;
@@ -41,9 +40,8 @@ public class CustomerDATA extends UnicastRemoteObject implements CustomerDATAser
 			LogDATA log = new LogDATA();
 			log.addCustomer(cpo);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return 30001;
+			return ErrorTW.lackServerInformation;
 		}
 		return 0;
 	}
@@ -58,9 +56,8 @@ public class CustomerDATA extends UnicastRemoteObject implements CustomerDATAser
 					log.deleteCustomer(cpo);
 					return 0;
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
-					return 30002;
+					return ErrorTW.lackServerInformation;
 				}
 			}
 		}
@@ -84,7 +81,6 @@ public class CustomerDATA extends UnicastRemoteObject implements CustomerDATAser
 		getList();
 		for (int i = 0; i < list.size(); i++) {
 			if (list.get(i).getNum().equals(po.getNum())) {
-				// if(!list.contains(findCustomer(newpo.getNum()))){
 				list.remove(list.get(i));
 				list.add(i, newpo);
 				try {
@@ -93,9 +89,8 @@ public class CustomerDATA extends UnicastRemoteObject implements CustomerDATAser
 					log.updateCustomer(newpo);
 					return 0;
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
-					return ErrorTW.webError;
+					return ErrorTW.lackServerInformation;
 				}
 			}
 		}
@@ -131,10 +126,8 @@ public class CustomerDATA extends UnicastRemoteObject implements CustomerDATAser
 		try {
 			list = (ArrayList<CustomerPO>) FileOpr.readFile(FileName.customerFile);
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

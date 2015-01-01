@@ -26,7 +26,11 @@ import TeamWolf.TeamWolf.client.vo.PromotionVO;
 import TeamWolf.TeamWolf.client.vo.SaleListVO;
 import TeamWolf.TeamWolf.client.vo.SpecialGoodsPromotionVO;
 import TeamWolf.TeamWolf.client.vo.TimeVO;
-
+/**
+ * 提供促销策略的一切对外接口的实现
+ * @author WHJ
+ *
+ */
 public class PromotionForOther {
 	PromotionDATAservice data;
 	ExternalService stockService;
@@ -39,9 +43,12 @@ public class PromotionForOther {
 		URL = "rmi://" + IP + "/promotionDATAservice";
 		initial();
 	}
-	
+	/**
+	 * 提交销售单的同时生成库存赠送单（如果需要生成）
+	 * @param vo
+	 * @return 返回结合促销策略的折让额
+	 */
 	public double adaptPromotionForSaleList(SaleListVO vo) {
-		// TODO Auto-generated method stub
 		initial();
 		int rank = vo.getCustomer().getLevel();
 		double total = vo.getTotal();
@@ -70,12 +77,15 @@ public class PromotionForOther {
 				}
 			}
 		}
-		if(giftlist.size() != 0){//TODO 生成库存赠送单
+		if(giftlist.size() != 0){//生成库存赠送单
 			creatPresentList(giftlist, vo.getCustomer());
 		}
 		return discount;
 	}
-	
+	/**
+	 * 库存管理员需要将特价包当做一种特殊的商品看到
+	 * @return 所以当前存在的特价包
+	 */
 	public ArrayList<SpecialGoodsPromotionVO> specialGoodsPackage() {
 		initial();
 		ArrayList<SpecialGoodsPromotionVO> list = new ArrayList<SpecialGoodsPromotionVO>();
@@ -95,13 +105,10 @@ public class PromotionForOther {
 			data = (PromotionDATAservice)Naming.lookup(URL);
 			poList = data.show();
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NotBoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if(poList == null){

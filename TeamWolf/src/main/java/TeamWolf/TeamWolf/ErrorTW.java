@@ -54,4 +54,5 @@ public class ErrorTW {
 	public static final int InputNumberWrong = 99998;//输入的数据存在问题
 	public static final int RedError = 99999;//最后一张单据无法红冲
 	public static final int rmiError = 23333;//RMI的启动出错
+	public static final int lackServerInformation = 30001;//服务器端信息缺失
 }

@@ -6,13 +6,13 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import TeamWolf.TeamWolf.client.DATAservice.applicationDATAservice.SaleApplicationDATAservice;
-import TeamWolf.TeamWolf.client.po.ApplicationPO;
 import TeamWolf.TeamWolf.client.po.ImportListPO;
 import TeamWolf.TeamWolf.client.po.ImportRejectListPO;
 import TeamWolf.TeamWolf.client.po.SaleListPO;
 import TeamWolf.TeamWolf.client.po.SaleRejectListPO;
 import TeamWolf.TeamWolf.server.FileName;
 import TeamWolf.TeamWolf.server.FileOpr;
+import TeamWolf.TeamWolf.server.logDATA.LogDATA;
 
 public class SaleApplicationDATA extends UnicastRemoteObject implements SaleApplicationDATAservice{
 
@@ -22,6 +22,7 @@ public class SaleApplicationDATA extends UnicastRemoteObject implements SaleAppl
 	private ArrayList<ImportRejectListPO> importRejectList = null;
 	private ArrayList<SaleListPO> saleList = null;
 	private ArrayList<SaleRejectListPO> saleRejectList = null;
+	private LogDATA log = new LogDATA();
 	
 	public SaleApplicationDATA() throws RemoteException {
 		super();
@@ -75,6 +76,7 @@ public class SaleApplicationDATA extends UnicastRemoteObject implements SaleAppl
 		importList.add(ipo);
 		try {
 			fo.writeFile(fileName.importListFile, importList);
+			log.submitApplication(ipo);
 		} catch (Exception e) {
 			e.printStackTrace();
 			judge = 9;
@@ -95,6 +97,7 @@ public class SaleApplicationDATA extends UnicastRemoteObject implements SaleAppl
 		importRejectList.add(irpo);
 		try {
 			fo.writeFile(fileName.importRejectListFile, importRejectList);
+			log.submitApplication(irpo);
 		} catch (IOException e) {
 			e.printStackTrace();
 			judge = 9;
@@ -116,6 +119,7 @@ public class SaleApplicationDATA extends UnicastRemoteObject implements SaleAppl
 			System.out.println("================" + saleList.size() + "==================");
 			fo.writeFile(fileName.saleListFile, saleList);
 			System.out.println("add saleList success");
+			log.submitApplication(spo);
 		} catch (IOException e) {
 			e.printStackTrace();
 			judge = 9;
@@ -138,6 +142,7 @@ public class SaleApplicationDATA extends UnicastRemoteObject implements SaleAppl
 		try {
 			System.out.println("add saleRejectList success");
 			fo.writeFile(fileName.saleRejectListFile, saleRejectList);
+			log.submitApplication(srpo);
 		} catch (IOException e) {
 			e.printStackTrace();
 			judge = 9;
@@ -157,6 +162,7 @@ public class SaleApplicationDATA extends UnicastRemoteObject implements SaleAppl
 		try {
 			fo.writeFile(fileName.importListFile, importList);
 			judge = 0;
+			log.approveApplication(ipo);
 			return judge;
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -176,6 +182,7 @@ public class SaleApplicationDATA extends UnicastRemoteObject implements SaleAppl
 		try {
 			fo.writeFile(fileName.importRejectListFile, importRejectList);
 			judge = 0;
+			log.approveApplication(irpo);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -194,6 +201,7 @@ public class SaleApplicationDATA extends UnicastRemoteObject implements SaleAppl
 		try {
 			fo.writeFile(fileName.saleListFile, saleList);
 			judge = 0;
+			log.approveApplication(spo);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -212,6 +220,7 @@ public class SaleApplicationDATA extends UnicastRemoteObject implements SaleAppl
 		try {
 			fo.writeFile(fileName.saleRejectListFile, saleRejectList);
 			judge = 0;
+			log.approveApplication(srpo);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -230,6 +239,7 @@ public class SaleApplicationDATA extends UnicastRemoteObject implements SaleAppl
 		try {
 			fo.writeFile(fileName.importListFile, importList);
 			judge = 0;
+			log.rejectApplication(ipo);
 			return judge;
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -249,6 +259,7 @@ public class SaleApplicationDATA extends UnicastRemoteObject implements SaleAppl
 		try {
 			fo.writeFile(fileName.importRejectListFile, importRejectList);
 			judge = 0;
+			log.rejectApplication(irpo);
 			return judge;
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -268,6 +279,7 @@ public class SaleApplicationDATA extends UnicastRemoteObject implements SaleAppl
 		try {
 			fo.writeFile(fileName.saleListFile, saleList);
 			judge = 0;
+			log.rejectApplication(spo);
 			return judge;
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -287,6 +299,7 @@ public class SaleApplicationDATA extends UnicastRemoteObject implements SaleAppl
 		try {
 			fo.writeFile(fileName.saleRejectListFile, saleRejectList);
 			judge = 0;
+			log.rejectApplication(srpo);
 			return judge;
 		} catch (IOException e) {
 			e.printStackTrace();

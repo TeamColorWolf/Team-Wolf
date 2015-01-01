@@ -22,7 +22,7 @@ import TeamWolf.TeamWolf.client.vo.PromotionVO;
 import TeamWolf.TeamWolf.client.vo.SpecialGoodsPromotionVO;
 import TeamWolf.TeamWolf.client.vo.TypeVO;
 /**
- * 
+ * 实现了促销策略的增删改查，界面需求的商品信息提供
  * @author WHJ
  *
  */
@@ -63,60 +63,6 @@ public class PromotionBL{
 		}
 		return ErrorTW.webError;
 	}
-	
-//	public int setForVIP(ForVIPPromotionVO vo) {
-//		// TODO Auto-generated method stub
-//		try {
-//			data = (PromotionDATAservice)Naming.lookup(URL);
-//			return data.addPromotion(new ForVIPPromotionPO(vo));
-//		} catch (MalformedURLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (RemoteException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (NotBoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return ErrorTW.webError;
-//	}
-//
-//	public int setForSpecialGoods(SpecialGoodsPromotionVO vo) {
-//		// TODO Auto-generated method stub
-//		try {
-//			data = (PromotionDATAservice)Naming.lookup(URL);
-//			return data.addPromotion(new SpecialGoodsPromotionPO(vo));
-//		} catch (MalformedURLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (RemoteException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (NotBoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return ErrorTW.webError;
-//	}
-//
-//	public int setForPrice(ForPricePromotionVO vo) {
-//		// TODO Auto-generated method stub
-//		try {
-//			data = (PromotionDATAservice)Naming.lookup(URL);
-//			return data.addPromotion(new ForPricePromotionPO(vo));
-//		} catch (MalformedURLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (RemoteException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (NotBoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return ErrorTW.webError;
-//	}
 
 	public PromotionVO getPromotion(String number) {
 		// TODO Auto-generated method stub
@@ -205,9 +151,9 @@ public class PromotionBL{
 		return proAssist.findGoods(number);
 	}
 	
-	private String creatPromotionNumber(PromotionVO vo){
+	private String creatPromotionNumber(PromotionVO vo){//自动生成促销策略编号
 		int max = 0;
-		for(int i = 0; i < voList.size(); i++){
+		for(int i = 0; i < voList.size(); i++){//查找当前同类型的最大编号的促销策略
 			if(voList.get(i).type == vo.type){
 				String[] array = voList.get(i).number.split("_");
 				int temp = Integer.parseInt(array[1]);

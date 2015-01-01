@@ -11,7 +11,7 @@ import TeamWolf.TeamWolf.client.vo.GoodsVO;
 import TeamWolf.TeamWolf.client.vo.TypeVO;
 
 /**
- * 
+ * 负责promotionBL与其他包的交互（获取商品的数据）和一些零散事项（获取当前时间）
  * @author WKS
  *
  */
@@ -29,7 +29,7 @@ public class PromotionBLAssistant {
 		typeList = stockService.getLeaveType();
 	}
 	
-	public ArrayList<TypeVO> getTypeList(){
+	public ArrayList<TypeVO> getTypeList(){//获取商品分类叶节点
 		if(typeList == null){
 			typeList = stockService.getLeaveType();
 		}
@@ -42,7 +42,7 @@ public class PromotionBLAssistant {
 		return typeList;
 	}
 	
-	public GoodsVO findGoods(String number){
+	public GoodsVO findGoods(String number){//获取具体商品
 		return stockService.finGoods(number);
 	}
 	

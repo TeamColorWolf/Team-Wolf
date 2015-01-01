@@ -13,11 +13,9 @@ import TeamWolf.TeamWolf.server.FileOpr;
 public class ApproveDATA extends UnicastRemoteObject implements ApproveDATAservice{
 	public ApproveDATA() throws RemoteException {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public ArrayList<ApplicationPO> getUnsetApplicationList() throws RemoteException {
-		// TODO Auto-generated method stub
 		ArrayList<ApplicationPO> templist = this.allApplication();
 		ArrayList<ApplicationPO> list = new ArrayList<ApplicationPO>();
 		for(int i = 0; i < templist.size(); i++){
@@ -29,7 +27,6 @@ public class ApproveDATA extends UnicastRemoteObject implements ApproveDATAservi
 	}
 
 	public ArrayList<ApplicationPO> getApprovalApplicationList() throws RemoteException {
-		// TODO Auto-generated method stub
 		ArrayList<ApplicationPO> templist = this.allApplication();
 		ArrayList<ApplicationPO> list = new ArrayList<ApplicationPO>();
 		for(int i = 0; i < templist.size(); i++){
@@ -41,7 +38,6 @@ public class ApproveDATA extends UnicastRemoteObject implements ApproveDATAservi
 	}
 
 	public ApplicationPO findApplication(String number) throws RemoteException {
-		// TODO Auto-generated method stub
 		ArrayList<ApplicationPO> templist = this.allApplication();
 		for(int i = 0; i < templist.size(); i++){
 			if(templist.get(i).number.equals(number)){
@@ -51,8 +47,7 @@ public class ApproveDATA extends UnicastRemoteObject implements ApproveDATAservi
 		return null;
 	}
 
-	public ArrayList<String> getResult(String workNumber) throws RemoteException {
-		// TODO Auto-generated method stub
+	public ArrayList<String> getResult(String workNumber) throws RemoteException {//TODO 待实现
 		return null;
 	}
 	
@@ -88,10 +83,8 @@ public class ApproveDATA extends UnicastRemoteObject implements ApproveDATAservi
 		try {
 			list = (ArrayList<ApplicationPO>)FileOpr.readFile(fileName);
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if(list == null){
